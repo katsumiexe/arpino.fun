@@ -457,6 +457,7 @@ if($_REQUEST["member_new"]){
 			}
 			$app.=")";
 		}
+
 		$sql2  ="SELECT * FROM `duty_log`";
 		$sql2 .=" WHERE `del`<>1 ";
 		$sql2 .=$app;
@@ -1971,6 +1972,7 @@ ksort($member_comm);
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" type="text/css" href="css/main.css?d=<?=time()?>" />
+<link rel="stylesheet" type="text/css" href="css/tag.css?d=<?=time()?>" />
 
 <script type="text/javascript" src="js/jquery-1.11.2.min.js?d=<?=time()?>"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js?d=<?=time()?>"></script>
@@ -2278,15 +2280,14 @@ function Passage() {
 		<div class="login_box_a">
 			<?=$set_title?>
 		</div>
-		<div class="login_box_b">
-			<span class="open_title">LOGIN</span><input style="width:198px;" type="text" name="duty_login" maxlength="20"><br>
-			<span class="open_title">PASS</span><input style="width:198px;" type="password" name="duty_logpass"><br>
-		<button class="submit" style="width:200px;" type="submit" value="LOGIN">LOGIN</button>
-		</div>
+		<span class="login_box_b">ID</span><input type="text" name="duty_login" maxlength="20" class="login_box_c"><br>
+		<span class="login_box_b">PASS</span><input  type="password" name="duty_logpass" class="login_box_c"><br>
+		<button type="submit" value="LOGIN"  class="login_box_d">LOGIN</button>
+		<span class="top_msg"><?=$err?></span>
 	</div>
-	<div class="top_msg">
-		<span style="color:#ff0000;"><?=$err?></span><br>
-	</div>
+
+
+
 	</form>
 <?}else{?>
 	<div class="err_box">
