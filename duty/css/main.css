@@ -106,34 +106,33 @@ texture:focus {
 }
 
 .open1 {
-	border: 1px solid #cccccc;
-	width:850px;
-	margin:5px 0px;
-	padding:5px;
-	background:#f0fff0;
-	position:relative;
+	border		:1px solid #cccccc;
+	width		:858px;
+	margin		:5px auto;
+	padding		:5px;
+	background	:#f0fff0;
+	position	:relative;
 }
 
 .open2 {
-	border: 1px solid #303030;
-	height:200px;
-	width:842px;
-	margin:5px auto;
-	padding:2px;
-	background:#fafafa;
-	font-size:15px;
-	resize:none;
+	border		:1px solid #303030;
+	width		:864px;
+	margin		:2px auto;
+	padding		:2px;
+	background	:#fafafa;
+	font-size	:15px;
+	resize		:none;
 }
 
 .open3 {
-	border: 1px solid #cccccc;
-	width:836px;
-	font-size:14px;
-	margin:5px 0px;
-	padding:5px;
-	background:#ffffff;
-	word-wrap: break-word;
-	text-align:center;
+	border		:1px solid #cccccc;
+	width		:858px;
+	font-size	:14px;
+	margin		:2px auto;
+	padding		:5px;
+	background	:#ffffff;
+	word-wrap	:break-word;
+	text-align	:left;
 }
 
 .open4 {
@@ -143,6 +142,17 @@ texture:focus {
 	margin:1vw 0;
 	padding:5px;
 	background:#f0f0f0;
+}
+
+.open_text{
+	border		:1px solid #303030;
+	width		:858px;
+	height		:200px;
+	margin		:2px auto;
+	padding		:5px;
+	background	:#fafafa;
+	font-size	:16px;
+	resize		:none;
 }
 
 .open_a {
@@ -702,14 +712,6 @@ span.f_icon{
 	text-align:center;
 }
 
-.sele_name{
-	display:inline-block;
-	height:26px;
-	line-height:26px;
-	font-size:16px;
-	margin-left:28px;
-	vertical-align:middle;
-}
 
 .sele_icon_22{
 	font-family: 'iconfont';
@@ -1674,17 +1676,16 @@ button{
 	line-height		:40px;
 	font-size		:24px;
 	color			:#303030;
-	margin			: 10px auto;
+	margin			:10px auto;
 }
-
 
 .top_msg{
 	display			:inline-block;
 	position		:absolute;
 	left			:0;
 	right			:0;
-	bottom			:-45px;
-	font-size		:24px;
+	bottom			:-40px;
+	font-size		:20px;
 	color			:#e00000;
 	font-weight		:600;
 }

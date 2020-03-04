@@ -6,7 +6,6 @@ session_start();
 
 //■■サーバー接続----------------------*
 $ip_ok=1;
-
 if ($dir = opendir("config/")) {
 	while (($file = readdir($dir)) !== false) {
 		if ($file != "." && $file != ".." ) {
@@ -2819,8 +2818,10 @@ function Passage() {
 
 <!--st■■投稿---------->
 	<div class="open">
+
 		<?if($gp[1]){?>
 			<form id="form1" action="./index.php" method="post" enctype="multipart/form-data">
+
 				<div class="open1">
 					<input type="hidden" name="uid" value="<?=$uid?>">
 					<input type="hidden" name="w_try" value="1">
@@ -2885,32 +2886,33 @@ function Passage() {
 						</span>
 						<input type="hidden" value="<?=$log_id?>" name="icon_set">
 					</div>	
+				</div>	
 
-					<div class="open_a">
-						<?foreach($group_sort as $p3 => $p4){?>
-							<?if($p4 != 100){?>
-								<div class="gp_dt" id="gp_dt<?=$p4?>">
-									<?foreach((array)$member_now as $a1 => $a2){?>
-										<?if($member[$a2][$p4] ==1 ||$member[$a2]["b"] ==1 || $p4==0){?>
-											<span class="send_y">
-												<span class="send_y2"></span>
-												<?=$member[$a2]["name"]?>
-											</span>
+				<div class="open2">
+					<?foreach($group_sort as $p3 => $p4){?>
+						<?if($p4 != 100){?>
+							<div class="gp_dt" id="gp_dt<?=$p4?>">
+								<?foreach((array)$member_now as $a1 => $a2){?>
+									<?if($member[$a2][$p4] ==1 ||$member[$a2]["b"] ==1 || $p4==0){?>
+										<span class="send_y">
+											<span class="send_y2"></span>
+											<?=$member[$a2]["name"]?>
+										</span>
 
-										<? } else {?>
-											<span class="send_n">
-												<span class="send_n2"></span>
-												<?=$member[$a2]["name"]?>
-											</span>
-										<? } ?>
+									<? } else {?>
+										<span class="send_n">
+											<span class="send_n2"></span>
+											<?=$member[$a2]["name"]?>
+										</span>
 									<? } ?>
-								</div>
-							<? } ?>
+								<? } ?>
+							</div>
 						<? } ?>
-					</div>
-	
-					<div class="gp_dt" id="gp_dt99"><?foreach((array)$member_now as $a1 => $a2){?><?if($member[$a2]['b'] ==1){?><span class="send_y"><span class="send_y2"></span><?=$member[$a2]["name"]?></span><input type="hidden" name="w_mem[<?=$a2?>]" value="1"><? } else {?><label><input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span></label><? } ?><? } ?></div>
-					<textarea class="open2" name="w_log"><?=$view?></textarea><br>
+					<? } ?>
+				</div>
+
+				<div class="gp_dt" id="gp_dt99"><?foreach((array)$member_now as $a1 => $a2){?><?if($member[$a2]['b'] ==1){?><span class="send_y"><span class="send_y2"></span><?=$member[$a2]["name"]?></span><input type="hidden" name="w_mem[<?=$a2?>]" value="1"><? } else {?><label><input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span></label><? } ?><? } ?></div>
+					<textarea class="open_text" name="w_log"><?=$view?></textarea><br>
 
 					<div class="open3">
 
@@ -2933,8 +2935,9 @@ function Passage() {
 						<label for="upd6" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
 					</div>
-				</form>
-			<!--ed■■投稿---------->
+				</div>
+			</form>
+		<!--ed■■投稿---------->
 
 
 
@@ -2954,7 +2957,7 @@ function Passage() {
 						<span class="open_pack bk1"><span class="sele_icon_24"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span><!--
 					--><span class="open_pack bk2"><span class="sele_icon_24"><?=$icon_font2[23]?></span><select name="w_cate" class="open_select"><?foreach((array)$category_sort as $a1 => $a2){?><?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>" <?if($a2 == $view_category){?> selected="selected"<? } ?>><?=$category[$a2]["name"]?></option><? } ?><? } ?></select></span><!--
 					--><span class="open_pack bk3"><span class="sele_icon_24"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
-				 		<div id="icon_w" class="main_slide3 bk4">
+				 		<div id="icon_w" class="open_pack bk4">
 							<div id="iconselect_w">
 								<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
 									<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
@@ -3146,15 +3149,19 @@ function Passage() {
 	<?}elseif($log_id){?>
 <!--■■通常------------------------->
 		<div class="open1">
+
 			<form action="./index.php" method="post">
 				<input id="direct" type="hidden" name="" value="<?=$log_id?>">
 				<span class="open1_top">
-					<span class="open_pack bk1"><span class="sele_icon_24"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span>
-					<span class="open_pack bk2"><span class="sele_icon_24"><?=$icon_font2[23]?></span><span class="open_item ow150"><?=$category[$view_category]["name"]?></span></span>
-					<span class="open_pack bk3"><span class="sele_icon_24"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
+					<span class="open_pack bk1"><span class="icon_o"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span>
+					<span class="open_pack bk2"><span class="icon_o"><?=$icon_font2[23]?></span><span class="open_item ow150"><?=$category[$view_category]["name"]?></span></span>
+					<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
+						<div id="iconselect" class="open_pack bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
+						<span class="icon_o">
+							<?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?>
+						</span>
+						<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
 
-						<div id="iconselect" class="main_slide3 bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
-						<span class="sele_icon_26"><?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?></span><span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
 						<div class="sub_slide3 s_sele_view">
 							<?foreach((array)$fav_sort as $b1 => $b2){?>
 								<input type="radio" id="view_<?=$b2?>" class="label_c fav1" name="n_icon" value="<?=$b2?>" style="display:none;" <?if($fav_count[$log_id] ==$b2){?> checked="checked"<?}?>>
@@ -3169,9 +3176,9 @@ function Passage() {
 						</div>
 
 					</div>
-					<span class="open_pack bk5"><span class="sele_icon_24"><?=$icon_font2[13]?></span><span class="open_item ow345"><?=$view_title?></span></span>
-					<span class="open_pack bk6"><span class="sele_icon_24"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
-					<span class="open_pack bk7"><span class="sele_icon_24"><?=$icon_font2[21]?></span></span>
+					<span class="open_pack bk5"><span class="icon_o"><?=$icon_font2[13]?></span><span class="open_item ow345"><?=$view_title?></span></span>
+					<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
+					<span class="open_pack bk7"><span class="icon_o"><?=$icon_font2[21]?></span></span>
 
 					<span class="bk8">
 						<?if($uid == $view_writer){?>

@@ -60,7 +60,7 @@
 
 	height		:24px;
 	line-height	:24px;
-	border		:1px solid #303030;
+	border		:1px solid #f0FcFF;
 	overflow	:hidden;
 	font-size	:16px;
 	background	:#f0FcFF;
@@ -70,7 +70,7 @@
 }
 
 .ow345{
-	width		:374px;
+	width		:370px;
 }
 
 .ow150{
@@ -152,6 +152,16 @@
 	bottom		:0;
 	margin		:auto;
 	width		:378px;
+}
+
+.sele_name{
+	display		:inline-block;
+	position	:absolute;
+	left		:35px;
+	top			:0;
+	bottom		:0;
+	margin		:auto;
+	font-size	:16px;
 }
 
 
