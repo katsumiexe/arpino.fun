@@ -2350,9 +2350,6 @@ button{
 		z-index:3;
 	}
 
-
-	
-
 	.member0,.member1,.member2,.member3,.member4{
 		width:17vw;
 		font-size: 3.5vw;
@@ -2393,8 +2390,6 @@ button{
 		border:1vw solid;
 	}
 
-
-
 	#icon_w {
 	    color: #aaaaaa;
 	    background: #ffffff;
@@ -2408,8 +2403,3 @@ button{
 	}
 }
 
-@media (max-width:4.52px){
-	.member0,.member1,.member2,.member3,.member4{
-		width:23%;
-	}
-}
