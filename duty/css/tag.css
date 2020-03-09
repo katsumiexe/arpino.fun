@@ -9,32 +9,32 @@
 
 .bk1{
 	background	:#c5cbc7;
-	flex-basis	:205px;
+	flex-basis	:206px;
 }
 
 .bk2{
 	background	:#ff60e9;
-	flex-basis	:205px;
+	flex-basis	:206px;
 }
 
 .bk3{
 	background	:#5070ff;
-	flex-basis	:205px;
+	flex-basis	:206px;
 }
 
 .bk4{
-	flex-basis	:205px;
 	background	:#909090;
+	flex-basis	:208px;
 }
 
 .bk5{
 	background	:#507000;
-	flex-basis	:416px;
+	flex-basis	:418px;
 }
 
 .bk6{
 	background	:#CCD9F9;
-	flex-basis	:205px;
+	flex-basis	:206px;
 }
 
 .bk7{
@@ -64,7 +64,7 @@
 	overflow	:hidden;
 	font-size	:16px;
 	background	:#f0FcFF;
-	color		:#303030;
+	color		:#666666;
 	text-align	:left;
 	padding-left:5px;
 }
@@ -121,6 +121,7 @@
 
 	text-align	:center;
 	width		:165px;
+	border		:none;
 }
 
 
@@ -132,6 +133,7 @@
 	margin		:auto;
 	text-align	:center;
 	width		:100px;
+	border		:none !important;
 }
 
 .open_box_b{
@@ -142,16 +144,17 @@
 	margin		:auto;
 	text-align	:center;
 	width		:60px;
+	border		:none !important;
 }
 
 .open_box_c{
-	display		:inline-block;
 	position	:absolute;
 	right		:4px;
 	top			:0;
 	bottom		:0;
 	margin		:auto;
 	width		:378px;
+	border		:none;
 }
 
 .sele_name{

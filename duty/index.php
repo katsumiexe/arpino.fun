@@ -2818,7 +2818,6 @@ function Passage() {
 
 <!--st■■投稿---------->
 	<div class="open">
-
 		<?if($gp[1]){?>
 			<form id="form1" action="./index.php" method="post" enctype="multipart/form-data">
 
@@ -2938,8 +2937,6 @@ function Passage() {
 				</div>
 			</form>
 		<!--ed■■投稿---------->
-
-
 
 		<?}elseif($c_act=="log_del"){?>
 		<!--st■■削除完了------>
@@ -3156,26 +3153,31 @@ function Passage() {
 					<span class="open_pack bk1"><span class="icon_o"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span>
 					<span class="open_pack bk2"><span class="icon_o"><?=$icon_font2[23]?></span><span class="open_item ow150"><?=$category[$view_category]["name"]?></span></span>
 					<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
-						<div id="iconselect" class="open_pack bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
-						<span class="icon_o">
-							<?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?>
-						</span>
-						<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
 
-						<div class="sub_slide3 s_sele_view">
-							<?foreach((array)$fav_sort as $b1 => $b2){?>
-								<input type="radio" id="view_<?=$b2?>" class="label_c fav1" name="n_icon" value="<?=$b2?>" style="display:none;" <?if($fav_count[$log_id] ==$b2){?> checked="checked"<?}?>>
-								<label for="view_<?=$b2?>" class="sele_box_view label_c" style="color:<?=$icon_color[$fav[$b2]['color']]?>;border-color:<?=$icon_color[$fav[$b2]['color']]?>"><span class="sele_icon_26"><?=$icon_font2[$fav[$b2]['icon']]?></span><span class="sele_name"><?=$fav[$b2]['name']?></span></label>
-							<? } ?>
-							<?if($b1){?>
-								<input type="radio" id="view_0" class="label_c fav1" name="n_icon" value="0" style="display:none;">
-								<label for="view_0" class="sele_box_view label_c" style="color:#333333;background:#e0e0e0">
-								<span class="sele_icon_23"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
-								</label>
-							<? } ?>
-						</div>
+<div class="main_slide open_pack bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
+	<span class="icon_o2"><?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?></span>
+	<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
+	<div class="sub_slide">
+		<?foreach((array)$fav_sort as $b1 => $b2){?>
+			<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>;border-color:<?=$icon_color[$fav[$b2]['color']]?>">
+				<span class="sele_icon_26"><?=$icon_font2[$fav[$b2]['icon']]?></span>
+				<span class="sele_name"><?=$fav[$b2]['name']?></span>
+			</span>
+		<? } ?>
 
-					</div>
+		<?if($b1){?>
+			<input type="radio" id="view_0" class="label_c fav1" name="n_icon" value="0" style="display:none;">
+			<label for="view_0" class="sele_box_view label_c" style="color:#333333;background:#e0e0e0">
+			<span class="sele_icon_23"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
+			</label>
+		<? } ?>
+	</div>
+</div>
+
+
+
+
+
 					<span class="open_pack bk5"><span class="icon_o"><?=$icon_font2[13]?></span><span class="open_item ow345"><?=$view_title?></span></span>
 					<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
 					<span class="open_pack bk7"><span class="icon_o"><?=$icon_font2[21]?></span></span>

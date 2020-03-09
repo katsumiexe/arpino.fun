@@ -843,15 +843,15 @@ span.f_icon{
 	border:2px solid #d00000;
 }
 
-.s_sele_view{
-	color:#f0f0f0;
-	position: absolute;
-	top:30px;
-	left:0;
-	text-align:left;	
-	width:205px;
-	margin:0px;
-	z-index:10;
+.sub_slide{
+	position	:absolute;
+	top			:38px;
+	left		:0;
+	width		:206px;
+	border:1px solid #303030;
+	color		:#f0f0f0;
+	text-align	:left;	
+	z-index		:10;
 
 }
 
@@ -1815,14 +1815,13 @@ button{
 	color:#909090
 }
 
-.sele_box_view{
-	background:#f0f0f0;
-	display:block;
-	border:none;
-	width:205px;
-	height:30px;	
-	text-align:left;
-	position:relative;
+.sub_slide_sel{
+	position	:relative;
+	display		:block;
+	background	:#f0f0f0;
+	border		:none;
+	height		:32px;	
+	text-align	:left;
 
 }
 

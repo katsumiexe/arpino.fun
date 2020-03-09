@@ -40,23 +40,9 @@ $(function(){
 	$('.sub_slide2').hide();
 
 	$('.main_slide').on('click',function(){
-		$('div.sub_slide').slideUp(100);
-		if($('+div.sub_slide',this).css('display') == 'none'){
-			$('+div.sub_slide',this).slideDown(100);
-		}
-	});
-
-	$('.main_slide2').on('click',function(){
-		$('.sub_slide2').slideUp(100);
-		if($('+.sub_slide2',this).css('display') == 'none'){
-			$('+.sub_slide2',this).slideDown(100);
-		}
-	});
-
-	$('.slide3').on('click',function(){
-		$('.sub_slide3').slideUp(100);
-		if($('.sub_slide3').css('display') == 'none'){
-			$('.sub_slide3').slideDown(100);
+		$('.sub_slide').slideUp(100);
+		if($(this).children('.sub_slide').css('display') == 'none'){
+			$(this).children('.sub_slide').slideDown(100);
 		}
 	});
 
