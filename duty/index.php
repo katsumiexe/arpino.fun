@@ -1994,6 +1994,8 @@ $(function(){
 	var h3=0;
 	var h4=0;
 
+	var Uid=<?=$uid?>;
+
 <?if($err){?>
 	$('.err_box').fadeIn(200);
 <?}else {?>
@@ -3153,27 +3155,26 @@ function Passage() {
 					<span class="open_pack bk2"><span class="icon_o"><?=$icon_font2[23]?></span><span class="open_item ow150"><?=$category[$view_category]["name"]?></span></span>
 					<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
 
-		<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
+					<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
+						<span class="sub_slide_top" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']]?>">
+							<span class="icon_o2"><?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?></span>
+							<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
+						</span>
 
-			<span class="sub_slide_top" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']]?>">
-				<span class="icon_o2"><?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?></span>
-				<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
-			</span>
+						<div class="sub_slide">
+							<?foreach((array)$fav_sort as $b1 => $b2){?>
+								<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
+									<span class="icon_o2"><?=$icon_font2[$fav[$b2]['icon']]?></span>
+									<span class="sele_name"><?=$fav[$b2]['name']?></span>
+								</span>
+							<? } ?>
 
-			<div class="sub_slide">
-				<?foreach((array)$fav_sort as $b1 => $b2){?>
-					<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
-						<span class="sele_icon_26"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-						<span class="sele_name"><?=$fav[$b2]['name']?></span>
-					</span>
-				<? } ?>
-
-				<?if($b1){?>
-					<span id="sel_del" class="sub_slide_sel" style="color:#333333">
-					<span class="sele_icon_26"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
-				<? } ?>
-			</div>
-		</div>
+							<?if($b1){?>
+								<span id="s0" class="sub_slide_sel" style="color:#333333">
+								<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
+							<? } ?>
+						</div>
+					</div>
 
 
 

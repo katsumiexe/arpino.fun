@@ -1,10 +1,18 @@
 $(function(){
 
-	$('.sub_slide_sel').on('click',(function(){
+	$('.sub_slide_sel').on('click',function(){
 		Sel= $(this).attr("id").replace('s','');
+		SelHtml= $(this).html();
+		$('.sub_slide_top').html(SelHtml);
+
+		$.post("post_chg_fav.php",
+			{
+				'chg':Sel,
+				'uid':Uid,
+			},
+			function(data){
+		});
 	});
-
-
 
 
 	$('.todo_tag_ckb').click(function(){
