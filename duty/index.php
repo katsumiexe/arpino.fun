@@ -1984,6 +1984,9 @@ $(function(){
 	var FavIcon = [];
 	var FavName = [];
 	var FavColor = [];
+
+	var LogId = '<?=$log_id?>';
+
 	<?foreach($icon_font2 as $a1 => $a2){?>Icon[<?=$a1?>]='<?=$a2?>';
 <?}?>
 	<?foreach($icon_color as $a1 => $a2){?>Color[<?=$a1?>]='<?=$a2?>';
@@ -3164,8 +3167,8 @@ function Passage() {
 						<div class="sub_slide">
 							<?foreach((array)$fav_sort as $b1 => $b2){?>
 								<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
-									<span class="icon_o2"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-									<span class="sele_name"><?=$fav[$b2]['name']?></span>
+									<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
+									<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
 								</span>
 							<? } ?>
 
@@ -3175,10 +3178,6 @@ function Passage() {
 							<? } ?>
 						</div>
 					</div>
-
-
-
-
 
 					<span class="open_pack bk5"><span class="icon_o"><?=$icon_font2[13]?></span><span class="open_item ow345"><?=$view_title?></span></span>
 					<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>

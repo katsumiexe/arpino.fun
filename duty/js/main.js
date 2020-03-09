@@ -2,18 +2,20 @@ $(function(){
 
 	$('.sub_slide_sel').on('click',function(){
 		Sel= $(this).attr("id").replace('s','');
+		Col= $(this).css('color');
 		SelHtml= $(this).html();
 		$('.sub_slide_top').html(SelHtml);
+		$('.bk4').css({'border-color':Col});
 
 		$.post("post_chg_fav.php",
 			{
 				'chg':Sel,
 				'uid':Uid,
+				'log_id':LogId,
 			},
 			function(data){
 		});
 	});
-
 
 	$('.todo_tag_ckb').click(function(){
 		var ck_count = $(".todo_div :checked").length;
