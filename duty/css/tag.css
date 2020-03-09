@@ -3,9 +3,11 @@
 	display		:inline-block;
 	margin		:3px;
 	height		:34px;
-	line-height	:30px;	
+	line-height	:34px;	
 	color		:#fafafa;
 }
+
+
 
 .bk1{
 	background	:#c5cbc7;
@@ -23,8 +25,8 @@
 }
 
 .bk4{
-	background	:#909090;
-	flex-basis	:208px;
+	background	:#fafafa;
+	flex-basis	:200px;
 }
 
 .bk5{

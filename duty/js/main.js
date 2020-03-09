@@ -1,4 +1,12 @@
 $(function(){
+
+	$('.sub_slide_sel').on('click',(function(){
+		Sel= $(this).attr("id").replace('s','');
+	});
+
+
+
+
 	$('.todo_tag_ckb').click(function(){
 		var ck_count = $(".todo_div :checked").length;
 
