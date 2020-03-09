@@ -3166,9 +3166,8 @@ function Passage() {
 		<? } ?>
 
 		<?if($b1){?>
-			<input type="radio" id="view_0" class="label_c fav1" name="n_icon" value="0" style="display:none;">
-			<label for="view_0" class="sele_box_view label_c" style="color:#333333;background:#e0e0e0">
-			<span class="sele_icon_23"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
+			<span class="sub_slide_sel" style="color:#333333;background:#e0e0e0">
+			<span class="sele_icon_26"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
 			</label>
 		<? } ?>
 	</div>
