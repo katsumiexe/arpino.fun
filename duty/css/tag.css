@@ -7,8 +7,6 @@
 	color		:#fafafa;
 }
 
-
-
 .bk1{
 	background	:#c5cbc7;
 	flex-basis	:206px;
@@ -67,7 +65,7 @@
 	right			:76px;
 }
 
-.set_res,.set_res_a{
+.set_res,.set_res_a,.send_chg,.send_res{
 	right			:3px;
 }
 
@@ -141,10 +139,9 @@
 	height		:24px;
 	line-height	:24px;
 
-	font-family	: 'iconfont';
+	font-family	:'iconfont';
 	font-size	:24px;
 	text-align	:center;
-	
 }
 
 .icon_o2{
@@ -159,7 +156,7 @@
 	height		:24px;
 	line-height	:24px;
 
-	font-family	: 'iconfont';
+	font-family	:'iconfont';
 	font-size	:20px;
 	text-align	:center;
 }

@@ -1017,13 +1017,17 @@ button{
 
 
 .todo_d{
-	width:25px;
-	height:20px !important;
+	width:30px;
+	margin:2px;
+}
+
+.todo_sel{
+	width:160px;
+	margin:2px;
 }
 
 .todo_y{
-	width:40px;
-	height:20px !important;
+	width:45px;
 }
 
 
@@ -1474,10 +1478,10 @@ button{
 }
 
 .todo_input{
-	display: inline-block;
-	width: 300px; 
-	border:1px solid #606060;
-	background:#f0fff5;
+	display		:inline-block;
+	width		:300px; 
+	border		:1px solid #606060;
+	background	:#f0fff5;
 }
 
 .todo_input_day{
@@ -1487,21 +1491,22 @@ button{
 }
 
 .todo_input_tag{
+	margin:2px;
 	display:inline-block;
 	height:35px;
-	width:100%;
+	width:95%;
 	background:#f0fff5;
 }
 
 .todo_input_title{
 	display:inline-block;
-	margin:1px 2px;
-	padding:2px;
+	margin:2px;
+	padding:3px;
 	background:#d0d0d0;
 	width:60px;
 	font-size:12px;
-	height:26px;
-	line-height:26px;
+	height:22px;
+	line-height:22px;
 }
 
 .todo_input_log{
@@ -1515,27 +1520,24 @@ button{
 }
 
 .todo_tag_label{
-	font-size:12px;
-	border:1px solid #e0e0e0;
-	background:#f0f0f0;
-	text-align:center;
-	display:inline-block;
-	width:45px;
-	padding:5px;
-	border-radius:5px;
-	height:20px;
-	line-height:20px;
+	display			:inline-block;
+	font-size		:12px;
+	border			:1px solid #e0e0e0;
+	background		:#f0f0f0;
+	text-align		:center;
+	width			:45px;
+	border-radius	:5px;
+	height			:24px;
+	line-height		:24px;
 }
 
 .todo_div{
 	display:inline-block;
-	float:left;
 	margin:5px;
 }
 
 .todo_div2{
 	display:inline-block;
-	float:right;
 	margin:5px;
 }
 

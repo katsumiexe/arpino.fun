@@ -67,6 +67,14 @@ $(function(){
 	});
 
 
+	$('.main_slide2').on('click',function(){
+		$('.sub_slide2').slideUp(100);
+		if($(this).next('.sub_slide2').css('display') == 'none'){
+			$(this).next('.sub_slide2').slideDown(100);
+		}
+	});
+
+
 	$('a[href^=#]').click(function(){ 
 		var speed = 500; 
 		var href= $(this).attr("href"); 

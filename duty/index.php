@@ -2363,8 +2363,8 @@ function Passage() {
 			<label><input type="radio" name="search_radio" value="3" <?if($keycheck ==3){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> レス</span></label><br>
 			<button type="submit" value="検索" class="search_button" name="search_button" style="padding:2px;"><span class="sele_icon_16"><?=$icon_font2[4]?></span>　検　索　<span class="sele_icon_16"><?=$icon_font2[4]?></span></button>
 			</div>
-			<div class="main_menu main_slide">フォルダ</div>
-			<div class="sub_menu sub_slide">
+			<div class="main_menu main_slide2">フォルダ</div>
+			<div class="sub_menu sub_slide2">
 				<?foreach((array) $fav_sort as $a1 => $a2){?><button type="submit" value="<?=$a2?>" class="green2" name="fv[<?=$a2?>]" style="padding:2px;">&nbsp;<span class="sele_icon_16"><?=$icon_font2[$fav[$a2]['icon']]?></span>&nbsp;<span style="font-size:16px; line-height:16px;"><?=$fav[$a2]['name']?></span></button><br>
 				<? } ?>
 			</div>
@@ -2742,6 +2742,7 @@ function Passage() {
 				<div class="todo_input_tag">
 					<div class="todo_div">
 						<input type="checkbox" style="display:none !important" name="todo_tag1" id="todo_tag1" class="todo_tag_ckb" value="1"<?if($todo_start==1){?> checked="checked"<? } ?>><label for="todo_tag1" class="todo_tag_label">開始</label>
+						
 						<input type="checkbox" style="display:none !important" name="todo_tag3" id="todo_tag3" class="todo_tag_ckb" value="1"<?if($todo_end==1){?> checked="checked"<? } ?>><label for="todo_tag3" class="todo_tag_label">終了</label>
 					</div>
 					
@@ -2762,7 +2763,7 @@ function Passage() {
 
 				<div class="todo_input_tag">
 					<span class="todo_input_title">グループ</span>
-					<select name="todo_group" style="font-size:13px; width:160px; text-align:left;height:26px;">
+					<select name="todo_group" class="todo_sel">
 						<?foreach((array)$group_sort as $p1 => $p2){?><?if($p2<95){?><option value="<?=$p2?>" <?if($todo_group == $p2){?>selected="selected"<? } ?>><?=$group[$p2]["name"]?></option><? } ?>
 						<? } ?>
 						<option value="90">自分</option>
@@ -2770,7 +2771,7 @@ function Passage() {
 				</div>
 				<div class="todo_input_tag">
 					<span class="todo_input_title">内容</span>
-					<select name="todo_plan" style="font-size:13px; width:160px; text-align:left;height:26px;">
+					<select name="todo_plan" class="todo_sel">
 						<?foreach((array)$plan_sort as $p1 => $p2){?><option value="<?=$p2?>" <?if($todo_plan == $p2){?>selected="selected"<? } ?>><?=$plan[$p2]["name"]?></option><? } ?>
 					</select>
 				</div>
@@ -2849,7 +2850,6 @@ function Passage() {
 							<? } ?>
 						</select>
 					</span>
-
 					<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
 						<span class="sub_slide_top" style="color:#aaaaaa">
 							<span class="icon_o2"></span>
@@ -2863,7 +2863,6 @@ function Passage() {
 									<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
 								</span>
 							<? } ?>
-
 							<?if($b1){?>
 								<span id="s0" class="sub_slide_sel" style="color:#333333">
 								<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
@@ -2959,42 +2958,64 @@ function Passage() {
 			</div>
 		<!--ed■■削除完了------>
 
-
 <?}elseif($act=="chg"){?>
 <!--st■■編集---------->
 <div class="open1">
 	<span class="open1_top">
-		<span class="open_pack bk1"><span class="sele_icon_24"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span><!--
-	--><span class="open_pack bk2"><span class="sele_icon_24"><?=$icon_font2[23]?></span><select name="w_cate" class="open_select"><?foreach((array)$category_sort as $a1 => $a2){?><?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>" <?if($a2 == $view_category){?> selected="selected"<? } ?>><?=$category[$a2]["name"]?></option><? } ?><? } ?></select></span><!--
-	--><span class="open_pack bk3"><span class="sele_icon_24"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
- 		<div id="icon_w" class="open_pack bk4">
-			<div id="iconselect_w">
-				<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
-					<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
-				</span>
-			</div>
-
-			<div class="sub_slide3 s_sele_view">
-				<div id="fn0" class="sele_box_view label_c fav2">
-					<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
-						<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
-					</span>
-				</div>
-				<?foreach((array)$fav_sort as $b1 => $b2){?>
-				<div id="fn<?=$b2?>" class="sele_box_view label_c fav2">
-					<span style="display:inline-block;width:100%; height:100%; color:<?=$icon_color[$fav[$b2]['color']]?>;background:#ffffff">
-						<span class="sele_icon_23"><?=$icon_font2[$fav[$b2]['icon']]?></span><span class="sele_name"><?=$fav[$b2]['name']?></span>
-					</span>
-				</div>
-				<? } ?>
-			</div>
-		</div>
+	<span class="open_pack bk1">
+		<span class="icon_o"><?=$icon_font2[26]?></span>
+		<input type="text" name="w_date" value="<?=$view_date?>" class="open_box_a" ><input type="text" name="w_time" value="<?=$view_time?>" class="open_box_b">
 	</span>
-	<input id="hidden_fav" type="hidden">
-	<span class="open_pack bk5"><span class="sele_icon_24"><?=$icon_font2[13]?></span><input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/表題" value="<?=$view_title?>"></span><!--
-	--><span class="open_pack bk6"><span class="sele_icon_24"><?=$icon_font2[24]?></span><span class="open_item ow150" style="background:#f0FcFF"><?=$member[$uid]["name"]?></span></span>
-	<span class="open_pack bk7"><span class="sele_icon_24"><?=$icon_font2[21]?></span></span>
-	<span class="bk8"><span name="set_res" class="set_sub"><span class="sele_icon_16s"><?=$icon_font2[21]?></span>投稿</span></span><input type="hidden" value="<?=$log_id?>" name="icon_set"></span>
+	<span class="open_pack bk2">
+		<span class="icon_o"><?=$icon_font2[23]?></span>
+		<select name="w_cate" class="open_select">
+			<?foreach((array)$category_sort as $a1 => $a2){?>
+				<?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?>
+					<option value="<?=$a2?>" <?if($a2 == $view_category){?> selected="selected"<? } ?>><?=$category[$a2]["name"]?></option>
+				<? } ?>
+			<? } ?>
+		</select>
+	</span>
+	<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
+	<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
+		<span class="sub_slide_top" style="color:#aaaaaa">
+			<span class="icon_o2"></span>
+			<span class="sele_name fav_name_top">SELECT FLAG</span>
+		</span>
+
+		<div class="sub_slide">
+			<?foreach((array)$fav_sort as $b1 => $b2){?>
+				<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
+					<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
+					<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
+				</span>
+			<? } ?>
+
+			<?if($b1){?>
+				<span id="s0" class="sub_slide_sel" style="color:#333333">
+				<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
+			<? } ?>
+		</div>
+	</div>
+
+	<span class="open_pack bk5">
+		<span class="icon_o"><?=$icon_font2[13]?></span>
+		<input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/表題">
+	</span>
+	<span class="open_pack bk6">
+		<span class="icon_o"><?=$icon_font2[24]?></span>
+		<span class="open_item ow150"><?=$member[$uid]["name"]?></span>
+	</span>
+	<span class="open_pack bk7">
+		<span class="icon_o"><?=$icon_font2[21]?></span>
+	</span>
+
+	<span class="bk8 send_chg">
+		<span class="set_sub_icon"><?=$icon_font2[21]?></span>
+		<span class="set_sub_txt">投稿</span>
+	</span>
+
+
 </div>
 <textarea name="e_log" class="open_text"><?=$view_org?></textarea>
 <!--ed■■編集---------->
@@ -3041,7 +3062,7 @@ function Passage() {
 
 		<span class="bk8 set_res">
 			<span class="set_sub_icon"><?=$icon_font2[32]?></span>
-			<span class="set_sub_txt">Res</span>
+			<span class="set_sub_txt">投稿</span>
 		</span>
 	</span>
 </div>
