@@ -51,10 +51,8 @@
 	display			:inline-block;
 	position		:absolute;
 	top				:42px;
-	padding			:2px 3px;
-	width			:58px;
-	height			:30px;	
-	line-height		:30px;
+	width			:62px;
+	height			:34px;	
 	color			:#fafafa;
 	background		:#808080;
 	vertical-align	:middle;
@@ -62,15 +60,15 @@
 }
 
 .log_del,.log_del_a{
-	right			:146px;
+	right			:148px;
 }
 
 .set_chg,.set_chg_a{
-	right			:77px;
+	right			:76px;
 }
 
 .set_res,.set_res_a{
-	right			:4px;
+	right			:3px;
 }
 
 .set_sub_icon{
@@ -80,7 +78,9 @@
 	bottom			:0;
 	left			:2px;
 	font-size		:20px;
-	font-family: 'iconfont';
+	height			:34px;
+	line-height		:34px;
+	font-family		: 'iconfont';
 }
 
 .set_sub_txt{
@@ -90,6 +90,8 @@
 	bottom			:0;
 	left			:24px;
 	font-size		:16px;
+	height			:34px;
+	line-height		:34px;
 }
 
 
