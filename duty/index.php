@@ -2850,29 +2850,26 @@ function Passage() {
 						</select>
 					</span>
 
-			 		<span class="open_pack bk4 main_slide3">
-						<div id="slide3" class="iconsele">
-							<span class="icon_o2"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
-						</div>
+					<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
+						<span class="sub_slide_top" style="color:#aaaaaa">
+							<span class="icon_o2"></span>
+							<span class="sele_name fav_name_top">SELECT FLAG</span>
+						</span>
 
-						<div class="sub_slide3 s_sele_view">
-							<div id="fn0" class="sele_box_view fav2" style="background:#aaaaaa;">
-								<span class="sele_in" style="color:#aaaaaa;">
-									<span class="icon_o2"><?=$icon_font2[16]?></span>
-									<span class="sele_name">SELECT FLAG</span>
-								</span>
-							</div>
+						<div class="sub_slide">
 							<?foreach((array)$fav_sort as $b1 => $b2){?>
-								<div id="fn<?=$b2?>" class="sele_box_view fav2" style="background:<?=$icon_color[$fav[$b2]['color']]?>">
-									<span class="sele_in" style="color:<?=$icon_color[$fav[$b2]['color']]?>;">
-										<span class="icon_o2"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-										<span class="sele_name"><?=$fav[$b2]['name']?></span>
-									</span>
-								</div>
+								<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
+									<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
+									<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
+								</span>
+							<? } ?>
+
+							<?if($b1){?>
+								<span id="s0" class="sub_slide_sel" style="color:#333333">
+								<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">フラグ解除</span>
 							<? } ?>
 						</div>
-					</span>
-					<input id="hidden_fav" name="hidden_fav" type="hidden" value="">
+					</div>
 
 					<span class="open_pack bk5">
 						<span class="icon_o"><?=$icon_font2[13]?></span>
@@ -3068,7 +3065,6 @@ function Passage() {
 		<? } ?>
 	</div>
 <!--ed■■レス投稿------>
-
 
 <?}elseif($c_act=="log_res2" || $c_todo2){?>
 <!--st■■RES投稿された--->
