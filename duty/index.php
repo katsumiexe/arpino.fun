@@ -2825,9 +2825,7 @@ function Passage() {
 <!--st■■投稿---------->
 	<div class="open">
 		<?if($gp[1]){?>
-			<form id="form1" action="./index.php" method="post" enctype="multipart/form-data">
-
-				<div class="open1">
+			<div class="open1">
 					<input type="hidden" name="uid" value="<?=$uid?>">
 					<input type="hidden" name="w_try" value="1">
 
@@ -2882,12 +2880,12 @@ function Passage() {
 						<span class="open_pack bk7">
 							<span class="icon_o"><?=$icon_font2[21]?></span>
 						</span>
-						<span class="bk8">
-							<span id="submit_1" name="set_res" class="set_sub">
-								<span class="sele_icon_16s"><?=$icon_font2[21]?></span>
-								投稿
-							</span>
+
+						<span class="bk8 log_set">
+							<span class="set_sub_icon"><?=$icon_font2[21]?></span>
+							<span class="set_sub_txt">投稿</span>
 						</span>
+
 
 
 						<input type="hidden" value="<?=$log_id?>" name="icon_set">
@@ -2916,12 +2914,9 @@ function Passage() {
 						<? } ?>
 					<? } ?>
 				</div>
-
 				<div class="gp_dt" id="gp_dt99"><?foreach((array)$member_now as $a1 => $a2){?><?if($member[$a2]['b'] ==1){?><span class="send_y"><span class="send_y2"></span><?=$member[$a2]["name"]?></span><input type="hidden" name="w_mem[<?=$a2?>]" value="1"><? } else {?><label><input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span></label><? } ?><? } ?></div>
 					<textarea class="open_text" name="w_log"><?=$view?></textarea><br>
-
 					<div class="open3">
-
 						<input id="upd1" type="file" name="upfile[1]" style="display:none;">
 						<label for="upd1" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
@@ -2939,10 +2934,10 @@ function Passage() {
 
 						<input id="upd6" type="file" name="upfile[6]" style="display:none;">
 						<label for="upd6" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-
 					</div>
 				</div>
-			</form>
+
+
 		<!--ed■■投稿---------->
 
 		<?}elseif($c_act=="log_del"){?>
@@ -2953,56 +2948,54 @@ function Passage() {
 		<!--ed■■削除完了------>
 
 
-		<?}elseif($act=="chg"){?>
-	<!--st■■編集---------->
-			<form action="./index.php" method="post">
-				<div class="open1">
-					<span class="open1_top">
-						<span class="open_pack bk1"><span class="sele_icon_24"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span><!--
-					--><span class="open_pack bk2"><span class="sele_icon_24"><?=$icon_font2[23]?></span><select name="w_cate" class="open_select"><?foreach((array)$category_sort as $a1 => $a2){?><?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>" <?if($a2 == $view_category){?> selected="selected"<? } ?>><?=$category[$a2]["name"]?></option><? } ?><? } ?></select></span><!--
-					--><span class="open_pack bk3"><span class="sele_icon_24"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
-				 		<div id="icon_w" class="open_pack bk4">
-							<div id="iconselect_w">
-								<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
-									<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
-								</span>
-							</div>
+<?}elseif($act=="chg"){?>
+<!--st■■編集---------->
+<div class="open1">
+	<span class="open1_top">
+		<span class="open_pack bk1"><span class="sele_icon_24"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>　<?=$view_time?></span></span><!--
+	--><span class="open_pack bk2"><span class="sele_icon_24"><?=$icon_font2[23]?></span><select name="w_cate" class="open_select"><?foreach((array)$category_sort as $a1 => $a2){?><?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>" <?if($a2 == $view_category){?> selected="selected"<? } ?>><?=$category[$a2]["name"]?></option><? } ?><? } ?></select></span><!--
+	--><span class="open_pack bk3"><span class="sele_icon_24"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
+ 		<div id="icon_w" class="open_pack bk4">
+			<div id="iconselect_w">
+				<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
+					<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
+				</span>
+			</div>
 
-							<div class="sub_slide3 s_sele_view">
-								<div id="fn0" class="sele_box_view label_c fav2">
-									<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
-										<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
-									</span>
-								</div>
-
-								<?foreach((array)$fav_sort as $b1 => $b2){?>
-								<div id="fn<?=$b2?>" class="sele_box_view label_c fav2">
-									<span style="display:inline-block;width:100%; height:100%; color:<?=$icon_color[$fav[$b2]['color']]?>;background:#ffffff">
-										<span class="sele_icon_23"><?=$icon_font2[$fav[$b2]['icon']]?></span><span class="sele_name"><?=$fav[$b2]['name']?></span>
-									</span>
-								</div>
-								<? } ?>
-							</div>
-						</div>
+			<div class="sub_slide3 s_sele_view">
+				<div id="fn0" class="sele_box_view label_c fav2">
+					<span style="display:inline-block;width:100%; height:100%; color:#aaaaaa;background:#ffffff">
+						<span class="sele_icon_23"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
 					</span>
-					<input id="hidden_fav" type="hidden">
-					<span class="open_pack bk5"><span class="sele_icon_24"><?=$icon_font2[13]?></span><input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/表題" value="<?=$view_title?>"></span><!--
-					--><span class="open_pack bk6"><span class="sele_icon_24"><?=$icon_font2[24]?></span><span class="open_item ow150" style="background:#f0FcFF"><?=$member[$uid]["name"]?></span></span>
-					<span class="open_pack bk7"><span class="sele_icon_24"><?=$icon_font2[21]?></span></span>
-					<span class="bk8"><span name="set_res" class="set_sub"><span class="sele_icon_16s"><?=$icon_font2[21]?></span>投稿</span></span><input type="hidden" value="<?=$log_id?>" name="icon_set"></span>
 				</div>
-				<textarea name="e_log" class="open_text"><?=$view_org?></textarea>
-			</form>
+				<?foreach((array)$fav_sort as $b1 => $b2){?>
+				<div id="fn<?=$b2?>" class="sele_box_view label_c fav2">
+					<span style="display:inline-block;width:100%; height:100%; color:<?=$icon_color[$fav[$b2]['color']]?>;background:#ffffff">
+						<span class="sele_icon_23"><?=$icon_font2[$fav[$b2]['icon']]?></span><span class="sele_name"><?=$fav[$b2]['name']?></span>
+					</span>
+				</div>
+				<? } ?>
+			</div>
+		</div>
+	</span>
+	<input id="hidden_fav" type="hidden">
+	<span class="open_pack bk5"><span class="sele_icon_24"><?=$icon_font2[13]?></span><input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/表題" value="<?=$view_title?>"></span><!--
+	--><span class="open_pack bk6"><span class="sele_icon_24"><?=$icon_font2[24]?></span><span class="open_item ow150" style="background:#f0FcFF"><?=$member[$uid]["name"]?></span></span>
+	<span class="open_pack bk7"><span class="sele_icon_24"><?=$icon_font2[21]?></span></span>
+	<span class="bk8"><span name="set_res" class="set_sub"><span class="sele_icon_16s"><?=$icon_font2[21]?></span>投稿</span></span><input type="hidden" value="<?=$log_id?>" name="icon_set"></span>
+</div>
+<textarea name="e_log" class="open_text"><?=$view_org?></textarea>
 <!--ed■■編集---------->
 
-		<?}elseif($_POST["set_chg2"]){?>
+
+<?}elseif($_POST["set_chg2"]){?>
 <!--st■■編集された---->
-			<div class="open1">
-				編集されました。
-			</div>
+<div class="open1">
+	編集されました。
+</div>
 <!--ed■■編集された---->
 
-		<?}elseif($act=="res"){?>
+<?}elseif($act=="res"){?>
 <!--st■■レス投稿------>
 <div class="open1">
 	<span class="open1_top">
@@ -3034,25 +3027,13 @@ function Passage() {
 		<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
 		<span class="open_pack bk7"><span class="icon_o"><?=$icon_font2[21]?></span></span>
 
-		<span class="bk8 log_del<?if($uid != $view_writer){?>_a<?}?>">
-			<span class="set_sub_icon"><?=$icon_font2[31]?></span>
-			<span class="set_sub_txt">削除</span>
-		</span>
-
-		<span class="bk8 set_chg<?if($uid != $view_writer){?>_a<?}?>">
-			<span class="set_sub_icon"><?=$icon_font2[21]?></span>
-			<span class="set_sub_txt">修正</span>
-		</span>
-
 		<span class="bk8 set_res">
 			<span class="set_sub_icon"><?=$icon_font2[32]?></span>
 			<span class="set_sub_txt">Res</span>
 		</span>
 	</span>
 </div>
-
 	<textarea name="r_log" class="open_text"></textarea>
-
 	<div class="open1">
 		<div style="padding:5px;">
 			<?=$view?>
@@ -3074,7 +3055,7 @@ function Passage() {
 <!--ed■■レス投稿------>
 
 
-		<?}elseif($c_act=="log_res2" || $c_todo2){?>
+<?}elseif($c_act=="log_res2" || $c_todo2){?>
 <!--st■■RES投稿された--->
 			<div class="open1">
 				投稿されました。
@@ -3240,11 +3221,10 @@ function Passage() {
 </div><!--▲main-->
 </div>
 </div><!--▲outer-->
-<div class="bottom">　</div>
 <form id="submit_form" action="./index.php" method="post">
 <input type="hidden" class="submit_hidden" value="" name="submit_hidden">
 <input id="act" type="hidden" class="act" value="" name="act">
 </form>
+<div class="bottom">　</div>
 </body>
 </html>
-

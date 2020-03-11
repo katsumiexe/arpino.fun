@@ -59,7 +59,7 @@
 	cursor			:pointer;
 }
 
-.log_del,.log_del_a{
+.log_del,.log_del_a,.log_set{
 	right			:148px;
 }
 
