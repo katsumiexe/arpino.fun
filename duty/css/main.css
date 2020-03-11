@@ -148,7 +148,7 @@ texture:focus {
 	border		:1px solid #303030;
 	width		:858px;
 	height		:200px;
-	margin		:2px auto;
+	margin		:0px auto;
 	padding		:5px;
 	background	:#fafafa;
 	font-size	:16px;
