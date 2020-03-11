@@ -1,4 +1,5 @@
 $(function(){
+	$('.gp_dt:not(:first)').hide();
 
 	$('.sub_slide_sel').on('click',function(){
 		Sel= $(this).attr("id").replace('s','');
@@ -47,11 +48,12 @@ $(function(){
 		});
 	});
 /**/
-	$('#cat').change(function() {
+	$('#cat').on('change',function() {
 		var val = $(this).val();
 		$('.gp_dt').hide();
 		$('#gp_dt' + val).show();
-	}).change();
+	})
+
 
 	$('.sub_slide3').hide();
 	$('.sub_slide').hide();

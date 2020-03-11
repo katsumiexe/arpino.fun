@@ -2826,118 +2826,133 @@ function Passage() {
 	<div class="open">
 		<?if($gp[1]){?>
 			<div class="open1">
-					<input type="hidden" name="uid" value="<?=$uid?>">
-					<input type="hidden" name="w_try" value="1">
+				<div class="open1_top">
+					<span class="open_pack bk1">
+						<span class="icon_o"><?=$icon_font2[26]?></span>
+						<input type="text" name="w_date" value="<?=$c_date?>" class="open_box_a" ><input type="text" name="w_time" value="<?=$c_time?>" class="open_box_b">
+					</span>
 
-					<div class="open1_top">
-						<span class="open_pack bk1">
-							<span class="icon_o"><?=$icon_font2[26]?></span>
-							<input type="text" name="w_date" value="<?=$c_date?>" class="open_box_a" ><input type="text" name="w_time" value="<?=$c_time?>" class="open_box_b">
-						</span>
+					<span class="open_pack bk2">
+						<span class="icon_o"><?=$icon_font2[23]?></span>
+						<select name="w_cate" class="open_select">
+							<?foreach((array)$category_sort as $a1 => $a2){?>
+								<?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>"><?=$category[$a2]["name"]?></option><? } ?>
+							<? } ?>
+						</select>
+					</span>
 
-						<span class="open_pack bk2">
-							<span class="icon_o"><?=$icon_font2[23]?></span>
-							<select name="w_cate" class="open_select"><?foreach((array)$category_sort as $a1 => $a2){?><?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>"><?=$category[$a2]["name"]?></option><? } ?><? } ?></select>
-						</span>
+					<span class="open_pack bk3">
+						<span class="icon_o"><?=$icon_font2[14]?></span>
+						<select id="cat" name="w_group" class="open_select">
+							<?foreach((array)$group_sort as $p1 => $p2){?>
+								<option value="<?=$p2?>"><?=$group[$p2]["name"]?></option>
+							<? } ?>
+						</select>
+					</span>
 
-						<span class="open_pack bk3">
-							<span class="icon_o"><?=$icon_font2[14]?></span>
-							<select id="cat" name="w_group" class="open_select"><?foreach((array)$group_sort as $p1 => $p2){?><option value="<?=$p2?>"><?=$group[$p2]["name"]?></option><? } ?></select>
-						</span>
+			 		<span class="open_pack bk4 main_slide3">
+						<div id="slide3" class="iconsele">
+							<span class="icon_o2"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
+						</div>
 
-				 		<span class="open_pack bk4 main_slide3">
-							<div id="slide3" class="iconsele">
-								<span class="icon_o2"><?=$icon_font2[16]?></span><span class="sele_name">SELECT FLAG</span>
+						<div class="sub_slide3 s_sele_view">
+							<div id="fn0" class="sele_box_view fav2" style="background:#aaaaaa;">
+								<span class="sele_in" style="color:#aaaaaa;">
+									<span class="icon_o2"><?=$icon_font2[16]?></span>
+									<span class="sele_name">SELECT FLAG</span>
+								</span>
 							</div>
-
-							<div class="sub_slide3 s_sele_view">
-								<div id="fn0" class="sele_box_view fav2" style="background:#aaaaaa;">
-									<span class="sele_in" style="color:#aaaaaa;">
-										<span class="icon_o2"><?=$icon_font2[16]?></span>
-										<span class="sele_name">SELECT FLAG</span>
+							<?foreach((array)$fav_sort as $b1 => $b2){?>
+								<div id="fn<?=$b2?>" class="sele_box_view fav2" style="background:<?=$icon_color[$fav[$b2]['color']]?>">
+									<span class="sele_in" style="color:<?=$icon_color[$fav[$b2]['color']]?>;">
+										<span class="icon_o2"><?=$icon_font2[$fav[$b2]['icon']]?></span>
+										<span class="sele_name"><?=$fav[$b2]['name']?></span>
 									</span>
 								</div>
-								<?foreach((array)$fav_sort as $b1 => $b2){?>
-									<div id="fn<?=$b2?>" class="sele_box_view fav2" style="background:<?=$icon_color[$fav[$b2]['color']]?>">
-										<span class="sele_in" style="color:<?=$icon_color[$fav[$b2]['color']]?>;">
-											<span class="icon_o2"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-											<span class="sele_name"><?=$fav[$b2]['name']?></span>
-										</span>
-									</div>
-								<? } ?>
-							</div>
-						</span>
-						<input id="hidden_fav" name="hidden_fav" type="hidden" value="">
+							<? } ?>
+						</div>
+					</span>
+					<input id="hidden_fav" name="hidden_fav" type="hidden" value="">
 
-						<span class="open_pack bk5">
-							<span class="icon_o"><?=$icon_font2[13]?></span>
-							<input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/表題">
-						</span>
-						<span class="open_pack bk6">
-							<span class="icon_o"><?=$icon_font2[24]?></span>
-							<span class="open_item ow150"><?=$member[$uid]["name"]?></span>
-						</span>
-						<span class="open_pack bk7">
-							<span class="icon_o"><?=$icon_font2[21]?></span>
-						</span>
+					<span class="open_pack bk5">
+						<span class="icon_o"><?=$icon_font2[13]?></span>
+						<input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/表題">
+					</span>
+					<span class="open_pack bk6">
+						<span class="icon_o"><?=$icon_font2[24]?></span>
+						<span class="open_item ow150"><?=$member[$uid]["name"]?></span>
+					</span>
+					<span class="open_pack bk7">
+						<span class="icon_o"><?=$icon_font2[21]?></span>
+					</span>
 
-						<span class="bk8 log_set">
-							<span class="set_sub_icon"><?=$icon_font2[21]?></span>
-							<span class="set_sub_txt">投稿</span>
-						</span>
+					<span class="bk8 log_set">
+						<span class="set_sub_icon"><?=$icon_font2[21]?></span>
+						<span class="set_sub_txt">投稿</span>
+					</span>
 
-
-
-						<input type="hidden" value="<?=$log_id?>" name="icon_set">
-					</div>	
+					<input type="hidden" value="<?=$log_id?>" name="icon_set">
 				</div>	
+			</div>	
 
-				<div class="open2">
-					<?foreach($group_sort as $p3 => $p4){?>
-						<?if($p4 != 100){?>
-							<div class="gp_dt" id="gp_dt<?=$p4?>">
-								<?foreach((array)$member_now as $a1 => $a2){?>
-									<?if($member[$a2][$p4] ==1 ||$member[$a2]["b"] ==1 || $p4==0){?>
-										<span class="send_y">
-											<span class="send_y2"></span>
-											<?=$member[$a2]["name"]?>
-										</span>
+			<div class="open2">
+				<?foreach($group_sort as $p3 => $p4){?>
+					<?if($p4 < 99){?>
+						<div class="gp_dt" id="gp_dt<?=$p4?>">
+							<?foreach((array)$member_now as $a1 => $a2){?>
+								<?if($member[$a2][$p4] ==1 ||$member[$a2]["b"] ==1 || $p4==0){?>
+									<span class="send_y">
+										<span class="send_y2"></span>
+										<?=$member[$a2]["name"]?>
+									</span>
 
-									<? } else {?>
-										<span class="send_n">
-											<span class="send_n2"></span>
-											<?=$member[$a2]["name"]?>
-										</span>
-									<? } ?>
+								<? } else {?>
+									<span class="send_n">
+										<span class="send_n2"></span>
+										<?=$member[$a2]["name"]?>
+									</span>
 								<? } ?>
-							</div>
+							<? } ?>
+						</div>
+					<? } ?>
+				<? } ?>
+				<div class="gp_dt" id="gp_dt99">
+					<?foreach((array)$member_now as $a1 => $a2){?>
+						<?if($member[$a2]['b'] ==1){?>
+							<span class="send_y">
+								<span class="send_y2"></span><?=$member[$a2]["name"]?>
+							</span>
+							<input type="hidden" name="w_mem[<?=$a2?>]" value="1">
+
+						<? } else {?>
+							<label>
+								<input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span>
+							</label>
 						<? } ?>
 					<? } ?>
 				</div>
-				<div class="gp_dt" id="gp_dt99"><?foreach((array)$member_now as $a1 => $a2){?><?if($member[$a2]['b'] ==1){?><span class="send_y"><span class="send_y2"></span><?=$member[$a2]["name"]?></span><input type="hidden" name="w_mem[<?=$a2?>]" value="1"><? } else {?><label><input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span></label><? } ?><? } ?></div>
-					<textarea class="open_text" name="w_log"><?=$view?></textarea><br>
-					<div class="open3">
-						<input id="upd1" type="file" name="upfile[1]" style="display:none;">
-						<label for="upd1" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
+			</div>
+			<textarea class="open_text" name="w_log"><?=$view?></textarea><br>
+			<div class="open3">
+				<input id="upd1" type="file" name="upfile[1]" style="display:none;">
+				<label for="upd1" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
-						<input id="upd2" type="file" name="upfile[2]" style="display:none;">
-						<label for="upd2" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
+				<input id="upd2" type="file" name="upfile[2]" style="display:none;">
+				<label for="upd2" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
-						<input id="upd3" type="file" name="upfile[3]" style="display:none;">
-						<label for="upd3" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
+				<input id="upd3" type="file" name="upfile[3]" style="display:none;">
+				<label for="upd3" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
-						<input id="upd4" type="file" name="upfile[4]" style="display:none;">
-						<label for="upd4" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
+				<input id="upd4" type="file" name="upfile[4]" style="display:none;">
+				<label for="upd4" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
-						<input id="upd5" type="file" name="upfile[5]" style="display:none;">
-						<label for="upd5" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
+				<input id="upd5" type="file" name="upfile[5]" style="display:none;">
+				<label for="upd5" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
 
-						<input id="upd6" type="file" name="upfile[6]" style="display:none;">
-						<label for="upd6" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-					</div>
-				</div>
-
-
+				<input id="upd6" type="file" name="upfile[6]" style="display:none;">
+				<label for="upd6" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
+			</div>
+		</div>
 		<!--ed■■投稿---------->
 
 		<?}elseif($c_act=="log_del"){?>
