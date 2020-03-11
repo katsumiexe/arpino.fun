@@ -2858,7 +2858,6 @@ function Passage() {
 										<span class="sele_name">SELECT FLAG</span>
 									</span>
 								</div>
-
 								<?foreach((array)$fav_sort as $b1 => $b2){?>
 									<div id="fn<?=$b2?>" class="sele_box_view fav2" style="background:<?=$icon_color[$fav[$b2]['color']]?>">
 										<span class="sele_in" style="color:<?=$icon_color[$fav[$b2]['color']]?>;">
@@ -2888,6 +2887,8 @@ function Passage() {
 								投稿
 							</span>
 						</span>
+
+
 						<input type="hidden" value="<?=$log_id?>" name="icon_set">
 					</div>	
 				</div>	
@@ -3183,22 +3184,19 @@ function Passage() {
 					<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
 					<span class="open_pack bk7"><span class="icon_o"><?=$icon_font2[21]?></span></span>
 
-					<span class="bk8">
-						<?if($uid == $view_writer){?>
-							<span name="log_del" class="set_sub">
-								<span class="sele_icon_16s"><?=$icon_font2[31]?></span>
-								削除
-							</span>
-							<span name="set_chg" class="set_sub">
-								<span class="sele_icon_16s"><?=$icon_font2[21]?></span>
-								修正
-							</span>
-						<?}?>
-						<span name="set_res" class="set_sub">
-							<span class="sele_icon_16s"><?=$icon_font2[32]?></span>
-							RES
-						</span>
-						<input type="hidden" value="<?=$log_id?>" name="icon_set">
+					<span class="bk8 log_del<?if($uid == $view_writer){?>_a<?}?>">
+						<span class="set_sub_icon"><?=$icon_font2[31]?></span>
+						<span class="set_sub_txt">削除</span>
+					</span>
+
+					<span class="bk8 set_chg<?if($uid == $view_writer){?>_a<?}?>">
+						<span class="set_sub_icon"><?=$icon_font2[21]?></span>
+						<span class="set_sub_txt">修正</span>
+					</span>
+
+					<span class="bk8 set_res">
+						<span class="set_sub_icon"><?=$icon_font2[32]?></span>
+						<span class="set_sub_txt">Res</span>
 					</span>
 				</span>
 			</form>

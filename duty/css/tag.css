@@ -46,12 +46,53 @@
 	text-align	:center;
 }
 	
+
 .bk8{
-	flex:1;
-	margin-left	:auto;
-	padding:1px;
-	text-align	:left;
+	display			:inline-block;
+	position		:absolute;
+	top				:42px;
+	padding			:2px 3px;
+	width			:58px;
+	height			:30px;	
+	line-height		:30px;
+	color			:#fafafa;
+	background		:#808080;
+	vertical-align	:middle;
+	cursor			:pointer;
 }
+
+.log_del,.log_del_a{
+	right			:146px;
+}
+
+.set_chg,.set_chg_a{
+	right			:77px;
+}
+
+.set_res,.set_res_a{
+	right			:4px;
+}
+
+.set_sub_icon{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:2px;
+	font-size		:20px;
+	font-family: 'iconfont';
+}
+
+.set_sub_txt{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:24px;
+	font-size		:16px;
+}
+
+
 
 .open_item{
 	display		:inline-block;

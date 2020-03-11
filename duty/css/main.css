@@ -1854,16 +1854,6 @@ button{
 }
 
 .set_sub{
-	display:inline-block;
-	margin:1px;
-	padding:2px 3px;
-	width:58px;
-	height:30px;	
-	line-height:30px;
-	color:#ffffff;
-	background:#808080;
-	vertical-align:middle;
-	cursor:pointer;
 }
 
 .open1_top{
