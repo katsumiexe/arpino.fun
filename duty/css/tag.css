@@ -54,7 +54,7 @@
 	width			:62px;
 	height			:34px;	
 	color			:#fafafa;
-	background		:#808080;
+	background		:#8080ff;
 	vertical-align	:middle;
 	cursor			:pointer;
 }
@@ -70,6 +70,12 @@
 .set_res,.set_res_a{
 	right			:3px;
 }
+
+.log_del_a,.set_chg_a,.set_res_a{
+	color			:#fafafa !important;
+	background		:#cccccc !important;
+}
+
 
 .set_sub_icon{
 	display			:inline-block;

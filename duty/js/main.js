@@ -94,7 +94,6 @@ $(function(){
 		$('#res_form').submit();
 	});
 
-
 	$('.fav2').on('click',function() {
 		var TMPL =$(this).attr('id').replace("fn", "");
 		var TMPL2=$(this).html();
@@ -103,6 +102,19 @@ $(function(){
 		$('.sub_slide3').slideUp(100);
 	});
 
+	$('.log_del').on('click',function() {
+		$('.act').val('del');
+		$('#submit_form').submit();
+	}); 
 
+	$('.set_chg').on('click',function() {
+		$('.act').val('chg');
+		$('#submit_form').submit();
+	}); 
 
+	$('.set_res').on('click',function() {
+		$('.act').val('res');
+		$('#submit_form').submit();
+	}); 
 });
+
