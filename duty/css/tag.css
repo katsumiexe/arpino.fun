@@ -61,11 +61,11 @@
 	right			:148px;
 }
 
-.set_chg,.set_chg_a{
+.set_chg,.set_chg_a,.send_chg{
 	right			:76px;
 }
 
-.set_res,.set_res_a,.send_chg,.send_res{
+.set_res,.set_res_a,.send_res{
 	right			:3px;
 }
 

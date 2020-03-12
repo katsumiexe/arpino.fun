@@ -2886,7 +2886,6 @@ function Passage() {
 						<span class="set_sub_icon"><?=$icon_font2[21]?></span>
 						<span class="set_sub_txt">投稿</span>
 					</span>
-
 					<input type="hidden" value="<?=$log_id?>" name="icon_set">
 				</div>	
 			</div>	
@@ -3012,7 +3011,7 @@ function Passage() {
 
 	<span class="bk8 send_chg">
 		<span class="set_sub_icon"><?=$icon_font2[21]?></span>
-		<span class="set_sub_txt">投稿</span>
+		<span class="set_sub_txt">修正</span>
 	</span>
 
 
@@ -3062,7 +3061,7 @@ function Passage() {
 
 		<span class="bk8 set_res">
 			<span class="set_sub_icon"><?=$icon_font2[32]?></span>
-			<span class="set_sub_txt">投稿</span>
+			<span class="set_sub_txt">Res</span>
 		</span>
 	</span>
 </div>
