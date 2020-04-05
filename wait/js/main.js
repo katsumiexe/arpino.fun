@@ -121,10 +121,10 @@ $(function(){
 			Doll['d']=data['u'][3];
 			Doll['p']=data['u'][4];
 
-			Persona['a']=data['p1'];
-			Persona['b']=data['p2'];
-			Persona['c']=data['p3'];
-			Persona['d']=data['p4'];
+			Persona["a"]=String(data['p1']);
+			Persona["b"]=String(data['p2']);
+			Persona["c"]=String(data['p3']);
+			Persona["d"]=String(data['p4']);
 
 			$('#myicon').attr('src','./img/unit/unit_'+ Unit_Select +'.png');
 			$('#p1').attr('src','./img/chr/chr'+ Persona['a'] +'.jpg');
@@ -341,15 +341,13 @@ $(function(){
 				$('.guard3').delay(2000).fadeOut(1000);
 
 			}else{
-				var PtsJ 	= JSON.stringify(Pts);
-				var GetPtsJ = JSON.stringify(GetPts);
-				var GetPlyJ = JSON.stringify(GetPly);
+				var DollJ 		= JSON.stringify(Doll);
+				var PtsJ 		= JSON.stringify(Pts);
+				var GetPtsJ 	= JSON.stringify(GetPts);
+				var GetPlyJ 	= JSON.stringify(GetPly);
+				var PersonaJ	= JSON.stringify(Persona);
 
 				console.log(Persona);
-
-		var print_str	= JSON.stringify(Persona);
-		var PersonaJ	= $.parseJSON(print_str);
-
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
@@ -360,18 +358,18 @@ $(function(){
 
 				$.post({
 					url:'post_sort.php',
+/*
 					dataType: 'json',
 					contentType: 'application/json',
+*/
 					data:{
-/*
 						'log_id':LogId,
+						'persona':PersonaJ,
 						'getpts':GetPtsJ,
 						'getply':GetPlyJ,
-						'doll'	:Doll,
+						'doll'	:DollJ,
 						'pts'	:PtsJ,
-*/
-						'persona':PersonaJ,
-					},
+					}
 
 				}).done(function(data3, textStatus, jqXHR){
 
