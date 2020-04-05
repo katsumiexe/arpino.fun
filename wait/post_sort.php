@@ -6,10 +6,10 @@ $log_id		=$_POST["log_id"];
 $getpts		=$_POST["getpts"];
 $getply		=$_POST["getply"];
 
-$doll		=json_decode($_POST["doll"], true);
-
+$doll		=$_POST["doll"];
+//$doll		=json_decode(json_encode($_POST["doll"], true));
+$persona	=json_encode(json_decode($_POST["persona"], false));
 $pts		=$_POST["pts"];
-$persona	=json_decode($_POST["persona"], true);
 
 for($n=0;$n<12;$n++){
 	$getlist[$getply[$n]][$n]=$getpts[$n];
@@ -20,7 +20,13 @@ $tmp_rank=1;
 $p=0;
 
 print("-----<br>\n");
-var_dump($pts);
+foreach($doll as $a1 => $a2){
+print($a1."□".$a2."<br>\n");
+
+}
+
+print("-----<br>\n");
+var_dump($doll);
 print("-----<br>\n");
 
 foreach($pts as $a1 => $a2){
