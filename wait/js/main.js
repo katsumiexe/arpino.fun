@@ -5,11 +5,7 @@ var Doll=[];
 var Items=["","","","","","","","","","","",""];
 var Up=[];
 var GetPts=[];
-GetPts['a']=[];
-GetPts['b']=[];
-GetPts['c']=[];
-GetPts['d']=[];
-GetPts['p']=[];
+var GetPly=[];
 
 var Get_a;
 var Get_b;
@@ -225,12 +221,8 @@ console.log(Size_t);
 			$('#set_c').delay(300).animate({'top':W150},500).text(Items[Up['c'][Turn]]);
 			$('#set_d').delay(350).animate({'top':W150},500).text(Items[Up['d'][Turn]]);
 
-
-console.log("Pts" + data2.pts);
-console.log("D"+data2.z);
-console.log("T"+Turn);
-
-			GetPts[data2.z][Turn]=data2.pts;
+			GetPts[Turn]=parseInt(data2.pts);
+			GetPly[Turn]=data2.z;
 
 			if(data2.z=='p'){
 				$.when(
@@ -328,11 +320,13 @@ console.log("T"+Turn);
 				.animate({'top':Size_t,'right':Size_r,'height':Size_h,'width':Size_w,'border-width':'10px','border-radius':'20px'},0);
 			}
 
-			if(Turn<11){
+			if(Turn<2){
 				$('.guard3').delay(2000).fadeOut(1000);
 
 			}else{
-			}
+
+				var GetPtsJ = JSON.stringify(GetPts);
+				var GetPlyJ = JSON.stringify(GetPly);
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
@@ -348,18 +342,24 @@ console.log("T"+Turn);
 					url:'post_sort.php',
 					dataType: 'json',
 					data:{
-						'getpts':GetPts,
+						'log_id':LogId,
+						'getpts':GetPtsJ,
+						'getply':GetPlyJ,
 					},
+
 				}).done(function(data3, textStatus, jqXHR){
-						console.log('get:'.data3);
+					console.log('get■:'+data3);
+
+				}).fail(function(xhr, textStatus, errorThrown) {
+		   			console.log("NG:" + xhr.status);
+					console.log("ST:" + textStatus);
 				});
+			}
 
+				console.log(data2);
+				console.log(Turn);
+				Turn++;
 
-
-
-			console.log(data2);
-			console.log(Turn);
-			Turn++;
 		});
     });
 });
