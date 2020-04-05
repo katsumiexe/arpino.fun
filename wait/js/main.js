@@ -211,6 +211,8 @@ console.log(Size_t);
 				'unit_p':Doll['p'],
 			},
 		}).done(function(data2, textStatus, jqXHR){
+			console.log('SQL▼'+data2.sql);
+
 			Pts[data2.z]=parseFloat(Pts[data2.z])+parseFloat(data2.pts);
 			Cnt[data2.z]++;
             $('.main_card').html(data2.cord);
