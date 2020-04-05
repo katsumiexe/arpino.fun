@@ -76,6 +76,8 @@ $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
 
 
-echo $persona;
+//echo $persona;
+var_dump($_POST);
+
 exit();
 ?>

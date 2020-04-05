@@ -121,10 +121,10 @@ $(function(){
 			Doll['d']=data['u'][3];
 			Doll['p']=data['u'][4];
 
-			Persona['a']=data.p1;
-			Persona['b']=data.p2;
-			Persona['c']=data.p3;
-			Persona['d']=data.p4;
+			Persona['a']=data['p1'];
+			Persona['b']=data['p2'];
+			Persona['c']=data['p3'];
+			Persona['d']=data['p4'];
 
 			$('#myicon').attr('src','./img/unit/unit_'+ Unit_Select +'.png');
 			$('#p1').attr('src','./img/chr/chr'+ Persona['a'] +'.jpg');
@@ -139,11 +139,17 @@ $(function(){
 			$('#status_3').addClass(data.s3);
 			$('#status_4').addClass(data.s4);
 			$('#status_5').addClass(data.s5);
-
+/*
 			DollJ	= JSON.stringify(Doll);
 			PersonaJ= JSON.stringify(Persona);
+*/
 
-			console.log('per○:'+Persona);
+
+			console.log(Persona);
+			console.log('a◆:'+Persona.a);
+			console.log('b◆:'+Persona.b);
+			console.log('c◆:'+Persona.c);
+			console.log('d◆:'+Persona.d);
 
 			console.log(data.i);
 			console.log(Doll);
@@ -156,8 +162,6 @@ $(function(){
 	});
 
 	$('.turn_start,.turn_start_main').on('click',function(){
-console.log(Size_t);
-
 		$('.guard').hide();
 		$('.guard3').fadeIn(500);
 		$('.player_c').animate({'top':W110},100);
@@ -333,14 +337,19 @@ console.log(Size_t);
 				.animate({'top':Size_t,'right':Size_r,'height':Size_h,'width':Size_w,'border-width':'10px','border-radius':'20px'},0);
 			}
 
-			if(Turn<2){
+			if(Turn<1){
 				$('.guard3').delay(2000).fadeOut(1000);
 
 			}else{
-
 				var PtsJ 	= JSON.stringify(Pts);
 				var GetPtsJ = JSON.stringify(GetPts);
 				var GetPlyJ = JSON.stringify(GetPly);
+
+				console.log(Persona);
+
+		var print_str	= JSON.stringify(Persona);
+		var PersonaJ	= $.parseJSON(print_str);
+
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
@@ -349,24 +358,25 @@ console.log(Size_t);
 				$('.pl4').delay(3800).animate({'left':0},600).delay(700).animate({'top':'100vh'},500);
 				$('.pl5').delay(3500).fadeOut(500);
 
-				console.log('per□:'+PersonaJ);
-
 				$.post({
 					url:'post_sort.php',
-/*					dataType: 'json',*/
+					dataType: 'json',
 					contentType: 'application/json',
 					data:{
+/*
 						'log_id':LogId,
 						'getpts':GetPtsJ,
 						'getply':GetPlyJ,
-						'doll':DollJ,
+						'doll'	:Doll,
+						'pts'	:PtsJ,
+*/
 						'persona':PersonaJ,
-						'pts':PtsJ,
 					},
 
 				}).done(function(data3, textStatus, jqXHR){
 
-					console.log('get■:'+data3);
+					console.log("★");
+					console.log(data3);
 
 					$('.table_a,.table_b,.myimg').delay(4700).animate({'top':'100vh'},500);
 					$('.last_res').html(data3).delay(6000).animate({'top':'2vh'},500);
