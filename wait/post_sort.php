@@ -6,10 +6,10 @@ $log_id		=$_POST["log_id"];
 $getpts		=$_POST["getpts"];
 $getply		=$_POST["getply"];
 
-$doll		=$_POST["doll"];
-$pts		=$_POST["pts"];
-$persona	=$_POST["persona"];
+$doll		=json_decode($_POST["doll"], true);
 
+$pts		=$_POST["pts"];
+$persona	=json_decode($_POST["persona"], true);
 
 for($n=0;$n<12;$n++){
 	$getlist[$getply[$n]][$n]=$getpts[$n];
@@ -19,7 +19,13 @@ arsort($pts);
 $tmp_rank=1;
 $p=0;
 
+print("-----<br>\n");
+var_dump($pts);
+print("-----<br>\n");
+
 foreach($pts as $a1 => $a2){
+
+print($a1."◆".$a2."◆".$persona[$a1]."<br>");
 	$list_rank[$p]=$tmp_rank;
 	if($list_rank[$p-1] == $list_rank[$p]){
 		$list_rank[$p]--;
@@ -65,7 +71,6 @@ $app.="</table>";
 
 
 $sql=" UPDATE log_data SET";
-
 $sql.=" end='{$date}',";
 $sql.=" pts_p='{$pts["p"]}',";
 $sql.=" pts_a='{$pts["a"]}',";
@@ -75,9 +80,8 @@ $sql.=" pts_d='{$pts["d"]}'";
 $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
 
+//echo $app;
 
-//echo $persona;
-var_dump($_POST);
-
+//var_dump($doll);
 exit();
 ?>

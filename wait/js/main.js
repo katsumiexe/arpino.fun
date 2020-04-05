@@ -1,12 +1,13 @@
 var Level_Select=0;;
 var Turn=0;
 var St=[];
-var Doll=[];
 var Items=["","","","","","","","","","","",""];
 var Up=[];
 var GetPts=[];
 var GetPly=[];
-var Persona=[];
+
+var Persona= new Object()
+var Doll= new Object();
 
 var Get_a;
 var Get_b;
@@ -115,16 +116,16 @@ $(function(){
 			Up['d']=data.d;
 			Up['e']=data.e;
 
-			Doll['a']=data['u'][0];
-			Doll['b']=data['u'][1];
-			Doll['c']=data['u'][2];
-			Doll['d']=data['u'][3];
-			Doll['p']=data['u'][4];
+			Doll['a']=parseInt(data['u'][0]);
+			Doll['b']=parseInt(data['u'][1]);
+			Doll['c']=parseInt(data['u'][2]);
+			Doll['d']=parseInt(data['u'][3]);
+			Doll['p']=parseInt(data['u'][4]);
 
-			Persona["a"]=String(data['p1']);
-			Persona["b"]=String(data['p2']);
-			Persona["c"]=String(data['p3']);
-			Persona["d"]=String(data['p4']);
+			Persona["a"]=data['p1'];
+			Persona["b"]=data['p2'];
+			Persona["c"]=data['p3'];
+			Persona["d"]=data['p4'];
 
 			$('#myicon').attr('src','./img/unit/unit_'+ Unit_Select +'.png');
 			$('#p1').attr('src','./img/chr/chr'+ Persona['a'] +'.jpg');
@@ -347,7 +348,14 @@ $(function(){
 				var GetPlyJ 	= JSON.stringify(GetPly);
 				var PersonaJ	= JSON.stringify(Persona);
 
+					console.log("◆");
 				console.log(Persona);
+				console.log(PersonaJ);
+				console.log(Doll);
+				console.log(DollJ);
+				console.log(Pts);
+				console.log(PtsJ);
+					console.log("◆");
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
