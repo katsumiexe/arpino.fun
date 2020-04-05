@@ -143,6 +143,7 @@ $(function(){
 			DollJ	= JSON.stringify(Doll);
 			PersonaJ= JSON.stringify(Persona);
 
+			console.log('per○:'+Persona);
 
 			console.log(data.i);
 			console.log(Doll);
@@ -341,7 +342,6 @@ console.log(Size_t);
 				var GetPtsJ = JSON.stringify(GetPts);
 				var GetPlyJ = JSON.stringify(GetPly);
 
-
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
 				$('.pl2').delay(3500).animate({'left':0},200).delay(1000).animate({'top':'100vh'},500);
@@ -349,9 +349,12 @@ console.log(Size_t);
 				$('.pl4').delay(3800).animate({'left':0},600).delay(700).animate({'top':'100vh'},500);
 				$('.pl5').delay(3500).fadeOut(500);
 
+				console.log('per□:'+PersonaJ);
+
 				$.post({
 					url:'post_sort.php',
 /*					dataType: 'json',*/
+					contentType: 'application/json',
 					data:{
 						'log_id':LogId,
 						'getpts':GetPtsJ,
@@ -362,7 +365,9 @@ console.log(Size_t);
 					},
 
 				}).done(function(data3, textStatus, jqXHR){
+
 					console.log('get■:'+data3);
+
 					$('.table_a,.table_b,.myimg').delay(4700).animate({'top':'100vh'},500);
 					$('.last_res').html(data3).delay(6000).animate({'top':'2vh'},500);
 

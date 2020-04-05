@@ -49,12 +49,13 @@ for($s=0;$s<12;$s++){
 
 	for($d=0;$d<12;$d++){
 		if($get[$s][$d]>0){
-			$app.="<div class=\"res_e_1\">{$get[$s][$d]}</div>";
+			$app.="<span class=\"res_e_1\">{$get[$s][$d]}</span>";
 
 		}elseif($get[$s][$d]<0){
-			$app.="<div class=\"res_e_2\">{$get[$s][$d]}</div>";
+			$app.="<span class=\"res_e_2\">{$get[$s][$d]}</span>";
+
 		}else{
-			$app.="<div class=\"res_e_3\">0</div>";
+			$app.="<span class=\"res_e_3\">0</span>";
 		}
 	}
 	$app.="<div class=\"res_f\">{$list_pts[$d]}</div>";
@@ -75,6 +76,6 @@ $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
 
 
-echo $app;
+echo $persona;
 exit();
 ?>
