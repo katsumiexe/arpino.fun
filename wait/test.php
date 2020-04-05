@@ -1,135 +1,179 @@
 <?
-session_save_path('./session/');
-ini_set('session.gc_maxlifetime', 3*60*60); // 3 hours
-ini_set('session.gc_probability', 1);
-ini_set('session.gc_divisor', 100);
-ini_set('session.cookie_secure', FALSE);
-ini_set('session.use_only_cookies', TRUE);
-session_start();
-
-if($_POST["start"]){
-    $rnd=array(0,1,2,3,4,5,6,7,8,9,10,11);
-    shuffle($rnd);
-
-    $_SESSION["a"]=$rnd;
-    $dat["a"]=$rnd;
-
-    shuffle($rnd);
-    $_SESSION["b"]=$rnd;
-    $dat["b"]=$rnd;
-
-    shuffle($rnd);
-    $_SESSION["c"]=$rnd;
-    $dat["c"]=$rnd;
-
-    shuffle($rnd);
-    $_SESSION["card"]=$rnd;
-    $dat["card"]=$rnd;
-}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
+
 <style>
-.main{
-    width:100%;
-    max-width:600px;
-    background:#f0f0f0;
-    margin:0 auto;    
-}
 
-.hako{ 
-    display:inline-block;
-    width:55px;
-    height:55px;
-    line-height:55px;
-    background:#f00000;
-    box-sizing:border-box;
-    border:0.5vw solid #0000ff;
-    text-align:center;
-    font-size:20px;
-}
-
-.table_a{
-    width:100%;    
-    background:#e0f0ff;
-}
-
-.td_a{
-    width:120px;    
-    background:#a0f0ff;
-}
-
-.table_b{
-    width:100%;    
-    background:#e0f0ff;
-}
-
-.td_b1{
-    height:30px;    
-    background:#00f020;
-}
-
-.td_b2{
-    background:#00f0ff;
-}
-
-.p_name{
-    display:inline-block;
-    width:200px;
-    background:#ff5030;
-}
-
-.p_status{
-    display:inline-block;
-    width:45px;
-    background:#ff50a0;
-}
-
-.p_pts{
-    display:inline-block;
-    width:74px;
-    height:40px;
-    background:#cccccc;
-    box-sizing:border-box;
-    border:1px solid #ffffff;
-	color:#fafafa
-}
-
-.p_pts_on{
-    background:#906000 !important;
-}
 </style>
 <script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/jquery.easing.1.3.js"></script>
+<script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
-var Turn=0;
-$(function(){ 
-    $(".p_pts_on").on('click',function(){
-        Turn++;
-        $(this).removeClass('p_pts_on');
-        No=$(this).attr('id').replace('i','');
-		$.post("post_read_turn.php",
-			{
-				'turn':Turn,
-				'bet':No,
-			},
-			function(data){
-                $('.td_a').text(Turn);
-
-                
-			}
-		);
-
-    });
-});
 </script>
 </head>
 <body style="text-align:center">
+
 <div class="main">
+<div class="page_01">
+<?for($e=0;$e<10;$e++){?>
+	<div id="s<?=$e?>" class="sel">
+	<span class="sel_a"></span>
+	<span class="sel_b">
+	<span class="sel_b_1">巨乳</span>
+	<span class="sel_b_1">幼女</span>
+	<span class="sel_b_1">清楚</span>
+	<span class="sel_b_1">知的</span>
+	<span class="sel_b_1">亜人</span>
+	</span>
+	<span class="sel_c"><?=$unit[$e]["name"]?></span>
+	</div>
+<?}?>
+</div>
+<div class="page_02">
+
+<table class="player_0">
+	<tr>
+		<td class="pl1">
+			<table class="player">
+				<tr>
+					<td rowspan="2" class="player_a"></td>
+					<td class="player_b"></td>
+				</tr>
+				<tr>
+					<td class="player_c">
+						<table class="player_c_0">
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="pl2">
+			<table class="player">
+				<tr>
+					<td rowspan="2" class="player_a"></td>
+					<td class="player_b"></td>
+				</tr>
+				<tr>
+					<td class="player_c">
+						<table class="player_c_0">
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="pl3">
+			<table class="player">
+				<tr>
+					<td rowspan="2" class="player_a"></td>
+					<td class="player_b"></td>
+				</tr>
+				<tr>
+					<td class="player_c">
+						<table class="player_c_0">
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="pl4">
+			<table class="player">
+				<tr>
+					<td rowspan="2" class="player_a"></td>
+					<td class="player_b"></td>
+				</tr>
+				<tr>
+					<td class="player_c">
+						<table class="player_c_0">
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+
+						<tr>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+							<td class="player_c_1"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>	
+
+
+<span id="set_a" class="set">0</span>
+<span id="set_b" class="set">0</span>
+<span id="set_c" class="set">0</span>
+<span id="set_d" class="set">0</span>
+<span id="set_z" class="set">0</span>
 <table class="table_a">
 	<tr>
 		<td class="td_a">あ</td>
@@ -146,12 +190,34 @@ $(function(){
 					</td>
 				</tr>
 				<tr>
-					<td class="td_b2"><?for($n=0;$n<12;$n++){?><span id="i<?=$n?>" class="p_pts p_pts_on"></span><?}?></td>
+					<td class="td_b2"><?for($n=0;$n<12;$n++){?><span id="i<?=$n?>" class="p_pts"></span><?}?></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 </table>
 </div>
+</div>
+
+<div class="pop_back">
+	<div class="pop_a">
+		<div class="pop_a_1"> </div>
+		<div class="pop_a_2">みりあ</div>
+
+		<span class="pop_a_3">
+		<span class="sel_b_1">巨乳</span>
+		<span class="sel_b_1">幼女</span>
+		<span class="sel_b_1">清楚</span>
+		<span class="sel_b_1">知的</span>
+		<span class="sel_b_1">亜人</span>
+		</span>
+
+		<div id="reset" class="btn c1">取消</div> 
+		<div id="start" class="btn c2">選択</div>
+	</div>
+</div>
+
+
+
 </body>
 </html>
