@@ -198,22 +198,7 @@ $card[1]="";
 </tr>
 </table>
 
-
-<table class="table_res">
-<?for($n=0;$n<5;$n++){?>
-<tr>
-<td class="td_res">
-<div id="res_rank<?=$n?>" class="res_a"></div>
-<img id="res_img<?=$n?>" src="" class="res_b">
-
-<img id="res_unit<?=$n?>" src="" class="res_c">
-<div id="res_name<?=$n?>" class="res_d"></div>
-<div id="res_hist<?=$n?>" class="res_e"></div>
-<div id="res_pts<?=$n?>" class="res_f"></div>
-</td>
-</tr>
-<?}?>
-</table>
+<div class="last_res"></div>
 
 
 <img id="myicon" src="" class="myimg">

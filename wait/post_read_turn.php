@@ -127,7 +127,6 @@ $sql=" UPDATE log_data SET";
 $sql.=" turn_{$turn}='{$win}'";
 $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
-
 	$sort["sql"]=$sql;
 
 echo json_encode($sort);

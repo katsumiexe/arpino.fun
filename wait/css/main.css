@@ -826,17 +826,23 @@ body {
 	z-index:112;
 }
 
+.last_res{
+	position:absolute;
+	top:100vh;
+	left:0;
+	right:0;
+	width:510px;
+	height:100vh;
+	z-index:70;
+	background:#dd00dd;
+
+}
 
 .table_res{
 	width:510px;
 	border-collapse	:separate;
 	border-spacing: 5px;
 	background:#fafafa;
-	position:absolute;
-	top:100vh;
-	left:0;
-	right:0;
-	z-index:70;
 }
 
 

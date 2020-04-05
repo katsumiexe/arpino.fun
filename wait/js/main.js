@@ -6,6 +6,7 @@ var Items=["","","","","","","","",
 var Up=[];
 var GetPts=[];
 var GetPly=[];
+var Persona=[];
 
 var Get_a;
 var Get_b;
@@ -15,6 +16,7 @@ var Get_p;
 
 var SubUser;
 var RingUser;
+
 
 var Cnt={
 		"a": 0,
@@ -119,12 +121,16 @@ $(function(){
 			Doll['d']=data['u'][3];
 			Doll['p']=data['u'][4];
 
-			$('#myicon').attr('src','./img/unit/unit_'+ Unit_Select +'.png');
-			$('#p1').attr('src','./img/chr/chr'+ data.p1 +'.jpg');
-			$('#p2').attr('src','./img/chr/chr'+ data.p2 +'.jpg');
-			$('#p3').attr('src','./img/chr/chr'+ data.p3 +'.jpg');
-			$('#p4').attr('src','./img/chr/chr'+ data.p4 +'.jpg');
+			Persona['a']=data.p1;
+			Persona['b']=data.p2;
+			Persona['c']=data.p3;
+			Persona['d']=data.p4;
 
+			$('#myicon').attr('src','./img/unit/unit_'+ Unit_Select +'.png');
+			$('#p1').attr('src','./img/chr/chr'+ Persona['a'] +'.jpg');
+			$('#p2').attr('src','./img/chr/chr'+ Persona['b'] +'.jpg');
+			$('#p3').attr('src','./img/chr/chr'+ Persona['c'] +'.jpg');
+			$('#p4').attr('src','./img/chr/chr'+ Persona['d'] +'.jpg');
 
 
 			$('#myname').text(data.name);
@@ -133,6 +139,10 @@ $(function(){
 			$('#status_3').addClass(data.s3);
 			$('#status_4').addClass(data.s4);
 			$('#status_5').addClass(data.s5);
+
+			DollJ	= JSON.stringify(Doll);
+			PersonaJ= JSON.stringify(Persona);
+
 
 			console.log(data.i);
 			console.log(Doll);
@@ -327,8 +337,10 @@ console.log(Size_t);
 
 			}else{
 
+				var PtsJ 	= JSON.stringify(Pts);
 				var GetPtsJ = JSON.stringify(GetPts);
 				var GetPlyJ = JSON.stringify(GetPly);
+
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
@@ -337,20 +349,22 @@ console.log(Size_t);
 				$('.pl4').delay(3800).animate({'left':0},600).delay(700).animate({'top':'100vh'},500);
 				$('.pl5').delay(3500).fadeOut(500);
 
-				$('.table_a,.table_b,.myimg').delay(4700).animate({'top':'100vh'},500);
-				$('.table_res').delay(6000).animate({'top':'2vh'},500);
-
 				$.post({
 					url:'post_sort.php',
-					dataType: 'json',
+/*					dataType: 'json',*/
 					data:{
 						'log_id':LogId,
 						'getpts':GetPtsJ,
 						'getply':GetPlyJ,
+						'doll':DollJ,
+						'persona':PersonaJ,
+						'pts':PtsJ,
 					},
 
 				}).done(function(data3, textStatus, jqXHR){
 					console.log('get■:'+data3);
+					$('.table_a,.table_b,.myimg').delay(4700).animate({'top':'100vh'},500);
+					$('.last_res').html(data3).delay(6000).animate({'top':'2vh'},500);
 
 				}).fail(function(xhr, textStatus, errorThrown) {
 		   			console.log("NG:" + xhr.status);
