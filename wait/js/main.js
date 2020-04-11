@@ -3,10 +3,9 @@ var Turn=0;
 var St=[];
 var Items=["","","","","","","","","","","",""];
 var Up=[];
-var GetPts=[];
-var GetPly=[];
 
-var Persona= new Object()
+var GetP=new Object();
+var Persona= new Object();
 var Doll= new Object();
 
 var Get_a;
@@ -32,7 +31,6 @@ var Pts={
 		"b": 0,
 		"c": 0,
 		"d": 0,
-		"e": 0,
 		"p": 0
 };
 
@@ -239,8 +237,7 @@ $(function(){
 			$('#set_c').delay(300).animate({'top':W150},500).text(Items[Up['c'][Turn]]);
 			$('#set_d').delay(350).animate({'top':W150},500).text(Items[Up['d'][Turn]]);
 
-			GetPts[Turn]=parseInt(data2.pts);
-			GetPly[Turn]=data2.z;
+			GetP[data2.z]=parseInt(data2.pts);
 
 			if(data2.z=='p'){
 				$.when(
@@ -344,17 +341,19 @@ $(function(){
 			}else{
 				var DollJ 		= JSON.stringify(Doll);
 				var PtsJ 		= JSON.stringify(Pts);
-				var GetPtsJ 	= JSON.stringify(GetPts);
-				var GetPlyJ 	= JSON.stringify(GetPly);
+				var GetPJ	 	= JSON.stringify(GetP);
 				var PersonaJ	= JSON.stringify(Persona);
 
 					console.log("◆");
+				console.log(LogId);
 				console.log(Persona);
 				console.log(PersonaJ);
 				console.log(Doll);
 				console.log(DollJ);
 				console.log(Pts);
 				console.log(PtsJ);
+				console.log(GetP);
+				console.log(GetPJ);
 					console.log("◆");
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
@@ -373,8 +372,7 @@ $(function(){
 					data:{
 						'log_id':LogId,
 						'persona':PersonaJ,
-						'getpts':GetPtsJ,
-						'getply':GetPlyJ,
+						'getp':GetPJ,
 						'doll'	:DollJ,
 						'pts'	:PtsJ,
 					}

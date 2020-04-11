@@ -1,37 +1,81 @@
 <?
 include_once("./library/session.php");
-
 $end=date("Y-m-d H:i:s");
+
 $log_id		=$_POST["log_id"];
-$getpts		=$_POST["getpts"];
-$getply		=$_POST["getply"];
 
-$doll		=$_POST["doll"];
-//$doll		=json_decode(json_encode($_POST["doll"], true));
-$persona	=json_encode(json_decode($_POST["persona"], false));
-$pts		=$_POST["pts"];
+$doll		=json_decode($_POST["doll"]);
+$persona	=json_decode($_POST["persona"]);
+$pts		=json_decode($_POST["pts"]);
+$getp		=json_decode($_POST["getp"]);
 
-for($n=0;$n<12;$n++){
-	$getlist[$getply[$n]][$n]=$getpts[$n];
-}
+$doll		=(array)$doll;
+$persona	=(array)$persona;
+$pts		=(array)$pts;
+$getp		=(array)$getp;
+
 arsort($pts);
+krsort($doll);
 
 $tmp_rank=1;
+
 $p=0;
+$r=0;
+$n=0;
 
-print("-----<br>\n");
-foreach($doll as $a1 => $a2){
-print($a1."□".$a2."<br>\n");
-
+foreach($getp as $a1 => $a2){
+	$get[$a1][$n]=$a2;
+	$n++;
 }
 
-print("-----<br>\n");
-var_dump($doll);
-print("-----<br>\n");
+foreach($pts as $a1 => $a2){
+$order++;
+
+	$app.="<table class=\"table_res\">";
+	$app.="<tr><td class=\"td_res\">";
+	$app.="<div class=\"res_a{$order}\">{$order}</div>";
+
+	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
+	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
+	$app.="<div class=\"res_d\">{$name[$$a1]}</div>";
+
+	$app.="<table class=\"res_e\">";
+	$app.="<tr>";
+	for($d=0;$d<6;$d++){
+		if($get[$a1][$d]>0){
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+		}elseif($get[$a1][$d]<0){
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+		}else{
+			$app.="<td class=\"res_e_3\">0</td>";
+		}
+	}
+	$app.="</tr><tr>";
+	for($d=6;$d<12;$d++){
+		if($get[$a1][$d]>0){
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+		}elseif($get[$a1][$d]<0){
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+		}else{
+			$app.="<td class=\"res_e_3\">0</td>";
+		}
+	}
+	$app.="</table>";
+
+	$app.="<div class=\"res_f\">{$a2}</div>";
+	$app.="</td></tr>";
+	$app.="</table>";
+}
+
+
+/*
 
 foreach($pts as $a1 => $a2){
-
-print($a1."◆".$a2."◆".$persona[$a1]."<br>");
+	print($a1."◆".$a2."◆".$persona[$a1]."<br>");
 	$list_rank[$p]=$tmp_rank;
 	if($list_rank[$p-1] == $list_rank[$p]){
 		$list_rank[$p]--;
@@ -46,10 +90,12 @@ print($a1."◆".$a2."◆".$persona[$a1]."<br>");
 	$p++;
 }
 
-for($g=0;$g<12;$g++){
-	$get[$getply[0]][$g]=$getpts[$g];
-}
 
+
+*/
+
+
+/*
 $app="<table class=\"table_res\">";
 for($s=0;$s<12;$s++){
 	$app.="<tr><td class=\"td_res\">";
@@ -86,7 +132,10 @@ $sql.=" pts_d='{$pts["d"]}'";
 $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
 
-//echo $app;
+*/
+
+
+echo $app;
 
 //var_dump($doll);
 exit();
