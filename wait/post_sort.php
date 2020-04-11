@@ -29,7 +29,10 @@ foreach($getp as $a1 => $a2){
 }
 
 foreach($pts as $a1 => $a2){
-$order++;
+
+	if($a2 != $tmp_a2){
+		$order++;
+	}
 
 	$app.="<table class=\"table_res\">";
 	$app.="<tr><td class=\"td_res\">";
@@ -52,13 +55,14 @@ $order++;
 			$app.="<td class=\"res_e_3\">0</td>";
 		}
 	}
+
 	$app.="</tr><tr>";
 	for($d=6;$d<12;$d++){
 		if($get[$a1][$d]>0){
-			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+			$app.="<td class=\"res_e_1\">{floor($get[$a1][$d])}</td>";
 
 		}elseif($get[$a1][$d]<0){
-			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+			$app.="<td class=\"res_e_2\">{floor($get[$a1][$d])}</td>";
 
 		}else{
 			$app.="<td class=\"res_e_3\">0</td>";
@@ -69,58 +73,9 @@ $order++;
 	$app.="<div class=\"res_f\">{$a2}</div>";
 	$app.="</td></tr>";
 	$app.="</table>";
+
+	$tmp_pts=$a2;
 }
-
-
-/*
-
-foreach($pts as $a1 => $a2){
-	print($a1."◆".$a2."◆".$persona[$a1]."<br>");
-	$list_rank[$p]=$tmp_rank;
-	if($list_rank[$p-1] == $list_rank[$p]){
-		$list_rank[$p]--;
-	}	
-
-	$list_pts[$p]		=int($a2);
-	$list_doll[$p]		=$doll[$a1];
-	$list_name[$p]		=$doll[$a1];
-	$list_persona[$p]	=$persona[$a1];
-
-	$tmp_rank++;
-	$p++;
-}
-
-
-
-*/
-
-
-/*
-$app="<table class=\"table_res\">";
-for($s=0;$s<12;$s++){
-	$app.="<tr><td class=\"td_res\">";
-	$app.="<div class=\"res_a{$list_rank[$s]}\">{$list_rank[$s]}</div>";
-
-	$app.="<img src=\"./img/chr/chr{$list_persona[$s]}.jpg\" class=\"res_b\">";
-	$app.="<img src=\"./img/unit/unit{$list_doll[$s]}.png\" class=\"res_c\">";
-	$app.="<div class=\"res_d\">{$list_name[$s]}</div>";
-
-	for($d=0;$d<12;$d++){
-		if($get[$s][$d]>0){
-			$app.="<span class=\"res_e_1\">{$get[$s][$d]}</span>";
-
-		}elseif($get[$s][$d]<0){
-			$app.="<span class=\"res_e_2\">{$get[$s][$d]}</span>";
-
-		}else{
-			$app.="<span class=\"res_e_3\">0</span>";
-		}
-	}
-	$app.="<div class=\"res_f\">{$list_pts[$d]}</div>";
-	$app.="</td></tr>";
-}
-$app.="</table>";
-
 
 $sql=" UPDATE log_data SET";
 $sql.=" end='{$date}',";
@@ -132,11 +87,6 @@ $sql.=" pts_d='{$pts["d"]}'";
 $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
 
-*/
-
-
 echo $app;
-
-//var_dump($doll);
 exit();
 ?>
