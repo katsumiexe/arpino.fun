@@ -5,6 +5,7 @@ var Items=["","","","","","","","",
 var Up=[];
 
 var GetP=new Object();
+var GetN=new Object();
 var Persona= new Object();
 var Doll= new Object();
 
@@ -237,7 +238,8 @@ $(function(){
 			$('#set_c').delay(300).animate({'top':W150},500).text(Items[Up['c'][Turn]]);
 			$('#set_d').delay(350).animate({'top':W150},500).text(Items[Up['d'][Turn]]);
 
-			GetP[data2.z]=parseInt(data2.pts);
+			GetP[Turn]=data2.z;
+			GetN[Turn]=parseInt(data2.pts);
 
 			if(data2.z=='p'){
 				$.when(
@@ -325,7 +327,6 @@ $(function(){
 						$('#ring_' + data2.z).css('color','#ff90a0');
 						RingUser=data2.z;
 					}
-
 					$('#count_'+data2.z).text(Cnt[data2.z]);
 				});               
 
@@ -342,19 +343,11 @@ $(function(){
 				var DollJ 		= JSON.stringify(Doll);
 				var PtsJ 		= JSON.stringify(Pts);
 				var GetPJ	 	= JSON.stringify(GetP);
+				var GetNJ	 	= JSON.stringify(GetN);
 				var PersonaJ	= JSON.stringify(Persona);
 
-					console.log("◆");
-				console.log(LogId);
-				console.log(Persona);
-				console.log(PersonaJ);
-				console.log(Doll);
-				console.log(DollJ);
-				console.log(Pts);
-				console.log(PtsJ);
-				console.log(GetP);
-				console.log(GetPJ);
-					console.log("◆");
+				console.log(GetN);
+				console.log(GetNJ);
 
 				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
@@ -365,23 +358,16 @@ $(function(){
 
 				$.post({
 					url:'post_sort.php',
-/*
-					dataType: 'json',
-					contentType: 'application/json',
-*/
 					data:{
 						'log_id':LogId,
 						'persona':PersonaJ,
-						'getp':GetPJ,
+						'getp'	:GetPJ,
+						'getn'	:GetNJ,
 						'doll'	:DollJ,
 						'pts'	:PtsJ,
 					}
 
 				}).done(function(data3, textStatus, jqXHR){
-
-					console.log("★");
-					console.log(data3);
-
 					$('.table_a,.table_b,.myimg').delay(4700).animate({'top':'100vh'},500);
 					$('.last_res').html(data3).delay(6000).animate({'top':'2vh'},500);
 

@@ -8,11 +8,13 @@ $doll		=json_decode($_POST["doll"]);
 $persona	=json_decode($_POST["persona"]);
 $pts		=json_decode($_POST["pts"]);
 $getp		=json_decode($_POST["getp"]);
+$getn		=json_decode($_POST["getn"],false);
 
 $doll		=(array)$doll;
 $persona	=(array)$persona;
 $pts		=(array)$pts;
 $getp		=(array)$getp;
+$getn		=(array)$getn;
 
 arsort($pts);
 krsort($doll);
@@ -23,9 +25,15 @@ $p=0;
 $r=0;
 $n=0;
 
+var_dump($getp);
+print("<hr>");
+
+var_dump($getn);
+
 foreach($getp as $a1 => $a2){
-	$get[$a1][$n]=$a2;
-	$n++;
+	$get[$a2][$a1]=$getn[$a1];
+//print($a1."■".$a2."■".$getn[$a1]."■<br>\n");
+
 }
 
 foreach($pts as $a1 => $a2){
@@ -33,7 +41,7 @@ foreach($pts as $a1 => $a2){
 	if($a2 != $tmp_a2){
 		$order++;
 	}
-
+	$result=floor($a2);
 	$app.="<table class=\"table_res\">";
 	$app.="<tr><td class=\"td_res\">";
 	$app.="<div class=\"res_a{$order}\">{$order}</div>";
@@ -70,7 +78,7 @@ foreach($pts as $a1 => $a2){
 	}
 	$app.="</table>";
 
-	$app.="<div class=\"res_f\">{$a2}</div>";
+	$app.="<div class=\"res_f\">{$result}</div>";
 	$app.="</td></tr>";
 	$app.="</table>";
 
