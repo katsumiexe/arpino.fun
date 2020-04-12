@@ -1,14 +1,13 @@
 <?
 include_once("./library/session.php");
-$end=date("Y-m-d H:i:s");
+$date=date("Y-m-d H:i:s");
 
 $log_id		=$_POST["log_id"];
-
 $doll		=json_decode($_POST["doll"]);
 $persona	=json_decode($_POST["persona"]);
 $pts		=json_decode($_POST["pts"]);
 $getp		=json_decode($_POST["getp"]);
-$getn		=json_decode($_POST["getn"],false);
+$getn		=json_decode($_POST["getn"],true);
 
 $doll		=(array)$doll;
 $persona	=(array)$persona;
@@ -25,30 +24,24 @@ $p=0;
 $r=0;
 $n=0;
 
-var_dump($getp);
-print("<hr>");
-
-var_dump($getn);
-
 foreach($getp as $a1 => $a2){
-	$get[$a2][$a1]=$getn[$a1];
-//print($a1."■".$a2."■".$getn[$a1]."■<br>\n");
-
+	$get[$a2][$a1]=floor($getn[$a1]+0);
 }
 
-foreach($pts as $a1 => $a2){
 
+foreach($pts as $a1 => $a2){
 	if($a2 != $tmp_a2){
 		$order++;
 	}
-	$result=floor($a2);
+	$result=floor($a2+0);
+
 	$app.="<table class=\"table_res\">";
 	$app.="<tr><td class=\"td_res\">";
 	$app.="<div class=\"res_a{$order}\">{$order}</div>";
 
 	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
 	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
-	$app.="<div class=\"res_d\">{$name[$$a1]}</div>";
+	$app.="<div class=\"res_d\">{$unit[$a1]}</div>";
 
 	$app.="<table class=\"res_e\">";
 	$app.="<tr>";
@@ -67,10 +60,10 @@ foreach($pts as $a1 => $a2){
 	$app.="</tr><tr>";
 	for($d=6;$d<12;$d++){
 		if($get[$a1][$d]>0){
-			$app.="<td class=\"res_e_1\">{floor($get[$a1][$d])}</td>";
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
 
 		}elseif($get[$a1][$d]<0){
-			$app.="<td class=\"res_e_2\">{floor($get[$a1][$d])}</td>";
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
 
 		}else{
 			$app.="<td class=\"res_e_3\">0</td>";
@@ -81,7 +74,6 @@ foreach($pts as $a1 => $a2){
 	$app.="<div class=\"res_f\">{$result}</div>";
 	$app.="</td></tr>";
 	$app.="</table>";
-
 	$tmp_pts=$a2;
 }
 

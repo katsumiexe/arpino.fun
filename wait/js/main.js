@@ -336,7 +336,7 @@ $(function(){
 				.animate({'top':Size_t,'right':Size_r,'height':Size_h,'width':Size_w,'border-width':'10px','border-radius':'20px'},0);
 			}
 
-			if(Turn<1){
+			if(Turn<11){
 				$('.guard3').delay(2000).fadeOut(1000);
 
 			}else{
@@ -359,12 +359,12 @@ $(function(){
 				$.post({
 					url:'post_sort.php',
 					data:{
-						'log_id':LogId,
-						'persona':PersonaJ,
-						'getp'	:GetPJ,
-						'getn'	:GetNJ,
-						'doll'	:DollJ,
-						'pts'	:PtsJ,
+						"log_id":LogId,
+						"persona":PersonaJ,
+						"getp"	:GetPJ,
+						"getn"	:GetNJ,
+						"doll"	:DollJ,
+						"pts"	:PtsJ
 					}
 
 				}).done(function(data3, textStatus, jqXHR){
