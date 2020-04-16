@@ -22,6 +22,54 @@ $check[2]="";
 
 $card[1]="";
 
+$pts["1"]=2;
+foreach($pts as $a1 => $a2){
+	if($a2 != $tmp_a2){
+		$order++;
+	}
+	$result=floor($a2+0);
+
+	$app.="<table class=\"table_res\">";
+	$app.="<tr><td class=\"td_res\">";
+	$app.="<div class=\"res_a{$order}\">{$order}</div>";
+
+	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
+	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
+	$app.="<div class=\"res_d\">{$unit[$a1]}</div>";
+
+	$app.="<table class=\"res_e\">";
+	$app.="<tr>";
+	for($d=0;$d<6;$d++){
+		if($get[$a1][$d]>0){
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+		}elseif($get[$a1][$d]<0){
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+		}else{
+			$app.="<td class=\"res_e_3\">0</td>";
+		}
+	}
+
+	$app.="</tr><tr>";
+	for($d=6;$d<12;$d++){
+		if($get[$a1][$d]>0){
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+		}elseif($get[$a1][$d]<0){
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+		}else{
+			$app.="<td class=\"res_e_3\">0</td>";
+		}
+	}
+	$app.="</table>";
+	$app.="<div class=\"res_f\">{$result}</div>";
+	$app.="</td></tr>";
+	$app.="</table>";
+	$tmp_pts=$a2;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -41,6 +89,9 @@ $card[1]="";
 <body style="text-align:center">
 <div class="main">
 <div class="page_01">
+
+<?=$app?>
+
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
 	<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">

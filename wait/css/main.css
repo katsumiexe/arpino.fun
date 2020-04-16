@@ -893,7 +893,7 @@ height		:150px;
 	left		:0px;
 	height		:70px;
 	width		:70px;
-	background	:#303030;
+	background	:#303030;	
 }
 
 
@@ -1028,7 +1028,7 @@ height		:150px;
 .myimg{
 	width			:20vw;
 	height			:20vw;
-	bottom			:11vh;
+	bottom			:20vw;
 }
 
 .a_sub{
@@ -1058,7 +1058,7 @@ height		:150px;
 
 .table_b{
     width			:80vw;
-	bottom			:11vh;
+	bottom			:20vw;
     height			:20vw;    
 }
 
@@ -1443,6 +1443,60 @@ height		:150px;
 
 #rest0{
 	bottom:64vw;
+}
+
+.table_res{
+	width:90vw;
+	border-spacing: 1vw;
+	height:20vw;
+}
+
+.res_a1,.res_a2,.res_a3,.res_a4,.res_a5{
+	height		:5vw;
+	line-height	:5vw;
+	width		:15vw;
+	font-size	:4vw;
+}
+
+.res_b{
+	top			:5vw;
+	height		:15vw;
+	width		:15vw;
+}
+
+
+.res_c{
+	top			:1vw;
+	left		:17vw;
+	height		:18vw;
+	width		:18vw;
+}
+
+.res_d{
+	top			:1vw;
+	left		:36vw;
+	height		:6vw;
+	width		:40vw;
+}
+
+.res_e{
+	top			:8vw;
+	left		:36vw;
+	height		:12vw;
+	width		:40vw;
+}
+
+.res_e_1,.res_e_2,.res_e_3{
+	font-size	:4vw;
+}
+
+.res_f{
+	top			:1vw;
+	left		:77vw;
+	height		:18vw;
+	width		:8vw;
+	font-size	:5vw;
+	padding		:1vw;
 }
 
 

@@ -70,7 +70,6 @@ foreach($pts as $a1 => $a2){
 		}
 	}
 	$app.="</table>";
-
 	$app.="<div class=\"res_f\">{$result}</div>";
 	$app.="</td></tr>";
 	$app.="</table>";
