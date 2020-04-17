@@ -22,6 +22,54 @@ $check[2]="";
 
 $card[1]="";
 
+$pts["1"]=2;
+foreach($pts as $a1 => $a2){
+	if($a2 != $tmp_a2){
+		$order++;
+	}
+	$result=floor($a2+0);
+
+	$app.="<table class=\"table_res\">";
+	$app.="<tr><td class=\"td_res\">";
+	$app.="<div class=\"res_a{$order}\">{$order}</div>";
+
+	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
+	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
+	$app.="<div class=\"res_d\">{$unit[$a1]}</div>";
+
+	$app.="<table class=\"res_e\">";
+	$app.="<tr>";
+	for($d=0;$d<6;$d++){
+		if($get[$a1][$d]>0){
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+		}elseif($get[$a1][$d]<0){
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+		}else{
+			$app.="<td class=\"res_e_3\">0</td>";
+		}
+	}
+
+	$app.="</tr><tr>";
+	for($d=6;$d<12;$d++){
+		if($get[$a1][$d]>0){
+			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+		}elseif($get[$a1][$d]<0){
+			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+		}else{
+			$app.="<td class=\"res_e_3\">0</td>";
+		}
+	}
+	$app.="</table>";
+	$app.="<div class=\"res_f\">{$result}</div>";
+	$app.="</td></tr>";
+	$app.="</table>";
+	$tmp_pts=$a2;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -58,39 +106,75 @@ $card[1]="";
 
 <div class="page_02">
 	<div class="player">
+
 		<div class="player_0 pl1">
 			<img src="" id="p1" class="player_a">
 			<span id="sub_a" class="get_sub"><?=$check[1]?></span>
 			<span id="ring_a" class="get_ring"><?=$check[2]?></span>
 
-			<div id="down_a1" class="player_e">
-				<div class="player_f fa f11"></div>
-				<div class="player_f fa f10"></div>
-				<div class="player_f fa f9"></div>
-				<div class="player_f fa f8"></div>
-				<div class="player_f fa f7"></div>
-				<div class="player_f fa f6"></div>
-				<div class="player_f fa f5"></div>
-				<div class="player_f fa f4"></div>
-				<div class="player_f fa f3"></div>
-				<div class="player_f fa f2"></div>
-				<div class="player_f fa f1"></div>
-				<div class="player_f fa f0"></div>
-			</div>
-
-			<div id="set_a" class="player_c"></div>
 			<div class="player_b pc1">
 				<span class="get_icon"><?=$card[1]?></span>
 				<span id="count_a" class="get_count">0</span>
 			</div>
 			<div id="down_a" class="player_d">▼</div>
 		</div>
-
 		<div class="player_0 pl2">
 			<img src="" id="p2" class="player_a">
 			<span id="sub_b" class="get_sub"><?=$check[1]?></span>
 			<span id="ring_b" class="get_ring"><?=$check[2]?></span>
-			<div id="down_b1" class="player_e">
+			<div class="player_b pc2">
+				<span class="get_icon"><?=$card[1]?></span>
+				<span id="count_b" class="get_count">0</span>
+			</div>
+			<div id="down_b" class="player_d">▼</div>
+		</div>
+
+		<div class="player_0 pl3">
+			<img src="" id="p3" class="player_a">
+			<span id="sub_c" class="get_sub"><?=$check[1]?></span>
+			<span id="ring_c" class="get_ring"><?=$check[2]?></span>
+			<div class="player_b pc3">
+				<span class="get_icon"><?=$card[1]?></span>
+				<span id="count_c" class="get_count">0</span>
+			</div>
+			<div id="down_c" class="player_d">▼</div>
+		</div>
+
+		<div class="player_0 pl4">
+			<img src="" id="p4" class="player_a">
+			<span id="sub_d" class="get_sub"><?=$check[1]?></span>
+			<span id="ring_d" class="get_ring"><?=$check[2]?></span>
+			<div class="player_b pc4">
+				<span class="get_icon"><?=$card[1]?></span>
+				<span id="count_d" class="get_count">0</span>
+			</div>
+			<div id="down_d" class="player_d">▼</div>
+		</div>
+
+		<div class="player_0 pl5">
+			<div class="turn">TURN</div>
+			<div class="turn_count">0</div>
+		</div>
+
+
+		<div id="set_a" class="player_c"></div>
+		<div id="down_a1" class="player_e">
+			<div class="player_f fa f11"></div>
+			<div class="player_f fa f10"></div>
+			<div class="player_f fa f9"></div>
+			<div class="player_f fa f8"></div>
+			<div class="player_f fa f7"></div>
+			<div class="player_f fa f6"></div>
+			<div class="player_f fa f5"></div>
+			<div class="player_f fa f4"></div>
+			<div class="player_f fa f3"></div>
+			<div class="player_f fa f2"></div>
+			<div class="player_f fa f1"></div>
+			<div class="player_f fa f0"></div>
+		</div>
+
+		<div id="set_b" class="player_c"></div>
+		<div id="down_b1" class="player_e">
 			<div class="player_f fb f11"></div>
 			<div class="player_f fb f10"></div>
 			<div class="player_f fb f9"></div>
@@ -103,19 +187,10 @@ $card[1]="";
 			<div class="player_f fb f2"></div>
 			<div class="player_f fb f1"></div>
 			<div class="player_f fb f0"></div>
-			</div>
-			<div id="set_b" class="player_c"></div>
-			<div class="player_b pc2">
-				<span class="get_icon"><?=$card[1]?></span>
-				<span id="count_b" class="get_count">0</span>
-			</div>
-			<div id="down_b" class="player_d">▼</div>
 		</div>
-		<div class="player_0 pl3">
-			<img src="" id="p3" class="player_a">
-			<span id="sub_c" class="get_sub"><?=$check[1]?></span>
-			<span id="ring_c" class="get_ring"><?=$check[2]?></span>
-			<div id="down_c1" class="player_e">
+
+		<div id="set_c" class="player_c"></div>
+		<div id="down_c1" class="player_e">
 			<div class="player_f fc f11"></div>
 			<div class="player_f fc f10"></div>
 			<div class="player_f fc f9"></div>
@@ -128,19 +203,10 @@ $card[1]="";
 			<div class="player_f fc f2"></div>
 			<div class="player_f fc f1"></div>
 			<div class="player_f fc f0"></div>
-			</div>
-			<div id="set_c" class="player_c"></div>
-			<div class="player_b pc3">
-				<span class="get_icon"><?=$card[1]?></span>
-				<span id="count_c" class="get_count">0</span>
-			</div>
-			<div id="down_c" class="player_d">▼</div>
 		</div>
-		<div class="player_0 pl4">
-			<img src="" id="p4" class="player_a">
-			<span id="sub_d" class="get_sub"><?=$check[1]?></span>
-			<span id="ring_d" class="get_ring"><?=$check[2]?></span>
-			<div id="down_d1" class="player_e">
+
+		<div id="set_d" class="player_c"></div>
+		<div id="down_d1" class="player_e">
 			<div class="player_f fd f11"></div>
 			<div class="player_f fd f10"></div>
 			<div class="player_f fd f9"></div>
@@ -153,19 +219,13 @@ $card[1]="";
 			<div class="player_f fd f2"></div>
 			<div class="player_f fd f1"></div>
 			<div class="player_f fd f0"></div>
-			</div>
-			<div id="set_d" class="player_c"></div>
-			<div class="player_b pc4">
-				<span class="get_icon"><?=$card[1]?></span>
-				<span id="count_d" class="get_count">0</span>
-			</div>
-			<div id="down_d" class="player_d">▼</div>
 		</div>
 
-		<div class="player_0 pl5">
-			<div class="turn">TURN</div>
-			<div class="turn_count">0</div>
-		</div>
+
+
+
+
+
 	</div>
 
 <span id="rest0" class="rest_card"></span>
