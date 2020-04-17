@@ -164,8 +164,7 @@ $(function(){
 	$('.turn_start,.turn_start_main').on('click',function(){
 		$('.guard').hide();
 		$('.guard3').fadeIn(500);
-		$('.player_c').animate({'top':W110},100);
-		$('.player_e').slideUp(100).animate({'top':W10},0);		
+		$('.player_c,.player_e').slideUp(100);		
 		$('.turn_count').text(Turn+1);
 
 		$.post({
@@ -184,21 +183,24 @@ $(function(){
     });
 
 	$('.player_d').on('click',function(){
+
 		Tmp_Id=$(this).attr('id')+'1';
 		Tmp_No=$(this).attr('id').replace('down_','');
 
 		$('.f'+Tmp_No).css('color','#e0e0e0');		
-		$('.player_c').animate({'top':W110},100);
 
 		if($('#'+Tmp_Id).css("display") == 'none'){
+
 			for(i=Turn ;i<12;i++){
-				$(this).next().children('.f'+Up[Tmp_No][i]).css('color','#906000');		
+				$('#'+Tmp_Id).children('.f'+Up[Tmp_No][i]).css('color','#906000');		
 			}
-			$('#'+Tmp_Id).animate({'top':W150,'z-index':250},0).slideDown(200);		
+			$('#'+Tmp_Id).slideDown(200);		
 
 		}else{
-			$('#'+Tmp_Id).animate({'top':W110,'z-index':10},0).slideUp(150);		
+			$('#'+Tmp_Id).slideUp(150);		
 		}
+
+
     });
 
     $('.td_b2').on('click','.p_pts_on',function(){
@@ -226,22 +228,21 @@ $(function(){
 				'unit_p':Doll['p'],
 			},
 		}).done(function(data2, textStatus, jqXHR){
-			console.log('SQL▼'+data2.sql);
 
 			Pts[data2.z]=parseFloat(Pts[data2.z])+parseFloat(data2.pts);
 			Cnt[data2.z]++;
             $('.main_card').html(data2.cord);
 
             $('#set_z').text(data2.z);
-			$('#set_a').delay(200).animate({'top':W150},500).text(Items[Up['a'][Turn]]);
-			$('#set_b').delay(250).animate({'top':W150},500).text(Items[Up['b'][Turn]]);
-			$('#set_c').delay(300).animate({'top':W150},500).text(Items[Up['c'][Turn]]);
-			$('#set_d').delay(350).animate({'top':W150},500).text(Items[Up['d'][Turn]]);
+			$('#set_a').delay(200).slideDown(500).text(Items[Up['a'][Turn]]);
+			$('#set_b').delay(250).slideDown(500).text(Items[Up['b'][Turn]]);
+			$('#set_c').delay(300).slideDown(500).text(Items[Up['c'][Turn]]);
+			$('#set_d').delay(350).slideDown(500).text(Items[Up['d'][Turn]]);
 
-			GetP[Turn]=data2.z;
 			GetN[Turn]=parseInt(data2.pts);
 
 			if(data2.z=='p'){
+				GetP[Turn]=data2.z;
 				$.when(
 			 		$('.main_card').delay(2000)
 					.animate({'top':'90vh','right':W540,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -262,6 +263,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='a'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W540,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -280,6 +282,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='b'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W420,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -297,6 +300,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='c'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W300,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -314,6 +318,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='d'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W180,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -349,7 +354,7 @@ $(function(){
 				console.log(GetN);
 				console.log(GetNJ);
 
-				$('.player_c').stop(false, true).delay(2800).animate({'top':W110},100);
+				$('.player_c').stop(false, true).delay(2800).slideUp(100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
 				$('.pl2').delay(3500).animate({'left':0},200).delay(1000).animate({'top':'100vh'},500);
 				$('.pl3').delay(3600).animate({'left':0},400).delay(900).animate({'top':'100vh'},500);
