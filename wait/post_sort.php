@@ -30,18 +30,19 @@ foreach($getp as $a1 => $a2){
 
 
 foreach($pts as $a1 => $a2){
+	if($a1 !="l"){
 	if($a2 != $tmp_a2){
 		$order++;
 	}
+	$tmp_a2=$a2;
 	$result=floor($a2+0);
-
 	$app.="<table class=\"table_res\">";
 	$app.="<tr><td class=\"td_res\">";
 	$app.="<div class=\"res_a{$order}\">{$order}</div>";
 
 	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
 	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
-	$app.="<div class=\"res_d\">{$unit[$a1]}</div>";
+	$app.="<div class=\"res_d\">{$unit[$doll[$a1]]["name"]}</div>";
 
 	$app.="<table class=\"res_e\">";
 	$app.="<tr>";
@@ -70,10 +71,15 @@ foreach($pts as $a1 => $a2){
 		}
 	}
 	$app.="</table>";
+<<<<<<< HEAD
 	$app.="<div class=\"res_f\">{$result}</div>";
+=======
+	$app.="<div class=\"res_f\"><span class=\"res_f1\">{$result}</span><span class=\"res_f2\">Pts</span></div>";
+>>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 	$app.="</td></tr>";
 	$app.="</table>";
 	$tmp_pts=$a2;
+	}
 }
 
 $sql=" UPDATE log_data SET";
