@@ -30,7 +30,7 @@ foreach($getp as $a1 => $a2){
 
 
 foreach($pts as $a1 => $a2){
-	if($a1 !=z){
+	if($a1 !="l"){
 	if($a2 != $tmp_a2){
 		$order++;
 	}

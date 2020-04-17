@@ -234,15 +234,15 @@ $(function(){
             $('.main_card').html(data2.cord);
 
             $('#set_z').text(data2.z);
-			$('#set_a').delay(200).sldeDown(500).text(Items[Up['a'][Turn]]);
-			$('#set_b').delay(250).sldeDown(500).text(Items[Up['b'][Turn]]);
-			$('#set_c').delay(300).sldeDown(500).text(Items[Up['c'][Turn]]);
-			$('#set_d').delay(350).sldeDown(500).text(Items[Up['d'][Turn]]);
+			$('#set_a').delay(200).slideDown(500).text(Items[Up['a'][Turn]]);
+			$('#set_b').delay(250).slideDown(500).text(Items[Up['b'][Turn]]);
+			$('#set_c').delay(300).slideDown(500).text(Items[Up['c'][Turn]]);
+			$('#set_d').delay(350).slideDown(500).text(Items[Up['d'][Turn]]);
 
-			GetP[Turn]=data2.z;
 			GetN[Turn]=parseInt(data2.pts);
 
 			if(data2.z=='p'){
+				GetP[Turn]=data2.z;
 				$.when(
 			 		$('.main_card').delay(2000)
 					.animate({'top':'90vh','right':W540,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -263,6 +263,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='a'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W540,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -281,6 +282,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='b'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W420,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -298,6 +300,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='c'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W300,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
@@ -315,6 +318,7 @@ $(function(){
 				});               
 
 			}else if(data2.z=='d'){
+				GetP[Turn]=data2.z;
 				$.when(
 					$('.main_card').delay(2000)
 					.animate({'top':W50,'right':W180,'height':'0','width':'0','border-width':'0px','border-radius':'20px'},300).fadeOut(0)
