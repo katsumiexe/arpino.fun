@@ -1531,22 +1531,15 @@ body {
 }
 
 .table_res{
-<<<<<<< HEAD
-	width:90vw;
-=======
 	width:95vw;
->>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 	border-spacing: 1vw;
 	height:20vw;
 }
 
-<<<<<<< HEAD
-=======
 .td_res{
 	height:20vw;
 }
 
->>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 .res_a1,.res_a2,.res_a3,.res_a4,.res_a5{
 	height		:5vw;
 	line-height	:5vw;
@@ -1572,15 +1565,11 @@ body {
 	top			:1vw;
 	left		:36vw;
 	height		:6vw;
-<<<<<<< HEAD
-	width		:40vw;
-=======
 	line-height	:6vw;
 	width		:39vw;
 	color		:#fafafa;
 	font-size	:4.5vw;
 	font-weight:800;
->>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 }
 
 .res_e{
@@ -1591,24 +1580,13 @@ body {
 }
 
 .res_e_1,.res_e_2,.res_e_3{
-<<<<<<< HEAD
-	font-size	:4vw;
-=======
 	font-size	:3.5vw;
->>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 }
 
 .res_f{
 	top			:1vw;
 	left		:77vw;
 	height		:18vw;
-<<<<<<< HEAD
-	width		:8vw;
-	font-size	:5vw;
-	padding		:1vw;
-}
-
-=======
 	line-height	:28vw;
 	width		:15vw;
 }
@@ -1633,6 +1611,5 @@ body {
 .last_res{
 	width:100vw;
 }
->>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 
 }

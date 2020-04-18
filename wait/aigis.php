@@ -89,9 +89,6 @@ foreach($pts as $a1 => $a2){
 <body style="text-align:center">
 <div class="main">
 <div class="page_01">
-
-<?=$app?>
-
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
 	<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">

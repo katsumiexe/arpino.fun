@@ -71,11 +71,7 @@ foreach($pts as $a1 => $a2){
 		}
 	}
 	$app.="</table>";
-<<<<<<< HEAD
-	$app.="<div class=\"res_f\">{$result}</div>";
-=======
 	$app.="<div class=\"res_f\"><span class=\"res_f1\">{$result}</span><span class=\"res_f2\">Pts</span></div>";
->>>>>>> e563f855167327c46bd2a7a9689e0b9aa7362394
 	$app.="</td></tr>";
 	$app.="</table>";
 	$tmp_pts=$a2;
