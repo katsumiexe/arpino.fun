@@ -57,7 +57,7 @@ body {
 	right		:0;
 	margin		:auto;
 	border		:3px dashed #fafafa;
-	box-shadow	:0px 0px 0px 10px #c09000;
+	box-shadow	:0px 0px 0px 10px #c09000, 10px 10px 10px 5px rgba(60,60,60,0.8);
 	border-radius:5px;
 	width		:250px;
 	height		:310px;

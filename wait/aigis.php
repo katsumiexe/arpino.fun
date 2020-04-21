@@ -86,7 +86,7 @@ foreach($pts as $a1 => $a2){
 <script>
 </script>
 </head>
-<body style="text-align:center">
+<body style="text-align:center;background:#303030">
 <div class="main">
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
