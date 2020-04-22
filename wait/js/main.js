@@ -144,7 +144,6 @@ $(function(){
 			PersonaJ= JSON.stringify(Persona);
 */
 
-
 			console.log(Persona);
 			console.log('a◆:'+Persona.a);
 			console.log('b◆:'+Persona.b);
