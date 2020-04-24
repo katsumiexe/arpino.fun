@@ -9,6 +9,31 @@
 }
 
 
+.icon_twitter{
+	font-family: at_icon;
+	display:inline-block;
+	width:35px;
+	height:35px;
+	line-height:35px;
+	color:#fafafa;
+	font-size:20px;
+	text-align:center;
+	background:#1DA1F2;
+	border-radius:50%;
+}
+
+.icon_mail{
+	font-family: at_icon;
+	display:inline-block;
+	width:35px;
+	height:35px;
+	line-height:35px;
+	color:#fafafa;
+	font-size:20px;
+	text-align:center;
+	background:#009000;
+	border-radius:50%;
+}
 
 body {
 	margin		: 0;

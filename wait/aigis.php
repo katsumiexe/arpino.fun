@@ -102,6 +102,10 @@ foreach($pts as $a1 => $a2){
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
 	</div>
 <?}?>
+
+<span class="icon_twitter"></span>
+<span class="icon_mail"></span>
+
 </div>
 
 <div class="page_02">
@@ -296,6 +300,7 @@ foreach($pts as $a1 => $a2){
 		<div id="start" class="btn c2">選択</div>
 	</div>
 </div>
+
 
 </body>
 </html>
