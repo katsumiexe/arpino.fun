@@ -8,6 +8,10 @@
 	src: url(../font/font_2/fonts/icomoon.ttf) format('truetype');
 }
 
+@font-face {
+	font-family: at_border1;
+	src: url(../font/border/bordc1__.ttf) format('truetype');
+}
 
 .icon_twitter{
 	font-family: at_icon;
@@ -343,6 +347,41 @@ body {
 	width			:76px;
 	background		:#303030;
 }
+
+.border{
+	font-family		:at_border1;
+	position		:absolute;
+	display			:inline-block;
+	height			:40px;
+	width			:40px;
+	color			:#fafa00;
+	font-size		:40px;
+	z-index			:10;
+}
+
+.b1{
+	top:0;
+	left:0;
+	transform:rotate(180deg);
+}
+
+.b2{
+	top:0;
+	left:40px;
+	transform:rotate(270deg);
+}
+
+.b3{
+	top:40px;
+	left:0;
+	transform:rotate(90deg);
+}
+
+.b4{
+	top:40px;
+	left:40px;
+}
+
 
 .sel_b{
 	display			:flex;

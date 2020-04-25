@@ -100,6 +100,10 @@ foreach($pts as $a1 => $a2){
 	<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
 	</span>
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
+	<span class="border b1">a</span>
+	<span class="border b2">a</span>
+	<span class="border b3">a</span>
+	<span class="border b4">a</span>
 	</div>
 <?}?>
 
@@ -110,7 +114,6 @@ foreach($pts as $a1 => $a2){
 
 <div class="page_02">
 	<div class="player">
-
 		<div class="player_0 pl1">
 			<img src="" id="p1" class="player_a">
 			<span id="sub_a" class="get_sub"><?=$check[1]?></span>
@@ -132,7 +135,6 @@ foreach($pts as $a1 => $a2){
 			</div>
 			<div id="down_b" class="player_d">▼</div>
 		</div>
-
 		<div class="player_0 pl3">
 			<img src="" id="p3" class="player_a">
 			<span id="sub_c" class="get_sub"><?=$check[1]?></span>
@@ -143,7 +145,6 @@ foreach($pts as $a1 => $a2){
 			</div>
 			<div id="down_c" class="player_d">▼</div>
 		</div>
-
 		<div class="player_0 pl4">
 			<img src="" id="p4" class="player_a">
 			<span id="sub_d" class="get_sub"><?=$check[1]?></span>
@@ -154,13 +155,10 @@ foreach($pts as $a1 => $a2){
 			</div>
 			<div id="down_d" class="player_d">▼</div>
 		</div>
-
 		<div class="player_0 pl5">
 			<div class="turn">TURN</div>
 			<div class="turn_count">0</div>
 		</div>
-
-
 		<div id="set_a" class="player_c"></div>
 		<div id="down_a1" class="player_e">
 			<div class="player_f fa f11"></div>
@@ -224,14 +222,7 @@ foreach($pts as $a1 => $a2){
 			<div class="player_f fd f1"></div>
 			<div class="player_f fd f0"></div>
 		</div>
-
-
-
-
-
-
 	</div>
-
 <span id="rest0" class="rest_card"></span>
 <span id="rest1" class="rest_card"></span>
 <span id="rest2" class="rest_card"></span>
@@ -263,10 +254,7 @@ foreach($pts as $a1 => $a2){
 </td>
 </tr>
 </table>
-
 <div class="last_res"></div>
-
-
 <img id="myicon" src="" class="myimg">
 <table class="table_b">
 	<tr>
