@@ -100,10 +100,10 @@ foreach($pts as $a1 => $a2){
 	<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
 	</span>
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
-	<span class="border b1">a</span>
-	<span class="border b2">a</span>
-	<span class="border b3">a</span>
-	<span class="border b4">a</span>
+	<span class="border b1">e</span>
+	<span class="border b2">e</span>
+	<span class="border b3">e</span>
+	<span class="border b4">e</span>
 	</div>
 <?}?>
 

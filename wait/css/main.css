@@ -352,11 +352,12 @@ body {
 	font-family		:at_border1;
 	position		:absolute;
 	display			:inline-block;
-	height			:40px;
-	width			:40px;
-	color			:#fafa00;
-	font-size		:40px;
+	height			:30px;
+	width			:30px;
+	color			:#fafafa;
+	font-size		:25px;
 	z-index			:10;
+	font-weight		:600;
 }
 
 .b1{
@@ -367,19 +368,19 @@ body {
 
 .b2{
 	top:0;
-	left:40px;
+	left:50px;
 	transform:rotate(270deg);
 }
 
 .b3{
-	top:40px;
+	top:50px;
 	left:0;
 	transform:rotate(90deg);
 }
 
 .b4{
-	top:40px;
-	left:40px;
+	top:50px;
+	left:50px;
 }
 
 
