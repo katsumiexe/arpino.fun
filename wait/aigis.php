@@ -100,15 +100,11 @@ foreach($pts as $a1 => $a2){
 	<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
 	</span>
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
-	<span class="border b1">e</span>
-	<span class="border b2">e</span>
-	<span class="border b3">e</span>
-	<span class="border b4">e</span>
 	</div>
 <?}?>
 
-<span class="icon_twitter"></span>
-<span class="icon_mail"></span>
+<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
+<a href="./post.php" class="icon_mail"></a>
 
 </div>
 
@@ -223,18 +219,11 @@ foreach($pts as $a1 => $a2){
 			<div class="player_f fd f0"></div>
 		</div>
 	</div>
-<span id="rest0" class="rest_card"></span>
-<span id="rest1" class="rest_card"></span>
-<span id="rest2" class="rest_card"></span>
-<span id="rest3" class="rest_card"></span>
-<span id="rest4" class="rest_card"></span>
-<span id="rest5" class="rest_card"></span>
-<span id="rest6" class="rest_card"></span>
-<span id="rest7" class="rest_card"></span>
-<span id="rest8" class="rest_card"></span>
-<span id="rest9" class="rest_card"></span>
-<span id="rest10" class="rest_card"></span>
-<span id="rest11" class="rest_card"></span>
+
+<?for($n=0;$n<12;$n++){?>
+<span id="rest<?=$n?>" class="rest_card"></span>
+<?}?>
+
 <div class="guard3"></div>
 <div class="turn_start_main">START</div>
 <div class="main_card"></div>
@@ -259,12 +248,7 @@ foreach($pts as $a1 => $a2){
 <table class="table_b">
 	<tr>
 		<td class="td_b1">
-			<span id="myname" class="p_name">みりあ</span>
-			<span id="status_1" class="p_status"><?=$status[1]["name"]?></span>
-			<span id="status_2" class="p_status"><?=$status[2]["name"]?></span>
-			<span id="status_3" class="p_status"><?=$status[3]["name"]?></span>
-			<span id="status_4" class="p_status"><?=$status[4]["name"]?></span>
-			<span id="status_5" class="p_status"><?=$status[5]["name"]?></span>
+			<span id="myname" class="p_name">みりあ</span><?for($n=1;$n<6;$n++){?><span id="status_<?=$n?>" class="p_status"><?=$status[$n]["name"]?></span><?}?>
 		</td>
 	</tr>
 	<tr>

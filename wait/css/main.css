@@ -14,29 +14,31 @@
 }
 
 .icon_twitter{
-	font-family: at_icon;
-	display:inline-block;
-	width:35px;
-	height:35px;
-	line-height:35px;
-	color:#fafafa;
-	font-size:20px;
-	text-align:center;
-	background:#1DA1F2;
-	border-radius:50%;
+	font-family		:at_icon;
+	display			:inline-block;
+	width			:35px;
+	height			:35px;
+	line-height		:35px;
+	color			:#fafafa;
+	font-size		:20px;
+	text-align		:center;
+	background		:#1DA1F2;
+	border-radius	:50%;
+	text-decoration	:none;
 }
 
 .icon_mail{
-	font-family: at_icon;
-	display:inline-block;
-	width:35px;
-	height:35px;
-	line-height:35px;
-	color:#fafafa;
-	font-size:20px;
-	text-align:center;
-	background:#009000;
-	border-radius:50%;
+	font-family		:at_icon;
+	display			:inline-block;
+	width			:35px;
+	height			:35px;
+	line-height		:35px;
+	color			:#fafafa;
+	font-size		:20px;
+	text-align		:center;
+	background		:#009000;
+	border-radius	:50%;
+	text-decoration	:none;
 }
 
 body {
@@ -255,6 +257,7 @@ body {
 .td_b1{
     width			:480px;
     height			:35px;    
+	font-size		:0;
 }
 
 .td_b2{
@@ -272,7 +275,7 @@ body {
 
 .p_name{
     display		:inline-block;
-    width		:200px;
+    width		:180px;
 	text-align	:left;
 	font-weight	:600;
 	font-size	:20px;
@@ -288,6 +291,7 @@ body {
 	border-radius:3px;
 	color		:#fafafa;
 	text-shadow	:1px 1px #303030;
+	margin		:0 5px;
 }
 
 .on1{
@@ -295,7 +299,7 @@ body {
 }
 
 .on0{
-    background:#dddddd;
+    background:#c0c0c0;
 }
 
 .p_pts{
@@ -354,10 +358,11 @@ body {
 	display			:inline-block;
 	height			:30px;
 	width			:30px;
-	color			:#fafafa;
+	color			:#e0b020;
 	font-size		:25px;
 	z-index			:10;
 	font-weight		:600;
+	text-shadow		:0px 0px 2px 0px rgba(250,250,250,0.5);
 }
 
 .b1{
@@ -809,6 +814,21 @@ body {
 	z-index		:110;
 }
 
+.turn_title{
+	position	:absolute;
+	display		:inline-block;
+	bottom		:65px;
+	left		:25px;
+	padding		:2px 4px;
+	background	:linear-gradient(#f0d060,#d0a020);
+	border-radius:2px;
+	font-size	:14px;
+	font-weight	:600;
+	color		:#fafafa;
+	text-shadow:1px 1px 0px #303030;
+	z-index		:111;
+}
+
 .turn_pta{
 	position:absolute;
 	top:25px;
@@ -1089,6 +1109,7 @@ body {
 
 /*-------------------------------------------------------------------*/
 @media (max-width: 619px) {
+
 .main{
 	position:fixed;
 	top		:0;
@@ -1205,10 +1226,10 @@ body {
 
 .p_name{
     display		:inline-block;
-    width		:24vw;
+    width		:20vw;
 	text-align	:left;
 	font-weight	:600;
-	font-size	:5vw;
+	font-size	:4.2vw;
 }
 
 .p_status{
@@ -1217,6 +1238,8 @@ body {
     width			:9vw;
 	border-radius	:1vw;
 	font-size		:3.2vw;
+	margin:0 1vw;
+
 }
 
 .p_pts{
@@ -1478,6 +1501,16 @@ body {
 	top				:5vw;
 	width			:44vw;
 }
+
+
+.turn_title{
+	bottom			:15.5vw;
+	left			:2vw;
+	padding			:0.5vw 1vw;
+	border-radius	:0.5vw;
+	font-size		:3.5vw;
+}
+
 
 .turn_comm{
 	bottom		:1vw;
