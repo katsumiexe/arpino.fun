@@ -108,6 +108,7 @@ if($unit_data[$unit[$win]][0] == $card || $unit_data[$unit[$win]][1] == $card){
 }elseif($unit_data[$unit[$win]][2] == $card || $unit_data[$unit[$win]][3] == $card){
 	$sort["pts"]=(-2);
 
+
 }elseif($card==0){
 	$sort["pts"]=3.2;
 	$sort["ring"]=2;

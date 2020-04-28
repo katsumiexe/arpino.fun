@@ -1,7 +1,6 @@
 <?
 include_once("./library/session.php");
 $date=date("Y-m-d H:i:s");
-
 $log_id		=$_POST["log_id"];
 $doll		=json_decode($_POST["doll"]);
 $persona	=json_decode($_POST["persona"]);
@@ -17,9 +16,7 @@ $getn		=(array)$getn;
 
 arsort($pts);
 krsort($doll);
-
 $tmp_rank=1;
-
 $p=0;
 $r=0;
 $n=0;
