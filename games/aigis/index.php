@@ -107,6 +107,7 @@ foreach($pts as $a1 => $a2){
 <a href="./post.php" class="icon_mail"></a>
 
 </div>
+
 <div class="page_02">
 	<div class="player">
 		<div class="player_0 pl1">
