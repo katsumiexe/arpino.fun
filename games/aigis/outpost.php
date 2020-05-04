@@ -1,7 +1,5 @@
 <?
-include_once("./library/lib.php");
-include_once("./library/lib_me.php");
-include_once("./library/no_session.php");
+include_once("./library/session.php");
 $nowpage=1;
 $user_id=1;
 
@@ -44,10 +42,10 @@ if($mode==2){
 
 	mb_language("Japanese");
 	mb_internal_encoding("UTF-8");
-	$to      = "onlymestaff@gmail.com";
-	$subject = "OnlyMe_POST(out)";
+	$to      = "cpunterpost2016@gmail.com";
+	$subject = "Aigis_POST(out)";
 	$message = $ask_log;
-	$headers = 'From: dummy@onlyme.fun' . "\r\n";
+	$headers = 'From: dummy@arpino.fun' . "\r\n";
 	mb_send_mail($to, $subject, $message, $headers);
 
 	$_POST="";
@@ -61,12 +59,12 @@ $t_ip=$_SERVER['SERVER_ADDR'];
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<title>写真名刺制作サイト「OnlyMe」:POST</title>
+<title>「Games」:ご意見メール</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-<meta name="description" content="PC不要、住所不要、スマホで作成、コンビニで印刷。手軽で簡単な写真名刺制作サイトです。">
-<meta name="keywords" content="写真名刺,コスプレ,画像修正,onlyme,名刺作成,無料,簡単,とうらぶ,ボカロ">
+<meta name="description" content="">
+<meta name="keywords" content="">
 <link rel="stylesheet" href="./css/set_icon.css?_<?=date("YmdHi")?>">
 <link rel="stylesheet" href="./css/first.css?_<?=date("YmdHi")?>">
 
@@ -143,15 +141,8 @@ $(function(){
 </head>
 
 <body class="body">
-<div class="pc_only">
-	<img src="./img/top.png" style="width:700px;"><br>
-	<div class="pc_box" style="font-size:14px;">
-		こちらはスマホ専用サイトです。<br>
-		PC・タブレットではご利用いただけません。<br>
-	</div>
-</div>
+
 <div class="main_irr sp_only">
-<a href="./index.php" class="irr_top">写真名刺作成サイト★OnlyMe</a>
 <h1 class="h1_irr"><span class="h1_title">ご意見メール</span></h1>
 <form id="forms" action="./outpost.php" method="post">
 <div id="err" style="color:#ff0000; font-weight:600; margin:3px auto; width:90%;height:20px;">　</div>
@@ -217,6 +208,5 @@ $(function(){
 		</div>
 	<?}?>
 </form>
-<?include_once("./x_foot.php")?>
 </body>
 </html>
