@@ -1,16 +1,30 @@
 <?
 include_once("./library/session.php");
 
-$t_day=$_POST["t_day"];
+$t_day		=$_POST["t_day"];
+$date_val	=$_POST["date_val"];
 if(!$t_day) $t_day=date("Ymd");
 
-$sql.="SELECT * FROM cast";
+$new_id		=$_POST["new_id"];
+$new_name	=$_POST["new_name"];
+$new_pass	=$_POST["new_pass"];
+$new_rank	=$_POST["new_rank"];
+
+
+if($new_id && $new_name && $new_pass && $new_rank){
+	$sql="INSERT INTO `cast`(cast_id, name, pass, rank)";
+	$sql.=" VALUES('{$new_id}', '{$new_name}', '{$new_pass}', '{$new_rank}')";
+	mysqli_query($mysqli,$sql);
+}
+
+
+$sql ="SELECT * FROM cast";
 $dat0 = mysqli_query($mysqli,$sql);
 while($dat1 = mysqli_fetch_assoc($dat0)){
 	$cast[$dat1["cast_id"]]=$dat1;
 	$tmp_max[$dat1["cast_id"]]=$dat1["cast_id"];
 }
-$max_id=max($tmp_max);
+$max_id=max($tmp_max)+1;
 
 $sql ="SELECT * FROM schedule";
 $sql.=" WHERE sche_date='{$t_day}'";
@@ -224,44 +238,75 @@ td{
 	border			:none;
 }
 
+.td_b{
+	border-left		:1px solid #d0d0d0;	
+	border-bottom	:1px solid #303030;	
+}
+
 .td_c{
 	border-left		:1px solid #d0d0d0;	
 	border-bottom	:1px solid #303030;	
 }
+
+#set{
+	display:none;
+}
+
 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 <script src="../js/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>  
+
 <script>
 $(function() {
 	$("#datepicker").datepicker({
 		onSelect: function(dateText, inst) {
 			$("#date_val").val(dateText);
+//			$("#forms").submit();
+			$(".ui-datepicker-today").removeClass("ui-datepicker-today");
 		}
 	});
+
+
+	$("#set_cast").on('click',function(){
+		$("#set").show()
+		$("#sche").hide()
+	});
+
+	$("#set_list").on('click',function(){
+		$("#set").hide()
+		$("#sche").show()
+	});
 });
+
+
+
 </script>
 </head>
 
 <body class="body">
+<form id="forms" action="index.php" method="post">
 <div class="menu">
 	<div class="menu1">スケジュール</div>
 	<div class="menu2">
 	<div id="datepicker"></div>
-	<input type="hidden" id="date_val"/></p>
+	<input type="text" id="date_val" name="date_val" value="<?=$date_val?>"></p>
 	</div>
 	<div class="menu1">CAST情報</div>
-	<div class="menu3">登録</div>
-	<div class="menu3">一覧</div>
+	<div id="set_cast" class="menu3">登録</div>
+	<div id="set_list" class="menu3">一覧</div>
 </div>
+</form>
 <div class="main">
 
-<form action="index.php" method="post">
+<div id="set">
+<form id="chg" action="index.php" method="post">
+<input type="hidden" name="new_id" value="<?=$max_id?>">
 <table class="table">
 <tr>
-<td class="td_ttl">ID</td><td class="td_box"></td>
+<td class="td_ttl">ID</td><td class="td_box"><?=$max_id?></td>
 </tr>
 
 <tr>
@@ -269,16 +314,18 @@ $(function() {
 </tr>
 
 <tr>
-<td class="td_ttl">PASS</td><td class="td_box"><input type="text" name="new_name" class="box"></td>
+<td class="td_ttl">PASS</td><td class="td_box"><input type="text" name="new_pass" class="box"></td>
 </tr>
 
 <tr>
-<td class="td_ttl">ランク</td><td class="td_box"><input type="text" name="new_name" class="box" style="text-align:right;"></td>
+<td class="td_ttl">ランク</td><td class="td_box"><input type="text" name="new_rank" class="box" style="text-align:right;"></td>
 </tr>
 </table>
 <button class="ttl_btn" type="submit">登録</button>
 </form>
+</div>
 
+<div id="sche">
 <table class="table">
 <tr>
 <td class="td_id">ID</td>
@@ -323,8 +370,8 @@ $(function() {
 <td></td>
 </tr>
 <?}?>
-
 </table>
+</div>
 
 
 </div>

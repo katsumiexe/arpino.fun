@@ -1,9 +1,7 @@
 <?
-$list=array('名前', 'りんご', 'みかん', 'ぶどう', 'なし', 'もも');
-$shop[0]=array('山田商店', '1', '1', '0', '1', '0');
-$shop[1]=array('田中商店', '1', '1', '1', '0', '0');
-$shop[2]=array('佐藤商店', '1', '1', '0', '1', '1');
-$shop[3]=array('高橋商店', '0', '1', '1', '1', '0');
+include_once("./library/session.php");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
