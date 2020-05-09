@@ -1,4 +1,5 @@
 <?php
+
 $step			=$_POST["step"];
 $ask_name		=$_POST["ask_name"];
 $ask_kana		=$_POST["ask_kana"];
@@ -10,24 +11,28 @@ $ask_comment	=$_POST["ask_comment"];
 $from_mail		=$_POST["from_mail"];
 $to_mail		=$_POST["to_mail"];
 $staff_mail		=$_POST["staff_mail"];
+
 $from_mail		="noreply@piyo-piyo.work";
+
 if($step==2){
 	$from_name	= $from_mail;
 	$subject	= "お問合せメール";
 	$ret		= "-f ".$from_mail;
 
 	$body="以下の内容でお問合せ承りました\r\n\r\n";
-	$body.="名前：{$ask_name}\r\n";
-	$body.="カナ：{$ask_kana}\r\n";
-	$body.="郵便：{$ask_zip}\r\n";
-	$body.="住所：{$ask_address1}{$ask_address2}\r\n";
+	$body.="名前{$ask_name}\r\n";
+	$body.="カナ{$ask_kana}\r\n";
+	$body.="郵便{$ask_zip}\r\n";
+	$body.="住所{$ask_address1}{$ask_address2}\r\n";
 	$body.="{$ask_comment}\r\n";
 
 	$head  = "From: " . mb_encode_mimeheader($from_name,"ISO-2022-JP") . "<{$from_mail}> \r\n";
-	$head .= "Content-type: text/plain; charset=UTF-8";
-//	$head = "From: {$from_mail}" . "\r\n";
+	$head .= "Content-type: text/plane; charset=UTF-8";
+	$head = "From: {$from_mail}" . "\r\n";
 
 	mb_send_mail($staff_mail, $subject, $body, $head);
+
+print($body."<hr>");
 
 	$subject	= "お問合せ承りました";
 	$ret		= "-f ".$from_mail;
@@ -41,18 +46,23 @@ if($step==2){
 	$body.="{$ask_comment}\r\n";
 
 	$head  = "From: " . mb_encode_mimeheader($from_name,"ISO-2022-JP") . "<{$from_mail}> \r\n";
-	$head .= "Content-type: text/plain; charset=UTF-8";
-//	$head = "From: {$from_mail}" . "\r\n";
+	$head .= "Content-type: text/plane; charset=UTF-8";
+	$head = "From: {$from_mail}" . "\r\n";
 	mb_send_mail($to_mail, $subject, $body, $head);
+
+print($body."<hr>");
+
 }
 
 ?>
 <!DOCTYPE HTML>
 <html lang="ja">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+
 <script src="../js/jquery-3.2.1.min.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
