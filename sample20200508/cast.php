@@ -95,25 +95,9 @@ var NowCnt=<?=count($list)-1?>;
 
 </style>
 <body>
-<div class="cnt">
-<span id="now_cnt"><?=count($list)-1?></span>/<span id="max_cnt"><?=count($list)-1?></span>
-</div>
+<div class="box">
 
-<div class="cont">
-	<?for($n=1;$n<count($list);$n++){?>
-		<span id="set<?=$n?>1" class="tag_a tag_b"><?=$list[$n]?></span>
-	<?}?>
-</div>
 
-<div class="cont">
-	<?for($s=0;$s<count($shop);$s++){?>
-		<div class="box <?for($r1;$r<count($list);$r++){?> set<?=$r?><?=$shop[$s][$r]?><?}?>">
-			<span class="name"><?=$shop[$s][0]?></span>
-			<?for($p=1;$p<count($list);$p++){?>
-				<?if($shop[$s][$p] == 1){?><span class="item"><?=$list[$p]?></span><?}?>
-			<?}?>
-		</div>
-	<?}?>
 </div>
 </body>
 </html>

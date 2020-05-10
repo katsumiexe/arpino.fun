@@ -1,14 +1,31 @@
 <?
 include_once("./library/session.php");
 
-$t_day		=$_POST["t_day"];
 $date_val	=$_POST["date_val"];
-if(!$t_day) $t_day=date("Ymd");
+if(!$date_val) $date_val=date("Ymd");
 
 $new_id		=$_POST["new_id"];
 $new_name	=$_POST["new_name"];
 $new_pass	=$_POST["new_pass"];
 $new_rank	=$_POST["new_rank"];
+
+if($_POST["set_id"]){
+	$set_id		=$_POST["set_id"];
+	$set_month	=$_POST["set_month"];
+	$stime		=$_POST["stime"];
+	$etime		=$_POST["etime"];
+
+	$sql="INSERT INTO `schedule`(sche_date, cast_id, stime, etime) VALUES";
+	for($n=1;$n<count($stime)+1;$n++){
+		$tmp_month=$set_month*100+$n;
+		$sql.="('{$tmp_month}', '{$set_id}', '{$stime[$n]}', '{$etime[$n]}'),";
+	}
+	$sql=substr($sql,0,-1);
+	mysqli_query($mysqli,$sql);
+	print($sql);
+}
+
+
 
 
 if($new_id && $new_name && $new_pass && $new_rank){
@@ -22,21 +39,22 @@ $sql ="SELECT * FROM cast";
 $dat0 = mysqli_query($mysqli,$sql);
 while($dat1 = mysqli_fetch_assoc($dat0)){
 	$cast[$dat1["cast_id"]]=$dat1;
+
 	$tmp_max[$dat1["cast_id"]]=$dat1["cast_id"];
 }
 $max_id=max($tmp_max)+1;
 
 $sql ="SELECT * FROM schedule";
-$sql.=" WHERE sche_date='{$t_day}'";
+$sql.=" WHERE sche_date='{$date_val}'";
 
 $dat_a0 = mysqli_query($mysqli,$sql);
 while($dat_a1 = mysqli_fetch_assoc($dat_a0)){
 
-	if($dat_a1["etime"]+0 ==0 ){
+	if($dat_a1["etime"]+0 ==0 && $dat_a1["etime"]){
 		$dat_a1["etime"]=2400;
 	}
 
-	if($dat_a1["stime"]+0 ==2400 ){
+	if($dat_a1["stime"]+0 ==2400){
 		$dat_a1["stime"]=0;
 	}
 
@@ -115,26 +133,32 @@ while($dat_a1 = mysqli_fetch_assoc($dat_a0)){
 
 .menu3{
 	width			:205px;
-	padding			:3px 5px;
-	font-size		:12px;
+	padding			:5px;
+	font-size		:13px;
 	border-bottom	:1px solid #806000;
 	background		:#fff0d0;
 	font-weight		:600;
 	color			:#605040;
+	text-align		:left;
+}
+.menu4{
+	display:none;
+	width			:215px;
+	background		:#806000;
+	padding			:0px;
 	text-align		:right;
 }
 
 
-.menu4{
+.menu5{
 	display			:inline-block;
-	width			:205px;
-	padding			:3px 5px;
-	font-size		:12px;
-	border-bottom	:1px solid #806000;
-	background		:#fff0d0;
-	font-weight		:600;
-	color			:#605040;
-	text-align		:right;
+	width			:195px;
+	padding			:5px;
+	background		:#fafafa;
+	border-bottom	:1px solid #303030;
+	color			:#303030;
+	font-size		:13px;
+	text-align		:left;
 }
 
 .menu_btn{
@@ -174,22 +198,43 @@ while($dat_a1 = mysqli_fetch_assoc($dat_a0)){
 	border:1px solid #303030;
 	height:20px;
 	width:60px;
+	text-align:center;
+	background:#f0f0f0;
 }
 
 .td_name{
 	border:1px solid #303030;
 	width:160px;
+	text-align:center;
+	background:#f0f0f0;
 }
 
 .td_time{
 	border:1px solid #303030;
-	width:60px;
+	width:40px;
+	text-align:center;
+	background:#f0f0f0;
+}
+
+.td_time2{
+	width:20px;
+	background:#f0f0f0;
+	border-bottom:1px solid #303030;
+
 }
 
 .td_hour{
 	width:30px;
 	text-align:center;
 	border-bottom:1px solid #303030;
+	background:#f0f0f0;
+}
+
+.td_hour2{
+	width:15px;
+	text-align:center;
+	border-bottom:1px solid #303030;
+	background:#f0f0f0;
 }
 
 
@@ -204,7 +249,6 @@ td{
 	font-size:12px;
 }
 
-
 .td_in{
 	display:inline-block;
 	position:absolute;
@@ -215,7 +259,6 @@ td{
 }
 .ui-datepicker {
 	width:200px !important;
-
 }
 
 .td_ttl{
@@ -238,8 +281,18 @@ td{
 	border			:none;
 }
 
+.box2{
+	width			:50px;
+	height			:20px;
+	font-size		:15px;
+	border			:none;
+	text-align		:center;
+	margin:0;
+}
+
+
 .td_b{
-	border-left		:1px solid #d0d0d0;	
+	border-left		:1px solid #303030;	
 	border-bottom	:1px solid #303030;	
 }
 
@@ -248,59 +301,160 @@ td{
 	border-bottom	:1px solid #303030;	
 }
 
+.td_d{
+	border-left		:1px solid #303030;	
+	border-bottom	:1px solid #303030;	
+	background:#303030;
+}
+
+.td_right{
+	text-align:right;
+}
+
+.td_sch{
+	text-align:right;
+	border:1px solid #303030;
+	background:#ffffff;
+}
+
 #set{
 	display:none;
 }
+.sch_id{
+	display		:inline-block;
+	width		:50px;
+	height		:22px;
+	line-height	:22px;
 
+	font-size	:14px;
+	border		:1px solid #303030;
+	margin		:5px 0;
+	padding-left:5px;
+}
+
+.sch_name{
+	display		:inline-block;
+	width		:152px;
+	height		:22px;
+	line-height	:22px;
+	font-size	:14px;
+	border		:1px solid #303030;
+	margin		:5px 0;
+	padding-left:5px;
+}
+.sch_set{
+	width		:50px;
+	height		:24px;
+	font-size	:14px;
+	margin		:5px 10;
+}
 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+<script>
+</script>
 <script src="../js/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>  
 
 <script>
 $(function() {
+
+<?if($date_val){?>
+	$(".ui-state-default").removeClass("ui-state-highlight");
+	console.log(<?=$date_val?>);
+/*
+var printDate='';
+var index = $('li.some-item').index(this);
+$('td').attr('data-handler')=='selectDay'
+*/
+
+
+<?}?>
+
 	$("#datepicker").datepicker({
+		firstDay: 1,
+		setDate: '<?=$date_val?>',
+		dateFormat:'yymmdd',
 		onSelect: function(dateText, inst) {
 			$("#date_val").val(dateText);
-//			$("#forms").submit();
-			$(".ui-datepicker-today").removeClass("ui-datepicker-today");
+			$("#forms").submit();
 		}
 	});
 
-
 	$("#set_cast").on('click',function(){
 		$("#set").show()
-		$("#sche").hide()
+		$("#sche,#person").hide()
+		$("list_#person").slideUp(100);
 	});
 
 	$("#set_list").on('click',function(){
-		$("#set").hide()
+		$("#set,#person").hide()
 		$("#sche").show()
+		$("#list_person").slideUp(100);
 	});
-});
 
+	$("#set_person").on('click',function(){
+		$("#set,#sche").hide()
+		$("#person").show()
+		if($("#list_person").css('display') == 'none'){
+			$(this).css({'background':'#806000','color':'#fafafa'})
+			$("#list_person").slideDown(100);
+
+		}else{
+			$(this).css({'background':'#fff0d0','color':'#605040'})
+			$("#list_person").slideUp(100);
+		}
+	});
+
+	$(".menu5").on('click',function(){
+		CastId=$(this).attr('id').replace('l','');
+		Name=$(this).attr('name');
+
+		$(".menu5").css({'background':'#fafafa','color':'#303030'})
+		$(this).css({'background':'#d0e0ff','color':'#0000d0'})
+
+		$.post("post_set_sche.php",
+			{
+				'cast_id':CastId,
+				'name':Name,
+				'month':'<?=$date_val?>',
+			},
+			function(data){
+				$('#person').html(data);				
+		});
+	});
+
+
+});
 
 
 </script>
 </head>
-
 <body class="body">
 <form id="forms" action="index.php" method="post">
 <div class="menu">
 	<div class="menu1">スケジュール</div>
 	<div class="menu2">
 	<div id="datepicker"></div>
-	<input type="text" id="date_val" name="date_val" value="<?=$date_val?>"></p>
+	<input type="hidden" id="date_val" name="date_val" value="<?=$date_val?>"></p>
 	</div>
 	<div class="menu1">CAST情報</div>
 	<div id="set_cast" class="menu3">登録</div>
 	<div id="set_list" class="menu3">一覧</div>
+	<div id="set_person" class="menu3">個別</div>
+	<div id="list_person" class="menu4">
+	<?foreach($cast as $a1 => $a2){?>
+	<div id="l<?=$cast[$a1]["cast_id"]?>" class="menu5" name="<?=$cast[$a1]["name"]?>"><?=$cast[$a1]["cast_id"]?>　<?=$cast[$a1]["name"]?></div>
+	<?}?>
+	</div>
 </div>
 </form>
-<div class="main">
 
+
+
+
+<div class="main">
 <div id="set">
 <form id="chg" action="index.php" method="post">
 <input type="hidden" name="new_id" value="<?=$max_id?>">
@@ -324,6 +478,9 @@ $(function() {
 <button class="ttl_btn" type="submit">登録</button>
 </form>
 </div>
+<div id="person">
+
+</div>
 
 <div id="sche">
 <table class="table">
@@ -331,6 +488,7 @@ $(function() {
 <td class="td_id">ID</td>
 <td class="td_name">名前</td>
 <td class="td_time">時間</td>
+<td class="td_time2"></td>
 <td class="td_hour"><span class="td_in">00</span></td>
 <td class="td_hour"><span class="td_in">01</span></td>
 <td class="td_hour"><span class="td_in">02</span></td>
@@ -355,7 +513,7 @@ $(function() {
 <td class="td_hour"><span class="td_in">21</span></td>
 <td class="td_hour"><span class="td_in">22</span></td>
 <td class="td_hour"><span class="td_in">23</span></td>
-<td class="td_hour"><span class="td_in">00</span></td>
+<td class="td_hour2"><span class="td_in">00</span></td>
 </tr>
 
 <?foreach((array)$cast as $a1 => $a2){?>
@@ -363,18 +521,17 @@ $(function() {
 <td class="td_b"><?=$cast[$a1]["cast_id"]?></td>
 <td class="td_b"><?=$cast[$a1]["name"]?></td>
 
-<td class="td_b"><?=$all[$a1]?></td>
+<td class="td_b td_right"><?=$all[$a1]?></td>
+<td class="td_d"></td>
 <?for($n=0;$n<24;$n++){?>
 <td class="td_c <?=$sche[$cast[$a1]["cast_id"]][$n]?>"></td>
 <?}?>
-<td></td>
+<td class="td_d"></td>
+
 </tr>
 <?}?>
 </table>
 </div>
-
-
 </div>
 </body>
 </html>
-
