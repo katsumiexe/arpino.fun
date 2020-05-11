@@ -2,17 +2,19 @@
 include_once("./library/session.php");
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CastPage</title>
 <script src="../onlyme/js/jquery-3.2.1.min.js"></script>
 <script>
 $(function(){ 
-
 var AllCnt=<?=count($list)-1?>;
 var NowCnt=<?=count($list)-1?>;
-
 	$('.tag_a').on('click', function() {
 		if($(this).hasClass("tag_b")){
 			$(this).removeClass("tag_b");
@@ -21,87 +23,79 @@ var NowCnt=<?=count($list)-1?>;
 			$(this).addClass("tag_b");
 			NowCnt++;
 		}		
-
-//	for(var j1 in User){
-
 		$('.box').hide();
 		Tmp = $(this).attr('id');
 		$('.'+Tmp).fadeIn();
 
 		$('#max_cnt').text(AllCnt);
 		$('#now_cnt').text(NowCnt);
-
 	});
-
-
 });
-
 </script>
 <style>
-.cont{
-	display:flex;
-	align-items: flex-start;
-	flex-wrap:wrap;
-	width:900px;
-}
-
-.name{
-	display:inline-block;
-	flex-basis:200px;
-	width:200px;
-	background:#f0f000;
-	text-align:center;
-	height:30px;
-	line-height:30px;
-}
-
-.box{
-	flex-basis:100px;
-	display:inline-flex;
-	align-items: flex-start;
-	flex-wrap:wrap;
-	height:100px;
-	line-height:30px;
-	padding:0;
-	margin:3px;
-	border:1px solid #606060;
-}
-
-.tag_a{
-	width:100px;
-	display:inlinebox;
-	height:30px;
-	line-height:30px;
-	padding:0;
-	margin:3px;
-	border:1px solid #000000;
-	test-align:center;
-}
-
-.item{
-	display:inline-block;
-	flex-basis:24%;
-	border:1px solid #000000;
-	height:30px;
-	line-height:30px;
-	text-align:center;
+.body{
 	background:#f0f0f0;
+	text-align:center;
+}
+.main{
+	background:#fafafa;
+	width:100vw;
+	max-width:650px;
+	margin	:0 auto;	
+
 }
 
-.tag_b{
-	background:#fff0f0 !important;
-	color:#ff0000 !important;
+.login_box{
+	display		:inline-block;
+	width		:80%;
+	border		:1vw solid #ffd0d0;
+	text-shadow	:1vw 1vw 1vw rgba()30,30,30,0.6);
+	border-radius:2vw;
+	margin:10vh auto;
+	background:#fff0f5
 }
 
+.login_name{
+	display		:inline-block;
+	width		:80%;
+	font-size	:4vw;
+	font-weight	:600;
+	margin		:1w auto 0.5vw 2vw;
+}
+
+.login{
+	width		:80%;
+	font-size	:4.5vw;
+	font-weight	:600;
+	margin		:0 auto 0.5vw 1.5vw;
+}
+
+.login_btn{
+	width		:80%;
+	font-size	:4vw;
+	font-weight	:600;
+	margin		:1vw auto;
+
+}
 </style>
-<body>
-<div class="box">
 
+<body class="body">
+<?if(!$_SESSION["id"]){?>
+	<div class="menu"></div>
+	<div class="main">
+	<div class="login_box">
+		<span class="login_name">IDCODE</span>
+		<input type="text" class="login" name="log_in">
+		<span class="login_name">PASSWORD</span>
+		<input type="password" class="login" name="log_pass">
+		<button type="submit" class="login_btn" value="send">ログイン</button>
+	</div>
+	</div>
+<?}else{?>
+	<div class="menu"></div>
+	<div class="main"></div>
+<?}?>
 
 </div>
 </body>
 </html>
-
-
-
-

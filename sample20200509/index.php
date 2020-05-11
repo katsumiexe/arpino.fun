@@ -122,12 +122,7 @@ $(function(){
 		Err=$(this).attr("id")+"_err";
 		$(this).css('background','#ffffff');
 		$("#"+Err).hide();
-
 	});
-
-
-
-
 });
 </script>
 <style>
