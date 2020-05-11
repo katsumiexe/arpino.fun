@@ -39,45 +39,48 @@ var NowCnt=<?=count($list)-1?>;
 	text-align:center;
 }
 .main{
-	background:#fafafa;
-	width:100vw;
-	max-width:650px;
-	margin	:0 auto;	
+	background		:#fafafa;
+	width			:100vw;
+	height			:100vh;
+	max-width		:650px;
+	margin			:0 auto;	
 }
 
 .login_box{
-	display		:inline-block;
-	width		:80%;
-	border		:1vw solid #ffd0d0;
-	text-shadow	:1vw 1vw 1vw rgba()30,30,30,0.6);
-	border-radius:2vw;
-	margin:10vh auto;
-	background:#fff0f5
+	display			:inline-block;
+	width			:80%;
+	border			:1vw solid #ffd0d0;
+	text-shadow		:1vw 1vw 1vw rgba()30,30,30,0.6);
+	border-radius	:2vw;
+	margin			:10vh auto;
+	background		:#fff0f5
 }
 
 .login_name{
-	display		:inline-block;
-	width		:80%;
-	font-size	:4%;
-	font-weight	:600;
-	margin		:1w auto 0.5vw 2vw;
-	text-align	:left;
+	display			:inline-block;
+	width			:80%;
+	font-size		:3.5vw;
+	font-weight		:600;
+	margin			:1vw auto 0.5vw 2vw;
+	text-align		:left;
 }
 
 .login{
-	width		:80%;
-	font-size	:4.5vw;
-	font-weight	:600;
-	margin		:0 auto 0.5vw 1.5vw;
+	width			:80%;
+	font-size		:4.5vw;
+	font-weight		:600;
+	margin			:0 auto 0.5vw 1.5vw;
+	height			:6vw;
 }
 
 .login_btn{
-	width		:80%;
-	font-size	:4vw;
-	font-weight	:600;
-	margin		:1vw auto;
-
+	width			:80%;
+	font-size		:4vw;
+	font-weight		:600;
+	margin			:5vw auto;
+	height			:8vw;
 }
+
 </style>
 <body class="body">
 <?if(!$_SESSION["id"]){?>
