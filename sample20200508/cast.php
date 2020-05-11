@@ -23,6 +23,7 @@ var NowCnt=<?=count($list)-1?>;
 			$(this).addClass("tag_b");
 			NowCnt++;
 		}		
+
 		$('.box').hide();
 		Tmp = $(this).attr('id');
 		$('.'+Tmp).fadeIn();
@@ -42,7 +43,6 @@ var NowCnt=<?=count($list)-1?>;
 	width:100vw;
 	max-width:650px;
 	margin	:0 auto;	
-
 }
 
 .login_box{
@@ -58,9 +58,10 @@ var NowCnt=<?=count($list)-1?>;
 .login_name{
 	display		:inline-block;
 	width		:80%;
-	font-size	:4vw;
+	font-size	:4%;
 	font-weight	:600;
 	margin		:1w auto 0.5vw 2vw;
+	text-align	:left;
 }
 
 .login{
@@ -78,16 +79,15 @@ var NowCnt=<?=count($list)-1?>;
 
 }
 </style>
-
 <body class="body">
 <?if(!$_SESSION["id"]){?>
 	<div class="menu"></div>
 	<div class="main">
 	<div class="login_box">
 		<span class="login_name">IDCODE</span>
-		<input type="text" class="login" name="log_in">
+		<input type="text" class="login" name="log_in_set">
 		<span class="login_name">PASSWORD</span>
-		<input type="password" class="login" name="log_pass">
+		<input type="password" class="login" name="log_pass_set">
 		<button type="submit" class="login_btn" value="send">ログイン</button>
 	</div>
 	</div>
@@ -95,7 +95,6 @@ var NowCnt=<?=count($list)-1?>;
 	<div class="menu"></div>
 	<div class="main"></div>
 <?}?>
-
 </div>
 </body>
 </html>
