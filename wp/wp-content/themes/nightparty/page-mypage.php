@@ -1,18 +1,16 @@
-<?
-include_once("./library/session.php");
-?>
-<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CastPage</title>
-<link rel="stylesheet" href="./css/cast.css">
-<script src="../onlyme/js/jquery-3.2.1.min.js"></script>
-
-<?$_SESSION["id"]=1;?>
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
+<script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
+<?php wp_enqueue_script('jquery'); ?>
+<?php wp_head(); ?>
+</head>
 <body class="body">
-<?if(!$_SESSION["id"]){?>
+
+<? if(!$_SESSION["id"]): ?>
 	<div class="main">
 	<div class="login_box">
 		<span class="login_name">IDCODE</span>
@@ -22,7 +20,7 @@ include_once("./library/session.php");
 		<button type="submit" class="login_btn" value="send">ログイン</button>
 	</div>
 	</div>
-<?}else{?>
+<? else: ?>
 	<div class="menu">
 	<span id="m1" class="menu_1">TOP</span>
 	<span id="m2" class="menu_1">シフト</span>
@@ -33,7 +31,8 @@ include_once("./library/session.php");
 	<span id="m7" class="menu_1">MAIL</span>
 	</div>
 	<div class="main"></div>
-<?}?>
+<? endif; ?>
 </div>
 </body>
+<?php wp_foot();?>
 </html>
