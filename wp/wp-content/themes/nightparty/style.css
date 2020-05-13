@@ -3,7 +3,6 @@
 	text-align:center;
 }
 
-
 .head{
 	position		:fixed;
 	top				:0;
@@ -15,6 +14,7 @@
 	background		:#101213;
 	text-align		:center;
 	box-shadow		:5px 5px 5px rgba(100,50,0,0.6);
+	z-index			:10;
 }
 
 .menu_select{
@@ -24,39 +24,79 @@
 	flex-basis	:150px;
 	line-height	:50px;
 	background	:#252018;
-	border		:2px solid #603000;
+	border		:2px solid #c08000;
 	margin		:10px 5px;
 	text-align	:center;
 	color		:#FFD67D;
 	font-size	:18px;
 	font-weight	:600;
 	overflow	:hidden;
-	cursor:pointer;
+	cursor		:pointer;
 }
 
-
 .main{
+	display		:flex;
+	flex-wrap	:wrap;
 	width		:1020px;
-	border		:2px solid #603000;
-	background	:#302520;
 	text-align	:center;
 	margin		:90px auto 20px auto;
 	font-size	:0;
 }
 
 .slide{
-	width		:800px;
-	height		:250px;
-	background	:#009090;
-	border		:1px solid #909090;
-	margin		:20px auto;
+	display		:inline-block;
+	position	:relative;
+	width		:1020px;
+	flex-basis	:1020px;
+	height		:380px;
+	background	:#101513;
+	margin		:0;
 }
+
+.slide_img{
+	position	:absolute;
+	display		:inline-block;
+	top			:10px;
+	left		:0;
+	right		:0;
+	width		:800px;
+	height		:300px;
+	background	:#fafafa;
+	margin		:auto;
+}
+
+.slide_point{
+	position		:absolute;
+	display			:inline-block;
+	bottom			:15px;
+	left			:0;
+	right			:0;
+	width			:260px;
+	height			:40px;
+	background		:#303538;
+	margin			:auto;
+	border-radius	:10px;
+	text-align		:center;
+	border		:2px solid #c08000;
+}
+
+.slide_dot{
+	display		:inline-block;
+	width		:16px;
+	height		:16px;
+	background	:#faf0a0;
+	margin		:12px;
+	border-radius:8px;
+}
+
 
 .main_b{
 	display		:inline-block;
+	border		:2px solid #c08000;
+	flex-basis	:680px;
 	width		:680px;
 	background	:#302520;
-	text-align:left;
+	text-align	:left;
 }
 
 .main_b_all{
@@ -76,11 +116,14 @@
 
 .main_c{
 	display		:inline-block;
-	width		:320px;
-	background	:#ffe0e0;
+	flex-basis	:312px;
+	width		:312px;
+	background	:#302520;
+	border		:2px solid #c08000;
 	margin		:0 5px auto 5px;
 	padding		:0 5px;
-	text-align:center;
+	text-align	:center;
+
 }
 
 .main_c_1{
@@ -100,7 +143,7 @@
 	height		:100px;
 	background	:#101213;
 	margin		:0 auto;
-	border		:2px solid #603000;
+	border		:2px solid #c08000;
 	background	:#302520;
 }
 

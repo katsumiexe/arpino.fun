@@ -10,10 +10,10 @@
 </head>
 <body class="body">
 <div class="head">
-	<div class="menu_select">TOP PAGE</div>
-	<div class="menu_select">CAST</div>
-	<div class="menu_select">SCHEDULE</div>
-	<div class="menu_select">BLOG</div>
-	<div class="menu_select">SYSTEM</div>
-	<div class="menu_select">ACCESS</div>
+	<div id="rank1" class="menu_select">TOP PAGE</div>
+	<div id="rank2" class="menu_select">CAST</div>
+	<div id="rank3" class="menu_select">SCHEDULE</div>
+	<div id="rank4" class="menu_select">BLOG</div>
+	<div id="rank5" class="menu_select">SYSTEM</div>
+	<div id="rank6" class="menu_select">ACCESS</div>
 </div>
