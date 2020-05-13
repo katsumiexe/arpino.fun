@@ -33,21 +33,20 @@ for($s=0;$s<$num+1;$s++){
 
 	$body = imap_body($m_list,$s);
 	foreach ((array)$body as $a2) {
-		if(substr_count($a2,"Content-Type: text/plain;")>0){
+		echo $a2."<hr>";
+//		if(substr_count($a2,"Content-Type: text/plain;")>0){
 			$tmp=explode("\n",$a2);
 			$tmp2=explode($tmp[0]."\n",$a2);
 			$a2=$tmp2[1];
 			$a2=str_replace($tmp[1],"",$a2);
-		}
+//		}
 		$a2 = mb_convert_encoding($a2, 'UTF-8', 'auto');
 		$a2 =str_replace("\n","<br>",$a2);
-		echo $a2."<hr>\n";
+		echo $a2."<hr>";
     }
 }
 
 print("<hr>");
-print(mb_decode_mimeheader("=?utf-8?B?5Lya5ZOh55m76Yyy5a6M5LqG?="));
-print(mb_decode_mimeheader("=?utf-8?B?5YaZ55yf5ZCN5Yi65L2c5oiQ44K144Kk44OI4piFT25seU1l?="));
 
 /*
 if ($headers == false) {
