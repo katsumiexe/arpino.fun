@@ -129,12 +129,14 @@
 .main_c_1{
 	display		:inline-block;
 	width		:300px;
-	background	:#ff00e0;
+	background	:#fafafa;
 	margin		:5px auto;
 	padding		:5px;
 	border-bottom:2px solid #9060ff;
 	font-size	:14px;
-	text-align:left;
+	text-align	:left;
+	box-shadow	:5px 5px 10px 10px rgba(200,200,200,0.4) inset,-5px -5px 10px 10px rgba(200,200,200,0.4) inset;
+	color:#606060;
 }
 
 .foot{
