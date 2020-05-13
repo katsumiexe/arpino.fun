@@ -1,7 +1,5 @@
 <?
 include_once("./library/session.php");
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,86 +7,9 @@ include_once("./library/session.php");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CastPage</title>
+<link rel="stylesheet" href="./css/cast.css">
 <script src="../onlyme/js/jquery-3.2.1.min.js"></script>
-<script>
-$(function(){ 
-});
-</script>
-<style>
-.body{
-	background:#f0f0f0;
-	text-align:center;
-}
 
-.menu{
-	display			:inline-block;
-	background		:#ffd0d0;
-	width			:300px;
-	height			:400px;
-	padding			:20px;
-	border-radius	:20px;
-}
-
-.main{
-	display			:inline-block;
-	background		:#fafafa;
-	width			:100vw;
-	height			:100vh;
-	max-width		:650px;
-	margin			:0 auto;	
-}
-
-.login_box{
-	display			:inline-block;
-	width			:70%;
-	border			:1vw solid #ffd0d0;
-	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.6);
-	border-radius	:2vw;
-	margin			:10vh auto;
-	padding			:1vw;
-	background		:#fff0f5
-}
-
-.login_name{
-	display			:inline-block;
-	width			:80%;
-	font-size		:3.5vw;
-	font-weight		:600;
-	margin			:1vw auto 0.5vw 2vw;
-	text-align		:left;
-}
-
-.login{
-	width			:80%;
-	font-size		:4.5vw;
-	font-weight		:600;
-	margin			:0 auto 0.5vw 1.5vw;
-	height			:6vw;
-}
-
-.login_btn{
-	width			:80%;
-	font-size		:4vw;
-	font-weight		:600;
-	margin			:5vw auto;
-	height			:8vw;
-}
-
-.menu_1{
-	display		:block;
-	margin		:0 auto;
-	width		:260px;
-	height		:50px;
-	line-height	:50px;
-	text-align	:left;
-	font-size	:16px;
-	border		:2px solid #fafafa;
-	background	:#f1c0d0;
-	padding-left:10px;
-	color		:#fafafa;
-	font-weight	:700;
-}
-</style>
 <?$_SESSION["id"]=1;?>
 <body class="body">
 <?if(!$_SESSION["id"]){?>
