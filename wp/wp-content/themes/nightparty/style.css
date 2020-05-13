@@ -1,0 +1,106 @@
+.body{
+	background:#101513;
+	text-align:center;
+}
+
+
+.head{
+	position		:fixed;
+	top				:0;
+	left			:0;
+	display			:flex;
+	width			:100vw;
+	height			:70px;
+	margin			:0 auto;
+	background		:#101213;
+	text-align		:center;
+	box-shadow		:5px 5px 5px rgba(100,50,0,0.6);
+}
+
+.menu_select{
+	display		:inline-block;
+	height		:50px;
+	width		:150px;
+	flex-basis	:150px;
+	line-height	:50px;
+	background	:#252018;
+	border		:2px solid #603000;
+	margin		:10px 5px;
+	text-align	:center;
+	color		:#FFD67D;
+	font-size	:18px;
+	font-weight	:600;
+	overflow	:hidden;
+	cursor:pointer;
+}
+
+
+.main{
+	width		:1020px;
+	border		:2px solid #603000;
+	background	:#302520;
+	text-align	:center;
+	margin		:90px auto 20px auto;
+	font-size	:0;
+}
+
+.slide{
+	width		:800px;
+	height		:250px;
+	background	:#009090;
+	border		:1px solid #909090;
+	margin		:20px auto;
+}
+
+.main_b{
+	display		:inline-block;
+	width		:680px;
+	background	:#302520;
+	text-align:left;
+}
+
+.main_b_all{
+	display		:inline-block;
+	width		:1020px;
+	background	:#302520;
+	text-align:left;
+}
+
+.main_b_1{
+	display		:inline-block;
+	width		:160px;
+	height		:200px;
+	background	:#000000;
+	margin:5px;
+}
+
+.main_c{
+	display		:inline-block;
+	width		:320px;
+	background	:#ffe0e0;
+	margin		:0 5px auto 5px;
+	padding		:0 5px;
+	text-align:center;
+}
+
+.main_c_1{
+	display		:inline-block;
+	width		:300px;
+	background	:#ff00e0;
+	margin		:5px auto;
+	padding		:5px;
+	border-bottom:2px solid #9060ff;
+	font-size	:14px;
+	text-align:left;
+}
+
+.foot{
+	display		:inline-block;
+	width		:1020px;
+	height		:100px;
+	background	:#101213;
+	margin		:0 auto;
+	border		:2px solid #603000;
+	background	:#302520;
+}
+
