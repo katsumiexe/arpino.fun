@@ -25,6 +25,7 @@ if(!$m_list){
 
 			$tmp_log="";
 			$main_log="";
+			$main_img="";
 
 			$tmp=explode("\n",$tmp_body);
 			$tmp1=explode($tmp[0],$tmp_body);
@@ -44,23 +45,27 @@ if(!$m_list){
 				if(substr_count($tmp1[$n], "Content-Type: image/")>0){
 					$tmp3=explode("\n",$tmp1[$n]);
 
-					for($s=0;$s<count($tmp3);$s++){
-						if(substr_count($tmp3[$n], "Content-Type: image/")>0){
-							$tmp4=explode('"',$tmp3[$n]);
-							$img_name=$tmp4[1];
+					for($c=0;$c<count($tmp3);$c++){
+						if(substr_count($tmp3[$c], "Content-Type: image/")>0){
+							$tmp4=explode('"',$tmp3[$c]);
+							$main_img=$tmp4[1];
 
-						}elseif(substr_count($tmp3[$n], "Content-")===0){
-							$img_log.=$tmp3[$n];
+						}elseif(substr_count($tmp3[$c], "Content-")===0){
+							$tmp_body.=$tmp3[$c];
 						}
 					}
 				}
 			}
 
-			$tmp_body=base64_decode($main_log);
-//			$tmp_body=$main_log;
+			if(substr_count($tmp_body, "Content-Transfer-Encoding: base64")>0){
+				$tmp_body=base64_decode($main_log);
+			}else{
+				$tmp_body=$main_log;
+			}	
 		}
 
 		$dat[$s]["body"]=$tmp_body;
+		$dat[$s]["img"]=$main_img;
 
     }
 	for($n=0;$n<$s;$n++){
@@ -69,6 +74,7 @@ if(!$m_list){
 		print($dat[$n]["subject"]."<br>\n");
 		print($dat[$n]["from"]."<br>\n");
 		print($dat[$n]["address"]."<br>\n");
+		print($dat[$n]["img"]."<br>\n");
 		print("<hr>");
 		print($dat[$n]["body"]);
 		print("<hr><hr>");
