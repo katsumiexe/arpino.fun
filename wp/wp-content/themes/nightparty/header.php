@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?t=<?=time()?>">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/person.css?t=<?=time()?>">
 <?php wp_head(); ?>
+<?php include(get_template_directory_uri()."/libraly/inc_cast.php"); ?>
 </head>
 <body class="body">
 <div class="head">
