@@ -13,43 +13,54 @@ if(!$m_list){
 		$head = imap_headerinfo($m_list,$s);
 		$tmp_from=explode('<',$head->fromaddress);
 
-		$dat[$s]["udate"]=date("Y-m-d H:i:s",$head->udate);
-		$dat[$s]["date"]=trim($head->date);
-		$dat[$s]["subject"]=trim(mb_decode_mimeheader($head->subject));
-		$dat[$s]["from"]=trim(mb_decode_mimeheader($tmp_from[0]));
-		$dat[$s]["address"]=trim(str_replace(">","",$tmp_from[1]));
+		$dat[$s]["udate"]		=date("Y-m-d H:i:s",$head->udate);
+		$dat[$s]["date"]		=trim($head->date);
+		$dat[$s]["subject"]		=trim(mb_decode_mimeheader($head->subject));
+		$dat[$s]["from"]		=trim(mb_decode_mimeheader($tmp_from[0]));
+		$dat[$s]["address"]		=trim(str_replace(">","",$tmp_from[1]));
 
 		$tmp_body = imap_body($m_list,$s);
 
 		if(substr_count($tmp_body,"Content-Type")>1){
+
 			$tmp_log="";
+			$main_log="";
+
 			$tmp=explode("\n",$tmp_body);
-			for($n=0;$n<count($tmp);$n++){
-				$tmp_log.="【".$n."】".$tmp[$n]."<br>\n";
+			$tmp1=explode($tmp[0],$tmp_body);
+
+			for($n=0;$n<count($tmp1);$n++){
+
+				if(substr_count($tmp1[$n], "Content-Type: text/plain")>0){
+					$tmp2=explode("\n",$tmp1[$n]);
+
+					for($t=0;$t<count($tmp2);$t++){
+						if(substr_count($tmp2[$t], "Content-Transfer-Encoding")==0 && substr_count($tmp2[$t], "Content-Type:")==0 ){
+							$main_log.=$tmp2[$t];
+						}
+					}
+				}
+
+				if(substr_count($tmp1[$n], "Content-Type: image/")>0){
+					$tmp3=explode("\n",$tmp1[$n]);
+
+					for($s=0;$s<count($tmp3);$s++){
+						if(substr_count($tmp3[$n], "Content-Type: image/")>0){
+							$tmp4=explode('"',$tmp3[$n]);
+							$img_name=$tmp4[1];
+
+						}elseif(substr_count($tmp3[$n], "Content-")===0){
+							$img_log.=$tmp3[$n];
+						}
+					}
+				}
 			}
-/*
-			$tmp2=explode($tmp[0]."\n",$tmp_body);
-			$a2=$tmp2[1];
-			$a2=str_replace($tmp[1],"",$tmp_body);
-*/
-			$tmp_body=$tmp_log;
+
+			$tmp_body=base64_decode($main_log);
+//			$tmp_body=$main_log;
 		}
 
 		$dat[$s]["body"]=$tmp_body;
-
-	/*
-		foreach ((array)$body as $a2) {
-			echo $a2."<hr>";
-	//		if(substr_count($a2,"Content-Type: text/plain;")>0){
-				$tmp=explode("\n",$a2);
-				$tmp2=explode($tmp[0]."\n",$a2);
-				$a2=$tmp2[1];
-				$a2=str_replace($tmp[1],"",$a2);
-	//		}
-			$a2 = mb_convert_encoding($a2, 'UTF-8', 'auto');
-			$a2 =str_replace("\n","<br>",$a2);
-			echo $a2."<hr>";
-	 */
 
     }
 	for($n=0;$n<$s;$n++){
