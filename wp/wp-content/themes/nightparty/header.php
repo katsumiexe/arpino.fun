@@ -15,13 +15,12 @@
 <body class="body">
 <?php
 	$args = array(
-		'container' => 'div',
-		'menu_class' => 'head',
-		'container_class' => 'menu_select',
+		'menu_id'		=> '',
+		'menu_class'	=> 'head',
 	 );
 wp_nav_menu($args);
 ?>
-<!--
+<!--	
 <div class="head">
 	<div id="rank1" class="menu_select">TOP PAGE</div>
 	<div id="rank2" class="menu_select">CAST</div>

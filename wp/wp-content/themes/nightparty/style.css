@@ -17,7 +17,9 @@
 	z-index			:10;
 }
 
-.menu_select{
+
+
+.head li{
 	display		:inline-block;
 	height		:50px;
 	width		:150px;
