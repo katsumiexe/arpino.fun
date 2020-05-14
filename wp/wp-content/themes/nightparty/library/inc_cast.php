@@ -1,4 +1,5 @@
-<?
+<?php
+/*
 global $wpdb; 
 $now=date("Ymd",time()-21600);
 $now_7=date("Ymd",time()+604800);
@@ -7,12 +8,17 @@ $sql ="SELECT * FROM wp01_0cast";
 $sql .=" WHERE del=0";
 $dat0a = $wpdb->get_results($sql);
 
-foeach($dat0a as $a1){
+foreach($dat0a as $a1){
 	$cast[$dat0a["id"]]=$dat0a;
 }
+*/
+
+$cast[1]["genji"]="ほわほわ";
 
 
 
+/*
+echo($cast[1]["genji"]);
 $sql ="SELECT * FROM wp01_0schedule";
 $sql .=" WHERE del=0";
 $sql .=" AND sche_date>='{$now}'";
@@ -24,5 +30,6 @@ while($dat1a = mysqli_fetch_assoc($dat1)){
 	$stime[$dat1a["cast_id"]][$dat1a["sche_date"]]=$dat1a["stime"];
 	$etime[$dat1a["cast_id"]][$dat1a["sche_date"]]=$dat1a["rtime"];
 }
-?>
+*/
 
+?>

@@ -13,6 +13,15 @@
 <?php include(get_template_directory_uri()."/libraly/inc_cast.php"); ?>
 </head>
 <body class="body">
+<?php
+	$args = array(
+		'container' => 'div',
+		'menu_class' => 'head',
+		'container_class' => 'menu_select',
+	 );
+wp_nav_menu($args);
+?>
+<!--
 <div class="head">
 	<div id="rank1" class="menu_select">TOP PAGE</div>
 	<div id="rank2" class="menu_select">CAST</div>
@@ -21,3 +30,4 @@
 	<div id="rank5" class="menu_select">SYSTEM</div>
 	<div id="rank6" class="menu_select">ACCESS</div>
 </div>
+-->

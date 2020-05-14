@@ -27,6 +27,7 @@
 	</div>
 	<div class="main_c">
 	<div class="main_c_1">
+<?php echo $cast[1]["genji"]?><bR>
 	にゃんにゃか<br>
 	にゃんにゃか<br>
 	にゃんにゃか<br>
