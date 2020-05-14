@@ -2,8 +2,8 @@
 $sv="{m15.coreserver.jp:110/pop3}INBOX";
 $sv="{m15.coreserver.jp:110}INBOX";
 $sv="{m15.coreserver.jp}INBOX";
-
 $m_list=imap_open ($sv,'katsumi@onlyme.fun','RJWEYjRWSmUh');
+
 $num = imap_num_msg($m_list);
 if(!$m_list){
 	print("error");
@@ -11,7 +11,6 @@ if(!$m_list){
 }else{
 	for($s=0;$s<$num+1;$s++){	
 		$head = imap_headerinfo($m_list,$s);
-
 		$tmp_from=explode('<',$head->fromaddress);
 
 		$dat[$s]["udate"]=date("Y-m-d H:i:s",$head->udate);
@@ -34,7 +33,6 @@ if(!$m_list){
 			$a2=str_replace($tmp[1],"",$tmp_body);
 */
 			$tmp_body=$tmp_log;
-
 		}
 
 		$dat[$s]["body"]=$tmp_body;

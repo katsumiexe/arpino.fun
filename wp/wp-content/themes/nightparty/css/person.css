@@ -1,0 +1,40 @@
+.person_left{
+	display		:inline-block;
+	position	:relative;
+	width		:460px;
+	height		:550px;	
+}
+.person_right{
+	display		:inline-block;
+	position	:relative;
+	width		:560px;
+	height		:550px;	
+}
+
+.person_img_main{
+	width		:360px;
+	height		:480px;	
+}
+
+.person_img_list{
+	position		:absolute;
+	display			:inline-block;
+	bottom			:15px;
+	left			:0;
+	right			:0;
+	width			:250px;
+	height			:50px;
+
+	background		:#303538;
+	margin			:auto;
+	border-radius	:10px;
+	text-align		:center;
+	border			:2px solid #c08000;
+}
+
+.person_img_sub{
+	width			:30px;
+	height			:30px;
+	margin			:10px;
+	border			:2px solid #c08000;
+}
