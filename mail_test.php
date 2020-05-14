@@ -14,6 +14,7 @@ if(!$m_list){
 
 		$tmp_from=explode('<',$head->fromaddress);
 
+		$dat[$s]["udate"]=date("Y-m-d H:i:s",$head->udate);
 		$dat[$s]["date"]=trim($head->date);
 		$dat[$s]["subject"]=trim(mb_decode_mimeheader($head->subject));
 		$dat[$s]["from"]=trim(mb_decode_mimeheader($tmp_from[0]));
@@ -22,13 +23,21 @@ if(!$m_list){
 		$tmp_body = imap_body($m_list,$s);
 
 		if(substr_count($tmp_body,"Content-Type")>1){
-			$tmp=explode("\n",$a2);
-			$tmp2=explode($tmp[0]."\n",$a2);
+			$tmp_log="";
+			$tmp=explode("\n",$tmp_body);
+			for($n=0;$n<count($tmp);$n++){
+				$tmp_log.="【".$n."】".$tmp[$n]."<br>\n";
+			}
+/*
+			$tmp2=explode($tmp[0]."\n",$tmp_body);
 			$a2=$tmp2[1];
-			$a2=str_replace($tmp[1],"",$a2);
+			$a2=str_replace($tmp[1],"",$tmp_body);
+*/
+			$tmp_body=$tmp_log;
+
 		}
 
-		$dat[$s]["body"]=$body;
+		$dat[$s]["body"]=$tmp_body;
 
 	/*
 		foreach ((array)$body as $a2) {
@@ -46,6 +55,7 @@ if(!$m_list){
 
     }
 	for($n=0;$n<$s;$n++){
+		print($dat[$n]["udate"]."<br>\n");
 		print($dat[$n]["date"]."<br>\n");
 		print($dat[$n]["subject"]."<br>\n");
 		print($dat[$n]["from"]."<br>\n");
