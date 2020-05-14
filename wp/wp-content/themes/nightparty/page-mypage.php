@@ -9,7 +9,6 @@
 <?php wp_head(); ?>
 </head>
 <body class="body">
-
 <? if(!$_SESSION["id"]): ?>
 	<div class="main">
 	<div class="login_box">
