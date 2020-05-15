@@ -1,14 +1,22 @@
 <?
-$s=0;
-for($n=13215;$n<20000;$n++){
-$dat[$s]=$n;
-$s++;
-}
-$a1=0;
-shuffle($dat);
-foreach($dat as $a2){
-	print($a1.",".$a2.",\n");
-$a1++;
-}
+$b=strtotime("2020-04-01");
+$n=date("w",$b);
+$t=date("t",$b);
 
+for($m=0; $m<$t+$n;$m++){
+
+	$d=$m-$n+1;
+
+	if($m%7==0){
+		echo "<br>";
+	}
+	if($m-$n>=0){
+		echo $d.",";
+
+	}else{
+		echo ",";
+	}
+}
 ?>
+<hr>
+
