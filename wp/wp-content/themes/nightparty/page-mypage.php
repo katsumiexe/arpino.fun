@@ -1,25 +1,50 @@
+<?
+function init_session_start(){
+	session_start();
+}
+add_action('init', 'init_session_start');
+
+global $wpdb;
+$rows = $wpdb->get_results("SELECT * FROM $wpdb->0cast");
+$result = "<table><tbody>";
+foreach($rows as $row){
+    $result .= "<tr><td>" . $row->name ."</td><td>" . $row->num ."</td></tr>";
+}
+$result .= "</tbody></table>";
+print $result;
+
+if(time()>$_SESSION["time"]+3600){
+	$_SESSION="";
+	session_destroy();
+
+}else{
+	$_SESSION["time"]=time();
+}
+
+var_dump($rows);
+?>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CastPage</title>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
-<?php wp_head(); ?>
 </head>
 <body class="body">
-<? if(!$_SESSION["id"]): ?>
+
+<? if(!$_SESSION["time"]): ?>
 	<div class="main">
 	<div class="login_box">
 		<span class="login_name">IDCODE</span>
 		<input type="text" class="login" name="log_in_set">
 		<span class="login_name">PASSWORD</span>
 		<input type="password" class="login" name="log_pass_set">
-		<button type="submit" class="login_btn" value="send">ログイン</button>
+		<button id="cast_login" type="button" class="login_btn" value="send">ログイン</button>
 	</div>
 	</div>
 <? else: ?>
@@ -36,5 +61,4 @@
 <? endif; ?>
 </div>
 </body>
-<?php wp_foot();?>
 </html>

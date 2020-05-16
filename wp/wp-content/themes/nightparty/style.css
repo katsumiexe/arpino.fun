@@ -1,3 +1,8 @@
+a{
+	text-decoration:none;
+	color: initial;
+}
+
 .body{
 	background:#101513;
 	text-align:center;
@@ -17,9 +22,7 @@
 	z-index			:10;
 }
 
-
-
-.head li{
+.menu-item{
 	display		:inline-block;
 	height		:50px;
 	width		:150px;
@@ -29,14 +32,17 @@
 	border		:2px solid #c08000;
 	margin		:10px 5px;
 	text-align	:center;
-	color		:#FFD67D;
-	font-size	:18px;
-	font-weight	:600;
 	overflow	:hidden;
 	cursor		:pointer;
 }
 
-.menu_select:hover{
+.menu-item a{
+	color		:#FFD67D;
+	font-size	:18px;
+	font-weight	:600;
+}
+
+.menu-item:hover{
 	background	:#f09000;
 }
 
@@ -117,7 +123,25 @@
 	width		:160px;
 	height		:200px;
 	background	:#000000;
-	margin:5px;
+	margin		:5px;
+}
+
+.main_b_1_1{
+	display		:inline-block;
+	width		:150px;
+	height		:150px;
+	margin		:5px;
+
+}
+.main_b_1_2{
+	display		:inline-block;
+	width		:150px;
+	height		:35px;
+	background	:#000000;
+	margin		:5px;
+	color		:#fafafa;
+	font-size	:18px;
+
 }
 
 .main_c{

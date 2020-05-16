@@ -15,12 +15,14 @@
 <body class="body">
 <?php
 	$args = array(
-		'menu_id'		=> '',
-		'menu_class'	=> 'head',
+		'theme_location'	=>'global', 
+		'menu_id'			=>'',
+		'menu_class'		=>'head',
 	 );
 wp_nav_menu($args);
+
 ?>
-<!--	
+<!--
 <div class="head">
 	<div id="rank1" class="menu_select">TOP PAGE</div>
 	<div id="rank2" class="menu_select">CAST</div>

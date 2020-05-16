@@ -1,23 +1,5 @@
 <?php get_header(); ?>
-<div class="main">
-	<div class="slide"></div>
-	<div class="main_b">
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	<div class="main_b_1"></div>
-	</div>
-	<div class="main_c">
-	<div id="posts">
- </div>
-	
-	</div>
+<div style="background:#fafafa; width:100px; height:100px; line-height:100px; text-align:center;position:absolute; top:0; left:0; right:0; bottom:0;margin:auto;">
+404
 </div>
 <?php get_footer(); ?>
