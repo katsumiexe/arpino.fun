@@ -120,9 +120,10 @@ a{
 }
 
 .main_b_1{
+	position	:relative;
 	display		:inline-block;
 	width		:160px;
-	height		:200px;
+	height		:210px;
 	background	:#000000;
 	margin		:5px;
 }
@@ -130,19 +131,22 @@ a{
 .main_b_1_1{
 	display		:inline-block;
 	width		:150px;
-	height		:150px;
+	height		:200px;
 	margin		:5px;
 
 }
 .main_b_1_2{
+	position	:absolute;
 	display		:inline-block;
+	bottom		:5px;
+	left		:5px;
 	width		:150px;
-	height		:35px;
-	background	:#000000;
-	margin		:5px;
-	color		:#fafafa;
+	height		:50px;
+	background	:rgba(245,245,245,0.4);
+	color		:#906000;
 	font-size	:18px;
-
+	font-weight	:600;	
+	padding:5px;
 }
 
 .main_c{
