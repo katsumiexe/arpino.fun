@@ -1,6 +1,6 @@
 <?php
 get_header();
-$val="";
+$val="1";
 
 $res = $wpdb->get_results('
 	SELECT * FROM wp01_0cast WHERE id="{$val}"
@@ -20,7 +20,6 @@ endif;
 		<img id="i2" src="" class="person_img_sub">
 		<img id="i3" src="" class="person_img_sub">
 		<img id="i4" src="" class="person_img_sub">
-		<img id="i5" src="" class="person_img_sub">
 	</div>
 </div>
 <div class="person_right">
