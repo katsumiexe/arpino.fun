@@ -47,8 +47,9 @@ a{
 	text-align:center;
 }
 
-.menu-item:hover{
-	background	:#f09000;
+.menu-item a:hover{
+	background:linear-gradient(#ffd080,#e0b060);
+	color		:#fafafa;
 }
 
 .main{
