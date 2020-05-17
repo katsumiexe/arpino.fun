@@ -26,5 +26,6 @@ endif;
 <div class="person_right">
 	<?PHP ECHO $res->genji?>
 </div>
+
 </div>
 <?php get_footer(); ?>

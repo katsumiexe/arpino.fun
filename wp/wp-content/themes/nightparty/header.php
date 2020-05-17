@@ -9,6 +9,7 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?t=<?=time()?>">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/person.css?t=<?=time()?>">
+
 <?php wp_head(); ?>
 <?php include(get_template_directory_uri()."/libraly/inc_cast.php"); ?>
 </head>
@@ -20,8 +21,8 @@
 		'menu_class'		=>'head',
 	 );
 wp_nav_menu($args);
-
 ?>
+
 <!--
 <div class="head">
 	<div id="rank1" class="menu_select">TOP PAGE</div>
