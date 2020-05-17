@@ -40,6 +40,11 @@ a{
 	color		:#FFD67D;
 	font-size	:18px;
 	font-weight	:600;
+	display		:inline-block;
+	width		:100%;
+	height		:50px;
+	line-height	:50px;
+	text-align:center;
 }
 
 .menu-item:hover{
@@ -119,34 +124,69 @@ a{
 	text-align:left;
 }
 
+.main_b_title{
+	display		:inline-block;
+	width		:662px;
+
+	height		:40px;
+	line-height	:40px;
+	color		:#fafafa;
+	background	:#000000;
+	margin		:5px;
+	font-size	:18px;
+	font-weight	:600;
+	border		:2px solid #c08000;
+	padding-left:5px;
+}
+
 .main_b_1{
 	position	:relative;
 	display		:inline-block;
-	width		:160px;
-	height		:210px;
+	width		:150px;
+	height		:200px;
 	background	:#000000;
 	margin		:5px;
+	border:5px solid #fafafa;
 }
 
 .main_b_1_1{
 	display		:inline-block;
 	width		:150px;
 	height		:200px;
-	margin		:5px;
-
 }
+
+.main_b_1_3{
+	position	:absolute;
+	display		:none;
+	bottom		:5px;
+	left		:5px;
+	width		:136px;
+	height		:186px;
+	border		:2px solid #906000;
+	z-index		:11;	
+}	
 .main_b_1_2{
 	position	:absolute;
 	display		:inline-block;
 	bottom		:5px;
 	left		:5px;
-	width		:150px;
+	width		:130px;
 	height		:50px;
-	background	:rgba(245,245,245,0.4);
+	background	:rgba(245,245,245,0.6);
 	color		:#906000;
 	font-size	:18px;
 	font-weight	:600;	
-	padding:5px;
+	padding		:5px;
+	text-shadow	:
+		 1px  1px 1px #fafafa,
+		 1px  0px 1px #fafafa,
+		 1px -1px 1px #fafafa,
+		-1px  1px 1px #fafafa,
+		-1px  0px 1px #fafafa,
+		-1px -1px 1px #fafafa,
+		 0px  1px 1px #fafafa,
+		 0px -1px 1px #fafafa
+		;
 }
 
 .main_c{

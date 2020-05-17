@@ -8,8 +8,13 @@ $(function(){
 	$('.person_img_sub').hover(function () {
 		TMP=$(this).attr('src');
 		$('.person_img_main').attr('src',TMP);
-
 	});
 
-
+	$('.main_b_1').hover(
+	function(){
+		$(this).children('.main_b_1_3').fadeIn(100);
+	  },
+	function () {
+		$(this).children('.main_b_1_3').fadeOut(0);
+	});
 });

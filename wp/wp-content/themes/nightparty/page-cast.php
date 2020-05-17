@@ -23,7 +23,8 @@ wp_reset_postdata();
 		<? for($s=0;$s<$n;$s++){?>
 			<a href="<?php echo get_template_directory_uri(); ?>/person/" id="<?PHP echo $dat[$s]->id?>" class="main_b_1">
 			<img src="<?PHP echo $dat[$s]->face?>" class="main_b_1_1">
-			<div class="main_b_1_2"><?PHP echo $dat[$s]->genji?></div>
+			<span class="main_b_1_2"><?PHP echo $dat[$s]->genji?></span>
+			<div class="main_b_1_3"></div>
 			</a>
 		<? } ?>
 	</div>
