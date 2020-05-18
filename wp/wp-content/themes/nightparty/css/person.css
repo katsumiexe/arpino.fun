@@ -1,16 +1,22 @@
+.person_main{
+	display		:flex;
+	width		:1020px;
+	margin		:50px auto;
+	text-align:center;
+}
 .person_left{
 	display		:inline-block;
 	position	:relative;
-	width		:350px;
-	flex-basis	:350px;
-	height		:550px;	
+	width		:310px;
+	flex-basis	:310px;
+	height		:520px;	
 	background:#fafafa;
 }
 
 .person_middle{
 	display			:inline-block;
 	position		:relative;
-	width			:300px;
+	width			:400px;
 	min-height		:550px;	
 	background		:#fa00fa;
 }
@@ -18,7 +24,7 @@
 .person_right{
 	display			:inline-block;
 	position		:relative;
-	width			:350px;
+	width			:300px;
 	min-height		:550px;	
 	background		:#00fafa;
 }
