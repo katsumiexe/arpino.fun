@@ -25,15 +25,15 @@ foreach($res as $a1):
 	else:
 		$dat[$n]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
 	endif;
-	$sch[$a1->id]="本日休み";
 
+	$sch[$a1->id]="本日休み";
 	$n++;
 endforeach;
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='".$now."'";
-$sch = $wpdb->get_results($sql);
+$res2 = $wpdb->get_results($sql);
 
-foreach($sch as $a2):
+foreach($res2 as $a2):
 	if(strlen($a2->stime)==4 && strlen($a2->etime)==4):
 		$sch[$a2->cast_id]	=$a2->stime." - ".$a2->etime;
 	else:
@@ -59,7 +59,7 @@ wp_reset_postdata();
 	<div class="main_b">
 	<h1 class="main_b_title">本日の出勤キャスト</h1>
 <?for($s=0;$s<10;$s++){?>
-	<a href="<?php echo get_template_directory_uri(); ?>/person/" id="<?PHP echo $dat[$s]->id?>" class="main_b_1">
+	<a href="<?php echo get_template_directory_uri(); ?>/person/" id="c<?PHP echo $dat[$s]->id?>" class="main_b_1">
 	<img src="<?PHP echo $dat[$s]->face?>" class="main_b_1_1">
 	<div class="main_b_1_2"><?PHP echo $dat[$s]->genji?><br><?PHP echo $sch[$dat[$s]->id]?></div>
 	<div class="main_b_1_3"></div>
