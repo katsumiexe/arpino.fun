@@ -26,20 +26,19 @@ endif;
 if($a1->face4 > 0):
 	$face_b.="<img id=\"i4\" src=\"".get_template_directory_uri()."/img/cast/".$a1->id."/".$a1->face4.".jpg\" class=\"person_img_sub\">";
 endif;
-
-
-
 ?>
-<div class="main">
+
 <div class="person_left">
 		<?PHP ECHO $face_a?>
 	<div class="person_img_list">
 		<?PHP ECHO $face_b?>
 	</div>
 </div>
+<div class="person_middle">
+
+</div>
 <div class="person_right">
 	<?PHP ECHO $a1->genji?>
 </div>
 
-</div>
 <?php get_footer(); ?>

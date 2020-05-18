@@ -4,11 +4,25 @@ a{
 }
 
 .body{
-	background:#101513;
-	text-align:center;
-	margin:0;
-	padding:0;
+	background	:#101513;
+	text-align	:center;
+	margin		:0;
+	padding		:0;
 }
+
+.main{
+	display		:flex;
+	flex-wrap	:wrap;
+	justify-content :center;
+	background	:#051010;
+	text-align	:center;
+	width		:1050px;
+	min-height	:95vh;
+	margin		:0 auto;
+	padding		:0;
+	font-size	:0;
+}
+
 
 .head{
 	position		:fixed;
@@ -54,16 +68,6 @@ a{
 	color		:#fafafa;
 }
 
-.main{
-	display		:flex;
-	flex-wrap	:wrap;
-	width		:1020px;
-	text-align	:center;
-	margin		:90px auto 20px auto;
-	font-size	:0;
-	min-height:95vh;
-	background:#051010;
-}
 
 .slide{
 	display		:inline-block;
@@ -71,8 +75,7 @@ a{
 	width		:1020px;
 	flex-basis	:1020px;
 	height		:380px;
-	background	:#101513;
-	margin		:0;
+	margin		:40px auto 20px auto;
 }
 
 .slide_img{
@@ -93,7 +96,7 @@ a{
 	bottom			:15px;
 	left			:0;
 	right			:0;
-	width			:260px;
+	width			:290px;
 	height			:40px;
 	background		:#303538;
 	margin			:auto;
@@ -223,7 +226,7 @@ a{
 	width		:1020px;
 	height		:100px;
 	background	:#101213;
-	margin		:0 auto;
+	margin		:10px; auto;
 	border		:2px solid #c08000;
 	background	:#302520;
 }

@@ -12,8 +12,7 @@
 <?php wp_head(); ?>
 <?php include(get_template_directory_uri()."/libraly/inc_cast.php"); ?>
 </head>
-<body class="body">
-<?php
+<body class="body"><?php
 	$args = array(
 		'theme_location'	=>'global', 
 		'menu_id'			=>'',
@@ -21,8 +20,6 @@
 		'container'       => '',
 		'container_class' => '',
 		'container_id'    => '',
-
-	
 	 );
 wp_nav_menu($args);
-?>
+?><div class="main">

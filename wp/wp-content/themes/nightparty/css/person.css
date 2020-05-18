@@ -2,13 +2,25 @@
 	display		:inline-block;
 	position	:relative;
 	width		:350px;
+	flex-basis	:350px;
 	height		:550px;	
+	background:#fafafa;
 }
+
+.person_middle{
+	display			:inline-block;
+	position		:relative;
+	width			:300px;
+	min-height		:550px;	
+	background		:#fa00fa;
+}
+
 .person_right{
-	display		:inline-block;
-	position	:relative;
-	width		:650px;
-	height		:550px;	
+	display			:inline-block;
+	position		:relative;
+	width			:350px;
+	min-height		:550px;	
+	background		:#00fafa;
 }
 
 .person_img_main{
