@@ -1,15 +1,15 @@
 <?php
 get_header();
-$dat[0]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[1]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[2]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[3]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[4]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[5]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[6]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[7]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[8]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-$dat[9]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
+$dat[0]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[1]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[2]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[3]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[4]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[5]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[6]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[7]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[8]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
+$dat[9]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 $now=date("Ymd",time()-21600);
 $res = $wpdb->get_results('
  SELECT * FROM wp01_0cast

@@ -1,7 +1,24 @@
-<?php 
-get_header();
-?>
-<div style="background:#fafafa; width:100px; height:100px; line-height:100px; text-align:center;position:absolute; top:0; left:0; right:0; bottom:0;margin:auto;">
-ACCESS
-</div>
+<?php get_header(); ?>
+任意のHTMLコードを入力しページをデザイン可能です。
+例えば、画像を表示する。スライドショーを表示するなど、任意のHTMLコードを使えます。
+<div id="container">
+ 
+<?php if(have_posts()): while(have_posts()): the_post(); ?>
+<?php the_content(); ?>
+<?php endwhile; endif; ?>
+ 
+</div><!-- [ /#container ] -->
+ 
+<div id="news-box" style="margin-top:100px; color:#fafafa;font-size:16px;">
+<ul>
+<?php
+$myposts = get_posts('post_type=post&numberposts=5&category='.$var);
+foreach($myposts as $post) : ?>
+ 
+<li><?php the_time('Y年m月d日(D)'); ?><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
+<?php endforeach; ?>
+ 
+</ul>
+</div><!-- [ /#news-box ] -->
+ 
 <?php get_footer(); ?>

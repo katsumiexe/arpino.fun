@@ -14,7 +14,19 @@ $val="1";
 $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
 
 $res = $wpdb->get_results($sql);
-foreach($res as $a1);
+
+foreach($res as $a1):
+
+	$charm[1]=$a1->charm01;
+	$charm[2]=$a1->charm02;
+	$charm[3]=$a1->charm03;
+	$charm[4]=$a1->charm04;
+	$charm[5]=$a1->charm05;
+	$charm[6]=$a1->charm06;
+	$charm[7]=$a1->charm07;
+	$charm[8]=$a1->charm08;
+	$charm[9]=$a1->charm09;
+
 	if($a1->face1 > 0):
 		$face_a="<img src=\"".get_template_directory_uri()."/img/cast/".$a1->id."/".$a1->face1.".jpg\" class=\"person_img_main\">";
 		$face_b="<img id=\"i1\" src=\"".get_template_directory_uri()."/img/cast/".$a1->id."/".$a1->face1.".jpg\" class=\"person_img_sub\">";
@@ -39,9 +51,51 @@ endforeach;
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
 $res2 = $wpdb->get_results($sql);
-foreach($res2 as $a2);
+foreach($res2 as $a2):
+	$sch[$a2->sche_date]=$a2;
+endforeach;
+
+for($n=0;$n<7;$n++){
+	$t_sch=date("Ymd",time()+(86400*$n)-21600);
+
+	if(substr_count($sch[$t_sch]->stime,"0")>0):
+		$tmp_s=substr($sch[$t_sch]->stime,0,2).":".substr($sch[$t_sch]->stime,2,2);
+	else:
+		$tmp_s=$sch[$t_sch]->stime;
+	endif;
+
+	if(substr_count($sch[$t_sch]->etime,"0")>0):
+		$tmp_e=substr($sch[$t_sch]->etime,0,2).":".substr($sch[$t_sch]->etime,2,2);
+	else:
+		$tmp_e=$sch[$t_sch]->etime;
+	endif;
+
+	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
+	$list_week=date("w",strtotime($t_sch));
+
+	if($tmp_s && $tmp_e):
+		$tmp_date=$tmp_s."～".$tmp_e;
+	else:
+		$tmp_date="";
+	endif;
+
+	if($tmp_s && $tmp_e):
+		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\">".$tmp_s."～".$tmp_e."</td>";
+	else:
+		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\">休み</td>";
+	endif;
+}
 
 
+$sql="SELECT * FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
+$res3 = $wpdb->get_results($sql);
+foreach($res3 as $a3):
+	$charm_list.="<tr><td class=\"prof_l\">".$a3->charm."</td><td class=\"prof_r\">".$charm[$a3->id]."</td></tr>";
+endforeach;
+
+
+$post=get_post();
+var_dump($post);
 
 ?>
 <div class="person_main">
@@ -52,20 +106,16 @@ foreach($res2 as $a2);
 	</div>
 </div>
 <div class="person_middle">
-<table>
+<table class="prof">
 <tr>
-<td class="parson_td_1">名前</td>
-<td class="parson_td_2"><?PHP ECHO $a1->genji?></td>
+<td class="prof_l">名前</td>
+<td class="prof_r"><?PHP ECHO $a1->genji?></td>
 </tr>
+<?PHP ECHO $charm_list?>
 </table>
 
-<table>
-<?PHP for($n=0;$n<7;$n++){?>
-<tr>
-<td class="parson_sch_1"><?PHP ECHO date("m/d",time()+(86400*$n))?><?PHP ECHO $week[date("w",time()+(86400*$n))]?></td>
-<td class="parson_sch_2"></td>
-</tr>
-<?}?>
+<table class="sche">
+<?PHP ECHO $list?>
 </table>
 
 </div>
