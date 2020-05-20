@@ -389,7 +389,6 @@ body {
 	left:50px;
 }
 
-
 .sel_b{
 	display			:flex;
 	justify-content	:space-around;
@@ -401,8 +400,6 @@ body {
 	line-height		:38px;
 	width			:208px;
 }
-
-
 
 .sel_b_1{
 	display			:inline-block;

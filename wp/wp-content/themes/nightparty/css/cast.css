@@ -3,16 +3,102 @@
 	text-align		:center;
 }
 
-.menu{
-	display			:inline-block;
-	background		:#ffd0d0;
-	width			:60vw;
-	height			:80vw;
-	padding			:3vw;
-	border-radius	:3vw;
+.cal_table{
+	border-collapse	:collapse;
+	width:40vw;
+	border		:1px solid #303030;
 }
 
-.main{
+.cal_next,.cal_prev{
+	display		:inline-block;
+	font-family	:at_icon;
+	width		:5vw;
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:4vw;
+	margin		:1vw;
+}
+
+
+.cal_top{
+	height		:6vw;
+	line-height	:6vw;
+	text-align	:center;
+	font-size	:4vw;
+	background	:#fafafa;
+}
+
+.cal_td{
+	width		:5vw;
+	height		:5vw;
+	line-height	:5vw;
+	text-align	:center;
+	font-size	:3vw;
+	border		:1px solid #303030;
+	background	:#fafafa;
+}
+
+.c1{
+	background:#ff6060;
+	
+}
+.c2{
+	background:#dedede;
+	
+}
+.c3{
+	background:#90a0ff;
+	
+}
+
+.mypage_menu{
+	list-style-type	:none;
+	background		:#ffd0d0;
+	width			:40vw;
+	padding			:0;
+	margin			:0;
+}
+
+.menu_sel{
+	background		:#d03030 !important;
+}
+
+.menu_1{
+	display			:block;
+	margin			:0 auto;
+	width			:40vw;
+	height			:12vw;
+	border-bottom	:0.5vw solid #fafafa;
+	background		:#f1c0d0;
+	text-align		:left;
+	font-size		:0;
+}
+
+.menu_i{
+	font-family		: at_icon;
+	display			:inline-block;
+	margin			:1vw auto;
+	width			:12vw;
+	height			:10vw;
+	line-height		:10vw;
+	text-align		:center;
+	font-size		:8vw;
+	color			:#fafafa;
+}
+
+.menu_s{
+	display			:inline-block;
+	margin			:1vw auto;
+	width			:28vw;
+	height			:10vw;
+	line-height		:10vw;
+	text-align		:left;
+	font-size		:6vw;
+	color			:#fafafa;
+	font-weight		:600;
+}
+
+.mypage_main{
 	display			:inline-block;
 	background		:#fafafa;
 	width			:100vw;
@@ -58,26 +144,12 @@
 	height			:8vw;
 }
 
-.menu_1{
-	display			:block;
-	margin			:0 auto;
-	width			:260px;
-	height			:50px;
-	line-height		:50px;
-	text-align		:left;
-	font-size		:16px;
-	border			:2px solid #fafafa;
-	background		:#f1c0d0;
-	padding-left	:10px;
-	color			:#fafafa;
-	font-weight		:700;
-}
 
 
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
 
-.menu{
+.mypage_menu{
 	width			:300px;
 	height			:400px;
 	padding			:20px;
@@ -124,7 +196,7 @@
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 960px) {
 
-.menu{
+.mypage_menu{
 	width			:300px;
 	height			:400px;
 	padding			:20px;

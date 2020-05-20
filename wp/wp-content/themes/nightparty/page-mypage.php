@@ -4,14 +4,19 @@ function init_session_start(){
 }
 add_action('init', 'init_session_start');
 
+$cast_id	="cast";
+$cast_pass	="pass";
+
 global $wpdb;
-$rows = $wpdb->get_results("SELECT * FROM $wpdb->0cast");
-$result = "<table><tbody>";
-foreach($rows as $row){
-    $result .= "<tr><td>" . $row->name ."</td><td>" . $row->num ."</td></tr>";
-}
-$result .= "</tbody></table>";
-print $result;
+$rows = $wpdb->get_results("SELECT * FROM wp01_0cast WHERE cast_id='".$cast_id."' AND cast_pass='".$cast_pass."'");
+//foreach($rows as $row);
+if($rows):
+
+
+else:
+
+
+endif;
 
 if(time()>$_SESSION["time"]+3600){
 	$_SESSION="";
@@ -21,7 +26,6 @@ if(time()>$_SESSION["time"]+3600){
 	$_SESSION["time"]=time();
 }
 
-var_dump($rows);
 ?>
 
 <html lang="ja">
@@ -29,16 +33,22 @@ var_dump($rows);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CastPage</title>
+<style>
+@font-face {
+	font-family: at_icon;
+	src: url(<?php echo get_template_directory_uri(); ?>/font/font_1/fonts/icomoon.ttf) format('truetype');
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
 </head>
 <body class="body">
-
-<? if(!$_SESSION["time"]): ?>
-	<div class="main">
+<? if($_SESSION["time"]): ?>
+	<div class="mypage_main">
 	<div class="login_box">
 		<span class="login_name">IDCODE</span>
 		<input type="text" class="login" name="log_in_set">
@@ -48,17 +58,60 @@ var_dump($rows);
 	</div>
 	</div>
 <? else: ?>
-	<div class="menu">
-	<span id="m1" class="menu_1">TOP</span>
-	<span id="m2" class="menu_1">シフト</span>
-	<span id="m3" class="menu_1">写真</span>
-	<span id="m4" class="menu_1">日記</span>
-	<span id="m5" class="menu_1">BBS</span>
-	<span id="m6" class="menu_1">TL</span>
-	<span id="m7" class="menu_1">MAIL</span>
+
+
+
+
+<table class="cal_table">
+<tr>
+<td class="cal_top" colspan="2"><span class="cal_prev"></span></td>
+<td class="cal_top" colspan="3">07月</td>
+<td class="cal_top" colspan="2"><span class="cal_next"></span></td>
+</tr>
+<tr>
+<td class="cal_td c1">日</td>
+<td class="cal_td c2">月</td>
+<td class="cal_td c2">火</td>
+<td class="cal_td c2">水</td>
+<td class="cal_td c2">木</td>
+<td class="cal_td c2">金</td>
+<td class="cal_td c3">土</td>
+</tr>
+<tr>
+<td class="cal_td">01</td>
+<td class="cal_td">02</td>
+<td class="cal_td">03</td>
+<td class="cal_td">04</td>
+<td class="cal_td">05</td>
+<td class="cal_td">06</td>
+<td class="cal_td">07</td>
+</tr>
+<tr>
+<td class="cal_td">01</td>
+<td class="cal_td">02</td>
+<td class="cal_td">03</td>
+<td class="cal_td">04</td>
+<td class="cal_td">05</td>
+<td class="cal_td">06</td>
+<td class="cal_td">07</td>
+</tr>
+</table>
+
+
+	<ul class="mypage_menu">
+	<li id="m1" class="menu_1 menu_sel"><span class="menu_i"></span><span class="menu_s">TOP</span></li>
+	<li id="m2" class="menu_1"><span class="menu_i"></span><span class="menu_s">シフト</span></li>
+	<li id="m3" class="menu_1"><span class="menu_i"></span><span class="menu_s">写真</span></li>
+	<li id="m4" class="menu_1"><span class="menu_i"></span><span class="menu_s">BLOG</span></li>
+	<li id="m5" class="menu_1"><span class="menu_i"></span><span class="menu_s">MAIL</span></li>
+	<li id="m6" class="menu_1"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+	</ul>
+	<div class="mypage_main">
 	</div>
-	<div class="main"></div>
 <? endif; ?>
-</div>
+
+
+
 </body>
 </html>
+
