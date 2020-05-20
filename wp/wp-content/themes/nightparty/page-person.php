@@ -16,7 +16,6 @@ $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
 $res = $wpdb->get_results($sql);
 
 foreach($res as $a1):
-
 	$charm[1]=$a1->charm01;
 	$charm[2]=$a1->charm02;
 	$charm[3]=$a1->charm03;
@@ -33,7 +32,6 @@ foreach($res as $a1):
 	else:
 		$a1->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
 		$face_a="<img src=\"".get_template_directory_uri()."/img/cast/noimage.jpg\" class=\"person_img_main\">";
-
 	endif;
 
 	if($a1->face2 > 0):
@@ -86,13 +84,11 @@ for($n=0;$n<7;$n++){
 	endif;
 }
 
-
 $sql="SELECT * FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
 $res3 = $wpdb->get_results($sql);
 foreach($res3 as $a3):
 	$charm_list.="<tr><td class=\"prof_l\">".$a3->charm."</td><td class=\"prof_r\">".$charm[$a3->id]."</td></tr>";
 endforeach;
-
 
 $post=get_post();
 var_dump($post);
