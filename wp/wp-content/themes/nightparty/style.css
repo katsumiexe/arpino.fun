@@ -19,7 +19,7 @@ a{
 	width		:1050px;
 	min-height	:95vh;
 	margin		:0 auto;
-	padding		:0;
+	padding-top	:80px;
 	font-size	:0;
 }
 
@@ -75,7 +75,7 @@ a{
 	width		:1020px;
 	flex-basis	:1020px;
 	height		:380px;
-	margin		:40px auto 20px auto;
+	margin		:10px auto;
 }
 
 .slide_img{
