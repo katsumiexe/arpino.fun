@@ -113,7 +113,6 @@ var_dump($post);
 <table class="sche">
 <?PHP ECHO $list?>
 </table>
-
 </div>
 <div class="person_right">
 </div>

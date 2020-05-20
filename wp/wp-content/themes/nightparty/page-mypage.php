@@ -12,9 +12,7 @@ $rows = $wpdb->get_results("SELECT * FROM wp01_0cast WHERE cast_id='".$cast_id."
 //foreach($rows as $row);
 if($rows):
 
-
 else:
-
 
 endif;
 
@@ -25,9 +23,7 @@ if(time()>$_SESSION["time"]+3600){
 }else{
 	$_SESSION["time"]=time();
 }
-
 ?>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -42,7 +38,6 @@ if(time()>$_SESSION["time"]+3600){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
 </head>
@@ -58,10 +53,10 @@ if(time()>$_SESSION["time"]+3600){
 	</div>
 	</div>
 <? else: ?>
+<div class="mymenu_head">
 
-
-
-
+</div>
+<div class="mymenu_slide">
 <table class="cal_table">
 <tr>
 <td class="cal_top" colspan="2"><span class="cal_prev"></span></td>
@@ -96,16 +91,16 @@ if(time()>$_SESSION["time"]+3600){
 <td class="cal_td">07</td>
 </tr>
 </table>
-
-
-	<ul class="mypage_menu">
+<ul class="mypage_menu">
 	<li id="m1" class="menu_1 menu_sel"><span class="menu_i"></span><span class="menu_s">TOP</span></li>
 	<li id="m2" class="menu_1"><span class="menu_i"></span><span class="menu_s">シフト</span></li>
 	<li id="m3" class="menu_1"><span class="menu_i"></span><span class="menu_s">写真</span></li>
 	<li id="m4" class="menu_1"><span class="menu_i"></span><span class="menu_s">BLOG</span></li>
 	<li id="m5" class="menu_1"><span class="menu_i"></span><span class="menu_s">MAIL</span></li>
 	<li id="m6" class="menu_1"><span class="menu_i"></span><span class="menu_s">設定</span></li>
-	</ul>
+</ul>
+</div>
+
 	<div class="mypage_main">
 	</div>
 <? endif; ?>

@@ -1,12 +1,20 @@
 .body{
-	background		:#f0f0f0;
-	text-align		:center;
+	background	:#f0f0f0;
+	text-align	:center;
+	margin		:0;
+	padding		:0;
+	line-height	:1.2;
+	color		:#333;
+	font-size	:0;
+	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	text-align	:center;
+	width		:100vw;
 }
 
 .cal_table{
 	border-collapse	:collapse;
-	width:40vw;
-	border		:1px solid #303030;
+	width			:40vw;
+	border			:1px solid #303030;
 }
 
 .cal_next,.cal_prev{
@@ -15,7 +23,7 @@
 	width		:5vw;
 	height		:5vw;
 	line-height	:5vw;
-	font-size	:4vw;
+	font-size	:3.5vw;
 	margin		:1vw;
 }
 
@@ -51,6 +59,18 @@
 	
 }
 
+
+.mymenu_slide{
+	position	:fixed;
+	top			:0;
+	left		:0;
+	height		:120vh;
+	background	:#f0fff5;
+	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+}
+
+
+
 .mypage_menu{
 	list-style-type	:none;
 	background		:#ffd0d0;
@@ -65,11 +85,12 @@
 
 .menu_1{
 	display			:block;
+	position		:relative;
 	margin			:0 auto;
 	width			:40vw;
 	height			:12vw;
 	border-bottom	:0.5vw solid #fafafa;
-	background		:#f1c0d0;
+	background		:#f1a0a5;
 	text-align		:left;
 	font-size		:0;
 }
@@ -77,10 +98,12 @@
 .menu_i{
 	font-family		: at_icon;
 	display			:inline-block;
-	margin			:1vw auto;
+	position		:absolute;
+	top				:0;
+	margin			:0;
 	width			:12vw;
-	height			:10vw;
-	line-height		:10vw;
+	height			:12vw;
+	line-height		:12vw;
 	text-align		:center;
 	font-size		:8vw;
 	color			:#fafafa;
@@ -88,10 +111,12 @@
 
 .menu_s{
 	display			:inline-block;
-	margin			:1vw auto;
+	position		:absolute;
+	top				:0;
+	left			:12vw;
 	width			:28vw;
-	height			:10vw;
-	line-height		:10vw;
+	height			:12vw;
+	line-height		:12vw;
 	text-align		:left;
 	font-size		:6vw;
 	color			:#fafafa;
