@@ -10,11 +10,11 @@ $week[6]="(土)";
 $t_day=date("Ymd",time()-21600);
 $n_day=date("Ymd",time()+86400*7-21600);
 
-$val="1";
+$tmp=explode("/",$_SERVER["REQUEST_URI"]);
+$val=$tmp[count($tmp)-2];
+
 $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
-
 $res = $wpdb->get_results($sql);
-
 foreach($res as $a1):
 	$charm[1]=$a1->charm01;
 	$charm[2]=$a1->charm02;
@@ -89,10 +89,6 @@ $res3 = $wpdb->get_results($sql);
 foreach($res3 as $a3):
 	$charm_list.="<tr><td class=\"prof_l\">".$a3->charm."</td><td class=\"prof_r\">".$charm[$a3->id]."</td></tr>";
 endforeach;
-
-$post=get_post();
-var_dump($post);
-
 ?>
 <div class="person_main">
 <div class="person_left">
@@ -109,12 +105,13 @@ var_dump($post);
 </tr>
 <?PHP ECHO $charm_list?>
 </table>
-
 <table class="sche">
 <?PHP ECHO $list?>
 </table>
 </div>
+
 <div class="person_right">
 </div>
 </div>
+
 <?php get_footer(); ?>

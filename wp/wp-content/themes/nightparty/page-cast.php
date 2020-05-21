@@ -21,7 +21,7 @@ wp_reset_postdata();
 <div class="main">
 	<div class="main_b_all">
 		<? for($s=0;$s<$n;$s++){?>
-			<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/" id="<?PHP echo $dat[$s]->id?>" class="main_b_1">
+			<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $dat[$s]->id?>" id="<?PHP echo $dat[$s]->id?>" class="main_b_1">
 			<img src="<?PHP ECHO $dat[$s]->face?>" class="main_b_1_1">
 			<span class="main_b_1_2"><?PHP echo $dat[$s]->genji?></span>
 			<div class="main_b_1_3"></div>
@@ -29,8 +29,4 @@ wp_reset_postdata();
 		<? } ?>
 	</div>
 </div>
-<form action="/person/" method="post"> </form>
-<form id="form_p" action="<?php echo home_url('/person/'); ?>" method="post"> 
-<input type="hidden" id="val_p" name="val">
-</form>
 <?php get_footer(); ?>

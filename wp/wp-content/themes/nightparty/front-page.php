@@ -52,14 +52,13 @@ wp_reset_postdata();
 <div class="main_b">
 	<h1 class="main_b_title">本日の出勤キャスト</h1>
 <?for($s=0;$s<10;$s++){?>
-	<a href="<?php echo get_template_directory_uri(); ?>/person/" id="c<?PHP echo $dat[$s]->id?>" class="main_b_1">
+	<a href="<?php echo get_template_directory_uri(); ?>/person/<?PHP echo $dat[$s]->id?>" id="c<?PHP echo $dat[$s]->id?>" class="main_b_1">
 		<img src="<?PHP echo $dat[$s]->face?>" class="main_b_1_1">
 		<div class="main_b_1_2"><?PHP echo $dat[$s]->genji?><br><?PHP echo $sch[$dat[$s]->id]?></div>
 		<div class="main_b_1_3"></div>
 	</a>
 <?}?>
 </div>
-
 <div class="main_c">
 	<div class="main_c_1">
 <?php echo $cast[1]["genji"]?><bR>
@@ -77,8 +76,6 @@ wp_reset_postdata();
 	にゃんにゃか<br>
 	</div>
 	<div class="main_c_1">
-	
 	</div>
-
 </div>
 <?php get_footer(); ?>

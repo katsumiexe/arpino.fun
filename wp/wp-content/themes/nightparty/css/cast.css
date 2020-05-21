@@ -11,10 +11,23 @@
 	width		:100vw;
 }
 
+.err{
+	width		:60vw;
+	height		:15vw;
+	color		:#d00000;
+	font-size	:3.5vw;
+	border		:1vw solid #d00000;
+	background	:#ffe0f0;
+	margin		:0 auto;
+	text-align	:center;
+	line-height	:15vw;
+}
+
 .cal_table{
 	border-collapse	:collapse;
-	width			:40vw;
+	width			:44vw;
 	border			:1px solid #303030;
+	margin			:0.5vw auto;
 }
 
 .cal_next,.cal_prev{
@@ -26,7 +39,6 @@
 	font-size	:3.5vw;
 	margin		:1vw;
 }
-
 
 .cal_top{
 	height		:6vw;
@@ -48,33 +60,43 @@
 
 .c1{
 	background:#ff6060;
-	
 }
+
 .c2{
 	background:#dedede;
-	
 }
+
 .c3{
 	background:#90a0ff;
 	
 }
 
-
-.mymenu_slide{
+.mypage_head{
 	position	:fixed;
 	top			:0;
 	left		:0;
-	height		:120vh;
-	background	:#f0fff5;
-	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	height		:10vw;
+	width		:100vw;
+	background	:#f17766;
+	z-index		:15;
 }
 
 
+.mypage_slide{
+	position	:fixed;
+	top			:0;
+	left		:0;
+	padding-top:10vw;
+	height		:120vh;
+	background	:#fff0f5;
+	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	z-index:12;
+}
 
 .mypage_menu{
 	list-style-type	:none;
 	background		:#ffd0d0;
-	width			:40vw;
+	width			:45vw;
 	padding			:0;
 	margin			:0;
 }
@@ -83,16 +105,21 @@
 	background		:#d03030 !important;
 }
 
+.menu_out{
+	background		:#008000 !important;
+}
+
 .menu_1{
 	display			:block;
 	position		:relative;
 	margin			:0 auto;
-	width			:40vw;
+	width			:45vw;
 	height			:12vw;
 	border-bottom	:0.5vw solid #fafafa;
 	background		:#f1a0a5;
 	text-align		:left;
 	font-size		:0;
+	cursor			:pointer;
 }
 
 .menu_i{
@@ -114,7 +141,7 @@
 	position		:absolute;
 	top				:0;
 	left			:12vw;
-	width			:28vw;
+	width			:33vw;
 	height			:12vw;
 	line-height		:12vw;
 	text-align		:left;
@@ -138,7 +165,7 @@
 	border			:1vw solid #ffd0d0;
 	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.6);
 	border-radius	:2vw;
-	margin			:10vh auto;
+	margin			:10vh auto 4vw auto;
 	padding			:1vw;
 	background		:#fff0f5
 	font-size		:5vw;

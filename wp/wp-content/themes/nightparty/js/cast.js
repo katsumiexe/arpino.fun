@@ -1,6 +1,5 @@
 $(function(){ 
-	$('#cast_login').on('click',function () {
-
-	}
-}
-
+	$('#m7').on('click',function () {
+		$('#logout').submit();
+	});
+});
