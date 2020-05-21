@@ -299,9 +299,9 @@
 	left		:1vw;
 	margin		:auto;
 	display		:inline-block;
-	width		:20vw;
+	width		:14vw;
 	height		:8vw;
-	font-size	:4vw;
+	font-size	:3.7vw;
 	margin		:1vw;
 	text-align	:right;
 	vertical-align:top;
@@ -311,7 +311,7 @@
 	position	:absolute;
 	top			:0;
 	bottom		:0;
-	left		:22vw;
+	left		:14vw;
 	margin		:auto;
 	width		:70vw;
 	height		:8vw;
@@ -323,7 +323,7 @@
 	position	:absolute;
 	top			:0;
 	bottom		:0;
-	left		:22vw;
+	left		:14vw;
 	margin		:auto;
 	width		:30vw;
 	height		:7vw;
@@ -341,11 +341,11 @@
 }
 
 #mypage_blog_hour{
-	left		:54vw;
+	left		:35vw;
 }
 
 #mypage_blog_minute{
-	left		:65vw;
+	left		:45vw;
 }
 
 
