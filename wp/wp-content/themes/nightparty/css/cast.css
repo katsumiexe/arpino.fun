@@ -292,17 +292,22 @@
 
 }
 
+.mypage_blog_pack2{
+	position	:relative;
+	display		:inline-block;
+	width		:98vw;
+	margin		:1vw;
+}
+
 .mypage_blog_title_tag{
 	position	:absolute;
 	top			:0;
-	bottom		:0;
 	left		:1vw;
-	margin		:auto;
 	display		:inline-block;
-	width		:14vw;
+	width		:13vw;
 	height		:8vw;
+	line-height	:8vw;
 	font-size	:3.7vw;
-	margin		:1vw;
 	text-align	:right;
 	vertical-align:top;
 }
@@ -310,20 +315,17 @@
 .mypage_blog_title_box{
 	position	:absolute;
 	top			:0;
-	bottom		:0;
-	left		:14vw;
-	margin		:auto;
+	left		:15vw;
 	width		:70vw;
 	height		:8vw;
 	font-size	:5vw;
-	margin		:1vw;
 }
 
 .mypage_blog_date_box{
 	position	:absolute;
 	top			:0;
 	bottom		:0;
-	left		:14vw;
+	left		:15vw;
 	margin		:auto;
 	width		:30vw;
 	height		:7vw;
@@ -336,18 +338,26 @@
 	bottom		:0;
 	margin		:auto;
 	width		:10vw;
-	height		:8vw;
+	height		:7vw;
 	font-size	:5vw;
 }
 
 #mypage_blog_hour{
-	left		:35vw;
+	left		:47vw;
 }
 
 #mypage_blog_minute{
-	left		:45vw;
+	left		:58vw;
 }
 
+.mypage_blog_log_box{
+	position	:absolute;
+	top			:0;
+	left		:15vw;
+	width		:75vw;
+	height		:50vw;
+	font-size	:5vw;
+}
 
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {

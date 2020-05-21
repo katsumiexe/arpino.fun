@@ -150,7 +150,6 @@ for($m=0; $m<$t+$n;$m++){
 <?}elseif($pg==3){?>
 <div class="mypage_main">
 <button type="button" class="mypage_blog_set">新規投稿</button>
-
 <div class="mypage_blog_write">
 <div class="mypage_blog_pack">
 <span class="mypage_blog_title_tag">投稿日</span><input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box">
@@ -160,9 +159,11 @@ for($m=0; $m<$t+$n;$m++){
 <div class="mypage_blog_pack">
 <span class="mypage_blog_title_tag">タイトル</span><input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box">
 </div>
-
-
+<div class="mypage_blog_pack2">
 <span class="mypage_blog_title_tag">本文</span><textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea>
+</div>
+
+
 	<div class="mypage_blog_tag"></div>
 	<div class="mypage_blog_img"></div>
 </div>
