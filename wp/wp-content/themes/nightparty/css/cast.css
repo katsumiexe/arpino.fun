@@ -169,6 +169,7 @@
 	height			:100vh;
 	max-width		:650px;
 	margin			:0 auto;	
+	padding-top		:11vw;
 }
 
 .login_box{
@@ -271,6 +272,47 @@
 	color		:#f0f0f0;
 	text-shadow	:1px 1px 0 rgba(30,30,30,0.8);
 	background	:linear-gradient(#00a000,#008000);
+}
+
+.mypage_blog_write{
+	display		:none;
+	width		:99vw;
+	background	:#f0f0f0;
+	margin		:2vw auto;
+	text-align	:left;
+	padding		:2vw;
+}
+
+
+.mypage_blog_title_tag{
+	display		:inline-block;
+	width		:20vw;
+	height		:10vw;
+	font-size	:4vw;
+	margin		:1vw;
+	text-align	:right;
+	vertical-align:top;
+}
+
+.mypage_blog_title_box{
+	width		:70vw;
+	height		:10vw;
+	font-size	:5vw;
+	margin		:1vw;
+}
+
+.mypage_blog_date_box{
+	width		:30vw;
+	height		:8vw;
+	font-size	:5vw;
+	margin		:1vw;
+}
+
+.mypage_blog_hour_box{
+	width		:10vw;
+	height		:8vw;
+	font-size	:5vw;
+	margin		:1vw;
 }
 
 

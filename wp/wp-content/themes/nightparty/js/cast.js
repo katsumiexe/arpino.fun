@@ -74,4 +74,12 @@ $(function(){
 		}
 	});
 
+	$('.mypage_blog_set').on('click',function () {
+		if($('.mypage_blog_write').css('display') == 'none'){
+			$('.mypage_blog_write').slideDown(100);
+		}else{
+			$('.mypage_blog_write').slideUp(50);
+		}
+	});
+
 });
