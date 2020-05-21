@@ -31,25 +31,34 @@ elseif($_POST):
 	endif;
 endif;
 
+$pg=$_POST["pg"]+0;
 $c_month=$_POST["c_month"];
 if(!$c_month) $c_month=date("Y-m-01");
 
-$b=strtotime("2020-05-01");
-$n=date("w",$b);
-$t=date("t",$b);
+if($_POST["b_month"] == 'next'){
+	$c_month=date("Y-m-01",strtotime($c_month)+3456000);
+}
+
+if($_POST["b_month"] == 'prev'){
+	$c_month=date("Y-m-01",strtotime($c_month)-86400);
+}
+
+$n=date("w",strtotime($c_month));
+$t=date("t",strtotime($c_month));
+$v_month=substr($c_month,0,4)."年".substr($c_month,5,2)."月";
 
 for($m=0; $m<$t+$n;$m++){
 	$d=$m-$n+1;
-	if($m%7==0){
+	$tmp_w=$m%7;
+	if($tmp_w==0){
 		$cal.="</tr><tr>";
 	}
 	if($m-$n>=0){
-		$cal.="<td class=\"cal_td\">".$d."</td>";
+		$cal.="<td class=\"cal_td cc".$tmp_w."\">".$d."</td>";
 	}else{
-		$cal.="<td class=\"cal_td\"></td>";
+		$cal.="<td class=\"cal_td cc".$tmp_w."\"></td>";
 	}
 }
-
 
 ?>
 <html lang="ja">
@@ -70,8 +79,10 @@ for($m=0; $m<$t+$n;$m++){
 <script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
 </head>
 <body class="body">
-
 <? if(!$_SESSION): ?>
+<div class="mypage_head">
+
+</div>
 	<div class="mypage_main">
 	<div class="login_box">
 	<form action="<?php the_permalink();?>" method="post">
@@ -90,14 +101,19 @@ for($m=0; $m<$t+$n;$m++){
 	</div>
 <? else: ?>
 <div class="mypage_head">
-
+	<div class="head_mymenu">
+		<div class="mymenu_a"></div>
+		<div class="mymenu_b"></div>
+		<div class="mymenu_c"></div>
+	</div>	
 </div>
 <div class="mypage_slide">
+<div class="cal_box">
 <table class="cal_table">
 <tr>
-<td class="cal_top" colspan="2"><span class="cal_prev"></span></td>
-<td class="cal_top" colspan="3">07月</td>
-<td class="cal_top" colspan="2"><span class="cal_next"></span></td>
+<td class="cal_top" colspan="1"><span id="prev" class="cal_prev"></span></td>
+<td class="cal_top" colspan="5"><?PHP ECHO $v_month?></td>
+<td class="cal_top" colspan="1"><span id="next" class="cal_next"></span></td>
 </tr>
 <tr>
 <td class="cal_td c1">日</td>
@@ -110,23 +126,81 @@ for($m=0; $m<$t+$n;$m++){
 <?PHP ECHO $cal?>
 </tr>
 </table>
-
+</div>
 <ul class="mypage_menu">
-	<li id="m1" class="menu_1 menu_sel"><span class="menu_i"></span><span class="menu_s">TOP</span></li>
-	<li id="m2" class="menu_1"><span class="menu_i"></span><span class="menu_s">シフト</span></li>
-	<li id="m3" class="menu_1"><span class="menu_i"></span><span class="menu_s">写真</span></li>
-	<li id="m4" class="menu_1"><span class="menu_i"></span><span class="menu_s">BLOG</span></li>
-	<li id="m5" class="menu_1"><span class="menu_i"></span><span class="menu_s">MAIL</span></li>
-	<li id="m6" class="menu_1"><span class="menu_i"></span><span class="menu_s">設定</span></li>
-	<li id="m7" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">LOGOUT</span></li>
+	<li id="m0" class="menu_1<?if($pg+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">TOP</span></li>
+	<li id="m1" class="menu_1<?if($pg+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">シフト</span></li>
+	<li id="m2" class="menu_1<?if($pg+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">写真</span></li>
+	<li id="m3" class="menu_1<?if($pg+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">BLOG</span></li>
+	<li id="m4" class="menu_1<?if($pg+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">MAIL</span></li>
+	<li id="m5" class="menu_1<?if($pg+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+	<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">LOGOUT</span></li>
 </ul>
+
+
+</div>
+<?if($pg==1){?>
+<div class="mypage_main">
+シフト
 </div>
 
-	<div class="mypage_main">
-	</div>
+<?}elseif($pg==2){?>
+<div class="mypage_main">
+写真
+</div>
+
+<?}elseif($pg==3){?>
+<div class="mypage_main">
+
+<button type="button" class="mypage_blog_set">新規投稿</button>
+
+<div class="mypage_blog_write">
+	<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box">
+	<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
+	<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box">
+	<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box">
+	<textarea id="mypage_blog_log" type="text" name="mypage_blog_title" class="mypage_blog_log_box"></textarea>
+	<div class="mypage_blog_tag"></div>
+	<div class="mypage_blog_img"></div>
+</div>
+
+
+<div class="mypage_blog_hist">
+<img src="" class="hist_img">
+<span class="hist_date">2020/05/08 06:00</span>
+<span class="hist_title">にゃんにゃかにゃー</span>
+</div>
+
+</div>
+<?}elseif($pg==4){?>
+<div class="mypage_main">
+メール
+</div>
+
+<?}elseif($pg==5){?>
+<div class="mypage_main">
+設定
+</div>
+
+<?}else{?>
+<div class="mypage_main">
+とっぷ
+</div>
+<?}?>
+
 <? endif; ?>
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
+</form>
+
+<form id="chg_month" action="<?php the_permalink();?>" method="post">
+<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
+<input id="chg" type="hidden" name="b_month">
+</form>
+
+<form id="menu_sel" action="<?php the_permalink();?>" method="post">
+<input id="pg" type="hidden" value="" name="pg">
+<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
 
 </body>

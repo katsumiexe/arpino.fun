@@ -12,15 +12,20 @@
 }
 
 .err{
-	width		:60vw;
-	height		:15vw;
-	color		:#d00000;
-	font-size	:3.5vw;
-	border		:1vw solid #d00000;
-	background	:#ffe0f0;
-	margin		:0 auto;
-	text-align	:center;
-	line-height	:15vw;
+	width			:60vw;
+	height			:15vw;
+	color			:#d00000;
+	font-size		:3.5vw;
+	border			:1vw solid #d00000;
+	background		:#ffe0f0;
+	margin			:0 auto;
+	text-align		:center;
+	line-height		:15vw;
+}
+
+.cal_box{
+	display			:inline-block;
+	height			:50vw;
 }
 
 .cal_table{
@@ -31,13 +36,13 @@
 }
 
 .cal_next,.cal_prev{
-	display		:inline-block;
-	font-family	:at_icon;
-	width		:5vw;
-	height		:5vw;
-	line-height	:5vw;
-	font-size	:3.5vw;
-	margin		:1vw;
+	display			:inline-block;
+	font-family		:at_icon;
+	width			:4vw;
+	height			:5vw;
+	line-height		:5vw;
+	font-size		:3.5vw;
+	cursor			:pointer;
 }
 
 .cal_top{
@@ -68,7 +73,14 @@
 
 .c3{
 	background:#90a0ff;
-	
+}
+
+.cc0{
+	background:#fff0f0;
+}
+
+.cc6{
+	background:#f0f0ff;
 }
 
 .mypage_head{
@@ -77,18 +89,18 @@
 	left		:0;
 	height		:10vw;
 	width		:100vw;
-	background	:#f17766;
+	background	:#f0ffe0;
 	z-index		:15;
+	text-align	:left;
 }
-
 
 .mypage_slide{
 	position	:fixed;
+	left		:-100vw;		
 	top			:0;
-	left		:0;
-	padding-top:10vw;
+	padding-top	:10vw;
 	height		:120vh;
-	background	:#fff0f5;
+	background	:#f0ffe5;
 	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
 	z-index:12;
 }
@@ -196,10 +208,79 @@
 	height			:8vw;
 }
 
+.mypage_on{
+	background:#d00000 !important;
+}
+
+.head_mymenu{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:2vw;
+	bottom			:0; 
+	margin			:auto;
+
+	width			:7vw;
+	height			:7vw;
+	line-height		:7vw;
+
+	text-align		:center;
+	background		:#f17766;
+	color			:#ffffff;
+	border-radius	:1vw;
+	cursor			:pointer;
+}
+
+.mymenu_a{
+	position		:absolute;
+	top				:1vw;
+	left			:1vw;
+	height			:1vw;
+	width			:5vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+	transform-origin:right;
+}
+
+.mymenu_b{
+	position		:absolute;
+	top				:3vw;
+	left			:1vw;
+	height			:1vw;
+	width			:5vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+}
+
+.mymenu_c{
+	position		:absolute;
+	top				:5vw;
+	left			:1vw;
+	height			:1vw;
+	width			:5vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+	transform-origin:right;
+}
+
+.mypage_blog_set{
+	width		:60vw;
+	height		:10vw;
+	font-size	:6vw;	
+	font-weight	:600;
+	color		:#f0f0f0;
+	text-shadow	:1px 1px 0 rgba(30,30,30,0.8);
+	background	:linear-gradient(#00a000,#008000);
+}
+
 
 
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
+
+.head_mymenu{
+	display:none;
+}
 
 .mypage_menu{
 	width			:300px;
