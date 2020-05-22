@@ -162,14 +162,16 @@
 
 
 .mypage_menu{
-	display:flex;
+	display		:flex;
 	position	:fixed;
 	left		:0;		
 	bottom		:0;
 	height		:15vw;
 	width		:100vw;
+	margin		:0;
+	padding		:0;
 	background	:#f0ffe5;
-	z-index:12;
+	z-index		:12;
 }
 
 .menu_sel{
@@ -185,7 +187,7 @@
 	position		:relative;
 	margin			:0 auto;
 	flex			:1;
-	height			:10vw;
+	height			:14vw;
 	background		:#f1a0a5;
 	text-align		:center;
 	font-size		:0;
@@ -196,26 +198,29 @@
 	font-family		: at_icon;
 	display			:inline-block;
 	position		:absolute;
-	top				:0;
-	margin			:0;
-	width			:7vw;
-	height			:7vw;
-	line-height		:7vw;
+	top				:1vw;
+	left:0;
+	right:0;
+	margin			:auto;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
 	text-align		:center;
-	font-size		:6vw;
+	font-size		:7vw;
 	color			:#fafafa;
 }
 
 .menu_s{
 	display			:inline-block;
 	position		:absolute;
-	top				:0;
+	bottom			:0.5vw;
 	left			:0;
-	margin			:auto
-	height			:5vw;
-	line-height		:5vw;
+	right			:0;
+	margin			:auto;
+	height			:4vw;
+	line-height		:4vw;
 	text-align		:center;
-	font-size		:4vw;
+	font-size		:3.5vw;
 	color			:#fafafa;
 	font-weight		:600;
 }

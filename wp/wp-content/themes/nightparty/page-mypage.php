@@ -141,27 +141,12 @@ for($m=0; $m<$t+$n;$m++){
 <input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
 
-<div class="mypage_menu">
-<div class="menu_1">
-<div class="menu_i"></div>
-<div class="menu_s">トップ</div>
-</div>
-<div class="menu_1">
-<div class="menu_i"></div>
-<div class="menu_s">予定</div>
-</div>
-<div class="menu_1">
-<div class="menu_i"></div>
-<div class="menu_s">メール</div>
-</div>
-<div class="menu_1">
-<div class="menu_i"></div>
-<div class="menu_s">ブログ</div>
-</div>
-<div class="menu_1">
-<div class="menu_i"></div>
-<div class="menu_s">設定</div>
-</div>
-</div>
+<ul class="mypage_menu">
+<li id="m0" class="menu_1<?if($pg+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
+<li id="m1" class="menu_1<?if($pg+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">予定</span></li>
+<li id="m2" class="menu_1<?if($pg+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
+<li id="m3" class="menu_1<?if($pg+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
+<li id="m4" class="menu_1<?if($pg+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+</ul>
 </body>
 </html>
