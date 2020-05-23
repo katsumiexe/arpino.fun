@@ -59,7 +59,13 @@ for($m=0; $m<$t+$n;$m++){
 		$cal.="</tr><tr>";
 	}
 	if($m-$n>=0){
-		$cal.="<td class=\"cal_td cc".$tmp_w."\"><span class=\"dy".$tmp_w."\">".$d."</span></td>";
+		$cal.="<td class=\"cal_td cc".$tmp_w."\">";
+		$cal.="<span class=\"dy".$tmp_w."\">".$d."</span>";
+		$cal.="<span class=\"cal_i1 n1\"></span>";
+		$cal.="<span class=\"cal_i2\"></span>";
+		$cal.="<span class=\"cal_i3\"></span>";
+		$cal.="</td>";
+
 	}else{
 		$cal.="<td class=\"cal_td cc".$tmp_w."\"></td>";
 	}
@@ -106,6 +112,66 @@ for($m=0; $m<$t+$n;$m++){
 	</div>
 <? else: ?>
 <div class="mypage_main">
+<?if($pg==3){?>
+<div>
+<button type="button" class="mypage_blog_set">新規投稿</button>
+
+<div class="mypage_blog_write">
+	<div class="mypage_blog_pack">
+		<span class="mypage_blog_title_tag">投稿日</span><br>
+		<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
+		<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
+		<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
+
+		<span class="mypage_blog_title_tag">タイトル</span><br>
+		<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
+
+		<span class="mypage_blog_title_tag">本文</span><br>
+		<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
+	</div>
+
+	<div class="mypage_blog_tag"></div>
+	<div class="mypage_blog_img">
+		<div class="img_box_in">
+			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
+			<div class="img_box_out1"></div>
+			<div class="img_box_out2"></div>
+			<div class="img_box_out3"></div>
+			<div class="img_box_out4"></div>
+			<div class="img_box_out5"></div>
+			<div class="img_box_out6"></div>
+			<div class="img_box_out7"></div>
+			<div class="img_box_out8"></div>
+		</div>
+
+		<div class="img_box_in2">
+			<label for="upd" class="upload_btn"><span class="icon_img upload_icon"></span><span class="upload_txt">画像選択</span></label>
+			<span class="img_rote icon_img"></span>
+			<span class="img_reset icon_img"></span>
+		</div>
+
+		<div class="img_box_in3">
+			<div class="zoom_mi">-</div>
+			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="200" step="1" value="100" class="range_bar"></div>
+			<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+		</div>
+
+		<div class="img_box_in4">
+			<div id="yes_5" class="btn c2">登録</div>　
+			<div class="btn c1">戻る</div>
+		</div>
+	</div>
+</div>
+<div class="mypage_blog_hist">
+<img src="" class="hist_img">
+<span class="hist_date">2020/05/08 06:00</span>
+<span class="hist_title">にゃんにゃかにゃー</span>
+<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+</div>
+
+</div>
+<?}else{?>
 <table class="cal_table">
 <tr>
 <td class="cal_top" colspan="1"></td>
@@ -125,7 +191,6 @@ for($m=0; $m<$t+$n;$m++){
 <?PHP ECHO $cal?>
 </tr>
 </table>
-<? endif; ?>
 
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
@@ -148,5 +213,7 @@ for($m=0; $m<$t+$n;$m++){
 <li id="m3" class="menu_1<?if($pg+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
 <li id="m4" class="menu_1<?if($pg+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
 </ul>
+<? } ?>
+<? endif;?>
 </body>
 </html>
