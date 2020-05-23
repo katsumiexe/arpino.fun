@@ -88,8 +88,12 @@ for($m=0; $m<$t+$n;$m++){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/exif.js?t=<?=time()?>"></script>
+
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jqueryupload.js?t=<?=time()?>"></script>
+
 
 </head>
 <body class="body">
@@ -118,7 +122,6 @@ for($m=0; $m<$t+$n;$m++){
 
 <div class="mypage_blog_write">
 	<div class="mypage_blog_pack">
-
 		<span class="mypage_blog_title_tag">投稿日</span><br>
 		<div style="text-align:left;margin-bottom:3vw;">	
 		<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
@@ -131,10 +134,11 @@ for($m=0; $m<$t+$n;$m++){
 		<span class="mypage_blog_title_tag">本文</span><br>
 		<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
 	</div>
+	<div class="upload_icon tag_open"></div>
+	<div class="upload_icon img_open"></div>
 
-	<div class="mypage_blog_tag"></div>
+	<div class="back">
 	<div class="mypage_blog_img">
-
 		<div class="img_box_in">
 			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
 			<div class="img_box_out1"></div>
@@ -155,7 +159,7 @@ for($m=0; $m<$t+$n;$m++){
 
 		<div class="img_box_in3">
 			<div class="zoom_mi">-</div>
-			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="200" step="1" value="100" class="range_bar"></div>
+			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
 			<div class="zoom_pu">+</div><div class="zoom_box">100</div>
 		</div>
 
@@ -164,6 +168,9 @@ for($m=0; $m<$t+$n;$m++){
 			<div class="btn c1">戻る</div>
 		</div>
 	</div>
+	</div>
+
+
 </div>
 <div class="mypage_blog_hist">
 <img src="" class="hist_img">
@@ -180,7 +187,13 @@ for($m=0; $m<$t+$n;$m++){
 <span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
 </div>
 
+<input id="img_top" type="hidden" name="img_top" value="10">
+<input id="img_left" type="hidden" name="img_left" value="10">
+<input id="img_width" type="hidden" name="img_width" value="10">
+<input id="img_height" type="hidden" name="img_height" value="10">
+<input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="upd" type="file" accept="image/*" style="display:none;">
+
 </div>
 <?}else{?>
 <table class="cal_table">

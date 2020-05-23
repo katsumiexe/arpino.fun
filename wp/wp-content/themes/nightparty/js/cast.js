@@ -117,7 +117,7 @@ $(function(){
 					img_W=img.width;
 					img_H=img.height;
 
-					img_S2=80*VwBase;
+					img_S2=60*VwBase;
 
 					if(img_H > img_W){
 						cvs_W=800;
@@ -127,11 +127,11 @@ $(function(){
 						cvs_X=(cvs_H-cvs_W)/2;
 						cvs_Y=0;
 
-						css_W=80*VwBase;
+						css_W=60*VwBase;
 						css_H=img_H*(css_W/img_W);
 
 						css_A=css_H;
-						css_B=10*VwBase-(css_A-80*VwBase)/2;
+						css_B=10*VwBase-(css_A-60*VwBase)/2;
 
 					}else{
 						cvs_H=800;
@@ -145,7 +145,7 @@ $(function(){
 						css_W=img_W*(css_H/img_H);
 
 						css_A=css_W;
-						css_B=10*VwBase-(css_A-80*VwBase)/2;
+						css_B=10*VwBase-(css_A-60*VwBase)/2;
 
 					}				
 
@@ -328,5 +328,9 @@ $(function(){
 		$('.zoom_box').text(Zoom);
 		$('#img_zoom').val(Zoom);
 		$('#input_zoom').val(Zoom);
+	});
+
+	$('.img_open').on( 'click', function () {
+		$('.back').fadeIn(500);
 	});
 });

@@ -413,7 +413,7 @@
 
 .mypage_blog_date_box{
 	margin			:auto;
-	width			:30vw;
+	width			:36vw;
 	height			:7vw;
 	font-size		:5vw;
 }
@@ -520,21 +520,50 @@
 .hist_watch{
 	right			:18vw;
 }
+
 .hist_comm{
 	right			:1vw;
 }
 
-
-
-.mypage_blog_img{
-	display			:inline-block;
-	position		:relative;
-	width			:96vw;
-	background		:#ffffff;
-	text-align		:center;
-	margin			:1vw auto;
+.back{
+	display			:none;
+	position		:fixed;
+	top				:-10vw;
+	left			:-10vh;
+	width			:120vw;
+	height			:120vh;
+	background		:rgba(30,30,30,0.2);
+	z-index			:20;
 }
 
+
+.img_open{
+	display			:inline-block;
+	position		:relative;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:2vw;
+	border-radius	:1.5vw;
+	border			:1px solid #cccccc;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	text-align		:center;
+	cursor			:pointer;
+}
+
+.mypage_blog_img{
+	position		:fixed;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	width			:90vw;
+	height			:125vw;
+	background		:#ffffff;
+	text-align		:center;
+	border-radius	:1vw
+}
 
 .img_box_in{
 	display			:inline-block;
@@ -545,15 +574,16 @@
 	overflow		:hidden;
 	text-align		:center;
 	background		:#f0f0f0;
+	margin			:5vw auto 0 auto;;
 }
 
 .img_box_in2{
 	display			:flex;
 	justify-content	:center;
 	width			:80vw;
-	height			:10vw;
+	height			:8vw;
 	text-align		:center;
-	margin			:1vw auto;
+	margin			:3vw auto;
 }
 
 .img_box_in3{
@@ -561,14 +591,14 @@
 	flex-wrap		:nowrap;
 	width			:80vw;
 	height			:10vw;
-	margin			:1vw auto;
+	margin			:3vw auto;
 }
 
 .img_box_in4{
-	display			:inline-block;
+	display			:block;
 	width			:80vw;
 	height			:10vw;
-	margin			:1vw auto;
+	margin			:3vw auto;
 }
 
 .img_box_out1{
@@ -696,11 +726,11 @@ input[type=range]::-moz-range-track{
 }
 
 input[type=range]::-moz-range-thumb{
-	background:#f17766;
-	height:7vw;
-	width:7vw;
-	border-radius:50%;
-	border:0.5vw solid #ffffff;
+	background		:#f17766;
+	height			:7vw;
+	width			:7vw;
+	border-radius	:50%;
+	border			:0.5vw solid #ffffff;
 }
 
 .zoom_mi{
@@ -747,16 +777,18 @@ input[type=range]::-moz-range-thumb{
 	color				:#f17766;
 	display				:inline-block;
 	height				:8vw;
-	flex-basis			:10vw;
+	flex-basis			:13vw;
 	line-height			:8vw;
 	text-align			:center;
 	margin-left			:2vw;
 	background			:#ffffff;
+	font-weight			:600;
+	font-size			:4vw;
 }
 
 .upload_icon{
-	font-family:at_icon;
-	font-size:6vw;
+	font-family		:at_icon;
+	font-size		:6vw;
 }
 
 .upload_btn{
@@ -765,7 +797,7 @@ input[type=range]::-moz-range-thumb{
 	width			:33vw;
 	height			:8vw;
 	line-height		:8vw;
-	margin			:2vw 1vw;
+	margin			:0 2vw;
 	border-radius	:1.5vw;
 	border			:1px solid #cccccc;
 	background		:linear-gradient(#f0f0f0,#d0d0d0);
@@ -780,7 +812,7 @@ input[type=range]::-moz-range-thumb{
 	width			:9vw;
 	height			:8vw;
 	line-height		:8vw;
-	margin			:2vw;
+	margin			:0 1vw;
 	border-radius	:1.5vw;
 	border			:1px solid #cccccc;
 	background		:linear-gradient(#f0f0f0,#d0d0d0);
@@ -794,7 +826,7 @@ input[type=range]::-moz-range-thumb{
 	width			:9vw;
 	height			:8vw;
 	line-height		:8vw;
-	margin			:2vw;
+	margin			:0 1vw;
 	border-radius	:1.5vw;
 	border			:1px solid #cccccc;
 	background		:linear-gradient(#f0f0f0,#d0d0d0);
@@ -813,33 +845,32 @@ input[type=range]::-moz-range-thumb{
 	font-size		:4.5vw;
 }
 
-
 .img_rote{
-	display:inline-block;
-	width:7vw;
-	height:7vw;
-	margin:2vw 1vw;
-	font-size:5vw;
-	border-radius:1.5vw;
-	background:linear-gradient(#f0f0f0,#d0d0d0);
-	line-height:7vw;
-	text-align:center;
-	cursor:pointer;
+	display			:inline-block;
+	width			:7vw;
+	height			:7vw;
+	margin			:2vw 1vw;
+	font-size		:5vw;
+	border-radius	:1.5vw;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	line-height		:7vw;
+	text-align		:center;
+	cursor			:pointer;
 }
 
 .img_reset{
-	display:inline-block;
-	width:7vw;
-	height:7vw;
-	line-height:7vw;
-	margin:2vw 2vw;
-	font-size:5vw;
-	border-radius:1.5vw;
-	border:1px solid #ff3030;
-	background:linear-gradient(#f09090,#ff3030);
-	color:#fafafa;
-	text-align:center;
-	cursor:pointer;
+	display			:inline-block;
+	width			:7vw;
+	height			:7vw;
+	line-height		:7vw;
+	margin			:2vw;
+	font-size		:5vw;
+	border-radius	:1.5vw;
+	border			:1px solid #ff3030;
+	background		:linear-gradient(#f09090,#ff3030);
+	color			:#fafafa;
+	text-align		:center;
+	cursor			:pointer;
 }
 
 
