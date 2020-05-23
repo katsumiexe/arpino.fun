@@ -1,4 +1,6 @@
 $(function(){ 
+	var VwBase	=$(window).width()/100;
+
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
 			$(this).removeClass('mypage_on');
@@ -88,6 +90,122 @@ $(function(){
 		firstDay: 1,
 	});
 
+	$('#upd').on('change', function(e){
+		var file = e.target.files[0];
+		var reader = new FileReader();
+
+		if(file.type.indexOf("image") < 0){
+			alert("NO IMAGE FILES");
+			return false;
+		}
+
+		Rote	=0;
+		Zoom	=100;
+
+		var img = new Image();
+		var cvs = document.getElementById('cvs1');
+		var ctx = cvs.getContext('2d');
+
+		reader.onload = (function(file){
+			return function(e){
+
+				img.src = e.target.result;
+				$("#view").attr("src", e.target.result);
+				$("#view").attr("title", file.name);
+
+				img.onload = function() {
+					img_W=img.width;
+					img_H=img.height;
+
+					img_S2=80*VwBase;
+
+					if(img_H > img_W){
+						cvs_W=800;
+						cvs_H=img_H*(cvs_W/img_W);
+						cvs_A=Math.ceil(cvs_H);
+
+						cvs_X=(cvs_H-cvs_W)/2;
+						cvs_Y=0;
+
+						css_W=80*VwBase;
+						css_H=img_H*(css_W/img_W);
+
+						css_A=css_H;
+						css_B=10*VwBase-(css_A-80*VwBase)/2;
+
+					}else{
+						cvs_H=800;
+						cvs_W=img_W*(cvs_H/img_H);
+						cvs_A=Math.ceil(cvs_W);
+
+						cvs_Y=(cvs_W-cvs_H)/2;
+						cvs_X=0;
+
+						css_H=80*VwBase;
+						css_W=img_W*(css_H/img_H);
+
+						css_A=css_W;
+						css_B=10*VwBase-(css_A-80*VwBase)/2;
+
+					}				
+
+					$("#cvs1").attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
+
+					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
+					ImgCode = cvs.toDataURL("image/jpeg");
+
+					$('#img_top').val(css_B);
+					$('#img_left').val(css_B);
+
+				}
+			};
+		})(file);
+		reader.readAsDataURL(file);
+
+		$('#upd').fileExif(function(exif) {
+
+			if (exif['Orientation']) {
+
+				switch (exif['Orientation']) {
+				case 3:
+					Rote = 180;
+					$('#cvs1').css({
+						'transform':'rotate(180deg)',
+					});
+					break;
+
+				case 8:
+					Rote = 270;
+					$('#cvs1').css({
+						'transform':'rotate(270deg)',
+
+					});
+					break;
+
+				case 6:
+					Rote = 90;
+					$('#cvs1').css({
+						'transform':'rotate(90deg)',
+					});
+					break;
+				}
+			}
+		});
+	});
+
+	$("#cvs1").draggable();
+	$("#cvs1").on("mousemove", function() {
+
+		Left = $("#cvs1").css("left");
+		Top = $("#cvs1").css("top");
+
+		$('#img_top').val(Top);
+		$('#img_left').val(Left);
+	});
+
+
+
+
 	$('#yes_5').on('click',function(){
 		if($('#upd').val() == '') {
 			$('#err').text('画像の登録がありません');
@@ -172,8 +290,8 @@ $(function(){
 
 	$( '.zoom_pu' ).on( 'click', function () {
 		Zoom++;
-		if(Zoom >200){
-			Zoom=200;
+		if(Zoom >300){
+			Zoom=300;
 		}
 
 		var css_An	=Math.floor(Zoom*css_A/100);
@@ -186,8 +304,8 @@ $(function(){
 
 	$( '#input_zoom' ).on( 'input', function () {
 		Zoom=$(this).val();
-		if(Zoom > 200){
-			Zoom=200;
+		if(Zoom > 300){
+			Zoom=300;
 		}
 		if(Zoom < 100){
 			Zoom=100;	
@@ -210,7 +328,5 @@ $(function(){
 		$('.zoom_box').text(Zoom);
 		$('#img_zoom').val(Zoom);
 		$('#input_zoom').val(Zoom);
-
 	});
-
 });

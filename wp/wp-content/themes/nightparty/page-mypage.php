@@ -85,10 +85,10 @@ for($m=0; $m<$t+$n;$m++){
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/exif.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
 
 </head>
@@ -118,11 +118,13 @@ for($m=0; $m<$t+$n;$m++){
 
 <div class="mypage_blog_write">
 	<div class="mypage_blog_pack">
+
 		<span class="mypage_blog_title_tag">投稿日</span><br>
+		<div style="text-align:left;margin-bottom:3vw;">	
 		<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
 		<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
 		<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
-
+		</div>
 		<span class="mypage_blog_title_tag">タイトル</span><br>
 		<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
 
@@ -132,6 +134,7 @@ for($m=0; $m<$t+$n;$m++){
 
 	<div class="mypage_blog_tag"></div>
 	<div class="mypage_blog_img">
+
 		<div class="img_box_in">
 			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
 			<div class="img_box_out1"></div>
@@ -145,9 +148,9 @@ for($m=0; $m<$t+$n;$m++){
 		</div>
 
 		<div class="img_box_in2">
-			<label for="upd" class="upload_btn"><span class="icon_img upload_icon"></span><span class="upload_txt">画像選択</span></label>
-			<span class="img_rote icon_img"></span>
-			<span class="img_reset icon_img"></span>
+			<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
+			<span class="upload_icon upload_rote"></span>
+			<span class="upload_icon upload_reset"></span>
 		</div>
 
 		<div class="img_box_in3">
@@ -169,7 +172,15 @@ for($m=0; $m<$t+$n;$m++){
 <span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 <span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
 </div>
+<div class="mypage_blog_hist">
+<img src="" class="hist_img">
+<span class="hist_date">2020/05/08 06:00</span>
+<span class="hist_title">にゃんにゃかにゃー</span>
+<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+</div>
 
+<input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
 <?}else{?>
 <table class="cal_table">
@@ -205,7 +216,6 @@ for($m=0; $m<$t+$n;$m++){
 <input id="pg" type="hidden" value="" name="pg">
 <input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
-
 <ul class="mypage_menu">
 <li id="m0" class="menu_1<?if($pg+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
 <li id="m1" class="menu_1<?if($pg+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">予定</span></li>

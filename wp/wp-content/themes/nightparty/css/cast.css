@@ -378,7 +378,7 @@
 .mypage_blog_write{
 	display		:none;
 	width		:99vw;
-	height		:99vh;
+	min-height	:99vh;
 	background	:#f0f0f0;
 	margin		:2vw auto;
 	text-align	:left;
@@ -391,12 +391,12 @@
 	width		:96vw;
 	margin		:1vw auto;
 	font-size	:4vw;
-	text-align	:left;
+	text-align	:center;
 }
 
 .mypage_blog_title_tag{
 	display		:inline-block;
-	width		:30vw;
+	width		:94vw;
 	height		:4vw;
 	line-height	:4vw;
 	font-size	:3.5vw;
@@ -405,16 +405,17 @@
 }
 
 .mypage_blog_title_box{
-	width		:90vw;
-	height		:8vw;
-	font-size	:5vw;
+	width			:96vw;
+	height			:8vw;
+	font-size		:5vw;
+	margin-bottom	:3vw;
 }
 
 .mypage_blog_date_box{
-	margin		:auto;
-	width		:30vw;
-	height		:7vw;
-	font-size	:5vw;
+	margin			:auto;
+	width			:30vw;
+	height			:7vw;
+	font-size		:5vw;
 }
 
 .mypage_blog_hour_box{
@@ -424,11 +425,12 @@
 }
 
 .mypage_blog_log_box{
-	width			:90vw;
+	width			:96vw;
 	height			:50vw;
 	font-size		:5vw;
 	overflow-y		:scroll;
 	resize			:none;
+	margin-bottom	:3vw;
 }
 
 .mypage_blog_hist{
@@ -527,10 +529,12 @@
 .mypage_blog_img{
 	display			:inline-block;
 	position		:relative;
-	width			:98vw;
-	height			:110vw;
+	width			:96vw;
 	background		:#ffffff;
+	text-align		:center;
+	margin			:1vw auto;
 }
+
 
 .img_box_in{
 	display			:inline-block;
@@ -539,6 +543,7 @@
 	height			:80vw;
 	border			:0.5vw solid #606060;
 	overflow		:hidden;
+	text-align		:center;
 	background		:#f0f0f0;
 }
 
@@ -548,6 +553,7 @@
 	width			:80vw;
 	height			:10vw;
 	text-align		:center;
+	margin			:1vw auto;
 }
 
 .img_box_in3{
@@ -555,13 +561,14 @@
 	flex-wrap		:nowrap;
 	width			:80vw;
 	height			:10vw;
-	z-index			:26;
+	margin			:1vw auto;
 }
 
 .img_box_in4{
-	display		:inline-block;
-	width		:80vw;
-	height		:10vw;
+	display			:inline-block;
+	width			:80vw;
+	height			:10vw;
+	margin			:1vw auto;
 }
 
 .img_box_out1{
@@ -601,7 +608,7 @@
 	top			:10vw;
 	left		:0;
 	width		:10vw;
-	height		:40vw;
+	height		:60vw;
 	border-right:1px solid #ff0000;
 	z-index		:27;
 }
@@ -747,30 +754,52 @@ input[type=range]::-moz-range-thumb{
 	background			:#ffffff;
 }
 
+.upload_icon{
+	font-family:at_icon;
+	font-size:6vw;
+}
+
 .upload_btn{
 	display			:inline-block;
 	position		:relative;
 	width			:33vw;
-	height			:7vw;
-	line-height		:7vw;
+	height			:8vw;
+	line-height		:8vw;
 	margin			:2vw 1vw;
 	border-radius	:1.5vw;
 	border			:1px solid #cccccc;
 	background		:linear-gradient(#f0f0f0,#d0d0d0);
 	text-align		:left;
 	cursor			:pointer;
+	padding			:0 1.5vw;
 }
 
-.upload_icon{
+.upload_rote{
 	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	bottom			:0;
-	left			:0.5vw;
-	width			:8.5vw;
-	line-height		:7vw;
+	position		:relative;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:2vw;
+	border-radius	:1.5vw;
+	border			:1px solid #cccccc;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
 	text-align		:center;
-	font-size		:6vw;
+	cursor			:pointer;
+}
+
+.upload_reset{
+	display			:inline-block;
+	position		:relative;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:2vw;
+	border-radius	:1.5vw;
+	border			:1px solid #cccccc;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	text-align		:center;
+	cursor			:pointer;
 }
 
 .upload_txt{
@@ -779,7 +808,8 @@ input[type=range]::-moz-range-thumb{
 	top				:0;
 	bottom			:0;
 	left			:10vw;
-	line-height		:7vw;
+	height			:8vw;
+	line-height		:8vw;
 	font-size		:4.5vw;
 }
 
