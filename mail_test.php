@@ -26,20 +26,33 @@ if(!$m_list){
 			$main_log	="";
 			$main_img	="";
 
+			$tmp		="";
+			$tmp1		="";
+			$tmp2		="";
+			$tmp3		="";
+			$tmp4		="";
+			$bound		="";
+
 			$tmp=explode("\n",$tmp_body);
 			$tmp1=explode($tmp[0],$tmp_body);
 
-			if(substr_count($tmp1[0], "Content-Type: text/plain")>0){
-				$tmp2=explode("\n",$tmp1[0]);
-
+			if(substr_count($tmp1[1], "Content-Type: text/plain")>0){
+				$tmp2=explode("\n",$tmp1[1]);
 				for($t=0;$t<count($tmp2);$t++){
+
+					if(substr_count($tmp2[$t], "boundary")>0 ){
+						$tmp3=explode('"',$tmp2[$t]);
+						$bound="--".$tmp3[1]."\n";
+						$tmp4=explode($bound,$tmp1[1]);
+						$tmp1[1]=$tmp4[1];
+					}
+
 					if(substr_count($tmp2[$t], "Content-Transfer-Encoding")>0 ){
-						$tmp1[0]=str_replace($tmp2[$t]."\n","",$tmp1[0]);
+						$tmp1[1]=str_replace($tmp2[$t]."\n","",$tmp1[1]);
 
 					}elseif(substr_count($tmp2[$t], "Content-Type:")>0 ){
-						$tmp1[0]=str_replace($tmp2[$t]."\n","",$tmp1[0]);
+						$tmp1[1]=str_replace($tmp2[$t]."\n","",$tmp1[1]);
 						$enc=64;
-//							$main_log.=$tmp2[$t]."\n";
 					}
 				}
 			}
@@ -60,10 +73,10 @@ if(!$m_list){
 				}
 */
 
-			if($enc==64){
-				$tmp_body=base64_decode($tmp1[0]);
+			if($enc==664){
+				$tmp_body=base64_decode($tmp1[1]);
 			}else{
-				$tmp_body=$main_log;
+				$tmp_body=$tmp1[1];
 			}	
 			$enc="";
 		}
