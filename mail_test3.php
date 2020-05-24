@@ -28,25 +28,21 @@ for($s=0;$s<$num+1;$s++){
 
 	$sb=trim(mb_decode_mimeheader($head->subject));
 
-	print($sb."□<br>\n");	
-	print($tmp_ttl."□".$tmp_addr."<br>\n");	
+	print("TITLE□".$sb."<br>\n");	
+	print("ADDR_NAME□".$tmp_ttl."<br>\n");	
+	print("ADDR□".$tmp_addr."<br>\n");	
 
 	$body = imap_body($m_list,$s);
-	foreach ((array)$body as $a2) {
-		echo $a2."<hr>";
-//		if(substr_count($a2,"Content-Type: text/plain;")>0){
-			$tmp=explode("\n",$a2);
-			$tmp2=explode($tmp[0]."\n",$a2);
-			$a2=$tmp2[1];
-			$a2=str_replace($tmp[1],"",$a2);
-//		}
-		$a2 = mb_convert_encoding($a2, 'UTF-8', 'auto');
-		$a2 =str_replace("\n","<br>",$a2);
-		echo $a2."<hr>";
-    }
+	echo "<hr>";
+	$body=str_replace("\n","<br>",$body);
+	
+	echo $body."<hr style=\"height:5px\">";
 }
-
 print("<hr>");
+
+imap_delete($m_list);
+imap_expunge($m_list);
+imap_close($m_list);
 
 }
 ?>
