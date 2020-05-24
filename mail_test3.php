@@ -39,11 +39,11 @@ for($s=0;$s<$num+1;$s++){
 	echo $body."<hr style=\"height:5px\">";
 }
 print("<hr>");
-
-imap_delete($m_list);
+/*
+imap_delete($m_list,1);
 imap_expunge($m_list);
 imap_close($m_list);
-
+*/
 }
 ?>
 <hr>
