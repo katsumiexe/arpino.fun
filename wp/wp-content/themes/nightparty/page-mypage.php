@@ -15,25 +15,113 @@ $blog_date=$_POST["blog_date"];
 if(!$blog_date) $blog_date=date("Y/m/d");
 
 
-if($_SESSION):
-	if(time()<$_SESSION["time"]+3600):
+if($_SESSION){
+	if(time()<$_SESSION["time"]+3600){
 		$_SESSION["time"]=time();
-		$rows = $wpdb->get_results("SELECT * FROM wp01_0cast WHERE cast_id='".$_session["cast_id"]."'");
+		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_session["cast_id"]."'",ARRAY_A );
 		$_SESSION=$rows;
-	else:
+	}else{
 		$_SESSION="";
 		session_destroy();
-	endif;
+	}
 
-elseif($_POST):
-	$rows = $wpdb->get_results("SELECT * FROM wp01_0cast WHERE cast_id='".$_POST["log_in_set"]."' AND cast_pass='".$_POST["log_pass_set"]."'");
-	if($rows):
+}elseif($_POST){
+	$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_POST["log_in_set"]."' AND cast_pass='".$_POST["log_pass_set"]."'",ARRAY_A );
+	if($rows){
 		$_SESSION["time"]=time();
 		$_SESSION=$rows;
-	else:
+	}else{
 		$err="IDもしくはパスワードが違います";
-	endif;
-endif;
+	}
+}
+
+if($_SESSION){
+
+/*--■メールチェック--*/
+$s_url=get_option('mailserver_url');
+$s_port=get_option('mailserver_port');
+
+$sv="{".$s_url.":".$s_port."/pop3}INBOX";
+$sv="{".$s_url.":".$s_port."}INBOX";
+$sv="{".$s_url."}INBOX";
+$m_list=imap_open ($sv,$_SESSION["castmail"],$_SESSION["castmail_pass"]);
+
+$num = imap_num_msg($m_list);
+if(!$m_list){
+	print("error");
+}else{
+	for($s=0;$s<$num+1;$s++){	
+		$head = imap_headerinfo($m_list,$s);
+		$tmp_from=explode('<',$head->fromaddress);
+
+		$dat[$s]["udate"]		=date("Y-m-d H:i:s",$head->udate);
+		$dat[$s]["date"]		=trim($head->date);
+		$dat[$s]["subject"]		=trim(mb_decode_mimeheader($head->subject));
+		$dat[$s]["from"]		=trim(mb_decode_mimeheader($tmp_from[0]));
+		$dat[$s]["address"]		=trim(str_replace(">","",$tmp_from[1]));
+
+		$tmp_body = imap_body($m_list,$s);
+
+		if(substr_count($tmp_body,"Content-Type")>1){
+
+			$tmp_log="";
+			$main_log="";
+			$main_img="";
+
+			$tmp=explode("\n",$tmp_body);
+			$tmp1=explode($tmp[0],$tmp_body);
+
+			for($n=0;$n<count($tmp1);$n++){
+
+				if(substr_count($tmp1[$n], "Content-Type: text/plain")>0){
+					$tmp2=explode("\n",$tmp1[$n]);
+
+					for($t=0;$t<count($tmp2);$t++){
+						if(substr_count($tmp2[$t], "Content-Transfer-Encoding")==0 && substr_count($tmp2[$t], "Content-Type:")==0 ){
+							$main_log.=$tmp2[$t];
+						}
+					}
+				}
+
+				if(substr_count($tmp1[$n], "Content-Type: image/")>0){
+					$tmp3=explode("\n",$tmp1[$n]);
+
+					for($c=0;$c<count($tmp3);$c++){
+						if(substr_count($tmp3[$c], "Content-Type: image/")>0){
+							$tmp4=explode('"',$tmp3[$c]);
+							$main_img=$tmp4[1];
+
+						}elseif(substr_count($tmp3[$c], "Content-")===0){
+							$tmp_body.=$tmp3[$c];
+						}
+					}
+				}
+			}
+
+			if(substr_count($tmp_body, "Content-Transfer-Encoding: base64")>0){
+				$tmp_body=base64_decode($main_log);
+			}else{
+				$tmp_body=$main_log;
+			}	
+		}
+
+		$dat[$s]["body"]=$tmp_body;
+		$dat[$s]["img"]=$main_img;
+
+    }
+	for($n=0;$n<$s;$n++){
+		print($dat[$n]["udate"]."<br>\n");
+		print($dat[$n]["date"]."<br>\n");
+		print($dat[$n]["subject"]."<br>\n");
+		print($dat[$n]["from"]."<br>\n");
+		print($dat[$n]["address"]."<br>\n");
+		print($dat[$n]["img"]."<br>\n");
+		print("<hr>");
+		print($dat[$n]["body"]);
+		print("<hr><hr>");
+	}
+}
+
 
 $pg=$_POST["pg"]+0;
 $c_month=$_POST["c_month"];
@@ -70,6 +158,7 @@ for($m=0; $m<$t+$n;$m++){
 		$cal.="<td class=\"cal_td cc".$tmp_w."\"></td>";
 	}
 }
+}
 ?>
 <html lang="ja">
 <head>
@@ -92,8 +181,6 @@ for($m=0; $m<$t+$n;$m++){
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/jqueryupload.js?t=<?=time()?>"></script>
-
 
 </head>
 <body class="body">
@@ -116,10 +203,24 @@ for($m=0; $m<$t+$n;$m++){
 	</div>
 <? else: ?>
 <div class="mypage_main">
-<?if($pg==3){?>
+<?if($pg==2){?>
+<div class="mypage_mail">
+
+<div class="mypage_mail_hist">
+<img src="" class="mail_img">
+<span class="mail_date">2020/05/08 06:00</span>
+<span class="mail_tmp"></span>
+<span class="mail_res"></span>
+<span class="mail_star"></span>
+<span class="mail_title">にゃんにゃかにゃー</span>
+<span class="mail_gp"></span><span class="mail_name">大前田大五郎様</span>
+</div>
+
+
+
+<?}elseif($pg==3){?>
 <div>
 <button type="button" class="mypage_blog_set">新規投稿</button>
-
 <div class="mypage_blog_write">
 	<div class="mypage_blog_pack">
 		<span class="mypage_blog_title_tag">投稿日</span><br>
@@ -136,7 +237,6 @@ for($m=0; $m<$t+$n;$m++){
 	</div>
 	<div class="upload_icon tag_open"></div>
 	<div class="upload_icon img_open"></div>
-
 	<div class="back">
 	<div class="mypage_blog_img">
 		<div class="img_box_in">
@@ -169,8 +269,6 @@ for($m=0; $m<$t+$n;$m++){
 		</div>
 	</div>
 	</div>
-
-
 </div>
 <div class="mypage_blog_hist">
 <img src="" class="hist_img">
@@ -192,9 +290,10 @@ for($m=0; $m<$t+$n;$m++){
 <input id="img_width" type="hidden" name="img_width" value="10">
 <input id="img_height" type="hidden" name="img_height" value="10">
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
+<input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
 <input id="upd" type="file" accept="image/*" style="display:none;">
-
 </div>
+
 <?}else{?>
 <table class="cal_table">
 <tr>
@@ -229,14 +328,12 @@ for($m=0; $m<$t+$n;$m++){
 <input id="pg" type="hidden" value="" name="pg">
 <input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
+<? } ?>
 <ul class="mypage_menu">
 <li id="m0" class="menu_1<?if($pg+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
 <li id="m1" class="menu_1<?if($pg+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">予定</span></li>
 <li id="m2" class="menu_1<?if($pg+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
 <li id="m3" class="menu_1<?if($pg+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
 <li id="m4" class="menu_1<?if($pg+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
-</ul>
-<? } ?>
-<? endif;?>
-</body>
+</ul><? endif;?></body>
 </html>

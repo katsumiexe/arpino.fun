@@ -22,10 +22,9 @@ if(!$m_list){
 		$tmp_body = imap_body($m_list,$s);
 
 		if(substr_count($tmp_body,"Content-Type")>1){
-
-			$tmp_log="";
-			$main_log="";
-			$main_img="";
+			$tmp_log	="";
+			$main_log	="";
+			$main_img	="";
 
 			$tmp=explode("\n",$tmp_body);
 			$tmp1=explode($tmp[0],$tmp_body);

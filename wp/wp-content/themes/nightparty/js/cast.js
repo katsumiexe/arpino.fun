@@ -219,9 +219,9 @@ $(function(){
 			var ImgHeight	=$('#img_Height').val();
 			var ImgZoom		=$('#img_zoom').val();
 
-			$.post("post_config_img_set.php",
+			$.post(".post/blog_img_set.php",
 			{
-				'img_id':IdTmp,
+				'img_url':IdTmp,
 				'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
 				'img_top':ImgTop,
 				'img_left':ImgLeft,
@@ -267,8 +267,8 @@ $(function(){
 		}
 	});
 
-	$('.pop00,.c1').on('click',function(){
-		$('.pop00,.pop01,.pop02,.pop03,.pop04,.pop05,.pop07,.err00').fadeOut(150);
+	$('.c1').on('click',function(){
+		$('.back').fadeOut(150);
 		var cvs = document.getElementById('cvs1');
 		var ctx = cvs.getContext('2d');
 		ctx.clearRect(0, 0, cvs_A,cvs_A);
