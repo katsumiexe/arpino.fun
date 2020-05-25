@@ -19,12 +19,14 @@ if(!$m_list){
 		$dat[$s]["from"]		=trim(mb_decode_mimeheader($tmp_from[0]));
 		$dat[$s]["address"]		=trim(str_replace(">","",$tmp_from[1]));
 
-		$tmp_body = imap_body($m_list,$s);
+		$tmp_body	= imap_body($m_list,$s);
+		$tmp_body	= trim($tmp_body);
 
 		if(strpos($tmp_body,"Content-Type") !== false){
 			$bound		="";
 			$chara		="";
 			$enc		="";
+			$total_list	="";
 
 			$tmp=explode("\n",$tmp_body);
 			$tmp1=explode($tmp[0],$tmp_body);
@@ -32,8 +34,6 @@ if(!$m_list){
 
 
 			for($n=0;$n<count($tmp2);$n++){
-
-//print($s."■".$tmp2[$n]."<br>\n");
 
 				if(strpos($tmp2[$n], "boundary") !== false){
 					$tmp3=explode('"',$tmp2[$n]);
@@ -60,16 +60,24 @@ if(!$m_list){
 				$total_list=$tmp4[1];
 			}
 
+			if($enc=="quoted-printable"){
+				$tmp_body=quoted_printable_decode($total_list);
 
-			if($enc=="base64"){
+			}elseif($enc=="base64"){
 				$tmp_body=base64_decode($total_list);
+
 			}else{
 				$tmp_body=$total_list;
 			}
+
+			if($chara=="iso-2022-jp"){
+				$tmp_body=mb_convert_encoding($tmp_body,"UTF-8","iso-2022-jp");
+			}
+
 		}
 
 
-//print($s."◇".$tmp_body."<br>\n");
+print($s."◇".$enc."□".$chara."<br>\n");
 
 		$dat[$s]["body"]=str_replace("\n","<br>",$tmp_body);
 		$dat[$s]["img"]=$main_img;

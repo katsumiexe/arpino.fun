@@ -36,7 +36,7 @@ for($s=0;$s<$num+1;$s++){
 	echo "<hr>";
 	$body=str_replace("\n","<br>",$body);
 	
-	echo $body."<hr style=\"height:5px\">";
+	echo "<hr>".$body."<hr style=\"height:5px\">";
 }
 print("<hr>");
 /*
