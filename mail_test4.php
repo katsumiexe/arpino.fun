@@ -21,52 +21,57 @@ if(!$m_list){
 
 		$tmp_body = imap_body($m_list,$s);
 
-		if(substr_count($tmp_body,"Content-Type")>1){
-			$tmp_log	="";
-			$main_log	="";
-			$main_img	="";
-
-			$tmp		="";
-			$tmp1		="";
-			$tmp2		="";
-			$tmp3		="";
-			$tmp4		="";
+		if(strpos($tmp_body,"Content-Type") !== false){
 			$bound		="";
+			$chara		="";
+			$enc		="";
 
 			$tmp=explode("\n",$tmp_body);
-			for($n=0;$n<count($tmp);$n++){
+			$tmp1=explode($tmp[0],$tmp_body);
+			$tmp2=explode("\n",$tmp1[1]);
 
-				if(strpos($tmp[$n], "boundary") !== false){
-					$tmp3=explode('"',$tmp[$n]);
+
+			for($n=0;$n<count($tmp2);$n++){
+
+//print($s."■".$tmp2[$n]."<br>\n");
+
+				if(strpos($tmp2[$n], "boundary") !== false){
+					$tmp3=explode('"',$tmp2[$n]);
 					$bound="--".$tmp3[1];
 				}
 
-				if(strpos($tmp[$n], "charset") !== false){
-					$tmp3=explode('"',$tmp[$n]);
+				if(strpos($tmp2[$n], "charset") !== false){
+					$tmp3=explode('"',$tmp2[$n]);
 					$chara=$tmp3[1];
 				}
 
-				if(strpos($tmp[$n], "Encoding") !== false){
-					$tmp3=explode(':',$tmp[$n]);
+				if(strpos($tmp2[$n], "Encoding") !== false){
+					$tmp3=explode(':',$tmp2[$n]);
 					$enc=trim($tmp3[1]);
 				}
 
-				if(strpos($tmp[$n], "Content-") === false){
-					$m_list.=$tmp[$n]."\n";
+				if(strpos($tmp2[$n], "Content-") === false && strpos($tmp2[$n], "charset") === false){
+					$total_list.=$tmp2[$n]."\n";
 				}
 			}
 
+			if($bound){
+				$tmp4=explode($bound,$total_list);
+				$total_list=$tmp4[1];
+			}
 
 
-			if($enc==664){
-				$tmp_body=base64_decode($tmp1[1]);
+			if($enc=="base64"){
+				$tmp_body=base64_decode($total_list);
 			}else{
-				$tmp_body=$tmp1[1];
-			}	
-			$enc="";
+				$tmp_body=$total_list;
+			}
 		}
 
-		$dat[$s]["body"]=$tmp_body;
+
+//print($s."◇".$tmp_body."<br>\n");
+
+		$dat[$s]["body"]=str_replace("\n","<br>",$tmp_body);
 		$dat[$s]["img"]=$main_img;
 
     }
