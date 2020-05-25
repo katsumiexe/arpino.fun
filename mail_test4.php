@@ -34,54 +34,29 @@ if(!$m_list){
 			$bound		="";
 
 			$tmp=explode("\n",$tmp_body);
-			$tmp1=explode($tmp[0],$tmp_body);
+			for($n=0;$n<count($tmp);$n++){
 
-			if(substr_count($tmp1[1], "Content-Type: text/plain")>0){
+				if(strpos($tmp[$n], "boundary") !== false){
+					$tmp3=explode('"',$tmp[$n]);
+					$bound="--".$tmp3[1];
+				}
 
-				$tmp2=explode("\n",$tmp1[1]);
-	
-				for($t=0;$t<count($tmp2);$t++){
-	
-					if(substr_count($tmp2[$t], "boundary")>0 ){
+				if(strpos($tmp[$n], "charset") !== false){
+					$tmp3=explode('"',$tmp[$n]);
+					$chara=$tmp3[1];
+				}
 
-						$tmp3=explode('"',$tmp2[$t]);
-						$bound="--".$tmp3[1]."\n";
+				if(strpos($tmp[$n], "Encoding") !== false){
+					$tmp3=explode(':',$tmp[$n]);
+					$enc=trim($tmp3[1]);
+				}
 
-						$tmp4=explode($bound,$tmp1[1]);
-
-print($tmp4[0]."■<br>\n");
-print($tmp4[1]."■<br>\n");
-print($tmp4[2]."■<br>\n");
-print($tmp4[3]."■<br>\n");
-
-//						$tmp1[1]=$tmp4[2];
-					}
-
-					if(substr_count($tmp2[$t], "Content-Transfer-Encoding")>0 ){
-						$tmp1[1]=str_replace($tmp2[$t]."\n","",$tmp1[1]);
-
-					}elseif(substr_count($tmp2[$t], "Content-Type:")>0 ){
-						$tmp1[1]=str_replace($tmp2[$t]."\n","",$tmp1[1]);
-						$enc=64;
-					}
+				if(strpos($tmp[$n], "Content-") === false){
+					$m_list.=$tmp[$n]."\n";
 				}
 			}
 
-/*
-				if(substr_count($tmp1[$n], "Content-Type: image/")>0){
-					$tmp3=explode("\n",$tmp1[$n]);
 
-					for($c=0;$c<count($tmp3);$c++){
-						if(substr_count($tmp3[$c], "Content-Type: image/")>0){
-							$tmp4=explode('"',$tmp3[$c]);
-							$main_img=$tmp4[1];
-
-						}elseif(substr_count($tmp3[$c], "Content-")===0){
-							$tmp_body.=$tmp3[$c];
-						}
-					}
-				}
-*/
 
 			if($enc==664){
 				$tmp_body=base64_decode($tmp1[1]);
