@@ -55,6 +55,14 @@ $(function(){
 		}
 	});
 
+	$('.mail_al').on('click',function () {
+		$('.mypage_mail_detail').animate({'right':'0'},500);
+		Tmp=$(this).attr('id').replace('mail','');
+		$('.mail_detail_title').html($('#mail_title' + Tmp).text())
+		$('.mail_detail_log').html($('#mail_log' + Tmp).val())
+	});
+
+
 	$('.cal_prev').on('click',function () {
 		$('#chg').val('prev');
 		$('#chg_month').submit();

@@ -50,10 +50,9 @@ if($_SESSION){
 
 	$sql	 ="SELECT * FROM wp01_0castmail_recive ";
 	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_recive.from_address=wp01_0castomer_list.address";
-	$sql	.=" WHERE cast_id='".$_SESSION["id"]."'";
-	$sql	.=" ORDER BY res_mail_id DESC";
+	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
+	$sql	.=" ORDER BY send_date DESC";
 	$n=0;
-print($sql);
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($mail_data0 AS $tmp){
 		$mail_data[$n]=$tmp;
@@ -149,36 +148,40 @@ print($sql);
 <?if($cast_page==1){?>
 よてい
 
+
+
 <?}elseif($cast_page==2){?>
 <div class="mypage_mail">
-
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-
-
-
 		<img src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
-		<span class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
-		<span class="mail_tmp"></span>
-		<span class="mail_res"></span>
-		<span class="mail_star"></span>
-		<span class="mail_title"><?=$mail_data[$s]["title"]?></span>
-		<span class="mail_al"></span>
-		<span class="mail_gp"></span><span class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
+		<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
+		<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
+		<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
+		<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
+		<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
+		<span id="mail<?=$s?>" class="mail_al"></span>
+		<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
+
+		<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
+		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_1"]?>"><? } ?>
+		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_2"]?>"><? } ?>
+		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_3"]?>"><? } ?>
+
 	</div>
 	<?}?>
 </div>
+
 
 <div class="mypage_mail_detail">
 	<span class="mail_detail_top"></span>
 	<span class="mail_detail_head"></span>
 	<span class="mail_detail_title"></span>
-	<span class="mail_detail_body">
-		<span class="mail_detail_img_box">
-			<img class="mail_detail_img">
-			<img class="mail_detail_img">
-			<img class="mail_detail_img">
-		</span>
+	<span class="mail_detail_log"></span>
+	<span class="mail_detail_img_box">
+		<img class="mail_detail_img">
+		<img class="mail_detail_img">
+		<img class="mail_detail_img">
 	</span>
 </div>
 

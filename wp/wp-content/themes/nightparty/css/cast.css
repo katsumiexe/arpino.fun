@@ -874,8 +874,6 @@ input[type=range]::-moz-range-thumb{
 	cursor			:pointer;
 }
 
-
-
 .btn {
 	display			: inline-block;
 	position		: relative;
@@ -891,7 +889,6 @@ input[type=range]::-moz-range-thumb{
 	cursor			: pointer;
 	padding:0;
 }
-
 
 .btn:active {
 	-webkit-transform: translateY(2px);
@@ -925,13 +922,14 @@ input[type=range]::-moz-range-thumb{
 	border			:0.5vw solid #cccccc;
 }
 
-mypage_mail_detail{
-	display			:none;
+.mypage_mail_detail{
 	position		:fixed;
+	top				:0;
+	right			:-100vw;
 	width			:100vw;
 	height			:100vh;
+	background		:#f0f0f0;
 }
-
 
 .mail_yet{
 	background:#ffffd0;
@@ -992,6 +990,10 @@ mypage_mail_detail{
 	background		:#e0e0e0;
 	color			:#a0a0a0;	
 	text-align		:center;
+}
+
+.mail_ck{
+	color:#0000ff;
 }
 
 .mail_res,.mail_tmp,.mail_star,.mail_gp{
