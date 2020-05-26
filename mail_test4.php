@@ -73,12 +73,10 @@ if(!$m_list){
 				$tmp_body=mb_convert_encoding($tmp_body,"UTF-8","iso-2022-jp");
 			}
 		}
-
 print($s."◇".$enc."□".$chara2."<br>\n");
 
 		$dat[$s]["body"]=str_replace("\n","<br>",$tmp_body);
 		$dat[$s]["img"]=$main_img;
-
     }
 	for($n=0;$n<$s;$n++){
 		print($dat[$n]["udate"]."<br>\n");

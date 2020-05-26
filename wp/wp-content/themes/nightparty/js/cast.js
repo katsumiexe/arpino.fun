@@ -71,7 +71,7 @@ $(function(){
 			$('#logout').submit();
 
 		}else{
-			$('#pg').val(Tmp);
+			$('#cast_page').val(Tmp);
 			$('#menu_sel').submit();
 		}
 	});

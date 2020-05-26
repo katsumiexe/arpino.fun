@@ -925,6 +925,18 @@ input[type=range]::-moz-range-thumb{
 	border			:0.5vw solid #cccccc;
 }
 
+mypage_mail_detail{
+	display			:none;
+	position		:fixed;
+	width			:100vw;
+	height			:100vh;
+}
+
+
+.mail_yet{
+	background:#ffffd0;
+}
+
 .mail_img{
 	position		:absolute;
 	top				:0.5vw;
@@ -967,6 +979,21 @@ input[type=range]::-moz-range-thumb{
 	color			:#303030;	
 }
 
+.mail_al{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0;
+	right			:0;
+	height			:18vw;
+	line-height		:18vw;
+	width			:5vw;
+	font-size		:4vw;
+	background		:#e0e0e0;
+	color			:#a0a0a0;	
+	text-align		:center;
+}
+
 .mail_res,.mail_tmp,.mail_star,.mail_gp{
 	font-family		:at_icon;
 	display			:inline-block;
@@ -981,17 +1008,17 @@ input[type=range]::-moz-range-thumb{
 
 .mail_res{
 	top				:0.5vw;
-	right			:1vw;
+	right			:6vw;
 }
 
 .mail_tmp{
 	top				:0.5vw;
-	right			:7vw;
+	right			:12vw;
 }
 
 .mail_star{
 	top				:0.5vw;
-	right			:13vw;
+	right			:18vw;
 }
 
 .mail_gp{
