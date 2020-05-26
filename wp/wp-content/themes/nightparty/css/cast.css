@@ -922,7 +922,7 @@ input[type=range]::-moz-range-thumb{
 	height			:18vw;
 	width			:96vw;
 	margin			:1vw auto;
-	border			:0.5vw solid #0000d0;
+	border			:0.5vw solid #cccccc;
 }
 
 .mail_img{

@@ -34,13 +34,12 @@ if(!$m_list){
 
 
 			for($n=0;$n<count($tmp2);$n++){
-
 				if(strpos($tmp2[$n], "boundary") !== false){
 					$tmp3=explode('"',$tmp2[$n]);
 					$bound="--".$tmp3[1];
 				}
 
-				if(strpos($tmp2[$n], "charset") !== false){
+				if(strpos($tmp2[$n], "charset") !== false && !$chara){
 					$tmp3=explode('"',$tmp2[$n]);
 					$chara=$tmp3[1];
 				}
@@ -73,11 +72,9 @@ if(!$m_list){
 			if($chara=="iso-2022-jp"){
 				$tmp_body=mb_convert_encoding($tmp_body,"UTF-8","iso-2022-jp");
 			}
-
 		}
 
-
-print($s."◇".$enc."□".$chara."<br>\n");
+print($s."◇".$enc."□".$chara2."<br>\n");
 
 		$dat[$s]["body"]=str_replace("\n","<br>",$tmp_body);
 		$dat[$s]["img"]=$main_img;

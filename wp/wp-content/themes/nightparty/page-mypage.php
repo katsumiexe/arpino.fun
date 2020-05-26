@@ -11,9 +11,13 @@ if($_POST["log_out"] == 1){
 	session_destroy();
 }
 
+$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
+$ob_holiday = json_decode($holiday,true);
+
+//$ob_holiday["20200101"];
+
 $blog_date=$_POST["blog_date"];
 if(!$blog_date) $blog_date=date("Y/m/d");
-
 
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
@@ -143,9 +147,16 @@ $v_month=substr($c_month,5,2)."月";
 for($m=0; $m<$t+$n;$m++){
 	$d=$m-$n+1;
 	$tmp_w=$m%7;
+
+	$v_ymd=date("Ymd",strtotime($c_month)+($d-1)*86400);
+
 	if($tmp_w==0){
 		$cal.="</tr><tr>";
 	}
+	if($ob_holiday[$v_ymd]){
+		$tmp_w=0;
+	}
+
 	if($m-$n>=0){
 		$cal.="<td class=\"cal_td cc".$tmp_w."\">";
 		$cal.="<span class=\"dy".$tmp_w."\">".$d."</span>";
@@ -181,7 +192,6 @@ for($m=0; $m<$t+$n;$m++){
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
-
 </head>
 <body class="body">
 <? if(!$_SESSION): ?>
@@ -207,7 +217,7 @@ for($m=0; $m<$t+$n;$m++){
 <div class="mypage_mail">
 
 <div class="mypage_mail_hist">
-<img src="" class="mail_img">
+<img src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
 <span class="mail_date">2020/05/08 06:00</span>
 <span class="mail_tmp"></span>
 <span class="mail_res"></span>
@@ -215,8 +225,6 @@ for($m=0; $m<$t+$n;$m++){
 <span class="mail_title">にゃんにゃかにゃー</span>
 <span class="mail_gp"></span><span class="mail_name">大前田大五郎様</span>
 </div>
-
-
 
 <?}elseif($pg==3){?>
 <div>
