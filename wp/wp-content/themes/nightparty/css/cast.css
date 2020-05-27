@@ -1032,10 +1032,10 @@ input[type=range]::-moz-range-thumb{
 	position		:absolute;
 	top				:0.5vw;
 	left			:0.5vw;
-	height			:17vw;
-	width			:17vw;
+	height			:16vw;
+	width			:16vw;
 	border-radius	:50%;
-	border			:1vw solid #30300;;
+	border			:0.5vw solid #303030;
 
 }
 
