@@ -942,12 +942,21 @@ input[type=range]::-moz-range-thumb{
 	text-align		:left;
 }
 
+.mail_detail_img{
+	position		:absolute;
+	bottom			:1vw;
+	right			:1vw;
+	width			:14vw;
+	height			:14vw;
+}
+
 .mail_detail_name{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:0.5vw;
-	left:			:8vw;
-	font-size		:0;
+	bottom			:1vw;
+	left			:9vw;
+	font-size		:4.5vw;;
+	font-weight		:600;
 }
 
 .mail_detail_back{

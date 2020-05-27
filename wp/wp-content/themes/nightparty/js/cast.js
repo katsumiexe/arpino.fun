@@ -63,11 +63,11 @@ $(function(){
 		$('.mail_detail_log').html($('#mail_log' + Tmp).val());
 		$('.mail_detail_date').html($('#mail_date' + Tmp).text());
 		$('.mail_detail_icon').html($('#mail_icon' + Tmp).html());
-
-		$('.mail_detail_img').attr('src',$('#mail_icon' + Tmp).attr('src'));
+		$('.mail_detail_img').attr('src',$('#mail_img' + Tmp).attr('src'));
 	});
 
-	$('.mypage_detail_back').on('click',function () {
+
+	$('.mail_detail_back').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
 	});
 

@@ -154,7 +154,7 @@ if($_SESSION){
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-		<img id="mail_image<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
+		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
 		<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
 		<span id="mail_icon<?=$s?>" class="mail_icon">
 		<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
