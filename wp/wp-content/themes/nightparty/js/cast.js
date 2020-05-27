@@ -56,11 +56,22 @@ $(function(){
 	});
 
 	$('.mail_al').on('click',function () {
-		$('.mypage_mail_detail').animate({'right':'0'},500);
+		$('.mypage_mail_detail').animate({'right':'0'},150);
 		Tmp=$(this).attr('id').replace('mail','');
-		$('.mail_detail_title').html($('#mail_title' + Tmp).text())
-		$('.mail_detail_log').html($('#mail_log' + Tmp).val())
+		$('.mail_detail_name').html($('#mail_name' + Tmp).text());
+		$('.mail_detail_title').html($('#mail_title' + Tmp).text());
+		$('.mail_detail_log').html($('#mail_log' + Tmp).val());
+		$('.mail_detail_date').html($('#mail_date' + Tmp).text());
+		$('.mail_detail_icon').html($('#mail_icon' + Tmp).html());
+
+		$('.mail_detail_img').attr('src',$('#mail_icon' + Tmp).attr('src'));
 	});
+
+	$('.mypage_detail_back').on('click',function () {
+		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
+	});
+
+
 
 
 	$('.cal_prev').on('click',function () {

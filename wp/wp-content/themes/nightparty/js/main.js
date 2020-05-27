@@ -6,8 +6,9 @@ $(function(){
 	});
 
 	$('.person_img_sub').hover(function () {
+
 		TMP=$(this).attr('src');
-		$('.person_img_main').attr('src',TMP);
+		$('.person_img_main').hide().fadeIn(300).attr('src',TMP);
 	});
 
 	$('.main_b_1').hover(
@@ -18,3 +19,5 @@ $(function(){
 		$(this).children('.main_b_1_3').fadeOut(0);
 	});
 });
+
+

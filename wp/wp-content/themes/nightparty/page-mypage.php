@@ -154,11 +154,14 @@ if($_SESSION){
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-		<img src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
+		<img id="mail_image<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
 		<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
+		<span id="mail_icon<?=$s?>" class="mail_icon">
 		<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
 		<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
 		<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
+		</span>
+
 		<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
 		<span id="mail<?=$s?>" class="mail_al"></span>
 		<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
@@ -167,21 +170,29 @@ if($_SESSION){
 		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_1"]?>"><? } ?>
 		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_2"]?>"><? } ?>
 		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_3"]?>"><? } ?>
-
 	</div>
 	<?}?>
 </div>
 
-
 <div class="mypage_mail_detail">
-	<span class="mail_detail_top"></span>
-	<span class="mail_detail_head"></span>
-	<span class="mail_detail_title"></span>
+	<span class="mail_detail_from">
+		<span class="mail_detail_back"></span>
+		<span class="mail_detail_name"></span>
+		<img class="mail_detail_img">
+	</span>
+
+	<span class="mail_detail_head">
+		<span class="mail_detail_date"></span>
+		<span class="mail_detail_icon"></span>
+		<span class="mail_detail_title"></span>
+	</span>
+
 	<span class="mail_detail_log"></span>
+
 	<span class="mail_detail_img_box">
-		<img class="mail_detail_img">
-		<img class="mail_detail_img">
-		<img class="mail_detail_img">
+		<img class="mail_tmp">
+		<img class="mail_tmp">
+		<img class="mail_tmp">
 	</span>
 </div>
 

@@ -929,6 +929,89 @@ input[type=range]::-moz-range-thumb{
 	width			:100vw;
 	height			:100vh;
 	background		:#f0f0f0;
+	text-align		:center;
+}
+
+.mail_detail_from{
+	position		:relative;
+	background		:#fafafa;
+	display			:inline-block;
+	width			:95vw;
+	height			:16vw;
+	margin			:1vw auto;
+	text-align		:left;
+}
+
+.mail_detail_name{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0.5vw;
+	left:			:8vw;
+	font-size		:0;
+}
+
+.mail_detail_back{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left:			:0;
+	height			:16vw;
+	line-height		:16vw;
+	width			:8vw;
+	text-align		:center;
+	font-size		:5vw;
+	font-family		:at_icon;
+}
+
+
+.mail_detail_head{
+	position		:relative;
+	background		:#fafafa;
+	display			:inline-block;
+	width			:95vw;
+	height			:12vw;
+	margin			:0vw auto;
+	text-align		:left;
+}
+
+
+.mail_detail_log{
+	background		:#fafafa;
+	display			:inline-block;
+	width			:91vw;
+	margin			:1vw auto;
+	padding			:2vw;
+	text-align:left;
+}
+
+.mail_detail_date{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:1vw;
+	border-bottom	:1px solid #0000d0;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+	padding			:0.5vw;
+}	
+
+.mail_detail_icon{
+	display			:inline-block;
+	position		:absolute;
+	top				:0.5vw;
+	right			:1vw;
+	font-size		:0;
+}
+
+.mail_detail_title{
+	display			:inline-block;
+	position		:absolute;
+	top				:7vw;
+	left			:1vw;
+	font-size		:4.5vw;
+	font-weight		:600;
+	color			:#303030;	
 }
 
 .mail_yet{
@@ -985,8 +1068,8 @@ input[type=range]::-moz-range-thumb{
 	right			:0;
 	height			:18vw;
 	line-height		:18vw;
-	width			:5vw;
-	font-size		:4vw;
+	width			:10vw;
+	font-size		:6vw;
 	background		:#e0e0e0;
 	color			:#a0a0a0;	
 	text-align		:center;
@@ -996,37 +1079,29 @@ input[type=range]::-moz-range-thumb{
 	color:#0000ff;
 }
 
+.mail_icon{
+	display			:inline-block;
+	position		:absolute;
+	top				:0.5vw;
+	right			:11vw;
+	font-size		:0;
+}
+
 .mail_res,.mail_tmp,.mail_star,.mail_gp{
 	font-family		:at_icon;
 	display			:inline-block;
-	position		:absolute;
 	color			:#bbbbbb;
-	font-size		:4vw;
-	height			:5vw;
-	line-height		:5vw;
-	width			:5vw;
-	text-align		:center	
-}
-
-.mail_res{
-	top				:0.5vw;
-	right			:6vw;
-}
-
-.mail_tmp{
-	top				:0.5vw;
-	right			:12vw;
-}
-
-.mail_star{
-	top				:0.5vw;
-	right			:18vw;
+	font-size		:5vw;
+	height			:6vw;
+	line-height		:6vw;
+	width			:6vw;
+	text-align		:center;
 }
 
 .mail_gp{
+	position		:absolute;
 	bottom			:0.5vw;
 	left			:19vw;
-
 }
 
 
