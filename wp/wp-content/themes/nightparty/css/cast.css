@@ -983,15 +983,14 @@ input[type=range]::-moz-range-thumb{
 	text-align		:left;
 }
 
-
 .mail_detail_log{
 	background		:#fafafa;
 	display			:inline-block;
 	width			:91vw;
 	margin			:1vw auto;
 	padding			:2vw;
-	line-height		:130%;
-	font-size		:4.5vw;
+	line-height		:6vw;
+	font-size		:4vw;
 	text-align		:left;
 }
 
@@ -1036,6 +1035,8 @@ input[type=range]::-moz-range-thumb{
 	height			:17vw;
 	width			:17vw;
 	border-radius	:50%;
+	border			:1vw solid #30300;;
+
 }
 
 .mail_date{
