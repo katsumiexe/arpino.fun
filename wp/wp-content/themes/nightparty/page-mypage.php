@@ -7,6 +7,22 @@ if($_POST["log_out"] == 1){
 	session_destroy();
 }
 
+
+$sql ="SELECT * FROM me_encode"; 
+$enc0 = $wpdb->get_results($sql,ARRAY_A );
+
+foreach($enc0 as $tmp){
+	$enc[$tmp["key"]]=$tmp["value"];
+}
+
+
+if($enc_1 = mysqli_query($mysqli,$sql)){
+	while($enc_2 = mysqli_fetch_assoc($enc_1)){
+		$me_enc[$enc_2["key"]]=$enc_2["value"];
+	}
+}
+
+
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
@@ -162,14 +178,17 @@ if($_SESSION){
 		<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
 		</span>
 
+
+
 		<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
 		<span id="mail<?=$s?>" class="mail_al"></span>
 		<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
 
+		<input id="mail_address<?=$s?>" type="hidden" value="<?=$mail_data[$s]["from_address"]?>">
 		<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
-		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_1"]?>"><? } ?>
-		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_2"]?>"><? } ?>
-		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?=$mail_data[$s]["img_3"]?>"><? } ?>
+		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_1"]?>"><? } ?>
+		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>"><? } ?>
+		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>"><? } ?>
 	</div>
 	<?}?>
 </div>
@@ -178,6 +197,7 @@ if($_SESSION){
 	<span class="mail_detail_from">
 		<span class="mail_detail_back"></span>
 		<span class="mail_detail_name"></span>
+		<span class="mail_detail_address"></span>
 		<img class="mail_detail_img">
 	</span>
 
@@ -190,9 +210,9 @@ if($_SESSION){
 	<span class="mail_detail_log"></span>
 
 	<span class="mail_detail_img_box">
-		<img class="mail_tmp">
-		<img class="mail_tmp">
-		<img class="mail_tmp">
+		<span id="img_1" class="mail_detail_tmp"></span>
+		<span id="img_2" class="mail_detail_tmp"></span>
+		<span id="img_3" class="mail_detail_tmp"></span>
 	</span>
 </div>
 

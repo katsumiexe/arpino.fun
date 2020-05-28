@@ -61,9 +61,25 @@ $(function(){
 		$('.mail_detail_name').html($('#mail_name' + Tmp).text());
 		$('.mail_detail_title').html($('#mail_title' + Tmp).text());
 		$('.mail_detail_log').html($('#mail_log' + Tmp).val());
+		$('.mail_detail_address').html($('#mail_address' + Tmp).val());
 		$('.mail_detail_date').html($('#mail_date' + Tmp).text());
 		$('.mail_detail_icon').html($('#mail_icon' + Tmp).html());
 		$('.mail_detail_img').attr('src',$('#mail_img' + Tmp).attr('src'));
+
+		if($('#img_a' + Tmp).val() != ''){
+			$('#img_1').html($('#img_a' + Tmp).val());
+		}
+
+		if($('#img_b' + Tmp).val() != ''){
+			$('#img_2').html($('#img_b' + Tmp).val());
+		}
+
+		if($('#img_c' + Tmp).val() != ''){
+			$('#img_3').html($('#img_c' + Tmp).val());
+		}
+
+
+		
 	});
 
 
