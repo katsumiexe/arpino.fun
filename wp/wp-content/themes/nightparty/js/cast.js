@@ -67,17 +67,14 @@ $(function(){
 		$('.mail_detail_img').attr('src',$('#mail_img' + Tmp).attr('src'));
 
 		if($('#img_a' + Tmp).val() != ''){
-			$('#img_1').html($('#img_a' + Tmp).val());
+			$('#img_1').css('background-image','url('+$('#img_a' + Tmp).val() +')');
 		}
-
 		if($('#img_b' + Tmp).val() != ''){
-			$('#img_2').html($('#img_b' + Tmp).val());
+			$('#img_2').css('background-image','url('+$('#img_b' + Tmp).val() +')');
 		}
-
 		if($('#img_c' + Tmp).val() != ''){
-			$('#img_3').html($('#img_c' + Tmp).val());
+			$('#img_3').css('background-image','url('+$('#img_c' + Tmp).val() +')');
 		}
-
 
 		
 	});
