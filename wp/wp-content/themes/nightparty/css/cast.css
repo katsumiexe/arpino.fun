@@ -1044,7 +1044,7 @@ input[type=range]::-moz-range-thumb{
 	position		:relative;
 	display			:inline-block;
 	width			:95vw;
-	height			:18vw;
+	height			:20vw;
 	margin			:0 auto;
 	text-align		:center;
 	background		:#f0e0ff;
@@ -1057,7 +1057,7 @@ input[type=range]::-moz-range-thumb{
 	width			:16vw;
 	background-size	:cover;
 
-	margin			:1vw;
+	margin			:2vw 1vw;
 }
 
 
