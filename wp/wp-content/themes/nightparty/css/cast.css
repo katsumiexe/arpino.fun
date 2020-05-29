@@ -299,7 +299,7 @@
 	width			:80%;
 	font-size		:4.5vw;
 	font-weight		:600;
-	margin			:0 auto 0.5vw 1.5vw;
+	margin			:0 auto 2vw auto;;
 	height			:6vw;
 }
 
@@ -923,6 +923,7 @@ input[type=range]::-moz-range-thumb{
 }
 
 .mypage_mail_detail{
+	display			:inline-block;
 	position		:fixed;
 	top				:0;
 	right			:-100vw;
@@ -930,15 +931,17 @@ input[type=range]::-moz-range-thumb{
 	height			:100vh;
 	background		:#f0f0f0;
 	text-align		:center;
+	font-size		:0;
 }
+
 
 .mail_detail_from{
 	position		:relative;
-	background		:#fafafa;
 	display			:inline-block;
-	width			:95vw;
+	width			:100vw;
 	height			:12vw;
-	margin			:1vw auto;
+	margin			:0;
+	background		:#f0e0ff;
 	text-align		:left;
 }
 
@@ -966,7 +969,7 @@ input[type=range]::-moz-range-thumb{
 	bottom			:0.5vw;
 	left			:9.5vw;
 	font-size		:3.5vw;;
-	colorqqqq		:#909090;
+	color			:#909090;
 }
 
 
@@ -984,11 +987,19 @@ input[type=range]::-moz-range-thumb{
 	background		:#f0e0ff;
 }
 
+.mail_detail_body{
+	display			:inline-block;
+	background		:#f0e0ff;
+	width			:95vw;
+	margin			:1.5vw auto;
+	border-radius	:0 0 2vw 2vw;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+}
 
 .mail_detail_head{
 	position		:relative;
 	display			:inline-block;
-	width			:95vw;
+	width			:93vw;
 	height			:12vw;
 	margin			:1vw auto 0 auto;
 	text-align		:left;
@@ -1005,7 +1016,6 @@ input[type=range]::-moz-range-thumb{
 	line-height		:6vw;
 	font-size		:4vw;
 	text-align		:left;
-	border:1vw solid #f0e0ff;
 
 }
 
@@ -1013,7 +1023,7 @@ input[type=range]::-moz-range-thumb{
 	display			:inline-block;
 	position		:absolute;
 	top				:0vw;
-	left			:1vw;
+	left			:2vw;
 	border-bottom	:1px solid #0000d0;
 	height			:4vw;
 	line-height		:4vw;
@@ -1032,8 +1042,8 @@ input[type=range]::-moz-range-thumb{
 .mail_detail_title{
 	display			:inline-block;
 	position		:absolute;
-	top				:7vw;
-	left			:1vw;
+	top				:6vw;
+	left			:1.5vw;
 	font-size		:4.5vw;
 	font-weight		:600;
 	color			:#303030;	
@@ -1043,12 +1053,11 @@ input[type=range]::-moz-range-thumb{
 .mail_detail_img_box{
 	position		:relative;
 	display			:inline-block;
-	width			:95vw;
+	width			:93vw;
 	height			:20vw;
-	margin			:0 auto;
+	margin			:0vw auto 1vw auto;
 	text-align		:center;
-	background		:#f0e0ff;
-	border-radius	:0 0 2vw 2vw;
+	background		:#fafafa;
 }
 
 .mail_detail_tmp{

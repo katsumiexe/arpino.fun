@@ -192,6 +192,7 @@ if($_SESSION){
 		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>"><? } ?>
 		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>"><? } ?>
 	</div>
+	</div>
 	<?}?>
 </div>
 
@@ -203,6 +204,7 @@ if($_SESSION){
 		<img class="mail_detail_img">
 	</span>
 
+	<span class="mail_detail_body">
 	<span class="mail_detail_head">
 		<span class="mail_detail_date"></span>
 		<span class="mail_detail_icon"></span>
@@ -215,6 +217,7 @@ if($_SESSION){
 		<span id="img_1" class="mail_detail_tmp"></span>
 		<span id="img_2" class="mail_detail_tmp"></span>
 		<span id="img_3" class="mail_detail_tmp"></span>
+	</span>
 	</span>
 </div>
 
