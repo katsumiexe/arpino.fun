@@ -750,13 +750,13 @@ body {
 	width			:90px;
 	height			:45px;
 	line-height		:45px;
-	border			:3px solid #fa9030;
-	background		:#fafafa;
 	font-size		:30px;
 	font-weight		:900;
-	color			:#fa9030;
-	text-shadow		:2px 2px 1px #903000;
-	box-shadow		:2px 2px 3px rgba(90,0,0,0.6);
+	color			:#fafafa;
+	text-shadow		:2px 2px 1px #908000;
+	box-shadow		:2px 2px 3px rgba(90,0,0,0.6),0 0 5px rgba(168,148,106,0.8) inset;
+	background		:linear-gradient(#f0d8b0,#e0c8a0);
+
 }
 
 
@@ -767,7 +767,7 @@ body {
 	right			:200px;
 	width			:200px;
 	height			:240px;
-	border			:10px solid #e0f0ff;
+	border			:10px solid #F0D9B0;
 	overflow		:hidden; 
 	border-radius	:20px;
 	background		:#fafafa;
@@ -872,8 +872,9 @@ body {
 	height			:110px;
 	border			:5px solid #fafafa;
 	border-radius	:8px;
-	background		:linear-gradient(#e0f0ff,#d0e0ff);
+	background		:linear-gradient(#f0d8b0,#e0c8a0);
 	box-shadow		:0px -2px 1px rgba(30,30,30,0.6);
+
 }
 
 #rest11{
@@ -1071,7 +1072,7 @@ body {
 	position	:absolute;
 	top			:5px;
 	left		:425px;
-	height		:80px;
+	height		:90px;
 	line-height	:120px;
 	width		:100px;
 	background	:#8b4513;
@@ -1574,8 +1575,6 @@ body {
 	height			:22vw;
 	border			:1vw solid #fafafa;
 	border-radius	:2vw;
-	background		:linear-gradient(#e0f0ff,#d0e0ff);
-	box-shadow		:0px -2px 1px rgba(30,30,30,0.6);
 }
 
 #rest11{

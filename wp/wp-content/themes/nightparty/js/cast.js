@@ -79,6 +79,12 @@ $(function(){
 		
 	});
 
+	$('.mail_detail_tmp').on('click',function () {
+		Img=$(this).attr('id').replace('img_','');
+		$('.detail_modal').animate({'top':'10vh'},100);
+		$('.detail_modal_img').attr('src',$('#img_c' + Tmp).val());
+	});
+
 
 	$('.mail_detail_back').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'-100vw'},100);

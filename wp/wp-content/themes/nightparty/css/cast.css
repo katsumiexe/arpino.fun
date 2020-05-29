@@ -94,7 +94,7 @@
 }
 
 .c2{
-	background	:#ffc090;
+	background	:#e5e5e5;
 	height		:6vw;
 	line-height	:6vw;
 	color		:#fafafa;
@@ -897,21 +897,6 @@ input[type=range]::-moz-range-thumb{
 	background-image: linear-gradient(#eeeeee 0%, #dddddd 100%);
 }
 
-.c1{
-	background: linear-gradient(#ff90a0 0%, #ffa0a0 100%);
-	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
-	color: #d00000;
-	width: 20vw;
-}
-
-.c2{
-	background: linear-gradient(#ddddff 0%, #ccccff 100%);
-	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
-	color: #3030ff;
-	width: 20vw;
-}
 
 .mypage_mail_hist{
 	position		:relative;

@@ -14,7 +14,7 @@ $ask_id			=$_POST["ask_id"];
 
 $from_mail		="noreply@piyo-piyo.work";
 if($step==2){
-/*
+
 	$from_name	= $from_mail;
 	$subject	= "お問合せメール";
 	$ret		= "-f ".$from_mail;
@@ -31,7 +31,7 @@ if($step==2){
 	$head = "From: {$from_mail}" . "\r\n";
 
 	mb_send_mail($staff_mail, $subject, $body, $head);
-*/
+
 
 	$subject	= "メールアドレス登録";
 	$ret		= "-f ".$from_mail;
