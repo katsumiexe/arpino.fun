@@ -962,7 +962,7 @@ input[type=range]::-moz-range-thumb{
 	display			:inline-block;
 	position		:absolute;
 	top				:0;
-	left:			:0;
+	left			:0;
 	height			:12vw;
 	line-height		:12vw;
 	width			:8vw;

@@ -26,7 +26,6 @@ if($enc_1 = mysqli_query($mysqli,$sql)){
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
-
 		$_SESSION=$rows;
 		$_SESSION["time"]=time();
 
@@ -64,8 +63,8 @@ if($_SESSION){
 	$num = imap_num_msg($m_list);
 	*/
 
-	$sql	 ="SELECT * FROM wp01_0castmail_recive ";
-	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_recive.from_address=wp01_0castomer_list.address";
+	$sql	 ="SELECT * FROM wp01_0castmail_receve ";
+	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receve.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
 	$sql	.=" ORDER BY send_date DESC";
 	$n=0;
@@ -164,8 +163,6 @@ if($_SESSION){
 <?if($cast_page==1){?>
 よてい
 
-
-
 <?}elseif($cast_page==2){?>
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
@@ -173,12 +170,10 @@ if($_SESSION){
 		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
 		<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
 		<span id="mail_icon<?=$s?>" class="mail_icon">
-		<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
-		<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
-		<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
+			<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
+			<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
+			<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
 		</span>
-
-
 
 		<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
 		<span id="mail<?=$s?>" class="mail_al"></span>
@@ -186,9 +181,7 @@ if($_SESSION){
 
 		<input id="mail_address<?=$s?>" type="hidden" value="<?=$mail_data[$s]["from_address"]?>">
 		<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
-
 		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_1"]?>'><? } ?>
-
 		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>"><? } ?>
 		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>"><? } ?>
 	</div>
@@ -220,6 +213,7 @@ if($_SESSION){
 	</span>
 	</span>
 </div>
+<input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
 
 <?}elseif($cast_page==3){?>
 <div>

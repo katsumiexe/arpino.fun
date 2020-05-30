@@ -58,6 +58,8 @@ $(function(){
 	$('.mail_al').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'0'},150);
 		Tmp=$(this).attr('id').replace('mail','');
+		Dir=$('#dir').val();
+
 		$('.mail_detail_name').html($('#mail_name' + Tmp).text());
 		$('.mail_detail_title').html($('#mail_title' + Tmp).text());
 		$('.mail_detail_log').html($('#mail_log' + Tmp).val());
@@ -76,7 +78,7 @@ $(function(){
 			$('#img_3').css('background-image','url('+$('#img_c' + Tmp).val() +')');
 		}
 
-		
+		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp});
 	});
 
 	$('.mail_detail_tmp').on('click',function () {
@@ -85,13 +87,9 @@ $(function(){
 		$('.detail_modal_img').attr('src',$('#img_c' + Tmp).val());
 	});
 
-
 	$('.mail_detail_back').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
 	});
-
-
-
 
 	$('.cal_prev').on('click',function () {
 		$('#chg').val('prev');
