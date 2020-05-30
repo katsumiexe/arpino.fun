@@ -1161,28 +1161,26 @@ input[type=range]::-moz-range-thumb{
 }
 
 .cal_sch_ttl{
-	width		:25vw;
 	background	:#d0d0d0;
-	height		:5vw;
+	height		:4vw;
+	text-align	:center;
+	font-size	:3vw;
 }
-
 .cal_text{
-	width		:25vw;
+	width		:15vw;
 	height		:10vw
+	text-align	:center;
 }
 .cal_sch{
-	width		:25vw;
-	height		:10vw;
+	width		:15vw;
+	height		:8vw;
 	border		:none;
 	font-size	:5vw;
 }
 
-
 .cal_etc{
 
 }
-
-
 
 td.ui-datepicker-week-end:first-child a.ui-state-default{
 	background-color: #ffecec;
