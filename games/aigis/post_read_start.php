@@ -45,6 +45,7 @@ for($s=0;$s<4;$s++){
 	$god=8;
 	$bad=0;
 	$mid=2;
+
 	for($n=0;$n<12;$n++){
 
 		if($card[$n]==0){
@@ -72,6 +73,7 @@ for($s=0;$s<4;$s++){
 		}elseif($card[$n]==6 && $unit_data[$unit[$s]]["status_5"]== 1){	
 			$hand[$s][$n]=$god;
 			$god++;
+
 
 		}elseif($card[$n]==7 && $unit_data[$unit[$s]]["status_1"]== 1){	
 			$hand[$s][$n]=$bad;
@@ -138,7 +140,6 @@ $dat['e']=$card;
 $t_re=$_SERVER["HTTP_REFERER"];
 $t_ua=$_SERVER['HTTP_USER_AGENT'];
 $t_ip=$_SERVER["REMOTE_ADDR"];
-
 
 $sql="INSERT INTO log_data(`start`,`ua`,`ref`,`ip`,`unit_p`,`unit_a`,`unit_b`,`unit_c`,`unit_d`)";
 $sql.="VALUES('{$date}','{$t_ua}','{$t_re}','{$t_ip}','{$unit_select}','{$unit[0]}','{$unit[1]}','{$unit[2]}','{$unit[3]}')";

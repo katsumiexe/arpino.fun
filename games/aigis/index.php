@@ -88,6 +88,35 @@ foreach($pts as $a1 => $a2){
 </head>
 <body style="text-align:center;background:#303030">
 <div class="main">
+<div class="page_00">
+	<div class="first_play">
+		<div id="lv1" class="first_play_level">
+			<span class="first_icon"></span>
+			<span class="first_comm">初級</span>
+			<span class="first_comm">-easy-</span>
+		</div>
+		<div id="lv2" class="first_play_level">
+			<span class="first_icon"></span>
+			<span class="first_comm">中級</span>
+			<span class="first_comm">-normal-</span>
+		</div>
+		<div id="lv3" class="first_play_level">
+			<span class="first_icon"></span>
+			<span class="first_comm">上級</span>
+			<span class="first_comm">-ONI!-</span>
+		</div>
+		<div id="lv4" class="first_play_level">
+			<span class="first_icon"></span>
+			<span class="first_comm">遊び方</span>
+			<span class="first_comm">-Howto-</span>
+		</div>
+		<div id="lv4" class="first_play_level">
+			<span class="first_icon"></span>
+			<span class="first_comm">問合せ</span>
+			<span class="first_comm">-AskMe-</span>
+		</div>
+	</div>
+</div>
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
@@ -102,12 +131,9 @@ foreach($pts as $a1 => $a2){
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
 	</div>
 <?}?>
-
 <a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
 <a href="./post.php" class="icon_mail"></a>
-
 </div>
-
 <div class="page_02">
 	<div class="player">
 		<div class="player_0 pl1">

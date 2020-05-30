@@ -66,6 +66,52 @@ body {
 	height:100vh;
 }
 
+.first_play{
+	position			:absolute;
+	top					:20vh;
+	left				:0;
+	right				:0;
+	margin				:auto;
+	display				:flex;
+	flex-wrap			:wrap;
+	width				:350px;
+	z-index				:80;
+	text-align			:left;
+	background			:#fafafa;
+	box-shadow:2px 2px 5px rgba(30,30,30,0.6);
+}
+
+.first_play_level{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:350px;
+	border				:2px solid #d0a090;
+	width				:350px;	
+	height				:50px;
+	font-size			:0;
+}
+
+.first_icon{
+	font-family			:at_icon;
+	display				:inline-block;
+	height				:50px;
+	line-height			:50px;
+	width				:50px;	
+	text-align			:center;
+	font-size			:28px;
+	color				:#906000;
+}
+
+.first_comm{
+	display				:inline-block;
+	height				:50px;
+	line-height			:50px;
+	text-align			:left;
+	font-size			:28px;
+	color				:#906000;
+	width				:140px;
+}
+
 .page_01{
 	position:absolute;
 }
@@ -1104,6 +1150,81 @@ body {
 	font-weight	:800;
 	font-size	:18px;
 	text-align	:right;
+}
+
+.howto{
+	position		:fixed;
+	display			:inline-block;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	height			:500px;
+	width			:400px;
+	background		:linear-gradient(#ffe0c0,#f0d8b0);
+	box-shadow		:5px 5px 5px rgba(30,30,30,0.6),0 0 50px 10px rgba(168,148,106,0.8) inset;
+	z-index			:111;
+}
+
+.howto_in{
+	position		:absolute;
+	display			:inline-block;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	height			:440px;
+	width			:340px;
+	padding			:10px;
+	font-weight		:600;
+	font-size		:16px;
+	color			:#503010;
+	text-align		:left;
+	line-height		:24px;
+	box-shadow		:0px 0px 10px 0px rgba(150,120,80,0.6);
+}
+
+.howto_title{
+	display			:inline-block;
+	font-size		:24px;
+	font-weight		:1000;
+	color			:#503010;
+	padding			:5px;
+	margin-bottom	:10px;
+	border-bottom	:2px solid #503010;
+}
+
+.howto_page{
+	display			:inline-block;
+	position		:absolute;
+	left			:0;
+	right			:0;
+	bottom			:30px;
+	margin			:auto;
+	width			:200px;
+	height			:35px;
+	line-height		:31px;	
+	font-size		:20px;
+	color			:#f0e5e0;
+	border			:2px solid #bbbbcc;
+	text-align		:center;
+	background		:#e0e0e0;
+}
+
+.howto_page_point{
+	display			:inline-block;
+	width			:10px;
+	height			:10px;
+	background		:#d0c0a0;
+	border-radius	:50%;
+	margin:0 10px;
+}
+
+.point_on{
+	background:#a09080;
+	box-shadow:0 0 5px 10px rgba(255,240,10,0.6);
 }
 
 /*-------------------------------------------------------------------*/
