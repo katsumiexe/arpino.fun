@@ -1149,6 +1149,38 @@ input[type=range]::-moz-range-thumb{
 	left			:19vw;
 }
 
+.cal_weeks{
+	width:95vw;
+	border:0.5vw solid #303030;
+	box-shadow:1vw 1vw 1vw rgba(30,30,30,0.5);
+}
+
+.cal_day{
+	width		:15vw;
+	background	:#fafaff;
+}
+
+.cal_sch_ttl{
+	width		:25vw;
+	background	:#d0d0d0;
+	height		:5vw;
+}
+
+.cal_text{
+	width		:25vw;
+	height		:10vw
+}
+.cal_sch{
+	width		:25vw;
+	height		:10vw;
+	border		:none;
+	font-size	:5vw;
+}
+
+
+.cal_etc{
+
+}
 
 
 

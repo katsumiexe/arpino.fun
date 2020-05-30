@@ -7,7 +7,6 @@ if($_POST["log_out"] == 1){
 	session_destroy();
 }
 
-
 $sql ="SELECT * FROM me_encode"; 
 $enc0 = $wpdb->get_results($sql,ARRAY_A );
 
@@ -63,8 +62,8 @@ if($_SESSION){
 	$num = imap_num_msg($m_list);
 	*/
 
-	$sql	 ="SELECT * FROM wp01_0castmail_receve ";
-	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receve.from_address=wp01_0castomer_list.address";
+	$sql	 ="SELECT * FROM wp01_0castmail_receive ";
+	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receive.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
 	$sql	.=" ORDER BY send_date DESC";
 	$n=0;
@@ -215,6 +214,7 @@ if($_SESSION){
 </div>
 <input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
 
+
 <?}elseif($cast_page==3){?>
 <div>
 <button type="button" class="mypage_blog_set">新規投稿</button>
@@ -290,8 +290,11 @@ if($_SESSION){
 <input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
 <input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
-<?}elseif($cast_page==3){?>
+<?}elseif($cast_page==4){?>
 こんふぃぐ
+
+
+
 <?}else{?>
 <table class="cal_table">
 <tr>
@@ -312,6 +315,23 @@ if($_SESSION){
 <?PHP ECHO $cal?>
 </tr>
 </table>
+
+
+<table class="cal_weeks">
+<?for($n=0;$n<7;$n++){?>
+	<tr>
+		<td class="cal_day" rowspan="2">05月26日</td>
+		<td class="cal_sch_ttl">IN</td>
+		<td class="cal_sch_ttl">OUT</td>
+		<td class="cal_etc" rowspan="2"></td>
+	</tr>
+	<tr>
+		<td class="cal_sch"><input type="text" class="cal_text" value="1800"></td>
+		<td class="cal_sch"><input type="text" class="cal_text" value="2400"></td>
+	</tr>
+<?}?>
+</table>
+
 <? } ?>
 <ul class="mypage_menu">
 <li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>

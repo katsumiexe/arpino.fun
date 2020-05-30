@@ -78,7 +78,10 @@ $(function(){
 			$('#img_3').css('background-image','url('+$('#img_c' + Tmp).val() +')');
 		}
 
-		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp});
+		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp},
+			function(data){
+			console.log(data);
+		});
 	});
 
 	$('.mail_detail_tmp').on('click',function () {
