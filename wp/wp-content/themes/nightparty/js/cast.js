@@ -69,13 +69,13 @@ $(function(){
 		$('.mail_detail_img').attr('src',$('#mail_img' + Tmp).attr('src'));
 
 		if($('#img_a' + Tmp).val() != ''){
-			$('#img_1').css('background-image','url('+$('#img_a' + Tmp).val() +')');
+			$('#sum_img_a').css('background-image','url('+$('#img_a' + Tmp).val() +')');
 		}
 		if($('#img_b' + Tmp).val() != ''){
-			$('#img_2').css('background-image','url('+$('#img_b' + Tmp).val() +')');
+			$('#sum_img_b').css('background-image','url('+$('#img_b' + Tmp).val() +')');
 		}
 		if($('#img_c' + Tmp).val() != ''){
-			$('#img_3').css('background-image','url('+$('#img_c' + Tmp).val() +')');
+			$('#sum_img_c').css('background-image','url('+$('#img_c' + Tmp).val() +')');
 		}
 
 		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp},
@@ -85,10 +85,19 @@ $(function(){
 	});
 
 	$('.mail_detail_tmp').on('click',function () {
-		Img=$(this).attr('id').replace('img_','');
+		Img=$(this).attr('id').replace('sum_','');
 		$('.detail_modal').animate({'top':'10vh'},100);
-		$('.detail_modal_img').attr('src',$('#img_c' + Tmp).val());
+		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val());
+		console.log($('#' +Img + Tmp).val());
+
 	});
+
+	$('.detail_modal_out').on('click',function () {
+		$('.detail_modal').animate({'top':'110vh'},100);
+	});
+
+
+
 
 	$('.mail_detail_back').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
@@ -241,8 +250,6 @@ $(function(){
 		$('#img_top').val(Top);
 		$('#img_left').val(Left);
 	});
-
-
 
 
 	$('#yes_5').on('click',function(){

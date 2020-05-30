@@ -1050,8 +1050,62 @@ input[type=range]::-moz-range-thumb{
 	height			:16vw;
 	width			:16vw;
 	background-size	:cover;
-
 	margin			:2vw 1vw;
+}
+
+.detail_modal{
+	position	:absolute;
+	top			:105vh;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	display		:inline-block;
+	width		:90vw;
+	height		:90vw;
+	background:#303030;
+
+}
+
+.detail_modal_out{
+	position	:absolute;
+	top			:-3vw;
+	right		:-3vw;
+	display		:inline-block;
+	width		:10vw;
+	height		:10vw;
+	background	:#c0c0c0;
+	border		:1vw solid #303030;
+	font-weight	:800;
+	color		:#303030;
+	text-align	:center;	
+	line-height	:9vw;
+	font-size	:6vw;
+	border-radius:50%;
+}
+
+.detail_modal_img{
+	position	:absolute;
+	top			:0;
+	left		:0;
+	right		:0;
+	bottom		:0;
+	margin		:auto;
+	max-width	:80vw;
+	max-height	:80vw;
+	height		:auto;
+	width		:auto;	
+}
+
+.detail_modal_box{
+	position	:absolute;
+	bottom		:-12vw;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	width		:40vw;
+	height		:10vw;
+	background	:#303030;
+	border-radius:3vw;
 }
 
 

@@ -206,14 +206,20 @@ if($_SESSION){
 	<span class="mail_detail_log"></span>
 
 	<span class="mail_detail_img_box">
-		<span id="img_1" class="mail_detail_tmp"></span>
-		<span id="img_2" class="mail_detail_tmp"></span>
-		<span id="img_3" class="mail_detail_tmp"></span>
+		<span id="sum_img_a" class="mail_detail_tmp"></span>
+		<span id="sum_img_b" class="mail_detail_tmp"></span>
+		<span id="sum_img_c" class="mail_detail_tmp"></span>
 	</span>
 	</span>
 </div>
 <input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
 
+<div class="detail_modal">
+<span class="detail_modal_out">×</span>
+<img src="" class="detail_modal_img">
+
+<div class="detail_modal_box"></div>
+</div>
 
 <?}elseif($cast_page==3){?>
 <div>
