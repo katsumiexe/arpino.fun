@@ -1236,22 +1236,24 @@ input[type=range]::-moz-range-thumb{
 }
 
 .cal_list{
-	position:relative;
-	width:93vw;
-	margin:1vw auto;
+	position	:relative;
+	width		:93vw;
+	margin		:1vw auto;
+	height		:14vw;
+	background	:#fafafa;
 }
 
 .cal_day{
 	position	:absolute;
 	top			:0.5vw;
 	left		:0.5vw;
-	border		:0.5vw solid #303030;
-	width		:20vw;
-	height		:4vw;
-	line-height	:4vw;
+	width		:33vw;
+	height		:5vw;
+	line-height	:5vw;
 	background	:#fafaff;
-	font-size	:3.2vw;
+	font-size	:3.5vw;
 	font-weight	:600;
+	text-align	:left;
 }
 
 .sch_time_in{
@@ -1270,7 +1272,7 @@ input[type=range]::-moz-range-thumb{
 .sch_time_out{
 	position	:absolute;
 	top			:6vw;
-	left		:16.5vw;
+	left		:17vw;
 	border		:0.5vw solid #303030;
 	width		:15vw;
 	height		:6vw;
@@ -1302,18 +1304,23 @@ input[type=range]::-moz-range-thumb{
 }
 
 .sel_txt{
-	display:inline-block;
-	font-size:4vw;
-	font-weight:600;
-	text-align:center;
-	background:#fafafa;
+	display		:inline-block;
+	font-size	:4vw;
+	font-weight	:600;
+	text-align	:center;
+	background	:#fafafa;
 }
 
 
 .cal_log{
-	background	:#00d0d0;
-	height		:15vw;
+	position	:absolute;
+	top			:0.5vw;
+	left		:34vw;
+	height		:12.5vw;
+	width		:59vw;
 	text-align	:left;
+	background	:#00d0d0;
+	
 }
 
 
