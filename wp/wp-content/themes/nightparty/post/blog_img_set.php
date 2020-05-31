@@ -1,4 +1,10 @@
 <?
+/*
+ブログ画像セット処理
+ini_set('display_errors',1);
+*/
+require_once ("../../../../wp-load.php");
+global $wpdb;
 
 $img_code	=$_POST["img_code"];
 $img_zoom	=$_POST["img_zoom"];
@@ -12,9 +18,7 @@ $img_rote	=$_POST["img_rote"]+0;
 $tmp		=substr("0".$tmp_key+$img_id,-2,2);
 $prof_x		=$enc[$tmp].".jpg";
 $link		="./".$dir3.$prof_x;
-
 $img2 		= imagecreatetruecolor(800,800);
-
 $tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 $tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
 
@@ -36,7 +40,7 @@ if($img_rote ==90){
 $sql_log="UPDATE reg SET";
 $sql_log.=" `reg_pic`='{$img_id}'";
 $sql_log.=" WHERE id='{$user["id"]}'";
-mysqli_query($mysqli,$sql_log);
+$wpdb->query($sql_log);
 
 ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 480, 800, $tmp_width, $tmp_height);
 imagejpeg($img2,$link);

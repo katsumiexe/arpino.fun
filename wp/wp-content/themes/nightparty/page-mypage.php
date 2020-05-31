@@ -6,14 +6,12 @@ if($_POST["log_out"] == 1){
 	$_SESSION="";
 	session_destroy();
 }
-
 $sql ="SELECT * FROM me_encode"; 
 $enc0 = $wpdb->get_results($sql,ARRAY_A );
 
 foreach($enc0 as $tmp){
 	$enc[$tmp["key"]]=$tmp["value"];
 }
-
 
 if($enc_1 = mysqli_query($mysqli,$sql)){
 	while($enc_2 = mysqli_fetch_assoc($enc_1)){
@@ -44,6 +42,7 @@ if($_SESSION){
 	}
 }
 if($_SESSION){
+
 	$cast_page=$_POST["cast_page"]+0;
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
