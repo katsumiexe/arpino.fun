@@ -1235,32 +1235,87 @@ input[type=range]::-moz-range-thumb{
 	box-shadow:1vw 1vw 1vw rgba(30,30,30,0.5);
 }
 
+.cal_list{
+	position:relative;
+	width:93vw;
+	margin:1vw auto;
+}
+
 .cal_day{
-	width		:15vw;
-	background	:#fafaff;
-}
-
-.cal_sch_ttl{
-	background	:#d0d0d0;
+	position	:absolute;
+	top			:0.5vw;
+	left		:0.5vw;
+	border		:0.5vw solid #303030;
+	width		:20vw;
 	height		:4vw;
-	text-align	:center;
-	font-size	:3vw;
-}
-.cal_text{
-	width		:15vw;
-	height		:10vw
-	text-align	:center;
-}
-.cal_sch{
-	width		:15vw;
-	height		:8vw;
-	border		:none;
-	font-size	:5vw;
+	line-height	:4vw;
+	background	:#fafaff;
+	font-size	:3.2vw;
+	font-weight	:600;
 }
 
-.cal_etc{
-
+.sch_time_in{
+	position	:absolute;
+	top			:6vw;
+	left		:0.5vw;
+	border		:0.5vw solid #303030;
+	width		:15vw;
+	height		:6vw;
+	line-height	:6vw;
+	background	:#fafaff;
+	font-size	:4vw;
+	font-weight	:600;
 }
+
+.sch_time_out{
+	position	:absolute;
+	top			:6vw;
+	left		:16.5vw;
+	border		:0.5vw solid #303030;
+	width		:15vw;
+	height		:6vw;
+	line-height	:6vw;
+	background	:#fafaff;
+	font-size	:4vw;
+	font-weight	:600;
+}
+.sch_sel_in{
+	display		:none;
+	position	:absolute;
+	top			:12vw;
+	left		:0.5vw;
+	border		:0.5vw solid #303030;
+	width		:9vw;
+	background	:#fafafa;
+	z-index:12;
+}
+
+.sch_sel_out{
+	display		:none;
+	position	:absolute;
+	top			:12vw;
+	left		:0.5vw;
+	border		:0.5vw solid #303030;
+	width		:9vw;
+	background	:#fafafa;
+	z-index:12;
+}
+
+.sel_txt{
+	display:inline-block;
+	font-size:4vw;
+	font-weight:600;
+	text-align:center;
+	background:#fafafa;
+}
+
+
+.cal_log{
+	background	:#00d0d0;
+	height		:15vw;
+	text-align	:left;
+}
+
 
 td.ui-datepicker-week-end:first-child a.ui-state-default{
 	background-color: #ffecec;

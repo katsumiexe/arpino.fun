@@ -327,21 +327,46 @@ $w=($s+$week_start) % 7;
 </tr>
 </table>
 
-
-<table class="cal_weeks">
+<div class="cal_weeks">
 <?for($n=0;$n<7;$n++){?>
-	<tr>
-		<td class="cal_day" rowspan="2">05月26日</td>
-		<td class="cal_sch_ttl">IN</td>
-		<td class="cal_sch_ttl">OUT</td>
-		<td class="cal_etc" rowspan="2"></td>
-	</tr>
-	<tr>
-		<td class="cal_sch"><input type="text" class="cal_text" value="1800"></td>
-		<td class="cal_sch"><input type="text" class="cal_text" value="2400"></td>
-	</tr>
+	<div class="cal_list">
+	<div class="cal_day">05月26日</div>
+	<div class="sch_time_in">19:00</div>
+	<div class="sch_sel_in">
+		<span class="sel_txt">OPEN</span>
+		<span class="sel_txt">19:00</span>
+		<span class="sel_txt">19:30</span>
+		<span class="sel_txt">20:00</span>
+		<span class="sel_txt">20:30</span>
+		<span class="sel_txt">21:00</span>
+		<span class="sel_txt">21:30</span>
+		<span class="sel_txt">22:00</span>
+		<span class="sel_txt">22:30</span>
+		<span class="sel_txt">23:00</span>
+		<span class="sel_txt">23:30</span>
+		<span class="sel_txt">24:00</span>
+	</div>
+	<div class="sch_time_out"></div>
+	<div class="sch_sel_out">
+		<span class="sel_txt">19:00</span>
+		<span class="sel_txt">19:30</span>
+		<span class="sel_txt">20:00</span>
+		<span class="sel_txt">20:30</span>
+		<span class="sel_txt">21:00</span>
+		<span class="sel_txt">21:30</span>
+		<span class="sel_txt">22:00</span>
+		<span class="sel_txt">22:30</span>
+		<span class="sel_txt">23:00</span>
+		<span class="sel_txt">23:30</span>
+		<span class="sel_txt">24:00</span>
+		<span class="sel_txt">LAST</span>
+	</div>
+
+	<div class="cal_log"></div>
+	</div>
 <?}?>
-</table>
+</div>
+
 
 <? } ?>
 <ul class="mypage_menu">
