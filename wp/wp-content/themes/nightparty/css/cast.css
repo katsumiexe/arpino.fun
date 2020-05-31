@@ -1107,7 +1107,8 @@ input[type=range]::-moz-range-thumb{
 }
 
 .detail_modal_link{
-	display			:inline-block;
+	display			:flex;
+	justify-content	: space-around;
 	position		:absolute;
 	bottom			:-15vw;
 	left			:0;
@@ -1127,13 +1128,12 @@ input[type=range]::-moz-range-thumb{
 	height			:4vw;
 	border			:0.5vw solid #d5d5d5;
 	background		:linear-gradient(#e0e0e0,#d5d5d5);
-	border-radius	:2vw;
+	border-radius	:50%;
 }
 
 .link_point_on{
 	background		:#fff000;
-	border:0.5vw solid :#fafa90;
-//	box-shadow:0 0 2vw 1vw rgba(255,255,150,0.8);
+	border:0.5vw solid #fafa90;
 }
 
 .mail_yet{

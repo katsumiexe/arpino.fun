@@ -70,23 +70,30 @@ $(function(){
 
 		if($('#img_a' + Tmp).val() != ''){
 			$('#sum_img_a').css('background-image','url('+$('#img_a' + Tmp).val() +')');
-			$('.detail_modal_link').html('<span id="modal_point_a" class="modal_link_point"></span>');
+			$('.detail_modal_link').html('<span id="point_img_a" class="modal_link_point"></span>');
 		}
 
 		if($('#img_b' + Tmp).val() != ''){
 			$('#sum_img_b').css('background-image','url('+$('#img_b' + Tmp).val() +')');
-			$('.detail_modal_link').append('<span id="modal_point_b" class="modal_link_point"></span>');
+			$('.detail_modal_link').append('<span id="point_img_b" class="modal_link_point"></span>');
 		}
 
 		if($('#img_c' + Tmp).val() != ''){
 			$('#sum_img_c').css('background-image','url('+$('#img_c' + Tmp).val() +')');
-			$('.detail_modal_link').append('<span id="modal_point_c" class="modal_link_point"></span>');
+			$('.detail_modal_link').append('<span id="point_img_c" class="modal_link_point"></span>');
 		}
 /*
 		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp},
 			function(data){
 		});
 */
+	});
+
+	$('.detail_modal_link').on('click','.modal_link_point',function () {
+		Img=$(this).attr('id').replace('point_','');
+		$('.link_point_on').removeClass('link_point_on');
+		$(this).addClass('link_point_on');
+		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val()).hide().fadeIn(100);
 
 	});
 
@@ -94,17 +101,21 @@ $(function(){
 		Img=$(this).attr('id').replace('sum_','');
 		$('.detail_modal').animate({'top':'0'},100);
 		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val());
-		console.log($('#' +Img + Tmp).val());
+		$('#point_'+Img).addClass('link_point_on');
 	});
+
 
 	$('.detail_modal_out').on('click',function () {
 		$('.detail_modal').animate({'top':'110vh'},100);
+		$('.link_point_on').removeClass('link_point_on');
 	});
 
 	$('.mail_detail_back').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
-/*		$('.detail_modal_link').html();*/
+		$('.detail_modal_link').html();
 	});
+
+
 
 
 	$('.cal_prev').on('click',function () {
