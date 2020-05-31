@@ -6,19 +6,24 @@ if($_POST["log_out"] == 1){
 	$_SESSION="";
 	session_destroy();
 }
-$sql ="SELECT * FROM me_encode"; 
-$enc0 = $wpdb->get_results($sql,ARRAY_A );
 
-foreach($enc0 as $tmp){
-	$enc[$tmp["key"]]=$tmp["value"];
-}
+$week[0]="日";
+$week[1]="月";
+$week[2]="火";
+$week[3]="水";
+$week[4]="木";
+$week[5]="金";
+$week[6]="土";
 
-if($enc_1 = mysqli_query($mysqli,$sql)){
-	while($enc_2 = mysqli_fetch_assoc($enc_1)){
-		$me_enc[$enc_2["key"]]=$enc_2["value"];
-	}
-}
+$week_tag[0]="c1";
+$week_tag[1]="c2";
+$week_tag[2]="c2";
+$week_tag[3]="c2";
+$week_tag[4]="c2";
+$week_tag[5]="c2";
+$week_tag[6]="c3";
 
+$week_start=0;
 
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
@@ -83,8 +88,10 @@ if($_SESSION){
 		$c_month=date("Y-m-01",strtotime($c_month)-86400);
 	}
 
-	$n=date("w",strtotime($c_month));
+	$n=date("w",strtotime($c_month))-$week_start;
 	$t=date("t",strtotime($c_month));
+
+
 	$v_year	=substr($c_month,0,4)."年";
 	$v_month=substr($c_month,5,2)."月";
 
@@ -180,9 +187,8 @@ if($_SESSION){
 		<input id="mail_address<?=$s?>" type="hidden" value="<?=$mail_data[$s]["from_address"]?>">
 		<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
 		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_1"]?>'><? } ?>
-		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>"><? } ?>
-		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value="<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>"><? } ?>
-	</div>
+		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>'><? } ?>
+		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>'><? } ?>
 	</div>
 	<?}?>
 </div>
@@ -214,10 +220,11 @@ if($_SESSION){
 <input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
 
 <div class="detail_modal">
+<div class="detail_modal_box">
 <span class="detail_modal_out">×</span>
 <img src="" class="detail_modal_img">
-
 <div class="detail_modal_box"></div>
+</div>
 </div>
 
 <?}elseif($cast_page==3){?>
@@ -310,13 +317,12 @@ if($_SESSION){
 <td class="cal_top" colspan="1"></td>
 </tr>
 <tr>
-<td class="cal_td c1">日</td>
-<td class="cal_td c2">月</td>
-<td class="cal_td c2">火</td>
-<td class="cal_td c2">水</td>
-<td class="cal_td c2">木</td>
-<td class="cal_td c2">金</td>
-<td class="cal_td c3">土</td>
+<?
+for($s=0;$s<7;$s++){
+$w=($s+$week_start) % 7;
+?>
+<td class="cal_td <?PHP ECHO $week_tag[$w]?>"><?PHP ECHO $week[$w]?></td>
+<? } ?>
 <?PHP ECHO $cal?>
 </tr>
 </table>

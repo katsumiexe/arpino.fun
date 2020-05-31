@@ -94,7 +94,7 @@
 }
 
 .c2{
-	background	:#e5e5e5;
+	background	:#cccccc;
 	height		:6vw;
 	line-height	:6vw;
 	color		:#fafafa;
@@ -1054,15 +1054,26 @@ input[type=range]::-moz-range-thumb{
 }
 
 .detail_modal{
-	position	:absolute;
+	position	:fixed;
 	top			:105vh;
+	left		:-5vw;
+	margin		:auto;
+	display		:inline-block;
+	width		:110vw;
+	height		:110vh;
+	background:#303030;
+}
+
+.detail_modal_box{
+	position	:absolute;
+	top			:10vh;
 	left		:0;
 	right		:0;
 	margin		:auto;
 	display		:inline-block;
 	width		:90vw;
 	height		:90vw;
-	background:#303030;
+	background	:#606090;
 
 }
 
@@ -1095,20 +1106,6 @@ input[type=range]::-moz-range-thumb{
 	height		:auto;
 	width		:auto;	
 }
-
-.detail_modal_box{
-	position	:absolute;
-	bottom		:-12vw;
-	left		:0;
-	right		:0;
-	margin		:auto;
-	width		:40vw;
-	height		:10vw;
-	background	:#303030;
-	border-radius:3vw;
-}
-
-
 
 .mail_yet{
 	background:#ffffd0;

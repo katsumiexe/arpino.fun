@@ -86,7 +86,7 @@ $(function(){
 
 	$('.mail_detail_tmp').on('click',function () {
 		Img=$(this).attr('id').replace('sum_','');
-		$('.detail_modal').animate({'top':'10vh'},100);
+		$('.detail_modal').animate({'top':'0'},100);
 		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val());
 		console.log($('#' +Img + Tmp).val());
 
