@@ -202,29 +202,29 @@ if($_SESSION){
 	</span>
 
 	<span class="mail_detail_body">
-	<span class="mail_detail_head">
-		<span class="mail_detail_date"></span>
-		<span class="mail_detail_icon"></span>
-		<span class="mail_detail_title"></span>
-	</span>
+		<span class="mail_detail_head">
+			<span class="mail_detail_date"></span>
+			<span class="mail_detail_icon"></span>
+			<span class="mail_detail_title"></span>
+		</span>
+		<span class="mail_detail_log"></span>
 
-	<span class="mail_detail_log"></span>
-
-	<span class="mail_detail_img_box">
-		<span id="sum_img_a" class="mail_detail_tmp"></span>
-		<span id="sum_img_b" class="mail_detail_tmp"></span>
-		<span id="sum_img_c" class="mail_detail_tmp"></span>
-	</span>
+		<span class="mail_detail_img_box">
+			<span id="sum_img_a" class="mail_detail_tmp"></span>
+			<span id="sum_img_b" class="mail_detail_tmp"></span>
+			<span id="sum_img_c" class="mail_detail_tmp"></span>
+		</span>
 	</span>
 </div>
 <input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
 
 <div class="detail_modal">
-<div class="detail_modal_box">
-<span class="detail_modal_out">×</span>
-<img src="" class="detail_modal_img">
-<div class="detail_modal_box"></div>
-</div>
+	<div class="detail_modal_box">
+		<span class="detail_modal_out">×</span>
+		<img src="" class="detail_modal_img">
+		<div class="detail_modal_link">
+		</div>
+	</div>
 </div>
 
 <?}elseif($cast_page==3){?>

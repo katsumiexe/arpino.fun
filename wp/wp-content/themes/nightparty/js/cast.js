@@ -70,18 +70,24 @@ $(function(){
 
 		if($('#img_a' + Tmp).val() != ''){
 			$('#sum_img_a').css('background-image','url('+$('#img_a' + Tmp).val() +')');
-		}
-		if($('#img_b' + Tmp).val() != ''){
-			$('#sum_img_b').css('background-image','url('+$('#img_b' + Tmp).val() +')');
-		}
-		if($('#img_c' + Tmp).val() != ''){
-			$('#sum_img_c').css('background-image','url('+$('#img_c' + Tmp).val() +')');
+			$('.detail_modal_link').html('<span id="modal_point_a" class="modal_link_point"></span>');
 		}
 
+		if($('#img_b' + Tmp).val() != ''){
+			$('#sum_img_b').css('background-image','url('+$('#img_b' + Tmp).val() +')');
+			$('.detail_modal_link').append('<span id="modal_point_b" class="modal_link_point"></span>');
+		}
+
+		if($('#img_c' + Tmp).val() != ''){
+			$('#sum_img_c').css('background-image','url('+$('#img_c' + Tmp).val() +')');
+			$('.detail_modal_link').append('<span id="modal_point_c" class="modal_link_point"></span>');
+		}
+/*
 		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp},
 			function(data){
-			console.log(data);
 		});
+*/
+
 	});
 
 	$('.mail_detail_tmp').on('click',function () {
@@ -89,19 +95,17 @@ $(function(){
 		$('.detail_modal').animate({'top':'0'},100);
 		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val());
 		console.log($('#' +Img + Tmp).val());
-
 	});
 
 	$('.detail_modal_out').on('click',function () {
 		$('.detail_modal').animate({'top':'110vh'},100);
 	});
 
-
-
-
 	$('.mail_detail_back').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
+/*		$('.detail_modal_link').html();*/
 	});
+
 
 	$('.cal_prev').on('click',function () {
 		$('#chg').val('prev');
@@ -112,6 +116,7 @@ $(function(){
 		$('#chg').val('next');
 		$('#chg_month').submit();
 	});
+	
 
 	$('.menu_1').on('click',function () {
 		Tmp=$(this).attr('id').replace('m','');
@@ -295,6 +300,13 @@ $(function(){
 				$('#input_zoom').val('100');
 			});
 		}
+	});
+
+
+
+	$('.mail_detail_img_box').on('mail_detail_tmp','click',function(){
+		
+
 	});
 
 	$('.img_rote').on('click',function(){

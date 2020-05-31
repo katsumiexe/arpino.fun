@@ -1074,24 +1074,23 @@ input[type=range]::-moz-range-thumb{
 	width		:90vw;
 	height		:90vw;
 	background	:#606090;
-
 }
 
 .detail_modal_out{
-	position	:absolute;
-	top			:-3vw;
-	right		:-3vw;
-	display		:inline-block;
-	width		:10vw;
-	height		:10vw;
-	background	:#c0c0c0;
-	border		:1vw solid #303030;
-	font-weight	:800;
-	color		:#303030;
-	text-align	:center;	
-	line-height	:9vw;
-	font-size	:6vw;
-	border-radius:50%;
+	position		:absolute;
+	top				:-3vw;
+	right			:-3vw;
+	display			:inline-block;
+	width			:10vw;
+	height			:10vw;
+	background		:#c0c0c0;
+	border			:1vw solid #303030;
+	font-weight		:800;
+	color			:#303030;
+	text-align		:center;	
+	line-height		:9vw;
+	font-size		:6vw;
+	border-radius	:50%;
 }
 
 .detail_modal_img{
@@ -1105,6 +1104,36 @@ input[type=range]::-moz-range-thumb{
 	max-height	:80vw;
 	height		:auto;
 	width		:auto;	
+}
+
+.detail_modal_link{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:-15vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:40vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:#c0c0c0;
+	border-radius	:2vw;
+}
+
+.modal_link_point{
+	display			:inline-block;
+	margin			:auto 3vw;
+	width			:4vw;
+	height			:4vw;
+	border			:0.5vw solid #d5d5d5;
+	background		:linear-gradient(#e0e0e0,#d5d5d5);
+	border-radius	:2vw;
+}
+
+.link_point_on{
+	background		:#fff000;
+	border:0.5vw solid :#fafa90;
+//	box-shadow:0 0 2vw 1vw rgba(255,255,150,0.8);
 }
 
 .mail_yet{
