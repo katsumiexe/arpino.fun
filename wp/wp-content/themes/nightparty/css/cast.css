@@ -1251,8 +1251,8 @@ input[type=range]::-moz-range-thumb{
 	top				:100vh;
 	right			:0;
 	font-size		:0;
-	width			:96vw;
-	border			:0.5vw solid #303030;
+	width			:95vw;
+	border			:1vw solid #ffc0e0;
 	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.5);
 	background		:#ffe0f0;
 	margin			:auto;
@@ -1264,6 +1264,7 @@ input[type=range]::-moz-range-thumb{
 	margin			:1vw auto;
 	height			:14vw;
 	background		:#fafafa;
+	border-bottom	:0.5vw dashed #ffd0f0;
 }
 
 .cal_day{
@@ -1360,7 +1361,7 @@ input[type=range]::-moz-range-thumb{
 	height			:12.5vw;
 	width			:48vw;
 	text-align		:left;
-	background		:#00d0d0;
+	background		:#fafafa;
 	
 }
 

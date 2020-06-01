@@ -427,7 +427,7 @@ $(function(){
 				$('.mypage_slide').animate({'left':'-70vw'},200);
 
 			}else{
-				$('.mypage_slide').animate({'left': '	0vw'},100);
+				$('.mypage_slide').animate({'left': '0vw'},100);
 
 			}
 		}
