@@ -23,7 +23,30 @@ $week_tag[4]="c2";
 $week_tag[5]="c2";
 $week_tag[6]="c3";
 
+$week_tag2[0]="ca1";
+$week_tag2[1]="ca2";
+$week_tag2[2]="ca2";
+$week_tag2[3]="ca2";
+$week_tag2[4]="ca2";
+$week_tag2[5]="ca2";
+$week_tag2[6]="ca3";
+
 $week_start=0;
+
+$base_time=strtotime("2020-05-22");
+$base_time=time();
+
+$now_ymd=date("Ymd",$base_time);
+$now_d	=date("d",$base_time)+0;
+$now_w	=date("w",$base_time)+0;
+
+
+$base_week	=$week_start-$now_w;
+if($base_week>0) $base_week-=7;
+
+$base_day	=$base_time+($base_week*86400);
+
+
 
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
@@ -188,6 +211,9 @@ if($_SESSION){
 <?}elseif($cast_page==2){?>
 <?}elseif($cast_page==3){?>
 <div class="mypage_mail">
+
+
+
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
@@ -346,12 +372,15 @@ $w=($s+$week_start) % 7;
 </tr>
 </table>
 
+<div class="cal_set_btn">スケジュール入力</div>
 
 
 <div class="cal_weeks">
-<?for($n=0;$n<7;$n++){?>
+<?for($n=0;$n<7;$n++){
+	$tmp_wk=($n+$week_start)%7;
+?>
 	<div class="cal_list">
-	<div class="cal_day">05月26日</div>
+	<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
 	<div id="time_in<?=$n?>" class="sch_time_in">19:00</div>
 	<div id="set_in<?=$n?>" class="sch_set_in">▼</div>
 	<div id="sel_in<?=$n?>" class="sch_sel_in">
@@ -384,7 +413,6 @@ $w=($s+$week_start) % 7;
 		<span class="sel_txt">24:00</span>
 		<span class="sel_txt">LAST</span>
 	</div>
-
 	<div class="cal_log"></div>
 	</div>
 <?}?>

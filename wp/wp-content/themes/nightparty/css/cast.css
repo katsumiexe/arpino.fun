@@ -252,8 +252,6 @@
 	font-weight		:600;
 }
 
-
-
 .cal_i1,.cal_i2,.cal_i3{
 	font-family		:at_icon;
 	display			:inline-block;
@@ -1054,7 +1052,6 @@ input[type=range]::-moz-range-thumb{
 	color			:#303030;	
 }
 
-
 .mail_detail_img_box{
 	position		:relative;
 	display			:inline-block;
@@ -1074,26 +1071,26 @@ input[type=range]::-moz-range-thumb{
 }
 
 .detail_modal{
-	position	:fixed;
-	top			:105vh;
-	left		:-5vw;
-	margin		:auto;
-	display		:inline-block;
-	width		:110vw;
-	height		:110vh;
-	background:#303030;
+	position		:fixed;
+	top				:105vh;
+	left			:-5vw;
+	margin			:auto;
+	display			:inline-block;
+	width			:110vw;
+	height			:110vh;
+	background		:#303030;
 }
 
 .detail_modal_box{
-	position	:absolute;
-	top			:10vh;
-	left		:0;
-	right		:0;
-	margin		:auto;
-	display		:inline-block;
-	width		:90vw;
-	height		:90vw;
-	background	:#606090;
+	position		:absolute;
+	top				:10vh;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	display			:inline-block;
+	width			:90vw;
+	height			:90vw;
+	background		:#606090;
 }
 
 .detail_modal_out{
@@ -1114,16 +1111,16 @@ input[type=range]::-moz-range-thumb{
 }
 
 .detail_modal_img{
-	position	:absolute;
-	top			:0;
-	left		:0;
-	right		:0;
-	bottom		:0;
-	margin		:auto;
-	max-width	:80vw;
-	max-height	:80vw;
-	height		:auto;
-	width		:auto;	
+	position		:absolute;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	max-width		:80vw;
+	max-height		:80vw;
+	height			:auto;
+	width			:auto;	
 }
 
 .detail_modal_link{
@@ -1153,11 +1150,11 @@ input[type=range]::-moz-range-thumb{
 
 .link_point_on{
 	background		:#fff000;
-	border:0.5vw solid #fafa90;
+	border			:0.5vw solid #fafa90;
 }
 
 .mail_yet{
-	background:#ffffd0;
+	background		:#ffffd0;
 }
 
 
@@ -1221,7 +1218,7 @@ input[type=range]::-moz-range-thumb{
 }
 
 .mail_ck{
-	color:#0000ff;
+	color			:#0000ff;
 }
 
 .mail_icon{
@@ -1250,11 +1247,15 @@ input[type=range]::-moz-range-thumb{
 }
 
 .cal_weeks{
+	position		:fixed; 
+	top				:100vh;
+	right			:0;
+	font-size		:0;
 	width			:96vw;
 	border			:0.5vw solid #303030;
 	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.5);
 	background		:#ffe0f0;
-	margin			:1vw auto;
+	margin			:auto;
 }
 
 .cal_list{
@@ -1291,7 +1292,7 @@ input[type=range]::-moz-range-thumb{
 	font-size	:4vw;
 	font-weight	:600;
 	color		:#909090;
-	text-align	:left;
+	text-align	:center;
 }
 
 .sch_time_in{
@@ -1327,10 +1328,10 @@ input[type=range]::-moz-range-thumb{
 	display			:none;
 	position		:absolute;
 	top				:12.5vw;
-	border			:0.5vw solid #303030;
+	border			:0.5vw solid #909090;
 	width			:15vw;
 	background		:#fafafa;
-	font-size		:4vw;
+	font-size		:0;
 	font-weight		:600;
 	color			:#909090;
 	z-index			:12;
@@ -1344,22 +1345,20 @@ input[type=range]::-moz-range-thumb{
 	left			:22.5vw;
 }
 
-
 .sel_txt{
 	display			:inline-block;
 	font-size		:4vw;
+	width			:15vw;
 	font-weight		:600;
 	text-align		:center;
-	background		:#fafafa;
 }
-
 
 .cal_log{
 	position		:absolute;
 	top				:0.5vw;
-	left			:42vw;
+	left			:44vw;
 	height			:12.5vw;
-	width			:50vw;
+	width			:48vw;
 	text-align		:left;
 	background		:#00d0d0;
 	
@@ -1477,4 +1476,51 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	padding-left	:10px;
 }
 
+}
+
+
+.ca1{
+	color		:#ff6060;
+}
+
+
+.ca3{
+	color		:#6060ff;
+}
+
+.c1{
+	background:#ff6060;
+	height		:6vw;
+	line-height	:6vw;
+	color		:#fafafa;
+	font-size	:4vw;
+	font-weight	:600;
+}
+
+.c2{
+	background	:#cccccc;
+	height		:6vw;
+	line-height	:6vw;
+	color		:#fafafa;
+	font-size	:4vw;
+	font-weight	:600;
+}
+
+.c3{
+	background:#90a0ff;
+	height		:6vw;
+	line-height	:6vw;
+	color		:#fafafa;
+	font-size	:4vw;
+	font-weight	:600;
+}
+
+.cc0{
+	background:#fff0f0;
+	background	:linear-gradient(#fff0f0,#ffe0e0);
+}
+
+.cc6{
+	background:#f0f0ff;
+	background	:linear-gradient(#f0f0ff,#e0e0ff);
 }

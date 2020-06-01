@@ -275,6 +275,10 @@ $(function(){
 		}
 	});
 
+	$('.cal_set_btn').on('click',function(){
+		$('.cal_weeks').animate({'top':'18vw'},500);
+	});
+
 	$('#yes_5').on('click',function(){
 		if($('#upd').val() == '') {
 			$('#err').text('画像の登録がありません');
