@@ -31,6 +31,7 @@
 	background	:#ffe0f0;
 	z-index		:15;
 	text-align	:left;
+	box-shadow	:0.5vw 0.5vw 0.5vw rgba(60,60,60,0.4);
 }
 
 .mypage_slide{
@@ -290,7 +291,7 @@
 	width			:100vw;
 	height			:100vh;
 	max-width		:650px;
-	margin			:12vw auto 0 auto;	
+	margin			:15vw auto 0 auto;	
 }
 
 .login_box{
@@ -1249,101 +1250,118 @@ input[type=range]::-moz-range-thumb{
 }
 
 .cal_weeks{
-	width:95vw;
-	border:0.5vw solid #303030;
-	box-shadow:1vw 1vw 1vw rgba(30,30,30,0.5);
-	background:#ffe0f0;
+	width			:96vw;
+	border			:0.5vw solid #303030;
+	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.5);
+	background		:#ffe0f0;
+	margin			:1vw auto;
 }
 
 .cal_list{
-	position	:relative;
-	width		:93vw;
-	margin		:1vw auto;
-	height		:14vw;
-	background	:#fafafa;
+	position		:relative;
+	width			:93vw;
+	margin			:1vw auto;
+	height			:14vw;
+	background		:#fafafa;
 }
 
 .cal_day{
+	position		:absolute;
+	top				:0.5vw;
+	left			:0.5vw;
+	width			:33vw;
+	height			:5vw;
+	line-height		:5vw;
+	background		:#fafafa;
+	font-size		:3.5vw;
+	font-weight		:600;
+	text-align		:left;
+	padding-left	:1vw;
+	color			:#909090;
+}
+
+.sch_time_in,.sch_time_out{
 	position	:absolute;
-	top			:0.5vw;
-	left		:0.5vw;
-	width		:33vw;
-	height		:5vw;
-	line-height	:5vw;
-	background	:#fafaff;
-	font-size	:3.5vw;
+	top			:6vw;
+	border		:0.5vw solid #909090;
+	width		:15vw;
+	height		:6vw;
+	line-height	:6vw;
+	background	:#fafafa;
+	font-size	:4vw;
 	font-weight	:600;
+	color		:#909090;
 	text-align	:left;
-	padding-left:1vw;
-	color:#909090;
 }
 
 .sch_time_in{
-	position	:absolute;
-	top			:6vw;
 	left		:0.5vw;
-	border		:0.5vw solid #909090;
-	width		:15vw;
-	height		:6vw;
-	line-height	:6vw;
-	background	:#fafaff;
-	font-size	:4vw;
-	font-weight	:600;
-	color:#909090;
 }
 
 .sch_time_out{
-	position	:absolute;
-	top			:6vw;
-	left		:17vw;
-	border		:0.5vw solid #909090;
-	width		:15vw;
-	height		:6vw;
-	line-height	:6vw;
-	background	:#fafaff;
-	font-size	:4vw;
-	font-weight	:600;
-	color:#909090;
+	left		:22.5vw;
 }
+
+.sch_set_in,.sch_set_out{
+	position		:absolute;
+	top				:6vw;
+	display			:inline-block;
+	height			:7vw;
+	width			:5.5vw;
+	background		:#909090;
+	color			:#fafafa;
+	font-size		:3vw;
+	text-align		:center;
+	line-height		:7vw;
+}
+
+.sch_set_in{
+	left			:16vw;
+}
+
+.sch_set_out{
+	left			:38vw;
+}
+
+.sch_sel_in,.sch_sel_out{
+	display			:none;
+	position		:absolute;
+	top				:12.5vw;
+	border			:0.5vw solid #303030;
+	width			:15vw;
+	background		:#fafafa;
+	font-size		:4vw;
+	font-weight		:600;
+	color			:#909090;
+	z-index			:12;
+}
+
 .sch_sel_in{
-	display		:none;
-	position	:absolute;
-	top			:12vw;
-	left		:0.5vw;
-	border		:0.5vw solid #303030;
-	width		:9vw;
-	background	:#fafafa;
-	z-index:12;
+	left			:0.5vw;
 }
 
 .sch_sel_out{
-	display		:none;
-	position	:absolute;
-	top			:12vw;
-	left		:0.5vw;
-	border		:0.5vw solid #303030;
-	width		:9vw;
-	background	:#fafafa;
-	z-index:12;
+	left			:22.5vw;
 }
 
+
 .sel_txt{
-	display		:inline-block;
-	font-size	:4vw;
-	font-weight	:600;
-	text-align	:center;
-	background	:#fafafa;
+	display			:inline-block;
+	font-size		:4vw;
+	font-weight		:600;
+	text-align		:center;
+	background		:#fafafa;
 }
 
 
 .cal_log{
-	position	:absolute;
-	top			:0.5vw;
-	left		:34vw;
-	height		:12.5vw;
-	width		:59vw;
-	text-align	:left;
-	background	:#00d0d0;
+	position		:absolute;
+	top				:0.5vw;
+	left			:42vw;
+	height			:12.5vw;
+	width			:50vw;
+	text-align		:left;
+	background		:#00d0d0;
 	
 }
 

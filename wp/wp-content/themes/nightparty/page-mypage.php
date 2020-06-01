@@ -183,13 +183,9 @@ if($_SESSION){
 </ul>
 </div>
 <div class="mypage_main">
-
-
 <?if($cast_page==1){?>
-スケジュール
 
 <?}elseif($cast_page==2){?>
-
 <?}elseif($cast_page==3){?>
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
@@ -339,6 +335,7 @@ if($_SESSION){
 <td class="cal_top" colspan="1"></td>
 </tr>
 <tr>
+
 <?
 for($s=0;$s<7;$s++){
 $w=($s+$week_start) % 7;
@@ -349,12 +346,15 @@ $w=($s+$week_start) % 7;
 </tr>
 </table>
 
+
+
 <div class="cal_weeks">
 <?for($n=0;$n<7;$n++){?>
 	<div class="cal_list">
 	<div class="cal_day">05月26日</div>
-	<div class="sch_time_in">19:00</div>
-	<div class="sch_sel_in">
+	<div id="time_in<?=$n?>" class="sch_time_in">19:00</div>
+	<div id="set_in<?=$n?>" class="sch_set_in">▼</div>
+	<div id="sel_in<?=$n?>" class="sch_sel_in">
 		<span class="sel_txt">OPEN</span>
 		<span class="sel_txt">19:00</span>
 		<span class="sel_txt">19:30</span>
@@ -368,8 +368,9 @@ $w=($s+$week_start) % 7;
 		<span class="sel_txt">23:30</span>
 		<span class="sel_txt">24:00</span>
 	</div>
-	<div class="sch_time_out"></div>
-	<div class="sch_sel_out">
+	<div id="time_out<?=$n?>" class="sch_time_out">19:00</div>
+	<div id="set_out<?=$n?>" class="sch_set_out">▼</div>
+	<div id="sel_out<?=$n?>" class="sch_sel_out">
 		<span class="sel_txt">19:00</span>
 		<span class="sel_txt">19:30</span>
 		<span class="sel_txt">20:00</span>
