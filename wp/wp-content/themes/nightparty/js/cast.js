@@ -4,10 +4,10 @@ $(function(){
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
 			$(this).removeClass('mypage_on');
-			$('.mypage_slide').animate({'left':'-100vw'},150);
+			$('.mypage_slide').animate({'left':'-70vw'},150);
 			$('.mymenu_b').fadeIn(150);
 
-			$('.mymenu_a,.mymenu_c').animate({'left':'1vw','width':'5vw'},150);
+			$('.mymenu_a,.mymenu_c').animate({'left':'1vw','width':'8vw'},150);
 			$('.head_mymenu').animate({'border-radius':'1vw'},150);
 
 			$({deg:-23}).animate({deg:0}, {
@@ -32,8 +32,8 @@ $(function(){
 			$(this).addClass('mypage_on');
 			$('.mypage_slide').animate({'left':'0'},150);
 			$('.mymenu_b').fadeOut(150);
-			$('.mymenu_a,.mymenu_c').animate({'left':'0vw','width':'5.6vw'},150);
-			$('.head_mymenu').animate({'border-radius':'3.5vw'},150);
+			$('.mymenu_a,.mymenu_c').animate({'left':'0.5vw','width':'7vw'},150);
+			$('.head_mymenu').animate({'border-radius':'5vw'},150);
 
 			$({deg:0}).animate({deg:-45}, {
 				duration:150,
@@ -94,7 +94,6 @@ $(function(){
 		$('.link_point_on').removeClass('link_point_on');
 		$(this).addClass('link_point_on');
 		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val()).hide().fadeIn(100);
-
 	});
 
 	$('.mail_detail_tmp').on('click',function () {
@@ -115,9 +114,6 @@ $(function(){
 		$('.detail_modal_link').html();
 	});
 
-
-
-
 	$('.cal_prev').on('click',function () {
 		$('#chg').val('prev');
 		$('#chg_month').submit();
@@ -127,7 +123,6 @@ $(function(){
 		$('#chg').val('next');
 		$('#chg_month').submit();
 	});
-	
 
 	$('.menu_1').on('click',function () {
 		Tmp=$(this).attr('id').replace('m','');
@@ -402,4 +397,26 @@ $(function(){
 	$('.img_open').on( 'click', function () {
 		$('.back').fadeIn(500);
 	});
+
+	$('.mypage_slide').draggable({
+		axis: 'x',
+		start: function( event, ui ) {
+			startPosition = ui.position.left;
+		},
+		drag: function( event, ui ) {
+			if(ui.position.left > startPosition) ui.position.left = startPosition;
+		},
+
+		stop: function( event, ui ) {
+			if(ui.position.left < -50){
+				$('.mypage_slide').animate({'left':'-70vw'},200);
+
+			}else{
+				$('.mypage_slide').animate({'left': '	0vw'},100);
+
+			}
+		}
+	});
+
+
 });

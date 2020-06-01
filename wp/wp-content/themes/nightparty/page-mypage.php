@@ -164,11 +164,33 @@ if($_SESSION){
 	<? }?>
 	</div>
 <?}else{?>
+<div class="mypage_head">
+	<div class="head_mymenu">
+		<div class="mymenu_a"></div>
+		<div class="mymenu_b"></div>
+		<div class="mymenu_c"></div>
+	</div>	
+</div>
+<div class="mypage_slide">
+<ul class="mypage_menu">
+<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
+<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
+<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
+<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
+<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
+<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
+</ul>
+</div>
 <div class="mypage_main">
+
+
 <?if($cast_page==1){?>
-よてい
+スケジュール
 
 <?}elseif($cast_page==2){?>
+
+<?}elseif($cast_page==3){?>
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
@@ -227,7 +249,7 @@ if($_SESSION){
 	</div>
 </div>
 
-<?}elseif($cast_page==3){?>
+<?}elseif($cast_page==4){?>
 <div>
 <button type="button" class="mypage_blog_set">新規投稿</button>
 <div class="mypage_blog_write">
@@ -302,7 +324,7 @@ if($_SESSION){
 <input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
 <input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
-<?}elseif($cast_page==4){?>
+<?}elseif($cast_page==5){?>
 こんふぃぐ
 
 
@@ -366,16 +388,8 @@ $w=($s+$week_start) % 7;
 	</div>
 <?}?>
 </div>
-
-
 <? } ?>
-<ul class="mypage_menu">
-<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
-<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">予定</span></li>
-<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
-<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
-<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
-</ul>
+
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
 </form>

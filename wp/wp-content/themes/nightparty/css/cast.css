@@ -22,6 +22,38 @@
 	line-height		:15vw;
 }
 
+.mypage_head{
+	position	:fixed;
+	top			:0;
+	left		:0;
+	height		:14vw;
+	width		:100vw;
+	background	:#ffe0f0;
+	z-index		:15;
+	text-align	:left;
+}
+
+.mypage_slide{
+	position	:fixed;
+	left		:-70vw;		
+	top			:0;
+	padding-top	:10vw;
+	height		:120vh;
+	width		:70vw;
+	background	:#606060;
+	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	z-index		:12;
+}
+
+.mypage_menu{
+	position	:absolute;
+	top			:16vw;
+	left		:0;
+	width		:70vw;
+	padding		:0;
+
+}
+
 .cal_box{
 	display			:inline-block;
 	height			:50vw;
@@ -168,21 +200,6 @@
 }
 
 
-.mypage_menu{
-	display		:flex;
-	position	:fixed;
-	left		:0;		
-	bottom		:0;
-	height		:15vw;
-	width		:100vw;
-	margin		:0;
-	padding		:0;
-	background	:#f0ffe5;
-	margin-block-start:0;
-	margin-block-end:0;
-	z-index		:12;
-}
-
 .menu_sel{
 	background		:#d03030 !important;
 }
@@ -195,29 +212,46 @@
 	display			:block;
 	position		:relative;
 	margin			:0 auto;
-	flex			:1;
-	height			:14vw;
-	background		:#f1a0a5;
-	text-align		:center;
+	width			:70vw;
+	height			:10vw;
+	text-align		:left;
 	font-size		:0;
 	cursor			:pointer;
+	border-bottom	:0.5vw solid #fafafa;
 }
 
 .menu_i{
-	font-family		: at_icon;
+	font-family		:at_icon;
 	display			:inline-block;
 	position		:absolute;
-	top				:1vw;
-	left			:0;
-	right			:0;
+	top				:0;
+	left			:0.5vw;
+	bottom			:0;
 	margin			:auto;
 	width			:8vw;
 	height			:8vw;
 	line-height		:8vw;
 	text-align		:center;
-	font-size		:7vw;
+	font-size		:6vw;
 	color			:#fafafa;
 }
+
+.menu_s{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0;
+	left			:10vw;
+	top				:0;
+	margin			:auto;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	font-size		:4vw;
+	color			:#fafafa;
+	font-weight		:600;
+}
+
+
 
 .cal_i1,.cal_i2,.cal_i3{
 	font-family		:at_icon;
@@ -250,20 +284,6 @@
 	right			:0.5vw;
 }
 
-.menu_s{
-	display			:inline-block;
-	position		:absolute;
-	bottom			:0.5vw;
-	left			:0;
-	right			:0;
-	margin			:auto;
-	height			:4vw;
-	line-height		:4vw;
-	text-align		:center;
-	font-size		:3.5vw;
-	color			:#fafafa;
-	font-weight		:600;
-}
 
 .mypage_main{
 	display			:inline-block;
@@ -323,9 +343,9 @@
 	bottom			:0; 
 	margin			:auto;
 
-	width			:7vw;
-	height			:7vw;
-	line-height		:7vw;
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
 
 	text-align		:center;
 	background		:#f17766;
@@ -336,10 +356,10 @@
 
 .mymenu_a{
 	position		:absolute;
-	top				:1vw;
+	top				:2vw;
 	left			:1vw;
 	height			:1vw;
-	width			:5vw;
+	width			:8vw;
 	background		:#fafafa;
 	border-radius	:0.4vw;
 	transform-origin:right;
@@ -347,20 +367,20 @@
 
 .mymenu_b{
 	position		:absolute;
-	top				:3vw;
+	top				:4.5vw;
 	left			:1vw;
 	height			:1vw;
-	width			:5vw;
+	width			:8vw;
 	background		:#fafafa;
 	border-radius	:0.4vw;
 }
 
 .mymenu_c{
 	position		:absolute;
-	top				:5vw;
+	top				:7vw;
 	left			:1vw;
 	height			:1vw;
-	width			:5vw;
+	width			:8vw;
 	background		:#fafafa;
 	border-radius	:0.4vw;
 	transform-origin:right;
