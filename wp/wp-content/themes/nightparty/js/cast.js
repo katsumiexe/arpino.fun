@@ -426,6 +426,31 @@ $(function(){
 			if(ui.position.left < -50){
 				$('.mypage_slide').animate({'left':'-70vw'},200);
 
+				$('.head_mymenu').removeClass('mypage_on');
+				$('.mymenu_b').fadeIn(150);
+
+				$('.mymenu_a,.mymenu_c').animate({'left':'1vw','width':'8vw'},100);
+				$('.head_mymenu').animate({'border-radius':'1vw'},100);
+
+				$({deg:-23}).animate({deg:0}, {
+					duration:100,
+					progress:function() {
+						$('.mymenu_a').css({
+							transform:'rotate(' + this.deg + 'deg)'
+						});
+					},
+				});
+
+				$({deg:23}).animate({deg:0}, {
+					duration:100,
+					progress:function() {
+						$('.mymenu_c').css({
+							transform:'rotate(' + this.deg + 'deg)'
+						});
+					},
+				});
+
+
 			}else{
 				$('.mypage_slide').animate({'left': '0vw'},100);
 

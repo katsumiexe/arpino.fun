@@ -347,10 +347,19 @@ if($_SESSION){
 <input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
 <?}elseif($cast_page==5){?>
-こんふぃぐ
+<div class="mypage_config">
+<div class="config_menu">
+名前：
+CAST_ID：
+PASSWORD：
+
+お知らせADDRESS
 
 
+</div>
 
+
+</div>
 <?}else{?>
 <table class="cal_table">
 <tr>

@@ -10,9 +10,9 @@ $n=0;
 foreach($res as $a1):
 	$dat[$n]=$a1;
 	if($a1->face1 > 0):
-		$dat[$n]->face=get_template_directory_uri()."/img/cast/".$a1->id."/".$a1->face1.".jpg";			
+		$dat[$n]->face=get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face1.".jpg";			
 	else:
-		$dat[$n]->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
+		$dat[$n]->face=get_template_directory_uri()."/img/page/noimage.jpg";			
 	endif;
 	$n++;
 endforeach;
