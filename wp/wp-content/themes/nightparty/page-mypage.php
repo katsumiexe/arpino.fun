@@ -381,38 +381,36 @@ $w=($s+$week_start) % 7;
 ?>
 	<div class="cal_list">
 	<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-	<div id="sel_in<?=$n?>" class="sch_sel_in">
-		<span class="sel_txt">OPEN</span>
-		<span class="sel_txt">19:00</span>
-		<span class="sel_txt">19:30</span>
-		<span class="sel_txt">20:00</span>
-		<span class="sel_txt">20:30</span>
-		<span class="sel_txt">21:00</span>
-		<span class="sel_txt">21:30</span>
-		<span class="sel_txt">22:00</span>
-		<span class="sel_txt">22:30</span>
-		<span class="sel_txt">23:00</span>
-		<span class="sel_txt">23:30</span>
-		<span class="sel_txt">24:00</span>
-	</div>
-	<div id="time_in<?=$n?>" class="sch_time_in">19:00</div>
-	<div id="set_in<?=$n?>" class="sch_set_in">▼</div>
-	<div id="sel_out<?=$n?>" class="sch_sel_out">
-		<span class="sel_txt">19:00</span>
-		<span class="sel_txt">19:30</span>
-		<span class="sel_txt">20:00</span>
-		<span class="sel_txt">20:30</span>
-		<span class="sel_txt">21:00</span>
-		<span class="sel_txt">21:30</span>
-		<span class="sel_txt">22:00</span>
-		<span class="sel_txt">22:30</span>
-		<span class="sel_txt">23:00</span>
-		<span class="sel_txt">23:30</span>
-		<span class="sel_txt">24:00</span>
-		<span class="sel_txt">LAST</span>
-	</div>
-	<div id="time_out<?=$n?>" class="sch_time_out">19:00</div>
-	<div id="set_out<?=$n?>" class="sch_set_out">▼</div>
+
+	<select id="sel_out<?=$n?>" class="sch_time_in">
+		<option class="sel_txt">OPEN</option>
+		<option class="sel_txt">19:00</option>
+		<option class="sel_txt">19:30</option>
+		<option class="sel_txt">20:00</option>
+		<option class="sel_txt">20:30</option>
+		<option class="sel_txt">21:00</option>
+		<option class="sel_txt">21:30</option>
+		<option class="sel_txt">22:00</option>
+		<option class="sel_txt">22:30</option>
+		<option class="sel_txt">23:00</option>
+		<option class="sel_txt">23:30</option>
+		<option class="sel_txt">24:00</option>
+	</select>
+
+	<select id="sel_out<?=$n?>" class="sch_time_out">
+		<option class="sel_txt">19:00</option>
+		<option class="sel_txt">19:30</option>
+		<option class="sel_txt">20:00</option>
+		<option class="sel_txt">20:30</option>
+		<option class="sel_txt">21:00</option>
+		<option class="sel_txt">21:30</option>
+		<option class="sel_txt">22:00</option>
+		<option class="sel_txt">22:30</option>
+		<option class="sel_txt">23:00</option>
+		<option class="sel_txt">23:30</option>
+		<option class="sel_txt">24:00</option>
+		<option class="sel_txt">LAST</option>
+	</select>
 	<div class="cal_log"></div>
 	</div>
 <?}?>

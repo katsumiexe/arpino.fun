@@ -1287,11 +1287,11 @@ input[type=range]::-moz-range-thumb{
 	position	:absolute;
 	top			:6vw;
 	border		:0.5vw solid #909090;
-	width		:15vw;
-	height		:6vw;
-	line-height	:6vw;
+	width		:25vw;
+	height		:7vw;
+	line-height	:7vw;
 	background	:#fafafa;
-	font-size	:4vw;
+	font-size	:5vw;
 	font-weight	:600;
 	color		:#909090;
 	text-align	:center;
@@ -1302,7 +1302,7 @@ input[type=range]::-moz-range-thumb{
 }
 
 .sch_time_out{
-	left		:22.5vw;
+	left		:28vw;
 }
 
 .sch_set_in,.sch_set_out{
@@ -1359,9 +1359,9 @@ input[type=range]::-moz-range-thumb{
 .cal_log{
 	position		:absolute;
 	top				:0.5vw;
-	left			:44vw;
+	left			:54vw;
 	height			:12.5vw;
-	width			:48vw;
+	width			:38vw;
 	text-align		:left;
 	background		:#fafafa;
 	
