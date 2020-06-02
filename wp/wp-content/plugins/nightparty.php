@@ -8,7 +8,8 @@ Author: KatsumiArai
 Author URI:
 */
 
-	add_action('admin_menu', 'custom_menu_page');
+add_action('admin_menu', 'custom_menu_page');
+
 	function custom_menu_page()
 	{
 	add_menu_page(
@@ -18,11 +19,12 @@ Author URI:
 		'custom_menu_page', 
 		'add_custom_menu_page', 
 		'dashicons-businesswoman', 
-
-
-		4
+		5
 	);
 	}
+
+
+
 	function add_custom_menu_page()
 	{
 ?>
