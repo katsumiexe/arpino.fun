@@ -1249,6 +1249,7 @@ input[type=range]::-moz-range-thumb{
 .cal_weeks{
 	position		:fixed; 
 	top				:100vh;
+	left			:0;
 	right			:0;
 	font-size		:0;
 	width			:95vw;
@@ -1335,7 +1336,8 @@ input[type=range]::-moz-range-thumb{
 	font-size		:0;
 	font-weight		:600;
 	color			:#909090;
-	z-index			:12;
+	box-shadow:0 0 2px #ffffff;
+	z-index:12;
 }
 
 .sch_sel_in{
