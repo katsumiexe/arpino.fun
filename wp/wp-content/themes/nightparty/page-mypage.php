@@ -31,9 +31,7 @@ $week_tag2[4]="ca2";
 $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
 
-$week_start=0;
-
-$base_time=strtotime("2020-05-22");
+$week_start=get_option("start_of_week")+0;
 $base_time=time();
 
 $now_ymd=date("Ymd",$base_time);
@@ -45,8 +43,6 @@ $base_week	=$week_start-$now_w;
 if($base_week>0) $base_week-=7;
 
 $base_day	=$base_time+($base_week*86400);
-
-
 
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
@@ -111,40 +107,75 @@ if($_SESSION){
 		$c_month=date("Y-m-01",strtotime($c_month)-86400);
 	}
 
-	$n=date("w",strtotime($c_month))-$week_start;
-	$t=date("t",strtotime($c_month));
+	$now_month=date("m",strtotime($c_month));
 
+	$t=date("t",strtotime($c_month));
+	$n=$week_start-date("w",strtotime($c_month));
+	if($n>0) $n-=7;
+
+	$st=strtotime($c_month)+($n*86400);
 
 	$v_year	=substr($c_month,0,4)."年";
 	$v_month=substr($c_month,5,2)."月";
 
-	for($m=0; $m<$t+$n;$m++){
-		$d=$m-$n+1;
-		$tmp_w=$m%7;
+	for($m=0; $m<42;$m++){
+		$tmp_ymd	=date("Ymd",$st+($m*86400));
+		$tmp_month	=date("m",$st+($m*86400));
+		$tmp_day	=date("d",$st+($m*86400));
+		$tmp_week	=date("w",$st+($m*86400));
 
-		$v_ymd=date("Ymd",strtotime($c_month)+($d-1)*86400);
-
+		$tmp_w		=$m % 7;
 		if($tmp_w==0){
-			$cal.="</tr><tr>";
+
+			if($now_month<$tmp_month){
+				break;
+			}else{
+				$cal.="</tr><tr>";
+			}
 		}
 
-		if($ob_holiday[$v_ymd]){
-			$tmp_w=0;
+		if($ob_holiday[$tmp_ymd]){
+			$tmp_week=0;
 		}
 
-		if($m-$n>=0){
-			$cal.="<td class=\"cal_td cc".$tmp_w."\">";
-			$cal.="<span class=\"dy".$tmp_w."\">".$d."</span>";
-			$cal.="<span class=\"cal_i1 n1\"></span>";
-			$cal.="<span class=\"cal_i2\"></span>";
-			$cal.="<span class=\"cal_i3\"></span>";
-			$cal.="</td>";
-
+		if($now_month!=$tmp_month){
+			$day_tag=" outof";
 		}else{
-			$cal.="<td class=\"cal_td cc".$tmp_w."\"></td>";
+			$day_tag=" nowmonth";
 		}
+
+		$cal.="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
+		$cal.="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
+		$cal.="<span class=\"cal_i1 n1\"></span>";
+		$cal.="<span class=\"cal_i2\"></span>";
+		$cal.="<span class=\"cal_i3\"></span>";
+		$cal.="</td>";
+	}
+
+	$sql	 ="SELECT * FROM wp01_0sch_table";
+	$sql	.=" ORDER BY sort ASC";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $tmp){
+		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
+		$sche_table_dat[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+	}
+
+$st=date("Ymd",$now_ymd);
+$ed=date("Ymd",$now_ymd);
+
+
+	$sql	 ="SELECT * FROM wp01_0schedule";
+	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
+	$sql	.=" AND sche_date>={$st}";
+	$sql	.=" AND sche_date<{$ed}";
+
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $tmp2){
+		$stime[$tmp2["sche_date"]]		=$tmp["stime"];
+		$etime[$tmp2["sche_date"]]		=$tmp["etime"];
 	}
 }
+
 ?>
 <html lang="ja">
 <head>
@@ -195,25 +226,22 @@ if($_SESSION){
 	</div>	
 </div>
 <div class="mypage_slide">
-<ul class="mypage_menu">
-<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
-<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
-<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
-<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
-<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
-<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
-<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
-</ul>
+	<ul class="mypage_menu">
+		<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
+		<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
+		<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
+		<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
+		<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
+		<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+		<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
+	</ul>
 </div>
+
 <div class="mypage_main">
 <?if($cast_page==1){?>
-
 <?}elseif($cast_page==2){?>
 <?}elseif($cast_page==3){?>
 <div class="mypage_mail">
-
-
-
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
@@ -236,7 +264,6 @@ if($_SESSION){
 	</div>
 	<?}?>
 </div>
-
 <div class="mypage_mail_detail">
 	<span class="mail_detail_from">
 		<span class="mail_detail_back"></span>
@@ -244,7 +271,6 @@ if($_SESSION){
 		<span class="mail_detail_address"></span>
 		<img class="mail_detail_img">
 	</span>
-
 	<span class="mail_detail_body">
 		<span class="mail_detail_head">
 			<span class="mail_detail_date"></span>
@@ -261,7 +287,6 @@ if($_SESSION){
 	</span>
 </div>
 <input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
-
 <div class="detail_modal">
 	<div class="detail_modal_box">
 		<span class="detail_modal_out">×</span>
@@ -291,36 +316,36 @@ if($_SESSION){
 	<div class="upload_icon tag_open"></div>
 	<div class="upload_icon img_open"></div>
 	<div class="back">
-	<div class="mypage_blog_img">
-		<div class="img_box_in">
-			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
-			<div class="img_box_out1"></div>
-			<div class="img_box_out2"></div>
-			<div class="img_box_out3"></div>
-			<div class="img_box_out4"></div>
-			<div class="img_box_out5"></div>
-			<div class="img_box_out6"></div>
-			<div class="img_box_out7"></div>
-			<div class="img_box_out8"></div>
-		</div>
+		<div class="mypage_blog_img">
+			<div class="img_box_in">
+				<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
+				<div class="img_box_out1"></div>
+				<div class="img_box_out2"></div>
+				<div class="img_box_out3"></div>
+				<div class="img_box_out4"></div>
+				<div class="img_box_out5"></div>
+				<div class="img_box_out6"></div>
+				<div class="img_box_out7"></div>
+				<div class="img_box_out8"></div>
+			</div>
 
-		<div class="img_box_in2">
-			<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
-			<span class="upload_icon upload_rote"></span>
-			<span class="upload_icon upload_reset"></span>
-		</div>
+			<div class="img_box_in2">
+				<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
+				<span class="upload_icon upload_rote"></span>
+				<span class="upload_icon upload_reset"></span>
+			</div>
 
-		<div class="img_box_in3">
-			<div class="zoom_mi">-</div>
-			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
-			<div class="zoom_pu">+</div><div class="zoom_box">100</div>
-		</div>
+			<div class="img_box_in3">
+				<div class="zoom_mi">-</div>
+				<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
+				<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+			</div>
 
-		<div class="img_box_in4">
-			<div id="yes_5" class="btn c2">登録</div>　
-			<div class="btn c1">戻る</div>
+			<div class="img_box_in4">
+				<div id="yes_5" class="btn c2">登録</div>　
+				<div class="btn c1">戻る</div>
+			</div>
 		</div>
-	</div>
 	</div>
 </div>
 <div class="mypage_blog_hist">
@@ -352,10 +377,7 @@ if($_SESSION){
 名前：
 CAST_ID：
 PASSWORD：
-
 お知らせADDRESS
-
-
 </div>
 
 
@@ -370,7 +392,6 @@ PASSWORD：
 <td class="cal_top" colspan="1"></td>
 </tr>
 <tr>
-
 <?
 for($s=0;$s<7;$s++){
 $w=($s+$week_start) % 7;
@@ -383,46 +404,28 @@ $w=($s+$week_start) % 7;
 
 <div class="cal_set_btn">スケジュール入力</div>
 
-
 <div class="cal_weeks">
 <?for($n=0;$n<7;$n++){
 	$tmp_wk=($n+$week_start)%7;
 ?>
+
 	<div class="cal_list">
 	<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-
 	<select id="sel_out<?=$n?>" class="sch_time_in">
-		<option class="sel_txt">OPEN</option>
-		<option class="sel_txt">19:00</option>
-		<option class="sel_txt">19:30</option>
-		<option class="sel_txt">20:00</option>
-		<option class="sel_txt">20:30</option>
-		<option class="sel_txt">21:00</option>
-		<option class="sel_txt">21:30</option>
-		<option class="sel_txt">22:00</option>
-		<option class="sel_txt">22:30</option>
-		<option class="sel_txt">23:00</option>
-		<option class="sel_txt">23:30</option>
-		<option class="sel_txt">24:00</option>
+		<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
+			<option class="sel_txt" <?if($sch[date("Ymd",$base_day+86400*$n)]["in"]==$sche_table_time["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
+		<?}?>
 	</select>
 
 	<select id="sel_out<?=$n?>" class="sch_time_out">
-		<option class="sel_txt">19:00</option>
-		<option class="sel_txt">19:30</option>
-		<option class="sel_txt">20:00</option>
-		<option class="sel_txt">20:30</option>
-		<option class="sel_txt">21:00</option>
-		<option class="sel_txt">21:30</option>
-		<option class="sel_txt">22:00</option>
-		<option class="sel_txt">22:30</option>
-		<option class="sel_txt">23:00</option>
-		<option class="sel_txt">23:30</option>
-		<option class="sel_txt">24:00</option>
-		<option class="sel_txt">LAST</option>
+		<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
+			<option class="sel_txt" <?if($sch[date("Ymd",$base_day+86400*$n)]["out"]==$sche_table_time["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
+		<?}?>
 	</select>
+
 	<div class="cal_log"></div>
 	</div>
-<?}?>
+<? } ?>
 </div>
 <? } ?>
 

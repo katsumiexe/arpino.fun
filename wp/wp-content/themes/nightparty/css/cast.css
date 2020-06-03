@@ -136,7 +136,7 @@
 }
 
 .c3{
-	background:#90a0ff;
+	background	:#90a0ff;
 	height		:6vw;
 	line-height	:6vw;
 	color		:#fafafa;
@@ -190,10 +190,10 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#ffc090;
+	background	:#f0f0f0	;
 	font-size	:3vw;
 	font-weight	:600;
-	color		:#fafafa;
+	color		:#c0b0a0;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
@@ -1263,20 +1263,20 @@ input[type=range]::-moz-range-thumb{
 	position		:relative;
 	width			:93vw;
 	margin			:1vw auto;
-	height			:14vw;
+	height			:10vw;
 	background		:#fafafa;
 	border-bottom	:0.5vw dashed #ffd0f0;
 }
 
 .cal_day{
 	position		:absolute;
-	top				:0.5vw;
-	left			:0.5vw;
-	width			:33vw;
-	height			:5vw;
-	line-height		:5vw;
+	bottom			:1vw;
+	left			:1vw;
+	width			:30vw;
+	height			:7vw;
+	line-height		:7vw;
 	background		:#fafafa;
-	font-size		:3.5vw;
+	font-size		:4vw;
 	font-weight		:600;
 	text-align		:left;
 	padding-left	:1vw;
@@ -1285,11 +1285,11 @@ input[type=range]::-moz-range-thumb{
 
 .sch_time_in,.sch_time_out{
 	position	:absolute;
-	top			:6vw;
+	bottom		:1vw;
 	border		:0.5vw solid #909090;
 	width		:25vw;
-	height		:7vw;
-	line-height	:7vw;
+	height		:8vw;
+	line-height	:8vw;
 	background	:#fafafa;
 	font-size	:5vw;
 	font-weight	:600;
@@ -1298,73 +1298,21 @@ input[type=range]::-moz-range-thumb{
 }
 
 .sch_time_in{
-	left		:0.5vw;
+	left		:32vw;
 }
 
 .sch_time_out{
-	left		:28vw;
-}
-
-.sch_set_in,.sch_set_out{
-	position		:absolute;
-	top				:6vw;
-	display			:inline-block;
-	height			:7vw;
-	width			:5.5vw;
-	background		:#909090;
-	color			:#fafafa;
-	font-size		:3vw;
-	text-align		:center;
-	line-height		:7vw;
-}
-
-.sch_set_in{
-	left			:16vw;
-}
-
-.sch_set_out{
-	left			:38vw;
-}
-
-.sch_sel_in,.sch_sel_out{
-	display			:none;
-	position		:absolute;
-	top				:12.5vw;
-	border			:0.5vw solid #909090;
-	width			:15vw;
-	background		:#fafafa;
-	font-size		:0;
-	font-weight		:600;
-	color			:#909090;
-	box-shadow:0 0 2px #ffffff;
-	z-index:12;
-}
-
-.sch_sel_in{
-	left			:0.5vw;
-}
-
-.sch_sel_out{
-	left			:22.5vw;
-}
-
-.sel_txt{
-	display			:inline-block;
-	font-size		:4vw;
-	width			:15vw;
-	font-weight		:600;
-	text-align		:center;
+	left		:58vw;
 }
 
 .cal_log{
 	position		:absolute;
-	top				:0.5vw;
-	left			:54vw;
-	height			:12.5vw;
-	width			:38vw;
+	top				:1vw;
+	left			:84vw;
+	height			:8vw;
+	width			:9vw;
 	text-align		:left;
-	background		:#fafafa;
-	
+	background		:#fa20fa;
 }
 
 
@@ -1527,3 +1475,13 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	background:#f0f0ff;
 	background	:linear-gradient(#f0f0ff,#e0e0ff);
 }
+
+.nowmonth{
+	color:#666666;
+	
+}
+.outof{
+	color:#dddddd;
+	
+}
+
