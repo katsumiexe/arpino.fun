@@ -292,7 +292,7 @@ $(function(){
 			var ImgHeight	=$('#img_Height').val();
 			var ImgZoom		=$('#img_zoom').val();
 
-			$.post(".post/blog_img_set.php",
+			$.post(Dir + ".post/blog_img_set.php",
 			{
 				'img_url':IdTmp,
 				'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
@@ -413,6 +413,51 @@ $(function(){
 		$('.back').fadeIn(500);
 	});
 
+	$('.mypage_cal').draggable({
+		axis: 'x',
+
+		drag: function( event, ui ) {
+		},
+		
+		stop: function( event, ui ) {
+			if(ui.position.left > -200){
+				$('.mypage_cal').animate({'left':'0'},100);
+
+
+
+				$.post(Dir + "/post/calendar_set.php",
+				{
+				'c_month':$('.c_month').val(),
+				'pre':'1',
+
+				},
+				function(data){
+					$('.mypage_cal').prepend(data);
+					console.log(data);
+				});
+
+
+			}else if(ui.position.left < -400){
+				$('.mypage_cal').animate({'left':'-200vw'},100);
+
+				$.post(Dir + "/post/calendar_set.php",
+				{
+				'c_month':$('.c_month').val(),
+				'pre':'2',
+				},
+
+				function(data){
+					$('.mypage_cal').append(data);
+					console.log(data);
+				});
+
+			}else{
+				$('.mypage_cal').animate({'left':'-100vw'},100);
+			}
+
+		},
+	});
+
 	$('.mypage_slide').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
@@ -459,8 +504,9 @@ $(function(){
 	});
 
 
+
 	$('.sch_set').on( 'click', function (){
-		$.post(".post/sch_set.php",
+		$.post(Dir + "/post/sch_set.php",
 		{
 	
 		'sel_in0':$('#sel_in0').val(),

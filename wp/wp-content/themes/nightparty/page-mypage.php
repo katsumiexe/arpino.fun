@@ -66,11 +66,7 @@ if($_SESSION){
 	}
 }
 if($_SESSION){
-
 	$cast_page=$_POST["cast_page"]+0;
-	/*--■祝日カレンダー--*/
-	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
-	$ob_holiday = json_decode($holiday,true);
 
 	//$ob_holiday["20200101"];
 	/*--■メールチェック--*/
@@ -96,9 +92,14 @@ if($_SESSION){
 		$n++;
 	}
 
+	/*--■祝日カレンダー--*/
+	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
+	$ob_holiday = json_decode($holiday,true);
+
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
 
+/*
 	if($_POST["b_month"] == 'next'){
 		$c_month=date("Y-m-01",strtotime($c_month)+3456000);
 	}
@@ -106,50 +107,58 @@ if($_SESSION){
 	if($_POST["b_month"] == 'prev'){
 		$c_month=date("Y-m-01",strtotime($c_month)-86400);
 	}
+*/
 
-	$now_month=date("m",strtotime($c_month));
+	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
+	$calendar[1]=$c_month;
+	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
 
-	$t=date("t",strtotime($c_month));
-	$n=$week_start-date("w",strtotime($c_month));
-	if($n>0) $n-=7;
 
-	$st=strtotime($c_month)+($n*86400);
+	for($n=0;$n<3;$n++){
+		$now_month=date("m",strtotime($calendar[$n]));
+		$t=date("t",strtotime($calendar[$n]));
 
-	$v_year	=substr($c_month,0,4)."年";
-	$v_month=substr($c_month,5,2)."月";
+		$wk=$week_start-date("w",strtotime($calendar[$n]));
+		if($wk>0) $wk-=7;
 
-	for($m=0; $m<42;$m++){
-		$tmp_ymd	=date("Ymd",$st+($m*86400));
-		$tmp_month	=date("m",$st+($m*86400));
-		$tmp_day	=date("d",$st+($m*86400));
-		$tmp_week	=date("w",$st+($m*86400));
+		$st=strtotime($calendar[$n])+($wk*86400);
+		$v_year[$n]	=substr($calendar[$n],0,4)."年";
+		$v_month[$n]=substr($calendar[$n],5,2)."月";
 
-		$tmp_w		=$m % 7;
-		if($tmp_w==0){
+		for($m=0; $m<42;$m++){
+			$tmp_ymd	=date("Ymd",$st+($m*86400));
+			$tmp_month	=date("m",$st+($m*86400));
+			$tmp_day	=date("d",$st+($m*86400));
+			$tmp_week	=date("w",$st+($m*86400));
 
-			if($now_month<$tmp_month){
-				break;
-			}else{
-				$cal.="</tr><tr>";
+			$tmp_w		=$m % 7;
+			if($tmp_w==0){
+
+				if($now_month<$tmp_month){
+					break 1;
+				}else{
+					$cal[$n].="</tr><tr>";
+				}
 			}
-		}
 
-		if($ob_holiday[$tmp_ymd]){
-			$tmp_week=0;
-		}
+			if($ob_holiday[$tmp_ymd]){
+				$tmp_week=0;
+			}
 
-		if($now_month!=$tmp_month){
-			$day_tag=" outof";
-		}else{
-			$day_tag=" nowmonth";
-		}
+			if($now_month!=$tmp_month){
+				$day_tag=" outof";
 
-		$cal.="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
-		$cal.="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
-		$cal.="<span class=\"cal_i1 n1\"></span>";
-		$cal.="<span class=\"cal_i2\"></span>";
-		$cal.="<span class=\"cal_i3\"></span>";
-		$cal.="</td>";
+			}else{
+				$day_tag=" nowmonth";
+			}
+
+			$cal[$n].="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
+			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
+			$cal[$n].="<span class=\"cal_i1 n1\"></span>";
+			$cal[$n].="<span class=\"cal_i2\"></span>";
+			$cal[$n].="<span class=\"cal_i3\"></span>";
+			$cal[$n].="</td>";
+		}
 	}
 
 	$sql	 ="SELECT * FROM wp01_0sch_table";
@@ -198,6 +207,11 @@ $ed=date("Ymd",$now_ymd);
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+
+<script>
+const Dir='<?php echo get_template_directory_uri(); ?>'; 
+</script>
+
 </head>
 <body class="body">
 <? if(!$_SESSION){ ?>
@@ -236,7 +250,6 @@ $ed=date("Ymd",$now_ymd);
 		<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 	</ul>
 </div>
-
 <div class="mypage_main">
 <?if($cast_page==1){?>
 <?}elseif($cast_page==2){?>
@@ -380,14 +393,16 @@ PASSWORD：
 お知らせADDRESS
 </div>
 
-
 </div>
 <?}else{?>
+<div class="mypage_cal">
+<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
+<?for($c=0;$c<3;$c++){?>
 <table class="cal_table">
 <tr>
 <td class="cal_top" colspan="1"></td>
 <td class="cal_top" colspan="1"><span id="prev" class="cal_prev"></span></td>
-<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year?></span><span class="v_month"><?PHP ECHO $v_month?></span></td>
+<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
 <td class="cal_top" colspan="1"><span id="next" class="cal_next"></span></td>
 <td class="cal_top" colspan="1"></td>
 </tr>
@@ -398,9 +413,11 @@ $w=($s+$week_start) % 7;
 ?>
 <td class="cal_td <?PHP ECHO $week_tag[$w]?>"><?PHP ECHO $week[$w]?></td>
 <? } ?>
-<?PHP ECHO $cal?>
+<?PHP ECHO $cal[$c]?>
 </tr>
 </table>
+<?}?>
+</div>
 
 <div class="cal_set_btn">スケジュール入力</div>
 <div class="cal_weeks">
@@ -412,12 +429,14 @@ $w=($s+$week_start) % 7;
 	<div class="cal_list">
 	<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
 	<select id="sel_in<?=$n?>" class="sch_time_in">
+			<option class="sel_txt"></option>
 		<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
 			<option class="sel_txt" <?if($sch[date("Ymd",$base_day+86400*$n)]["in"]===$sche_table_time["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
 		<?}?>
 	</select>
 
 	<select id="sel_out<?=$n?>" class="sch_time_out">
+			<option class="sel_txt"></option>
 		<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
 			<option class="sel_txt" <?if($sch[date("Ymd",$base_day+86400*$n)]["out"]===$sche_table_time["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
 		<?}?>
@@ -433,10 +452,7 @@ $w=($s+$week_start) % 7;
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
 </form>
-<form id="chg_month" action="<?php the_permalink();?>" method="post">
-<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
-<input id="chg" type="hidden" name="b_month">
-</form>
+
 <form id="menu_sel" action="<?php the_permalink();?>" method="post">
 <input id="cast_page" type="hidden" value="" name="cast_page">
 <input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">

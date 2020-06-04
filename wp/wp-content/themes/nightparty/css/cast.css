@@ -52,7 +52,6 @@
 	left		:0;
 	width		:70vw;
 	padding		:0;
-
 }
 
 .cal_box{
@@ -65,7 +64,7 @@
 	width			:99vw;
 	border			:0.5vw solid #fafafa;
 	margin			:1vw auto;
-	table-layout	: fixed;
+	table-layout	:fixed;
 }
 
 .cal_next,.cal_prev{
@@ -80,10 +79,10 @@
 }
 
 .cal_top{
-	height		:10vw;
-	vertical-align:bottom;
-	text-align	:center;
-	background	:#ffc090;
+	height			:10vw;
+	vertical-align	:bottom;
+	text-align		:center;
+	background		:#ffc090;
 }
 
 .v_month{
@@ -105,8 +104,6 @@
 	font-size		:4vw;
 	font-weight		:700;
 }
-
-
 
 .cal_td{
 	position	:relative;
@@ -284,12 +281,14 @@
 }
 
 .mypage_main{
+	position		:fixed;
+	left			:0;
+	top				:14vw;
 	display			:inline-block;
 	background		:#fafafa;
 	width			:100vw;
 	height			:100vh;
 	max-width		:650px;
-	margin			:15vw auto 0 auto;	
 }
 
 .login_box{
@@ -1245,6 +1244,15 @@ input[type=range]::-moz-range-thumb{
 	bottom			:0.5vw;
 	left			:19vw;
 }
+
+.mypage_cal{
+	display			:flex;
+	position		:absolute;
+	top				:0;
+	left			:-100vw;
+	width			:300vw;
+}
+
 
 .cal_weeks{
 	position		:fixed; 
