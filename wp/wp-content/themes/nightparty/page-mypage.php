@@ -395,8 +395,10 @@ PASSWORD：
 
 </div>
 <?}else{?>
-<div class="mypage_cal">
 <input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
+<input id="week_start" type="hidden" value="<?=$week_start?>">
+
+<div class="mypage_cal">
 <?for($c=0;$c<3;$c++){?>
 <table class="cal_table">
 <tr>

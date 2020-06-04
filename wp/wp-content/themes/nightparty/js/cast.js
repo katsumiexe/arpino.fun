@@ -423,38 +423,42 @@ $(function(){
 			if(ui.position.left > -200){
 				$('.mypage_cal').animate({'left':'0'},100);
 
-
-
-				$.post(Dir + "/post/calendar_set.php",
-				{
-				'c_month':$('.c_month').val(),
-				'pre':'1',
-
-				},
-				function(data){
-					$('.mypage_cal').prepend(data);
-					console.log(data);
+				$.post({
+					url:Dir + "/post/calendar_set.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'week_start':$('#week_start').val(),
+						'pre':'1',
+					},
+					dataType: 'json',
+				}).done(function(data, textStatus, jqXHR){
+					$('.mypage_cal').prepend(data.html).css('left','-100vw');
+					$(".mypage_cal").children().last().remove();
+					$('#c_month').val(data.date);
+					console.log(data.date);
 				});
-
 
 			}else if(ui.position.left < -400){
 				$('.mypage_cal').animate({'left':'-200vw'},100);
 
-				$.post(Dir + "/post/calendar_set.php",
-				{
-				'c_month':$('.c_month').val(),
-				'pre':'2',
-				},
 
-				function(data){
-					$('.mypage_cal').append(data);
-					console.log(data);
+				$.post({
+					url:Dir + "/post/calendar_set.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'week_start':$('#week_start').val(),
+						'pre':'2',
+					},
+					dataType: 'json',
+				}).done(function(data, textStatus, jqXHR){
+					$('.mypage_cal').prepend(data.html).css('left','-100vw');
+					$(".mypage_cal").children().last().remove();
+					$('#c_month').val(data.date);
+					console.log(data.date);
 				});
-
 			}else{
 				$('.mypage_cal').animate({'left':'-100vw'},100);
 			}
-
 		},
 	});
 
