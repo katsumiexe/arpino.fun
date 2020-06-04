@@ -48,13 +48,14 @@ if($pre == 1){
 	$c_month		=date("Y-m-01",strtotime($c_month)+6912000);
 }
 
-$now_month=date("m",strtotime($c_month));
-$t=date("t",strtotime($c_month));
+$now_month	=date("m",strtotime($c_month));
+$t			=date("t",strtotime($c_month));
 $wk=$week_start-date("w",strtotime($c_month));
 if($wk>0) $wk-=7;
-$st=strtotime($c_month)+($wk*86400);
-$v_year	=substr($c_month,0,4)."年";
-$v_month=substr($c_month,5,2)."月";
+
+$st			=strtotime($c_month)+($wk*86400);
+$v_year		=substr($c_month,0,4)."年";
+$v_month	=substr($c_month,5,2)."月";
 
 $cal["html"] ="<table class=\"cal_table\"><tr>";
 $cal["html"].="<td class=\"cal_top\" colspan=\"1\"></td>";
@@ -80,8 +81,10 @@ for($m=0; $m<42;$m++){
 
 		if($now_month<$tmp_month){
 			break 1;
+
 		}else{
 			$cal["html"].="</tr><tr>";
+
 		}
 	}
 

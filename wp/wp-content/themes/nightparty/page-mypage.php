@@ -32,17 +32,14 @@ $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
 
 $week_start=get_option("start_of_week")+0;
-$base_time=time();
+$now_w=date("w");
+$base_w=$now_w-$week_start;
+if($base_w<0) $base_w+=7;
 
-$now_ymd=date("Ymd",$base_time);
-$now_d	=date("d",$base_time)+0;
-$now_w	=date("w",$base_time)+0;
+$base_day=time()-$base_w*86400;
 
-
-$base_week	=$week_start-$now_w;
-if($base_week>0) $base_week-=7;
-
-$base_day	=$base_time+($base_week*86400);
+$week_st=date("Ymd",$base_day);
+$week_ed=date("Ymd",$base_day+604800);
 
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
@@ -99,20 +96,9 @@ if($_SESSION){
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
 
-/*
-	if($_POST["b_month"] == 'next'){
-		$c_month=date("Y-m-01",strtotime($c_month)+3456000);
-	}
-
-	if($_POST["b_month"] == 'prev'){
-		$c_month=date("Y-m-01",strtotime($c_month)-86400);
-	}
-*/
-
 	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
 	$calendar[1]=$c_month;
 	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
-
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
@@ -166,22 +152,18 @@ if($_SESSION){
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp){
 		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
-		$sche_table_dat[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
 	}
-
-$st=date("Ymd",$now_ymd);
-$ed=date("Ymd",$now_ymd);
-
 
 	$sql	 ="SELECT * FROM wp01_0schedule";
 	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
-	$sql	.=" AND sche_date>={$st}";
-	$sql	.=" AND sche_date<{$ed}";
+	$sql	.=" AND sche_date>='{$week_st}'";
+	$sql	.=" AND sche_date<'{$week_ed}'";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp2){
-		$stime[$tmp2["sche_date"]]		=$tmp["stime"];
-		$etime[$tmp2["sche_date"]]		=$tmp["etime"];
+		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
+		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}
 }
 
@@ -211,7 +193,6 @@ $ed=date("Ymd",$now_ymd);
 <script>
 const Dir='<?php echo get_template_directory_uri(); ?>'; 
 </script>
-
 </head>
 <body class="body">
 <? if(!$_SESSION){ ?>
@@ -392,20 +373,18 @@ CAST_ID：
 PASSWORD：
 お知らせADDRESS
 </div>
-
 </div>
 <?}else{?>
 <input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
 <input id="week_start" type="hidden" value="<?=$week_start?>">
-
 <div class="mypage_cal">
 <?for($c=0;$c<3;$c++){?>
 <table class="cal_table">
 <tr>
 <td class="cal_top" colspan="1"></td>
-<td class="cal_top" colspan="1"><span id="prev" class="cal_prev"></span></td>
+<td class="cal_top" colspan="1"><span class="cal_prev"></span></td>
 <td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
-<td class="cal_top" colspan="1"><span id="next" class="cal_next"></span></td>
+<td class="cal_top" colspan="1"><span class="cal_next"></span></td>
 <td class="cal_top" colspan="1"></td>
 </tr>
 <tr>
@@ -429,28 +408,27 @@ $w=($s+$week_start) % 7;
 	$tmp_wk=($n+$week_start)%7;
 ?>
 	<div class="cal_list">
-	<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-	<select id="sel_in<?=$n?>" class="sch_time_in">
+		<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
+		<select id="sel_in<?=$n?>" class="sch_time_in">
 			<option class="sel_txt"></option>
-		<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
-			<option class="sel_txt" <?if($sch[date("Ymd",$base_day+86400*$n)]["in"]===$sche_table_time["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
-		<?}?>
-	</select>
-
-	<select id="sel_out<?=$n?>" class="sch_time_out">
+			<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
+				<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
+			<?}?>
+		</select>
+		<select id="sel_out<?=$n?>" class="sch_time_out">
 			<option class="sel_txt"></option>
-		<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
-			<option class="sel_txt" <?if($sch[date("Ymd",$base_day+86400*$n)]["out"]===$sche_table_time["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
-		<?}?>
-	</select>
-
-	<div class="cal_log"></div>
+			<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
+				<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
+			<?}?>
+		</select>
+		<div class="cal_log"></div>
 	</div>
 <? } ?>
 <div class="sch_set">SET</div>
 </div>
-<? } ?>
 
+
+<? } ?>
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
 </form>

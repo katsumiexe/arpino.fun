@@ -114,16 +114,6 @@ $(function(){
 		$('.detail_modal_link').html();
 	});
 
-	$('.cal_prev').on('click',function () {
-		$('#chg').val('prev');
-		$('#chg_month').submit();
-	});
-
-	$('.cal_next').on('click',function () {
-		$('#chg').val('next');
-		$('#chg_month').submit();
-	});
-
 	$('.menu_1').on('click',function () {
 		Tmp=$(this).attr('id').replace('m','');
 		if(Tmp == 99){
@@ -413,14 +403,71 @@ $(function(){
 		$('.back').fadeIn(500);
 	});
 
+
+
+	$('.mypage_cal').on('click','.cal_prev',function () {
+		$('.mypage_cal').animate({'left':'0'},200);
+		$.post({
+			url:Dir + "/post/calendar_set.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'pre':'1',
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.mypage_cal').prepend(data.html).css('left','-100vw');
+			$(".mypage_cal").children().last().remove();
+			$('#c_month').val(data.date);
+		});
+	});
+
+
+	$('.mypage_cal').on('click','.cal_next',function () {
+		$('.mypage_cal').animate({'left':'-200vw'},200);
+		$.post({
+			url:Dir + "/post/calendar_set.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'pre':'2',
+			},
+			dataType: 'json',
+		}).done(function(data, textStatus, jqXHR){
+			$('.mypage_cal').append(data.html).css('left','-100vw');
+			$(".mypage_cal").children().first().remove();
+			$('#c_month').val(data.date);
+		});
+	});
+
+
+
+	$('.mypage_cal').on('click','.cal_next',function () {
+		$('.mypage_cal').animate({'left':'-200vw'},200);
+		$.post({
+			url:Dir + "/post/calendar_set.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'pre':'2',
+			},
+			dataType: 'json',
+		}).done(function(data, textStatus, jqXHR){
+			$('.mypage_cal').append(data.html).css('left','-100vw');
+			$(".mypage_cal").children().first().remove();
+			$('#c_month').val(data.date);
+		});
+	});
+
 	$('.mypage_cal').draggable({
 		axis: 'x',
 
 		drag: function( event, ui ) {
 		},
-		
+
 		stop: function( event, ui ) {
-			if(ui.position.left > -200){
+			if(ui.position.left > VwBase*(-80)){
 				$('.mypage_cal').animate({'left':'0'},100);
 
 				$.post({
@@ -431,16 +478,17 @@ $(function(){
 						'pre':'1',
 					},
 					dataType: 'json',
+
 				}).done(function(data, textStatus, jqXHR){
 					$('.mypage_cal').prepend(data.html).css('left','-100vw');
 					$(".mypage_cal").children().last().remove();
 					$('#c_month').val(data.date);
-					console.log(data.date);
+
+					console.log(data.html)
 				});
 
-			}else if(ui.position.left < -400){
+			}else if(ui.position.left < VwBase*(-120)){
 				$('.mypage_cal').animate({'left':'-200vw'},100);
-
 
 				$.post({
 					url:Dir + "/post/calendar_set.php",
@@ -451,10 +499,9 @@ $(function(){
 					},
 					dataType: 'json',
 				}).done(function(data, textStatus, jqXHR){
-					$('.mypage_cal').prepend(data.html).css('left','-100vw');
-					$(".mypage_cal").children().last().remove();
+					$('.mypage_cal').append(data.html).css('left','-100vw');
+					$(".mypage_cal").children().first().remove();
 					$('#c_month').val(data.date);
-					console.log(data.date);
 				});
 			}else{
 				$('.mypage_cal').animate({'left':'-100vw'},100);
@@ -498,7 +545,6 @@ $(function(){
 						});
 					},
 				});
-
 
 			}else{
 				$('.mypage_slide').animate({'left': '0vw'},100);

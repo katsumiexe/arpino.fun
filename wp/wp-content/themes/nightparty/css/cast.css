@@ -280,6 +280,14 @@
 	right			:0.5vw;
 }
 
+.cal_set_btn{
+	position		:fixed;
+	left			:0;
+	bottom			:4vw;
+	background		:#fad0e0;
+}
+
+
 .mypage_main{
 	position		:fixed;
 	left			:0;
@@ -1252,6 +1260,16 @@ input[type=range]::-moz-range-thumb{
 	left			:-100vw;
 	width			:300vw;
 }
+
+.sch_set{
+	display:inline-block;
+	height:5vw;
+	width:10vw;
+	background:#303060;
+	color:#fafafa;
+	
+}
+
 
 
 .cal_weeks{
