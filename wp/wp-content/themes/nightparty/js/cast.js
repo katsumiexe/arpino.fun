@@ -424,24 +424,35 @@ $(function(){
 	});
 
 
-	$('.mypage_cal').on('click','.cal_next',function () {
-		$('.mypage_cal').animate({'left':'-200vw'},200);
+	$('.sch_set').on('click',function () {
 		$.post({
-			url:Dir + "/post/calendar_set.php",
+			url:Dir + "/post/sch_set.php",
 			data:{
-				'c_month':$('#c_month').val(),
-				'week_start':$('#week_start').val(),
-				'pre':'2',
+				'cast_id':$('#cast_id').val(),
+				'base_day':$('#base_day').val(),
+
+				'sel_in[0]':$('#sel_in0').val(),
+				'sel_in[1]':$('#sel_in1').val(),
+				'sel_in[2]':$('#sel_in2').val(),
+				'sel_in[3]':$('#sel_in3').val(),
+				'sel_in[4]':$('#sel_in4').val(),
+				'sel_in[5]':$('#sel_in5').val(),
+				'sel_in[6]':$('#sel_in6').val(),
+
+				'sel_out[0]':$('#sel_out0').val(),
+				'sel_out[1]':$('#sel_out1').val(),
+				'sel_out[2]':$('#sel_out2').val(),
+				'sel_out[3]':$('#sel_out3').val(),
+				'sel_out[4]':$('#sel_out4').val(),
+				'sel_out[5]':$('#sel_out5').val(),
+				'sel_out[6]':$('#sel_out6').val(),
+
 			},
 			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
-			$('.mypage_cal').append(data.html).css('left','-100vw');
-			$(".mypage_cal").children().first().remove();
-			$('#c_month').val(data.date);
+			console.log(data);
 		});
 	});
-
-
 
 	$('.mypage_cal').on('click','.cal_next',function () {
 		$('.mypage_cal').animate({'left':'-200vw'},200);
@@ -552,39 +563,5 @@ $(function(){
 			}
 		}
 	});
-
-
-
-	$('.sch_set').on( 'click', function (){
-		$.post(Dir + "/post/sch_set.php",
-		{
-	
-		'sel_in0':$('#sel_in0').val(),
-		'sel_in1':$('#sel_in1').val(),
-		'sel_in2':$('#sel_in2').val(),
-		'sel_in3':$('#sel_in3').val(),
-		'sel_in4':$('#sel_in4').val(),
-		'sel_in5':$('#sel_in5').val(),
-		'sel_in6':$('#sel_in6').val(),
-
-		'sel_out0':$('#sel_out0').val(),
-		'sel_out1':$('#sel_out1').val(),
-		'sel_out2':$('#sel_out2').val(),
-		'sel_out3':$('#sel_out3').val(),
-		'sel_out4':$('#sel_out4').val(),
-		'sel_out5':$('#sel_out5').val(),
-		'sel_out6':$('#sel_out6').val(),
-		'cast_id':$('#cast_id').val(),
-		'base_day':$('#base_day').val(),
-		},
-
-		function(data){
-
-
-		});
-
-
-	});
-
-
 });
+

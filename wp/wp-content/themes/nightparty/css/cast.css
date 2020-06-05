@@ -105,9 +105,10 @@
 	font-weight		:700;
 }
 
+
 .cal_td{
 	position	:relative;
-	height		:12vw;
+	height		:10vw;
 	text-align	:center;
 	font-size	:0;
 	border		:0.5vw solid #fafafa;
@@ -260,10 +261,6 @@
 	text-align		:center;
 	font-size		:3.5vw;
 	color			:#cccccc;
-}
-
-.n1{
-	color			:#108020;
 }
 
 .cal_i1{
@@ -1186,7 +1183,7 @@ input[type=range]::-moz-range-thumb{
 	line-height		:4vw;
 	font-size		:3vw;
 	padding			:0.5vw;
-}	
+}
 
 
 .mail_title{
@@ -1261,16 +1258,32 @@ input[type=range]::-moz-range-thumb{
 	width			:300vw;
 }
 
-.sch_set{
-	display:inline-block;
-	height:5vw;
-	width:10vw;
-	background:#303060;
-	color:#fafafa;
-	
+
+.cal_days{
+	position		:absolute;
+	top				:82vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	display			:inline-block;
+	width			:92vw;
+	border			:1vw solid #0000d0;
+	background		:#ffd0f0;
+	height			:40vw;
 }
 
+.sch_set{
+	display			:inline-block;
+	height			:6vw;
+	line-height		:6vw;
+	width			:16vw;
+	background		:#fafafa;
+	color			:#ffc0d0;
+	font-size		:4vw;
+	text-align		:center;	
+	cursor			:pointer;
 
+}
 
 .cal_weeks{
 	position		:fixed; 
@@ -1406,7 +1419,6 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	padding-left	:10px;
 }
 
-
 }
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 960px) {
@@ -1454,6 +1466,18 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 }
 
 }
+
+
+/*-------------------------------------------------------------------*/
+.n1{
+	color			:#108020;
+}
+
+.n2{
+	color			:#d03040;
+}
+
+
 
 
 .ca1{
@@ -1510,4 +1534,5 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	color:#dddddd;
 	
 }
+
 

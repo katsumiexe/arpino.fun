@@ -31,16 +31,6 @@ $week_tag2[4]="ca2";
 $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
 
-$week_start=get_option("start_of_week")+0;
-$now_w=date("w");
-$base_w=$now_w-$week_start;
-if($base_w<0) $base_w+=7;
-
-$base_day=time()-$base_w*86400;
-
-$week_st=date("Ymd",$base_day);
-$week_ed=date("Ymd",$base_day+604800);
-
 if($_SESSION){
 	if(time()<$_SESSION["time"]+3600){
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
@@ -63,9 +53,34 @@ if($_SESSION){
 	}
 }
 if($_SESSION){
-	$cast_page=$_POST["cast_page"]+0;
 
+	/*--■祝日カレンダー--*/
+	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
+	$ob_holiday = json_decode($holiday,true);
 	//$ob_holiday["20200101"];
+
+	/*--■イニシャライズ--*/
+	$cast_page=$_POST["cast_page"]+0;
+	$c_month=$_POST["c_month"];
+	if(!$c_month) $c_month=date("Y-m-01");
+
+	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
+	$calendar[1]=$c_month;
+	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
+
+	$week_start=get_option("start_of_week")+0;
+	$now_w=date("w");
+	$base_w=$now_w-$week_start;
+	if($base_w<0) $base_w+=7;
+
+	$base_day=time()-$base_w*86400;
+
+	$week_st=date("Ymd",$base_day);
+	$week_ed=date("Ymd",$base_day+604800);
+
+	$month_st=date("Ymd",strtotime($calendar[1]));
+	$month_ed=date("Ymd",strtotime($calendar[2]));
+
 	/*--■メールチェック--*/
 	/*
 	$s_url	=get_option('mailserver_url');
@@ -78,6 +93,7 @@ if($_SESSION){
 	$num = imap_num_msg($m_list);
 	*/
 
+	/*--■スケジュール--*/
 	$sql	 ="SELECT * FROM wp01_0castmail_receive ";
 	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receive.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
@@ -89,16 +105,24 @@ if($_SESSION){
 		$n++;
 	}
 
-	/*--■祝日カレンダー--*/
-	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
-	$ob_holiday = json_decode($holiday,true);
+	$sql ="SELECT * FROM wp01_0sch_table";
+	$sql.=" ORDER BY sort ASC";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $tmp){
+		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
+		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+	}
 
-	$c_month=$_POST["c_month"];
-	if(!$c_month) $c_month=date("Y-m-01");
+	$sql	 ="SELECT * FROM wp01_0schedule";
+	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
+	$sql	.=" AND sche_date>='{$month_st}'";
+	$sql	.=" AND sche_date<'{$month_ed}'";
 
-	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
-	$calendar[1]=$c_month;
-	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $tmp2){
+		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
+		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+	}
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
@@ -138,32 +162,18 @@ if($_SESSION){
 				$day_tag=" nowmonth";
 			}
 
+			if($stime[$tmp_ymd] && $etime[$tmp_ymd]){
+				$jb=" n2";
+			}else{
+				$jb="";
+			}
 			$cal[$n].="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 n1\"></span>";
-			$cal[$n].="<span class=\"cal_i2\"></span>";
+			$cal[$n].="<span class=\"cal_i2{$jb}\"></span>";
 			$cal[$n].="<span class=\"cal_i3\"></span>";
 			$cal[$n].="</td>";
 		}
-	}
-
-	$sql	 ="SELECT * FROM wp01_0sch_table";
-	$sql	.=" ORDER BY sort ASC";
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $tmp){
-		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
-		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
-	}
-
-	$sql	 ="SELECT * FROM wp01_0schedule";
-	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
-	$sql	.=" AND sche_date>='{$week_st}'";
-	$sql	.=" AND sche_date<'{$week_ed}'";
-
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $tmp2){
-		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
-		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}
 }
 
@@ -198,20 +208,21 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 <? if(!$_SESSION){ ?>
 <div class="mypage_main">
 	<div class="login_box">
-	<form action="<?php the_permalink();?>" method="post">
-		<span class="login_name">IDCODE</span>
-		<input type="text" class="login" name="log_in_set">
-		<span class="login_name">PASSWORD</span>
-		<input type="password" class="login" name="log_pass_set">
-		<button id="cast_login" type="submit" class="login_btn" value="send">ログイン</button>
-	</form>
+		<form action="<?php the_permalink();?>" method="post">
+			<span class="login_name">IDCODE</span>
+			<input type="text" class="login" name="log_in_set">
+			<span class="login_name">PASSWORD</span>
+			<input type="password" class="login" name="log_pass_set">
+			<button id="cast_login" type="submit" class="login_btn" value="send">ログイン</button>
+		</form>
 	</div>
 	<?if($err){?>
 	<div class="err">
 	<?=$err?>
 	</div>
 	<? }?>
-	</div>
+</div>
+
 <?}else{?>
 <div class="mypage_head">
 	<div class="head_mymenu">
@@ -373,10 +384,12 @@ CAST_ID：
 PASSWORD：
 お知らせADDRESS
 </div>
+
 </div>
 <?}else{?>
 <input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
 <input id="week_start" type="hidden" value="<?=$week_start?>">
+<div>
 <div class="mypage_cal">
 <?for($c=0;$c<3;$c++){?>
 <table class="cal_table">
@@ -399,10 +412,13 @@ $w=($s+$week_start) % 7;
 </table>
 <?}?>
 </div>
+</div>
+<div class="cal_days">
 
+</div>
 <div class="cal_set_btn">スケジュール入力</div>
 <div class="cal_weeks">
-<input id="base_day" type="hidden" value="<?=date("Ymd",$base_day)?>">
+<input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
 <?for($n=0;$n<7;$n++){
 	$tmp_wk=($n+$week_start)%7;
@@ -426,6 +442,7 @@ $w=($s+$week_start) % 7;
 <? } ?>
 <div class="sch_set">SET</div>
 </div>
+
 
 
 <? } ?>
