@@ -79,6 +79,13 @@ if ($(window).width()>619) {
 
 var R=0;
 $(function(){ 
+
+
+    $('#lv1, #lv2, #lv3').on('click',function(){
+	    $('.page_00').fadeOut(500);
+		const Lv=$(this).attr('id').replace('lv','');
+
+    });
     $('.sel').on('click',function(){
 		$('.pop_back,.pop_a').show();
 		Img=$(this).children('.sel_a').attr('src');
