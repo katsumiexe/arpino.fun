@@ -147,10 +147,9 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#ff6060;
+	background	:#ffd0d0;
 	font-size	:3vw;
 	font-weight	:600;
-	color		:#fafafa;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
@@ -162,10 +161,9 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#90a0ff;
+	background	:#a0c0ff;
 	font-size	:3vw;
 	font-weight	:600;
-	color		:#fafafa;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
@@ -177,15 +175,29 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#f0f0f0	;
+	background	:#d0d0d0	;
 	font-size	:3vw;
 	font-weight	:600;
-	color		:#c0b0a0;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
 	text-align	:center;
 }
+
+.cal_days{
+	display		:inline-block;
+	position	:absolute;
+	top			:80vw;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	background	:#f0e080	;
+	font-size	:0;
+	color		:#c0b0a0;
+	height		:40vw;
+	width		:95vw;
+}
+
 
 
 .menu_sel{
@@ -1467,11 +1479,11 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 }
 
 .nowmonth{
-	color:#666666;
+	color:#888888;
 	
 }
 .outof{
-	color:#dddddd;
+	color:#cccccc;
 	
 }
 
