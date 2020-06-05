@@ -11,33 +11,10 @@ Author URI:
 
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
-	add_menu_page(
-		'キャスト', 
-		'キャスト', 
-		'manage_options', 
-		'cast', 
-		'cast', 
-		'dashicons-businesswoman', 
-		5
-	);
-
-	add_submenu_page('cast', 'キャスト登録ページ', 'キャスト登録','manage_options', 'cast_regist', 'cast_regist');
-	add_submenu_page(
-		'cast', 
-		'キャスト一覧ページ', 
-		'キャスト一覧', 
-		'manage_options', 
-		'cast_list', 
-		'cast_list'
-	);
-	add_submenu_page(
-		'cast', 
-		'スケジュール一覧ページ', 
-		'スケジュール', 
-		'manage_options', 
-		'sche_list', 
-		'sche_list'
-	);
+	add_menu_page('キャスト','キャスト','manage_options','cast','cast','dashicons-businesswoman',5);
+	add_submenu_page('cast','キャスト登録ページ', 'キャスト登録','manage_options', 'cast_regist', 'cast_regist');
+	add_submenu_page('cast','キャスト一覧ページ', 'キャスト一覧', 'manage_options', 'cast_list', 'cast_list');
+	add_submenu_page('cast','スケジュール一覧ページ', 'スケジュール','manage_options','sche_list','sche_list');
 
 	add_menu_page(
 		'スタッフ', 
