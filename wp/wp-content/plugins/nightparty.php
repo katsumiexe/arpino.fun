@@ -21,15 +21,7 @@ function custom_menu_page(){
 		5
 	);
 
-	add_submenu_page(
-		'cast', 
-		'キャスト登録ページ', 
-		'キャスト登録', 
-		'manage_options', 
-		'cast_regist', 
-		'cast_regist'
-	);
-
+	add_submenu_page('cast', 'キャスト登録ページ', 'キャスト登録','manage_options', 'cast_regist', 'cast_regist');
 	add_submenu_page(
 		'cast', 
 		'キャスト一覧ページ', 
