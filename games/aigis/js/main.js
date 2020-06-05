@@ -80,6 +80,13 @@ if ($(window).width()>619) {
 var R=0;
 $(function(){ 
 
+    $('.howto_page_tag').on('click',function(){
+		Tag=$(this).attr('id').replace('i','');
+	    $('.howto_in').hide();
+	    $('#'+Tag).fadeIn(500);
+console.log("●");
+    });
+
 
     $('#lv1, #lv2, #lv3').on('click',function(){
 	    $('.page_00').fadeOut(500);
