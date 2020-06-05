@@ -168,7 +168,7 @@ if($_SESSION){
 				$jb="";
 			}
 			$cal[$n].="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
-			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
+			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 n1\"></span>";
 			$cal[$n].="<span class=\"cal_i2{$jb}\"></span>";
 			$cal[$n].="<span class=\"cal_i3\"></span>";

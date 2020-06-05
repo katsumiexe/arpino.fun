@@ -117,8 +117,8 @@
 
 .c1{
 	background:#ff6060;
-	height		:5vw;
-	line-height	:5vw;
+	height		:6vw;
+	line-height	:6vw;
 	color		:#fafafa;
 	font-size	:4vw;
 	font-weight	:600;
@@ -126,20 +126,30 @@
 
 .c2{
 	background	:#cccccc;
-	height		:5vw;
-	line-height	:5vw;
+	height		:6vw;
+	line-height	:6vw;
 	color		:#fafafa;
 	font-size	:4vw;
 	font-weight	:600;
 }
 
 .c3{
-	background:#90a0ff;
-	height		:5vw;
-	line-height	:5vw;
+	background	:#90a0ff;
+	height		:6vw;
+	line-height	:6vw;
 	color		:#fafafa;
 	font-size	:4vw;
 	font-weight	:600;
+}
+
+.cc0{
+	background:#fff0f0;
+	background	:linear-gradient(#fff0f0,#ffe0e0);
+}
+
+.cc6{
+	background:#f0f0ff;
+	background	:linear-gradient(#f0f0ff,#e0e0ff);
 }
 
 
@@ -148,9 +158,10 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#ffd0d0;
+	background	:#ff6060;
 	font-size	:3vw;
 	font-weight	:600;
+	color		:#fafafa;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
@@ -162,9 +173,10 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#a0c0ff;
+	background	:#90a0ff;
 	font-size	:3vw;
 	font-weight	:600;
+	color		:#fafafa;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
@@ -176,29 +188,15 @@
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#d0d0d0	;
+	background	:#f0f0f0	;
 	font-size	:3vw;
 	font-weight	:600;
+	color		:#c0b0a0;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
 	text-align	:center;
 }
-
-.cal_days{
-	display		:inline-block;
-	position	:absolute;
-	top			:80vw;
-	left		:0;
-	right		:0;
-	margin		:auto;
-	background	:#f0e080	;
-	font-size	:0;
-	color		:#c0b0a0;
-	height		:40vw;
-	width		:95vw;
-}
-
 
 
 .menu_sel{
@@ -1491,6 +1489,32 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	color		:#6060ff;
 }
 
+.c1{
+	background:#ff6060;
+	height		:6vw;
+	line-height	:6vw;
+	color		:#fafafa;
+	font-size	:4vw;
+	font-weight	:600;
+}
+
+.c2{
+	background	:#cccccc;
+	height		:6vw;
+	line-height	:6vw;
+	color		:#fafafa;
+	font-size	:4vw;
+	font-weight	:600;
+}
+
+.c3{
+	background:#90a0ff;
+	height		:6vw;
+	line-height	:6vw;
+	color		:#fafafa;
+	font-size	:4vw;
+	font-weight	:600;
+}
 
 .cc0{
 	background:#fff0f0;
@@ -1503,11 +1527,11 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 }
 
 .nowmonth{
-	color:#888888;
+	color:#666666;
 	
 }
 .outof{
-	color:#cccccc;
+	color:#dddddd;
 	
 }
 
