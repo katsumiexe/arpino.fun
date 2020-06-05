@@ -116,8 +116,8 @@
 
 .c1{
 	background:#ff6060;
-	height		:6vw;
-	line-height	:6vw;
+	height		:5vw;
+	line-height	:5vw;
 	color		:#fafafa;
 	font-size	:4vw;
 	font-weight	:600;
@@ -125,30 +125,20 @@
 
 .c2{
 	background	:#cccccc;
-	height		:6vw;
-	line-height	:6vw;
+	height		:5vw;
+	line-height	:5vw;
 	color		:#fafafa;
 	font-size	:4vw;
 	font-weight	:600;
 }
 
 .c3{
-	background	:#90a0ff;
-	height		:6vw;
-	line-height	:6vw;
+	background:#90a0ff;
+	height		:5vw;
+	line-height	:5vw;
 	color		:#fafafa;
 	font-size	:4vw;
 	font-weight	:600;
-}
-
-.cc0{
-	background:#fff0f0;
-	background	:linear-gradient(#fff0f0,#ffe0e0);
-}
-
-.cc6{
-	background:#f0f0ff;
-	background	:linear-gradient(#f0f0ff,#e0e0ff);
 }
 
 
@@ -1465,32 +1455,6 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	color		:#6060ff;
 }
 
-.c1{
-	background:#ff6060;
-	height		:6vw;
-	line-height	:6vw;
-	color		:#fafafa;
-	font-size	:4vw;
-	font-weight	:600;
-}
-
-.c2{
-	background	:#cccccc;
-	height		:6vw;
-	line-height	:6vw;
-	color		:#fafafa;
-	font-size	:4vw;
-	font-weight	:600;
-}
-
-.c3{
-	background:#90a0ff;
-	height		:6vw;
-	line-height	:6vw;
-	color		:#fafafa;
-	font-size	:4vw;
-	font-weight	:600;
-}
 
 .cc0{
 	background:#fff0f0;
