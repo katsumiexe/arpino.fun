@@ -18,7 +18,7 @@
 
 	<div class="howto">
 		<div class="howto_page">
-			<span id="ibox0" class="howto_page_tag tag_on">準備</span>
+			<span id="ibox0" class="howto_page_tag">準備</span>
 			<span id="ibox1" class="howto_page_tag">進行</span>
 
 			<span id="ibox5" class="howto_page_tag">カード種類</span>
