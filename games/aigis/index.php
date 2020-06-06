@@ -91,19 +91,19 @@ foreach($pts as $a1 => $a2){
 
 <div class="page_00">
 	<div class="first_play">
-		<div id="lv1" class="first_play_level">
+		<div id="lv0" class="first_play_level">
 			<span class="first_icon"></span>
-			<span class="first_comm">初級</span>
+			<span class="first_comm">★☆☆</span>
 			<span class="first_comm">-easy-</span>
 		</div>
-		<div id="lv2" class="first_play_level">
+		<div id="lv1" class="first_play_level">
 			<span class="first_icon"></span>
-			<span class="first_comm">中級</span>
+			<span class="first_comm">★★☆</span>
 			<span class="first_comm">-normal-</span>
 		</div>
-		<div id="lv3" class="first_play_level">
+		<div id="lv2" class="first_play_level">
 			<span class="first_icon"></span>
-			<span class="first_comm">上級</span>
+			<span class="first_comm">★★★</span>
 			<span class="first_comm">-ONI!-</span>
 		</div>
 		<div id="lv4" class="first_play_level">

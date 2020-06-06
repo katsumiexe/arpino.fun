@@ -2,6 +2,7 @@
 include_once("./library/session.php");
 
 $sql="SELECT * FROM unit_data";
+
 if($res2 = mysqli_query($mysqli,$sql)){
 while($row2 = mysqli_fetch_assoc($res2)){
 		$unit_data[$row2["id"]]=$row2;
@@ -18,7 +19,6 @@ $dat["s2"]="on".$unit_data[$unit_select]["status_2"];
 $dat["s3"]="on".$unit_data[$unit_select]["status_3"];
 $dat["s4"]="on".$unit_data[$unit_select]["status_4"];
 $dat["s5"]="on".$unit_data[$unit_select]["status_5"];
-
 
 $base=array(1,2,3,4,5,6,7,8,9,10);
 shuffle($base);
@@ -45,14 +45,16 @@ for($s=0;$s<4;$s++){
 	$god=8;
 	$bad=0;
 	$mid=2;
+	shuffle($card);	
 
 	for($n=0;$n<12;$n++){
-
 		if($card[$n]==0){
-			$hand[$s][$n]=11;
+			$hand[$s][$n]=$god;
+			$god++;
 
 		}elseif($card[$n]==1){	
-			$hand[$s][$n]=10;
+			$hand[$s][$n]=$god;
+			$god++;
 
 		}elseif($card[$n]==2 && $unit_data[$unit[$s]]["status_1"]== 1){	
 			$hand[$s][$n]=$god;

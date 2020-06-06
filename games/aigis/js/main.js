@@ -87,9 +87,9 @@ $(function(){
     });
 
 
-    $('#lv1, #lv2, #lv3').on('click',function(){
+    $('#lv0, #lv1, #lv2').on('click',function(){
 	    $('.page_00').fadeOut(500);
-		const Lv=$(this).attr('id').replace('lv','');
+		Lv=$(this).attr('id').replace('lv','');
 
     });
     $('.sel').on('click',function(){
