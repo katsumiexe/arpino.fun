@@ -15,13 +15,17 @@
 </head>
 <body style="text-align:center;background:#303030">
 <div class="main">
+
 	<div class="howto">
 		<div class="howto_page">
-			<span id="ibox0" class="howto_page_tag point_on">準備</span>
+			<span id="ibox0" class="howto_page_tag tag_on">準備</span>
 			<span id="ibox1" class="howto_page_tag">進行</span>
-			<span id="ibox2" class="howto_page_tag">ユニットカード</span>
-			<span id="ibox3" class="howto_page_tag">アイテムカード</span>
-			<span id="ibox4" class="howto_page_tag">魅力カード</span>
+
+			<span id="ibox5" class="howto_page_tag">カード種類</span>
+
+			<span id="ibox2" class="howto_page_tag">ユニット</span>
+			<span id="ibox3" class="howto_page_tag">アイテム</span>
+			<span id="ibox4" class="howto_page_tag">魅力</span>
 		</div>
 
 		<div class="howto_main">
