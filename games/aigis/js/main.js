@@ -84,7 +84,6 @@ $(function(){
 		Tag=$(this).attr('id').replace('i','');
 	    $('.howto_in').hide();
 	    $('#'+Tag).fadeIn(500);
-console.log("●");
     });
 
 
@@ -118,7 +117,7 @@ console.log("●");
 			dataType: 'json',
 			data:{
 				'unit_select':Unit_Select,
-				'level_select':Level_Select
+				'level_select':Lv
 			},
 		}).done(function(data, textStatus, jqXHR){
 			LogId=data.i;

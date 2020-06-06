@@ -16,8 +16,11 @@
 <body style="text-align:center;background:#303030">
 <div class="score">
 	<div class="score_top">
-		High Score Bord(2020/05)
+	High Score Bord(2020/05)
 	</div>
+
+	<div class="score_top_lv">easy</div>
+
 	<table class="score_table">
 		<tr>
 			<td class="score_table_ttl">Rank</td>
