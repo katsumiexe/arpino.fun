@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="howto_main">
-			<div id="box0" class="howto_in">
+			<div id="box0" class="howto_in" style="display:block;">
 				<div class="howto_title">準備</div>
 				各プレイヤーに1枚、<span style="color:#503010">『ユニットカード』</span>を裏向きで1枚配ります。<bR>
 				配られた<span style="color:#503010">『ユニットカード』</span>は見ることが可能ですが、他のプレイヤーにはゲーム終了まで見せないようにしてください。<br>
