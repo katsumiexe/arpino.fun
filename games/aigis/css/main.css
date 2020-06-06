@@ -76,8 +76,6 @@ body {
 	z-index				:77;
 }
 
-
-
 .first_play{
 	position			:absolute;
 	top					:20vh;
@@ -1252,7 +1250,7 @@ body {
 	display			:inline-block;
 	position		:absolute;
 	background		:#d0c0a0;
-	width			:83px;
+	width			:82px;
 	font-size		:16px;
 	font-weight		:900;
 	color			:#fafafa;
@@ -1284,31 +1282,93 @@ body {
 }
 
 #ibox1{
-	left			:88px;
+	left			:87px;
 	top				:0px;
 	height			:60px;
 	line-height		:60px;
 }
 
 #ibox2{
-	left			:176px;
+	left			:174px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
 }
 
 #ibox3{
-	left			:264px;
+	left			:261px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
 }
 
 #ibox4{
-	left			:352px;
+	left			:348px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
+}
+
+.score_top{
+	width			:500px;
+	border			:2px solid #303030;
+	box-shadow		:2px 2px 2px rgba(30,30,30,0.5);
+	margin			:10px auto;
+	background		:#fafafa;
+}
+.score_table{
+	width			:500px;
+	border			:2px solid #303030;
+	box-shadow		:2px 2px 2px rgba(30,30,30,0.5);
+	margin			:10px auto;
+	background		:#fafafa;
+	border: solid 1px #000000;
+	border-collapse: collapse;
+}
+
+
+.score_table_ttl{
+	border-bottom	:2px solid #303030;
+	font-size		:18px;
+	height			:25px;
+	line-height		:25px;
+}
+
+.score_table_rank{
+	width:50px;
+	text-align:right;
+	border-bottom:2px solid #303030;
+	font-size:24px;
+}
+
+.score_table_unit{
+	width:56px;
+	border-bottom:2px solid #303030;
+}
+
+.score_table_date{
+	height:20px;
+	text-align:left;
+	font-size:13px;
+}
+
+.score_table_name{
+	height:30px;
+	text-align:left;
+	border-bottom:2px solid #303030;
+	font-size:18px;
+}
+
+.score_table_sns{
+	width:50px;
+	border-bottom:2px solid #303030;
+}
+
+.score_table_score{
+	width:80px;
+	text-align:right;
+	border-bottom:2px solid #303030;
+	font-size:24px;
 }
 
 .tag_on{
