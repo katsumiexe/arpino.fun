@@ -21,11 +21,12 @@
 			<span id="ibox0" class="howto_page_tag">準備</span>
 			<span id="ibox1" class="howto_page_tag">進行</span>
 
-			<span id="ibox5" class="howto_page_tag">カード種類</span>
-
 			<span id="ibox2" class="howto_page_tag">ユニット</span>
 			<span id="ibox3" class="howto_page_tag">アイテム</span>
 			<span id="ibox4" class="howto_page_tag">魅力</span>
+
+			<span id="ibox5" class="howto_page_ttl">カード種類</span>
+
 		</div>
 
 		<div class="howto_main">

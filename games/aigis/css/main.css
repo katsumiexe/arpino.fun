@@ -1252,7 +1252,7 @@ body {
 	display			:inline-block;
 	position		:absolute;
 	background		:#d0c0a0;
-	width			:85px;
+	width			:83px;
 	font-size		:16px;
 	font-weight		:900;
 	color			:#fafafa;
@@ -1284,28 +1284,28 @@ body {
 }
 
 #ibox1{
-	left			:87px;
+	left			:88px;
 	top				:0px;
 	height			:60px;
 	line-height		:60px;
 }
 
 #ibox2{
-	left			:179px;
-	top				:27px;
+	left			:176px;
+	top				:25px;
 	height			:35px;
 	line-height		:35px;
 }
 
 #ibox3{
-	left			:271px;
+	left			:264px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
 }
 
 #ibox4{
-	left			:363px;
+	left			:352px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
