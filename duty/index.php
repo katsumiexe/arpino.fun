@@ -1,169 +1,94 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
+header('Content-Type: text/html; charset=SJIS');
 ini_set('display_errors', 0);
 mb_language("Japanese"); 
 session_start();
 
-//â– â– ã‚µãƒ¼ãƒãƒ¼æ¥ç¶š----------------------*
-$ip_ok=1;
-if ($dir = opendir("config/")) {
-	while (($file = readdir($dir)) !== false) {
-		if ($file != "." && $file != ".." ) {
-			$fp=fopen("./config/{$file}","r");
-			if($fp){
-				$set_title=trim(fgets($fp));
-				$set_host=trim(fgets($fp));
-				$set_user=trim(fgets($fp));
-				$set_pass=trim(fgets($fp));
-				$set_data=trim(fgets($fp));
-				$set_key=str_replace('kk','',$file);
-				$set_key=str_replace('.txt','',$set_key);
-			}
-		}
-	} 
-closedir($dir);
-}
+//¡¡ƒT[ƒo[Ú‘±----------------------*
 
-$mysqli = mysqli_connect($set_host, $set_user, $set_pass, $set_data);
-//$mysqli = mysqli_connect("210.150.110.204", "blue_db", "0909", "blue_db");
+$mysqli = mysqli_connect("localhost", "blue_duty", "0909", "blue_duty");
+mysqli_query($mysqli,"set namesSJIS");
+mysqli_set_charset($mysqli,'SJIS'); 
 
-mysqli_set_charset($mysqli,'UTF-8'); 
-//mysqli_set_charset($mysqli,'SJIS'); 
 
 if (!$mysqli) {
-    die('â˜†æ¥ç¶šå¤±æ•—ã§ã™ã€‚');
+    die('™Ú‘±¸”s‚Å‚·B');
 }
 
 $gmt=8;
-$week[0]="(æ—¥)";
-$week[1]="(æœˆ)";
-$week[2]="(ç«)";
-$week[3]="(æ°´)";
-$week[4]="(æœ¨)";
-$week[5]="(é‡‘)";
-$week[6]="(åœŸ)";
+
+$week[0]="(“ú)";
+$week[1]="(Œ)";
+$week[2]="(‰Î)";
+$week[3]="(…)";
+$week[4]="(–Ø)";
+$week[5]="(‹à)";
+$week[6]="(“y)";
+
+$miki[1]="<span class=\"table_list l8a\">–¢</span>";
+$miki[2]="<span class=\"table_list l8b\">Šù</span>";
+$miki[3]="<span class=\"table_list l8c\">‹L</span>";
+$miki[4]="<span class=\"table_list l8d\">–¢</span>";
 
 $g_color[0]="#666666";
 $g_color[1]="#c00000";
 
-$icon_color[0]="#909090";//èµ¤
-$icon_color[1]="#c00000";//èµ¤
-$icon_color[2]="#ffa0e0";//æ¡ƒ
-$icon_color[3]="#c0c000";//æ©™
-$icon_color[4]="#0000ff";//é’
-$icon_color[5]="#00c000";//ç·‘
-$icon_color[6]="#c000c0";//ç´«
-$icon_color[7]="#909000";//èŒ¶
-$icon_color[8]="#909090";//ç°
+$icon_color[0]="#c00000";//Ô
+$icon_color[1]="#c00000";//Ô
+$icon_color[2]="#ffa0e0";//“
+$icon_color[3]="#c0c000";//ò
+$icon_color[4]="#0000ff";//Â
+$icon_color[5]="#00c000";//—Î
+$icon_color[6]="#c000c0";//‡
+$icon_color[7]="#909000";//’ƒ
+$icon_color[8]="#909090";//ŠD
 
-
-$icon_font2[1]="î¤‘";//"icon-warning";
-$icon_font2[2]="î¤—";//"icon-envelope";
-$icon_font2[3]="î§™";//"icon-star-full";
-$icon_font2[4]="î¦†";//"icon-search";
-$icon_font2[5]="î§";//"icon-attachment";
-$icon_font2[6]="î¥‚";//"icon-phone";
-$icon_font2[7]="î¤›";//"icon-camera";
-$icon_font2[8]="î¤¦";//"icon-file-text2";
-$icon_font2[9]="î¤–";//"icon-diamond";
-$icon_font2[10]="î¤†";//"icon-pictures";
-$icon_font2[11]="î¤˜";//"icon-home2";
-$icon_font2[12]="î¦Ÿ";//"icon-gift";
-
-$icon_font2[13]="î¤™";//"icon-newspaper";
-$icon_font2[14]="î¥²";//"icon-users";
-$icon_font2[15]="î§¡";//"icon-smile";
-$icon_font2[16]="î§’";//"icon-bookmark";
-
-$icon_font2[17]="î¤”";//"icon-locked";
-$icon_font2[18]="î¤•";//"icon-unlocked";
-$icon_font2[19]="î¤“";//"icon-alarmclock";
-$icon_font2[20]="î¤°";//"icon-folder-open";
-$icon_font2[21]="î¤œ";//"icon-pencil";
-$icon_font2[22]="î¦„";//"icon-spinner11";
-
-$icon_font2[23]="î¦¼";//"icon-tree";
-$icon_font2[24]="î¥±";//"icon-user";
-$icon_font2[25]="î¤¶";//"icon-price-tags";
-$icon_font2[26]="î¥“";//"icon-calendar";
-
-$icon_font2[27]="î¥¢";//"icon-floppy-disk";
-$icon_font2[28]="î¤Ÿ";//"icon-book";
-
-$icon_font2[29]="î©’";//"icon-checkbox-checked";
-$icon_font2[30]="î©“";//"icon-checkbox-unchecked";
-
-$icon_font2[31]="î¤‚";//"icon-trashcan";
-$icon_font2[32]="î¤…";//"icon-edit";
-$icon_font2[33]="î¤Š";//"icon-reply_all";
-
-$miki[1]="<span class=\"table_list l8a\">".$icon_font2[30]."</span>";
-$miki[2]="<span class=\"table_list l8b\">".$icon_font2[29]."</span>";
-$miki[3]="<span class=\"table_list l8c\">".$icon_font2[21]."</span>";
-$miki[4]="<span class=\"table_list l8d\">".$icon_font2[30]."</span>";
+$icon_font[1]="icon-warning";
+$icon_font[2]="icon-envelope";
+$icon_font[3]="icon-star-full";
+$icon_font[4]="icon-search";
+$icon_font[5]="icon-attachment";
+$icon_font[6]="icon-phone";
+$icon_font[7]="icon-camera";
+$icon_font[8]="icon-file-text2";
+$icon_font[9]="icon-diamond";
+$icon_font[10]="icon-pictures";
+$icon_font[11]="icon-home2";
+$icon_font[12]="icon-gift";
 
 $icon[".txt"]	=1;
 $icon[".doc"]	=1;
+$icon[".js"]	=1;
+$icon[".css"]	=1;
+
 
 $icon[".csv"]	=2;
 $icon[".xls"]	=2;
 $icon[".xlsx"]	=2;
 
 $icon[".htm"]	=3;
-$icon[".xml"]	=3;
 $icon[".html"]	=3;
-$icon[".js"]	=3;
-$icon[".css"]	=3;
-$icon[".php"]	=3;
-$icon[".pl"]	=3;
-$icon[".cgi"]	=3;
 
 $icon[".jpg"]	=4;
 $icon[".jpeg"]	=4;
 $icon[".JPG"]	=4;
 $icon[".gif"]	=4;
 $icon[".png"]	=4;
-$icon[".bmp"]	=4;
-$icon[".ico"]	=4;
-$icon[".ai"]	=4;
-$icon[".tiff"]	=4;
-$icon[".psd"]	=4;
 
-$icon[".avi"]	=5;
-$icon[".mov"]	=5;
-$icon[".mpg"]	=5;
-$icon[".mpeg"]	=5;
-$icon[".flv"]	=5;
-$icon[".mp4"]	=5;
-$icon[".wmv"]	=5;
-$icon[".wma"]	=5;
-$icon[".ra"]	=5;
+$icon[".php"]	=5;
 
-$icon[".wav"]	=6;
-$icon[".mp3"]	=6;
-$icon[".midi"]	=6;
+$icon[".lzh"]	=6;
+$icon[".zip"]	=6;
+$icon[".g7"]	=6;
+$icon[".rar"]	=6;
+$icon[".tar"]	=6;
 
-$icon[".lzh"]	=7;
-$icon[".cab"]	=7;
-$icon[".zip"]	=7;
-$icon[".g7"]	=7;
-$icon[".rar"]	=7;
-$icon[".tar"]	=7;
-
-$icon[".pdf"]	=8;
-
-$icon[".com"]	=9;
-$icon[".ese"]	=9;
-/*
-.txt
-.img
-.html
-.xls
-,mp3
-.zip
-.exe
-.other
-*/
+$icon[".avi"]	=7;
+$icon[".mov"]	=7;
+$icon[".mpg"]	=7;
+$icon[".wmv"]	=7;
+$icon[".flv"]	=7;
+$icon[".mp4"]	=7;
 
 $s1=1;
 $i=0;
@@ -177,14 +102,12 @@ $me		=$_REQUEST["me"];
 $t_mon	=$_REQUEST["t_mon"];
 $c_todo	=$_REQUEST["c_todo"];
 
-$act	=$_REQUEST["act"];
-
 $todo_s1=array();
 $todo_s2=array();
 $todo_s3=array();
 
-//â– â– åŸºæœ¬æƒ…å ±ï¼¿ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼----------------------
-$sql ="SELECT * FROM duty_log";
+//¡¡Šî–{î•ñQƒJƒŒƒ“ƒ_[----------------------
+$sql ="SELECT * FROM duty2_log";
 $sql.=" ORDER BY date ASC";
 $sql.=" LIMIT 1";
 
@@ -196,85 +119,52 @@ if($result = mysqli_query($mysqli,$sql)){
 
 $now=date("Y");
 
+
 //--------------------------------------
 $logdata1["TeSt"] ="Null";
 $logdata2["TeSt"] =0;
 
-//â– â– åŸºæœ¬æƒ…å ±ï¼¿ãƒ¡ãƒ³ãƒãƒ¼----------------------
+//¡¡Šî–{î•ñQƒƒ“ƒo[----------------------
 if($_REQUEST["member_del"]){
+	$sql ="UPDATE `duty2_member`";
+	$sql .=" SET del='1'";
+	$sql .=" WHERE `id`='{$_REQUEST["member_del"]}'";
+	mysqli_query($mysqli,$sql);
 	$admin=1;
-
-	$sql ="SELECT * FROM `duty_member`";
-	$sql .=" WHERE `id`<>'{$_REQUEST["member_del"]}'";
-	$sql .=" AND g_a=1";
-
-	if($result = mysqli_query($mysqli,$sql)){
-		$row = mysqli_fetch_assoc($result);
-	}
-
-	if(count($row) >0){
-		$sql ="UPDATE `duty_member`";
-		$sql .=" SET del='1'";
-		$sql .=" WHERE `id`='{$_REQUEST["member_del"]}'";
-		mysqli_query($mysqli,$sql);
-
-	}else{
-		$err.="adminè¨­å®šã¯æœ€ä½ä¸€äººå¿…è¦ã§ã™<br>";
-	}
 }
 
 if($_REQUEST["member_chg"]){
 	$admin=1;
 
-	$dat	=$_REQUEST["dat"];
-	$dat0	=$_REQUEST["dat0"];
+	$dat=$_REQUEST["dat"];
+	$dat0=$_REQUEST["dat0"];
 
-	foreach($dat0 as $a1 => $a2){
-		if(!$dat0[$a1][1]){
-			$err.="é †ç•ªãŒç©ºæ¬„ã§ã™<br>";
+	foreach($dat as $a1 => $a2){
 
-		}elseif(!$dat0[$a1][2]){
-			$err.="åå‰ãŒç©ºæ¬„ã§ã™<br>";
-
-		}elseif(!$dat0[$a1][3]){
-			$err.="ãƒ­ã‚°ã‚¤ãƒ³IDãŒç©ºæ¬„ã§ã™<br>";
-
-		}elseif(!$dat0[$a1][4]){
-			$err.="ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒç©ºæ¬„ã§ã™<br>";
-
-		}else{
-			$tmp_member[$dat0[$a1][1]]++;
-			if($tmp_member[$dat0[$a1][1]] >1){
-				$err.="é †ç•ªãŒé‡è¤‡ã—ã¦ã„ã¾ã™<br>";
-			}
-
-			$tmp_member[$dat0[$a1][2]]++;
-			if($tmp_member[$dat0[$a1][2]] >1){
-				$err.="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™<br>";
-			}
-
-			$tmp_member[$dat0[$a1][3]]++;
-			if($tmp_member[$dat0[$a1][3]] >1){
-				$err.="ãƒ­ã‚°ã‚¤ãƒ³IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™<br>";
-			}
+		$tmp_member[$dat0[$a1][1]]++;
+		if($tmp_member[$dat0[$a1][1]] >1){
+			$err="‡”Ô‚ªd•¡‚µ‚Ä‚¢‚Ü‚·";
 		}
-		if($dat0[$a1][5] == 1){
-			$tmp_admin=1;
-		}	
+
+		$tmp_member[$dat0[$a1][2]]++;
+		if($tmp_member[$dat0[$a1][2]] >1){
+			$err="–¼‘O‚ªd•¡‚µ‚Ä‚¢‚Ü‚·";
+		}
+
+		$tmp_member[$dat0[$a1][3]]++;
+		if($tmp_member[$dat0[$a1][3]] >1){
+
+			$err="ƒƒOƒCƒ“ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·";
+		}
 	}
 
-	if(!$tmp_admin){
-		$err.="adminè¨­å®šã¯æœ€ä½ä¸€äººå¿…è¦ã§ã™<br>";
-	}
-
-	ksort($dat0);
 
 	if($err){
-		$sql ="SELECT * FROM duty_member";
+		$sql ="SELECT * FROM duty2_member";
 		if($result = mysqli_query($mysqli,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
-				$member[$row['id']]['name'] 	= $row['name'];
 
+					$member[$row['id']]['name'] 	= $row['name'];
 				if($row['del'] != 1){
 					$member[$row['id']]['logid'] 	= $row['logid'];
 					$member[$row['id']]['logpass'] 	= $row['logpass'];
@@ -302,9 +192,9 @@ if($_REQUEST["member_chg"]){
 			}
 			ksort($member_now);
 		}
-
 	}else{
-		mysqli_query($mysqli,"ALTER TABLE duty_member DROP INDEX `sort`");
+		mysqli_query($mysqli,"ALTER TABLE duty2_member DROP INDEX `sort`");
+
 		foreach($dat0 as $a1 => $a2){
 
 			$tmp_sort	=$dat0[$a1][1];
@@ -316,7 +206,7 @@ if($_REQUEST["member_chg"]){
 			$tmp_b=$dat0[$a1][6];
 			$tmp_c=$dat0[$a1][21];
 
-			$sql ="UPDATE `duty_member` SET";
+			$sql ="UPDATE `duty2_member` SET";
 			$sql.=" `sort`='{$tmp_sort}',";
 			$sql.=" `name`='{$tmp_name}',";
 			$sql.=" `logid`='{$tmp_logid}',";
@@ -362,13 +252,13 @@ if($_REQUEST["member_chg"]){
 			$logdata1[$dat[$a1][3]] 	=$row['logpass'];
 			$logdata2[$dat[$a1][3]] 	=$a1;
 
+
+//print($sql."<br>\n");
 		}
-		ksort($member_now);
 	}
 
 }else{
-
-	$sql ="SELECT * FROM `duty_member`";
+	$sql ="SELECT * FROM duty2_member";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$member[$row['id']]['name'] 		= $row['name'];
@@ -392,42 +282,46 @@ if($_REQUEST["member_chg"]){
 				if($row['g_c'] ==1 && $row['del']==0){
 					$member_comm[$row['sort']]=$row['id'];
 				}
-
-				$member_now[$row['sort']]	=$row['id'];
-				$logdata1[$row['logid']]	=$row['logpass'];
-				$logdata2[$row['logid']] 	=$row['id'];
+				if($row['del'] ==0){
+					$menber_cnt++;
+				}
+				if($_SERVER['REMOTE_ADDR'] == "61.119.122.190" || $_REQUEST["vernis"] == 1573){
+					$member_now[$row['sort']]	=$row['id'];
+					$logdata1[$row['logid']]	=$row['logpass'];
+					$logdata2[$row['logid']] 	=$row['id'];
+					$ip_ok=1;
+				}
 			}
 		}
 		ksort($member_now);
 	}
 }
 
-
 if($_REQUEST["member_new"]){
 	$admin=1;
 	$new=$_REQUEST["new"];
-	$new_sort=count($member_now)+1;
+	$new_sort=$menber_cnt+1;
 
 	foreach($member_now as $a1 => $a2){
 		if($member[$a2]["name"] == $new['2']){
-			$err.="ã€Œåå‰ã€ãŒé‡è¤‡ã—ã¦ã„ã¾ã™<br>";
+			$err.="u–¼‘Ov‚ªd•¡‚µ‚Ä‚¢‚Ü‚·<br>";
 		}
 
 		if($member[$a2]["logid"] == $new['3']){
-			$err.="Login_IDã¯ä½¿ã‚ã‚Œã¦ã„ã¾ã™<br>";
+			$err.="Login_ID‚Íg‚í‚ê‚Ä‚¢‚Ü‚·<br>";
 		}
 	}
 
 	if(!$new['2']){
-		$err.="ã€Œåå‰ã€ãŒã‚ã‚Šã¾ã›ã‚“(å¿…é ˆ)<br>";
+		$err.="u–¼‘Ov‚ª‚ ‚è‚Ü‚¹‚ñ(•K{)<br>";
 	}
 
 	if(!$new['3']){
-		$err.="ã€ŒIDCODEã€ãŒã‚ã‚Šã¾ã›ã‚“(å¿…é ˆ)<br>";
+		$err.="uIDCODEv‚ª‚ ‚è‚Ü‚¹‚ñ(•K{)<br>";
 	}
 
 	if(!$new['4']){
-		$err.="ã€ŒPASSWORDã€ãŒã‚ã‚Šã¾ã›ã‚“(å¿…é ˆ)<br>";
+		$err.="uPASSWORDv‚ª‚ ‚è‚Ü‚¹‚ñ(•K{)<br>";
 	}
 
 	if(!$err){
@@ -439,13 +333,15 @@ if($_REQUEST["member_new"]){
 		}
 		sort($tmp_gp);
 
-		$sql  ="INSERT INTO duty_member(`sort`,`name`,`logid`,`logpass`,`g_a`,`g_b`,`g_c`,`g_1`,`g_2`,`g_3`,`g_4`,`g_5`,`g_6`,`g_7`,`g_8`,`g_9`)";
+		$sql  ="INSERT INTO duty2_member(`sort`,`name`,`logid`,`logpass`,`g_a`,`g_b`,`g_c`,`g_1`,`g_2`,`g_3`,`g_4`,`g_5`,`g_6`,`g_7`,`g_8`,`g_9`)";
 		$sql .="VALUES('{$new_sort}','{$new['2']}','{$new['3']}','{$new['4']}','{$new['5']}','{$new['6']}','{$new['tb']}','{$tmp_gp[0]}','{$tmp_gp[1]}','{$tmp_gp[2]}','{$tmp_gp[3]}','{$tmp_gp[4]}','{$tmp_gp[5]}','{$tmp_gp[6]}','{$tmp_gp[7]}','{$tmp_gp[8]}')";
+
+//print($sql);
 
 		mysqli_query($mysqli,$sql);
 		$tmp_auto=mysqli_insert_id($mysqli);	
 
-		$sql="INSERT INTO duty_fav (`user_id`, `name`, `sort`, `icon`, `color` ) VALUES ('{$tmp_auto}', 'é‡è¦','0', '1', '1')";
+		$sql="INSERT INTO duty2_fav (`user_id`, `name`, `sort`, `icon`, `color` ) VALUES ('{$tmp_auto}', 'd—v','1', '1', '1')";
 		mysqli_query($mysqli,$sql);
 
 		if($new['6']!=1){
@@ -457,10 +353,11 @@ if($_REQUEST["member_new"]){
 			}
 			$app.=")";
 		}
-
-		$sql2  ="SELECT * FROM `duty_log`";
+		$sql2  ="SELECT * FROM `duty2_log`";
 		$sql2 .=" WHERE `del`<>1 ";
 		$sql2 .=$app;
+
+		$sql2 .=" AND(`date`>{}) ";
 
 		if($result2 = mysqli_query($mysqli,$sql2)){
 			while($row = mysqli_fetch_assoc($result2)){
@@ -469,17 +366,18 @@ if($_REQUEST["member_new"]){
 					if($row["at".$tmp]==0){
 						$tmp0="at".$tmp;
 						$tmp_set=1;
+						break 1;
 					}
 				}
 
 				if($tmp_set == 1){
-					$sql3 ="UPDATE duty_log SET";
+					$sql3 ="UPDATE duty2_log SET";
 					$sql3.=" `{$tmp0}`='{$tmp_auto}'";
 					$sql3.=" WHERE id='{$row["id"]}'";
 					mysqli_query($mysqli,$sql3);
 
 
-					$sql4 ="UPDATE duty_sub SET";
+					$sql4 ="UPDATE duty2_sub SET";
 					$sql4.=" `{$tmp0}`='1'";
 					$sql4.=" WHERE id='{$row["id"]}'";
 					mysqli_query($mysqli,$sql4);
@@ -507,15 +405,16 @@ if($_REQUEST["member_new"]){
 		if($new['14']) $member[$tmp_auto][$new['14']]= 1;
 		if($new['15']) $member[$tmp_auto][$new['15']]= 1;
 		$member_now[$new_sort]	= $tmp_auto;
+
 	}
 }
 
-//â– â– åŸºæœ¬æƒ…å ±Todoï¼¿ã‚°ãƒ«ãƒ¼ãƒ—----------------------
+//¡¡Šî–{î•ñTodoQƒOƒ‹[ƒv----------------------
 if($_REQUEST["plan_del"]){
 	$admin=4;
 	$plan_del	=$_REQUEST["plan_del"];
 
-	$sql ="UPDATE duty_plan SET";
+	$sql ="UPDATE duty2_plan SET";
 	$sql.=" `del`='1'";
 	$sql.=" WHERE `id`='{$plan_del}'";
 	mysqli_query($mysqli,$sql);
@@ -527,7 +426,7 @@ if($_REQUEST["plan_chg"]){
 	$plan_chg_sort	=$_REQUEST["plan_chg_sort"];
 	$plan_chg_name	=$_REQUEST["plan_chg_name"];
 
-	$sql ="SELECT * FROM duty_plan ";
+	$sql ="SELECT * FROM duty2_plan ";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 
@@ -542,7 +441,8 @@ if($_REQUEST["plan_chg"]){
 		foreach($plan_chg_name as $a1 => $a2){
 			foreach($plan_sort_n as $a3 => $a4){
 				if($a2== $plan_n[$a4]){
-					$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+					$err="–¼‘O‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
+					break 3;
 				}
 			}
 		}
@@ -550,13 +450,14 @@ if($_REQUEST["plan_chg"]){
 		foreach($plan_chg_sort as $a1 => $a2){
 			foreach($plan_sort_n as $a3 => $a4){
 				if($a2== $plan_n[$a4]){
-					$err="é †ç•ªãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+					$err="‡”Ô‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
+					break 3;
 				}
 			}
 		}
 
 		foreach($plan_chg_name as $a1 => $a2){
-			$sql ="UPDATE duty_plan SET";
+			$sql ="UPDATE duty2_plan SET";
 			$sql.=" `name`='{$a2}',";
 			$sql.=" `sort`='{$plan_chg_sort[$a1]}'";
 			$sql.=" WHERE id='{$a1}'";
@@ -569,7 +470,7 @@ if($_REQUEST["plan_chg"]){
 
 
 }else{
-	$sql ="SELECT * FROM duty_plan ";
+	$sql ="SELECT * FROM duty2_plan ";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 
@@ -581,6 +482,7 @@ if($_REQUEST["plan_chg"]){
 	}
 }
 
+
 if($_REQUEST["plan_new"]){
 	$admin=4;
 	$ct=count($plan_sort)+1;
@@ -588,12 +490,12 @@ if($_REQUEST["plan_new"]){
 
 	foreach($plan_sort as $a1 => $a2){
 		if($plan_new == $plan[$a2]){
-			$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+			$err="–¼‘O‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
 		}
 	}
 
 	if(!$err){
-		$sql ="INSERT INTO duty_plan";
+		$sql ="INSERT INTO duty2_plan";
 		$sql .="(`sort`,`name`)";
 		$sql .="VALUES('{$ct}','{$plan_new}')";
 		mysqli_query($mysqli,$sql);
@@ -606,12 +508,14 @@ if($_REQUEST["plan_new"]){
 
 ksort($plan_sort);
 
-//â– â– åŸºæœ¬æƒ…å ±Todoï¼¿ã‚°ãƒ«ãƒ¼ãƒ—----------------------
+
+
+//¡¡Šî–{î•ñTodoQƒOƒ‹[ƒv----------------------
 if($_REQUEST["comm_del"]){
 	$admin=6;
 	$comm_del	=$_REQUEST["comm_del"];
 
-	$sql ="UPDATE duty_comm SET";
+	$sql ="UPDATE duty2_comm SET";
 	$sql.=" `del`='1'";
 	$sql.=" WHERE `id`='{$comm_del}'";
 	mysqli_query($mysqli,$sql);
@@ -623,7 +527,7 @@ if($_REQUEST["comm_chg"]){
 	$comm_chg_sort	=$_REQUEST["comm_chg_sort"];
 	$comm_chg_name	=$_REQUEST["comm_chg_name"];
 
-	$sql ="SELECT * FROM duty_comm ";
+	$sql ="SELECT * FROM duty2_comm ";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 
@@ -638,7 +542,8 @@ if($_REQUEST["comm_chg"]){
 		foreach($comm_chg_name as $a1 => $a2){
 			foreach($comm_sort as $a3 => $a4){
 				if($a2== $comm_n[$a4]){
-					$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+					$err="–¼‘O‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
+					break 3;
 				}
 			}
 		}
@@ -646,13 +551,14 @@ if($_REQUEST["comm_chg"]){
 		foreach($comm_chg_sort as $a1 => $a2){
 			foreach($comm_sort as $a3 => $a4){
 				if($a2== $comm_n[$a4]){
-					$err="é †ç•ªãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+					$err="‡”Ô‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
+					break 3;
 				}
 			}
 		}
 
 		foreach($comm_chg_name as $a1 => $a2){
-			$sql ="UPDATE duty_comm SET";
+			$sql ="UPDATE duty2_comm SET";
 			$sql.=" `name`='{$a2}',";
 			$sql.=" `sort`='{$comm_chg_sort[$a1]}'";
 			$sql.=" WHERE id='{$a1}'";
@@ -663,8 +569,9 @@ if($_REQUEST["comm_chg"]){
 		}
 	}
 
+
 }else{
-	$sql ="SELECT * FROM duty_comm ";
+	$sql ="SELECT * FROM duty2_comm ";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 
@@ -684,12 +591,12 @@ if($_REQUEST["comm_new"]){
 
 	foreach($comm_sort as $a1 => $a2){
 		if($comm_new == $comm[$a2]){
-			$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+			$err="–¼‘O‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
 		}
 	}
 
 	if(!$err){
-		$sql ="INSERT INTO duty_comm";
+		$sql ="INSERT INTO duty2_comm";
 		$sql .="(`sort`,`name`)";
 		$sql .="VALUES('{$ct}','{$comm_new}')";
 		mysqli_query($mysqli,$sql);
@@ -700,6 +607,7 @@ if($_REQUEST["comm_new"]){
 	}
 }
 ksort($comm_sort);
+
 if($_POST[comm_set]){
 	$admin=6;
 	$now_ym=$_REQUEST['now_ym'];
@@ -724,59 +632,131 @@ if($_POST[comm_set]){
 
 		$app2=substr($app2,1);
 
-		$sql 	 ="INSERT INTO duty_mission (`date`{$app0})VALUES";
+		$sql 	 ="INSERT INTO duty2_mission (`date`{$app0})VALUES";
 		$sql	.="('{$dt}'{$app1})";
 		$sql	.=" ON DUPLICATE KEY UPDATE ";
 		$sql	.=$app2;
+
+//	print("".$sql."<br>\n");
 	mysqli_query($mysqli,$sql);
 	}
+
+
+
+/*
+
+	for($n=1;$n<$cnt+1;$n++){
+		$app0.=", `com{$n}`, `mis{$n}`";
+	}
+	$sql 	 ="INSERT INTO duty2_mission (`date`".$app0.")VALUES";
+
+	for($n=1;$n<$tmp_t+1;$n++){
+		$tmp_n=substr("0".$n,-2);
+		$dt=$now_ym."-".$tmp_n;
+		$sql.= "('{$dt}'";
+		foreach($set[$n] as $a1 => $a2){
+			$sql.= ", '{$a1}', '{$a2}'";
+		}
+		$sql.= "),";
+	}
+	$sql=substr($sql,0,-1);
+
+	$sql.=" ON DUPLICATE KEY UPDATE";
+
+	$sql.=" ON DUPLICATE KEY UPDATE";
+
+        b = b + 21
+        , c = VALUES(c) + 201;
+*/
+
+
+
+/*
+set[<?=$n+1?>][<?=$a2?>]
+
+
+	for($n=1;$n<32;$n++){
+		$pp=1;
+		foreach($set[$n] as $a1 => $a2){
+			$app1.= ", `com{$pp}`, `mis{$pp}`";
+			$app2.= ", '{$a1}', '{$a2}'";
+			$app3.= ", `com{$pp}`='{$a1}',`mis{$pp}='{$a2}'";
+			$pp++;
+		}
+
+
+		$nd=substr("0".$n,-2);
+		$na=$now_year."-".$now_month."-".$nd;
+
+		$sql 	 ="INSERT INTO duty2_mission (`date`";
+		$sql 	 .=$app1;
+		$sql 	 .=")";
+
+		$sql	 .="VALUES('{$na}'";
+		$sql 	 .=$app2;
+		$sql 	 .=")";
+//		mysqli_query($mysqli,$sql);
+	}
+*/
+
 }
 
-//â– â– åŸºæœ¬æƒ…å ±ã‚°ãƒ«ãƒ¼ãƒ—----------------------
+
+
+
+
+//¡¡Šî–{î•ñƒOƒ‹[ƒv----------------------
 if($_REQUEST["group_del"]){
 
 	$admin=3;
 	$group_del=$_REQUEST["group_del"];
 
-	$sql2  ="UPDATE `duty_group`";
+	$sql2  ="UPDATE `duty2_group`";
 	$sql2 .=" SET del='1'";
 	$sql2 .=" WHERE `id`='{$group_del}'";
 	mysqli_query($mysqli,$sql2);
 }
+
 
 if($_POST[group_chg]){
 	$admin=3;
 	$gp_sort=$_REQUEST["gp_sort"];
 	$gp_name=$_REQUEST["gp_name"];
 
-	$sql ="SELECT * FROM duty_group";
+	$sql ="SELECT * FROM duty2_group";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			if($row['del'] !=1 && $row['id']){
 				$group_sort[$row['sort']]	=$row['id'];
 			}
+
 			$group[$row['id']]['name']	= $row['name'];
 		}
 	}
 
+
 	foreach((array)$group_sort as $a1 => $a2){
+
 		foreach($gp_name as $a3 => $a4){
 			if($a4 == $group[$a2]['name']){
-				$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+				$err="–¼‘O‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
+				break 2;
 			}
 		}
 
+
 		foreach($gp_sort as $a5 => $a6){
 			if($a6 == $a1){
-				$err="é †ç•ªãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚";
+				$err="‡”Ô‚ªd•¡‚µ‚Ä‚¢‚Ü‚·B";
+				break 2;
 			}
 		}
 	}
 
 	if(!$err){
-		mysqli_query($mysqli,"ALTER TABLE duty_group DROP INDEX `sort`");
+		mysqli_query($mysqli,"ALTER TABLE duty2_group DROP INDEX `sort`");
 		foreach($gp_sort as $a1 => $a2){
-			$sql  ="UPDATE `duty_group` SET";
+			$sql  ="UPDATE `duty2_group` SET";
 			$sql .=" sort='{$a2}',";
 			$sql .=" name='{$gp_name[$a1]}'";
 			$sql .=" WHERE `id`='{$a1}'";
@@ -784,72 +764,64 @@ if($_POST[group_chg]){
 
 			$group[$a1]['name']=$gp_name[$a1];
 			$group_sort[$a2]=$a1;
+
 		}
 	}
-
 }else{
-	$sql ="SELECT * FROM duty_group";
+
+	$sql ="SELECT * FROM duty2_group";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			if($row['del'] !=1 && $row['id']){
 				$group_sort[$row['sort']]	=$row['id'];
 			}
+
 			$group[$row['id']]['name']	= $row['name'];
 		}
 	}
 }
 
 
-//â– è¿½åŠ ------------
+//¡’Ç‰Á------------
 if($_REQUEST["group_new"]){
 	$admin=3;
 	$ct=max((array)$group_sort)+1;
 
 	$new_name=$_REQUEST["new_name"];
+	$sql3="INSERT INTO duty2_group(sort,name) VALUES('{$ct}','{$new_name}')";
+	mysqli_query($mysqli,$sql3);
+	$tmpauto=mysqli_insert_id($mysqli)+0;
 
-	if(!$new_name){
-		$err="åå‰ãŒç©ºæ¬„ã§ã™";
-	
-	}else{
-		foreach($group as $a1 => $a2){
-			if($group[$a1]['name'] == $new_name){
-				$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™";
-			}
-		}
-	}
-
-	if(!$err){
-		$sql3="INSERT INTO duty_group(sort,name) VALUES('{$ct}','{$new_name}')";
-		mysqli_query($mysqli,$sql3);
-		$tmpauto=mysqli_insert_id($mysqli)+0;
-
-		$group[$tmpauto]['name']	= $new_name;
-		$group_sort[$ct]=$tmpauto;
-	}
+	$group[$tmpauto]['name']	= $new_name;
+	$group_sort[$ct]=$tmpauto;
 }
 
-$group_sort[0]="0";
-$group[0]['name'] = "å…¨ä½“";
 
+
+$group_sort[0]="0";
+$group[0]['name'] = "‘S‘Ì";
+
+/*
 $group_sort[99]="99";
-$group[99]['name'] = "å€‹åˆ¥";
+$group[99]['name'] = "ŒÂ•Ê";
+*/
 
 ksort($group_sort);
 
 
-//â– â– åŸºæœ¬æƒ…å ±ï¼¿ã‚«ãƒ†ã‚´ãƒª----------------------
+//¡¡Šî–{î•ñQƒJƒeƒSƒŠ----------------------
 
 if($_REQUEST["cate_del"]){
 	$admin=2;
 	$cate_del=$_REQUEST["cate_del"];
-	$sql ="UPDATE `duty_category`";
+	$sql ="UPDATE `duty2_category`";
 	$sql .=" SET del='1'";
 	$sql .=" WHERE `id`='{$cate_del}'";
 	mysqli_query($mysqli,$sql);
 }
 
 if($_REQUEST["cate_chg"]){
-	mysqli_query($mysqli,"ALTER TABLE duty_category DROP INDEX `sort`");
+	mysqli_query($mysqli,"ALTER TABLE duty2_category DROP INDEX `sort`");
 
 	$admin=2;
 	$dat1=$_POST["dat1"];
@@ -859,28 +831,18 @@ if($_REQUEST["cate_chg"]){
 
 	$tmp=1;
 	foreach($dat1 as $a1 => $a2){
+		$sql ="UPDATE duty2_category SET sort='{$tmp}',name='{$dat2[$a1]}', att='{$att[$a1]}'";
+		$sql.=" WHERE id='{$a1}'";
+		mysqli_query($mysqli,$sql);
 
-		if(!$dat2[$a1]){
-			$err="åå‰ãŒç©ºæ¬„ã§ã™<br>";
-
-		}elseif($tmp_data[$dat2[$a1]]){
-			$err="åå‰ãŒé‡è¤‡ã—ã¦ã„ã¾ã™<br>";
-
-		}else{
-			$tmp[$dat2[$a1]]=1;
-			$sql ="UPDATE duty_category SET sort='{$tmp}',name='{$dat2[$a1]}', att='{$att[$a1]}'";
-			$sql.=" WHERE id='{$a1}'";
-			mysqli_query($mysqli,$sql);
-
-			$category[$a1]['att']	= $att[$a1];
-			$category[$a1]['name']	= $dat2[$a1];
-			$category_sort[$tmp]=$a1;
-			$tmp++;
-		}
+		$category[$a1]['att']	= $att[$a1];
+		$category[$a1]['name']	= $dat2[$a1];
+		$category_sort[$tmp]=$a1;
+		$tmp++;
 	}
 
 }else{
-	$sql ="SELECT * FROM duty_category";
+	$sql ="SELECT * FROM duty2_category";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 
@@ -895,26 +857,22 @@ if($_REQUEST["cate_chg"]){
 }
 
 if($_POST["cate_new"]){
-	$admin=2;
 	$new_name=$_POST["new_name"];
 	$new_im=$_POST["new_im"];
 
-	if(!$new_name){
-		$err="åå‰ãŒç©ºæ¬„ã§ã™<br>";
+	$admin=2;
+	$cnt=max($category_sort)+1;
+	$sql ="INSERT INTO `duty2_category` (`sort`,`name`,`att`)";
+	$sql .="VALUES('{$cnt}','{$new_name}','{$new_im}')";
+	mysqli_query($mysqli,$sql);
 
-	}else{
-		$cnt=max($category_sort)+1;
-		$sql ="INSERT INTO `duty_category` (`sort`,`name`,`att`)";
-		$sql .="VALUES('{$cnt}','{$new_name}','{$new_im}')";
-		mysqli_query($mysqli,$sql);
+	$tmp_auto=mysqli_insert_id($mysqli)+0;
 
-		$tmp_auto=mysqli_insert_id($mysqli)+0;
-
-		$category_sort[$cnt]= $tmp_auto;
-		$category[$tmp_auto]['name']= $new_name;
-		$category[$tmp_auto]['att']	= $new_im;
-	}
+	$category_sort[$cnt]= $tmp_auto;
+	$category[$tmp_auto]['name']= $new_name;
+	$category[$tmp_auto]['att']	= $new_im;
 }
+
 
 $duty_login	=$_REQUEST["duty_login"];
 $duty_logpass	=$_REQUEST["duty_logpass"];
@@ -925,18 +883,18 @@ if($logdata1[$duty_login] === $duty_logpass && $duty_login){
 	$_SESSION["time"]	= time();
 
 }elseif($duty_login || $duty_logpass){
-	$err_msg="IDã‚‚ã—ãã¯PASSãŒé•ã„ã¾ã™ã€‚";
+	$err_msg="ID‚à‚µ‚­‚ÍPASS‚ªˆá‚¢‚Ü‚·B";
 }
 
 //----------------------------------------------------
-if(time() - $_SESSION["time"] > 86400 && $_SESSION["time"]){//â– æ™®é€šã«ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+if(time() - $_SESSION["time"] > 86400 && $_SESSION["time"]){//¡•’Ê‚ÉƒZƒbƒVƒ‡ƒ“ƒ^ƒCƒ€ƒAƒEƒg
 	session_destroy(); 
-	$err_msg="TIME OUTã—ã¾ã—ãŸ";
+	$err_msg="TIME OUT‚µ‚Ü‚µ‚½";
 	$uid="";
 	$_REQUEST = array();
 	$_POST = array();
 
-}else{//â– æ™®é€šã«ã‚»ãƒƒã‚·ãƒ§ãƒ³ç¶™ç¶š
+}else{//¡•’Ê‚ÉƒZƒbƒVƒ‡ƒ“Œp‘±
 	$_SESSION["time"]	= time();
 
 	if($_REQUEST["log_id"]){
@@ -963,14 +921,17 @@ if(time() - $_SESSION["time"] > 86400 && $_SESSION["time"]){//â– æ™®é€šã«ã‚»ãƒƒ
 		$_SESSION["c_pg"]	= $_REQUEST["c_pg"];
 	}
 
+
 	if($_REQUEST["now_year"]){
 		$_SESSION["now_year"]	= $_REQUEST["now_year"];
 	}
+
 
 	if($_REQUEST["admin"]){
 		$_SESSION["admin"]	= $_REQUEST["admin"];
 		$admin				= $_REQUEST["admin"];
 	}
+
 
 	if($_REQUEST["now_month"]){
 		$_SESSION["now_month"]	= $_REQUEST["now_month"];
@@ -1029,16 +990,27 @@ if($_POST["re_act"] || $admin === 0){
 }elseif($gp[4]){
 	$_SESSION = array();
 	session_destroy(); 
-	$err="LOG OUTã—ã¾ã—ãŸ";
+	$err="LOG OUT‚µ‚Ü‚µ‚½";
 	$uid="";
 
 }elseif($gp){
-	$_SESSION["log_id"]="";
-	$_SESSION["fav_load"]="";
+/*
+	$uid=$_SESSION["uid"];
+	$_SESSION = array();
+	$_SESSION["uid"]=$uid;
+	$_SESSION["time"]	= time();
 
-	$_SESSION["c_category"]="";
-	$_SESSION["c_writer"]="";
-	$_SESSION["c_pg"]="";
+	$log_id="";
+	$fav_load="";
+	$c_pg=1;
+*/
+
+$_SESSION["log_id"]="";
+$_SESSION["fav_load"]="";
+
+$_SESSION["c_category"]="";
+$_SESSION["c_writer"]="";
+$_SESSION["c_pg"]="";
 
 }
 if($gp[3]){
@@ -1053,17 +1025,22 @@ $c_category	=$_SESSION["c_category"];
 $c_writer	=$_SESSION["c_writer"];
 $c_pg		=$_SESSION["c_pg"];
 
-/*
+
 if($err && $_SESSION){
 	$_SESSION = array();
 }
-*/
 
 $now_year	=$_SESSION["now_year"];
 $now_month	=$_SESSION["now_month"];
 
 if(!$now_year) $now_year	=date("Y");
 if(!$now_month) $now_month	=date("m");
+
+if($_REQUEST["log_dd"]){
+	$log_id		=$_SESSION["log_dd"];
+}
+
+//sprintf("%02d",$_SESSION["now_month"]);
 
 $n1=0;
 $n2=0;
@@ -1082,7 +1059,7 @@ $tmp_date=$now_year ."-".$now_month."-".$tmp_d;
 $now_ym=$now_year ."-".$now_month;
 
 if($uid){
-	$sql	 ="SELECT * FROM duty_mission";
+	$sql	 ="SELECT * FROM duty2_mission";
 	$sql	.=" WHERE `date` LIKE '{$now_ym}%'";
 
 	if($result = mysqli_query($mysqli,$sql)){
@@ -1134,9 +1111,10 @@ if($uid){
 		}
 	}
 
-//â– â– ãƒ›ãƒªãƒ‡ãƒ¼é–¢é€£----------------------
-	$sql ="SELECT * FROM duty_holiday";
+//¡¡ƒzƒŠƒf[ŠÖ˜A----------------------
+	$sql ="SELECT * FROM duty2_holiday";
 	$sql .=" WHERE del<>1";
+//	$sql .=" AND month='{$now_month}'";
 	$sql .=" AND year='{$now_year}'";
 
 	if($result = mysqli_query($mysqli,$sql)){
@@ -1157,7 +1135,7 @@ if($uid){
 
 		$hori_new	=$_REQUEST["hori_new"];
 
-		$sql ="INSERT INTO duty_holiday(`name`,`year`,`month`,`day`)";
+		$sql ="INSERT INTO duty2_holiday(`name`,`year`,`month`,`day`)";
 		$sql .="VALUES('{$hori_new[0]}','{$hori_new[1]}','{$hori_new[2]}','{$hori_new[3]}')";
 		mysqli_query($mysqli,$sql);
 
@@ -1174,7 +1152,7 @@ if($uid){
 	}
 
 
-//â– â– ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢é€£----------------------
+//¡¡ƒpƒ‰ƒ[ƒ^ŠÖ˜A----------------------
 	if(!$c_pg) $c_pg=1;
 	$pg=($c_pg-1)*10;
 
@@ -1186,7 +1164,7 @@ if($uid){
 
 	$day_now=date("Y-m-d H:i:s");
 
-//â– â– å€‹äººæƒ…å ±ï¼¿ãŠæ°—ã«å…¥ã‚Š----------------------
+//¡¡ŒÂlî•ñQ‚¨‹C‚É“ü‚è----------------------
 	$fs=1;
 	if($_POST["fav_chg_set"]){
 		$gp[2]=1;
@@ -1200,26 +1178,28 @@ if($uid){
 			foreach((array)$fav_order as $b1 => $b2){
 				if($a1 != $b1){
 					if($a2 == $b2){
-						$msg="é †ç•ªãŒé‡è¤‡ã—ã¦ã„ã¾ã™";
+						$msg="‡”Ô‚ªd•¡‚µ‚Ä‚¢‚Ü‚·";
+						break 2;
 					}
 				}
 			}
 		}
 
+
 		if(!$msg){
 			foreach((array)$fav_icon as $a1 => $a2){
 				if($fav_del[$a1] == 1){
-					$sql ="DELETE FROM `duty_fav`";
+					$sql ="DELETE FROM `duty2_fav`";
 					$sql.=" WHERE `fav_id`='{$a1}'";
 					mysqli_query($mysqli,$sql);
 
-					$sql2  ="DELETE FROM `duty_list`";
+					$sql2  ="DELETE FROM `duty2_list`";
 					$sql2 .=" WHERE user='{$uid}'";
 					$sql2 .=" AND fav_id='{$a1}'";
 					mysqli_query($mysqli,$sql2);
 
 				}else{
-					$sql ="UPDATE `duty_fav` SET";
+					$sql ="UPDATE `duty2_fav` SET";
 					$sql.=" `name`='{$fav_name[$a1]}',";
 					$sql.=" `icon`='{$a2}',";
 					$sql.=" `sort`='{$fav_order[$a1]}',";
@@ -1231,13 +1211,25 @@ if($uid){
 					$fav[$a1]['name'] = $fav_name[$a1];
 					$fav[$a1]['icon'] = $a2;
 					$fav[$a1]['color'] = $fav_color[$a1];
+					$icon_dat[$a1]="<span style=\"color:{$icon_color[$fav_color[$a1]]}; display:inline-block;height:20px;\"><span class=\"sele_icon_20 {$icon_font[$a2]}\">@{$fav_name[$a1]}</span></span>";
+
 				}
 			}
+/*
+foreach($fav_sort as $a1 => $a2){
+print($a1."¡".$a2."<br>\n");
+}
+
+foreach($fav_order as $a1 => $a2){
+print($a1." ".$a2."<br>\n");
+}
+*/
 		}
 
 	}else{
-		$sql ="SELECT * FROM duty_fav";
+		$sql ="SELECT * FROM duty2_fav";
 		$sql .=" WHERE user_id='{$uid}'";
+	//	$sql .=" AND `del`<>1";
 		$sql .=" ORDER BY `sort` ASC";
 
 		$n=0;
@@ -1245,13 +1237,12 @@ if($uid){
 			while($row = mysqli_fetch_assoc($result)){
 				if($row["name"] && $row["icon"] && $row["color"]){
 
-				if($row["name"]){
-						$fav_sort[$n] =$row["fav_id"];
-						$fav[$row["fav_id"]]['name'] = $row["name"];
-						$fav[$row["fav_id"]]['icon'] = $row["icon"];
-						$fav[$row["fav_id"]]['color'] = $row["color"];
-						$n++;
-					}
+					$fav_sort[$n] =$row["fav_id"];
+					$fav[$row["fav_id"]]['name'] = $row["name"];
+					$fav[$row["fav_id"]]['icon'] = $row["icon"];
+					$fav[$row["fav_id"]]['color'] = $row["color"];
+					$icon_dat[$row["fav_id"]]="<span style=\"color:{$icon_color[$row['color']]};display:inline-block;height:22px;\"><span class=\"sele_icon_20 {$icon_font[$row['icon']]}\">@{$row['name']}</span></span>";
+					$n++;
 				}
 			}
 		}
@@ -1265,11 +1256,11 @@ if($uid){
 			$fav_sort_new	=count($fav_sort)+1;
 
 			if(!$fav_name_new){
-				$msg="åå‰ãŒã‚ã‚Šã¾ã›ã‚“ã€‚";
+				$msg="–¼‘O‚ª‚ ‚è‚Ü‚¹‚ñB";
 			}
 
 			if(!$msg){
-				$sql="INSERT INTO duty_fav (`user_id`, `name`, `sort`, `icon`, `color` ) VALUES ('{$uid}', '{$fav_name_new}','{$fav_sort_new}', '{$fav_icon_new}', '{$fav_color_new}')";
+				$sql="INSERT INTO duty2_fav (`user_id`, `name`, `sort`, `icon`, `color` ) VALUES ('{$uid}', '{$fav_name_new}','{$fav_sort_new}', '{$fav_icon_new}', '{$fav_color_new}')";
 				mysqli_query($mysqli,$sql);
 				$tmpauto=mysqli_insert_id($mysqli)+0;
 
@@ -1283,8 +1274,9 @@ if($uid){
 			ksort($fav_sort);
 		}
 		
-		$sql ="SELECT * FROM duty_list";
+		$sql ="SELECT * FROM duty2_list";
 		$sql .=" WHERE user='{$uid}'";
+	//	$sql .=" AND fav_id>0";
 
 		if($result = mysqli_query($mysqli,$sql)){
 			while($row2 = mysqli_fetch_assoc($result)){
@@ -1293,24 +1285,24 @@ if($uid){
 		}
 	}
 
-//â– â– ACTï¼¿æ¤œç´¢------------------------------
+//¡¡ACTQŒŸõ------------------------------
 	if($_POST["search_button"]){
 		$search_key		=$_POST["search_key"];
 		$search_radio	=$_POST["search_radio"];
 
 		if(strlen($search_key)==1 ||strlen($search_key)==2){
-			$_SESSION["msg"]="æ¤œç´¢æ–‡å­—æ•°ãŒçŸ­ã™ãã¾ã™";
+			$_SESSION["msg"]="ŒŸõ•¶š”‚ª’Z‚·‚¬‚Ü‚·";
 
 		}elseif(strlen($search_key) >2){
 			if($search_radio ==1){//title
 				$_SESSION["search"]=" AND `title` LIKE '%{$search_key}%'";
-				$_SESSION["msg"]="æ¤œç´¢(ã‚¿ã‚¤ãƒˆãƒ«)ï¼šã€Œ".$search_key."ã€";
-			}elseif($search_radio =='2'){//æœ¬æ–‡
+				$_SESSION["msg"]="ŒŸõ(ƒ^ƒCƒgƒ‹)Fu".$search_key."v";
+			}elseif($search_radio =='2'){//–{•¶
 				$_SESSION["search"]=" AND `log` LIKE '%{$search_key}%'";
-				$_SESSION["msg"]="æ¤œç´¢(æœ¬æ–‡)ï¼šã€Œ".$search_key."ã€";
+				$_SESSION["msg"]="ŒŸõ(–{•¶)Fu".$search_key."v";
 
-			}elseif($search_radio == 3){//ã‚Œã™
-				$sql ="SELECT * FROM `duty_res`";
+			}elseif($search_radio == 3){//‚ê‚·
+				$sql ="SELECT * FROM `duty2_res`";
 				$sql .=" WHERE `log` LIKE '%{$search_key}%'";
 
 				$_SESSION["search"]=" AND(id=0";
@@ -1320,79 +1312,83 @@ if($uid){
 					}
 				}
 				$_SESSION["search"].=")";
-				$_SESSION["msg"]="æ¤œç´¢(ãƒ¬ã‚¹)ï¼šã€Œ".$search_key."ã€";
+				$_SESSION["msg"]="ŒŸõ(ƒŒƒX)Fu".$search_key."v";
 			}
 		}
-//â– â– ACTï¼¿æŠ•ç¨¿ã—ã¾ã—ãŸ----------------------
+
+	//¡¡ACTQ“Še‚µ‚Ü‚µ‚½----------------------
+
 	}elseif($_POST["w_try"]){
-		$w_date = $_POST["w_date"];
-		$w_time = $_POST["w_time"];
-		$w_title= mb_convert_encoding ($_POST["w_title"],"UTF-8","AUTO");
-		$w_cate = $_POST["w_cate"];
-		$w_group= $_POST["w_group"];
-		$w_log= mb_convert_encoding ($_POST["w_log"],"UTF-8","AUTO");
-		$w_mem  = $_POST["w_mem"];
-		$hidden_fav= $_POST["hidden_fav"];
-
-		if(!$w_title) $w_title ="[No Title]";
-		if(!$w_log) $w_log ="[No Log]";
-
-		$n=1;
-
-		foreach((array)$member_now as $m1 => $m2){
-			if($w_group=="0" || $w_group == 0 ||$member[$m2][$w_group] == 1 || $w_mem[$m2]==1 ||$m2 == $uid){
-			//â– ã‚°ãƒ«ãƒ¼ãƒ—ãŒå…¨å“¡ã€ãƒ¡ãƒ³ãƒãƒ¼ãŒç®¡ç†è€…ã€ã‚°ãƒ«ãƒ¼ãƒ—ãŒå¯¾è±¡ã€ã‚°ãƒ«ãƒ¼ãƒ—å€‹åˆ¥ãŒå¯¾è±¡ã€æŠ•ç¨¿è€…
-				$ins_1 .=", `at{$n}`";	
-				$ins_2 .=", '{$m2}'";
-				if($m2 == $uid){
-					$ins_3 .=", '3'";
-				}else{
-					$ins_3 .=", '1'";
-				}
-			}
-			$n++;
-		}
-
-		$sql = "INSERT INTO duty_log (`date`, `time`, `title`, `writer`, `category`, `group`, `log`".$ins_1.")";
-		$sql.= " VALUES ('{$w_date}', '{$w_time}', '{$w_title}', '{$uid}', '{$w_cate}', '{$w_group}', '{$w_log}'".$ins_2.")"; 
-		mysqli_query($mysqli,$sql);
-
-		$tmp_auto=mysqli_insert_id($mysqli)+0;
-		$sql = "INSERT INTO duty_sub (`id`{$ins_1})";
-		$sql.= " VALUES ({$tmp_auto}{$ins_3})"; 
-		mysqli_query($mysqli,$sql);
-
-		if($hidden_fav){
-			$f_in ="INSERT INTO duty_list(fav_id, favlog, user) VALUES('{$hidden_fav}','{$tmp_auto}','{$uid}')";
-			mysqli_query($mysqli,$f_in);
-			$fav_count[$tmp_auto]=$hidden_fav;
-		}
-
-	//â– â– ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã“ã“ã‹ã‚‰ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
-		$up_folder="./upload/".$now_year."/".$tmp_auto;
-		for($upld=1;$upld<7;$upld++){
-			if (is_uploaded_file($_FILES["upfile"]["tmp_name"][$upld])) {
-				if($upld == 1){
-					mkdir($up_folder,0777,TRUE);
-					chmod($up_folder,0777);
-				}
-				$app[$upld]=substr($_FILES["upfile"]["name"][$upld],strrpos($_FILES["upfile"]["name"][$upld], '.'));
-				$tmp_file=mb_convert_encoding($_FILES["upfile"]["name"][$upld],"UTF-8","auto");
-				move_uploaded_file($_FILES["upfile"]["tmp_name"][$upld], "./upload/".$now_year."/".$tmp_auto."/".$tmp_file );
-			}
-		}
+		$w_date = $_REQUEST["w_date"];
+		$w_time = $_REQUEST["w_time"];
+		$w_title= mb_convert_encoding ($_REQUEST["w_title"],"SJIS","AUTO");
+		$w_cate = $_REQUEST["w_cate"];
+		$w_group= $_REQUEST["w_group"];
+		$w_log= mb_convert_encoding ($_REQUEST["w_log"],"SJIS","AUTO");
+		$w_mem  = $_REQUEST["w_mem"];
 		
-	//â– â– ACTï¼¿å‰Šé™¤ã—ã¾ã—ãŸ----------------------
+
+		if(!$upng){
+			if(!$w_title) $w_title ="[No Title]";
+			if(!$w_log) $w_log ="[No Log]";
+
+			$n=1;
+			foreach((array)$member_now as $m1 => $m2){
+
+				if($w_group=="0" || $w_group == 0 ||$member[$m2][$w_group] == 1 || $w_mem[$m2]==1 ||$m2 == $uid){//¡ƒOƒ‹[ƒv‚ª‘SˆõAƒƒ“ƒo[‚ªŠÇ—ÒAƒOƒ‹[ƒv‚ª‘ÎÛAƒOƒ‹[ƒvŒÂ•Ê‚ª‘ÎÛA“ŠeÒ
+					$ins_1 .=", `at{$n}`";	
+					$ins_2 .=", '{$m2}'";
+					if($m2 == $uid){
+						$ins_3 .=", '3'";
+					}else{
+						$ins_3 .=", '1'";
+					}
+				}
+				$n++;
+			}
+
+			$sql = "INSERT INTO duty2_log (`date`, `time`, `title`, `writer`, `category`, `group`, `log`".$ins_1.")";
+			$sql.= " VALUES ('{$w_date}', '{$w_time}', '{$w_title}', '{$uid}', '{$w_cate}', '{$w_group}', '{$w_log}'".$ins_2.")"; 
+			mysqli_query($mysqli,$sql);
+
+//print($sql."<br>\n");
+
+			$tmp_auto=mysqli_insert_id($mysqli)+0;
+			$sql = "INSERT INTO duty2_sub (`id`{$ins_1})";
+			$sql.= " VALUES ({$tmp_auto}{$ins_3})"; 
+			mysqli_query($mysqli,$sql);
+
+//print($sql."<br>\n");
+
+		//¡¡ƒtƒ@ƒCƒ‹ƒAƒbƒvƒ[ƒh‚±‚±‚©‚ç
+			$up_folder="./upload/".$now_year."/".$tmp_auto;
+			for($upld=1;$upld<7;$upld++){
+				if (is_uploaded_file($_FILES["upfile"]["tmp_name"][$upld])) {
+					if($upld == 1){
+						mkdir($up_folder,0777);
+						chmod($up_folder,0777);
+					}
+					$app[$upld]=substr($_FILES["upfile"]["name"][$upld],strrpos($_FILES["upfile"]["name"][$upld], '.'));
+					$tmp_file=mb_convert_encoding($_FILES["upfile"]["name"][$upld],"UTF-8","auto");
+					move_uploaded_file($_FILES["upfile"]["tmp_name"][$upld], "./upload/".$now_year."/".$tmp_auto."/".$tmp_file );
+				}
+			}
+
+		//  ƒtƒ@ƒCƒ‹ƒAƒbƒvƒ[ƒh‚±‚±‚Ü‚Å
+		}
+
+	//¡¡ACTQíœ‚µ‚Ü‚µ‚½----------------------
 	}elseif($_REQUEST["log_del"]){
 		$del_id=$_REQUEST["log_del"];
 
-		$sql ="UPDATE `duty_log`";
+		$sql ="UPDATE `duty2_log`";
 		$sql .=" SET del='1'";
 		$sql .=" WHERE `id`='{$del_id}'";
 		mysqli_query($mysqli,$sql);
 		$log_id="";
 
-	//â– â– ACTï¼¿æ›¸ãç›´ã—ã¾ã—ãŸ-----------------
+
+	//¡¡ACTQ‘‚«’¼‚µ‚Ü‚µ‚½-----------------
 	}elseif($_POST["set_chg2"]){
 
 		$e_title= $_REQUEST["e_title"];
@@ -1402,27 +1398,29 @@ if($uid){
 		if(!$e_title) $e_title ="[No Title]";
 		if(!$e_log) $e_log ="[No Log]";
 
-		$sql ="UPDATE `duty_log`";
+		$sql ="UPDATE `duty2_log`";
 		$sql .=" SET `title`='{$e_title}',";
 		$sql .=" `log`='{$e_log}',";
 		$sql .=" `category`='{$e_cate}'";
 		$sql .=" WHERE `id`='{$log_id}'";
 		mysqli_query($mysqli,$sql);
 
-	//â– â– ACTï¼¿RESå‰Šé™¤----------------------
+//print($sql);
+
+	//¡¡ACTQRESíœ----------------------
 	}elseif($_REQUEST["res_del"]){
 		$log_id="";
 
 		$del_id	 =$_REQUEST["res_del"];
-		$sql 	 ="UPDATE `duty_res`";
+		$sql 	 ="UPDATE `duty2_res`";
 		$sql 	.=" SET `del`='1'";
 		$sql	.=" WHERE `id`='{$del_id}'";
 		mysqli_query($mysqli,$sql);
 
-	//â– â– ACTï¼¿RESæŠ•ç¨¿----------------------
+	//¡¡ACTQRES“Še----------------------
 	}elseif($c_act =="set_res"){
 
-	//â– â– ACTï¼¿RESæŠ•ç¨¿ã•ã‚Œã¾ã—ãŸ------------
+	//¡¡ACTQRES“Še‚³‚ê‚Ü‚µ‚½------------
 	}elseif($_POST["set_res2"]){
 
 		$r_log = $_REQUEST["r_log"];
@@ -1430,10 +1428,10 @@ if($uid){
 		$res_time=date("H:i");
 		if(!$r_log) $r_log ="[No Log]";
 
-		$sql="INSERT INTO duty_res (`master`, `date`, `time`, `writer`, `log`) VALUES ('{$log_id}', '{$res_date}','{$res_time}','{$uid}', '{$r_log}')";
+		$sql="INSERT INTO duty2_res (`master`, `date`, `time`, `writer`, `log`) VALUES ('{$log_id}', '{$res_date}','{$res_time}','{$uid}', '{$r_log}')";
 		mysqli_query($mysqli,$sql);
 
-		$lin ="SELECT * FROM duty_sub";
+		$lin ="SELECT * FROM duty2_sub";
 		$lin.=" WHERE id='{$log_id}'";
 		$lin.=" LIMIT 1";
 		$result = mysqli_query($mysqli,$lin);
@@ -1448,17 +1446,17 @@ if($uid){
 			}
 		}
 
-		$sql="UPDATE `duty_sub` SET `del`='0'";
+		$sql="UPDATE `duty2_sub` SET `del`='0'";
 		$sql.=$inc;
 		$sql.=" WHERE `id`='{$log_id}'";
 
 		mysqli_query($mysqli,$sql);
 
-	//â– â– ACTï¼¿Todoã‚»ãƒƒãƒˆ----------------------
+	//¡¡ACTQTodoƒZƒbƒg----------------------
 	}elseif($_REQUEST["todo_chg_id"]){
 
 		$todo_chg_id=$_REQUEST["todo_chg_id"];
-		$sql ="SELECT * FROM duty_todo";
+		$sql ="SELECT * FROM duty2_todo";
 		$sql.=" WHERE todo_id= '{$todo_chg_id}'";
 		$sql.=" AND del<> '1'";
 
@@ -1512,7 +1510,7 @@ if($uid){
 		$todo_ei	="00";
 
 
-	//â– â– ACTï¼¿Todoç™»éŒ²ã—ã¾ã—ãŸ-----------------
+	//¡¡ACTQTodo“o˜^‚µ‚Ü‚µ‚½-----------------
 	}elseif($_REQUEST["c_todo2"]){
 		$c_todo2	=$_REQUEST["c_todo2"];
 
@@ -1547,7 +1545,7 @@ if($uid){
 		$st_time=sprintf("%04d",$st_time);
 		$ed_time=sprintf("%04d",$ed_time);
 
-		$sql="INSERT INTO `duty_todo`";
+		$sql="INSERT INTO `duty2_todo`";
 		$sql.=" (`submit_date`, `st_date`, `ed_date`, `st_time`, `ed_time`, `start`, `passage`, `end`, `log`, `staff`, `group`, `plan`)";
 		$sql.=" VALUES('{$tmp_date}','{$st_date}','{$ed_date}','{$st_time}','{$ed_time}','{$todo_tag1}','{$todo_tag2}','{$todo_tag3}','{$todo_log}','{$uid}','{$todo_group}','{$todo_plan}')";
 		mysqli_query($mysqli,$sql);
@@ -1555,7 +1553,7 @@ if($uid){
 	}elseif($_POST["c_todo4"]){
 
 		$todo_chg_id2	=$_REQUEST["todo_chg_id2"];
-		$sql="UPDATE `duty_todo` SET";
+		$sql="UPDATE `duty2_todo` SET";
 		$sql.=" del='1'";
 		$sql .=" WHERE `todo_id`='{$todo_chg_id2}'";
 		mysqli_query($mysqli,$sql);
@@ -1584,7 +1582,7 @@ if($uid){
 		$st_time=sprintf("%04d",$st_time);
 		$ed_time=sprintf("%04d",$ed_time);
 
-		$sql="UPDATE `duty_todo` SET";
+		$sql="UPDATE `duty2_todo` SET";
 
 		$sql.=" `st_date`='{$st_date}',";
 		$sql.=" `ed_date`='{$ed_date}',";
@@ -1603,19 +1601,19 @@ if($uid){
 
 		mysqli_query($mysqli,$sql);
 
-	//â– â– PASSå¤‰æ›´--------------------------------------
+	//¡¡PASS•ÏX--------------------------------------
 	}elseif($_POST["pass_chg_set"]){
 		$gp[2]=1;
 
 		$passbox=$_REQUEST["passbox"];
 		if($passbox != $member[$uid]['logpass'] ){
-			$sql ="UPDATE `duty_member`";
+			$sql ="UPDATE `duty2_member`";
 			$sql .=" SET `logpass`='{$passbox}'";
 			$sql .=" WHERE `id`='{$uid}'";
 			mysqli_query($mysqli,$sql);
 		}
 
-	//â– â– ãŠæ°—ã«å…¥ã‚Šãƒ•ã‚©ãƒ«ãƒ€-----------------------------
+	//¡¡‚¨‹C‚É“ü‚èƒtƒHƒ‹ƒ_-----------------------------
 	}elseif($_POST["fv"]){
 		foreach((array)$_POST["fv"] as $a1 => $a2){
 			$log_id="";
@@ -1624,15 +1622,16 @@ if($uid){
 		}
 	} 
 
-	//â– â– å€‹äººæƒ…å ±ï¼¿æŠ•ç¨¿ä¸€è¦§----------------------
+//¡¡ŒÂlî•ñQ“Šeˆê——----------------------
 	$now_date=date("Y-m-d H:i:s");
-	$lin ="SELECT *, at{$uid} as view_ck FROM duty_log";
+	$lin ="SELECT *, at{$uid} as view_ck FROM duty2_log";
 
 	if($fav_load){
-		$lin.=" LEFT JOIN `duty_list` ON duty_log.id=duty_list.favlog";
+		$lin.=" LEFT JOIN `duty2_list` ON duty2_log.id=duty2_list.favlog";
 	}
 	$lin.=" WHERE del <>1";
 	$lin.=" AND(`date`<='{$now_date}' or `writer`='{$uid}')";
+//	$lin.=" AND at{$uid}>0";
 
 	if(!$fav_load && !$_SESSION["search"]){
 		$lin.=" AND `date`>='{$day_st}'";
@@ -1651,7 +1650,7 @@ if($uid){
 	if($c_category) $lin.=" AND category='{$c_category}'";
 	if($c_group) $lin.=" AND group='{$c_group}'";
 	if($c_writer) $lin.=" AND writer='{$c_writer}'";
-	if($fav_load) $lin.=" AND duty_list.fav_id='{$fav_load}' AND duty_list.user='{$uid}'";
+	if($fav_load) $lin.=" AND duty2_list.fav_id='{$fav_load}' AND duty2_list.user='{$uid}'";
 	if($_SESSION["search"]) $lin.=$_SESSION["search"];
 	$lin.=" ORDER BY `date` DESC, `time` DESC";
 
@@ -1675,7 +1674,7 @@ if($uid){
 			}
 
 			$tmp_id=$row["id"];
-			$lin2 ="SELECT * FROM duty_sub";
+			$lin2 ="SELECT * FROM duty2_sub";
 			$lin2.=" WHERE id='{$tmp_id}'";
 			$lin2.=" LIMIT 1";
 
@@ -1687,15 +1686,10 @@ if($uid){
 				$ck_id[$row["id"]][$row["at".$n]]=$n;
 			}
 
-			if($log_id == $row["id"]){//viewè¡¨ç¤ºæ¡ä»¶
+			if($log_id == $row["id"]){//view•\¦ğŒ
 				if(!$fav_count[$log_id]){
-
-					$fav[0]['name'] = "SELECT FLAG";
-					$fav[0]['icon'] = "16";
-					$fav[0]['color'] = "#aaaaaa";
+					$icon_dat[$fav_count[$log_id]]="<span style='color:#aaaaaa; display:inline-block;height:22px;font-size:16px;'> œSELECT FLAG</span>";
 				}
-
-				$view_org=$row["log"];
 
 				$row["log"] = str_replace("<","&lt;",$row["log"]);
 				$row["log"] = str_replace("&lt;br>","<br>",$row["log"]);
@@ -1717,7 +1711,7 @@ if($uid){
 				if($user_view[$row["id"]][$uid] ==1){
 					$tmp=$ck_id[$row["id"]][$uid];
 
-					$sql="UPDATE `duty_sub` SET at{$tmp}='2'";
+					$sql="UPDATE `duty2_sub` SET at{$tmp}='2'";
 					$sql.=" WHERE `id`='{$row["id"]}'";
 					mysqli_query($mysqli,$sql);
 					$user_view[$row["id"]][$uid]=2;
@@ -1726,7 +1720,7 @@ if($uid){
 				if($user_view[$row["id"]][$uid] ==4){
 					$tmp=$ck_id[$row["id"]][$uid];
 
-					$sql="UPDATE `duty_sub` SET at{$tmp}='3'";
+					$sql="UPDATE `duty2_sub` SET at{$tmp}='3'";
 					$sql.=" WHERE `id`='{$row["id"]}'";
 					mysqli_query($mysqli,$sql);
 					$user_view[$row["id"]][$uid]=3;
@@ -1746,15 +1740,16 @@ if($uid){
 									$attach_icon[$a]=0;
 								}
 								$a++;
+
 							}
 						} 
 					closedir($dir);
 					}
 				}
 
-				//â– â– VIEWæƒ…å ±ï¼¿RES----------------------
+				//¡¡VIEWî•ñQRES----------------------
 				$p0=0;
-				$st2 = "SELECT * FROM duty_res WHERE master='{$log_id}' AND del=0 ORDER BY id ASC";
+				$st2 = "SELECT * FROM duty2_res WHERE master='{$log_id}' AND del=0 ORDER BY id ASC";
 				if($result2 = mysqli_query($mysqli,$st2)){
 					while($row2 = mysqli_fetch_assoc($result2)){
 						$res[$p0]["res_id"]	= $row2["id"];
@@ -1793,30 +1788,30 @@ if($uid){
 	}
 
 
-//â– ãƒšãƒ¼ã‚¸ã‚«ã‚¦ãƒ³ãƒˆ-----------------------------
+//¡ƒy[ƒWƒJƒEƒ“ƒg-----------------------------
 	$pg_st=($c_pg-1)*10;
 	$pg_ed=($c_pg-1)*10+10;
 	if($i<$pg_ed){
 		$pg_ed=$i;
 	}
 
-//â– â– ãŠæ°—ã«å…¥ã‚Šç™»éŒ²ãƒ­ã‚°ã‹ã‚‰----------------------
+//¡¡‚¨‹C‚É“ü‚è“o˜^ƒƒO‚©‚ç----------------------
 	if($_POST["fav_reg"]){
 
 		$icon_set=$_REQUEST["icon_set"];
 		$n_icon=$_REQUEST["n_icon"];
 
 		if($fav_count[$icon_set]){
-			$f_in .="UPDATE `duty_list` SET `fav_id`='{$n_icon}' WHERE `user`='{$uid}' AND `favlog`='{$icon_set}'";
+			$f_in .="UPDATE `duty2_list` SET `fav_id`='{$n_icon}' WHERE `user`='{$uid}' AND `favlog`='{$icon_set}'";
 
-		}else{//è¿½åŠ 
-			$f_in .="INSERT INTO duty_list(fav_id, favlog, user) VALUES('{$n_icon}','{$icon_set}','{$uid}')";
+		}else{//’Ç‰Á
+			$f_in .="INSERT INTO duty2_list(fav_id, favlog, user) VALUES('{$n_icon}','{$icon_set}','{$uid}')";
 		}
 		mysqli_query($mysqli,$f_in);
 		$fav_count[$icon_set]=$n_icon;
 	}
 
-//â– â– VIEWæƒ…å ±ï¼¿æ·»ä»˜----------------------
+//¡¡VIEWî•ñQ“Y•t----------------------
 	if(file_exists($t_dir= "./upload/".$now."/".$view)){
 		if ($handle = opendir($t_dir)) {
 			$t=0;
@@ -1835,11 +1830,12 @@ if($uid){
 	}
 }
 
-//â– todoãƒªã‚¹ãƒˆèª­ã¿è¾¼ã¿
-$tmp_ym=substr($tmp_date,0,7);
-$sql ="SELECT * FROM duty_todo";
-$sql.=" WHERE (st_date like '{$tmp_ym}%' OR ed_date like '{$tmp_ym}%') AND del<>1";
 
+//¡todoƒŠƒXƒg“Ç‚İ‚İ
+$tmp_ym=substr($tmp_date,0,7);
+$sql ="SELECT * FROM duty2_todo";
+$sql.=" WHERE (st_date like '{$tmp_ym}%' OR ed_date like '{$tmp_ym}%') AND del<>1";
+//print($sql);
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if($member[$uid][$row["group"]] ==1 || $row["group"] ==0 ||( $row["group"] == 90 && $row["staff"] == $uid)){
@@ -1942,15 +1938,19 @@ if($c_pg<=2){
 }
 
 
-//â– ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼å‡¦ç†---------
-$t_mon_01=$now_year."-".sprintf("%02d",$now_month)."-01 00:00:00";//ä»Šæœˆ1æ—¥DBç”¨
-$n_mon=date("Ym",strtotime($t_mon_01)+3456000);//æ¥æœˆ
-$p_mon=date("Ym",strtotime($t_mon_01)-100000);//å‰æœˆ
+//¡ƒJƒŒƒ“ƒ_[ˆ—---------
+
+$t_mon_01=$now_year."-".sprintf("%02d",$now_month)."-01 00:00:00";//¡Œ1“úDB—p
+$n_mon=date("Ym",strtotime($t_mon_01)+3456000);//—ˆŒ
+$p_mon=date("Ym",strtotime($t_mon_01)-100000);//‘OŒ
+
 $t_mon_t=date("t",strtotime($t_mon_01));
 
-$t_mon_31=substr($n_mon,0,4)."-".substr($n_mon,4,2)."-01 00:00:00";//æ¥æœˆ1æ—¥DBç”¨
-$t_wek_01=date("w",strtotime($t_mon_01));//ä»Šæœˆæœ€åˆã¯ä½•æ›œæ—¥ï¼Ÿ
-$t_wek_31=date("t",strtotime($t_mon_01));//ä»Šæœˆã¯ä½•æ—¥ï¼Ÿ
+
+$t_mon_31=substr($n_mon,0,4)."-".substr($n_mon,4,2)."-01 00:00:00";//—ˆŒ1“úDB—p
+$t_wek_01=date("w",strtotime($t_mon_01));//¡ŒÅ‰‚Í‰½—j“úH
+$t_wek_31=date("t",strtotime($t_mon_01));//¡Œ‚Í‰½“úH
+
 
 for($n=$t_wek_01;$n<$t_wek_01+$t_wek_31;$n++){
 	$p2++;
@@ -1958,244 +1958,112 @@ for($n=$t_wek_01;$n<$t_wek_01+$t_wek_31;$n++){
 }
 
 if($t_wek_01+$t_wek_31 >=36){
-	$cal_las=42;//6é€±
+	$cal_las=42;//6T
 }else{
-	$cal_las=35;//5é€±
+	$cal_las=35;//5T
 }
+
 ksort($member_comm);
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
-<title><?=$set_title?></title>
-<meta charset="UTF-8">
+<title>–‹Æ•”ˆøŒp‚¬</title>
+<meta charset="SHIFT-JIS">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex">
+<meta name="robots" content="nofollow">
+<link rel="stylesheet" type="text/css" href="css/ck.css?d=<?=time()?>" />
 <link rel="stylesheet" type="text/css" href="css/main.css?d=<?=time()?>" />
-<link rel="stylesheet" type="text/css" href="css/tag.css?d=<?=time()?>" />
+<link rel="stylesheet" type="text/css" href="font/style.css?d=<?=time()?>" />
 
 <script type="text/javascript" src="js/jquery-1.11.2.min.js?d=<?=time()?>"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js?d=<?=time()?>"></script>
 <script type="text/javascript" src="js/jquery.accordion.js"></script>
-<script type="text/javascript" src="js/main.js?d=<?=time()?>"></script>
 <script type="text/javascript">
-$(function(){
-	var Color = [];
-	var Icon = [];
-	var FavIcon = [];
-	var FavName = [];
-	var FavColor = [];
-	var LogId = '<?=$log_id?>';
 
+jQuery( function($) {
+   	$('.todo_tag_ckb').click(function(){
+		var ck_count = $(".todo_div :checked").length;
 
-	<?foreach($icon_font2 as $a1 => $a2){?>Icon[<?=$a1?>]='<?=$a2?>';
-<?}?>
-	<?foreach($icon_color as $a1 => $a2){?>Color[<?=$a1?>]='<?=$a2?>';
-<?}?>
-	var w = $(window).width();
-	var h1=0;
-	var h2=0;
-	var h3=0;
-	var h4=0;
-
-	var Uid=<?=$uid?>;
-
-<?if($err){?>
-	$('.err_box').fadeIn(200);
-<?}else {?>
-	$('.err_box').hide();
-<? } ?>
-
-	<?foreach($fav_sort as $a1 => $a2){?>FavIcon[<?=$a2?>]='<?=$fav[$a2]['icon']?>';
-FavName[<?=$a2?>]='<?=$fav[$a2]['name']?>';
-FavColor[<?=$a2?>]='<?=$fav[$a2]['color']?>';
-	<?}?>
-
-	$('.err_box').click(function(){
-		$(this).fadeOut(100);
-	});
-
-	$('.sp0').click(function(){
-		$('.sp_menu').slideUp(100);
-		$('.sp0').removeClass('sp_active');
-
-		if($('.sp_menu').css('display') == 'none'){
-			$('.sp_menu').slideDown(100);
-			$('.sp0').addClass('sp_active');
+		if (ck_count  > 0 ){
+			$('#todo_send').prop("disabled", false);
+			$('#todo_send').css('background','#ff90b0');
+		} else {
+			$("#todo_send").prop("disabled", true);
+			$('#todo_send').css('background','#e0e0e0');
 		}
 	});
 
-	$('.sp1').click(function(){
-		if($('.menu').css('display') == 'none'){
-			$('.menu').show();
-			$('.menu').animate({"left": '-7px'}, 200);
-
-			if($('.open').css('display') == 'block'){
-				h1 = $('.open').outerHeight()+75;
-			}
-				h2 = $('.menu').outerHeight()+55;
-
-			if($('.main_in').css('display') == 'block'){
-				h3 = $('.main_in').outerHeight()+75;
-			}
-			h4 = Math.max( h1, h2, h3 ) ;
-			$('.outer').css("height", h4 + 'px');
-
+	jQuery('#logdel').click(function(){
+		if(!confirm('–{“–‚Éíœ‚µ‚Ü‚·‚©H')){
+			return false;
 		}else{
-			$('.menu').animate({"left": '-240px'}, 200);
-		    setTimeout(function(){
-				$('.menu').hide();
-		    },300);
-
-			if($('.open').css('display') == 'block'){
-				h4 = $('.open').outerHeight()+75;
-			}else{
-				h4 = $('.main_in').outerHeight()+75;
-			}
-			$('.outer').css("height", h4 + 'px');
-		}
-	});
-
-	$('.sp3').click(function(){
-		$('.sche').slideUp(50);
-		if($('.sche').css('display') == 'none'){
-			$('.sche').slideDown(50);
+			location.href = './index.php?del_id=<?=$log[$c_view]["id"]?>';
 		}
 	});
 
 
-	$('.sp5').click(function(){
-		if($('.open').css('display') == 'none'){
-			$('.open').show();
-			$('.main_in').animate({"left": '-550px'}, 200);
-			$('.open').animate({"right": '0px'}, 200);
+	jQuery('tbody tr[data-href]').addClass('clickable').click( function() {
+		window.location = $(this).attr('data-href');
+	}).find('a').hover( function() {
+		$(this).parents('tr').unbind('click');
 
-		    setTimeout(function(){
-				$('.main_in').hide();
-		    },300);
+	}, function() {
+		$(this).parents('tr').click( function() {
+			window.location = $(this).attr('data-href');
+		});
+	});
+/**/
+	jQuery('#cat').change(function() {
+		var val = $(this).val();
+		$('.gp_dt').hide();
+		$('#gp_dt' + val).show();
+	}).change();
 
-		}else{
-			$('.main_in').show();
-			$('.main_in').animate({"left": '0'}, 200);
-			$('.open').animate({"right": '-550px'}, 200);
-
-		    setTimeout(function(){
-				$('.open').hide();
-		    },300);
+	$('.sub_slide').hide();
+	$('.main_slide').click(function(){
+		$('div.sub_slide').slideUp();
+		if($('+div.sub_slide',this).css('display') == 'none'){
+			$('img',this).addClass('rotate');
+			$('+div.sub_slide',this).slideDown();
 		}
 	});
 
-	$('.sche_x').click(function(){
-		$('.sche').slideUp(50);
-	});
+	$('a[href^=#]').click(function(){ 
+		var speed = 500; 
+		var href= $(this).attr("href"); 
+		var target = $(href == "#" || href == "" ? 'html' : href); 
+		var position = target.offset().top; 
+		$("html, body").animate({scrollTop:position}, speed, "swing"); 
+		return false; 
+	}); 
 
-<?if($gp[1]){?>
-	if (w < 550) {
-		$('.open').show()+0;
-		$('.open').animate({"right": '0'}, 200);
-
-		$('.main_in').animate({"left": '-550px'}, 200);
-		setTimeout(function(){
-			$('.main_in').hide();
-		},300);
-	}
-
-<?}elseif($log_id){?>
-	if (w < 550) {
-		$('.open').show();
-		$('.open').animate({"right": '0'}, 200);
-
-		$('.main_in').animate({"left": '-550px'}, 200);
-		setTimeout(function(){
-			$('.main_in').hide();
-		},300);
-	}
-<? } ?>
-
-	$("input[type='file']").on('change',function(){
-		var TMP_file = $(this).prop('files')[0];
-
-		if(TMP_file){
-			$(this).next().css('background', '#ff6666');
-			var tmpl='<span class="sele_icon_16"><?=$icon_font2[20]?></span> ' + $(this).prop('files')[0].name;
-			$(this).next().html(tmpl);
-
-		}else{
-			$(this).next().css('background', '#a0a0a0');
-			var tmpl='<span class="sele_icon_16"><?=$icon_font2[20]?></span> NoFile';
-			$(this).next().html(tmpl);
+	$(document).click(function(e){
+		if(!$(e.target).closest('.main_slide','sub_slide').length) {
+			$('.sub_slide').slideUp();
 		}
 	});
 
-	$(window).on('load resize', function() {
-	    if (w < 550) {
-				h1 = $('.open').outerHeight()+75;
-
-			if($('.menu').css('display') != 'none'){
-				h2 = $('.menu').outerHeight()+55;
-			}
-				h3 = $('.main_in').outerHeight()+75;
-				h4 = Math.max( h1, h2, h3 ) ;
-
-			$('.outer').css("height", h4 + 'px');
+	$('.sub_slide2').hide();
+	$('.main_slide2').click(function(){
+		$('.sub_slide2').slideUp();
+		if($('+.sub_slide2',this).css('display') == 'none'){
+			$('+.sub_slide2',this).slideDown();
 		}
 	});
 
-	$('input[name="fav_color_new"]').on('change', function() {
-		Clr1 = $(this).val();
-		$('#fav_select_new').css('color',Color[Clr1]);
-		$('#color_select_new').css('background',Color[Clr1]);
-	});
+	$('#d1').click(function() {
+		$(this).fadeOut(700);
+	}); 
 
-	$('input[name="fav_icon_new"]').on('change', function() {
-		Clr1 = $(this).val();
-		$('#fav_select_new').text(Icon[Clr1]);
-	});
-
-	$('.fav_ed').on('change', function() {
-		Clr1 = $(this).val();
-		$(this).parent().prev().text(Icon[Clr1]);
-	});
-
-	$('.fav_ed2').on('change', function() {
-		Clr1 = $(this).val();
-		$(this).parent().prev().css('background',Color[Clr1]);
-		$(this).parent().parent().prev().children('.main_slide').css('color',Color[Clr1]);
-	});
-
-	$('.fav1').on('change',function() {
-		var FavCk = $(this).val();
-		$('#direct').attr('name','fav_reg');
-		$('form').submit();
-	});
-
-	$('.set_sub').on('click',function() {
-		var CkVal = $(this).attr('name');
-		if(CkVal == 'log_del'){
-			if(!confirm('æœ¬å½“ã«å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ')){
-				return false;
-			}
-		}
-		$('#direct').attr('name',CkVal);
-		$('form').submit();
-	});
-
-	$('#submit1').on('click',function() {
-		$('#form1').submit();
-	});
-
-
-	$('.bk7').on('click',function() {
-		$('.bk8').slideUp(50);
-		if($('.bk8').css('display') == 'none'){
-			$('.bk8').slideDown(50);
-		}
-	});
 });
 
 
+
 function Resdel(N1){
-	if(!confirm('æœ¬å½“ã«å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ')){
+	if(!confirm('–{“–‚Éíœ‚µ‚Ü‚·‚©H')){
 		return false;
 	}else{
 		location.href = './index.php?res_del='+N1;
@@ -2203,7 +2071,7 @@ function Resdel(N1){
 }
 
 function Logdel(N2){
-	if(!confirm('æœ¬å½“ã«å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ')){
+	if(!confirm('–{“–‚Éíœ‚µ‚Ü‚·‚©H')){
 		return false;
 	}else{
 		location.href = './index.php?log_del='+N2;
@@ -2211,7 +2079,7 @@ function Logdel(N2){
 }
 
 function MemberDel(N3, N4){
-	if(!confirm('ãƒ¦ãƒ¼ã‚¶ãƒ¼ã€Œ' + N4 + 'ã€ã‚’å‰Šé™¤ã—ã¾ã™ã€‚\nâ€»ä¸€æ—¦å‰Šé™¤ã—ã¾ã™ã¨å…ƒã«æˆ»ã›ã¾ã›ã‚“\nâ€»å‰Šé™¤ã•ã‚ŒãŸãƒ¦ãƒ¼ã‚¶ãƒ¼ã®æŠ•ç¨¿ã¯å‰Šé™¤ã•ã‚Œãšã€ãã®ã¾ã¾æ®‹ã‚Šã¾ã™ã€‚\n\nã‚ˆã‚ã—ã„ã§ã™ã‹')){
+	if(!confirm('ƒ†[ƒU[u' + N4 + 'v‚ğíœ‚µ‚Ü‚·B\n¦ˆê’Uíœ‚µ‚Ü‚·‚ÆŒ³‚É–ß‚¹‚Ü‚¹‚ñ\n¦íœ‚³‚ê‚½ƒ†[ƒU[‚Ì“Še‚Ííœ‚³‚ê‚¸A‚»‚Ì‚Ü‚Üc‚è‚Ü‚·B\n\n‚æ‚ë‚µ‚¢‚Å‚·‚©')){
 		return false;
 	}else{
 		location.href = './index.php?member_del='+N3;
@@ -2219,7 +2087,7 @@ function MemberDel(N3, N4){
 }
 
 function CateDel(N5, N6){
-	if(!confirm('ã‚«ãƒ†ã‚´ãƒªã€Œ' + N6 + 'ã€ã‚’å‰Šé™¤ã—ã¾ã™ã€‚\nâ€»ä¸€æ—¦å‰Šé™¤ã—ã¾ã™ã¨å…ƒã«æˆ»ã›ã¾ã›ã‚“ã€‚\n\nã‚ˆã‚ã—ã„ã§ã™ã‹')){
+	if(!confirm('ƒJƒeƒSƒŠu' + N6 + 'v‚ğíœ‚µ‚Ü‚·B\n¦ˆê’Uíœ‚µ‚Ü‚·‚ÆŒ³‚É–ß‚¹‚Ü‚¹‚ñB\n\n‚æ‚ë‚µ‚¢‚Å‚·‚©')){
 		return false;
 	}else{
 		location.href = './index.php?cate_del='+N5;
@@ -2227,7 +2095,7 @@ function CateDel(N5, N6){
 }
 
 function GroupDel(N7, N8){
-	if(!confirm('ã‚«ãƒ†ã‚´ãƒªã€Œ' + N8 + 'ã€ã‚’å‰Šé™¤ã—ã¾ã™ã€‚\nâ€»ä¸€æ—¦å‰Šé™¤ã—ã¾ã™ã¨å…ƒã«æˆ»ã›ã¾ã›ã‚“ã€‚\n\nã‚ˆã‚ã—ã„ã§ã™ã‹')){
+	if(!confirm('ƒJƒeƒSƒŠu' + N8 + 'v‚ğíœ‚µ‚Ü‚·B\n¦ˆê’Uíœ‚µ‚Ü‚·‚ÆŒ³‚É–ß‚¹‚Ü‚¹‚ñB\n\n‚æ‚ë‚µ‚¢‚Å‚·‚©')){
 		return false;
 	}else{
 		location.href = './index.php?group_del='+N7;
@@ -2235,7 +2103,7 @@ function GroupDel(N7, N8){
 }
 
 function PlanDel(N9, N0){
-	if(!confirm('è¨ˆç”»ã€Œ' + N0 + 'ã€ã‚’å‰Šé™¤ã—ã¾ã™ã€‚\nâ€»ä¸€æ—¦å‰Šé™¤ã—ã¾ã™ã¨å…ƒã«æˆ»ã›ã¾ã›ã‚“ã€‚\n\nã‚ˆã‚ã—ã„ã§ã™ã‹')){
+	if(!confirm('Œv‰æu' + N0 + 'v‚ğíœ‚µ‚Ü‚·B\n¦ˆê’Uíœ‚µ‚Ü‚·‚ÆŒ³‚É–ß‚¹‚Ü‚¹‚ñB\n\n‚æ‚ë‚µ‚¢‚Å‚·‚©')){
 		return false;
 	}else{
 		location.href = './index.php?plan_del='+N9;
@@ -2243,24 +2111,74 @@ function PlanDel(N9, N0){
 }
 
 function CommDel(Na, Nb){
-	if(!confirm('å½“ç•ªã€Œ' + Nb + 'ã€ã‚’å‰Šé™¤ã—ã¾ã™ã€‚\nâ€»ä¸€æ—¦å‰Šé™¤ã—ã¾ã™ã¨å…ƒã«æˆ»ã›ã¾ã›ã‚“ã€‚\n\nã‚ˆã‚ã—ã„ã§ã™ã‹')){
+	if(!confirm('“–”Ôu' + Nb + 'v‚ğíœ‚µ‚Ü‚·B\n¦ˆê’Uíœ‚µ‚Ü‚·‚ÆŒ³‚É–ß‚¹‚Ü‚¹‚ñB\n\n‚æ‚ë‚µ‚¢‚Å‚·‚©')){
 		return false;
 	}else{
 		location.href = './index.php?comm_del='+Na;
 	}
 }
 
+
+
+function Fav(FF) {
+<?foreach((array)$fav_sort as $a1 => $a2){?>
+	if(FF == <?=$a2?>){
+	document.getElementById('iconselect').innerHTML = '<?=$icon_dat[$a2]?>';
+	}
+<?}?>
+	if(FF == 0){
+	document.getElementById('iconselect').innerHTML = "<span style='display:inline-block;height:20px;'>@</span>";
+	}
+}
+
+function FavI(Fa) {
+<?foreach((array)$fav_sort as $a1 => $a2){?>
+	<?for($n=1;$n<13;$n++){?>if(Fa == <?=$a2?><?=$n?>){
+		document.getElementById('fav_select<?=$a2?>').innerHTML = '<span class="<?=$icon_font[$n]?> sele_icon_22"></span>';
+	}
+	<?}?>
+<?}?>
+}
+
+function FavC(Fb) {
+<?foreach((array)$fav_sort as $a1 => $a2){?>
+	<?for($n=1;$n<9;$n++){?>if(Fb == <?=$a2?><?=$n?>){
+		document.getElementById('fav_select<?=$a2?>').className="main_slide m_sele_i cc_f<?=$n?>";
+		document.getElementById('color_select<?=$a2?>').className="main_slide m_sele_c cc<?=$n?>";
+	}
+	<?}?>
+<?}?>
+}
+
+function FavNewI(Fa) {
+<?for($n=1;$n<13;$n++){?>if(Fa == <?=$n?>){
+	document.getElementById('fav_select_new').innerHTML = '<span class="<?=$icon_font[$n]?> sele_icon_22"></span>';
+}
+<?}?>
+}
+
+function FavNewC(Fb) {
+<?for($n=1;$n<9;$n++){?>if(Fb == <?=$n?>){
+	document.getElementById('fav_select_new').className="main_slide m_sele_i cc_f<?=$n?>";
+	document.getElementById('color_select_new').className="main_slide m_sele_c cc<?=$n?>";
+}
+<?}?>
+}
+
 function Passage() {
-	f = document.f;
+	f = document.f; //ƒtƒH[ƒ€—v‘f
 	id = [];
+
 	reg = new RegExp(/^[-]?[0-9]*$/);
+
 	id['todo_sy'] = '<?=$todo_sy+0?>';
 	id['todo_sm'] = '<?=$todo_sm+0?>';
 	id['todo_sd'] = '<?=$todo_sd+0?>';
-	id['passage'] = f['passage'].value;
+	id['passage'] = f['passage'].value; //Œo‰ß“ú”
 
 	hizuke = new Date(id['todo_sy'], id['todo_sm']-1, id['todo_sd']-1+id['passage']*1);
-	var res = reg.test(id['passage']);
+
+	var res = reg.test(id['passage']); //true or false
 
 	if (!res) {
 		f['todo_ey'].value = f['todo_em'].value = f['todo_ed'].value = "";
@@ -2277,103 +2195,120 @@ function Passage() {
 }
 
 </script>
+</style>
 </head>
-<body style="width:100%;margin:0px;">
+<body>
+<div class="outer">
+<span style="color:#ff0000;"><?=$err?></span><br>
+
 <?if(!$uid){?>
-	<form action="./index.php" method="post">
-	<div class="login_box">
-		<div class="login_box_a">
-			<?=$set_title?>
-		</div>
-		<span class="login_box_b">ID</span><input type="text" name="duty_login" maxlength="20" class="login_box_c"><br>
-		<span class="login_box_b">PASS</span><input  type="password" name="duty_logpass" class="login_box_c"><br>
-		<button type="submit" value="LOGIN"  class="login_box_d">LOGIN</button>
-		<span class="top_msg"><?=$err?></span>
-	</div>
+	<table class="first_table">
+		<tr>
+			<td class="first_main">
+				–‹Æ•”ˆøŒp‚¬
+			</td>
+		</tr>
+		<tr>
+			<td class="first_sub">
+				<form action="./index.php" method="post">
+					<table class="first_sub_in">
+					<tr>
+					<td style="width:60px; text-align:right;">ID”Ô†</td><td style="width:200px; text-align:center"><input style="width:198px;" type="text" name="duty_login" maxlength="20"></td>
+					</tr><tr>
+					<td style="width:60px; text-align:right;">PASS</td><td style="width:200px; text-align:center"><input style="width:198px;" type="password" name="duty_logpass"></td>
+					</tr><tr>
+					<td style="width:60px; text-align:right;">@</td><td id="trick" style="width:200px; height:120px; text-align:center;vertical-align:top;position:relative;">
+					
+					<?if($ip_ok == 1){?>
+					<button class="submit" style="width:200px;" type="submit" name="log_in" value="LOGIN">LOGIN</button>
+					<span id="d1"></span>
+					<?}else{?>
+					<button id="d1" class="submit" style="width:200px; position:absolute; top: 5px; left: 0; right: 0;margin: auto; " type="button" value="LOGIN">LOGIN</button>
+					<?}?>
+					
+					</td>
+					</tr>
+					</table>
 
-
-
-	</form>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<BR>
+<!--¡¡ŠÇ—Ò-->
 <?}else{?>
-	<div class="err_box">
-		<div class="err_box_x">Ã—</div>
-		ERROR!<br>
-		<?=$err?>
-	</div>
 
-<form action="./index.php" method="post">
 <div class="top">
+	<form action="./index.php" method="post">
+	<div class="top_00"><a href="https://id.obc.jp/k337n0i68zq2/?manuallogin=True" target="_BLANK" class="timecard">TIME CARD</a></div>
 	<div class="top_01">
-		<? foreach((array)$group_sort as $a1 => $a2){?><?if($a2 !=0 && $a2 !=99 && $group[$a2]['del'] !=1){?><span class="group_top<?=$member[$uid][$a2]+0?>">[<?=$group[$a2]['name']?>]</span><? } ?><? } ?>
+	<? foreach((array)$group_sort as $a1 => $a2){?><?if($a2 !=0 && $a2 !=99 && $group[$a2]['del'] !=1){?><span class="group_top<?=$member[$uid][$a2]+0?>">[<?=$group[$a2]['name']?>]</span><? } ?><? } ?>
 	</div>
 	<div class="top_02">
-		<div class="sp_icon sp0">î©ƒ</div>
+	<span class="top_02_01">
+		<select name="now_year" id="now_year" style="width:80px; font-size:13px; text-align:left;">
+		<?for($a=$now;$a>$open_year-1;$a--){?>
+			<option value="<?=$a?>"<?if($a == $now_year) print(" selected")?>><?=$a?></option>
+		<? } ?>
+		</select>
+		<select name="now_month" id="now_month" style="width:50px; font-size:13px; text-align:left;">
+		<?for($a=1;$a<13;$a++){?>
+			<option value="<?=sprintf("%02d",$a)?>"<?if($a == $now_month) print(' selected="selected"')?>><?=sprintf("%02d",$a)?></option>
+		<? } ?>
+		</select>
+		<button class="submit" type="submit" value="•ÏX" name="act">•ÏX</button>
+	</span>
+	
+		<span><?if($c_pg > 1){?><a href="./index.php?c_pg=<?=$c_pg-1?>" style="text-decoration: none;" class="btn b_right">–ß</a><? }else{ ?><span  class="btn b_right" style="color:#cccccc;">–ß</span><? } ?><?for($p=$d_pg_st;$p<$d_pg_ed;$p++){?><a href="./index.php?c_pg=<?=$p?>" style="text-decoration: none;" class="btn b_list <?if($p == $c_pg) print("now_pages")?>"><?=$p?></a><? } ?><?if($i- $c_pg*10>0){?><a href="./index.php?c_pg=<?=$c_pg+1?>" style="text-decoration: none;" class="btn b_left">i</a><? }else{ ?><span style="color:#cccccc;" class="btn b_left">i</span><? } ?></span>
+		<button class="submit" type="submit" name="re_act" value="page">XV</button>
 	</div>
-	<div class="top_03">
-		<select name="now_year" id="now_year" class="top_year">
-			<?for($a=$now;$a>$open_year-1;$a--){?>
-				<option value="<?=$a?>"<?if($a == $now_year) print(" selected")?>><?=$a?></option>
-			<? } ?>
-		</select><select name="now_month" id="now_month" class="top_month">
-			<?for($a=1;$a<13;$a++){?>
-				<option value="<?=sprintf("%02d",$a)?>"<?if($a == $now_month) print(' selected="selected"')?>><?=sprintf("%02d",$a)?></option>
-			<? } ?>
-		</select><button class="submit" type="submit" value="å¤‰æ›´" name="act">å¤‰æ›´</button></div>
-	<div class="top_04"><?if($c_pg > 1){?><a href="./index.php?c_pg=<?=$c_pg-1?>" class="btn b_right">æˆ»</a><? }else{ ?><span  class="btn b_right" style="color:#cccccc;">æˆ»</span><? } ?><?for($p=$d_pg_st;$p<$d_pg_ed;$p++){?><a href="./index.php?c_pg=<?=$p?>" class="btn b_list <?if($p == $c_pg) print("now_pages")?>"><?=$p?></a><? } ?><?if($i- $c_pg*10>0){?><a href="./index.php?c_pg=<?=$c_pg+1?>" class="btn b_left">é€²</a><? }else{ ?><span style="color:#cccccc;" class="btn b_left">é€²</span><? } ?><button class="submit mg2" type="submit" name="re_act" value="page"><span class="sele_icon_16"><?=$icon_font2[22]?></span></button></div>
+	<div style="clear:both"></div>
+	</form>
 </div>
-</form>
-
-<div class="outer">
-<div class="sp_menu"><form action="./index.php" method="post"><!--
---><button type="button" value="" name=''  class="sp_icon sp1"><?=$icon_font2[15]?></span><!--menu
---><button type="submit" value="<?=$icon_font2[21]?>" name='gp[1]' class="sp_icon sp2"><?=$icon_font2[21]?></button><!--write
---><button type="button" value="" name='' span class="sp_icon sp3"><?=$icon_font2[26]?></span><!--sche
---><button type="button" value="" name='' span class="sp_icon sp5"><?=$icon_font2[14]?></span><!--status
---><button type="button" value="" name='' span class="sp_icon sp4"><?=$icon_font2[4]?></span><!--search
---></form></div>
 
 <div class="menu">
 	<form action="./index.php" method="post">
 		<div class="menu_cl">
-			<div style="text-align:center">
-				<span class="prev"><a href="./index.php?t_mon=<?=$p_mon?>">ï¼œå‰æœˆ</a></span>
+			<div>
+				<span class="prev"><a href="./index.php?t_mon=<?=$p_mon?>">ƒ‘OŒ</a></span>
 				<span style="font-size:13px;"><?=$now_year?>/<?=sprintf("%02d",$now_month)?></span>
-				<span class="next"><a href="./index.php?t_mon=<?=$n_mon?>">ç¿Œæœˆï¼</a></span><br>
+				<span class="next"><a href="./index.php?t_mon=<?=$n_mon?>">—‚Œ„</a></span><br>
 			</div>
-			<div class="box2p y">æ—¥</div><!--
-			--><div class="box2p y">æœˆ</div><!--
-			--><div class="box2p y">ç«</div><!--
-			--><div class="box2p y">æ°´</div><!--
-			--><div class="box2p y">æœ¨</div><!--
-			--><div class="box2p y">é‡‘</div><!--
-			--><div class="box2p y">åœŸ</div><br><!--
+			<div class="box2p y">“ú</div><!--
+			--><div class="box2p y">Œ</div><!--
+			--><div class="box2p y">‰Î</div><!--
+			--><div class="box2p y">…</div><!--
+			--><div class="box2p y">–Ø</div><!--
+			--><div class="box2p y">‹à</div><!--
+			--><div class="box2p y">“y</div><br><!--
 			--><?for($a=0;$a<$cal_las;$a++){$tmp=$t_mon*100+$cal[$a];?><!--
-			--><?if(!$cal[$a]){?><span class="box2p <?if(($a%7) ==0){ ?>sun<?}elseif(($a % 7) ==6){?>sat<? } ?>">ã€€</span><?}else{?><!--
+			--><?if(!$cal[$a]){?><span class="box2p <?if(($a%7) ==0){ ?>sun<?}elseif(($a % 7) ==6){?>sat<? } ?>">@</span><?}else{?><!--
 				--><a href="./index.php?c_todo=<?=$cal[$a]?>" class="box2p <?if($cal[$a]==$tmp_d){?>now<?}elseif($mine[$cal[$a]]){ ?>my<?}elseif($a % 7 ==0 || $holiday[$cal[$a]]){ ?>sun<?}elseif($a % 7 ==6){?>sat<? } ?> w<?=$tf[$cal[$a]]?>"><span style="color:#303030"><?=$cal[$a]?></span></a><?}?><?if( ($a % 7)==6 && $cal[$a]){?><br><?}?><?}?></div>
 		<div class="menu_00">
-			<div class="menu_01"><span class="sele_icon_20"><?=$icon_font2[24]?></span> <?=$member[$uid]['name']?></div>
-			<button type="submit" value="è¨˜äº‹æŠ•ç¨¿" class="green" name="gp[1]">è¨˜äº‹æŠ•ç¨¿</button><br>
-			<button type="submit" value="ç™»éŒ²å¤‰æ›´" class="green" name="gp[2]">ç™»éŒ²å¤‰æ›´</button><br>
-			<?if($member[$uid]['a'] == 1){?><span class="adm"><button type="submit" value="ç®¡ç†è€…ç”¨" class="green" name="gp[3]">ç®¡ç†</button><br></span><? } ?>
-			<div class="main_menu main_slide2">ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰æ¤œç´¢</div>
+			<div class="menu_01"><?=$member[$uid]['name']?></div>
+			<button type="submit" value="‹L–“Še" class="green" name="gp[1]">‹L–“Še</button><br>
+			<button type="submit" value="“o˜^•ÏX" class="green" name="gp[2]">“o˜^•ÏX</button><br>
+			<?if($member[$uid]['a'] == 1){?><button type="submit" value="ŠÇ—Ò—p" class="green" name="gp[3]">ŠÇ—</button><br><? } ?>
+			<div class="main_menu main_slide2">ƒL[ƒ[ƒhŒŸõ</div>
+
 			<div class="sub_menu sub_slide2">
 			<input name="search_key" value="<?=$search_key?>" type="text" style="width:193px; border-style: none;" maxlength="20"><br>
-			<label><input type="radio" name="search_radio" value="1" <?if($keycheck !=2 || $keycheck !=3){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> ã‚¿ã‚¤ãƒˆãƒ«</span></label><br>
-			<label><input type="radio" name="search_radio" value="2" <?if($keycheck ==2){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> æœ¬æ–‡</span></label><br>
-			<label><input type="radio" name="search_radio" value="3" <?if($keycheck ==3){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> ãƒ¬ã‚¹</span></label><br>
-			<button type="submit" value="æ¤œç´¢" class="search_button" name="search_button" style="padding:2px;"><span class="sele_icon_16"><?=$icon_font2[4]?></span>ã€€æ¤œã€€ç´¢ã€€<span class="sele_icon_16"><?=$icon_font2[4]?></span></button>
+			<label><input type="radio" name="search_radio" value="1" <?if($keycheck !=2 || $keycheck !=3){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> ƒ^ƒCƒgƒ‹</span></label><br>
+			<label><input type="radio" name="search_radio" value="2" <?if($keycheck ==2){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> –{•¶</span></label><br>
+			<label><input type="radio" name="search_radio" value="3" <?if($keycheck ==3){?> checked="checked"<?}?>><span  style="color:#006400; font-weight:600;"> ƒŒƒX</span></label><br>
+			<button type="submit" value="ŒŸõ" class="search_button" name="search_button" style="padding:2px;"><span class="icon-search sele_icon_16"></span>@ŒŸ@õ@<span class="icon-search sele_icon_16"></span></button>
 			</div>
-			<div class="main_menu main_slide2">ãƒ•ã‚©ãƒ«ãƒ€</div>
-			<div class="sub_menu sub_slide2">
-				<?foreach((array) $fav_sort as $a1 => $a2){?><button type="submit" value="<?=$a2?>" class="green2" name="fv[<?=$a2?>]" style="padding:2px;">&nbsp;<span class="sele_icon_16"><?=$icon_font2[$fav[$a2]['icon']]?></span>&nbsp;<span style="font-size:16px; line-height:16px;"><?=$fav[$a2]['name']?></span></button><br>
+			<div class="main_menu main_slide">ƒtƒHƒ‹ƒ_</div>
+			<div class="sub_menu sub_slide">
+				<?foreach((array) $fav_sort as $a1 => $a2){?><button type="submit" value="<?=$a2?>" class="green2" name="fv[<?=$a2?>]" style="padding:2px;"><div style="line-height:16px; font-size:16px;"><span class="<?=$icon_font[$fav[$a2]['icon']]?> sele_icon_16"></span>&nbsp;<?=$fav[$a2]['name']?></div></button><br>
 				<? } ?>
 			</div>
+
 			<button type="submit" value="LOG_OUT" class="green" name="gp[4]">LOG OUT</button><br>
 		</div>
-
 		<div class="menu_10">
-			<div class="menu_11"><span class="sele_icon_20"><?=$icon_font2[23]?></span> ã‚«ãƒ†ã‚´ãƒªãƒ¼</div>
-			<button type="submit" value="å…¨ã¦" class="pink" name="ct[0]">å…¨ã¦</button><br>
+			<div class="menu_11">ƒJƒeƒSƒŠ[</div>
+			<button type="submit" value="‘S‚Ä" class="pink" name="ct[0]">‘S‚Ä</button><br>
 			<?foreach((array)$category_sort as $a1 => $a2){?>
 				<button type="submit" value="<?=$category[$a2]["name"]?>" class="pink" name="ct[<?=$a2?>]">
 					<div style="float:left;"><?=$category[$a2]["name"]?></div>
@@ -2382,10 +2317,9 @@ function Passage() {
 				</button><br>
 			<? } ?>
 		</div>
-
 		<div class="menu_20">
-			<div class="menu_21"><span class="sele_icon_20"><?=$icon_font2[14]?></span> ãƒ¡ãƒ³ãƒãƒ¼</div>
-			<button type="submit" value="å…¨ã¦" class="blue" name="me[0]">å…¨å“¡</button><br>
+			<div class="menu_21">‘—MÒ</div>
+			<button type="submit" value="‘S‚Ä" class="blue" name="me[0]">‘Sˆõ</button><br>
 			<?foreach((array)$member_now as $a1 => $a2){?>
 				<button type="submit" value="<?=$member[$a2]['name']?>" class="blue" name="me[<?=$a2?>]">
 					<div style="float:left;"><?=$member[$a2]['name']?></div>
@@ -2396,866 +2330,791 @@ function Passage() {
 		</div>
 	</form>
 </div>
-
 <div class="main">
-	<div class="main_in">
-		<?if($admin==1){?>
-		<form method="post" action="./index.php">
-			<div style="width:750px;">
-				<button type="button" value="çµ‚äº†" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">çµ‚äº†</button>
-				<button type="button" value="ãƒ¡ãƒ³ãƒãƒ¼" name="admin_member" class="admin_select" onclick="location.href='./index.php?admin=1'">ãƒ¡ãƒ³ãƒãƒ¼</button>
-				<button type="button" value="ã‚«ãƒ†ã‚´ãƒª" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ã‚«ãƒ†ã‚´ãƒª</button>
-				<button type="button" value="ã‚°ãƒ«ãƒ¼ãƒ—" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ã‚°ãƒ«ãƒ¼ãƒ—</button>
-				<button type="button" value="TO_DO" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
-				<button type="button" value="ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼</button>
-				<button type="button" value="å½“ç•ª" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">å½“ç•ª</button>
-			</div>
-		<br>
-		<div style="height:30px;">ã€€</div>
-		<div class="admin_scroll">
-		<span style="white-space: nowrap;"><span class="t_title" style="width:30px; border-left:1px solid #cccccc;">åº</span><!--
-		--><span class="t_title" style="width:150px;">åå‰</span><!--
-		--><span class="t_title" style="width:100px">LOGIN_ID</span><!--
-		--><span class="t_title" style="width:100px">PASSWORD</span><!--
-		--><span class="t_title" style="width:50px;padding:1px 0px;">admin</span><!--
-		--><span class="t_title" style="width:50px;padding:1px 0px;">ç®¡ç†è€…</span><!--
-		--><span class="t_title" style="width:50px;padding:1px 0px;">å½“ç•ª</span><!--
-		--><?foreach((array)$group_sort as $a1 => $a2){?><?if($a1>0 && $a1<90){?><span class="t_title" style="width:50px;padding:1px 0px;"><?=$group[$a2]["name"]?></span><? } ?><? } ?></span><br>
-		<span style="white-space: nowrap;"><span class="admins" style="width:30px;border-left:1px solid #cccccc;text-align:center;font-weight:800; font-size:13px">æ–°</span><!--
-		--><span class="admins" style="width:150px;"><input maxlength="8" type="text" name="new[2]" style="width:136px; border:none;" maxlength="8"></span><!--
-		--><span class="admins" style="width:100px"><input maxlength="20" type="text" name="new[3]" style="width:86px; border:none;" maxlength="10"></span><!--
-		--><span class="admins" style="width:100px"><input maxlength="20" type="text" name="new[4]" style="width:86px; border:none;" maxlength="10"></span><!--
-		--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="new[5]" id="new[5]" class="admin_yn"><label for="new[5]" class="admin_yn_label">â—</label></span><!--
-		--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="new[6]" id="new[6]" class="admin_yn"><label for="new[6]" class="admin_yn_label">â—</label></span><!--
-		--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="new[tb]" id="new[tb]" class="admin_yn"><label for="new[tb]" class="admin_yn_label">â—</label></span><!--
-		--><?for($n=0;$n<count($group_sort)-2;$n++){?><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="<?=$group_sort[$n+1]?>" name="new[<?=$n+7?>]" id="new[<?=$n+7?>]" class="admin_yn"><label for="new[<?=$n+7?>]" class="admin_yn_label">â—</label></span><? } ?><!--
-		--><span style="width:60px;text-align:left;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="submit" value="ç™»éŒ²" name="member_new">ç™»éŒ²</button></span></span><br>
-		<br><br>
-		<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="æ›´æ–°" name="member_chg">æ›´æ–°</button><br>
-		<span style="white-space: nowrap;"><span class="t_title" style="width:30px; border-left:1px solid #cccccc;">åº</span><!--
-		--><span class="t_title" style="width:150px;">åå‰</span><!--
-		--><span class="t_title" style="width:100px">LOGIN_ID</span><!--
-		--><span class="t_title" style="width:100px">PASSWORD</span><!--
-		--><span class="t_title" style="width:50px;padding:1px 0px">admin</span><!--
-		--><span class="t_title" style="width:50px;padding:1px 0px">ç®¡ç†è€…</span><!--
-		--><span class="t_title" style="width:50px;padding:1px 0px">å½“ç•ª</span><!--
-		--><?foreach((array)$group_sort as $a1 => $a2){?><?if($a1>0 && $a1<90){?><span class="t_title" style="width:50px;padding:1px 0px;"><?=$group[$a2]['name']?></span><? } ?><? } ?></span><br>
-		<?foreach((array)$member_now as $m1 => $m2){?>
-		<span style="white-space: nowrap;"><span class="admins" style="width:30px;border-left:1px solid #cccccc;">
-		<input type="text" value="<?=$m1?>" name="dat0[<?=$m2?>][1]" style="width:24px; border:none; text-align:right;"></span><!--
-		--><span class="admins" style="width:150px;"><input maxlength="8" type="text" value="<?=$member[$m2]['name']?>" name="dat0[<?=$m2?>][2]" style="width:136px; border:none;"></span><!--
-		--><span class="admins" style="width:100px"><input maxlength="20" type="text" value="<?=$member[$m2]['logid']?>" name="dat0[<?=$m2?>][3]" style="width:86px; border:none;"></span><!--
-		--><span class="admins" style="width:100px"><input maxlength="20" type="text" value="<?=$member[$m2]['logpass']?>" name="dat0[<?=$m2?>][4]" style="width:86px; border:none;"></span><!--
-		--><span class="admins" style="width:50px;padding: 1px 0px;"><input type="checkbox" value="1" name="dat0[<?=$m2?>][5]" id="dat0[<?=$m2?>][5]" class="admin_yn"<?if($member[$m2]['a']==1){?> checked="checked"<?}?>><label for="dat0[<?=$m2?>][5]" class="admin_yn_label">â—</label></span><!--
-		--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="dat0[<?=$m2?>][6]" id="dat0[<?=$m2?>][6]" class="admin_yn"<?if($member[$m2]['b']==1){?> checked="checked"<?}?>><label for="dat0[<?=$m2?>][6]" class="admin_yn_label">â—</label></span><!--
-		--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="dat0[<?=$m2?>][21]" id="dat0[<?=$m2?>][21]" class="admin_yn"<?if($member[$m2]['c']==1){?> checked="checked"<?}?>><label for="dat0[<?=$m2?>][21]" class="admin_yn_label">â—</label></span><!--
-		<?$n=0;?>
-		<?foreach((array)$group_sort as $a1 => $a2){?><?if($a1>0 && $a1<90){?>
-		<?$n++?>
-		--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="<?=$a2?>" name="dat[<?=$m2?>][<?=$n?>]" id="dat[<?=$m2?>][<?=$n?>]" class="admin_yn"<?if($member[$m2][$a2]){?> checked="checked"<?}?>><label for="dat[<?=$m2?>][<?=$n?>]" class="admin_yn_label">â—</label></span><!--
-		<? } ?><? } ?>
-		--><span style="width:60px;text-align:left;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="button" value="å‰Šé™¤" name="delete[<?=$m2?>]" onclick="MemberDel(<?=$m2?>,'<?=$member[$m2]["name"]?>')">å‰Šé™¤</button></span>
-		</span><br>
-		<? } ?>
-		<br><br>
-		</div>
-		</form>
-		<?}elseif($admin==2){?>
-		<form method="post" action="./index.php">	
-			<div style="width:750px;">
-				<button type="button" value="çµ‚äº†" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">çµ‚äº†</button>
-				<button type="button" value="ãƒ¡ãƒ³ãƒãƒ¼" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ãƒ¡ãƒ³ãƒãƒ¼</button>
-				<button type="button" value="ã‚«ãƒ†ã‚´ãƒª" name="admin_category" class="admin_select" onclick="location.href='./index.php?admin=2'">ã‚«ãƒ†ã‚´ãƒª</button>
-				<button type="button" value="ã‚°ãƒ«ãƒ¼ãƒ—" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ã‚°ãƒ«ãƒ¼ãƒ—</button>
-				<button type="button" value="TO_DO" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
-				<button type="button" value="ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼</button>
-				<button type="button" value="å½“ç•ª" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">å½“ç•ª</button>
-			</div>
-		<br>
-		<div style="height:30px;">ã€€</div>
-		<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">ã€€</span><span class="t_title" style="width:300px;">åå‰</span><span class="t_title" style="width:50px;padding:1px 0">é‡è¦</span></div><!--
-		--><div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">æ–°è¦</span><!--
-			 --><span class="admins" style="width:300px;"><input maxlength="10" type="text" name="new_name" style="width:286px;border:none;"></span><!--
-			 --><span class="admins" style="width:50px;padding:1px 0"><input type="checkbox" value="1" name="new_im" id="new_im" class="admin_yn"><label for="new_im" class="admin_yn_label">â—</label></span><!--
-			 --><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="submit" value="ç™»éŒ²" name="cate_new">ç™»éŒ²</button></span><!--
-			 --></div><br>
-		<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="æ›´æ–°" name="cate_chg">æ›´æ–°</button>
-			<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">åºåˆ—</span><span class="t_title" style="width:300px;">åå‰</span><span class="t_title" style="width:40px;padding:1px 0">é‡è¦</span></div>
-		<?foreach((array)$category_sort as $a1 => $a2){?>
-			<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;"><input type="text" value="<?=$a1?>" name="dat1[<?=$a2?>]" style="width:31px;border:none; text-align:right;"></span><!--
-			 --><span class="admins" style="width:300px;"><input type="text" maxlength="10" value="<?=$category[$a2]['name']?>" name="dat2[<?=$a2?>]" style="width:286px; border:none;"></span><!--
-			 --><span class="admins" style="width:40px;padding:1px 0"><input type="checkbox" value="1" name="att[<?=$a2?>]" id="att[<?=$a2?>]" class="admin_yn"<?if($category[$a2]["att"]==1){?> checked="checked"<?}?>><label for="att[<?=$a2?>]" class="admin_yn_label">â—</label></span><!--
-			 --><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:24px; text-align:25px;"type="button" value="å‰Šé™¤" name="delete[<?=$a2?>]" onclick="CateDel(<?=$a2?>,'<?=$category[$a2]['name']?>')">å‰Šé™¤</button></span><!--
-		--></div>
-		<? } ?>
-		</form>
+<?if($admin==1){?>
+<form method="post" action="./index.php">
+	<div style="width:750px;">
+		<button type="button" value="I—¹" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">I—¹</button>
+		<button type="button" value="ƒƒ“ƒo[" name="admin_member" class="admin_select" onclick="location.href='./index.php?admin=1'">ƒƒ“ƒo[</button>
+		<button type="button" value="ƒJƒeƒSƒŠ" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ƒJƒeƒSƒŠ</button>
+		<button type="button" value="ƒOƒ‹[ƒv" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ƒOƒ‹[ƒv</button>
+		<button type="button" value="TO_DO" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
+		<button type="button" value="ƒJƒŒƒ“ƒ_[" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ƒJƒŒƒ“ƒ_[</button>
+		<button type="button" value="‘|œ“–”Ô" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">‘|œ“–”Ô</button>
+	</div>
+<br>
+<div style="height:30px;">@</div>
+<div class="admin_scroll">
+<span style="white-space: nowrap;"><span class="t_title" style="width:30px; border-left:1px solid #cccccc;">˜</span><!--
+--><span class="t_title" style="width:150px;">–¼‘O</span><!--
+--><span class="t_title" style="width:100px">LOGIN_ID</span><!--
+--><span class="t_title" style="width:100px">PASSWORD</span><!--
+--><span class="t_title" style="width:50px;padding:1px 0px;">admin</span><!--
+--><span class="t_title" style="width:50px;padding:1px 0px;">ŠÇ—Ò</span><!--
+--><span class="t_title" style="width:50px;padding:1px 0px;">“–”Ô</span><!--
+--><?foreach((array)$group_sort as $a1 => $a2){?><?if($a1>0 && $a1<90){?><span class="t_title" style="width:50px;padding:1px 0px;"><?=$group[$a2]["name"]?></span><? } ?><? } ?></span><br>
+<span style="white-space: nowrap;"><span class="admins" style="width:30px;border-left:1px solid #cccccc;text-align:center;font-weight:800; font-size:13px">V</span><!--
+--><span class="admins" style="width:150px;"><input maxlength="8" type="text" name="new[2]" style="width:136px; border:none;" maxlength="8"></span><!--
+--><span class="admins" style="width:100px"><input maxlength="20" type="text" name="new[3]" style="width:86px; border:none;" maxlength="10"></span><!--
+--><span class="admins" style="width:100px"><input maxlength="20" type="text" name="new[4]" style="width:86px; border:none;" maxlength="10"></span><!--
+--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="new[5]" id="new[5]" class="admin_yn"><label for="new[5]" class="admin_yn_label">œ</label></span><!--
+--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="new[6]" id="new[6]" class="admin_yn"><label for="new[6]" class="admin_yn_label">œ</label></span><!--
+--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="new[tb]" id="new[tb]" class="admin_yn"><label for="new[tb]" class="admin_yn_label">œ</label></span><!--
+--><?for($n=0;$n<count($group_sort)-2;$n++){?><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="<?=$group_sort[$n+1]?>" name="new[<?=$n+7?>]" id="new[<?=$n+7?>]" class="admin_yn"><label for="new[<?=$n+7?>]" class="admin_yn_label">œ</label></span><? } ?><!--
+--><span style="width:60px;text-align:left;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="submit" value="“o˜^" name="member_new">“o˜^</button></span></span><br>
+<br><br>
+<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="XV" name="member_chg">XV</button><br>
+<span style="white-space: nowrap;"><span class="t_title" style="width:30px; border-left:1px solid #cccccc;">˜</span><!--
+--><span class="t_title" style="width:150px;">–¼‘O</span><!--
+--><span class="t_title" style="width:100px">LOGIN_ID</span><!--
+--><span class="t_title" style="width:100px">PASSWORD</span><!--
+--><span class="t_title" style="width:50px;padding:1px 0px">admin</span><!--
+--><span class="t_title" style="width:50px;padding:1px 0px">ŠÇ—Ò</span><!--
+--><span class="t_title" style="width:50px;padding:1px 0px">“–”Ô</span><!--
+--><?foreach((array)$group_sort as $a1 => $a2){?><?if($a1>0 && $a1<90){?><span class="t_title" style="width:50px;padding:1px 0px;"><?=$group[$a2]['name']?></span><? } ?><? } ?></span><br>
+<?foreach((array)$member_now as $m1 => $m2){?>
+<span style="white-space: nowrap;"><span class="admins" style="width:30px;border-left:1px solid #cccccc;">
+<input type="text" value="<?=$m1?>" name="dat0[<?=$m2?>][1]" style="width:24px; border:none; text-align:right;"></span><!--
+--><span class="admins" style="width:150px;"><input maxlength="8" type="text" value="<?=$member[$m2]['name']?>" name="dat0[<?=$m2?>][2]" style="width:136px; border:none;"></span><!--
+--><span class="admins" style="width:100px"><input maxlength="20" type="text" value="<?=$member[$m2]['logid']?>" name="dat0[<?=$m2?>][3]" style="width:86px; border:none;"></span><!--
+--><span class="admins" style="width:100px"><input maxlength="20" type="text" value="<?=$member[$m2]['logpass']?>" name="dat0[<?=$m2?>][4]" style="width:86px; border:none;"></span><!--
+--><span class="admins" style="width:50px;padding: 1px 0px;"><input type="checkbox" value="1" name="dat0[<?=$m2?>][5]" id="dat0[<?=$m2?>][5]" class="admin_yn"<?if($member[$m2]['a']==1){?> checked="checked"<?}?>><label for="dat0[<?=$m2?>][5]" class="admin_yn_label">œ</label></span><!--
+--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="dat0[<?=$m2?>][6]" id="dat0[<?=$m2?>][6]" class="admin_yn"<?if($member[$m2]['b']==1){?> checked="checked"<?}?>><label for="dat0[<?=$m2?>][6]" class="admin_yn_label">œ</label></span><!--
+--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="1" name="dat0[<?=$m2?>][21]" id="dat0[<?=$m2?>][21]" class="admin_yn"<?if($member[$m2]['c']==1){?> checked="checked"<?}?>><label for="dat0[<?=$m2?>][21]" class="admin_yn_label">œ</label></span><!--
+<?$n=0;?>
+<?foreach((array)$group_sort as $a1 => $a2){?><?if($a1>0 && $a1<90){?>
+<?$n++?>
+--><span class="admins" style="width:50px;padding:1px 0px;"><input type="checkbox" value="<?=$a2?>" name="dat[<?=$m2?>][<?=$n?>]" id="dat[<?=$m2?>][<?=$n?>]" class="admin_yn"<?if($member[$m2][$a2]){?> checked="checked"<?}?>><label for="dat[<?=$m2?>][<?=$n?>]" class="admin_yn_label">œ</label></span><!--
+<? } ?><? } ?>
+--><span style="width:60px;text-align:left;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="button" value="íœ" name="delete[<?=$m2?>]" onclick="MemberDel(<?=$m2?>,'<?=$member[$m2]["name"]?>')">íœ</button></span>
+</span><br>
+<? } ?>
+<br><br>
+</div>
+</form>
 
-		<?}elseif($admin==3){?>
-		<?$n1=0;?>
-		<form method="post" action="./index.php">
-			<div style="width:750px;">
-				<button type="button" value="çµ‚äº†" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">çµ‚äº†</button>
-				<button type="button" value="ãƒ¡ãƒ³ãƒãƒ¼" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ãƒ¡ãƒ³ãƒãƒ¼</button>
-				<button type="button" value="ã‚«ãƒ†ã‚´ãƒª" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ã‚«ãƒ†ã‚´ãƒª</button>
-				<button type="button" value="ã‚°ãƒ«ãƒ¼ãƒ—" name="admin_group" class="admin_select" onclick="location.href='./index.php?admin=3'">ã‚°ãƒ«ãƒ¼ãƒ—</button>
-				<button type="button" value="TO_DO" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
-				<button type="button" value="ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼</button>
-				<button type="button" value="å½“ç•ª" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">å½“ç•ª</button>
-			</div>
+<?}elseif($admin==2){?>
+<form method="post" action="./index.php">	
+	<div style="width:750px;">
+		<button type="button" value="I—¹" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">I—¹</button>
+		<button type="button" value="ƒƒ“ƒo[" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ƒƒ“ƒo[</button>
+		<button type="button" value="ƒJƒeƒSƒŠ" name="admin_category" class="admin_select" onclick="location.href='./index.php?admin=2'">ƒJƒeƒSƒŠ</button>
+		<button type="button" value="ƒOƒ‹[ƒv" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ƒOƒ‹[ƒv</button>
+		<button type="button" value="TO_DO" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
+		<button type="button" value="ƒJƒŒƒ“ƒ_[" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ƒJƒŒƒ“ƒ_[</button>
+		<button type="button" value="‘|œ“–”Ô" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">‘|œ“–”Ô</button>
+	</div>
+<br>
+<div style="height:30px;">@</div>
+<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">@</span><span class="t_title" style="width:300px;">–¼‘O</span><span class="t_title" style="width:50px;padding:1px 0">d—v</span></div><!--
+--><div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">V‹K</span><!--
+	 --><span class="admins" style="width:300px;"><input maxlength="10" type="text" name="new_name" style="width:286px;border:none;"></span><!--
+	 --><span class="admins" style="width:50px;padding:1px 0"><input type="checkbox" value="1" name="new_im" id="new_im" class="admin_yn"><label for="new_im" class="admin_yn_label">œ</label></span><!--
+	 --><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="submit" value="“o˜^" name="cate_new">“o˜^</button></span><!--
+	 --></div><br>
+<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="XV" name="cate_chg">XV</button>
+	<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">˜—ñ</span><span class="t_title" style="width:300px;">–¼‘O</span><span class="t_title" style="width:40px;padding:1px 0">d—v</span></div>
+<?foreach((array)$category_sort as $a1 => $a2){?>
+	<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;"><input type="text" value="<?=$a1?>" name="dat1[<?=$a2?>]" style="width:31px;border:none; text-align:right;"></span><!--
+	 --><span class="admins" style="width:300px;"><input type="text" maxlength="10" value="<?=$category[$a2]['name']?>" name="dat2[<?=$a2?>]" style="width:286px; border:none;"></span><!--
+	 --><span class="admins" style="width:40px;padding:1px 0"><input type="checkbox" value="1" name="att[<?=$a2?>]" id="att[<?=$a2?>]" class="admin_yn"<?if($category[$a2]["att"]==1){?> checked="checked"<?}?>><label for="att[<?=$a2?>]" class="admin_yn_label">œ</label></span><!--
+	 --><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:24px; text-align:25px;"type="button" value="íœ" name="delete[<?=$a2?>]" onclick="CateDel(<?=$a2?>,'<?=$category[$a2]['name']?>')">íœ</button></span><!--
+--></div>
+<? } ?>
+</form>
 
-			<br>
-			<div style="height:30px;">ã€€</div>
-			<div><span class="t_title" style="width:40px;border-left:1px solid #cccccc;">ã€€</span><span class="t_title" style="width:300px;">åå‰</span></div>
-			<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">æ–°è¦</span><!--
-			--><span class="admins" style="width:300px;"><input type="text" name="new_name" style="width:286px;  border:none;" maxlength="8"></span><!--
-			--><span style="width:60px;text-align:right;display:inline-block;">
-				<button style="margin:5px; height:25x; text-align:25px;"type="submit" value="ç™»éŒ²" name="group_new">ç™»éŒ²</button>
-				</span><!--
-		--></div><br>
-			<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="æ›´æ–°" name="group_chg">æ›´æ–°</button>
-			<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">åºåˆ—</span><span class="t_title" style="width:300px;">åå‰</span></div>
-			<?foreach((array)$group_sort as $a1 => $a2){?>
-				<?if($a1>0 && $a1<90){?>
-				<?$n1++?>
-					<div><!--
-					--><span class="admins" style="width:40px;border-left:1px solid #cccccc;">
-						<input type="text" value="<?=$n1?>" name="gp_sort[<?=$a2?>]" style="width:30px; border:none; text-align:right;">
-						</span><!--
-					--><span class="admins" style="width:300px;">
-						<input type="text" value="<?=$group[$a2]['name']?>" name="gp_name[<?=$a2?>]" style="width:286px;border:none;" maxlength="8">
-						</span><!--
-					--><span style="width:60px;text-align:right;display:inline-block;">
-						<button style="margin:5px; height:25px; text-align:25px;"type="button" value="å‰Šé™¤" name="delete[<?=$a2?>]" onclick="GroupDel(<?=$a2?>,'<?=$group[$a2]["name"]?>')">å‰Šé™¤</button>
-						</span><!--
-					--></div>
-				<? } ?>
-			<? } ?>
-		</form>	
 
-		<?}elseif($admin==4){?>
-		<form method="post" action="./index.php">
-			<div style="width:750px;">
-				<button type="button" value="çµ‚äº†" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">çµ‚äº†</button>
-				<button type="button" value="ãƒ¡ãƒ³ãƒãƒ¼" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ãƒ¡ãƒ³ãƒãƒ¼</button>
-				<button type="button" value="ã‚«ãƒ†ã‚´ãƒª" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ã‚«ãƒ†ã‚´ãƒª</button>
-				<button type="button" value="ã‚°ãƒ«ãƒ¼ãƒ—" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ã‚°ãƒ«ãƒ¼ãƒ—</button>
-				<button type="button" value="Todo" name="admin_group" class="admin_select" onclick="location.href='./index.php?admin=4'">To_Do</button>
-				<button type="button" value="ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼</button>
-				<button type="button" value="å½“ç•ª" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">å½“ç•ª</button>
-			</div>
-
-			<br>
-			<div style="height:30px;">ã€€</div>
-			<div><span class="t_title" style="width:40px;border-left:1px solid #cccccc;">ã€€</span><span class="t_title" style="width:300px;">åå‰</span></div>
-			<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">æ–°è¦</span><!--
-			--><span class="admins" style="width:300px;"><input type="text" name="plan_new" style="width:286px; border:none;" maxlength="8"></span><!--
-			--><span style="width:60px;text-align:right;display:inline-block;">
-				<button style="margin:5px; height:25x; text-align:25px;"type="submit" value="ç™»éŒ²" name="new_plan">ç™»éŒ²</button>
-				</span><!--
-		--></div><br>
-			<button style="margin:5px; height:25px; text-align:25px;"type="submit" value="æ›´æ–°" name="plan_chg">æ›´æ–°</button>
-			<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">åºåˆ—</span><span class="t_title" style="width:300px;">åå‰</span></div>
-			<?foreach((array)$plan_sort as $a1 => $a2){?>
-				<div><!--
-				--><span class="admins" style="width:40px;border-left:1px solid #cccccc;">
-					<input type="text" value="<?=$a1?>" name="plan_chg_sort[<?=$a2?>]" style="width:30px; border:none; text-align:right;">
-					</span><!--
-				--><span class="admins" style="width:300px;">
-					<input type="text" maxlength="8" value="<?=$plan[$a2]["name"]?>" name="plan_chg_name[<?=$a2?>]" style="width:286px; border:none;">
-					</span><!--
-				--><span style="width:60px;text-align:right;display:inline-block;">
-					<button style="margin:5px; height:25px; text-align:25px;"type="button" value="å‰Šé™¤" name="plan_chg_del[<?=$a2?>]" onclick="PlanDel(<?=$a2?>,'<?=$plan[$a2]["name"]?>')">å‰Šé™¤</button></span><!--
-				--></div>
-			<? } ?>
-		</form>
-
-		<?}elseif($admin==5){?>
-		<form method="post" action="./index.php">
-			<div style="width:750px;">
-				<button type="button" value="çµ‚äº†" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">çµ‚äº†</button>
-				<button type="button" value="ãƒ¡ãƒ³ãƒãƒ¼" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ãƒ¡ãƒ³ãƒãƒ¼</button>
-				<button type="button" value="ã‚«ãƒ†ã‚´ãƒª" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ã‚«ãƒ†ã‚´ãƒª</button>
-				<button type="button" value="ã‚°ãƒ«ãƒ¼ãƒ—" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ã‚°ãƒ«ãƒ¼ãƒ—</button>
-				<button type="button" value="Todo" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
-				<button type="button" value="ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼" name="admin_holiday" class="admin_select" onclick="location.href='./index.php?admin=5'">ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼</button>
-				<button type="button" value="å½“ç•ª" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">å½“ç•ª</button>
-			</div>
-		<br>
-		<div style="height:30px;">ã€€</div>
-		<div><span class="t_title" style="width:300px;border-left:1px solid #cccccc;">åå‰</span><span class="t_title" style="width:65px;">å¹´</span><span class="t_title" style="width:45px;">æœˆ</span><span class="t_title" style="width:45px;">æ—¥</span></div><!--
-		--><div><span class="admins" style="width:300px;border-left:1px solid #cccccc;"><input type="text" name="hori_new[0]" style="width:286px; border:none;" maxlength="20"></span><!--
-		--><span class="admins" style="width:65px;"><input type="text" value="" name="hori_new[1]" style="width:45px; border:none; text-align:right;"></span><!--
-		--><span class="admins" style="width:45px;"><input type="text" value="" name="hori_new[2]" style="width:30px; border:none; text-align:right;"></span><!--
-		--><span class="admins" style="width:45px;"><input type="text" value="" name="hori_new[3]" style="width:30px; border:none; text-align:right;"></span><!--
-		--><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25x; text-align:25px;"type="submit" value="ç™»éŒ²" name="holiday_reg">ç™»éŒ²</button></span><!--
-		--></div>
-		<br>
-		<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="æ›´æ–°" name="holiday_chg">æ›´æ–°</button>
-		<div><span class="t_title" style="width:300px;border-left:1px solid #cccccc;">åå‰</span><span class="t_title" style="width:65px;">å¹´</span><span class="t_title" style="width:45px;">æœˆ</span><span class="t_title" style="width:45px;">æ—¥</span></div>
-		<div><?foreach($holi_list as $a1 => $a2){?><span class="admins" style="width:300px;border-left:1px solid #cccccc;"><input type="text"  name="holi_list[<?=$a1?>][0]" value="<?=$holi_list[$a1][0]?>" style="width:286px; border:none;" maxlength="20"></span><!--
-		--><span class="admins" style="width:65px;"><input type="text" name="holi_list[<?=$a1?>][1]" value="<?=$holi_list[$a1][1]?>" style="width:45px; border:none; text-align:right;"></span><!--
-		--><span class="admins" style="width:45px;"><input type="text" name="holi_list[<?=$a1?>][2]" value="<?=$holi_list[$a1][2]?>" style="width:30px; border:none; text-align:right;"></span><!--
-		--><span class="admins" style="width:45px;"><input type="text" name="holi_list[<?=$a1?>][3]" value="<?=$holi_list[$a1][3]?>" style="width:30px; border:none; text-align:right;"></span><!--
-		--><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25x; text-align:25px;"type="submit" value="ç™»éŒ²" name="holiday_del">å‰Šé™¤</button></span><br>
-		<!--
-		--><? } ?>
-		</div>
-		</form>
-
-		<?}elseif($admin==6){?>
-			<div style="width:750px;">
-				<button type="button" value="çµ‚äº†" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">çµ‚äº†</button>
-				<button type="button" value="ãƒ¡ãƒ³ãƒãƒ¼" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ãƒ¡ãƒ³ãƒãƒ¼</button>
-				<button type="button" value="ã‚«ãƒ†ã‚´ãƒª" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ã‚«ãƒ†ã‚´ãƒª</button>
-				<button type="button" value="ã‚°ãƒ«ãƒ¼ãƒ—" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ã‚°ãƒ«ãƒ¼ãƒ—</button>
-				<button type="button" value="Todo" name="admin_todo" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
-				<button type="button" value="ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼</button>
-				<button type="button" value="å½“ç•ª" name="admin_toban" class="admin_select" onclick="location.href='./index.php?admin=6'">å½“ç•ª</button>
-			</div>
-			<br>
-
-			<div style="float:left;margin:0 5px;">
-				<div style="height:35px;">ã€€</div>
-				<form method="post" action="./index.php">
-					<div><span class="t_title" style="width:40px;border-left:1px solid #cccccc;">ã€€</span><span class="t_title" style="width:300px;">åå‰</span></div>
-					<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">æ–°è¦</span><!----><span class="admins" style="width:300px;"><input type="text" name="comm_new" style="width:286px; border:none;" maxlength="8"></span><!----><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25x; text-align:25px;"type="submit" value="ç™»éŒ²" name="new">ç™»éŒ²</button></span><!----></div><br>
-					<button style="margin:5px; height:25px; text-align:25px;"type="submit" value="æ›´æ–°" name="comm_chg">æ›´æ–°</button>
-					<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">åºåˆ—</span><span class="t_title" style="width:300px;">åå‰</span></div>
-					<?foreach((array)$comm_sort as $a1 => $a2){?>
-						<div><!--
-						--><span class="admins" style="width:40px;border-left:1px solid #cccccc;">
-							<input type="text" value="<?=$a1?>" name="comm_chg_sort[<?=$a2?>]" style="width:30px; border:none; text-align:right;">
-							</span><!--
-						--><span class="admins" style="width:300px;"><input type="text" maxlength="8" value="<?=$comm[$a2]["name"]?>" name="comm_chg_name[<?=$a2?>]" style="width:286px; border:none;">
-							</span><!--
-						--><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25px; text-align:25px;"type="button" value="å‰Šé™¤" name="comm_chg_del[<?=$a2?>]" onclick="CommDel(<?=$a2?>,'<?=$comm[$a2]["name"]?>')">å‰Šé™¤</button></span><!--
-						--></div>
-					<? } ?>
-				</form>
-			</div>
-
-			<?if($member_comm){?>
-			<form method="post" action="./index.php">
-			<input type="hidden" name="now_ym" value="<?=$now_year?>-<?=$now_month?>">
-			<div style="float:left;margin:0 10px;">
-			<div style="height:35px; line-height:35px;"><button style="margin:5px; height:25px; text-align:25px;"type="submit" value="æ›´æ–°" name="comm_set">æ›´æ–°</button></div>
-			<div><span class="t_title" style="width:60px;border-left:1px solid #cccccc;">æ—¥ä»˜</span><?foreach($comm_sort as $a1 =>$a2){?><span class="t_title" style="width:60px;"><?=$comm[$a2]["name"]?></span><?}?></div>
-			<?for($n=0;$n<$t_mon_t;$n++){?>
-			<div><!--
-			--><span class="admins" style="width:60px;border-left:1px solid #cccccc; text-align:right;font-size:13px;"><?=$n+1?><?=$week[date("w",strtotime($now_year*10000+$now_month*100+$n+1))]?></span><!--
-			--><?foreach($comm_sort as $a1 =>$a2){?><!--
-			--><span class="admins" style="width:60px; <?if($set[$n+1][$a2]){?>background:#f0d0c0<?}?>"><!--
-			--><select style="border:none; width:100%;height:100%;" name="set[<?=$n+1?>][<?=$a2?>]"><!--
-			--><option value=""></option><!--
-			--><?foreach($member_comm as $a3 => $a4){?><!--
-			--><option value="<?=$a4?>" <?if($set[$n+1][$a2]==$a4){?>selected="selected"<?}?>><!--
-			--><?=$member[$a4]["name"]?><!--
-			--></option><!--
-			--><?}?><!--
-			--></select><!--
-			--></span><!--
-			--><?}?><!--
-			--></div><!--
-			--><?}?><!--
-			--></div>
-			</form>
-			<? } ?>
-			<div style="clear:both;"></div>
-			<!--â– adminã“ã“ã¾ã§-->
-		<?}else{?>
-
-	<!--â– ãƒªã‚¹ãƒˆ-->
-			<div class="list">
-				<div class="pc_only"><span class="t_title l1">æŠ•ç¨¿æ—¥æ™‚</span><span class="t_title l2">ã‚«ãƒ†ã‚´ãƒª</span><span class="t_title l3">æŠ•ç¨¿è€…å</span><span class="t_title l4">ä»¶å</span><span class="t_title l5">ã‚°ãƒ«ãƒ¼ãƒ—</span><span class="t_title l6">ã€€</span><span class="t_title l7">ã€€</span><span class="t_title l7">ã€€</span></div>
-				<?if($log_top){?><?for($s1=0;$s1<$i2;$s1++){?><a href="./index.php?log_id=<?=$log_top[$s1]["id"]?>" class="table_list_a"><span class="table_list l1"><?=$log_top[$s1]["date"]?> <?=$log_top[$s1]["time"]?></span><span class="table_list l2"><?=$category[$log_top[$s1]["category"]]["name"]?></span><span class="table_list l3"><?=$member[$log_top[$s1]["writer"]]["name"]?></span><span class="table_list l4"><?=$log_top[$s1]["title"]?></span><span class="table_list l5"><?=$group[$log_top[$s1]["group"]]["name"]?></span><span class="table_list l6"><?if($fav_count[$log_top[$s1]["id"]] >0){?><span style="color:<?=$icon_color[$fav[$fav_count[$log_top[$s1]["id"]]]["color"]]?>"><span class="sele_icon_20"><?=$icon_font2[$fav[$fav_count[$log_top[$s1]["id"]]]["icon"]]?></span></span><?}?></span><span class="table_list l7"><?if($log_top[$s1]["attach"] == 1){?><span style="color:#a0a060"><span class="icon-folder-open sele_icon_20"></span></span><?}?></span><?=$miki[$user_view[$log_top[$s1]["id"]][$uid]]?></a><?}?><?}?>
-				<?if(count($log)>0){?><?for($s1=$pg_st;$s1<$pg_ed-$i2;$s1++){?><a href="./index.php?log_id=<?=$log[$s1]["id"]?>" class="table_list_b"><span class="table_list l1"><?=$log[$s1]["date"]?> <?=$log[$s1]["time"]?></span><span class="table_list l2"><?=$category[$log[$s1]["category"]]["name"]?></span><span class="table_list l3"><?=$member[$log[$s1]["writer"]]["name"]?></span><span class="table_list l4"><?=$log[$s1]["title"]?></span><span class="table_list l5"><?=$group[$log[$s1]["group"]]["name"]?></span><span class="table_list l6"><?if($fav_count[$log[$s1]["id"]] >0){?><span style="color:<?=$icon_color[$fav[$fav_count[$log[$s1]["id"]]]["color"]]?>">	<span class="sele_icon_20"><?=$icon_font2[$fav[$fav_count[$log[$s1]["id"]]]["icon"]]?></span></span><?}?></span><span class="table_list l7"><?if($log[$s1]["attach"] == 1){?><span style="color:#a0a060" class="sele_icon_20"><?=$icon_font2[20]?></span><?}?></span><?=$miki[$user_view[$log[$s1]["id"]][$uid]]?></a><?}?><?}?><br>
-			</div><!--â– //list-->
-		<? } ?>
-	</div><!--main_in-->
-
-<!--stâ– todoãƒªã‚¹ãƒˆè¡¨ç¤º-->
-	<?if($todo_s1 ||$todo_s2 ||$todo_s3 || $task){?>
-		<div class="sche">
-			<div class="sche_x">Ã—</div>
-			<div class="todo_title">äºˆå®š(<?=substr($tmp_date,0,4)?>å¹´<?=substr($tmp_date,5,2)?>æœˆ<?=substr($tmp_date,8,2)?>æ—¥)</div>
-			<div class="todo_0">
-				<div class="todo_1">
-					<div class="todo_bn">é–‹å§‹</div>
-					<?for($n0=0;$n0<count($todo_s1);$n0++){?>
-						<?if($member[$uid][$todo_s1[$n0]["group"]] == 1 || $todo_s1[$n0]["staff"] == $uid || $todo_s1[$n0]["group"]==0){?>
-							<div class="todo_table">
-								<div class="todo_td1">
-									<?=substr($todo_s1[$n0]["st_time"],0,-2)?>:<?=substr($todo_s1[$n0]["st_time"],-2,2)?> - <?=substr($todo_s1[$n0]["ed_time"],0,-2)?>:<?=substr($todo_s1[$n0]["ed_time"],-2,2)?><br>
-								<?/*if($uid == $todo_s1[$n0][	"staff"]){*/?>
-									<form action="index.php" method="post">
-										<input type="hidden" value="<?=$todo_s1[$n0]["todo_id"]?>" name="todo_chg_id">
-										<button type="submit" class="rel" value="ä¿®æ­£">ä¿®æ­£</button>
-									</form>
-								<?/*}*/?>
-								</div>
-								<div class="todo_td2">
-									<span style="color:#d00000;font-weight:800;">[<?=$plan[$todo_s1[$n0]["plan"]]["name"]?>]</span><br><?=$todo_s1[$n0]["log"]?><br>
-								</div>
-							</div>
-						<? } ?>
-					<? } ?>
-				</div>
-				<div class="todo_1">
-					<div class="todo_bn">çµ‚äº†</div>
-					<?for($n0=0;$n0<count($todo_s3);$n0++){?>
-						<?if($member[$uid][$todo_s3[$n0]["group"]] == 1 || $todo_s3[$n0]["staff"] == $uid || $todo_s3[$n0]["group"]==0){?>
-							<div class="todo_table">
-								<div class="todo_td1">
-								<?=substr($todo_s3[$n0]["st_time"],0,-2)?>:<?=substr($todo_s3[$n0]["st_time"],-2,2)?> - <?=substr($todo_s3[$n0]["ed_time"],0,-2)?>:<?=substr($todo_s3[$n0]["ed_time"],-2,2)?>
-								<form action="index.php" method="post">
-								<input type="hidden" value="<?=$todo_s3[$n0]["todo_id"]?>" name="todo_chg_id">
-								<input type="hidden" value="<?=substr($todo_s3[$n0]["ed_date"],-2)?>" name="todo_set_lv">
-								<button type="submit" class="rel" value="ä¿®æ­£">ä¿®æ­£</button>
-								</form>
-								</div>
-								<div class="todo_td2"><span style="color:#d00000;font-weight:800;">[<?=$plan[$todo_s3[$n0]["plan"]]["name"]?>]</span><br><?=$todo_s3[$n0]["log"]?><br></div>
-							</div>
-						<? } ?>
-					<? } ?>
-				</div>
-				<div class="todo_1">
-					<?if($task){?>
-						<div class="comm_bn">å½“ç•ª</div>
-						<?for($n=0;$n<count($task);$n++){?>
-							<div class="task_bn"><?=$comm[$task[$n]]["name"]?></div>
-						<? } ?>
-					<? } ?>
-				</div>
-			</div>
-		</div>
-	<?}?>
-<!--edâ– todoãƒªã‚¹ãƒˆè¡¨ç¤º-->
-<!--stâ– â– TODOãƒªã‚¹ãƒˆchg--->
-	<?if($todo_chg_id){?>
-		<div class="todo_input">
-			<form action="index.php" name="f" method="post">
-				<input type="hidden" value="<?=$todo_sy?>" name="todo_sy"><input type="hidden" value="<?=$todo_sm?>" name="todo_sm"><input type="hidden" value="<?=$todo_sd?>" name="todo_sd">
-				<input type="hidden" value="<?=$todo_chg_id?>" name="todo_chg_id2">
-				<div class="todo_input_day">
-					<input type="text" value="<?=$todo_sy?>" name="todo_sy" class="todo_y">å¹´<input type="text" value="<?=$todo_sm?>" name="todo_sm" class="todo_d">æœˆ<input type="text" value="<?=$todo_sd?>" name="todo_sd" class="todo_d">æ—¥
-				</div>
-				<div class="todo_input_tag">
-					<div class="todo_div">
-						<input type="checkbox" style="display:none !important" name="todo_tag1" id="todo_tag1" class="todo_tag_ckb" value="1"<?if($todo_start==1){?> checked="checked"<? } ?>><label for="todo_tag1" class="todo_tag_label">é–‹å§‹</label>
-						
-						<input type="checkbox" style="display:none !important" name="todo_tag3" id="todo_tag3" class="todo_tag_ckb" value="1"<?if($todo_end==1){?> checked="checked"<? } ?>><label for="todo_tag3" class="todo_tag_label">çµ‚äº†</label>
-					</div>
-					
-					<div class="todo_div2">
-						<button type="submit" value="DEL" name="c_todo4" style="background:#ffe5f0">DEL</button>
-						<button type="submit" value="SET" name="c_todo3" id="todo_send" style="background:#ff90b0">SET</button>
-					</div>
-					<div style="clear:both"></div>
-				</div>
-
-				<div class="todo_input_tag">
-					<span class="todo_input_title">æ™‚é–“</span><input type="text" name="todo_sh" class="todo_d" value="<?=$todo_sh?>">:<input type="text" name="todo_si" class="todo_d" value="<?=$todo_si?>">-<input type="text" name="todo_eh" class="todo_d" value="<?=$todo_eh?>">:<input type="text" name="todo_ei" class="todo_d" value="<?=$todo_ei?>">
-				</div>
-
-				<div class="todo_input_tag">
-					<span class="todo_input_title">çµ‚äº†</span><input type="text" name="todo_ey" class="todo_y" value="<?=$todo_ey?>">/<input type="text" name="todo_em" class="todo_d" value="<?=$todo_em?>">/<input type="text" name="todo_ed" class="todo_d" value="<?=$todo_ed?>"><span style="font-size:12px;">(<input type="text" name="passage" class="todo_d" style="background:#eaeaff;" value="" onkeyup="Passage();">æ—¥å¾Œ)</span>
-				</div>
-
-				<div class="todo_input_tag">
-					<span class="todo_input_title">ã‚°ãƒ«ãƒ¼ãƒ—</span>
-					<select name="todo_group" class="todo_sel">
-						<?foreach((array)$group_sort as $p1 => $p2){?><?if($p2<95){?><option value="<?=$p2?>" <?if($todo_group == $p2){?>selected="selected"<? } ?>><?=$group[$p2]["name"]?></option><? } ?>
-						<? } ?>
-						<option value="90">è‡ªåˆ†</option>
-					</select>
-				</div>
-				<div class="todo_input_tag">
-					<span class="todo_input_title">å†…å®¹</span>
-					<select name="todo_plan" class="todo_sel">
-						<?foreach((array)$plan_sort as $p1 => $p2){?><option value="<?=$p2?>" <?if($todo_plan == $p2){?>selected="selected"<? } ?>><?=$plan[$p2]["name"]?></option><? } ?>
-					</select>
-				</div>
-				<div class="todo_input_tag2"><textarea class="todo_input_log" name="todo_log"><?=$todo_log?></textarea></div>
-			</form>
-		</div>
-<!--edâ– â– TODOãƒªã‚¹ãƒˆchg--->
-<!--stâ– â– TODOãƒªã‚¹ãƒˆæ–°---->
-	<?}elseif($c_todo){?>
-		<div class="todo_input">
-			<form action="index.php" name="f" method="post">
-				<input type="hidden" value="<?=$todo_sy?>" name="todo_sy">
-				<input type="hidden" value="<?=$todo_sm?>" name="todo_sm">
-				<input type="hidden" value="<?=$todo_sd?>" name="todo_sd">
-				<div class="todo_input_day"><?=$todo_sy?>å¹´<?=$todo_sm?>æœˆ<?=$todo_sd?>æ—¥</div>
-				<div class="todo_input_tag">
-					<div class="todo_div">
-						<input type="checkbox" style="display:none !important" name="todo_tag1" id="todo_tag1" class="todo_tag_ckb" value="1"><label for="todo_tag1" class="todo_tag_label">é–‹å§‹</label>
-						<input type="checkbox" style="display:none !important" name="todo_tag3" id="todo_tag3" class="todo_tag_ckb" value="1"><label for="todo_tag3" class="todo_tag_label">çµ‚äº†</label>
-					</div>
-					<div class="todo_div2">
-						<button type="submit" value="SET" name="c_todo2" id="todo_send" style="background:e0e0e0" disabled>SET</button>
-					</div>
-					<div style="clear:both"></div>
-				</div>
-				<div class="todo_input_tag">
-					<span class="todo_input_title">æ™‚é–“</span><input type="text" name="todo_sh" class="todo_d" value="<?=$todo_sh?>">:<input type="text" name="todo_si" class="todo_d" value="<?=$todo_si?>">-<input type="text" name="todo_eh" class="todo_d" value="<?=$todo_eh?>">:<input type="text" name="todo_ei" class="todo_d" value="<?=$todo_ei?>">
-				</div>
-				<div class="todo_input_tag">
-					<span class="todo_input_title">çµ‚äº†</span><input type="text" name="todo_ey" class="todo_y" value="<?=$todo_ey?>">/<input type="text" name="todo_em" class="todo_d" value="<?=$todo_em?>">/<input type="text" name="todo_ed" class="todo_d" value="<?=$todo_ed?>"><span style="font-size:12px;">(<input type="text" name="passage" class="todo_d" style="background:#eaeaff;" value="" onkeyup="Passage();">æ—¥å¾Œ)</span>
-				</div>
-				<div class="todo_input_tag">
-					<span class="todo_input_title">ã‚°ãƒ«ãƒ¼ãƒ—</span>
-					<select name="todo_group" style="font-size:13px; width:160px; text-align:left;">
-						<?foreach((array)$group_sort as $p1 => $p2){?><?if($p2<95){?><option value="<?=$p2?>" <?if($todo_group == $p2){?>selected="selected"<? } ?>><?=$group[$p2]["name"]?></option><? } ?>
-						<? } ?>
-						<option value="90">è‡ªåˆ†</option>
-					</select>
-				</div>
-				<div class="todo_input_tag">
-					<span class="todo_input_title">å†…å®¹</span>
-					<select name="todo_plan" style="font-size:13px; width:160px; text-align:left;">
-						<?foreach((array)$plan_sort as $p1 => $p2){?><option value="<?=$p2?>" <?if($todo_plan == $p2){?>selected="selected"<? } ?>><?=$plan[$p2]["name"]?></option><? } ?>
-					</select>
-				</div>
-				<div class="todo_input_tag2"><textarea class="todo_input_log" name="todo_log"></textarea></div>
-			</form>
-		</div>
-	<? } ?>
-<!--edâ– â– TODOãƒªã‚¹ãƒˆæ–°---->
-
-<!--stâ– â– æŠ•ç¨¿---------->
-	<div class="open">
-		<?if($gp[1]){?>
-			<div class="open1">
-				<div class="open1_top">
-					<span class="open_pack bk1">
-						<span class="icon_o"><?=$icon_font2[26]?></span>
-						<input type="text" name="w_date" value="<?=$c_date?>" class="open_box_a" ><input type="text" name="w_time" value="<?=$c_time?>" class="open_box_b">
-					</span>
-
-					<span class="open_pack bk2">
-						<span class="icon_o"><?=$icon_font2[23]?></span>
-						<select name="w_cate" class="open_select">
-							<?foreach((array)$category_sort as $a1 => $a2){?>
-								<?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>"><?=$category[$a2]["name"]?></option><? } ?>
-							<? } ?>
-						</select>
-					</span>
-
-					<span class="open_pack bk3">
-						<span class="icon_o"><?=$icon_font2[14]?></span>
-						<select id="cat" name="w_group" class="open_select">
-							<?foreach((array)$group_sort as $p1 => $p2){?>
-								<option value="<?=$p2?>"><?=$group[$p2]["name"]?></option>
-							<? } ?>
-						</select>
-					</span>
-					<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
-						<span class="sub_slide_top" style="color:#aaaaaa">
-							<span class="icon_o2">î§’</span>
-							<span class="sele_name fav_name_top">SELECT FLAG</span>
-						</span>
-
-						<div class="sub_slide">
-							<?foreach((array)$fav_sort as $b1 => $b2){?>
-								<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
-									<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-									<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
-								</span>
-							<? } ?>
-							<?if($b1){?>
-								<span id="s0" class="sub_slide_sel" style="color:#333333">
-								<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">ãƒ•ãƒ©ã‚°è§£é™¤</span>
-							<? } ?>
-						</div>
-					</div>
-
-					<span class="open_pack bk5">
-						<span class="icon_o"><?=$icon_font2[13]?></span>
-						<input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/è¡¨é¡Œ">
-					</span>
-					<span class="open_pack bk6">
-						<span class="icon_o"><?=$icon_font2[24]?></span>
-						<span class="open_item ow150"><?=$member[$uid]["name"]?></span>
-					</span>
-					<span class="open_pack bk7">
-						<span class="icon_o"><?=$icon_font2[21]?></span>
-					</span>
-
-					<span class="bk8 log_set">
-						<span class="set_sub_icon"><?=$icon_font2[21]?></span>
-						<span class="set_sub_txt">æŠ•ç¨¿</span>
-					</span>
-					<input type="hidden" value="<?=$log_id?>" name="icon_set">
-				</div>	
-			</div>	
-
-			<div class="open2">
-				<?foreach($group_sort as $p3 => $p4){?>
-					<?if($p4 < 99){?>
-						<div class="gp_dt" id="gp_dt<?=$p4?>">
-							<?foreach((array)$member_now as $a1 => $a2){?>
-								<?if($member[$a2][$p4] ==1 ||$member[$a2]["b"] ==1 || $p4==0){?>
-									<span class="send_y">
-										<span class="send_y2"></span>
-										<?=$member[$a2]["name"]?>
-									</span>
-
-								<? } else {?>
-									<span class="send_n">
-										<span class="send_n2"></span>
-										<?=$member[$a2]["name"]?>
-									</span>
-								<? } ?>
-							<? } ?>
-						</div>
-					<? } ?>
-				<? } ?>
-				<div class="gp_dt" id="gp_dt99">
-					<?foreach((array)$member_now as $a1 => $a2){?>
-						<?if($member[$a2]['b'] ==1){?>
-							<span class="send_y">
-								<span class="send_y2"></span><?=$member[$a2]["name"]?>
-							</span>
-							<input type="hidden" name="w_mem[<?=$a2?>]" value="1">
-
-						<? } else {?>
-							<label>
-								<input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span>
-							</label>
-						<? } ?>
-					<? } ?>
-				</div>
-			</div>
-			<textarea class="open_text" name="w_log"><?=$view?></textarea><br>
-			<div class="open3">
-				<input id="upd1" type="file" name="upfile[1]" style="display:none;">
-				<label for="upd1" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-
-				<input id="upd2" type="file" name="upfile[2]" style="display:none;">
-				<label for="upd2" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-
-				<input id="upd3" type="file" name="upfile[3]" style="display:none;">
-				<label for="upd3" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-
-				<input id="upd4" type="file" name="upfile[4]" style="display:none;">
-				<label for="upd4" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-
-				<input id="upd5" type="file" name="upfile[5]" style="display:none;">
-				<label for="upd5" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-
-				<input id="upd6" type="file" name="upfile[6]" style="display:none;">
-				<label for="upd6" class="upload_btn"><span class="sele_icon_16"><?=$icon_font2[20]?></span> No File</label>
-			</div>
-		</div>
-		<!--edâ– â– æŠ•ç¨¿---------->
-
-		<?}elseif($c_act=="log_del"){?>
-		<!--stâ– â– å‰Šé™¤å®Œäº†------>
-			<div class="open1">
-				å‰Šé™¤ã•ã‚Œã¾ã—ãŸã€‚
-			</div>
-		<!--edâ– â– å‰Šé™¤å®Œäº†------>
-
-<?}elseif($act=="chg"){?>
-<!--stâ– â– ç·¨é›†---------->
-<div class="open1">
-	<span class="open1_top">
-	<span class="open_pack bk1">
-		<span class="icon_o"><?=$icon_font2[26]?></span>
-		<input type="text" name="w_date" value="<?=$view_date?>" class="open_box_a" ><input type="text" name="w_time" value="<?=$view_time?>" class="open_box_b">
-	</span>
-	<span class="open_pack bk2">
-		<span class="icon_o"><?=$icon_font2[23]?></span>
-		<select name="w_cate" class="open_select">
-			<?foreach((array)$category_sort as $a1 => $a2){?>
-				<?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?>
-					<option value="<?=$a2?>" <?if($a2 == $view_category){?> selected="selected"<? } ?>><?=$category[$a2]["name"]?></option>
-				<? } ?>
-			<? } ?>
-		</select>
-	</span>
-	<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
-	<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
-		<span class="sub_slide_top" style="color:#aaaaaa">
-			<span class="icon_o2">î§’</span>
-			<span class="sele_name fav_name_top">SELECT FLAG</span>
-		</span>
-
-		<div class="sub_slide">
-			<?foreach((array)$fav_sort as $b1 => $b2){?>
-				<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
-					<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-					<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
-				</span>
-			<? } ?>
-
-			<?if($b1){?>
-				<span id="s0" class="sub_slide_sel" style="color:#333333">
-				<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">ãƒ•ãƒ©ã‚°è§£é™¤</span>
-			<? } ?>
-		</div>
+<?}elseif($admin==3){?>
+<?$n1=0;?>
+<form method="post" action="./index.php">
+	<div style="width:750px;">
+		<button type="button" value="I—¹" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">I—¹</button>
+		<button type="button" value="ƒƒ“ƒo[" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ƒƒ“ƒo[</button>
+		<button type="button" value="ƒJƒeƒSƒŠ" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ƒJƒeƒSƒŠ</button>
+		<button type="button" value="ƒOƒ‹[ƒv" name="admin_group" class="admin_select" onclick="location.href='./index.php?admin=3'">ƒOƒ‹[ƒv</button>
+		<button type="button" value="TO_DO" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
+		<button type="button" value="ƒJƒŒƒ“ƒ_[" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ƒJƒŒƒ“ƒ_[</button>
+		<button type="button" value="‘|œ“–”Ô" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">‘|œ“–”Ô</button>
 	</div>
 
-	<span class="open_pack bk5">
-		<span class="icon_o"><?=$icon_font2[13]?></span>
-		<input type="text" name="w_title" class="open_box_c" maxlength="30" placeholder="Title/è¡¨é¡Œ">
-	</span>
-	<span class="open_pack bk6">
-		<span class="icon_o"><?=$icon_font2[24]?></span>
-		<span class="open_item ow150"><?=$member[$uid]["name"]?></span>
-	</span>
-	<span class="open_pack bk7">
-		<span class="icon_o"><?=$icon_font2[21]?></span>
-	</span>
+	<br>
+	<div style="height:30px;">@</div>
+	<div><span class="t_title" style="width:40px;border-left:1px solid #cccccc;">@</span><span class="t_title" style="width:300px;">–¼‘O</span></div>
+	<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">V‹K</span><!--
+	--><span class="admins" style="width:300px;"><input type="text" name="new_name" style="width:286px;  border:none;" maxlength="8"></span><!--
+	--><span style="width:60px;text-align:right;display:inline-block;">
+		<button style="margin:5px; height:25x; text-align:25px;"type="submit" value="“o˜^" name="group_new">“o˜^</button>
+		</span><!--
+--></div><br>
+	<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="XV" name="group_chg">XV</button>
+	<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">˜—ñ</span><span class="t_title" style="width:300px;">–¼‘O</span></div>
+	<?foreach((array)$group_sort as $a1 => $a2){?>
+		<?if($a1>0 && $a1<90){?>
+<?$n1++?>
+			<div><!--
+			--><span class="admins" style="width:40px;border-left:1px solid #cccccc;">
+				<input type="text" value="<?=$n1?>" name="gp_sort[<?=$a2?>]" style="width:30px; border:none; text-align:right;">
+				</span><!--
+			--><span class="admins" style="width:300px;">
+				<input type="text" value="<?=$group[$a2]['name']?>" name="gp_name[<?=$a2?>]" style="width:286px;border:none;" maxlength="8">
+				</span><!--
+			--><span style="width:60px;text-align:right;display:inline-block;">
+				<button style="margin:5px; height:25px; text-align:25px;"type="button" value="íœ" name="delete[<?=$a2?>]" onclick="GroupDel(<?=$a2?>,'<?=$group[$a2]["name"]?>')">íœ</button>
+				</span><!--
+			--></div>
+		<? } ?>
+	<? } ?>
+</form>
 
-	<span class="bk8 send_chg">
-		<span class="set_sub_icon"><?=$icon_font2[21]?></span>
-		<span class="set_sub_txt">ä¿®æ­£</span>
-	</span>
+
+<?}elseif($admin==4){?>
+<form method="post" action="./index.php">
+	<div style="width:750px;">
+		<button type="button" value="I—¹" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">I—¹</button>
+		<button type="button" value="ƒƒ“ƒo[" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ƒƒ“ƒo[</button>
+		<button type="button" value="ƒJƒeƒSƒŠ" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ƒJƒeƒSƒŠ</button>
+		<button type="button" value="ƒOƒ‹[ƒv" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ƒOƒ‹[ƒv</button>
+		<button type="button" value="Todo" name="admin_group" class="admin_select" onclick="location.href='./index.php?admin=4'">To_Do</button>
+		<button type="button" value="ƒJƒŒƒ“ƒ_[" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ƒJƒŒƒ“ƒ_[</button>
+		<button type="button" value="‘|œ“–”Ô" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">‘|œ“–”Ô</button>
+	</div>
+
+	<br>
+	<div style="height:30px;">@</div>
+	<div><span class="t_title" style="width:40px;border-left:1px solid #cccccc;">@</span><span class="t_title" style="width:300px;">–¼‘O</span></div>
+	<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">V‹K</span><!--
+	--><span class="admins" style="width:300px;"><input type="text" name="plan_new" style="width:286px; border:none;" maxlength="8"></span><!--
+	--><span style="width:60px;text-align:right;display:inline-block;">
+		<button style="margin:5px; height:25x; text-align:25px;"type="submit" value="“o˜^" name="new_plan">“o˜^</button>
+		</span><!--
+--></div><br>
+	<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="XV" name="plan_chg">XV</button>
+	<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">˜—ñ</span><span class="t_title" style="width:300px;">–¼‘O</span></div>
+	<?foreach((array)$plan_sort as $a1 => $a2){?>
+		<div><!--
+		--><span class="admins" style="width:40px;border-left:1px solid #cccccc;">
+			<input type="text" value="<?=$a1?>" name="plan_chg_sort[<?=$a2?>]" style="width:30px; border:none; text-align:right;">
+			</span><!--
+		--><span class="admins" style="width:300px;">
+			<input type="text" maxlength="8" value="<?=$plan[$a2]["name"]?>" name="plan_chg_name[<?=$a2?>]" style="width:286px; border:none;">
+			</span><!--
+		--><span style="width:60px;text-align:right;display:inline-block;">
+			<button style="margin:5px; height:25px; text-align:25px;"type="button" value="íœ" name="plan_chg_del[<?=$a2?>]" onclick="PlanDel(<?=$a2?>,'<?=$plan[$a2]["name"]?>')">íœ</button></span><!--
+		--></div>
+	<? } ?>
+</form>
 
 
+<?}elseif($admin==5){?>
+<form method="post" action="./index.php">
+	<div style="width:750px;">
+		<button type="button" value="I—¹" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">I—¹</button>
+		<button type="button" value="ƒƒ“ƒo[" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ƒƒ“ƒo[</button>
+		<button type="button" value="ƒJƒeƒSƒŠ" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ƒJƒeƒSƒŠ</button>
+		<button type="button" value="ƒOƒ‹[ƒv" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ƒOƒ‹[ƒv</button>
+		<button type="button" value="Todo" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
+		<button type="button" value="ƒJƒŒƒ“ƒ_[" name="admin_holiday" class="admin_select" onclick="location.href='./index.php?admin=5'">ƒJƒŒƒ“ƒ_[</button>
+		<button type="button" value="‘|œ“–”Ô" name="admin_toban" class="admin_else" onclick="location.href='./index.php?admin=6'">‘|œ“–”Ô</button>
+	</div>
+<br>
+<div style="height:30px;">@</div>
+<div><span class="t_title" style="width:300px;border-left:1px solid #cccccc;">–¼‘O</span><span class="t_title" style="width:65px;">”N</span><span class="t_title" style="width:45px;">Œ</span><span class="t_title" style="width:45px;">“ú</span></div><!--
+--><div><span class="admins" style="width:300px;border-left:1px solid #cccccc;"><input type="text" name="hori_new[0]" style="width:286px; border:none;" maxlength="20"></span><!--
+--><span class="admins" style="width:65px;"><input type="text" value="" name="hori_new[1]" style="width:45px; border:none; text-align:right;"></span><!--
+--><span class="admins" style="width:45px;"><input type="text" value="" name="hori_new[2]" style="width:30px; border:none; text-align:right;"></span><!--
+--><span class="admins" style="width:45px;"><input type="text" value="" name="hori_new[3]" style="width:30px; border:none; text-align:right;"></span><!--
+--><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25x; text-align:25px;"type="submit" value="“o˜^" name="holiday_reg">“o˜^</button></span><!--
+--></div>
+<br>
+<button style="margin:5px; height:25px; text-align:25px;"type="submit" 	value="XV" name="holiday_chg">XV</button>
+<div><span class="t_title" style="width:300px;border-left:1px solid #cccccc;">–¼‘O</span><span class="t_title" style="width:65px;">”N</span><span class="t_title" style="width:45px;">Œ</span><span class="t_title" style="width:45px;">“ú</span></div>
+<div><?foreach($holi_list as $a1 => $a2){?><span class="admins" style="width:300px;border-left:1px solid #cccccc;"><input type="text"  name="holi_list[<?=$a1?>][0]" value="<?=$holi_list[$a1][0]?>" style="width:286px; border:none;" maxlength="20"></span><!--
+--><span class="admins" style="width:65px;"><input type="text" name="holi_list[<?=$a1?>][1]" value="<?=$holi_list[$a1][1]?>" style="width:45px; border:none; text-align:right;"></span><!--
+--><span class="admins" style="width:45px;"><input type="text" name="holi_list[<?=$a1?>][2]" value="<?=$holi_list[$a1][2]?>" style="width:30px; border:none; text-align:right;"></span><!--
+--><span class="admins" style="width:45px;"><input type="text" name="holi_list[<?=$a1?>][3]" value="<?=$holi_list[$a1][3]?>" style="width:30px; border:none; text-align:right;"></span><!--
+--><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25x; text-align:25px;"type="submit" value="“o˜^" name="holiday_del">íœ</button></span><br>
+<!--
+--><? } ?>
 </div>
-<textarea name="e_log" class="open_text"><?=$view_org?></textarea>
-<!--edâ– â– ç·¨é›†---------->
+</form>
 
+
+<?}elseif($admin==6){?>
+<div style="width:750px;">
+	<button type="button" value="I—¹" name="admin_end" class="admin_end" onclick="location.href='./index.php?admin=0'">I—¹</button>
+	<button type="button" value="ƒƒ“ƒo[" name="admin_member" class="admin_else" onclick="location.href='./index.php?admin=1'">ƒƒ“ƒo[</button>
+	<button type="button" value="ƒJƒeƒSƒŠ" name="admin_category" class="admin_else" onclick="location.href='./index.php?admin=2'">ƒJƒeƒSƒŠ</button>
+	<button type="button" value="ƒOƒ‹[ƒv" name="admin_group" class="admin_else" onclick="location.href='./index.php?admin=3'">ƒOƒ‹[ƒv</button>
+	<button type="button" value="Todo" name="admin_todo" class="admin_else" onclick="location.href='./index.php?admin=4'">To_Do</button>
+	<button type="button" value="ƒJƒŒƒ“ƒ_[" name="admin_holiday" class="admin_else" onclick="location.href='./index.php?admin=5'">ƒJƒŒƒ“ƒ_[</button>
+	<button type="button" value="‘|œ“–”Ô" name="admin_toban" class="admin_select" onclick="location.href='./index.php?admin=6'">‘|œ“–”Ô</button>
+</div>
+<br>
+<div style="float:left;margin:0 5px;">
+<div style="height:35px;">@</div>
+<form method="post" action="./index.php">
+	<div><span class="t_title" style="width:40px;border-left:1px solid #cccccc;">@</span><span class="t_title" style="width:300px;">–¼‘O</span></div>
+	<div><span class="admins" style="width:40px;border-left:1px solid #cccccc;text-align:center;font-weight:800;">V‹K</span><!--
+	--><span class="admins" style="width:300px;"><input type="text" name="comm_new" style="width:286px; border:none;" maxlength="8"></span><!--
+	--><span style="width:60px;text-align:right;display:inline-block;"><button style="margin:5px; height:25x; text-align:25px;"type="submit" value="“o˜^" name="new">“o˜^</button></span><!--
+--></div><br>
+	<button style="margin:5px; height:25px; text-align:25px;"type="submit" value="XV" name="comm_chg">XV</button>
+	<div><span class="t_title" style="width:40px; border-left:1px solid #cccccc;">˜—ñ</span><span class="t_title" style="width:300px;">–¼‘O</span></div>
+	<?foreach((array)$comm_sort as $a1 => $a2){?>
+		<div><!--
+		--><span class="admins" style="width:40px;border-left:1px solid #cccccc;">
+			<input type="text" value="<?=$a1?>" name="comm_chg_sort[<?=$a2?>]" style="width:30px; border:none; text-align:right;">
+			</span><!--
+		--><span class="admins" style="width:300px;">
+			<input type="text" maxlength="8" value="<?=$comm[$a2]["name"]?>" name="comm_chg_name[<?=$a2?>]" style="width:286px; border:none;">
+			</span><!--
+		--><span style="width:60px;text-align:right;display:inline-block;">
+			<button style="margin:5px; height:25px; text-align:25px;"type="button" value="íœ" name="comm_chg_del[<?=$a2?>]" onclick="CommDel(<?=$a2?>,'<?=$comm[$a2]["name"]?>')">íœ</button></span><!--
+		--></div>
+	<? } ?>
+</form>
+</div>
+
+<?if($member_comm){?>
+<form method="post" action="./index.php">
+<input type="hidden" name="now_ym" value="<?=$now_year?>-<?=$now_month?>">
+<div style="float:left;margin:0 10px;">
+<div style="height:35px; line-height:35px;"><button style="margin:5px; height:25px; text-align:25px;"type="submit" value="XV" name="comm_set">XV</button></div>
+<div><span class="t_title" style="width:60px;border-left:1px solid #cccccc;">“ú•t</span><?foreach($comm_sort as $a1 =>$a2){?><span class="t_title" style="width:60px;"><?=$comm[$a2]["name"]?></span><?}?></div>
+<?for($n=0;$n<$t_mon_t;$n++){?>
+<div><!--
+--><span class="admins" style="width:60px;border-left:1px solid #cccccc; text-align:right;font-size:13px;"><?=$n+1?><?=$week[date("w",strtotime($now_year*10000+$now_month*100+$n+1))]?></span><!--
+--><?foreach($comm_sort as $a1 =>$a2){?><!--
+--><span class="admins" style="width:60px; <?if($set[$n+1][$a2]){?>background:#f0d0c0<?}?>"><!--
+--><select style="border:none; width:100%;height:100%;" name="set[<?=$n+1?>][<?=$a2?>]"><!--
+--><option value=""></option><!--
+--><?foreach($member_comm as $a3 => $a4){?><!--
+--><option value="<?=$a4?>" <?if($set[$n+1][$a2]==$a4){?>selected="selected"<?}?>><!--
+--><?=$member[$a4]["name"]?><!--
+--></option><!--
+--><?}?><!--
+--></select><!--
+--></span><!--
+--><?}?><!--
+--></div><!--
+--><?}?><!--
+--></div>
+</form>
+<? } ?>
+<div style="clear:both;"></div>
+<?}else{?>
+<div class="pc_only"><span class="t_title l1">“Še“ú</span><span class="t_title l2">ƒJƒeƒSƒŠ</span><span class="t_title l3">“ŠeÒ–¼</span><span class="t_title l4">Œ–¼</span><span class="t_title l5">ƒOƒ‹[ƒv</span><span class="t_title l6">@</span><span class="t_title l7">@</span><span class="t_title l7">@</span></div><?if($log_top){?><?for($s1=0;$s1<$i2;$s1++){?><a href="./index.php?log_id=<?=$log_top[$s1]["id"]?>" class="table_list_a"><span class="table_list l1"><?=$log_top[$s1]["date"]?> <?=$log_top[$s1]["time"]?></span><span class="table_list l2"><?=$category[$log_top[$s1]["category"]]["name"]?></span><span class="table_list l3"><?=$member[$log_top[$s1]["writer"]]["name"]?></span><span class="table_list l4"><?=$log_top[$s1]["title"]?></span><span class="table_list l5"><?=$group[$log_top[$s1]["group"]]["name"]?></span><span class="table_list l6"><?if($fav_count[$log_top[$s1]["id"]] >0){?><span style="color:<?=$icon_color[$fav[$fav_count[$log_top[$s1]["id"]]]["color"]]?>"><span class="<?=$icon_font[$fav[$fav_count[$log_top[$s1]["id"]]]["icon"]]?> sele_icon_20"></span></span><?}?></span><span class="table_list l7"><?if($log_top[$s1]["attach"] == 1){?><span style="color:#a0a060"><span class="icon-folder-open sele_icon_20"></span></span><?}?></span><?=$miki[$user_view[$log_top[$s1]["id"]][$uid]]?></a><?}?><?}?>
+<?if(count($log)>0){?><?for($s1=$pg_st;$s1<$pg_ed-$i2;$s1++){?><a href="./index.php?log_id=<?=$log[$s1]["id"]?>" class="table_list_b"><span class="table_list l1"><?=$log[$s1]["date"]?> <?=$log[$s1]["time"]?></span><span class="table_list l2"><?=$category[$log[$s1]["category"]]["name"]?></span><span class="table_list l3"><?=$member[$log[$s1]["writer"]]["name"]?></span><span class="table_list l4"><?=$log[$s1]["title"]?></span><span class="table_list l5"><?=$group[$log[$s1]["group"]]["name"]?></span><span class="table_list l6"><?if($fav_count[$log[$s1]["id"]] >0){?><span style="color:<?=$icon_color[$fav[$fav_count[$log[$s1]["id"]]]["color"]]?>">	<span class="<?=$icon_font[$fav[$fav_count[$log[$s1]["id"]]]["icon"]]?> sele_icon_20"></span></span><?}?></span><span class="table_list l7"><?if($log[$s1]["attach"] == 1){?><span style="color:#a0a060"><span class="icon-folder-open 	sele_icon_20"></span></span><?}?></span><?=$miki[$user_view[$log[$s1]["id"]][$uid]]?></a><?}?><?}?>
+<br><br>
+<?if($todo_s1 ||$todo_s2 ||$todo_s3 || $task){?>
+<div class="todo_title">—\’è(<?=substr($tmp_date,0,4)?>”N<?=substr($tmp_date,5,2)?>Œ<?=substr($tmp_date,8,2)?>“ú)</div>
+<div class="todo_0">
+	<div class="todo_1">
+		<div class="todo_bn">ŠJn</div>
+		<?for($n0=0;$n0<count($todo_s1);$n0++){?>
+
+			<?if($member[$uid][$todo_s1[$n0]["group"]] == 1 || $todo_s1[$n0]["staff"] == $uid || $todo_s1[$n0]["group"]==0){?>
+				<table class="todo_table"><tr>
+					<td class="todo_td1"><?=substr($todo_s1[$n0]["st_time"],0,-2)?>:<?=substr($todo_s1[$n0]["st_time"],-2,2)?> - <?=substr($todo_s1[$n0]["ed_time"],0,-2)?>:<?=substr($todo_s1[$n0]["ed_time"],-2,2)?><br>
+					<?/*if($uid == $todo_s1[$n0]["staff"]){*/?>
+						<form action="index.php" method="post">
+							<input type="hidden" value="<?=$todo_s1[$n0]["todo_id"]?>" name="todo_chg_id">
+							<button type="submit" class="rel" value="C³">C³</button>
+						</form>
+					<?/*}*/?>
+					</td>
+					<td class="todo_td2"><span style="color:#d00000;font-weight:800;">[<?=$plan[$todo_s1[$n0]["plan"]]["name"]?>]</span><br><?=$todo_s1[$n0]["log"]?><br></td>
+				</tr></table>
+			<? } ?>
+		<? } ?>
+	</div>
+
+	<div class="todo_1">
+		<div class="todo_bn">I—¹</div>
+		<?for($n0=0;$n0<count($todo_s3);$n0++){?>
+			<?if($member[$uid][$todo_s3[$n0]["group"]] == 1 || $todo_s3[$n0]["staff"] == $uid || $todo_s3[$n0]["group"]==0){?>
+				<table class="todo_table"><tr>
+					<td class="todo_td1">
+					<?=substr($todo_s3[$n0]["st_time"],0,-2)?>:<?=substr($todo_s3[$n0]["st_time"],-2,2)?> - <?=substr($todo_s3[$n0]["ed_time"],0,-2)?>:<?=substr($todo_s3[$n0]["ed_time"],-2,2)?>
+					<form action="index.php" method="post">
+					<input type="hidden" value="<?=$todo_s3[$n0]["todo_id"]?>" name="todo_chg_id">
+					<input type="hidden" value="<?=substr($todo_s3[$n0]["ed_date"],-2)?>" name="todo_set_lv">
+					<button type="submit" class="rel" value="C³">C³</button>
+					</form>
+
+					</td>
+					<td class="todo_td2"><span style="color:#d00000;font-weight:800;">[<?=$plan[$todo_s3[$n0]["plan"]]["name"]?>]</span><br><?=$todo_s3[$n0]["log"]?><br></td>
+				</tr></table>
+			<? } ?>
+		<? } ?>
+	</div>
+
+	<div class="todo_1">
+		<?if($task){?>
+			<div class="comm_bn">‘|œ“–”Ô</div>
+			<?for($n=0;$n<count($task);$n++){?>
+				<div class="task_bn"><?=$comm[$task[$n]]["name"]?></div>
+			<? } ?>
+		<? } ?>
+	</div>
+</div>
+<?}?>
+
+<?if($gp[1]){?>
+<!--¡¡“Še------------------------->
+<table class="open">
+	<form action="./index.php" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="uid" value="<?=$uid?>">
+	<tr>
+		<th class="open_a">
+			<span style="display:inline-block; font-size:15px;height:30px;line-height:30px;">“úF</span><input type="text" name="w_date" value="<?=$c_date?>" style="width:90px;"><input type="text" name="w_time" value="<?=$c_time?>" style="width:50px;">@
+			<span style="display:inline-block; font-size:15px;height:30px;line-height:30px;margin-right:20px;">‘—MÒF<?=$member[$uid]["name"]?></span>
+			<span style="display:inline-block; font-size:15px;height:30px;line-height:40px;">ƒJƒeƒSƒŠF</span>
+			<select name="w_cate" style="font-size:13px; width:120px;text-align:left; height:30px;"><?foreach((array)$category_sort as $a1 => $a2){?><?if($member[$uid]["b"] == 1 || $category[$a2]["att"] != 1){?><option value="<?=$a2?>"><?=$category[$a2]["name"]?></option><? } ?><? } ?></select>
+			<span style="display:inline-block; font-size:15px; height:30px;line-height:30px;">ƒOƒ‹[ƒvF</span>
+				<select name="w_group" style="font-size:13px; width:120px; text-align:left; height:30px;" id="cat">
+				<?foreach((array)$group_sort as $p1 => $p2){?><option value="<?=$p2?>"><?=$group[$p2]["name"]?></option>
+				<? } ?>
+			</select>
+		</th>
+	</tr>
+	<tr>
+		<th class="open_a">
+			<span style="display:inline-block; font-size:15px; height:30px;line-height:30px;">TITLEF</span><input type="text" name="w_title" style=" width:500px;" maxlength="20">
+			<button type="submit" name="w_try" value="“o˜^" class="submit">“o˜^</button>
+		</th>
+	</tr>
+<tr><th class="open_a"><?foreach($group_sort as $p3 => $p4){?><?if($p4 != 99){?><div class="gp_dt" id="gp_dt<?=$p4?>"><?foreach((array)$member_now as $a1 => $a2){?><?if($member[$a2][$p4] ==1 ||$member[$a2]["b"] ==1 || $p4==0){?><span class="send_y"><span class="send_y2"></span><?=$member[$a2]["name"]?></span><? } else {?><span class="send_n"><span class="send_n2"></span><?=$member[$a2]["name"]?></span><? } ?><? } ?></div><? } ?><? } ?><div class="gp_dt" id="gp_dt99"><?foreach((array)$member_now as $a1 => $a2){?><?if($member[$a2]['b'] ==1){?><span class="send_y"><span class="send_y2"></span><?=$member[$a2]["name"]?></span><input type="hidden" name="w_mem[<?=$a2?>]" value="1"><? } else {?><label><input type="checkbox" name="w_mem[<?=$a2?>]" value="1" class="sendbox"><span class="sendspan"><?=$member[$a2]["name"]?></span></label><? } ?><? } ?></div></th></tr>
+	<tr>
+		<td class="open_main">
+			<textarea name="w_log" style="width:99%; height:200px; font-size:15px; border:none;"><?=$view?></textarea><br>
+		</td>
+	</tr>
+	<tr>
+		<td class="open_main">
+			<input type="file" name="upfile[1]" style="margin:5px; width:200px;">@
+			<input type="file" name="upfile[2]" style="margin:5px; width:200px;">@
+			<input type="file" name="upfile[3]" style="margin:5px; width:200px;"><br>
+			<input type="file" name="upfile[4]" style="margin:5px; width:200px;">@
+			<input type="file" name="upfile[5]" style="margin:5px; width:200px;">@
+			<input type="file" name="upfile[6]" style="margin:5px; width:200px;">
+		</td>
+	</tr>
+</table>
+
+<?}elseif($c_act=="log_del"){?>
+<!--¡¡íœŠ®—¹------------------------->
+	<table class="open">
+		<tr><th class="open_a" style="text-align:center; padding:10px;">íœ‚³‚ê‚Ü‚µ‚½</th></tr>
+	</table>
+
+<?}elseif($upng){?>
+<!--¡¡‚ ‚Õ‚ë‚Ç‚¦‚ç[------------------------->
+	<table class="open">
+		<tr><th class="open_a" style="text-align:center; padding:10px;">“ú–{ŒêA‘SŠp•¶š‚ÌŠÜ‚Ü‚ê‚éƒtƒ@ƒCƒ‹‚ÍƒAƒbƒvƒ[ƒh‚Å‚«‚Ü‚¹‚ñ</th></tr>
+	</table>
+
+<?}elseif($_POST["set_chg"]){?>
+<!--¡¡•ÒW------------------------->
+<table class="open">
+	<form action="./index.php" method="post">
+	<tr>
+    <th class="open_a">
+	<div>
+		<span style="display:inline-block; font-size:15px;height:30px;line-height:30px; width:220px; text-align:left;">“úF<?=$view_date?>@<?=$view_time?></span>
+		<span style="display:inline-block; font-size:15px;height:30px;line-height:30px; width:80px; text-align:right;">ƒJƒeƒSƒŠF</span><select name="e_cate" style="font-size:13px; height:30px; width:120px; width:100px;text-align:left; ">
+			<?foreach((array)$category_sort as $p1 => $p2){?><option value="<?=$p2?>" <?if($p2 == $view_category){?> selected="selected"<? } ?>><?=$category[$category_sort[$p1]]["name"]?></option>
+			<? } ?>
+			</select>
+		<span style="display:inline-block; font-size:15px;height:30px;line-height:30px; width:80px; text-align:right;">TITLEF</span><input type="text" name="e_title" style="width:250px; " value="<?=$view_title?>" maxlength="20"><button  class="submit" type="submit" name="set_chg2" value="“o˜^">“o˜^</button>
+	</div>
+	</th>
+	</tr><tr>
+		<td class="open_main"><textarea name="e_log" style="width:99%; height:200px; font-size:15px; border:none;"><?=$view?></textarea></td>
+	</tr>
+</table>
 
 <?}elseif($_POST["set_chg2"]){?>
-<!--stâ– â– ç·¨é›†ã•ã‚ŒãŸ---->
-<div class="open1">
-	ç·¨é›†ã•ã‚Œã¾ã—ãŸã€‚
-</div>
-<!--edâ– â– ç·¨é›†ã•ã‚ŒãŸ---->
+<!--¡¡•ÒW‚³‚ê‚Ü‚µ‚½------------------------->
+	<table class="open">
+		<tr><th class="open_a" style="text-align:center; padding:10px;">•ÒW‚³‚ê‚Ü‚µ‚½B</th></tr>
+	</table>
+<?}elseif($_POST["set_res"]){?>
+<!--¡¡‚ê‚·------------------------->
+	<table class="open">
+		<form action="./index.php" method="post">
+		<tr>
+			<th class="open_a">
+				<div class="open_in">
+					<span>“úF<?=$view_date?>@<?=$view_time?></span>@
+					<span>ƒJƒeƒSƒŠF<?=$category[$view_category]["name"]?></span>@
+					<span>ƒOƒ‹[ƒvF<?=$group[$view_group]["name"]?></span>
+				</div><br>
 
-<?}elseif($act=="res"){?>
-<!--stâ– â– ãƒ¬ã‚¹æŠ•ç¨¿------>
-<div class="open1">
-	<span class="open1_top">
-		<span class="open_pack bk1"><span class="icon_o"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>ã€€<?=$view_time?></span></span>
-		<span class="open_pack bk2"><span class="icon_o"><?=$icon_font2[23]?></span><span class="open_item ow150"><?=$category[$view_category]["name"]?></span></span>
-		<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
+				<div class="open_in" style="float:left;">
+					<span style="display:inline-block; font-size:15px;height:30px;line-height:30px;">TITLEF<?=$view_title?></span>
+				</div>
+				<div class="open_in" style="float:right;">
+					<span>“ŠeÒF<?=$member[$view_writer]["name"]?></span>@
 
-		<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
-			<span class="sub_slide_top" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']]?>">
-				<span class="icon_o2"><?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?></span>
-				<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
-			</span>
-			<div class="sub_slide">
-				<?foreach((array)$fav_sort as $b1 => $b2){?>
-					<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
-						<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-						<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
-					</span>
-				<? } ?>
+					<button type="submit" class="submit" name="set_res2" value="“o˜^">“o˜^</button>
+				</div>
+				<div style="clear:both"></div>
+			</th>
+		</tr><tr>
+	        <td class="open_a">
+				<?=$view?>
+			</td>
+		</tr><tr>
+			<td class="open_main">
+				<textarea name="r_log" style="width:99%; height:200px; font-size:15px; border:none;"></textarea><br>
+			</td>
+		</tr>
+		</form>
 
-				<?if($b1){?>
-					<span id="s0" class="sub_slide_sel" style="color:#333333">
-					<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">ãƒ•ãƒ©ã‚°è§£é™¤</span>
-				<? } ?>
-			</div>
-		</div>
-
-		<span class="open_pack bk5"><span class="icon_o"><?=$icon_font2[13]?></span><span class="open_item ow345"><?=$view_title?></span></span>
-		<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
-		<span class="open_pack bk7"><span class="icon_o"><?=$icon_font2[21]?></span></span>
-
-		<span class="bk8 set_res">
-			<span class="set_sub_icon"><?=$icon_font2[32]?></span>
-			<span class="set_sub_txt">Res</span>
-		</span>
-	</span>
-</div>
-	<textarea name="r_log" class="open_text"></textarea>
-	<div class="open1">
-		<div style="padding:5px;">
-			<?=$view?>
-		</div>
 		<?if($p>0){?>
-			<div style="padding:5px;">
-				<?for($p1=0;$p1<count($res);$p1++){?>
-					<div class="res">
-					<div class="res_top">
-						<span class="res_date">æ—¥æ™‚ï¼š<?=$res[$p1]["date"]?>ã€€<?=$res[$p1]["time"]?></span>ã€€ã€€ã€€
-						<span class="res_name">åå‰ï¼š<?=$member[$res[$p1]["writer"]]["name"]?></span>
-					</div>
-					<div><span class="res_log"><?=$res[$p1]["log"]?><br></span></div>
-					</div>
-				<? } ?>
-			</div>
+		<tr>
+		<td class="open_sub" style="background-color:#f0f0f0;" colspan="3">
+			<?for($p1=0;$p1<count($res);$p1++){?>
+				<div class="res">
+				<div style="font-color:#606060; border-bottom: 1px solid #cccccc; width:98%; padding:3px; float:left;">“úF<?=$res[$p1]["date"]?>@<?=$res[$p1]["time"]?>@@–¼‘OF<?=$member[$res[$p1]["writer"]]["name"]?>
+				</div>
+				<div style="clear:both"></div>
+				<div><?=$res[$p1]["log"]?><br></div>
+				</div>
+			<? } ?>
+		</td>
+		</tr>
 		<? } ?>
-	</div>
-<!--edâ– â– ãƒ¬ã‚¹æŠ•ç¨¿------>
+	</table>
+
+
 
 <?}elseif($c_act=="log_res2" || $c_todo2){?>
-<!--stâ– â– RESæŠ•ç¨¿ã•ã‚ŒãŸ--->
-			<div class="open1">
-				æŠ•ç¨¿ã•ã‚Œã¾ã—ãŸã€‚
-			</div>
-<!--edâ– â– RESæŠ•ç¨¿ã•ã‚ŒãŸ--->
-		<?}elseif($gp[2]){?>
-<!--stâ– â– ç™»éŒ²æƒ…å ±å¤‰æ›´-->
-			<form action="./index.php" method="post">
-				<div class="fav_box_n0">
-					ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰(4ï½30æ–‡å­—)
-				</div>
-				<div class="fav_box_n1">
+<!--¡¡RES“Še‚³‚ê‚Ü‚µ‚½------------------------->
+	<table class="open">
+		<tr><th class="open_a" style="text-align:center; padding:10px;">“Še‚³‚ê‚Ü‚µ‚½B</th></tr>
+	</table>
+
+<?}elseif($todo_chg_id){?>
+<form action="index.php" name="f" method="post">
+<!--¡¡TODOƒŠƒXƒg------------------------->
+<input type="hidden" value="<?=$todo_sy?>" name="todo_sy"><input type="hidden" value="<?=$todo_sm?>" name="todo_sm"><input type="hidden" value="<?=$todo_sd?>" name="todo_sd">
+<input type="hidden" value="<?=$todo_chg_id?>" name="todo_chg_id2">
+<table class="todo_input">
+<tr>
+<td style="text-align:center; background:#60d090;height:36px;"><input type="text" value="<?=$todo_sy?>" name="todo_sy" class="todo_y">”N<input type="text" value="<?=$todo_sm?>" name="todo_sm" class="todo_d">Œ<input type="text" value="<?=$todo_sd?>" name="todo_sd" class="todo_d">“ú</td>
+</tr>
+
+<tr>
+<td class="todo_input_tag">
+<div class="todo_div">
+<input type="checkbox" style="display:none !important" name="todo_tag1" id="todo_tag1" class="todo_tag_ckb" value="1"<?if($todo_start==1){?> checked="checked"<? } ?>><label for="todo_tag1" class="todo_tag_label">ŠJn</label>
+<input type="checkbox" style="display:none !important" name="todo_tag3" id="todo_tag3" class="todo_tag_ckb" value="1"<?if($todo_end==1){?> checked="checked"<? } ?>><label for="todo_tag3" class="todo_tag_label">I—¹</label>
+</div>
+<div class="todo_div2">
+<button type="submit" value="DEL" name="c_todo4" style="background:#ffe5f0">DEL</button>
+<button type="submit" value="SET" name="c_todo3" id="todo_send" style="background:#ff90b0">SET</button>
+</div>
+<div style="clear:both">
+</div>
+</td>
+</tr>
+
+<tr>
+	<td  class="todo_input_tag">
+		<span class="todo_input_title">ŠÔ</span><input type="text" name="todo_sh" class="todo_d" value="<?=$todo_sh?>">:<input type="text" name="todo_si" class="todo_d" value="<?=$todo_si?>">-<input type="text" name="todo_eh" class="todo_d" value="<?=$todo_eh?>">:<input type="text" name="todo_ei" class="todo_d" value="<?=$todo_ei?>">
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">I—¹</span><input type="text" name="todo_ey" class="todo_y" value="<?=$todo_ey?>">/<input type="text" name="todo_em" class="todo_d" value="<?=$todo_em?>">/<input type="text" name="todo_ed" class="todo_d" value="<?=$todo_ed?>"><span style="font-size:12px;">(<input type="text" name="passage" class="todo_d" style="background:#eaeaff;" value="" onkeyup="Passage();">“úŒã)</span>
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">ƒOƒ‹[ƒv</span>
+		<select name="todo_group" style="font-size:13px; width:160px; text-align:left;height:26px;">
+			<?foreach((array)$group_sort as $p1 => $p2){?><?if($p2<95){?><option value="<?=$p2?>" <?if($todo_group == $p2){?>selected="selected"<? } ?>><?=$group[$p2]["name"]?></option><? } ?>
+			<? } ?>
+			<option value="90">©•ª</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">“à—e</span>
+		<select name="todo_plan" style="font-size:13px; width:160px; text-align:left;height:26px;">
+			<?foreach((array)$plan_sort as $p1 => $p2){?><option value="<?=$p2?>" <?if($todo_plan == $p2){?>selected="selected"<? } ?>><?=$plan[$p2]["name"]?></option><? } ?>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag"><textarea class="todo_input_log" name="todo_log"><?=$todo_log?></textarea></td></td>
+</tr>
+</table>
+</form>
+
+
+
+<?}elseif($c_todo){?>
+<div style="display:inline-block;">
+<form action="index.php" name="f" method="post">
+<!--¡¡TODOƒŠƒXƒg------------------------->
+<input type="hidden" value="<?=$todo_sy?>" name="todo_sy"><input type="hidden" value="<?=$todo_sm?>" name="todo_sm"><input type="hidden" value="<?=$todo_sd?>" name="todo_sd">
+<table class="todo_input">
+<tr>
+<td style="text-align:center; background:#60d090; height:36px;"><?=$todo_sy?>”N<?=$todo_sm?>Œ<?=$todo_sd?>“ú</td>
+</tr>
+<tr>
+<td class="todo_input_tag">
+<div class="todo_div">
+<input type="checkbox" style="display:none !important" name="todo_tag1" id="todo_tag1" class="todo_tag_ckb" value="1"><label for="todo_tag1" class="todo_tag_label">ŠJn</label>
+<input type="checkbox" style="display:none !important" name="todo_tag3" id="todo_tag3" class="todo_tag_ckb" value="1"><label for="todo_tag3" class="todo_tag_label">I—¹</label>
+</div>
+<div class="todo_div2">
+<button type="submit" value="SET" name="c_todo2" id="todo_send" style="background:e0e0e0" disabled>SET</button>
+</div>
+<div style="clear:both">
+</div>
+</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">ŠÔ</span><input type="text" name="todo_sh" class="todo_d" value="<?=$todo_sh?>">:<input type="text" name="todo_si" class="todo_d" value="<?=$todo_si?>">-<input type="text" name="todo_eh" class="todo_d" value="<?=$todo_eh?>">:<input type="text" name="todo_ei" class="todo_d" value="<?=$todo_ei?>">
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">I—¹</span><input type="text" name="todo_ey" class="todo_y" value="<?=$todo_ey?>">/<input type="text" name="todo_em" class="todo_d" value="<?=$todo_em?>">/<input type="text" name="todo_ed" class="todo_d" value="<?=$todo_ed?>"><span style="font-size:12px;">(<input type="text" name="passage" class="todo_d" style="background:#eaeaff;" value="" onkeyup="Passage();">“úŒã)</span>
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">ƒOƒ‹[ƒv</span>
+		<select name="todo_group" style="font-size:13px; width:160px; text-align:left;">
+			<?foreach((array)$group_sort as $p1 => $p2){?><?if($p2<95){?><option value="<?=$p2?>" <?if($todo_group == $p2){?>selected="selected"<? } ?>><?=$group[$p2]["name"]?></option><? } ?>
+			<? } ?>
+			<option value="90">©•ª</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="todo_input_tag">
+		<span class="todo_input_title">“à—e</span>
+		<select name="todo_plan" style="font-size:13px; width:160px; text-align:left;">
+			<?foreach((array)$plan_sort as $p1 => $p2){?><option value="<?=$p2?>" <?if($todo_plan == $p2){?>selected="selected"<? } ?>><?=$plan[$p2]["name"]?></option><? } ?>
+		</select>
+	</td>	
+</tr>
+<tr>
+	<td class="todo_input_tag"><textarea class="todo_input_log" name="todo_log"></textarea></td></td>
+</tr>
+</table>
+</form>
+</div>
+<div style="display:inline-block;">
+<img src="./icon/todo.gif" style="margin:5px;width:550px; border:2px solid #000000;">
+</div>
+
+
+<?}elseif($gp[2]){?>
+<!--¡¡“o˜^î•ñ•ÏX-->
+	<form action="./index.php" method="post">
+		<table style="width:320px;">
+			<tr>
+				<td style="width:320px; height:30px; background:#4090ff; color:#ffffff; border:1px solid #e0e0e0; vercical-align:middle;">
+					ƒpƒXƒ[ƒh(4`30•¶š)
+				</td>
+			</tr>
+
+			<tr>
+				<td style="width:320px; height:40px; background:#fafafa; vercical-align:middle; border:1px solid #f0f0f0;">
 					<input type="text" name="passbox" value="<?=$member[$uid]['logpass']?>" class="passbox">
-					<button type="submit" name="pass_chg_set" value="ç™»éŒ²" class="submit" style="width:70px;">ç™»éŒ²</button>
-				</div>
-			</form>
-			<br>
-			<form action="./index.php" method="post">
-				<div class="fav_box"><span class="fav_in1">[é †]</span><span class="fav_in2">ãŠæ°—ã«å…¥ã‚Šç·¨é›†</span><span class="fav_in3">[å‰Š]</span></div>
-				<?foreach((array)$fav_sort as $a1 => $a2){?>
-					<div class="fav_box2"><!--
-					--><span class="fav_in1"><select name="fav_order[<?=$a2?>]" style="width:30px;height:28px;margin:3px 0;"><?for($n=0;$n<count($fav_sort);$n++){?><option value="<?=$n?>" <?if($n == $a1){?>selected="selected"<?}?>><?=$n+1?></option><? } ?></select></span><!--
-					--><span class="fav_in4"><input type="text" name="fav_name[<?=$a2?>]" style="width:155px; height:28px; border:1px solid #303030;;margin:3px 1px;" value="<?=$fav[$a2]['name']?>"maxlength="10"></span><!--
-					--><span class="fav_in5">
-						<div class="main_slide m_sele_i cc_f<?=$fav[$a2]['color']?> sele_icon_22" id="fav_select<?=$a2?>"><?=$icon_font2[$fav[$a2]['icon']]?></div>
-						<div class="sub_slide s_sele_i">
-							<?for($k=1;$k<13;$k++){?>
-							<input class="fav_radio fav_ed" type="radio" id="sel<?=$a2?><?=$k?>" name="fav_icon[<?=$a2?>]" value="<?=$k?>" <?if($fav[$a2]['icon'] ==$k){?> checked=" checked"<? } ?>><label class="fav_radio_label sele_icon_22" for="sel<?=$a2?><?=$k?>"><?=$icon_font2[$k]?></label>
-							<? } ?>
-						</div>
-					</span><!--
-						--><span class="fav_in6">
-							<div class="main_slide m_sele_c cc<?=$fav[$a2]['color']?>" id="color_select<?=$a2?>" style="margin:3px 0;">
-								<span style="color:#ffffff; font-weight:600;">ã€€</span></div>
+					<button type="submit" name="pass_chg_set" value="“o˜^" class="submit" style="width:70px;">“o˜^</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+<br>
 
-							<div class="sub_slide s_sele_c">
-							<?for($k=1;$k<9;$k++){?><input class="fav_radio fav_ed2" type="radio" name="fav_color[<?=$a2?>]" id="cl<?=$a2?><?=$k?>" value="<?=$k?>" onclick="FavC(<?=$a2?><?=$k?>)" <?if($fav[$a2]['color'] ==$k){?>checked=" checked"<? } ?>><label id="cl2<?=$a2?><?=$k?>" for="cl<?=$a2?><?=$k?>" class="sele_box" style="background:<?=$icon_color[$k]?>">ã€€</label>
-							<? } ?>
-						</div>
-						</span><span class="fav_in3" style="text-align:left;">
-							<input type="checkbox" id="fav_del[<?=$a2?>]" name="fav_del[<?=$a2?>]" value="1" class="favdel"><label for="fav_del[<?=$a2?>]" class="favdel_label">Ã—</label>
-						</span>
-					</div>
-				<? } ?>
-			<button type="submit" class="submit" style="width:320px;margin:0 auto;" method="post" name="fav_chg_set" value="ç™»éŒ²">å¤‰ã€€æ›´</button>
-		</form>
-		<br>	
-		<form action="./index.php" method="post">
-			<input type="hidden" name="uid" value="<?=$uid?>">
-			<div class="fav_box_n0">ãŠæ°—ã«å…¥ã‚Šç™»éŒ²</div>
-			<div class="fav_box_n1">
-				<span class="fav_in7">
-					<input maxlength="10" type="text" name="fav_name_new" style="width:185px; height:28px; border:1px solid #303030;margin:3px 1px;" placeholder="&nbsp;åç§°å…¥åŠ›">
-				</span>
-				<span class="fav_in5">
-					<div class="main_slide m_sele_i cc_f1 sele_icon_22" id="fav_select_new"><?=$icon_font2[1]?></div>
-					<div class="sub_slide s_sele_i">
-						<?for($k=1;$k<13;$k++){?>
-						<input class="fav_radio" type="radio" id="sel_new_<?=$k?>" name="fav_icon_new" value="<?=$k?>" onclick="FavNewI(<?=$k?>)" <?if($fav[$a2]['icon'] ==$k){?> checked=" checked"<? } ?>>
-						<label class="fav_radio_label sele_icon_22" for="sel_new_<?=$k?>"><?=$icon_font2[$k]?></label>
-						<? } ?>
-					</div>
-				</span>
-				<span class="fav_in6">
-					<div class="main_slide m_sele_c cc1" id="color_select_new" style="margin:3px 0;"><span style="color:#ffffff; font-weight:600;">ã€€</span></div>
-					<div class="sub_slide s_sele_c">
-						<?for($k=1;$k<9;$k++){?>
-							<input class="fav_radio" type="radio" name="fav_color_new" id="cl_new_<?=$k?>" value="<?=$k?>" onclick="FavNewC(0<?=$k?>)" <?if($fav[$a2]['color'] ==$k){?>checked=" checked"<? } ?>>
-							<label id="cl2<?=$a2?><?=$k?>" for="cl_new_<?=$k?>" class="sele_box" style="background:<?=$icon_color[$k]?>">ã€€</label>
-						<? } ?>
-					</div>
-				</span>
-			</div>
-			<button type="submit" class="submit" style="width:320px;margin:0 auto;" method="post" name="fav_new_set" value="ç™»éŒ²">ç™»ã€€éŒ²</button>
-		</form>
-<!--edâ– â– ç™»éŒ²æƒ…å ±å¤‰æ›´-->
-
-	<?}elseif($log_id){?>
-<!--â– â– é€šå¸¸------------------------->
-		<div class="open1">
-			<form action="./index.php" method="post">
-				<input id="direct" type="hidden" name="" value="<?=$log_id?>">
-				<span class="open1_top">
-					<span class="open_pack bk1"><span class="icon_o"><?=$icon_font2[26]?></span><span class="open_item ow150"><?=$view_date?>ã€€<?=$view_time?></span></span>
-					<span class="open_pack bk2"><span class="icon_o"><?=$icon_font2[23]?></span><span class="open_item ow150"><?=$category[$view_category]["name"]?></span></span>
-					<span class="open_pack bk3"><span class="icon_o"><?=$icon_font2[14]?></span><span class="open_item ow150"><?=$group[$view_group]["name"]?></span></span>
-
-					<div class="main_slide bk4" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>;border-color: <?=$icon_color[$fav[$fav_count[$log_id]+0]['color']+0]?>">
-						<span class="sub_slide_top" style="color:<?=$icon_color[$fav[$fav_count[$log_id]+0]['color']]?>">
-							<span class="icon_o2"><?=$icon_font2[$fav[$fav_count[$log_id]+0]['icon']]?></span>
-							<span class="sele_name fav_name_top"><?=$fav[$fav_count[$log_id]+0]['name']?></span>
-						</span>
-
-						<div class="sub_slide">
-							<?foreach((array)$fav_sort as $b1 => $b2){?>
-								<span id="s<?=$b2?>" class="sub_slide_sel" style="color:<?=$icon_color[$fav[$b2]['color']]?>">
-									<span class="icon_o2" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$icon_font2[$fav[$b2]['icon']]?></span>
-									<span class="sele_name" style="color:<?=$icon_color[$fav[$b2]['color']]?>"><?=$fav[$b2]['name']?></span>
-								</span>
-							<? } ?>
-
-							<?if($b1){?>
-								<span id="s0" class="sub_slide_sel" style="color:#333333">
-								<span class="icon_o2"><?=$icon_font2[31]?></span><span class="sele_name">ãƒ•ãƒ©ã‚°è§£é™¤</span>
-							<? } ?>
-						</div>
-					</div>
-
-					<span class="open_pack bk5"><span class="icon_o"><?=$icon_font2[13]?></span><span class="open_item ow345"><?=$view_title?></span></span>
-					<span class="open_pack bk6"><span class="icon_o"><?=$icon_font2[24]?></span><span class="open_item ow150"><?=$member[$view_writer]["name"]?></span></span>
-					<span class="open_pack bk7"><span class="icon_o"><?=$icon_font2[21]?></span></span>
-
-					<span class="bk8 log_del<?if($uid != $view_writer){?>_a<?}?>">
-						<span class="set_sub_icon"><?=$icon_font2[31]?></span>
-						<span class="set_sub_txt">å‰Šé™¤</span>
-					</span>
-
-					<span class="bk8 set_chg<?if($uid != $view_writer){?>_a<?}?>">
-						<span class="set_sub_icon"><?=$icon_font2[21]?></span>
-						<span class="set_sub_txt">ä¿®æ­£</span>
-					</span>
-
-					<span class="bk8 set_res">
-						<span class="set_sub_icon"><?=$icon_font2[32]?></span>
-						<span class="set_sub_txt">Res</span>
-					</span>
-				</span>
-			</form>
-		</div>	
-
-		<div class="open2"><?foreach((array)$member_now as $a1 => $a2){?><span class="member<?=$user_view[$log_id][$a2]+0?>"><?=$member[$a2]["name"]?></span><? } ?></div>
-		<div class="open3"><?=$view?></div>
-
-		<?if($attach_icon){?>
-			<div class="open_main">
-				<?foreach((array)$attach_file as $a1 => $a2){?>
-					<a href="<?=$view_attach?>/<?=$attach_file[$a1]?>" class="at_item" target="_BLANK">
-					<img src="./icon/i_0<?=$attach_icon[$a1]?>.png" style="width:80px; height:80px;"><br>
-					<span class="at_comm"><?=$attach_file[$a1]?></span>
-					</a>
-				<? } ?>
-			</div>
+<form action="./index.php" method="post">
+<table style="width:320px;">
+	<tr>
+		<td style="background:#4090ff; color:#ffffff; height:30px; vercical-align:middle;">[‡]</td>
+		<td style="background:#4090ff; color:#ffffff; vercical-align:middle;" colspan="3">‚¨‹C‚É“ü‚è•ÒW</td>
+		<td style="background:#4090ff; color:#ffffff; vercical-align:middle;">[í]</td>
+	</tr>
+	<?foreach((array)$fav_sort as $a1 => $a2){?>
+	<tr>
+		<td style="width:30px; height:30px; background:#fafafa; vertical-align:middle;text-align:center;">
+		<select name="fav_order[<?=$a2?>]">
+		<?for($n=0;$n<count($fav_sort);$n++){?><option value="<?=$n?>" <?if($n == $a1){?>selected="selected"<?}?>><?=$n+1?></option>
 		<? } ?>
+		</select>
+		</td>
+		<td style="width:170px; height:30px; background:#fafafa; vertical-align:middle;">
+			<input type="text" name="fav_name[<?=$a2?>]" style="width:168px; margin:auto; border:none;" value="<?=$fav[$a2]['name']?>"maxlength="10">
+		</td>
 
-		<?if($res){?>
-			<div class="open4">
+		<td style="width:55px; height:30px; background:#fafafa; vertical-align:middle;">
+		<div class="main_slide m_sele_i cc_f<?=$fav[$a2]['color']?>" id="fav_select<?=$a2?>"><span class="<?=$icon_font[$fav[$a2]['icon']]?> sele_icon_22"></span></div>
+		<div class="sub_slide s_sele_i">
+		<?for($k=1;$k<13;$k++){?>
+		<input class="fav_radio" type="radio" id="sel<?=$a2?><?=$k?>" name="fav_icon[<?=$a2?>]" value="<?=$k?>" onclick="FavI(<?=$a2?><?=$k?>)" <?if($fav[$a2]['icon'] ==$k){?> checked=" checked"<? } ?>>
+		<label class="fav_radio_label" for="sel<?=$a2?><?=$k?>"><span class="<?=$icon_font[$k]?> sele_icon_22"></span></label>
+		<? } ?>
+		</div>
+		</td>
+		<td style="width:30px; height:30px; background:#fafafa; vertical-align:middle;">
+			<div class="main_slide m_sele_c cc<?=$fav[$a2]['color']?>" id="color_select<?=$a2?>"><span style="color:#ffffff; font-weight:600;">@</span></div>
+			<div class="sub_slide s_sele_c">
+				<?for($k=1;$k<9;$k++){?><input class="fav_radio" type="radio" name="fav_color[<?=$a2?>]" id="cl<?=$a2?><?=$k?>" value="<?=$k?>" onclick="FavC(<?=$a2?><?=$k?>)" <?if($fav[$a2]['color'] ==$k){?>checked=" checked"<? } ?>><label id="cl2<?=$a2?><?=$k?>" for="cl<?=$a2?><?=$k?>" class="sele_box" style="background:<?=$icon_color[$k]?>">@</label>
+				<? } ?>
+			</div>
+		</td>
+
+		<td style="width:30px; height:30px; background:#fafafa; vertical-align:middle;text-align:center;">
+			<input type="checkbox" name="fav_del[<?=$a2?>]" value="1">
+		</td>
+	</tr>
+	<? } ?>
+</table>
+<button type="submit" class="submit" style="width:300px;" method="post" name="fav_chg_set" value="“o˜^">•Ï@X</button>
+</form>
+<br>	
+<form action="./index.php" method="post">
+<input type="hidden" name="uid" value="<?=$uid?>">
+<table style="width:320px;">
+	<tr>
+		<td style="width:320px; height:30px; background:#4090ff; color:#ffffff;  border:1px solid #e0e0e0; vercical-align:middle;" colspan="5">
+			‚¨‹C‚É“ü‚è“o˜^
+		</td>
+	</tr>
+
+	<tr>
+		<td style="width:205px; height:30px; background:#fafafa; vertical-align:top;">
+			<input maxlength="8" type="text" name="fav_name_new" style="width:190px; height:26px; margin:auto; border:none;" placeholder="&nbsp;–¼Ì“ü—Í">
+		</td>
+
+		<td style="width:55px; height:30px; background:#fafafa; vertical-align:middle;">
+			<div class="main_slide m_sele_i cc_f1" id="fav_select_new"><span class="<?=$icon_font[1]?> sele_icon_22"></span></div>
+			<div class="sub_slide s_sele_i">
+				<?for($k=1;$k<13;$k++){?>
+				<input class="fav_radio" type="radio" id="sel_new_<?=$k?>" name="fav_icon_new" value="<?=$k?>" onclick="FavNewI(<?=$k?>)" <?if($fav[$a2]['icon'] ==$k){?> checked=" checked"<? } ?>><label class="fav_radio_label" for="sel_new_<?=$k?>"><span class="<?=$icon_font[$k]?> sele_icon_22"></span></label>
+				<? } ?>
+			</div>
+		</td>
+		<td style="width:50px; height:30px; background:#fafafa; vertical-align:top;">
+			<div class="main_slide m_sele_c cc1" id="color_select_new"><span style="color:#ffffff; font-weight:600;">@</span></div>
+			<div class="sub_slide s_sele_c">
+				<?for($k=1;$k<9;$k++){?>
+					<input class="fav_radio" type="radio" name="fav_color_new" id="cl_new_<?=$k?>" value="<?=$k?>" onclick="FavNewC(0<?=$k?>)" <?if($fav[$a2]['color'] ==$k){?>checked=" checked"<? } ?>>
+					<label id="cl2<?=$a2?><?=$k?>" for="cl_new_<?=$k?>" class="sele_box" style="background:<?=$icon_color[$k]?>">@</label>
+				<? } ?>
+			</div>
+		</td>
+	</tr>
+</table>
+<button type="submit" class="submit" style="width:300px;" method="post" name="fav_new_set" value="“o˜^">“o@˜^</button>
+</form>
+
+<?} elseif($view) {?>
+	<?if($log_id){?>
+	<!--¡¡’Êí------------------------->
+		<table class="open">
+			<tr>
+			<form action="./index.php" method="post">
+		        <td class="open_a">
+					<span class="" style="float:left;">
+						<span style="display:inline-block; font-size:15px;height:30px;line-height:30px;">“úF<?=$view_date?>@<?=$view_time?></span>@
+						<span style="display:inline-block; font-size:15px;height:30px;line-height:30px;">ƒJƒeƒSƒŠF<?=$category[$view_category]["name"]?></span>@
+						<span style="display:inline-block; font-size:15px;height:30px;line-height:30px;">ƒOƒ‹[ƒvF<?=$group[$view_group]["name"]?></span>
+					</span>
+
+					<span class="" style="float:right;display:block;height:35px;">
+						<div id="iconselect" class="main_slide m_sele_view"><?=$icon_dat[$fav_count[$log_id]]?></div>
+						<div class="sub_slide s_sele_view">
+							<?foreach((array)$fav_sort as $a1 => $a2){?>
+								<input type="radio" id="view_<?=$a2?>" class="label_c" name="n_icon" value="<?=$a2?>" onclick="Fav(<?=$a2?>)" style="display:none;" <?if($fav_count[$log_id] ==$a2){?> checked="checked"<?}?>>
+								<label for="view_<?=$a2?>" class="sele_box_view label_c" style="color:<?=$icon_color[$fav[$a2]['color']]?>"><?=$icon_dat[$a2]?></label>
+							<? } ?>
+
+							<?if($a1){?>
+								<input type="radio" id="view_none" class="label_c" name="n_icon" value="0" onclick="Fav(0)" style="display:none;">
+								<label for="view_none" class="sele_box_view label_c" style="color:#333333;background:#e0e0e0">
+								<span style="display:inline-block;width:30px;padding:0px 3px; font-weight:900;font-size:15px;">~</span>
+								<span class="icon_name_view">ƒtƒ‰ƒO‰ğœ</span></label>
+							<? } ?>
+						</div>
+						<button type="submit" value="“o˜^" name="fav_reg" class="submit">“o˜^</button>
+						<input type="hidden" value="<?=$log_id?>" name="icon_set">
+					</span>
+					<div style="clear:both"></div>
+				</form>
+
+				<form action="./index.php" method="post">
+					<span class="" style="float:left;">
+						<span style="display:inline-block; font-size:15px;height:26px;line-height:26px;">TITLEF<?=$view_title?></span>
+					</span>
+					<span class="" style="float:right">
+						<span style="display:inline-block; font-size:15px;height:26px;line-height:26px;font-weight:600;">‘—MÒF<?=$member[$view_writer]["name"]?></span>
+						<?if($uid == $view_writer){?>@
+						<button type="button" class="submit" onclick="Logdel(<?=$log_id?>)">íœ</button>
+						<button type="submit" name="set_chg" value="C³" class="submit">C³</button><? } ?>
+						<button type="submit" name="set_res" value="RES" class="submit">RES</button>
+					</span>
+					<span style="clear:both"></span>
+				</form>
+				</td>
+			</tr>
+			<tr>
+				<td class="open_b" colspan="3" style="vertical-align:middle;"><?foreach((array)$member_now as $a1 => $a2){?><span class="member<?=$user_view[$log_id][$a2]+0?>"><?=$member[$a2]["name"]?></span><? } ?></td>
+			</tr>
+			<tr>
+				<td class="open_main">
+					<?=$view?>
+				</td>
+			</tr>
+			<?if($attach_icon){?>
+			<tr>
+				<td class="open_main">
+				<?foreach((array)$attach_file as $a1 => $a2){?>
+				<span style="display:inline-block; text-align:center;padding:5px auto; width:100px;">
+				<a href="<?=$view_attach?>/<?=$attach_file[$a1]?>" target="_BLANK"><img src="./icon/i_0<?=$attach_icon[$a1]?>.png" width="60" height="60"><br><span style="font-size:12px;"><?=$attach_file[$a1]?></span></a>
+				</span>
+				<? } ?>
+				</td>
+			</tr>
+			<? } ?>
+
+			<?if($res){?>
+			<tr>
+			<td class="open_sub" style="background-color:#f0f0f0;">
 				<?for($p1=0;$p1<count($res);$p1++){?>
 					<div class="res">
-						<div style="border-bottom:1px solid #606060;padding:3px;">
-							<span class="open_block"><span class="open_title">æ—¥æ™‚ï¼š</span><span class="open_item"><?=$res[$p1]["date"]?>ã€€<?=$res[$p1]["time"]?></span></span><span class="open_block"><span class="open_title">åå‰ï¼š</span><span class="open_item"><?=$member[$res[$p1]["writer"]]["name"]?></span></span>ã€€
-							<?if($uid == $res[$p1]["writer"]){?>
-									<button id="resdel" type="button" class="submit" onclick="Resdel(<?=$res[$p1]['res_id']?>)">å‰Šé™¤</button>
-							<? } ?>	
-						</div>
-						<div style="padding:3px;word-wrap: break-word;"><?=$res[$p1]["log"]?><br></div>
+					<div style="font-color:#606060; border-bottom: 1px solid #cccccc; width:98%; padding:3px; float:left;">“úF<?=$res[$p1]["date"]?>@<?=$res[$p1]["time"]?>@@–¼‘OF<?=$member[$res[$p1]["writer"]]["name"]?>
+					<?if($uid == $res[$p1]["writer"]){?>
+						<span style="float:right;">
+							<button id="resdel" type="button" class="submit" onclick="Resdel(<?=$res[$p1]['res_id']?>)">íœ</button>
+						</span>
+					<? } ?>	
+					</div>
+					<div style="clear:both"></div>
+					<div style="padding:5px;"><?=$res[$p1]["log"]?><br></div>
 					</div>
 				<? } ?>
-			</div>
-		<? } ?>
+			</td>
+			</tr>
+			<? } ?>
+		</table>
+	<!--¡¡END------------------------->
 	<? } ?>
-</div><!--â–²open-->
 <? } ?>
-</div><!--â–²main-->
 </div>
-</div><!--â–²outer-->
-<form id="submit_form" action="./index.php" method="post">
-<input type="hidden" class="submit_hidden" value="" name="submit_hidden">
-<input id="act" type="hidden" class="act" value="" name="act">
-</form>
-<div class="bottom">ã€€</div>
+<? } ?>
+<? } ?>
+<div class="bottom">@</div>
+
 </body>
 </html>

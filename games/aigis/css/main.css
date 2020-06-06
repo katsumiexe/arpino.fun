@@ -1241,12 +1241,11 @@ body {
 .howto_page{
 	position		:relative;
 	display			:inline-block;
-	margin			:10px auto;
+	margin			:20px auto;
 	width			:440px;
 	height			:50px;
 	text-align		:center;
 	background		:#e0e0e0;
-	font-size:0;
 }
 
 .howto_page_tag{
@@ -1259,6 +1258,22 @@ body {
 	color			:#fafafa;
 	text-shadow		:2px 2px 0px #705030;
 	border			:5px solid #f0e0c0;	
+}	
+
+.howto_page_ttl{
+	display			:inline-block;
+	position		:absolute;
+	background		:#d0c0a0;
+	font-size		:16px;
+	font-weight		:900;
+	color			:#fafafa;
+	text-shadow		:2px 2px 0px #705030;
+	left			:174px;
+	top				:0px;
+	height			:25px;
+	width			:258px;
+	line-height		:25px;
+
 }	
 
 #ibox0{
@@ -1276,32 +1291,24 @@ body {
 }
 
 #ibox2{
-	left			:174px;
+	left			:179px;
 	top				:27px;
 	height			:35px;
 	line-height		:35px;
 }
 
 #ibox3{
-	left			:261px;
+	left			:271px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
 }
 
 #ibox4{
-	left			:348px;
+	left			:363px;
 	top				:25px;
 	height			:35px;
 	line-height		:35px;
-}
-
-#ibox5{
-	left			:174px;
-	top				:0px;
-	height			:25px;
-	width			:258px;
-	line-height		:25px;
 }
 
 .tag_on{
