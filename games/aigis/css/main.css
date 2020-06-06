@@ -1189,11 +1189,14 @@ body {
 .howto{
 	position		:fixed;
 	display			:inline-block;
-	top				:0;
-	left			:0;
-	right			:0;
-	bottom			:0;
-	margin			:auto;
+	top				:-10vh;
+	left			:-10vw;
+	height			:120vh;
+	width			:120vw;
+	background		:#202535;
+}
+
+.howto_main{
 	height			:550px;
 	width			:450px;
 	background		:linear-gradient(#ffe0c0,#f0d8b0);
