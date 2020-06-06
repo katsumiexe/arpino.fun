@@ -119,8 +119,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 $now=date("Y");
 
-
-//--------------------------------------
+//-------------------------------------
 $logdata1["TeSt"] ="Null";
 $logdata2["TeSt"] =0;
 
@@ -157,7 +156,6 @@ if($_REQUEST["member_chg"]){
 			$err="ÉçÉOÉCÉìIDÇ™èdï°ÇµÇƒÇ¢Ç‹Ç∑";
 		}
 	}
-
 
 	if($err){
 		$sql ="SELECT * FROM duty2_member";
