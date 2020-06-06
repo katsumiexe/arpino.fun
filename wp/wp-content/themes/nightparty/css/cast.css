@@ -1298,9 +1298,40 @@ input[type=range]::-moz-range-thumb{
 	margin			:auto;
 }
 
-.cal_list{
+.cal_weeks_prev,.cal_weeks_next{
 	position		:relative;
 	width			:93vw;
+	margin			:1vw auto;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#ff50a0;
+	color			:#fafafa;
+	font-weight		:800;
+	text-shadow		:1px 1px 0 #d00000;
+	text-align		:center;
+	font-size		:4vw;
+}
+
+.cal_weeks_box_2{
+	position		:absolute;
+	top				:-82vw;
+	width			:92vw;
+	margin			:0 auto;
+}
+.cal_weeks_box{
+	display			:inline-block;
+	position		:relative;
+	height			:80.5vw;
+	width			:92vw;
+	margin			:0 auto;
+	background		:#fafafa;
+	border-bottom	:0.5vw soliid #d00000;
+	overflow		:hidden;
+}
+
+.cal_list{
+	position		:relative;
+	width			:92vw;
 	margin			:1vw auto;
 	height			:10vw;
 	background		:#fafafa;
@@ -1349,7 +1380,7 @@ input[type=range]::-moz-range-thumb{
 	top				:1vw;
 	left			:84vw;
 	height			:8vw;
-	width			:9vw;
+	width			:8vw;
 	text-align		:left;
 	background		:#fa20fa;
 }
@@ -1384,7 +1415,7 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	border-radius	:20px;
 }
 
-.login_box{
+.login{
 	border			:5px solid #ffd0d0;
 	box-shadow		:5px 5px 5px rgba(30,30,30,0.6);
 	border-radius	:10px;

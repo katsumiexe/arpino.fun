@@ -471,9 +471,69 @@ $(function(){
 		});
 	});
 
+	$('.cal_weeks_box_2').draggable({
+
+		axis: 'y',
+		start: function( event, ui ) {
+			startPosition = ui.position.top;
+		},
+
+		drag: function( event, ui ) {
+/*
+			if(ui.position.top < startPosition){
+				ui.position.top = startPosition;
+			}
+*/
+			console.log(ui.position.top+"■"+VwBase*(-70));
+		},
+	
+		stop: function( event, ui ) {
+			if(ui.position.top < VwBase*(-95)){
+				$('.cal_weeks_box_2').animate({'top':'0vh'},100);
+
+				$.post({
+					url:Dir + "/post/chg_weeks.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'base_day':$('#base_day').val(),
+						'pre':'1',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+					$('.cal_weeks_box_2').prepend(data.html).css('top','76vw');
+					$('.cal_weeks_box_2').children().slice(-7,0).remove();
+					$('#base_day').val(data.date);
+					console.log(data.html)
+				});
+
+			}else if(ui.position.top > VwBase*(-65)){
+				$('.cal_weeks_box_2').animate({'top':'148vw'},100);
+
+				$.post({
+					url:Dir + "/post/chg_weeks.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'base_day':$('#base_day').val(),
+						'pre':'2',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+					$('.cal_weeks_box_2').prepend(data.html).css('top','76vw');
+					$('.cal_weeks_box_2').children().slice(0,7).remove();
+					$('#base_day').val(data.date);
+					console.log(data.html)
+				});
+
+			}else{
+				$('.mypage_cal').animate({'top':'80vw'},100);
+			}
+		},
+	});
+
 	$('.mypage_cal').draggable({
 		axis: 'x',
-
 		drag: function( event, ui ) {
 		},
 

@@ -73,7 +73,7 @@ if($_SESSION){
 	$base_w=$now_w-$week_start;
 	if($base_w<0) $base_w+=7;
 
-	$base_day=time()-$base_w*86400;
+	$base_day=time()-($base_w+7)*86400;
 
 	$week_st=date("Ymd",$base_day);
 	$week_ed=date("Ymd",$base_day+604800);
@@ -418,34 +418,40 @@ $w=($s+$week_start) % 7;
 </div>
 <div class="cal_set_btn">スケジュール入力</div>
 <div class="cal_weeks">
+	<div class="cal_weeks_prev">前週</div>
+	<div class="cal_weeks_box">
+		<div class="cal_weeks_box_2">
+			<?for($n=0;$n<21;$n++){
+				$tmp_wk=($n+$week_start)%7;
+			?>
+				<div class="cal_list">
+					<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
+					<select id="sel_in<?=$n?>" class="sch_time_in">
+						<option class="sel_txt"></option>
+						<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
+							<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
+						<?}?>
+					</select>
+					<select id="sel_out<?=$n?>" class="sch_time_out">
+						<option class="sel_txt"></option>
+						<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
+							<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
+						<?}?>
+					</select>
+					<div class="cal_log"></div>
+				</div>
+			<? } ?>
+		</div>
+		<div class="sch_set">SET</div>
+	</div>
+
+	<div class="cal_weeks_next">翌週</div>
+</div>
+<? } ?>
+
 <input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
-<?for($n=0;$n<7;$n++){
-	$tmp_wk=($n+$week_start)%7;
-?>
-	<div class="cal_list">
-		<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-		<select id="sel_in<?=$n?>" class="sch_time_in">
-			<option class="sel_txt"></option>
-			<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
-				<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
-			<?}?>
-		</select>
-		<select id="sel_out<?=$n?>" class="sch_time_out">
-			<option class="sel_txt"></option>
-			<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
-				<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
-			<?}?>
-		</select>
-		<div class="cal_log"></div>
-	</div>
-<? } ?>
-<div class="sch_set">SET</div>
-</div>
 
-
-
-<? } ?>
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
 </form>
