@@ -25,11 +25,11 @@ $week_tag2[6]="ca3";
 $pre		=$_POST["pre"];
 
 if($pre) ==1{
-	$base_day_ed	=$_POST["base_day"];
-	$base_day		=$_POST["base_day"]-604800;
+	$base_day_ed		=$_POST["base_day"];
+	$base_day			=$_POST["base_day"]-604800;
 
-	$base_day_sql=date("Y-m-d",$base_day);
-	$base_day_ed_sql=date("Y-m-d",$base_day_ed);
+	$base_day_sql		=date("Y-m-d",$base_day);
+	$base_day_ed_sql	=date("Y-m-d",$base_day_ed);
 	
 	$sql	 ="SELECT * FROM wp01_0schedule";
 	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
@@ -46,8 +46,8 @@ if($pre) ==1{
 	$base_day_ed		=$_POST["base_day"]+1209600;
 	$base_day			=$_POST["base_day"]+604800;
 
-	$base_day_sql=date("Y-m-d",$base_day);
-	$base_day_ed_sql=date("Y-m-d",$base_day_ed);
+	$base_day_sql		=date("Y-m-d",$base_day);
+	$base_day_ed_sql	=date("Y-m-d",$base_day_ed);
 
 	$sql	 ="SELECT * FROM wp01_0schedule";
 	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
@@ -60,9 +60,8 @@ if($pre) ==1{
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}
 }
+
 $cal["date"]=$base_day;
-
-
 $sql ="SELECT * FROM wp01_0sch_table";
 $sql.=" ORDER BY sort ASC";
 $dat = $wpdb->get_results($sql,ARRAY_A );
