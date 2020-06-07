@@ -484,12 +484,12 @@ $(function(){
 				ui.position.top = startPosition;
 			}
 */
-			console.log(ui.position.top+"■"+VwBase*(-70));
+			console.log(ui.position.top+"■"+VwBase*(-65));
 		},
 	
-		stop: function( event, ui ) {
+		stop: function( event, ui ) {//前週
 			if(ui.position.top < VwBase*(-95)){
-				$('.cal_weeks_box_2').animate({'top':'0vh'},100);
+				$('.cal_weeks_box_2').animate({'top':'0'},100);
 
 				$.post({
 					url:Dir + "/post/chg_weeks.php",
@@ -507,8 +507,8 @@ $(function(){
 					console.log(data.html)
 				});
 
-			}else if(ui.position.top > VwBase*(-65)){
-				$('.cal_weeks_box_2').animate({'top':'148vw'},100);
+			}else if(ui.position.top > VwBase*(-65)){//翌週
+				$('.cal_weeks_box_2').animate({'top':'-147vw'},100);
 
 				$.post({
 					url:Dir + "/post/chg_weeks.php",
@@ -527,7 +527,7 @@ $(function(){
 				});
 
 			}else{
-				$('.mypage_cal').animate({'top':'80vw'},100);
+				$('.cal_weeks_box_2').animate({'top':'-73.5vw'},100);
 			}
 		},
 	});
@@ -616,12 +616,9 @@ $(function(){
 						});
 					},
 				});
-
 			}else{
 				$('.mypage_slide').animate({'left': '0vw'},100);
-
 			}
 		}
 	});
 });
-

@@ -1311,11 +1311,43 @@ body {
 
 .score_top{
 	width			:500px;
+	height			:30px;
+	line-height		:30px;
 	border			:2px solid #303030;
 	box-shadow		:2px 2px 2px rgba(30,30,30,0.5);
 	margin			:10px auto;
 	background		:#fafafa;
+
 }
+
+.score_img{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	width			:52px;
+	height			:52px;
+
+}
+
+.score_lv{
+	display			:inline-block;
+	border			:1px solid #d00000;
+	height			:20px;
+	line-height		:20px;
+	width			:60px;
+	margin			:0 3px;	
+	background		:#fafafa;
+	color			:#d00000;
+	font-size		:13px;
+}
+.score_lv_on{
+	background		:#d00000;
+	color			:#fafafa;
+}
+
 
 .score_table{
 	width			:500px;
@@ -1342,6 +1374,7 @@ body {
 }
 
 .score_table_unit{
+	position:relative;
 	width:56px;
 	border-bottom:2px solid #303030;
 }

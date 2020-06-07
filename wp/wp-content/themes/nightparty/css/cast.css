@@ -1314,25 +1314,25 @@ input[type=range]::-moz-range-thumb{
 
 .cal_weeks_box_2{
 	position		:absolute;
-	top				:-82vw;
+	top				:-73.5vw;
 	width			:92vw;
 	margin			:0 auto;
+	font-size:0;
 }
+
 .cal_weeks_box{
 	display			:inline-block;
 	position		:relative;
-	height			:80.5vw;
+	height			:84vw;
 	width			:92vw;
 	margin			:0 auto;
 	background		:#fafafa;
-	border-bottom	:0.5vw soliid #d00000;
 	overflow		:hidden;
 }
 
 .cal_list{
 	position		:relative;
 	width			:92vw;
-	margin			:1vw auto;
 	height			:10vw;
 	background		:#fafafa;
 	border-bottom	:0.5vw dashed #ffd0f0;

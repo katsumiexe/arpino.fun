@@ -414,7 +414,6 @@ $w=($s+$week_start) % 7;
 </div>
 </div>
 <div class="cal_days">
-
 </div>
 <div class="cal_set_btn">スケジュール入力</div>
 <div class="cal_weeks">
@@ -442,20 +441,16 @@ $w=($s+$week_start) % 7;
 				</div>
 			<? } ?>
 		</div>
-		<div class="sch_set">SET</div>
 	</div>
-
+	<div class="sch_set">SCHE_SET</div>
 	<div class="cal_weeks_next">翌週</div>
 </div>
 <? } ?>
-
 <input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
-
 <form id="logout" action="<?php the_permalink();?>" method="post">
 <input type="hidden" value="1" name="log_out">
 </form>
-
 <form id="menu_sel" action="<?php the_permalink();?>" method="post">
 <input id="cast_page" type="hidden" value="" name="cast_page">
 <input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">

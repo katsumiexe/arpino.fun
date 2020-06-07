@@ -377,12 +377,13 @@ $(function(){
 				$.post({
 					url:'post_sort.php',
 					data:{
-						"log_id":LogId,
-						"persona":PersonaJ,
-						"getp"	:GetPJ,
-						"getn"	:GetNJ,
-						"doll"	:DollJ,
-						"pts"	:PtsJ
+						"lv"		:Lv,
+						"log_id"	:LogId,
+						"persona"	:PersonaJ,
+						"getp"		:GetPJ,
+						"getn"		:GetNJ,
+						"doll"		:DollJ,
+						"pts"		:PtsJ
 					}
 
 				}).done(function(data3, textStatus, jqXHR){

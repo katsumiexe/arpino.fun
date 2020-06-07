@@ -3,6 +3,7 @@ include_once("./library/session.php");
 $date=date("Y-m-d H:i:s");
 
 $log_id		=$_POST["log_id"];
+$lv			=$_POST["lv"];
 $doll		=json_decode($_POST["doll"]);
 $persona	=json_decode($_POST["persona"]);
 $pts		=json_decode($_POST["pts"]);
@@ -31,50 +32,57 @@ foreach($getp as $a1 => $a2){
 
 foreach($pts as $a1 => $a2){
 	if($a1 !="l"){
-	if($a2 != $tmp_a2){
-		$order++;
-	}
-	$tmp_a2=$a2;
-	$result=floor($a2+0);
-	$app.="<table class=\"table_res\">";
-	$app.="<tr><td class=\"td_res\">";
-	$app.="<div class=\"res_a{$order}\">{$order}</div>";
-
-	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
-	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
-	$app.="<div class=\"res_d\">{$unit[$doll[$a1]]["name"]}</div>";
-
-	$app.="<table class=\"res_e\">";
-	$app.="<tr>";
-	for($d=0;$d<6;$d++){
-		if($get[$a1][$d]>0){
-			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
-
-		}elseif($get[$a1][$d]<0){
-			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
-
-		}else{
-			$app.="<td class=\"res_e_3\">0</td>";
+		if($a2 != $tmp_a2){
+			$order++;
 		}
-	}
 
-	$app.="</tr><tr>";
-	for($d=6;$d<12;$d++){
-		if($get[$a1][$d]>0){
-			$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+		$tmp_a2=$a2;
+		$result=floor($a2+0);
+		$app.="<table class=\"table_res\">";
+		$app.="<tr><td class=\"td_res\">";
+		$app.="<div class=\"res_a{$order}\">{$order}</div>";
 
-		}elseif($get[$a1][$d]<0){
-			$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+		$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
+		$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
+		$app.="<div class=\"res_d\">{$unit[$doll[$a1]]["name"]}</div>";
 
-		}else{
-			$app.="<td class=\"res_e_3\">0</td>";
+		$app.="<table class=\"res_e\">";
+		$app.="<tr>";
+		for($d=0;$d<6;$d++){
+			if($get[$a1][$d]>0){
+				$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+			}elseif($get[$a1][$d]<0){
+				$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+			}else{
+				$app.="<td class=\"res_e_3\">0</td>";
+			}
 		}
+
+		$app.="</tr><tr>";
+		for($d=6;$d<12;$d++){
+			if($get[$a1][$d]>0){
+				$app.="<td class=\"res_e_1\">{$get[$a1][$d]}</td>";
+
+			}elseif($get[$a1][$d]<0){
+				$app.="<td class=\"res_e_2\">{$get[$a1][$d]}</td>";
+
+			}else{
+				$app.="<td class=\"res_e_3\">0</td>";
+			}
+		}
+		$app.="</table>";
+		$app.="<div class=\"res_f\"><span class=\"res_f1\">{$result}</span><span class=\"res_f2\">Pts</span></div>";
+		$app.="</td></tr>";
+		$app.="</table>";
+		$tmp_pts=$a2;
 	}
-	$app.="</table>";
-	$app.="<div class=\"res_f\"><span class=\"res_f1\">{$result}</span><span class=\"res_f2\">Pts</span></div>";
-	$app.="</td></tr>";
-	$app.="</table>";
-	$tmp_pts=$a2;
+	if($order == 1 && $a1 =="p"){
+		$sql="INSERT INTO score_data(`date`, `unit`, `level`,`score`)";	
+		$sql.=" VALUES('{$date}', '{$doll['p']}', '{$lv}','{$pts['p']}')";	
+		mysqli_query($mysqli,$sql);
+//		$app.=$sql;
 	}
 }
 
