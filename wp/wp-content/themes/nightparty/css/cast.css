@@ -1323,7 +1323,7 @@ input[type=range]::-moz-range-thumb{
 .cal_weeks_box{
 	display			:inline-block;
 	position		:relative;
-	height			:84vw;
+	height			:74vw;
 	width			:92vw;
 	margin			:0 auto;
 	background		:#fafafa;

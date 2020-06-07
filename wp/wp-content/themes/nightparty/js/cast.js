@@ -484,11 +484,11 @@ $(function(){
 				ui.position.top = startPosition;
 			}
 */
-			console.log(ui.position.top+"■"+VwBase*(-65));
+			console.log(VwBase*(-65)+"■"+ui.position.top+"■"+VwBase*(-65));
 		},
 	
 		stop: function( event, ui ) {//前週
-			if(ui.position.top < VwBase*(-95)){
+			if(ui.position.top > VwBase*(-65)){
 				$('.cal_weeks_box_2').animate({'top':'0'},100);
 
 				$.post({
@@ -507,7 +507,7 @@ $(function(){
 					console.log(data.html)
 				});
 
-			}else if(ui.position.top > VwBase*(-65)){//翌週
+			}else if(ui.position.top < VwBase*(-95)){//翌週
 				$('.cal_weeks_box_2').animate({'top':'-147vw'},100);
 
 				$.post({
