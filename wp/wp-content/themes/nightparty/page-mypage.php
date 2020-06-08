@@ -70,10 +70,13 @@ if($_SESSION){
 
 	$week_start=get_option("start_of_week")+0;
 	$now_w=date("w");
+
+	$base_ymd=strtotime(date("Y-m-d 00:00:00",time()));
+
 	$base_w=$now_w-$week_start;
 	if($base_w<0) $base_w+=7;
 
-	$base_day=time()-($base_w+7)*86400;
+	$base_day=$base_ymd-($base_w+7)*86400;
 
 	$week_st=date("Ymd",$base_day);
 	$week_ed=date("Ymd",$base_day+604800);
@@ -114,7 +117,7 @@ if($_SESSION){
 	}
 
 	$sql	 ="SELECT * FROM wp01_0schedule";
-	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND sche_date>='{$month_st}'";
 	$sql	.=" AND sche_date<'{$month_ed}'";
 

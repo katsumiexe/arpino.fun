@@ -501,7 +501,7 @@ $(function(){
 					dataType: 'json',
 
 				}).done(function(data, textStatus, jqXHR){
-					$('.cal_weeks_box_2').prepend(data.html).css('top','76vw');
+					$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
 					$('.cal_weeks_box_2').children().slice(-7,0).remove();
 					$('#base_day').val(data.date);
 					console.log(data.html)
@@ -520,9 +520,10 @@ $(function(){
 					dataType: 'json',
 
 				}).done(function(data, textStatus, jqXHR){
-					$('.cal_weeks_box_2').prepend(data.html).css('top','76vw');
+					$('.cal_weeks_box_2').append(data.html).css('top','-73.5vw');
 					$('.cal_weeks_box_2').children().slice(0,7).remove();
 					$('#base_day').val(data.date);
+					console.log(data.st)
 					console.log(data.html)
 				});
 

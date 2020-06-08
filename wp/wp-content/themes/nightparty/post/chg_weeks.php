@@ -24,15 +24,15 @@ $week_tag2[6]="ca3";
 
 $pre		=$_POST["pre"];
 
-if($pre) ==1{
-	$base_day_ed		=$_POST["base_day"];
+if($pre ==1){
 	$base_day			=$_POST["base_day"]-604800;
+	$add_day			=$base_day;
 
-	$base_day_sql		=date("Y-m-d",$base_day);
-	$base_day_ed_sql	=date("Y-m-d",$base_day_ed);
+	$base_day_sql		=date("Y-m-d",$add_day);
+	$base_day_ed_sql	=date("Y-m-d",$add_day+86400*7);
 	
 	$sql	 ="SELECT * FROM wp01_0schedule";
-	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND sche_date>='{$base_day_sql}'";
 	$sql	.=" AND sche_date<'{$base_day_ed_sql}'";
 
@@ -43,14 +43,14 @@ if($pre) ==1{
 	}
 
 }else{
-	$base_day_ed		=$_POST["base_day"]+1209600;
-	$base_day			=$_POST["base_day"]+604800;
+	$base_day			=$_POST["base_day"]+86400*7;
+	$add_day			=$_POST["base_day"]+86400*21;
 
-	$base_day_sql		=date("Y-m-d",$base_day);
-	$base_day_ed_sql	=date("Y-m-d",$base_day_ed);
+	$base_day_sql		=date("Y-m-d",$add_day);
+	$base_day_ed_sql	=date("Y-m-d",$add_day+86400*7);
 
 	$sql	 ="SELECT * FROM wp01_0schedule";
-	$sql	.=" WHERE cast_id={$_SESSION["id"]}";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND sche_date>='{$base_day_sql}'";
 	$sql	.=" AND sche_date<'{$base_day_ed_sql}'";
 
@@ -59,9 +59,12 @@ if($pre) ==1{
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}
+
+
+$cal["st"]=$base_day_sql;
+$cal["date"]=$base_day;
 }
 
-$cal["date"]=$base_day;
 $sql ="SELECT * FROM wp01_0sch_table";
 $sql.=" ORDER BY sort ASC";
 $dat = $wpdb->get_results($sql,ARRAY_A );
@@ -74,34 +77,37 @@ $week_start=date("w",$base_day);
 
 for($n=0;$n<7;$n++){
 	$tmp_wk=($n+$week_start)%7;
-	$tmp_date=date("m月d日",$base_day+86400*$n);
+	$tmp_date=date("m月d日",$add_day+86400*$n);
 
-$cal["html"].="<div class=\"cal_list\">";
-$cal["html"].="<div class=\"cal_day {$week_tag2[$tmp_wk]}\">{$tmp_date}({$week[$tmp_wk]})</div>";
+	$cal["html"].="<div class=\"cal_list\">";
+	$cal["html"].="<div class=\"cal_day {$week_tag2[$tmp_wk]}\">{$tmp_date}({$week[$tmp_wk]})</div>";
 
-$cal["html"].="<select id=\"sel_in{$n}\" class=\"sch_time_in\">";
-$cal["html"].="<option class=\"sel_txt\"></option>";
-for($s=0;$s<count($sche_table_name["in"]);$s++){
-$cal["html"].="<option class=\"sel_txt\" value=\"{$sche_table_name["in"][$s]}\"";
-if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){
-$cal["html"].= selected="selected";
-}
-$cal["html"].= ">";
-$cal["html"].= "{$sche_table_name["in"][$s]}</option>";
-}
-$cal["html"].="</select>";
-$cal["html"].="<select id=\"sel_out{$n}\" class=\"sch_time_in\">";
-$cal["html"].="<option class=\"sel_txt\"></option>";
-for($s=0;$s<count($sche_table_name["out"]);$s++){
-$cal["html"].="<option class=\"sel_txt\" value=\"{$sche_table_name["in"][$s]}\"";
-if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){
-$cal["html"].= selected="selected";
-}
-$cal["html"].= ">";
-$cal["html"].= "{$sche_table_name["out"][$s]}</option>";
-}
-$cal["html"].="</select>";
-$cal["html"].="<div class=\"cal_log\"></div></div>";
+	$cal["html"].="<select id=\"sel_in{$n}\" class=\"sch_time_in\">";
+	$cal["html"].="<option class=\"sel_txt\"></option>";
+	for($s=0;$s<count($sche_table_name["in"]);$s++){
+		$cal["html"].="<option class=\"sel_txt\" value=\"{$sche_table_name["in"][$s]}\"";
+		if($stime[date("Ymd",$add_day+86400*$n)]===$sche_table_name["in"][$s]){
+			$cal["html"].= "selected=\"selected\"";
+		}
+
+		$cal["html"].= ">";
+		$cal["html"].= "{$sche_table_name["in"][$s]}</option>";
+	}
+
+	$cal["html"].="</select>";
+	$cal["html"].="<select id=\"sel_out{$n}\" class=\"sch_time_out\">";
+	$cal["html"].="<option class=\"sel_txt\"></option>";
+
+	for($s=0;$s<count($sche_table_name["out"]);$s++){
+		$cal["html"].="<option class=\"sel_txt\" value=\"{$sche_table_name["out"][$s]}\"";
+		if($stime[date("Ymd",$add_day+86400*$n)]===$sche_table_name["out"][$s]){
+			$cal["html"].= "selected=\"selected\"";
+		}
+		$cal["html"].= ">";
+		$cal["html"].= "{$sche_table_name["out"][$s]}</option>";
+	}
+	$cal["html"].="</select>";
+	$cal["html"].="<div class=\"cal_log\"></div></div>";
 }
 echo json_encode($cal);
 exit();
