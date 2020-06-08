@@ -108,8 +108,8 @@ foreach($pts as $a1 => $a2){
 		</div>
 		<div id="lv4" class="first_play_level">
 			<span class="first_icon"></span>
-			<span class="first_comm">記録</span>
-			<span class="first_comm">-record-</span>
+			<span class="first_comm">ランキング</span>
+			<span class="first_comm">-Ranking-</span>
 		</div>
 		<div id="lv5" class="first_play_level">
 			<span class="first_icon"></span>
