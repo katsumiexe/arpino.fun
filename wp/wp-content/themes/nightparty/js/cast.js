@@ -1,6 +1,6 @@
 $(function(){ 
 	var VwBase	=$(window).width()/100;
-
+	var Fav=0;
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
 			$(this).removeClass('mypage_on');
@@ -55,6 +55,18 @@ $(function(){
 		}
 	});
 
+	$('.customer_fav').on('click',function () {
+
+		if(Fav == 0){
+			Fav=$(this).attr('id').replace('fav_','');
+			$('.customer_base_fav').children().slice(0,Fav).css('color','#ff3030');
+
+		}else{
+			Fav=0;
+			$('.customer_fav').css('color','#cccccc');
+		}
+	});
+
 	$('.mail_al').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'0'},150);
 		Tmp=$(this).attr('id').replace('mail','');
@@ -82,11 +94,6 @@ $(function(){
 			$('#sum_img_c').css('background-image','url('+$('#img_c' + Tmp).val() +')');
 			$('.detail_modal_link').append('<span id="point_img_c" class="modal_link_point"></span>');
 		}
-/*
-		$.post(Dir + "/post/mail_read_check.php",{'res_mail_id':Tmp},
-			function(data){
-		});
-*/
 	});
 
 	$('.detail_modal_link').on('click','.modal_link_point',function () {
@@ -102,7 +109,6 @@ $(function(){
 		$('.detail_modal_img').attr('src',$('#' +Img + Tmp).val());
 		$('#point_'+Img).addClass('link_point_on');
 	});
-
 
 	$('.detail_modal_out').on('click',function () {
 		$('.detail_modal').animate({'top':'110vh'},100);
@@ -315,8 +321,6 @@ $(function(){
 		}
 	});
 
-
-
 	$('.mail_detail_img_box').on('mail_detail_tmp','click',function(){
 		
 	});
@@ -404,8 +408,6 @@ $(function(){
 		$('.back').fadeIn(500);
 	});
 
-
-
 	$('.mypage_cal').on('click','.cal_prev',function () {
 		$('.mypage_cal').animate({'left':'0'},200);
 		$.post({
@@ -432,31 +434,35 @@ $(function(){
 				'cast_id':$('#cast_id').val(),
 				'base_day':$('#base_day').val(),
 
-				'sel_in[0]':$('#sel_in0').val(),
-				'sel_in[1]':$('#sel_in1').val(),
-				'sel_in[2]':$('#sel_in2').val(),
-				'sel_in[3]':$('#sel_in3').val(),
-				'sel_in[4]':$('#sel_in4').val(),
-				'sel_in[5]':$('#sel_in5').val(),
-				'sel_in[6]':$('#sel_in6').val(),
+				'sel_in[0]':$('#sel_in7').val(),
+				'sel_in[1]':$('#sel_in8').val(),
+				'sel_in[2]':$('#sel_in9').val(),
+				'sel_in[3]':$('#sel_in10').val(),
+				'sel_in[4]':$('#sel_in11').val(),
+				'sel_in[5]':$('#sel_in12').val(),
+				'sel_in[6]':$('#sel_in13').val(),
 
-				'sel_out[0]':$('#sel_out0').val(),
-				'sel_out[1]':$('#sel_out1').val(),
-				'sel_out[2]':$('#sel_out2').val(),
-				'sel_out[3]':$('#sel_out3').val(),
-				'sel_out[4]':$('#sel_out4').val(),
-				'sel_out[5]':$('#sel_out5').val(),
-				'sel_out[6]':$('#sel_out6').val(),
-
+				'sel_out[0]':$('#sel_out7').val(),
+				'sel_out[1]':$('#sel_out8').val(),
+				'sel_out[2]':$('#sel_out9').val(),
+				'sel_out[3]':$('#sel_out10').val(),
+				'sel_out[4]':$('#sel_out11').val(),
+				'sel_out[5]':$('#sel_out12').val(),
+				'sel_out[6]':$('#sel_out13').val(),
 			},
-			dataType: 'json',
+
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
+			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
 	});
 
 	$('.mypage_cal').on('click','.cal_next',function () {
-		$('.mypage_cal').animate({'left':'-200vw'},200);
+		$('.mypage_cal').stop(false,true).animate({'left':'-200vw'},200);
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
@@ -473,22 +479,52 @@ $(function(){
 		});
 	});
 
-	$('.cal_weeks_box_2').draggable({
+	$('.cal_weeks_prev').on('click',function (){
+		$('.cal_weeks_box_2').stop(false,true).animate({'top':'0'},200);
+		$.post({
+			url:Dir + "/post/chg_weeks.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'base_day':$('#base_day').val(),
+				'cast_id':CastId,
+				'pre':'1',
+			},
+			dataType: 'json',
 
+		}).done(function(data, textStatus, jqXHR){
+			$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
+			$('.cal_weeks_box_2').children().slice(-7,0).remove();
+			$('#base_day').val(data.date);
+		});
+	});
+
+	$('.cal_weeks_next').on('click',function (){
+		$('.cal_weeks_box_2').animate({'top':'-147vw'},200);
+
+		$.post({
+			url:Dir + "/post/chg_weeks.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'base_day':$('#base_day').val(),
+				'cast_id':CastId,
+				'pre':'2',
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
+			$('.cal_weeks_box_2').children().slice(0,7).remove();
+			$('#base_day').val(data.date);
+		});
+	});
+
+	$('.cal_weeks_box_2').draggable({
 		axis: 'y',
 		start: function( event, ui ) {
 			startPosition = ui.position.top;
 		},
-
 		drag: function( event, ui ) {
-/*
-			if(ui.position.top < startPosition){
-				ui.position.top = startPosition;
-			}
-*/
-//			console.log(VwBase*(-65)+"■"+ui.position.top+"■"+VwBase*(-65));
 		},
-	
 		stop: function( event, ui ) {//前週
 			if(ui.position.top > VwBase*(-65)){
 				$('.cal_weeks_box_2').animate({'top':'0'},100);
@@ -533,6 +569,8 @@ $(function(){
 			}
 		},
 	});
+
+
 
 	$('.mypage_cal').draggable({
 		axis: 'x',

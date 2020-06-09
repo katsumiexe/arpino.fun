@@ -176,8 +176,20 @@ if($_SESSION){
 			$cal[$n].="</td>";
 		}
 	}
-}
 
+	$n=0;
+
+	$sql	 ="SELECT * FROM wp01_0customer_list";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$sql	.=" AND `del`='0'";
+
+	$dat2 = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat2 as $cus2){
+		$customer[$n]=$cus2;
+		$n++;
+	}
+}
 ?>
 <html lang="ja">
 <head>
@@ -244,9 +256,50 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 	</ul>
 </div>
+
 <div class="mypage_main">
 <?if($cast_page==1){?>
+
 <?}elseif($cast_page==2){?>
+
+<div class="mypage_customer">
+
+<?for($n=0;$n<count($costomer);$n++){?>
+<div class="customer_list">
+	<img src="" class="customer_list_img">
+	<div class="customer_list_fav"></div>
+	<div class="customer_list_group"><?=$costomer[$n]["group"]?></div>
+	<div class="customer_list_name"><?=$costomer[$n]["nickname"]?></div>
+	<span id="customer<?=$s?>" class="mail_al"></span>
+</div>
+<?}?>
+
+<table class="customer_base">
+<tr>
+	<td class="customer_base_img" rowspan="4"></td>
+	<td class="customer_base_tag">最終</td>
+	<td class="customer_base_item">16日前</td>
+</tr>
+<tr>
+	<td class="customer_base_tag">名前</td>
+	<td class="customer_base_item">いなだ</td>
+</tr>
+<tr>
+	<td class="customer_base_tag">呼び名</td>
+	<td class="customer_base_item">いなぞう</td>
+</tr>
+<tr>
+	<td class="customer_base_tag">誕生日</td>
+	<td class="customer_base_item">1977/06/10（43歳）</td>
+</tr>
+<tr>
+	<td class="customer_base_fav"><span id="fav_1" class="customer_fav"></span><span id="fav_2" class="customer_fav"></span><span id="fav_3" class="customer_fav"></span><span id="fav_4" class="customer_fav"></span><span id="fav_5" class="customer_fav"></span></td>
+	<td class="customer_base_tag">出身</td>
+	<td class="customer_base_item">ばぶー</td>
+</tr>
+</table>
+</div>
+
 <?}elseif($cast_page==3){?>
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
@@ -451,8 +504,10 @@ $w=($s+$week_start) % 7;
 	</div>
 	<div class="cal_weeks_next">翌週</div>
 	<div class="sch_set">SCHE_SET</div>
+	<span class="sch_set_done">スケジュールが登録されました</span>
 </div>
 <? } ?>
+
 <input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
 <form id="logout" action="<?php the_permalink();?>" method="post">

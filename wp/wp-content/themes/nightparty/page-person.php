@@ -56,17 +56,8 @@ endforeach;
 for($n=0;$n<7;$n++){
 	$t_sch=date("Ymd",time()+(86400*$n)-21600);
 
-	if(substr_count($sch[$t_sch]->stime,"0")>0):
-		$tmp_s=substr($sch[$t_sch]->stime,0,2).":".substr($sch[$t_sch]->stime,2,2);
-	else:
-		$tmp_s=$sch[$t_sch]->stime;
-	endif;
-
-	if(substr_count($sch[$t_sch]->etime,"0")>0):
-		$tmp_e=substr($sch[$t_sch]->etime,0,2).":".substr($sch[$t_sch]->etime,2,2);
-	else:
-		$tmp_e=$sch[$t_sch]->etime;
-	endif;
+	$tmp_s=$sch[$t_sch]->stime;
+	$tmp_e=$sch[$t_sch]->etime;
 
 	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
 	$list_week=date("w",strtotime($t_sch));

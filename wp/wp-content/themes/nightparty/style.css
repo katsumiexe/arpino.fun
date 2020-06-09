@@ -16,8 +16,6 @@ a{
 	width		:100vw;
 }
 
-
-
 .main{
 	display		:flex;
 	flex-wrap	:wrap;
@@ -31,19 +29,18 @@ a{
 	font-size	:0;
 }
 
-
 .head{
-	position		:fixed;
-	top				:0;
-	left			:0;
-	display			:flex;
-	width			:100vw;
-	height			:70px;
-	margin			:0 auto;
-	background		:#101213;
-	text-align		:center;
-	box-shadow		:5px 5px 5px rgba(100,50,0,0.6);
-	z-index			:10;
+	position	:fixed;
+	top			:0;
+	left		:0;
+	display		:flex;
+	width		:100vw;
+	height		:70px;
+	margin		:0 auto;
+	background	:#101213;
+	text-align	:center;
+	box-shadow	:5px 5px 5px rgba(100,50,0,0.6);
+	z-index		:10;
 }
 
 .menu-item{
@@ -68,11 +65,11 @@ a{
 	width		:100%;
 	height		:50px;
 	line-height	:50px;
-	text-align:center;
+	text-align	:center;
 }
 
 .menu-item a:hover{
-	background:linear-gradient(#ffd080,#e0b060);
+	background	:linear-gradient(#ffd080,#e0b060);
 	color		:#fafafa;
 }
 
@@ -142,7 +139,6 @@ a{
 .main_b_title{
 	display		:inline-block;
 	width		:666px;
-
 	height		:40px;
 	line-height	:40px;
 	color		:#fafafa;
@@ -160,7 +156,7 @@ a{
 	height		:200px;
 	background	:#000000;
 	margin		:5px;
-	border:5px solid #fafafa;
+	border		:5px solid #fafafa;
 }
 
 .main_b_1_1{
@@ -179,6 +175,7 @@ a{
 	border		:2px solid #906000;
 	z-index		:11;	
 }	
+
 .main_b_1_2{
 	position	:absolute;
 	display		:inline-block;
@@ -186,21 +183,12 @@ a{
 	left		:5px;
 	width		:130px;
 	height		:50px;
-	background	:rgba(245,245,245,0.6);
-	color		:#906000;
-	font-size	:18px;
+	line-height	:25px;
+	background	:rgba(245,245,245,0.9);
+	color		:#903000;
+	font-size	:16px;
 	font-weight	:600;	
 	padding		:5px;
-	text-shadow	:
-		 1px  1px 1px #fafafa,
-		 1px  0px 1px #fafafa,
-		 1px -1px 1px #fafafa,
-		-1px  1px 1px #fafafa,
-		-1px  0px 1px #fafafa,
-		-1px -1px 1px #fafafa,
-		 0px  1px 1px #fafafa,
-		 0px -1px 1px #fafafa
-		;
 }
 
 .main_c{
@@ -225,7 +213,7 @@ a{
 	font-size	:14px;
 	text-align	:left;
 	box-shadow	:5px 5px 10px 10px rgba(200,200,200,0.4) inset,-5px -5px 10px 10px rgba(200,200,200,0.4) inset;
-	color:#606060;
+	color		:#606060;
 }
 
 .foot{
