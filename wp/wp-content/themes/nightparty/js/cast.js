@@ -284,6 +284,7 @@ $(function(){
 
 			$.post(Dir + ".post/blog_img_set.php",
 			{
+				'cast_id':CastId,
 				'img_url':IdTmp,
 				'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
 				'img_top':ImgTop,
@@ -461,6 +462,7 @@ $(function(){
 			data:{
 				'c_month':$('#c_month').val(),
 				'week_start':$('#week_start').val(),
+				'cast_id':CastId,
 				'pre':'2',
 			},
 			dataType: 'json',
@@ -484,7 +486,7 @@ $(function(){
 				ui.position.top = startPosition;
 			}
 */
-			console.log(VwBase*(-65)+"■"+ui.position.top+"■"+VwBase*(-65));
+//			console.log(VwBase*(-65)+"■"+ui.position.top+"■"+VwBase*(-65));
 		},
 	
 		stop: function( event, ui ) {//前週
@@ -496,6 +498,7 @@ $(function(){
 					data:{
 						'c_month':$('#c_month').val(),
 						'base_day':$('#base_day').val(),
+						'cast_id':CastId,
 						'pre':'1',
 					},
 					dataType: 'json',
@@ -504,7 +507,6 @@ $(function(){
 					$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
 					$('.cal_weeks_box_2').children().slice(-7,0).remove();
 					$('#base_day').val(data.date);
-					console.log(data.html)
 				});
 
 			}else if(ui.position.top < VwBase*(-95)){//翌週
@@ -515,6 +517,7 @@ $(function(){
 					data:{
 						'c_month':$('#c_month').val(),
 						'base_day':$('#base_day').val(),
+						'cast_id':CastId,
 						'pre':'2',
 					},
 					dataType: 'json',
@@ -523,8 +526,6 @@ $(function(){
 					$('.cal_weeks_box_2').append(data.html).css('top','-73.5vw');
 					$('.cal_weeks_box_2').children().slice(0,7).remove();
 					$('#base_day').val(data.date);
-					console.log(data.st)
-					console.log(data.html)
 				});
 
 			}else{
@@ -547,6 +548,7 @@ $(function(){
 					data:{
 						'c_month':$('#c_month').val(),
 						'week_start':$('#week_start').val(),
+						'cast_id':CastId,
 						'pre':'1',
 					},
 					dataType: 'json',
@@ -567,6 +569,7 @@ $(function(){
 					data:{
 						'c_month':$('#c_month').val(),
 						'week_start':$('#week_start').val(),
+						'cast_id':CastId,
 						'pre':'2',
 					},
 					dataType: 'json',

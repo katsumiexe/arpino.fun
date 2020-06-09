@@ -1274,15 +1274,16 @@ input[type=range]::-moz-range-thumb{
 
 .sch_set{
 	display			:inline-block;
-	height			:6vw;
-	line-height		:6vw;
-	width			:16vw;
-	background		:#fafafa;
-	color			:#ffc0d0;
+	height			:10vw;
+	line-height		:10vw;
+	width			:30vw;
+	background		:linear-gradient(#ff9090,#d03030);
+	color			:#fafafa;
 	font-size		:4vw;
+	font-weight		:800;
 	text-align		:center;	
 	cursor			:pointer;
-
+	margin			:2vw;
 }
 
 .cal_weeks{
@@ -1291,7 +1292,7 @@ input[type=range]::-moz-range-thumb{
 	left			:0;
 	right			:0;
 	font-size		:0;
-	width			:95vw;
+	width			:87vw;
 	border			:1vw solid #ffc0e0;
 	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.5);
 	background		:#ffe0f0;
@@ -1300,7 +1301,7 @@ input[type=range]::-moz-range-thumb{
 
 .cal_weeks_prev,.cal_weeks_next{
 	position		:relative;
-	width			:93vw;
+	width			:85vw;
 	margin			:1vw auto;
 	height			:8vw;
 	line-height		:8vw;
@@ -1315,7 +1316,7 @@ input[type=range]::-moz-range-thumb{
 .cal_weeks_box_2{
 	position		:absolute;
 	top				:-73.5vw;
-	width			:92vw;
+	width			:84vw;
 	margin			:0 auto;
 	font-size:0;
 }
@@ -1324,7 +1325,7 @@ input[type=range]::-moz-range-thumb{
 	display			:inline-block;
 	position		:relative;
 	height			:74vw;
-	width			:92vw;
+	width			:85vw;
 	margin			:0 auto;
 	background		:#fafafa;
 	overflow		:hidden;
@@ -1332,7 +1333,7 @@ input[type=range]::-moz-range-thumb{
 
 .cal_list{
 	position		:relative;
-	width			:92vw;
+	width			:84vw;
 	height			:10vw;
 	background		:#fafafa;
 	border-bottom	:0.5vw dashed #ffd0f0;
@@ -1367,22 +1368,26 @@ input[type=range]::-moz-range-thumb{
 	text-align	:center;
 }
 
-.sch_time_in{
+.d_sch_time_in,.d_sch_time_out{
+	position	:absolute;
+	bottom		:1vw;
+	border		:0.5vw solid #909090;
+	width		:24vw;
+	height		:8vw;
+	line-height	:8vw;
+	background	:#fff0fa;
+	font-size	:5vw;
+	font-weight	:600;
+	color		:#909090;
+	text-align	:center;
+}
+
+.sch_time_in,.d_sch_time_in{
 	left		:32vw;
 }
 
-.sch_time_out{
+.sch_time_out,.d_sch_time_out{
 	left		:58vw;
-}
-
-.cal_log{
-	position		:absolute;
-	top				:1vw;
-	left			:84vw;
-	height			:8vw;
-	width			:8vw;
-	text-align		:left;
-	background		:#fa20fa;
 }
 
 

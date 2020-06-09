@@ -53,7 +53,6 @@ if($_SESSION){
 	}
 }
 if($_SESSION){
-
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
 	$ob_holiday = json_decode($holiday,true);
@@ -71,12 +70,11 @@ if($_SESSION){
 	$week_start=get_option("start_of_week")+0;
 	$now_w=date("w");
 
-	$base_ymd=strtotime(date("Y-m-d 00:00:00",time()));
-
+	$base_now=strtotime(date("Y-m-d 00:00:00"));
 	$base_w=$now_w-$week_start;
 	if($base_w<0) $base_w+=7;
 
-	$base_day=$base_ymd-($base_w+7)*86400;
+	$base_day=$base_now-($base_w+7)*86400;
 
 	$week_st=date("Ymd",$base_day);
 	$week_ed=date("Ymd",$base_day+604800);
@@ -205,6 +203,7 @@ if($_SESSION){
 
 <script>
 const Dir='<?php echo get_template_directory_uri(); ?>'; 
+const CastId='<?=$_SESSION["id"] ?>'; 
 </script>
 </head>
 <body class="body">
@@ -429,6 +428,10 @@ $w=($s+$week_start) % 7;
 			?>
 				<div class="cal_list">
 					<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
+<?if($base_now>$base_day+86400*$n){?>
+						<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
+						<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
+<?}else{?>
 					<select id="sel_in<?=$n?>" class="sch_time_in">
 						<option class="sel_txt"></option>
 						<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
@@ -441,13 +444,13 @@ $w=($s+$week_start) % 7;
 							<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
 						<?}?>
 					</select>
-					<div class="cal_log"></div>
+<? } ?>
 				</div>
 			<? } ?>
 		</div>
 	</div>
-	<div class="sch_set">SCHE_SET</div>
 	<div class="cal_weeks_next">翌週</div>
+	<div class="sch_set">SCHE_SET</div>
 </div>
 <? } ?>
 <input id="base_day" type="hidden" value="<?=$base_day?>">

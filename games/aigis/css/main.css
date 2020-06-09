@@ -1340,19 +1340,19 @@ body {
 .score_back{
 	display			:inline-block;
 	position		:absolute;
-	top				:0;
-	right			:5px;
+	top				:-5px;
+	left			:-5px;
 	bottom			:0;
 	margin			:auto;
-	height			:26px;
-	line-height		:26px;
-	width			:26px;
-	background		:#c0c0c0;
+	height			:38px;
+	line-height		:38px;
+	width			:38px;
+	background		:#909090;
 	color			:#fafafa;
-	font-size		:18px;
+	font-size		:25px;
 	cursor			:pointer;
 	font-family		:at_icon;
-	border-radius:50%;
+	border-radius	:50%;
 }
 
 .score_lv{
