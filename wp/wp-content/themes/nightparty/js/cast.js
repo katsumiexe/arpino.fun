@@ -1,5 +1,9 @@
 $(function(){ 
 	var VwBase	=$(window).width()/100;
+	var VhBase	=$(window).height()/100;
+
+
+
 	var Fav=0;
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
@@ -293,6 +297,10 @@ $(function(){
 
 
 	$('.customer_list').on('click',function(){
+
+		var TmpHgt=VhBase*100-VwBase*70;
+		$('.customer_body').css('height',TmpHgt);
+
 		Tmp=$(this).children('.customer_list_name').html();
 		$('#c_name').html(Tmp)
 

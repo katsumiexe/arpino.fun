@@ -359,16 +359,16 @@
 .customer_memo{
 	width			:95vw;
 	margin			:1vw auto;
-	table-collapse	:separate;
+	border-collapse	:separate;
 	border-spacing	:2vw 0;
 
 }
 
 .customer_base{
 	width			:95vw;
-	table-collapse	:separate;
+	border-collapse	:separate;
 	border-spacing	:1vw 0;
-	margin			:15vw auto 1vw auto;
+	margin			:15vw auto 2vw auto;
 	background		:#fff0f0;
 }
 
