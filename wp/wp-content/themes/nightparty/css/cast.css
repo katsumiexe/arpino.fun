@@ -260,6 +260,7 @@
 	margin			:0 auto;
 	height			:10vw;
 	overflow		:hidden;
+	border-bottom:1vw solid #900000;
 }
 
 .tag_btn{
@@ -348,11 +349,9 @@
 
 .customer_body{
 	width			:96vw;
-	height			:50vw;
 	overflow-y		:scroll;
 	overflow-x		:hidden;
 	margin			:0 auto;
-	border			:0.5vw solid #d00000;
 	background		:#fafafa;
 	z-index			:19;
 }
@@ -367,7 +366,6 @@
 
 .customer_base{
 	width			:95vw;
-	height			:60vw;
 	table-collapse	:separate;
 	border-spacing	:1vw 0;
 	margin			:15vw auto 1vw auto;
@@ -376,7 +374,6 @@
 
 .customer_base_img{
 	width			:30vw;
-	height			:30vw;
 	background		:#f0f0ff;
 }
 
