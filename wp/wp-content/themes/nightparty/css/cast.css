@@ -260,7 +260,6 @@
 	margin			:0 auto;
 	height			:10vw;
 	overflow		:hidden;
-	border-bottom:1vw solid #900000;
 }
 
 .tag_btn{
@@ -342,8 +341,9 @@
 	left			:100vw;
 	width			:100vw;
 	height			:100vh;
-	background		:rgba(30,30,30,0.2);
+	background		:linear-gradient(#ffe0f0,#ffe8f8);
 	z-index			:12;
+
 }
 
 
@@ -354,7 +354,10 @@
 	margin			:0 auto;
 	background		:#fafafa;
 	z-index			:19;
+	border-top		:1vw solid #900000;
+	border-bottom	:1vw solid #900000;
 }
+
 
 .customer_memo{
 	width			:95vw;
@@ -369,7 +372,7 @@
 	border-collapse	:separate;
 	border-spacing	:1vw 0;
 	margin			:15vw auto 2vw auto;
-	background		:#fff0f0;
+	background		:#fafafa;
 }
 
 .customer_base_img{
@@ -379,13 +382,13 @@
 
 .customer_base_tag{
 	width			:15vw;
-	border-bottom	:2px solid #ffe0f0;
+	border-bottom	:2px solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
 }
 
 .customer_base_item{
-	border-bottom	:2px solid #ffe0f0;
+	border-bottom	:2px solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
 	height:7vw;
