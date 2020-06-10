@@ -55,8 +55,26 @@ $(function(){
 		}
 	});
 
-	$('.customer_fav').on('click',function () {
+	$('.tag_set').on('click',function () {
+		if($(this).hasClass('tag_set_ck')!='true'){
+			Tmp_tr="tr_" + $(this).attr('id');
+			$('.tag_set_ck').removeClass('tag_set_ck').animate({'color':'#ffe0f0',	'borde-color':'#ffe0f0','top':'2vw','line-height':'5vw','background':'#fafafa',	'z-index':'17'});
+			$(this).addClass('tag_set_ck').animate({'color':'#d00000',	'borde-color':'#d00000','top':'0.5vw','line-height':'6vw','background':'#eeeeee','z-index':'18'});
 
+			$('.tr_tag_0,.tr_tag_1,.tr_tag_2').fadeOut(500);
+			$('.'+Tmp_tr).fadeIn(500);
+
+		}
+	});
+
+
+
+
+
+
+
+
+	$('.customer_fav').on('click',function () {
 		if(Fav == 0){
 			Fav=$(this).attr('id').replace('fav_','');
 			$('.customer_base_fav').children().slice(0,Fav).css('color','#ff3030');
@@ -66,6 +84,7 @@ $(function(){
 			$('.customer_fav').css('color','#cccccc');
 		}
 	});
+
 
 	$('.mail_al').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'0'},150);
@@ -269,6 +288,19 @@ $(function(){
 			$(this).css('color','#d00000');
 			$('#'+Tmp).slideDown(100);
 		}
+	});
+
+
+	$('.customer_list').on('click',function(){
+		Tmp=$(this).children('.customer_list_name').html();
+		$('#c_name').html(Tmp)
+
+		Tmp=$(this).children('.customer_list_nickname').html();
+		$('#c_nick').html(Tmp)
+
+		$('.customer_detail').animate({'left':'0'},300);
+
+
 	});
 
 	$('.cal_set_btn').on('click',function(){

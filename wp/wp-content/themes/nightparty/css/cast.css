@@ -168,7 +168,6 @@
 	text-align	:center;
 }
 
-
 .menu_sel{
 	background		:#d03030 !important;
 }
@@ -254,12 +253,109 @@
 	background		:#fad0e0;
 }
 
+.customer_tag{
+	position		:relative;
+	width			:95vw;
+	margin			:0 auto;
+	height			:10vw;
+
+	overflow		:hidden;
+}
+
+.tag_btn{
+	position		:absolute;
+	right			:1vw;
+	top				:1vw;
+	border-radius	:1vw;
+	height			:7vw;
+	width			:15vw;
+	font-size		:4vw;
+}
+
+.tag_set{
+	position		:absolute;
+	top				:2vw;
+	width			:22vw;
+	height			:10vw;
+	line-height		:5vw;
+	font-size		:3.2vw;
+	border			:2vw solid #ffb0d0;
+	border-radius	:3vw 3vw 0 0;
+	background		:#fafafa;
+	cursor			:pointer;
+	font-weight		:700;
+	z-index			:17;
+	color			:#ffe0f0;
+}
+
+
+#tag_0{
+	left:1vw;
+}
+
+#tag_1{
+	left:23vw;
+}
+
+#tag_2{
+	left:45vw;
+}
+
+.customer_memo_tag{
+	width			:20vw;
+	border-bottom	:2px solid #ffe0f0;
+	padding-left	:1vw;
+	font-size		:4vw;
+}
+
+.customer_memo_item{
+	border-bottom	:2px solid #ffe0f0;
+	padding-left	:1vw;
+	font-size		:4vw;
+	height			:7vw;
+}
+
+.item_textbox{
+	height			:6vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:68vw;
+}
+
+.customer_detail{
+	position		:fixed;
+	top				:0;
+	left			:100vw;
+	width			:100vw;
+	height			:100vh;
+	background		:rgba(30,30,30,0.2);
+	z-index			:12;
+}
+
 .customer_base{
 	width			:95vw;
+	height			:60vw;
 	table-collapse	:separate;
 	border-spacing	:1vw 0;
-	margin			:0 auto;
+	margin			:15vw auto 1vw auto;
 	background		:#fff0f0;
+}
+
+.customer_body{
+	width			:96vw;
+	height			:50vw;
+	overflow-y		:scroll;
+	overflow-x		:hidden;
+	margin			:0 auto;
+	border			:0.5vw solid #d00000;
+	background		:#fafafa;
+	z-index			:19;
+}
+
+.customer_memo{
+	width			:95vw;
+	margin			:1vw auto;
 }
 
 .customer_base_img{
@@ -267,15 +363,16 @@
 	height			:30vw;
 	background		:#f0f0ff;
 }
+
 .customer_base_tag{
 	width			:15vw;
-	border-bottom	:0.5vw solid #303030;
+	border-bottom	:2px solid #ffe0f0;
 	padding-left	:1vw;
 	font-size		:4vw;
 }
 
 .customer_base_item{
-	border-bottom	:0.5vw solid #303030;
+	border-bottom	:2px solid #ffe0f0;
 	padding-left	:1vw;
 	font-size		:4vw;
 	height:7vw;
@@ -301,46 +398,75 @@
 }
 
 .customer_list_fav{
-	position	:absolute;
-	top			:0.5vw;
-	left		:20vw;
-	width		:40vw;
-	height		:8vw;
+	position		:absolute;
+	top				:0.5vw;
+	right			:11vw;
+	width			:28vw;
+	height			:5vw;
+	color			:#c0c0c0;
+	text-align		:right;
+	font-size		:0;
 }		
 
+.customer_list_fav_icon{
+	display			:inline-block;
+	width			:5vw;
+	height			:5vw;
+	line-height		:5vw;
+	text-align		:center;	
+	font-size		:4vw;
+	font-family		:at_icon;
+}
+
 .customer_list_group{
-	position	:absolute;
-	top			:0.5vw;
-	left		:60vw;
-	width		:20vw;
-	height		:8vw;
+	position		:absolute;
+	top				:0.5vw;
+	left			:60vw;
+	width			:20vw;
+	height			:8vw;
 }		
 
 .customer_list_name{
 	position	:absolute;
-	top			:9vw;
-	left		:20vw;
-	width		:20vw;
-	height		:8vw;
+	top			:5vw;
+	left		:19vw;
+	width		:60vw;
+	height		:5vw;
+	font-size	:4vw;
+	font-weight	:700;
+	color		:#9090ff;
+	text-align	:left;
+}		
+
+.customer_list_nickname{
+	position	:absolute;
+	bottom		:1vw;
+	left		:19vw;
+	width		:60vw;
+	height		:6vw;
+	font-size	:5vw;
+	font-weight	:800;
+	color		:#0000d0;
+	text-align	:left;
 }		
 
 .customer_list_img{
 	position	:absolute;
 	top			:0.5vw;
 	left		:0.5vw;
-	width		:19vw;
-	height		:19vw;
+	width		:17vw;
+	height		:17vw;
 }		
 
 .customer_list{
 	position	:relative;
 	width		:95vw;
-	height		:20vw;
+	height		:18vw;
 	display		:inline-block;
 	font-size	:0;
+	margin		:1vw;
+	border		:1px solid #303030;
 }
-
-
 
 .mypage_main{
 	position		:fixed;

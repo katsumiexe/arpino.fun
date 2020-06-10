@@ -52,7 +52,35 @@ if($_SESSION){
 		$err="IDもしくはパスワードが違います";
 	}
 }
+
 if($_SESSION){
+/*
+	$id_8	=substr("00000000".$_SESSION["id_8"],-8);
+	$id_20	=$_SESSION["id_8"]%20;
+	
+	$sql ="SELECT * FROM wp01_0encode"; 
+	$enc0 = $wpdb->get_results($sql,ARRAY_A );
+	foreach($enc0 as $enc1){
+		$enc[$row["key"]]			=$row["value"];
+		$dec[$gp][$row["value"]]	=$row["key"];
+	}
+
+	for($n=0;$n<8;$N++){
+		$tmp_dir.=$dec[$id_20][$n];
+	}
+
+	$dir=get_template_directory_uri()."img/cast/".$tmp_dir;
+	
+	if(!file_exists($dir)){
+		mkdir($dir."/c/", 0777, TRUE);
+		chmod($dir."/c/", 0777);
+		mkdir($dir."/m/", 0777, TRUE);
+		chmod($dir."/m/", 0777);
+	}
+*/
+
+
+
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
 	$ob_holiday = json_decode($holiday,true);
@@ -179,18 +207,26 @@ if($_SESSION){
 
 	$n=0;
 
-	$sql	 ="SELECT * FROM wp01_0customer_list";
+	$sql	 ="SELECT * FROM wp01_0customer";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND `del`='0'";
-
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
-
 	foreach($dat2 as $cus2){
 		$customer[$n]=$cus2;
 		$n++;
 	}
+
+	$sql	 ="SELECT * FROM wp01_0customer_item";
+	$sql	.=" WHERE del='0'";
+	$dat2 = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat2 as $cus2){
+		$c_list_name[$cus2["gp"]][$cus2["id"]]=$cus2["item_name"];
+		$c_list_style[$cus2["id"]]=$cus2["style"];
+	}
 }
 ?>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -263,48 +299,105 @@ const CastId='<?=$_SESSION["id"] ?>';
 <?}elseif($cast_page==2){?>
 
 <div class="mypage_customer">
+<?for($n=0;$n<count($customer);$n++){?>
+	<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
+		<?if($customer[$n]["face"]){?>
+			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
+		<?}else{?>
+			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
+		<? } ?>
+		<div class="customer_list_fav">
+			<?for($s=1;$s<6;$s++){?>
+				<span class="customer_list_fav_icon<?if($customer[$n]["fav"]<=$s){?> fav_in<?}?>"></span>
+			<?}?>
+		</div>
 
-<?for($n=0;$n<count($costomer);$n++){?>
-<div class="customer_list">
-	<img src="" class="customer_list_img">
-	<div class="customer_list_fav"></div>
-	<div class="customer_list_group"><?=$costomer[$n]["group"]?></div>
-	<div class="customer_list_name"><?=$costomer[$n]["nickname"]?></div>
-	<span id="customer<?=$s?>" class="mail_al"></span>
-</div>
+		<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
+		<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
+		<span class="mail_al"></span>
+	</div>
 <?}?>
 
-<table class="customer_base">
-<tr>
-	<td class="customer_base_img" rowspan="4"></td>
-	<td class="customer_base_tag">最終</td>
-	<td class="customer_base_item">16日前</td>
-</tr>
-<tr>
-	<td class="customer_base_tag">名前</td>
-	<td class="customer_base_item">いなだ</td>
-</tr>
-<tr>
-	<td class="customer_base_tag">呼び名</td>
-	<td class="customer_base_item">いなぞう</td>
-</tr>
-<tr>
-	<td class="customer_base_tag">誕生日</td>
-	<td class="customer_base_item">1977/06/10（43歳）</td>
-</tr>
-<tr>
-	<td class="customer_base_fav"><span id="fav_1" class="customer_fav"></span><span id="fav_2" class="customer_fav"></span><span id="fav_3" class="customer_fav"></span><span id="fav_4" class="customer_fav"></span><span id="fav_5" class="customer_fav"></span></td>
-	<td class="customer_base_tag">出身</td>
-	<td class="customer_base_item">ばぶー</td>
-</tr>
-</table>
+	<div class="customer_detail">
+		<table class="customer_base">
+		<tr>
+			<td class="customer_base_img" rowspan="4"></td>
+			<td class="customer_base_tag">最終</td>
+			<td id="" class="customer_base_item">16日前</td>
+		</tr>
+		<tr>
+			<td class="customer_base_tag">名前</td>
+			<td id="c_name" class="customer_base_item">いなだ</td>
+		</tr>
+		<tr>
+			<td class="customer_base_tag">呼び名</td>
+			<td id="c_nick" class="customer_base_item">いなぞう</td>
+		</tr>
+		<tr>
+			<td class="customer_base_tag">誕生日</td>
+			<td id="c_birth" class="customer_base_item">1977/06/10（43歳）</td>
+		</tr>
+		<tr>
+			<td class="customer_base_fav">
+				<span id="fav_1" class="customer_fav"></span>
+				<span id="fav_2" class="customer_fav"></span>
+				<span id="fav_3" class="customer_fav"></span>
+				<span id="fav_4" class="customer_fav"></span>
+				<span id="fav_5" class="customer_fav"></span>
+			</td>
+			<td class="customer_base_tag">出身</td>
+			<td class="customer_base_item">ばぶー</td>
+		</tr>
+		</table>
+
+		<div class="customer_tag">
+		<div id="tag_0" class="tag_set tag_set_ck">基本情報</div>
+		<div id="tag_1" class="tag_set">詳細情報</div>
+		<div id="tag_2" class="tag_set">メモ</div>
+		<button class="tag_btn">更新</button>
+		</div>
+
+		<div class="customer_body">
+			<table class="customer_memo">
+				<?for($n=0;$n<3;$n++){?>
+					<?foreach($c_list_name[$n] as $a1=> $a2){?>
+						<?if($c_list_style[$a1] == 2){?>
+							<tr class="tr_tag_<?$n?>">
+								<td class="customer_memo_tag"><?=$a2?></td>
+								<td class="customer_memo_item">
+									<lavel><input type="radio" name="cas[<?=$a1?>]" value="1">Yes</label>
+									<lavel><input type="radio" name="cas[<?=$a1?>]" value="2">No</label>
+								</td>
+							</tr>
+
+						<?}elseif($c_list_style[$a1] == 3){?>
+							<tr class="tr_tag_<?$n?>">
+								<td class="customer_memo_tag"><?=$a2?></td>
+								<td class="customer_memo_item">
+									<lavel><input type="radio" name="cas[<?=$a1?>]" value="1">Ａ</label>
+									<lavel><input type="radio" name="cas[<?=$a1?>]" value="2">Ｂ</label>
+									<lavel><input type="radio" name="cas[<?=$a1?>]" value="3">Ｏ</label>
+									<lavel><input type="radio" name="cas[<?=$a1?>]" value="4">AB</label>
+								</td>
+							</tr>
+						<?}else{?>
+							<tr class="tr_tag_<?$n?>">
+								<td class="customer_memo_tag"><?=$a2?></td>
+								<td class="customer_memo_item"><input type="text" name="cas[<?=$a1?>]"class="item_textbox"></td>
+							</tr>
+						<? } ?>
+					<? } ?>
+				<? } ?>
+			</table>
+		</div>
+	</div>
 </div>
 
 <?}elseif($cast_page==3){?>
 <div class="mypage_mail">
 	<?for($s=0;$s<count($mail_data);$s++){?>
 	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/costomer_no_img.jpg" class="mail_img">
+		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
 		<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
 		<span id="mail_icon<?=$s?>" class="mail_icon">
 			<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
