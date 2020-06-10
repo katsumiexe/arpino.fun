@@ -57,12 +57,13 @@ $(function(){
 
 	$('.tag_set').on('click',function () {
 		if($(this).hasClass('tag_set_ck')!='true'){
-			Tmp_tr="tr_" + $(this).attr('id');
-			$('.tag_set_ck').removeClass('tag_set_ck').animate({'color':'#ffe0f0',	'borde-color':'#ffe0f0','top':'2vw','line-height':'5vw','background':'#fafafa',	'z-index':'17'});
-			$(this).addClass('tag_set_ck').animate({'color':'#d00000',	'borde-color':'#d00000','top':'0.5vw','line-height':'6vw','background':'#eeeeee','z-index':'18'});
 
-			$('.tr_tag_0,.tr_tag_1,.tr_tag_2').fadeOut(500);
-			$('.'+Tmp_tr).fadeIn(500);
+			Tmp_tr=$(this).attr('id')+"_tbl";
+			$('.tag_set_ck').removeClass('tag_set_ck').animate({'top':'2vw'},200);
+			$(this).addClass('tag_set_ck').animate({'top':'0.5vw'},200);
+
+			$('.customer_memo').fadeOut(300);
+			$('#'+Tmp_tr).fadeIn(300);
 
 		}
 	});

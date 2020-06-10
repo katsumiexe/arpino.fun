@@ -251,6 +251,7 @@
 	left			:0;
 	bottom			:4vw;
 	background		:#fad0e0;
+	font-size:4ve;
 }
 
 .customer_tag{
@@ -258,34 +259,41 @@
 	width			:95vw;
 	margin			:0 auto;
 	height			:10vw;
-
 	overflow		:hidden;
 }
 
 .tag_btn{
 	position		:absolute;
-	right			:1vw;
-	top				:1vw;
+	right			:0.5vw;
+	top				:1.5vw;
 	border-radius	:1vw;
 	height			:7vw;
 	width			:15vw;
-	font-size		:4vw;
+	font-size		:3.2vw;
 }
 
 .tag_set{
 	position		:absolute;
 	top				:2vw;
-	width			:22vw;
+	width			:17vw;
 	height			:10vw;
 	line-height		:5vw;
 	font-size		:3.2vw;
-	border			:2vw solid #ffb0d0;
-	border-radius	:3vw 3vw 0 0;
+	border			:2vw solid #ffa0c0;
+	border-radius	:5vw 5vw 0 0;
 	background		:#fafafa;
 	cursor			:pointer;
 	font-weight		:700;
 	z-index			:17;
-	color			:#ffe0f0;
+	color			:#ffa0c0;
+}
+
+.tag_set_ck{
+	color			:#d00000;
+	border-color	:#d00000;
+	line-height		:6vw;
+	background		:#eeeeee;
+	z-index			:18;
 }
 
 
@@ -294,25 +302,29 @@
 }
 
 #tag_1{
-	left:23vw;
+	left:20vw;
 }
 
 #tag_2{
-	left:45vw;
+	left:39vw;
+}
+
+#tag_3{
+	left:58vw;
 }
 
 .customer_memo_tag{
-	width			:20vw;
+	width			:30vw;
 	border-bottom	:2px solid #ffe0f0;
 	padding-left	:1vw;
-	font-size		:4vw;
+	font-size		:4.5vw;
 }
 
 .customer_memo_item{
 	border-bottom	:2px solid #ffe0f0;
 	padding-left	:1vw;
 	font-size		:4vw;
-	height			:7vw;
+	height			:10vw;
 }
 
 .item_textbox{
@@ -320,7 +332,7 @@
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:68vw;
+	width			:58vw;
 }
 
 .customer_detail{
@@ -333,14 +345,6 @@
 	z-index			:12;
 }
 
-.customer_base{
-	width			:95vw;
-	height			:60vw;
-	table-collapse	:separate;
-	border-spacing	:1vw 0;
-	margin			:15vw auto 1vw auto;
-	background		:#fff0f0;
-}
 
 .customer_body{
 	width			:96vw;
@@ -356,6 +360,18 @@
 .customer_memo{
 	width			:95vw;
 	margin			:1vw auto;
+	table-collapse	:separate;
+	border-spacing	:2vw 0;
+
+}
+
+.customer_base{
+	width			:95vw;
+	height			:60vw;
+	table-collapse	:separate;
+	border-spacing	:1vw 0;
+	margin			:15vw auto 1vw auto;
+	background		:#fff0f0;
 }
 
 .customer_base_img{

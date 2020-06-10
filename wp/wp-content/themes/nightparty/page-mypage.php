@@ -351,18 +351,19 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</table>
 
 		<div class="customer_tag">
-		<div id="tag_0" class="tag_set tag_set_ck">基本情報</div>
+		<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">基本情報</div>
 		<div id="tag_1" class="tag_set">詳細情報</div>
-		<div id="tag_2" class="tag_set">メモ</div>
+		<div id="tag_2" class="tag_set">連絡先</div>
+		<div id="tag_3" class="tag_set">メモ</div>
 		<button class="tag_btn">更新</button>
 		</div>
 
 		<div class="customer_body">
-			<table class="customer_memo">
-				<?for($n=0;$n<3;$n++){?>
+			<?for($n=0;$n<3;$n++){?>
+				<table id="tag_<?=$n?>_tbl" class="customer_memo">
 					<?foreach($c_list_name[$n] as $a1=> $a2){?>
 						<?if($c_list_style[$a1] == 2){?>
-							<tr class="tr_tag_<?$n?>">
+							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>
 								<td class="customer_memo_item">
 									<lavel><input type="radio" name="cas[<?=$a1?>]" value="1">Yes</label>
@@ -371,7 +372,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 							</tr>
 
 						<?}elseif($c_list_style[$a1] == 3){?>
-							<tr class="tr_tag_<?$n?>">
+							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>
 								<td class="customer_memo_item">
 									<lavel><input type="radio" name="cas[<?=$a1?>]" value="1">Ａ</label>
@@ -381,14 +382,14 @@ const CastId='<?=$_SESSION["id"] ?>';
 								</td>
 							</tr>
 						<?}else{?>
-							<tr class="tr_tag_<?$n?>">
+							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>
 								<td class="customer_memo_item"><input type="text" name="cas[<?=$a1?>]"class="item_textbox"></td>
 							</tr>
 						<? } ?>
 					<? } ?>
-				<? } ?>
-			</table>
+				</table>
+			<? } ?>
 		</div>
 	</div>
 </div>
