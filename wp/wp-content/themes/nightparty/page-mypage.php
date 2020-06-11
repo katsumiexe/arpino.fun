@@ -308,15 +308,18 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<? } ?>
 		<div class="customer_list_fav">
 			<?for($s=1;$s<6;$s++){?>
-				<span class="customer_list_fav_icon<?if($customer[$n]["fav"]<=$s){?> fav_in<?}?>"></span>
+				<span class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
 			<?}?>
 		</div>
 
 		<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
 		<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
 		<span class="mail_al"></span>
+		<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
 	</div>
 <?}?>
+
+
 
 	<div class="customer_detail">
 		<table class="customer_base">
@@ -327,11 +330,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</tr>
 		<tr>
 			<td class="customer_base_tag">名前</td>
-			<td id="c_name" class="customer_base_item">いなだ</td>
+			<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" value="" class="item_basebox"></td>
 		</tr>
 		<tr>
 			<td class="customer_base_tag">呼び名</td>
-			<td id="c_nick" class="customer_base_item">いなぞう</td>
+			<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" value="" class="item_basebox"></td>
 		</tr>
 		<tr>
 			<td class="customer_base_tag">誕生日</td>

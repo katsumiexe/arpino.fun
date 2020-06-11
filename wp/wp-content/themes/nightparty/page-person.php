@@ -104,5 +104,4 @@ endforeach;
 <div class="person_right">
 </div>
 </div>
-
 <?php get_footer(); ?>

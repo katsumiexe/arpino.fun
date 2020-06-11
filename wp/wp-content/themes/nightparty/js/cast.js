@@ -301,13 +301,38 @@ $(function(){
 		var TmpHgt=VhBase*100-VwBase*70;
 		$('.customer_body').css('height',TmpHgt);
 
-		Tmp=$(this).children('.customer_list_name').html();
-		$('#c_name').html(Tmp)
+		Tmp=$(this).children('.customer_list_name').html().replace(' 様','');
+		$('#customer_detail_name').val(Tmp);
 
 		Tmp=$(this).children('.customer_list_nickname').html();
-		$('#c_nick').html(Tmp)
+		$('#customer_detail_nick').val(Tmp);
+
+		Tmp=$(this).children('.customer_hidden_fav').val();
+			if(Tmp>0){
+				$('#fav_1').css('color','#ff3030');
+			}
+			if(Tmp>1){
+				$('#fav_2').css('color','#ff3030');
+			}
+
+			if(Tmp>2){
+				$('#fav_3').css('color','#ff3030');
+			}
+
+			if(Tmp>3){
+				$('#fav_4').css('color','#ff3030');
+			}
+
+			if(Tmp>4){
+				$('#fav_5').css('color','#ff3030');
+			}
+		Fav=Tmp;
+console.log(Tmp);
+
+
 
 		$('.customer_detail').animate({'left':'0'},300);
+
 
 
 	});

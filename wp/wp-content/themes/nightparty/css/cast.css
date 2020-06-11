@@ -254,6 +254,8 @@
 	font-size:4ve;
 }
 
+
+
 .customer_tag{
 	position		:relative;
 	width			:95vw;
@@ -268,18 +270,18 @@
 	top				:1.5vw;
 	border-radius	:1vw;
 	height			:7vw;
-	width			:15vw;
+	width			:12vw;
 	font-size		:3.2vw;
 }
 
 .tag_set{
 	position		:absolute;
 	top				:2vw;
-	width			:17vw;
+	width			:18vw;
 	height			:10vw;
-	line-height		:5vw;
+	line-height		:8vw;
 	font-size		:3.2vw;
-	border			:2vw solid #ffa0c0;
+	border			:1.5vw solid #ffa0c0;
 	border-radius	:5vw 5vw 0 0;
 	background		:#fafafa;
 	cursor			:pointer;
@@ -291,18 +293,17 @@
 .tag_set_ck{
 	color			:#d00000;
 	border-color	:#d00000;
-	line-height		:6vw;
 	background		:#eeeeee;
 	z-index			:18;
 }
 
 
 #tag_0{
-	left:1vw;
+	left:0vw;
 }
 
 #tag_1{
-	left:20vw;
+	left:19.5vw;
 }
 
 #tag_2{
@@ -310,7 +311,11 @@
 }
 
 #tag_3{
-	left:58vw;
+	left:58.5vw;
+}
+
+#tag_1_tbl,#tag_2_tbl,#tag_3_tbl{
+	display:none;
 }
 
 .customer_memo_tag{
@@ -333,6 +338,30 @@
 	border			:none;
 	font-size		:4.5vw;
 	width			:58vw;
+}
+
+.item_basebox{
+	height			:6vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:43vw;
+}
+
+.item_basebox_yy{
+	height			:6vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:10vw;
+}
+
+.item_basebox_mm{
+	height			:6vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:6vw;
 }
 
 .customer_detail{
@@ -419,7 +448,6 @@
 	right			:11vw;
 	width			:28vw;
 	height			:5vw;
-	color			:#c0c0c0;
 	text-align		:right;
 	font-size		:0;
 }		
@@ -430,9 +458,15 @@
 	height			:5vw;
 	line-height		:5vw;
 	text-align		:center;	
+	color			:#c0c0c0;
 	font-size		:4vw;
 	font-family		:at_icon;
 }
+
+.fav_in{
+	color			:#ff3030;
+}
+
 
 .customer_list_group{
 	position		:absolute;
