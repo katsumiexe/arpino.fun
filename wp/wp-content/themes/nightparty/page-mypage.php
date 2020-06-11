@@ -206,13 +206,28 @@ if($_SESSION){
 	}
 
 	$n=0;
-
+	$now=date("Ymd");
 	$sql	 ="SELECT * FROM wp01_0customer";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND `del`='0'";
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat2 as $cus2){
 		$customer[$n]=$cus2;
+
+		if(!$cus2["birth_day"] || $cus2["birth_day"]=="0000-00-00"){
+			$customer[$n]["yy"]="----";
+			$customer[$n]["mm"]="--";
+			$customer[$n]["dd"]="--";
+			$customer[$n]["ag"]="--";
+
+		}else{
+			$customer[$n]["yy"]=substr($cus2["birth_day"],0,4);
+			$customer[$n]["mm"]=substr($cus2["birth_day"],5,2);
+			$customer[$n]["dd"]=substr($cus2["birth_day"],8,2);
+			$customer[$n]["ag"]= floor(($now-str_replace("-", "", $cus2["birth_day"]))/10000);
+		}
+
+
 		$n++;
 	}
 
@@ -315,7 +330,14 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
 		<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
 		<span class="mail_al"></span>
+
 		<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
+
+		<input type="hidden" class="customer_hidden_yy" value="<?=$customer[$n]["yy"]?>">
+		<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
+		<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
+		<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
+
 	</div>
 <?}?>
 
@@ -338,7 +360,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</tr>
 		<tr>
 			<td class="customer_base_tag">誕生日</td>
-			<td id="c_birth" class="customer_base_item">1977/06/10（43歳）</td>
+			<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">(<span id="customer_detail_ag"></span>歳)</td>
 		</tr>
 		<tr>
 			<td class="customer_base_fav">

@@ -349,14 +349,16 @@
 }
 
 .item_basebox_yy{
+	text-align		:center;
 	height			:6vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:10vw;
+	width			:11vw;
 }
 
 .item_basebox_mm{
+	text-align		:center;
 	height			:6vw;
 	margin			:0;
 	border			:none;

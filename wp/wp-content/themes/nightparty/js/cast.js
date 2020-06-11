@@ -327,7 +327,18 @@ $(function(){
 				$('#fav_5').css('color','#ff3030');
 			}
 		Fav=Tmp;
-console.log(Tmp);
+
+		Tmp=$(this).children('.customer_hidden_yy').val();
+		$('#customer_detail_yy').val(Tmp);
+
+		Tmp=$(this).children('.customer_hidden_mm').val();
+		$('#customer_detail_mm').val(Tmp);
+
+		Tmp=$(this).children('.customer_hidden_dd').val();
+		$('#customer_detail_dd').val(Tmp);
+
+		Tmp=$(this).children('.customer_hidden_ag').val();
+		$('#customer_detail_ag').text(Tmp);
 
 
 
