@@ -1187,11 +1187,11 @@ body {
 .howto{
 	position		:fixed;
 	display			:inline-block;
-	top				:50px;
+	top				:0;
 	left			:0;
 	right			:0;
 	margin			:auto;
-	width			:460px;
+	width			:600px;
 	height			:550px;
 	z-index			:111;
 	background		:#faf0e8;
@@ -1200,9 +1200,9 @@ body {
 
 .howto_main{
 	position		:relative;
-	height			:500px;
-	width			:440px;
-	margin			:10px;
+	height			:530px;
+	width			:500px;
+	margin			:0px auto;
 	background		:linear-gradient(#ffe0c0,#f0d8b0);
 	box-shadow		:5px 5px 5px rgba(30,30,30,0.6),0 0 50px 10px rgba(168,148,106,0.8) inset;
 }
@@ -1215,22 +1215,35 @@ body {
 	right			:0;
 	bottom			:0;
 	margin			:auto;
-	height			:460px;
-	width			:400px;
+	height			:490px;
+	width			:460px;
 	padding			:10px;
 	font-weight		:600;
 	font-size		:15px;
-	color			:#907050;
+	color			:#505050;
 	text-align		:left;
 	line-height		:22px;
 	box-shadow		:0px 0px 10px 0px rgba(150,120,80,0.6);
 }
 
+.howto_item{
+	display			:inline-block;
+	width			:50px;
+	font-family		:at_icon;
+	border			:1px solid #906030;
+	color			:#906030;
+	text-align		:center;
+	margin			:2px;
+	font-weight		:400;
+	background		:#fafafa;
+}
+
+
 .howto_title{
 	display			:block;
 	font-size		:22px;
 	font-weight		:1000;
-	color			:#503010;
+	color			:#101010;
 	padding			:5px;
 	margin-bottom	:6px;
 	border-bottom	:2px solid #503010;
@@ -1239,9 +1252,9 @@ body {
 .howto_page{
 	position		:relative;
 	display			:inline-block;
-	margin			:20px auto;
-	width			:440px;
-	height			:50px;
+	margin			:10px auto;
+	width			:500px;
+	height			:70px;
 	text-align		:center;
 	background		:#e0e0e0;
 }
