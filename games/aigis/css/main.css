@@ -1031,7 +1031,7 @@ body {
 	width:550px;
 	margin:0 auto;
 	border-collapse	:separate;
-	border-spacing: 5px;
+	border-spacing: 0 3px;
 	background:#fafafa;
 }
 
@@ -1971,7 +1971,7 @@ body {
 
 .table_res{
 	width:95vw;
-	border-spacing: 1vw;
+	border-spacing: 0 0.5vw;
 	height:20vw;
 }
 
