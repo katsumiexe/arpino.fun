@@ -71,6 +71,7 @@ $(function(){
 
 		}
 	});
+	
 
 
 
@@ -301,6 +302,9 @@ $(function(){
 		var TmpHgt=VhBase*100-VwBase*70;
 		$('.customer_body').css('height',TmpHgt);
 
+		Tmp=$(this).children('.mail_img').attr('src');
+		$('.customer_detail_img').attr('src',Tmp);
+
 		Tmp=$(this).children('.customer_list_name').html().replace(' 様','');
 		$('#customer_detail_name').val(Tmp);
 
@@ -340,12 +344,7 @@ $(function(){
 		Tmp=$(this).children('.customer_hidden_ag').val();
 		$('#customer_detail_ag').text(Tmp);
 
-
-
 		$('.customer_detail').animate({'left':'0'},300);
-
-
-
 	});
 
 	$('.cal_set_btn').on('click',function(){

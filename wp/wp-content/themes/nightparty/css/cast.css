@@ -1,3 +1,13 @@
+*{
+-webkit-appearance: none;
+ -webkit-text-size-adjust: 100%;
+}
+
+input:focus{
+	border-color:#fafafa;
+	background:#f0f0ff;
+}
+
 .body{
 	background	:#f0f0f0;
 	margin		:0;
@@ -266,12 +276,13 @@
 
 .tag_btn{
 	position		:absolute;
-	right			:0.5vw;
+	right			:0vw;
 	top				:1.5vw;
 	border-radius	:1vw;
 	height			:7vw;
-	width			:12vw;
+	width			:13.5vw;
 	font-size		:3.2vw;
+	background		:linear-gradient(#f0f0f0,#dddddd);
 }
 
 .tag_set{
@@ -341,29 +352,32 @@
 }
 
 .item_basebox{
-	height			:6vw;
+	height			:9vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
 	width			:43vw;
+	border-color	:#fafafa;
 }
 
 .item_basebox_yy{
 	text-align		:center;
-	height			:6vw;
+	height			:9vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:11vw;
+	width			:12vw;
+	padding:0.5vw 0;
 }
 
 .item_basebox_mm{
 	text-align		:center;
-	height			:6vw;
+	height			:9vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:6vw;
+	width			:7vw;
+	padding:0.5vw 0;
 }
 
 .customer_detail{
@@ -374,9 +388,28 @@
 	height			:100vh;
 	background		:linear-gradient(#ffe0f0,#ffe8f8);
 	z-index			:12;
-
 }
 
+#customer_detail_ag{
+	font-size		:4.5vw;
+}
+
+.detail_age{
+	position		:absolute;
+	right			:0.5vw;
+	top				:0vw;
+	bottom			:0;
+	margin			:auto;
+	height			:7vw;
+	line-height		:7vw;
+	border-radius	:1vw;
+	background		:#00a000;
+	font-size		:3vw;
+	font-weight		:600;
+	color			:#fafafa;
+	text-align		:center;
+	padding			:0 1vw; 
+}
 
 .customer_body{
 	width			:96vw;
@@ -407,35 +440,64 @@
 }
 
 .customer_base_img{
+	position		:relative;
 	width			:30vw;
 	background		:#f0f0ff;
 }
+.customer_detail_img{
+	position		:absolute;
+	top				:0vw;
+	left			:0vw;
+	bottom			:0vw;
+	right			:0vw;
+	width			:28vw;
+	height			:28vw;
+	margin			:auto;
+}
+
+.customer_camera{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1.5vw;
+	right			:1.5vw;
+	width			:7vw;
+	height			:7vw;
+	line-height		:7vw;
+	text-align		:center;
+	font-size		:4vw;
+	background		:#303030;
+	color			:#fafafa;
+	opacity			:0.5;
+	border-radius	:50%;
+	font-family		:at_icon;
+}
+
 
 .customer_base_tag{
 	width			:15vw;
-	border-bottom	:2px solid #f0d0e0;
+	border-bottom	:0.5vw solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
 }
 
 .customer_base_item{
-	border-bottom	:2px solid #f0d0e0;
+	position		:relative;
+	border-bottom	:0.5vw solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
-	height:7vw;
+	height			:10vw;
 }
 
 .customer_base_fav{
-	height			:7vw;
-	border			:0.5vw solid #303030;
+	border			:0.5vw solid #f0d0e0;
 	text-align		:center;
 	font-size		:0;
 }
 
 .customer_fav{
 	display			:inline-block;
-	height			:6.5vw;
-	line-height		:6.5vw;
+	height			:8vw;
+	line-height		:8vw;
 	width			:5.5vw;
 	font-size		:4vw;
 	text-align		:center;

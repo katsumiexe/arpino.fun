@@ -10,5 +10,9 @@
 <td class='manage-column column-author'>200</td>
 <td class='manage-column column-author'>みりあ２</td>
 </tr>
+<tr>
+<td class='manage-column column-author'>300</td>
+<td class='manage-column column-author'>田中</td>
+</tr>
 </table>
 </div>

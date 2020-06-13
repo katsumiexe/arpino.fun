@@ -318,6 +318,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 		<?if($customer[$n]["face"]){?>
 			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
+			<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["face"]?>">
 		<?}else{?>
 			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
 		<? } ?>
@@ -330,9 +331,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
 		<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
 		<span class="mail_al"></span>
-
 		<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
-
 		<input type="hidden" class="customer_hidden_yy" value="<?=$customer[$n]["yy"]?>">
 		<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
 		<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
@@ -341,12 +340,13 @@ const CastId='<?=$_SESSION["id"] ?>';
 	</div>
 <?}?>
 
-
-
 	<div class="customer_detail">
 		<table class="customer_base">
 		<tr>
-			<td class="customer_base_img" rowspan="4"></td>
+			<td class="customer_base_img" rowspan="3">
+			<img src="" class="customer_detail_img">
+			<span class="customer_camera"></span>
+			</td>
 			<td class="customer_base_tag">最終</td>
 			<td id="" class="customer_base_item">16日前</td>
 		</tr>
@@ -359,10 +359,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" value="" class="item_basebox"></td>
 		</tr>
 		<tr>
-			<td class="customer_base_tag">誕生日</td>
-			<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">(<span id="customer_detail_ag"></span>歳)</td>
-		</tr>
-		<tr>
 			<td class="customer_base_fav">
 				<span id="fav_1" class="customer_fav"></span>
 				<span id="fav_2" class="customer_fav"></span>
@@ -370,8 +366,9 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<span id="fav_4" class="customer_fav"></span>
 				<span id="fav_5" class="customer_fav"></span>
 			</td>
-			<td class="customer_base_tag">出身</td>
-			<td class="customer_base_item">ばぶー</td>
+			<td class="customer_base_tag">誕生日</td>
+			<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">
+			<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
 		</tr>
 		</table>
 
