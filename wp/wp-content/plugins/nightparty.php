@@ -10,7 +10,7 @@ Author URI:
 
 if($_POST["staff_set"]){
 
-	require_once ("../../../wp-load.php"); 
+	require_once ("../wp-load.php"); 
 	global $wpdb;
 
 	$staff_name		=$_POST["staff_name"];
@@ -28,7 +28,42 @@ if($_POST["staff_set"]){
 	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`address`,`registday`)";
 	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$staff_birthday}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_address}','{$staff_registday}')";
 $wpdb->query($sql);
+
+	$tmp_auto=$wpdb->insert_id;
+	$id_8	=substr("00000000".$tmp_auto,-8);
+	
+	
+	$sql ="SELECT * FROM wp01_0encode"; 
+	$enc0 = $wpdb->get_results($sql,ARRAY_A );
+	foreach($enc0 as $row){
+		$enc[$row["key"]]			=$row["value"];
+		$dec[$row["gp"]][$row["value"]]	=$row["key"];
+	}
+
+	for($n=0;$n<4;$n++){
+		$rnd=rand(0,19);
+		$tmp_id=substr($id_8,$n,1);
+		$tmp_dir.=$dec[$rnd][$tmp_id];
+	}
+
+	$mk_dir=get_template_directory_uri()."/img/cast/".$tmp_dir;
+
+	if(!is_dir($mk_dir)) {
+
+		mkdir($mk_dir."/", TRUE);
+		chmod($mk_dir, 0777);
+
+		mkdir($mk_dir."/c/", 0777, TRUE);
+		chmod($mk_dir."/c/", 0777);
+
+		mkdir($mk_dir."/m/", 0777, TRUE);
+
+		chmod($mk_dir."/m/", 0777);
+print($mk_dir);
+	}
 }
+
+
 
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
