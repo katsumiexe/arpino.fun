@@ -1,4 +1,7 @@
 <?php
+require_once ("../wp-load.php"); 
+global $wpdb;
+
 /*
 Plugin Name:nightparty
 Plugin URI:https://onlyme.fun
@@ -10,8 +13,6 @@ Author URI:
 
 if($_POST["staff_set"]){
 
-	require_once ("../wp-load.php"); 
-	global $wpdb;
 
 	$staff_name		=$_POST["staff_name"];
 	$staff_kana		=$_POST["staff_kana"];
@@ -100,6 +101,16 @@ function cast_list(){
 }
 
 function staff_list(){
+	$n=0;
+	$sql	 ="SELECT * FROM wp01_0staff";
+//	$sql	.=" ORDER BY staff_id DESC";
+	$tmp = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($tmp as $res){
+		$member[$n]=$res;
+		print($res[$n]["staff_id"]);
+		$n++;
+	}
     esc_html_e( include_once('staff_list.php'), 'textdomain' );  
 }
 

@@ -93,6 +93,15 @@ $(function(){
 	},10000);
 
 
+    $('#lv5').on('click',function(){
+	    $('.howto').fadeIn(500);
+    });
+
+    $('.howto_back').on('click',function(){
+	    $('.howto').fadeOut(500);
+    });
+
+
     $('.score_lv').on('click',function(){
 		Tag=$(this).attr('id');
 	    $('.score_lv').removeClass('score_lv_on');

@@ -1186,15 +1186,33 @@ body {
 
 .howto{
 	position		:fixed;
-	display			:inline-block;
+	display			:none;
 	top				:0;
 	left			:0;
 	right			:0;
 	margin			:auto;
 	width			:600px;
-	height			:550px;
+	height			:100vh;
 	z-index			:111;
 	background		:#faf0e8;
+}
+
+.howto_back{
+	display			:inline-block;
+	position		:absolute;
+	top				:0px;
+	left			:15px;
+	bottom			:0;
+	margin			:auto;
+	height			:38px;
+	line-height		:38px;
+	width			:38px;
+	background		:#909090;
+	color			:#fafafa;
+	font-size		:25px;
+	cursor			:pointer;
+	font-family		:at_icon;
+	border-radius	:50%;
 }
 
 
@@ -1217,19 +1235,20 @@ body {
 	margin			:auto;
 	height			:490px;
 	width			:460px;
-	padding			:10px;
 	font-weight		:600;
 	font-size		:15px;
 	color			:#505050;
 	text-align		:left;
 	line-height		:22px;
 	box-shadow		:0px 0px 10px 0px rgba(150,120,80,0.6);
+	overflow-y		:scroll;
 }
+
 
 .howto_item{
 	display			:inline-block;
 	width			:50px;
-	font-family		:at_icon;
+	font-family		:at_item;
 	border			:1px solid #906030;
 	color			:#906030;
 	text-align		:center;
@@ -1256,70 +1275,68 @@ body {
 	width			:500px;
 	height			:70px;
 	text-align		:center;
-	background		:#e0e0e0;
+	background		:#c0a090;
 }
 
 .howto_page_tag{
 	display			:inline-block;
 	position		:absolute;
-	background		:#d0c0a0;
+	background		:#f0e0c0;
 	width			:82px;
 	font-size		:16px;
 	font-weight		:900;
-	color			:#fafafa;
-	text-shadow		:2px 2px 0px #705030;
-	border			:5px solid #f0e0c0;	
+	color			:#303030;
+	border			:5px solid #c0a090;	
 }	
 
 .howto_page_ttl{
 	display			:inline-block;
 	position		:absolute;
-	background		:#d0c0a0;
+	background		:#C6AE88;
 	font-size		:16px;
 	font-weight		:900;
 	color			:#fafafa;
-	text-shadow		:2px 2px 0px #705030;
-	left			:174px;
+	left			:234px;
 	top				:0px;
 	height			:25px;
 	width			:256px;
 	line-height		:25px;
-	border			:5px solid #f0e0c0;	
+	border			:5px solid #C6AE88;
 }	
 
 #ibox0{
-	left			:0px;
+	left			:60px;
 	top				:0px;
 	height			:60px;
 	line-height		:60px;
 }
 
 #ibox1{
-	left			:87px;
+	left			:147px;
 	top				:0px;
 	height			:60px;
 	line-height		:60px;
 }
 
 #ibox2{
-	left			:174px;
-	top				:25px;
-	height			:35px;
-	line-height		:35px;
+	left			:234px;
+	top				:30px;
+	height			:30px;
+	line-height		:30px;
 }
 
 #ibox3{
-	left			:261px;
-	top				:25px;
-	height			:35px;
-	line-height		:35px;
+	left			:321px;
+	top				:30px;
+	height			:30px;
+	line-height		:30px;
 }
 
 #ibox4{
-	left			:348px;
-	top				:25px;
-	height			:35px;
-	line-height		:35px;
+	left			:408px;
+	top				:30px;
+	height			:30px;
+	line-height		:30px;
 }
 
 .score_top{
@@ -2063,5 +2080,103 @@ body {
 .last_res{
 	width:100vw;
 }
+
+.howto{
+	width			:100vw;
+	height			:100vh;
+}
+
+.howto_back{
+	left			:1.5vw;
+	height			:9vw;
+	line-height		:9vw;
+	width			:9vw;
+	font-size		:6vw;
+}
+
+.howto_main{
+	height			:120vw;
+	width			:95vw;
+}
+
+
+.howto_in{
+	width			:85vw;
+	height			:110vw;
+	padding			:2vw;
+	font-size		:4vw;
+	line-height		:6vw;
+}
+
+.howto_item{
+	width			:15vw;
+	margin			:0.5vw;
+}
+
+
+.howto_title{
+	font-size		:5vw;
+	padding			:1vw;
+	margin-bottom	:1vw;
+}
+
+.howto_page{
+	margin			:2vw auto;
+	height			:20vw;
+	width			:95vw;
+}
+
+
+.howto_page_tag{
+	width			:15.5vw;
+	font-size		:3.5vw;
+	border			:1vw solid #c0a090;	
+}	
+
+.howto_page_ttl{
+	font-size		:4vw;
+	left			:44.5vw;
+	top				:0px;
+	height			:7vw;
+	width			:47.5vw;
+	line-height		:7vw;
+	border			:1vw solid #C6AE88;
+}	
+
+#ibox0{
+	left			:11.5vw;
+	top				:0px;
+	height			:18vw;
+	line-height		:18vw;
+}
+
+#ibox1{
+	left			:28vw;
+	top				:0px;
+	height			:18vw;
+	line-height		:18vw;
+}
+
+#ibox2{
+	left			:44.5vw;
+	top				:8vw;
+	height			:10vw;
+	line-height		:10vw;
+}
+
+#ibox3{
+	left			:61vw;
+	top				:8vw;
+	height			:10vw;
+	line-height		:10vw;
+}
+
+#ibox4{
+	left			:77.5vw;
+	top				:8vw;
+	height			:10vw;
+	line-height		:10vw;
+}
+
 
 }
