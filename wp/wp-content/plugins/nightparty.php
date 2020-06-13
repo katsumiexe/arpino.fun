@@ -8,6 +8,27 @@ Author: KatsumiArai
 Author URI:
 */
 
+if($_POST["staff_set"]){
+
+	require_once ("../../../wp-load.php");
+	global $wpdb;
+
+	$staff_name		=$_POST["staff_name"];
+	$staff_kana		=$_POST["staff_kana"];
+	$staff_birthday	=$_POST["staff_birthday"];
+	$staff_sex		=$_POST["staff_sex"];
+	$staff_rank		=$_POST["staff_rank"];
+	$staff_position	=$_POST["staff_position"];
+	$staff_group	=$_POST["staff_group"];
+	$staff_tel		=$_POST["staff_tel"];
+	$staff_address	=$_POST["staff_address"];
+	$staff_registday=$_POST["staff_registday"];
+	if(!$staff_registday) $staff_registday=date("Y-m-d");
+
+	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`address`,`registday`)";
+	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$staff_birthday}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_address}','{$staff_registday}')";
+$wpdb->query($sql);
+}
 
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
@@ -33,6 +54,8 @@ function custom_menu_page(){
 	add_submenu_page('config', 'アイテム設定', 'アイテム設定', 'manage_options', 'config_item', 'config_item');
 }
 
+
+
 function cast_regist(){
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }
@@ -48,4 +71,3 @@ function staff_list(){
 function staff_regist(){
     esc_html_e( include_once('staff_regist.php'), 'textdomain' );  
 }
-
