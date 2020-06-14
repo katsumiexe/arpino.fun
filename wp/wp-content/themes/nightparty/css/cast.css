@@ -426,6 +426,45 @@ input:focus{
 	padding:0.5vw 0;
 }
 
+.rd{
+	display:none;
+}
+.cousomer_marrige{
+	display			:inline-block;
+	width			:16vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#fafafa;
+	text-align		:center;
+	border			:0.5vw solid #ffa0b0;
+	border-radius	:1vw;
+	font-size		:4vw;
+	color:#ffa0b0;	
+}
+
+.rd:checked+ label {
+	background		:#ffa0b0;
+	color			:#fafafa;	
+} 
+ 
+.cousomer_blood{
+	display			:inline-block;
+	width			:12vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#fafafa;
+	text-align		:center;
+	border			:0.5vw solid #ff9080;
+	border-radius	:1vw;
+	font-size		:4vw;
+	color:#ff9080;	
+}
+
+.rd:checked+ label {
+	background		:#ff9080;
+	color			:#fafafa;	
+} 
+
 .customer_detail{
 	position		:fixed;
 	top				:0;
@@ -474,7 +513,6 @@ input:focus{
 	margin			:1vw auto;
 	border-collapse	:separate;
 	border-spacing	:2vw 0;
-
 }
 
 .customer_base{
@@ -897,7 +935,7 @@ input:focus{
 	right			:1vw;
 }
 
-.back{
+.img_back{
 	display			:none;
 	position		:fixed;
 	top				:-10vw;
@@ -907,7 +945,6 @@ input:focus{
 	background		:rgba(30,30,30,0.2);
 	z-index			:20;
 }
-
 
 .img_open{
 	display			:inline-block;
@@ -923,12 +960,11 @@ input:focus{
 	cursor			:pointer;
 }
 
-.mypage_blog_img{
+.img_box{
 	position		:fixed;
-	top				:0;
+	top				:100vh;
 	left			:0;
 	right			:0;
-	bottom			:0;
 	margin			:auto;
 	width			:90vw;
 	height			:125vw;
@@ -1178,21 +1214,7 @@ input[type=range]::-moz-range-thumb{
 	padding			:0 1.5vw;
 }
 
-.upload_rote{
-	display			:inline-block;
-	position		:relative;
-	width			:9vw;
-	height			:8vw;
-	line-height		:8vw;
-	margin			:0 1vw;
-	border-radius	:1.5vw;
-	border			:1px solid #cccccc;
-	background		:linear-gradient(#f0f0f0,#d0d0d0);
-	text-align		:center;
-	cursor			:pointer;
-}
-
-.upload_reset{
+.upload_rote,.upload_reset,.upload_trush{
 	display			:inline-block;
 	position		:relative;
 	width			:9vw;

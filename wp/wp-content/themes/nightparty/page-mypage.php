@@ -390,8 +390,9 @@ const CastId='<?=$_SESSION["id"] ?>';
 							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>
 								<td class="customer_memo_item">
-									<lavel><input type="radio" name="cas[<?=$a1?>]" value="1">Yes</label>
-									<lavel><input type="radio" name="cas[<?=$a1?>]" value="2">No</label>
+									<input id="m_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="m_a" class="cousomer_marrige">既婚</label>
+									<input id="m_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="m_b" class="cousomer_marrige">未婚</label>
+									<input id="m_c" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="m_c" class="cousomer_marrige">離婚</label>
 								</td>
 							</tr>
 
@@ -399,12 +400,14 @@ const CastId='<?=$_SESSION["id"] ?>';
 							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>
 								<td class="customer_memo_item">
-									<lavel><input type="radio" name="cas[<?=$a1?>]" value="1">Ａ</label>
-									<lavel><input type="radio" name="cas[<?=$a1?>]" value="2">Ｂ</label>
-									<lavel><input type="radio" name="cas[<?=$a1?>]" value="3">Ｏ</label>
-									<lavel><input type="radio" name="cas[<?=$a1?>]" value="4">AB</label>
+									<input id="b_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="b_a" class="cousomer_blood">Ａ</label>
+									<input id="b_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="b_b" class="cousomer_blood">Ｂ</label>
+									<input id="b_o" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="b_o" class="cousomer_blood">Ｏ</label>
+									<input id="b_ab" type="radio" name="cas[<?=$a1?>]" value="4" class="rd"><label for="b_ab" class="cousomer_blood">AB</label>
 								</td>
 							</tr>
+
+ 
 						<?}else{?>
 							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>
@@ -493,38 +496,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 	</div>
 	<div class="upload_icon tag_open"></div>
 	<div class="upload_icon img_open"></div>
-	<div class="back">
-		<div class="mypage_blog_img">
-			<div class="img_box_in">
-				<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
-				<div class="img_box_out1"></div>
-				<div class="img_box_out2"></div>
-				<div class="img_box_out3"></div>
-				<div class="img_box_out4"></div>
-				<div class="img_box_out5"></div>
-				<div class="img_box_out6"></div>
-				<div class="img_box_out7"></div>
-				<div class="img_box_out8"></div>
-			</div>
-
-			<div class="img_box_in2">
-				<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
-				<span class="upload_icon upload_rote"></span>
-				<span class="upload_icon upload_reset"></span>
-			</div>
-
-			<div class="img_box_in3">
-				<div class="zoom_mi">-</div>
-				<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
-				<div class="zoom_pu">+</div><div class="zoom_box">100</div>
-			</div>
-
-			<div class="img_box_in4">
-				<div id="yes_5" class="btn c2">登録</div>　
-				<div class="btn c1">戻る</div>
-			</div>
-		</div>
-	</div>
 </div>
 <div class="mypage_blog_hist">
 <img src="" class="hist_img">
@@ -547,7 +518,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 <input id="img_height" type="hidden" name="img_height" value="10">
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
-<input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
 <?}elseif($cast_page==5){?>
 <div class="mypage_config">
@@ -580,7 +550,7 @@ $w=($s+$week_start) % 7;
 ?>
 <td class="cal_td <?PHP ECHO $week_tag[$w]?>"><?PHP ECHO $week[$w]?></td>
 <? } ?>
-<?PHP ECHO $cal[$c]?>
+<?=$cal[$c]?>
 </tr>
 </table>
 <?}?>
@@ -588,7 +558,6 @@ $w=($s+$week_start) % 7;
 </div>
 <div class="cal_days">
 </div>
-
 <div class="cal_set_btn">スケジュール入力</div>
 <div class="cal_weeks">
 	<div class="cal_weeks_prev">前週</div>
@@ -615,7 +584,7 @@ $w=($s+$week_start) % 7;
 							<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
 						<?}?>
 					</select>
-<? } ?>
+				<? } ?>
 				</div>
 			<? } ?>
 		</div>
@@ -626,15 +595,52 @@ $w=($s+$week_start) % 7;
 </div>
 <? } ?>
 
+<div class="img_back">
+	<div class="img_box">
+		<div class="img_box_in">
+			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
+			<div class="img_box_out1"></div>
+			<div class="img_box_out2"></div>
+			<div class="img_box_out3"></div>
+			<div class="img_box_out4"></div>
+			<div class="img_box_out5"></div>
+			<div class="img_box_out6"></div>
+			<div class="img_box_out7"></div>
+			<div class="img_box_out8"></div>
+		</div>
+
+		<div class="img_box_in2">
+			<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
+			<span class="upload_icon upload_rote"></span>
+			<span class="upload_icon upload_reset"></span>
+			<span class="upload_icon upload_trush"></span>
+
+		</div>
+
+		<div class="img_box_in3">
+			<div class="zoom_mi">-</div>
+			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
+			<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+		</div>
+
+		<div class="img_box_in4">
+			<div id="yes_5" class="btn c2">登録</div>　
+			<div class="btn c1">戻る</div>
+		</div>
+	</div>
+</div>
+
+<input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
+
 <form id="logout" action="<?php the_permalink();?>" method="post">
-<input type="hidden" value="1" name="log_out">
+	<input type="hidden" value="1" name="log_out">
 </form>
 
 <form id="menu_sel" action="<?php the_permalink();?>" method="post">
-<input id="cast_page" type="hidden" value="" name="cast_page">
-<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
+	<input id="cast_page" type="hidden" value="" name="cast_page">
+	<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
 <? }?>
 </body>

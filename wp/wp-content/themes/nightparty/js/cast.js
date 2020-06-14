@@ -2,8 +2,6 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 
-
-
 	var Fav=0;
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
@@ -71,14 +69,6 @@ $(function(){
 
 		}
 	});
-	
-
-
-
-
-
-
-
 
 	$('.customer_fav').on('click',function () {
 		if(Fav == 0){
@@ -354,6 +344,11 @@ $(function(){
 		$('.customer_detail').animate({'left':'0'},300);
 	});
 
+	$('.customer_base_img').on('click',function(){
+		$('.img_box').animate({'top':'20vw'},200);
+		$('.img_back').fadeIn(100);
+	});
+
 	$('.cal_set_btn').on('click',function(){
 		$('.cal_weeks').animate({'top':'18vw'},500);
 	});
@@ -408,7 +403,7 @@ $(function(){
 		
 	});
 
-	$('.img_rote').on('click',function(){
+	$('.upload_rote').on('click',function(){
 		$({deg:Rote}).animate({deg:-90 + Rote}, {
 			duration:500,
 			progress:function() {
@@ -475,7 +470,7 @@ $(function(){
 		$('#img_zoom').val(Zoom);
 	});
 
-	$('.img_reset').on( 'click', function () {
+	$('.upload_reset').on( 'click', function () {
 		Zoom=100;
 		Left=css_B;
 		Right=css_B;
