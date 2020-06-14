@@ -378,14 +378,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 </div>
 
 <div class="score">
-	<div class="score_top">
-	Ranking(<?=$now?>)　　
-<span id="s_lv2" class="score_lv score_lv_on">★★★</span>
-<span id="s_lv1" class="score_lv">★★☆</span>
-<span id="s_lv0" class="score_lv">★☆☆</span>
-<span class="score_back"></span>
-	</div>
-
+	<div class="score_top">	Ranking(<?=$now?>)　<span id="s_lv2" class="score_lv score_lv_on">★★★</span><span id="s_lv1" class="score_lv">★★☆</span><span id="s_lv0" class="score_lv">★☆☆</span><span class="score_back"></span></div>
 	<table id="tbl_lv0" class="score_table">
 		<tr>
 			<td class="score_table_ttl">Rank</td>
