@@ -296,8 +296,15 @@ $(function(){
 		}
 	});
 
+	$('.mypage_head').on('click','.arrow_customer',function(){
+		$('.head_mymenu_comm').removeClass('arrow_customer');
+		$('.customer_detail').animate({'left':'100vw'},300);
+		$('.head_mymenu_ttl').html('顧客リスト');
+	});
 
 	$('.customer_list').on('click',function(){
+		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
+		$('.head_mymenu_comm').addClass('arrow_customer');
 
 		var TmpHgt=VhBase*100-VwBase*70;
 		$('.customer_body').css('height',TmpHgt);

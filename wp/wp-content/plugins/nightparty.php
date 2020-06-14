@@ -1,7 +1,4 @@
 <?php
-require_once ("../wp-load.php"); 
-global $wpdb;
-
 /*
 Plugin Name:nightparty
 Plugin URI:https://onlyme.fun
@@ -11,9 +8,8 @@ Author: KatsumiArai
 Author URI:
 */
 
+
 if($_POST["staff_set"]){
-
-
 	$staff_name		=$_POST["staff_name"];
 	$staff_kana		=$_POST["staff_kana"];
 	$staff_birthday	=$_POST["staff_birthday"];
@@ -48,9 +44,7 @@ $wpdb->query($sql);
 	}
 
 	$mk_dir=get_template_directory_uri()."/img/cast/".$tmp_dir;
-
 	if(!is_dir($mk_dir)) {
-
 		mkdir($mk_dir."/", TRUE);
 		chmod($mk_dir, 0777);
 
@@ -58,12 +52,10 @@ $wpdb->query($sql);
 		chmod($mk_dir."/c/", 0777);
 
 		mkdir($mk_dir."/m/", 0777, TRUE);
-
 		chmod($mk_dir."/m/", 0777);
 print($mk_dir);
 	}
 }
-
 
 
 add_action('admin_menu', 'custom_menu_page');
@@ -90,8 +82,6 @@ function custom_menu_page(){
 	add_submenu_page('config', 'アイテム設定', 'アイテム設定', 'manage_options', 'config_item', 'config_item');
 }
 
-
-
 function cast_regist(){
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }
@@ -103,15 +93,17 @@ function cast_list(){
 function staff_list(){
 	$n=0;
 	$sql	 ="SELECT * FROM wp01_0staff";
-//	$sql	.=" ORDER BY staff_id DESC";
-	$tmp = $wpdb->get_results($sql,ARRAY_A );
+	$sql	.=" ORDER BY staff_id DESC";
+//	$tmp = $wpdb->get_results($sql,ARRAY_A);
+
+	print($sql);
 
 	foreach($tmp as $res){
 		$member[$n]=$res;
 		print($res[$n]["staff_id"]);
 		$n++;
 	}
-    esc_html_e( include_once('staff_list.php'), 'textdomain' );  
+    esc_html_e(include_once('staff_list.php'),'textdomain');  
 }
 
 function staff_regist(){

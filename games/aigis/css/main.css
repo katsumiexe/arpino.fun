@@ -16,15 +16,16 @@
 .icon_twitter{
 	font-family		:at_icon;
 	display			:inline-block;
-	width			:35px;
-	height			:35px;
-	line-height		:35px;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
 	color			:#fafafa;
-	font-size		:20px;
+	font-size		:15px;
 	text-align		:center;
 	background		:#1DA1F2;
 	border-radius	:50%;
 	text-decoration	:none;
+	margin:5px;
 }
 
 .icon_mail{
@@ -101,6 +102,37 @@ body {
 	width				:350px;	
 	height				:50px;
 	font-size			:0;
+}
+
+.first_play_ttl{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:350px;
+	border				:2px solid #d0a090;
+	background			:#d0a090;
+	width				:350px;	
+	height				:50px;
+	line-height			:50px;
+	font-size			:26px;
+	font-weight			:800;
+	text-shadow			:1px 1px 0px #906000;
+	text-align			:center;
+	color				:#fafafa;
+}
+
+.first_play_btm{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:350px;
+	border				:2px solid #d0a090;
+	background			:#d0a090;
+	width				:350px;	
+	height				:40px;
+	line-height			:40px;
+	font-size			:16px;
+	font-weight			:700;
+	text-align			:center;
+	color				:#fafafa;
 }
 
 .first_play_level:hover{
@@ -1184,7 +1216,7 @@ body {
 	text-align	:right;
 }
 
-.howto{
+.howto,.score{
 	position		:fixed;
 	display			:none;
 	top				:0;
@@ -1194,7 +1226,10 @@ body {
 	width			:600px;
 	height			:100vh;
 	z-index			:111;
+	text-align		:center;
 	background		:#faf0e8;
+	background		:#303030;
+
 }
 
 .howto_back{
@@ -1339,12 +1374,12 @@ body {
 	line-height		:30px;
 }
 
+
 .score_top{
 	position		:absolute;
 	top				:2px;
 	left			:0;
 	right			:0;
-	margin			:auto;
 	width			:498px;
 	height			:30px;
 	line-height		:30px;
@@ -1402,7 +1437,6 @@ body {
 	color			:#e00000;
 }
 
-
 .score_table{
 	position		:absolute;
 	top				:50px;
@@ -1411,10 +1445,9 @@ body {
 	margin			:auto;
 	width			:500px;
 	display			:none;
-	border			:2px solid #303030;
 	box-shadow		:2px 2px 2px rgba(30,30,30,0.5);
 	background		:#fafafa;
-	border			:solid 1px #000000;
+	border			:2px solid #303030;
 	border-collapse	:separate;
 }
 
@@ -1426,10 +1459,10 @@ body {
 }
 
 .score_table_rank{
-	width:50px;
-	text-align:right;
-	border-bottom:2px solid #303030;
-	font-size:24px;
+	width			:50px;
+	text-align		:right;
+	border-bottom	:2px solid #303030;
+	font-size		:24px;
 }
 
 .score_table_unit{
@@ -1462,17 +1495,8 @@ body {
 	width			:80px;
 	text-align		:right;
 	border-bottom	:2px solid #303030;
-}
+	padding-right:1.5vw;
 
-.score_in{
-	display			:inline-block;
-	width			:86px;
-	height			:40px;
-	line-height		:40px;
-	margin			:2px;
-	padding			:3px;
-	font-size		:30px;
-	font-weight:800;
 }
 
 .tag_on{
@@ -2081,9 +2105,10 @@ body {
 	width:100vw;
 }
 
-.howto{
+.howto,.score{
 	width			:100vw;
 	height			:100vh;
+
 }
 
 .howto_back{
@@ -2176,6 +2201,93 @@ body {
 	top				:8vw;
 	height			:10vw;
 	line-height		:10vw;
+}
+
+
+
+.score_top{
+	width			:95vw;
+	height			:8vw;
+	line-height		:8vw;
+	border			:0.5vw solid #303030;
+	margin			:2vw auto;
+	font-size		:4.5vw;	
+	text-align		:right;
+}
+
+.score_img{
+	width			:10vw;
+	height			:10vw;
+
+}
+
+.score_back{
+	top				:-1vw;
+	left			:-1vw;
+	bottom			:0;
+	margin			:auto;
+	height			:8vw;
+	line-height		:8vw;
+	width			:8vw;
+	font-size		:6vw;
+}
+
+.score_lv{
+	height			:5vw;
+	line-height		:5vw;
+	width			:9vw;
+	margin			:1vw 0.5vw;	
+	font-size		:3.2vw;
+}
+
+.score_table{
+	top				:13vw;
+	width			:96vw;
+	border			:0.5vw solid #303030;
+}
+
+.score_table_ttl{
+	border-bottom	:0.5vw solid #303030;
+	font-size		:3.5vw;
+	height			:5vw;
+	line-height		:5vw;
+}
+
+.score_table_rank{
+	width			:10vw;
+	text-align		:right;
+	border-bottom	:0.5vw solid #303030;
+	font-size		:6vw;
+}
+
+.score_table_unit{
+	position		:relative;
+	width			:14vw;
+	border-bottom	:0.5vw solid #303030;
+}
+
+.score_table_date{
+	height			:4vw;
+	text-align		:left;
+	font-size		:3vw;
+}
+
+.score_table_name{
+	height			:5.5vw;
+	text-align		:left;
+	font-size		:5vw;
+	font-weight		:800;
+	overflow		:hidden;
+	border-bottom	:0.5vw solid #303030;
+}
+
+.score_table_score{
+	width			:15vw;
+	text-align		:right;
+	border-bottom	:0.5vw solid #303030;
+	font-size		:7vw;
+	font-weight:800;
+	padding-right:1.5vw;
 }
 
 

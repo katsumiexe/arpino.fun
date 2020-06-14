@@ -1,8 +1,8 @@
 <?
 include_once("./library/session.php");
+
 $base_date=date("Y-m-01 00:00:00");
 $now=date("Y/m");
-
 $n=1;
 $sql	 ="SELECT * FROM score_data";
 $sql	.=" WHERE date>='{$base_date}'";
@@ -83,9 +83,9 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <div class="score">
 	<div class="score_top">
 	Ranking(<?=$now?>)　　
-<span id="lv2" class="score_lv score_lv_on">★★★</span>
-<span id="lv1" class="score_lv">★★☆</span>
-<span id="lv0" class="score_lv">★☆☆</span>
+<span id="s_lv2" class="score_lv score_lv_on">★★★</span>
+<span id="s_lv1" class="score_lv">★★☆</span>
+<span id="s_lv0" class="score_lv">★☆☆</span>
 <span class="score_back"></span>
 	</div>
 
@@ -95,15 +95,13 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<td class="score_table_ttl">Unit</td>
 			<td class="score_table_ttl">Date/Name</td>
 			<td class="score_table_ttl">Score</td>
-			<td class="score_table_ttl"></td>
 		</tr>
 	<?for($n=1;$n<11;$n++){?>
 		<tr>
 			<td class="score_table_rank" rowspan="2"><?=$n?></td>
 			<td class="score_table_unit" rowspan="2"><?=$rank0[$n]["img"]?></td>
 			<td class="score_table_date"><?=$rank0[$n]["date"]?></td>
-			<td class="score_table_score" rowspan="2"><span class="score_in"><?=$rank0[$n]["score"]?></span></td>
-			<td class="score_table_sns" rowspan="2"></td>
+			<td class="score_table_score" rowspan="2"><?=$rank0[$n]["score"]?></td>
 		</tr>
 		<tr>
 			<td class="score_table_name"><?=$rank0[$n]["name"]?></td>
@@ -116,7 +114,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<td class="score_table_ttl">Unit</td>
 			<td class="score_table_ttl">Date/Name</td>
 			<td class="score_table_ttl">Score</td>
-			<td class="score_table_ttl"></td>
 		</tr>
 	<?for($n=1;$n<11;$n++){?>
 		<tr>
@@ -124,7 +121,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<td class="score_table_unit" rowspan="2"><?=$rank1[$n]["img"]?></td>
 			<td class="score_table_date"><?=$rank1[$n]["date"]?></td>
 			<td class="score_table_score" rowspan="2"><span class="score_in"><?=$rank1[$n]["score"]?></span></td>
-			<td class="score_table_sns" rowspan="2"></td>
 		</tr>
 		<tr>
 			<td class="score_table_name"><?=$rank1[$n]["name"]?></td>
@@ -137,7 +133,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<td class="score_table_ttl">Unit</td>
 			<td class="score_table_ttl">Date/Name</td>
 			<td class="score_table_ttl">Score</td>
-			<td class="score_table_ttl"></td>
 		</tr>
 	<?for($n=1;$n<11;$n++){?>
 		<tr>
@@ -145,7 +140,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<td class="score_table_unit" rowspan="2"><?=$rank2[$n]["img"]?></td>
 			<td class="score_table_date"><?=$rank2[$n]["date"]?></td>
 			<td class="score_table_score" rowspan="2"><span class="score_in"><?=$rank2[$n]["score"]?></span></td>
-			<td class="score_table_sns" rowspan="2"></td>
 		</tr>
 		<tr>
 			<td class="score_table_name"><?=$rank2[$n]["name"]?></td>

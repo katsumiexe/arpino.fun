@@ -70,6 +70,71 @@ foreach($pts as $a1 => $a2){
 	$tmp_pts=$a2;
 }
 
+
+$base_date=date("Y-m-01 00:00:00");
+$now=date("Y/m");
+$n=1;
+$sql	 ="SELECT * FROM score_data";
+$sql	.=" WHERE date>='{$base_date}'";
+$sql	.=" AND level='0'";
+$sql	.=" ORDER BY score DESC";
+$sql	.=" LIMIT 10";
+if($res0 = mysqli_query($mysqli,$sql)){
+	while($row0 = mysqli_fetch_assoc($res0)){
+		if($row0["name"]){
+			$rank0[$n]["name"]=$row0["name"];
+		}else{
+			$rank0[$n]["name"]="名無し王子";
+		}
+		$rank0[$n]["date"]	=$row0["date"];
+		$rank0[$n]["score"]	=$row0["score"];
+		$rank0[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
+		$n++;	
+	}
+}
+
+$n=1;
+$sql	 ="SELECT * FROM score_data";
+$sql	.=" WHERE date>='{$base_date}'";
+$sql	.=" AND level='1'";
+$sql	.=" ORDER BY score DESC";
+$sql	.=" LIMIT 10";
+
+if($res0 = mysqli_query($mysqli,$sql)){
+	while($row0 = mysqli_fetch_assoc($res0)){
+		if($row0["name"]){
+			$rank1[$n]["name"]=$row0["name"];
+		}else{
+			$rank1[$n]["name"]="名無し王子";
+		}
+		$rank1[$n]["date"]	=$row0["date"];
+		$rank1[$n]["score"]	=$row0["score"];
+		$rank1[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
+		$n++;	
+	}
+}
+
+$n=1;
+$sql	 ="SELECT * FROM score_data";
+$sql	.=" WHERE date>='{$base_date}'";
+$sql	.=" AND level='2'";
+$sql	.=" ORDER BY score DESC";
+$sql	.=" LIMIT 10";
+if($res0 = mysqli_query($mysqli,$sql)){
+	while($row0 = mysqli_fetch_assoc($res0)){
+		if($row0["name"]){
+			$rank2[$n]["name"]=$row0["name"];
+		}else{
+			$rank2[$n]["name"]="名無し王子";
+		}
+		$rank2[$n]["date"]	=$row0["date"];
+		$rank2[$n]["score"]	=$row0["score"];
+		$rank2[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
+		$n++;	
+	}
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -91,6 +156,9 @@ foreach($pts as $a1 => $a2){
 
 <div class="page_00">
 	<div class="first_play">
+		<div class="first_play_ttl">
+			<span>アイギスカードゲーム(仮)</span>
+		</div>
 		<div id="lv0" class="first_play_level">
 			<span class="first_icon"></span>
 			<span class="first_comm">★☆☆</span>
@@ -120,6 +188,9 @@ foreach($pts as $a1 => $a2){
 			<span class="first_icon"></span>
 			<span class="first_comm">問合せ</span>
 			<span class="first_comm">-AskMe-</span>
+		</div>
+		<div class="first_play_btm">
+			作った人:Katsumi　<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
 		</div>
 	</div>
 </div>
@@ -305,6 +376,75 @@ foreach($pts as $a1 => $a2){
 		<div id="start" class="btn c2">選択</div>
 	</div>
 </div>
+
+<div class="score">
+	<div class="score_top">
+	Ranking(<?=$now?>)　　
+<span id="s_lv2" class="score_lv score_lv_on">★★★</span>
+<span id="s_lv1" class="score_lv">★★☆</span>
+<span id="s_lv0" class="score_lv">★☆☆</span>
+<span class="score_back"></span>
+	</div>
+
+	<table id="tbl_lv0" class="score_table">
+		<tr>
+			<td class="score_table_ttl">Rank</td>
+			<td class="score_table_ttl">Unit</td>
+			<td class="score_table_ttl">Date/Name</td>
+			<td class="score_table_ttl">Score</td>
+		</tr>
+	<?for($n=1;$n<11;$n++){?>
+		<tr>
+			<td class="score_table_rank" rowspan="2"><?=$n?></td>
+			<td class="score_table_unit" rowspan="2"><?=$rank0[$n]["img"]?></td>
+			<td class="score_table_date"><?=$rank0[$n]["date"]?></td>
+			<td class="score_table_score" rowspan="2"><?=$rank0[$n]["score"]?></td>
+		</tr>
+		<tr>
+			<td class="score_table_name"><?=$rank0[$n]["name"]?></td>
+		</tr>
+	<? } ?>
+	</table>
+	<table id="tbl_lv1" class="score_table">
+		<tr>
+			<td class="score_table_ttl">Rank</td>
+			<td class="score_table_ttl">Unit</td>
+			<td class="score_table_ttl">Date/Name</td>
+			<td class="score_table_ttl">Score</td>
+		</tr>
+	<?for($n=1;$n<11;$n++){?>
+		<tr>
+			<td class="score_table_rank" rowspan="2"><?=$n?></td>
+			<td class="score_table_unit" rowspan="2"><?=$rank1[$n]["img"]?></td>
+			<td class="score_table_date"><?=$rank1[$n]["date"]?></td>
+			<td class="score_table_score" rowspan="2"><?=$rank1[$n]["score"]?></td>
+		</tr>
+		<tr>
+			<td class="score_table_name"><?=$rank1[$n]["name"]?></td>
+		</tr>
+	<? } ?>
+	</table>
+	<table id="tbl_lv2" class="score_table">
+		<tr>
+			<td class="score_table_ttl">Rank</td>
+			<td class="score_table_ttl">Unit</td>
+			<td class="score_table_ttl">Date/Name</td>
+			<td class="score_table_ttl">Score</td>
+		</tr>
+	<?for($n=1;$n<11;$n++){?>
+		<tr>
+			<td class="score_table_rank" rowspan="2"><?=$n?></td>
+			<td class="score_table_unit" rowspan="2"><?=$rank2[$n]["img"]?></td>
+			<td class="score_table_date"><?=$rank2[$n]["date"]?></td>
+			<td class="score_table_score" rowspan="2"><?=$rank2[$n]["score"]?></td>
+		</tr>
+		<tr>
+			<td class="score_table_name"><?=$rank2[$n]["name"]?></td>
+		</tr>
+	<? } ?>
+	</table>
+</div>
+
 
 <div class="howto">
 	<div class="howto_page">

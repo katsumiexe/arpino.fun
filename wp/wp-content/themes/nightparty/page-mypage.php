@@ -79,6 +79,8 @@ if($_SESSION){
 	}
 */
 
+	$page_title="スケジュール";
+
 
 
 	/*--■祝日カレンダー--*/
@@ -226,8 +228,6 @@ if($_SESSION){
 			$customer[$n]["dd"]=substr($cus2["birth_day"],8,2);
 			$customer[$n]["ag"]= floor(($now-str_replace("-", "", $cus2["birth_day"]))/10000);
 		}
-
-
 		$n++;
 	}
 
@@ -241,7 +241,6 @@ if($_SESSION){
 	}
 }
 ?>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -269,9 +268,9 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 const CastId='<?=$_SESSION["id"] ?>'; 
 </script>
 </head>
+
 <body class="body">
 <? if(!$_SESSION){ ?>
-<div class="mypage_main">
 	<div class="login_box">
 		<form action="<?php the_permalink();?>" method="post">
 			<span class="login_name">IDCODE</span>
@@ -286,7 +285,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<?=$err?>
 	</div>
 	<? }?>
-</div>
 
 <?}else{?>
 <div class="mypage_head">
@@ -295,6 +293,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<div class="mymenu_b"></div>
 		<div class="mymenu_c"></div>
 	</div>	
+	<div class="head_mymenu_comm">
+	<div class="head_mymenu_arrow"></div>
+	<span class="head_mymenu_ttl"><?=$page_title?></span>
+
+	</div>
 </div>
 <div class="mypage_slide">
 	<ul class="mypage_menu">
@@ -336,7 +339,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
 		<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
 		<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
-
 	</div>
 <?}?>
 
