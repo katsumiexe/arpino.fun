@@ -211,7 +211,7 @@ $(function(){
 						cvs_Y=(cvs_W-cvs_H)/2;
 						cvs_X=0;
 
-						css_H=80*VwBase;
+						css_H=60*VwBase;
 						css_W=img_W*(css_H/img_H);
 
 						css_A=css_W;
@@ -299,6 +299,8 @@ $(function(){
 		var TmpHgt=VhBase*100-VwBase*70;
 		$('.customer_body').css('height',TmpHgt);
 
+		C_Id=$(this).attr('id').replace('clist','');
+
 		Tmp=$(this).children('.mail_img').attr('src');
 		$('.customer_detail_img').attr('src',Tmp);
 
@@ -342,7 +344,23 @@ $(function(){
 		$('#customer_detail_ag').text(Tmp);
 
 		$('.customer_detail').animate({'left':'0'},300);
+
+		$.post({
+			url:Dir + "/post/customer_detail_read.php",
+			data:{
+				'c_id':C_Id,
+			},
+			dataType: 'json',
+		}).done(function(data, textStatus, jqXHR){
+
+			Object.keys(data).forEach( function(value) {
+			    console.log( value + '：' + this[value] );
+				$('input:text[name="'+ value +'"]').val(this[value]);
+			}, data);
+		});
 	});
+
+
 
 	$('.customer_base_img').on('click',function(){
 		$('.img_box').animate({'top':'20vw'},200);

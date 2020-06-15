@@ -318,6 +318,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 
 <div class="mypage_customer">
 <?for($n=0;$n<count($customer);$n++){?>
+
 	<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 		<?if($customer[$n]["face"]){?>
 			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
@@ -407,7 +408,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 								</td>
 							</tr>
 
- 
 						<?}else{?>
 							<tr>
 								<td class="customer_memo_tag"><?=$a2?></td>

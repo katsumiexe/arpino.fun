@@ -348,9 +348,9 @@ input:focus{
 }
 
 .tag_set_ck{
-	color			:#d00000;
-	border-color	:#d00000;
-	background		:#eeeeee;
+	color			:#f17766;
+	border-color	:#f17766;
+	background		:#fff0f5;
 	z-index			:18;
 }
 
@@ -395,6 +395,7 @@ input:focus{
 	border			:none;
 	font-size		:4.5vw;
 	width			:58vw;
+	border-color	:#f17766;
 }
 
 .item_basebox{
@@ -403,7 +404,7 @@ input:focus{
 	border			:none;
 	font-size		:4.5vw;
 	width			:43vw;
-	border-color	:#fafafa;
+	border-color	:#f17766;
 }
 
 .item_basebox_yy{
@@ -413,6 +414,7 @@ input:focus{
 	border			:none;
 	font-size		:4.5vw;
 	width			:12vw;
+	border-color	:#f17766;
 	padding:0.5vw 0;
 }
 
@@ -423,6 +425,7 @@ input:focus{
 	border			:none;
 	font-size		:4.5vw;
 	width			:7vw;
+	border-color	:#f17766;
 	padding:0.5vw 0;
 }
 
@@ -436,14 +439,15 @@ input:focus{
 	line-height		:8vw;
 	background		:#fafafa;
 	text-align		:center;
-	border			:0.5vw solid #ffa0b0;
+	border			:0.5vw solid #f17766;
 	border-radius	:1vw;
 	font-size		:4vw;
-	color:#ffa0b0;	
+	color			:#f17766;	
+	font-weight:700;
 }
 
 .rd:checked+ label {
-	background		:#ffa0b0;
+	background		:#f17766;
 	color			:#fafafa;	
 } 
  
@@ -454,14 +458,15 @@ input:focus{
 	line-height		:8vw;
 	background		:#fafafa;
 	text-align		:center;
-	border			:0.5vw solid #ff9080;
+	border			:0.5vw solid #f17766;
 	border-radius	:1vw;
 	font-size		:4vw;
-	color:#ff9080;	
+	color			:#f17766;	
+	font-weight:700;
 }
 
 .rd:checked+ label {
-	background		:#ff9080;
+	background		:#f17766;
 	color			:#fafafa;	
 } 
 
@@ -503,8 +508,8 @@ input:focus{
 	margin			:0 auto;
 	background		:#fafafa;
 	z-index			:19;
-	border-top		:1vw solid #900000;
-	border-bottom	:1vw solid #900000;
+	border-top		:1vw solid #f17766;
+	border-bottom	:1vw solid #f17766;
 }
 
 
@@ -942,7 +947,7 @@ input:focus{
 	left			:-10vh;
 	width			:120vw;
 	height			:120vh;
-	background		:rgba(30,30,30,0.2);
+	background		:rgba(30,30,30,0.7);
 	z-index			:20;
 }
 
