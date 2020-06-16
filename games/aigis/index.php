@@ -133,8 +133,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		$n++;	
 	}
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -190,7 +188,11 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<span class="first_comm">-AskMe-</span>
 		</div>
 		<div class="first_play_btm">
-			作った人:Katsumi　<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
+			<span class="sns">
+			<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
+			<a href="https://github.com/katsumiexe" class="icon_github"></a>
+			<a href="./post.php" class="icon_mail"></a>
+			</span>
 		</div>
 	</div>
 </div>
@@ -209,8 +211,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
 	</div>
 <?}?>
-<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
-<a href="./post.php" class="icon_mail"></a>
 </div>
 <div class="page_02">
 	<div class="player">
@@ -332,20 +332,20 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <div class="turn_start_main">START</div>
 <div class="main_card"></div>
 <table class="table_a">
-<tr>
-<td class="td_a">
-	<span class="get_icon"><?=$card[1]?></span>
-	<span id="count_p" class="get_count">0</span>
-</td>
-<td class="td_a">
-	<span class="get_icon2"></span>
-	<span id="pts_p" class="get_count">0</span>
-</td>
-<td class="td_a">
-	<span id="sub_p" class="a_sub"><?=$check[1]?></span>
-	<span id="ring_p" class="a_ring"><?=$check[2]?></span>
-</td>
-</tr>
+	<tr>
+		<td class="td_a">
+			<span class="get_icon"><?=$card[1]?></span>
+			<span id="count_p" class="get_count">0</span>
+		</td>
+		<td class="td_a">
+			<span class="get_icon2"></span>
+			<span id="pts_p" class="get_count">0</span>
+		</td>
+		<td class="td_a">
+			<span id="sub_p" class="a_sub"><?=$check[1]?></span>
+			<span id="ring_p" class="a_ring"><?=$check[2]?></span>
+		</td>
+	</tr>
 </table>
 <div class="last_res"></div>
 <img id="myicon" src="" class="myimg">

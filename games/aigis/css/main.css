@@ -16,30 +16,137 @@
 .icon_twitter{
 	font-family		:at_icon;
 	display			:inline-block;
-	width			:30px;
-	height			:30px;
-	line-height		:30px;
+	width			:36px;
+	height			:36px;
+	line-height		:36px;
 	color			:#fafafa;
-	font-size		:15px;
+	font-size		:20px;
 	text-align		:center;
 	background		:#1DA1F2;
 	border-radius	:50%;
 	text-decoration	:none;
-	margin:5px;
+	margin			:2px 4px;
+}
+
+.thanks{
+	margin			:1vw auto;
+	position		:relative;
+	display			:inline-block;
+	width			:96vw;
+	height			:20vw;
+	background		:linear-gradient(#c0a000,#a09000);
+	font-size		:0;
+}
+
+.thanks_ttl{
+	margin			:1vw;
+	display			:inline-block;
+	width			:94vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	font-weight		:700;
+	color			:#fafafa;	
+	border-bottom	:0.5vw solid #fafafa;
+}
+
+.thanks_tag{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1vw;
+	left			:1vw;
+
+	width			:16vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:linear-gradient(#00a000,#009000);
+	color			:#fafafa;
+	font-weight		:600;
+	font-size		:4vw;
+	margin			:1vw 0;
+	padding			:0;
+}
+
+.thanks_btn{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1vw;
+	left			:75vw;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:linear-gradient(#cccccc,#bbbbbb);
+	color			:#fafafa;
+	font-weight		:600;
+	margin			:1vw;
+	font-family		:at_icon;
+	padding			:0;
+	font-size		:4.5vw;
+	text-align		:center;
+}
+
+.thanks_back{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1vw;
+	left			:85vw;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:linear-gradient(#cccccc,#bbbbbb);
+	color			:#fafafa;
+	font-weight		:600;
+	margin			:1vw;
+	font-family		:at_icon;
+	padding			:0;
+	font-size		:4.5vw;
+	text-align		:center;
+}
+
+.thanks_name{
+	position		:absolute;
+	bottom			:1vw;
+	left			:17vw;
+
+	width			:55vw;
+	height			:7vw;
+	line-height		:7vw;
+	background		:#fafafa;
+	color			:#606060;
+	font-weight		:600;
+	margin			:1vw 0;
+	border			:0.5vw solid #009000;
+	padding			:0 1vw;
+}
+
+.icon_github{
+	font-family		:at_icon;
+	display			:inline-block;
+	width			:36px;
+	height			:36px;
+	line-height		:36px;
+	color			:#fafafa;
+	font-size		:20px;
+	text-align		:center;
+	background		:#909090;
+	border-radius	:50%;
+	text-decoration	:none;
+	margin			:2px 4px;
 }
 
 .icon_mail{
 	font-family		:at_icon;
 	display			:inline-block;
-	width			:35px;
-	height			:35px;
-	line-height		:35px;
+	width			:36px;
+	height			:36px;
+	line-height		:36px;
 	color			:#fafafa;
 	font-size		:20px;
 	text-align		:center;
 	background		:#009000;
 	border-radius	:50%;
 	text-decoration	:none;
+	margin			:2px 4px;
 }
 
 body {
@@ -134,6 +241,14 @@ body {
 	text-align			:center;
 	color				:#fafafa;
 }
+.sns{
+	display				:inline-block;
+	position			:absolute;
+	right				:5px;
+	height				:40px;
+	line-height			:40px;
+}
+
 
 .first_play_level:hover{
 	background			:#fff0f8;

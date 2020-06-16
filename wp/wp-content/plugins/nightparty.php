@@ -99,6 +99,16 @@ function cast_regist(){
 }
 
 function cast_list(){
+	global $wpdb;
+	$n=0;
+	$sql	 ="SELECT * FROM wp01_0cast";
+	$sql	.=" ORDER BY id DESC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$member[$n]=$res;
+		$n++;
+	}
     esc_html_e( include_once('cast_list.php'), 'textdomain' );  
 }
 
@@ -121,3 +131,6 @@ function staff_list(){
 function staff_regist(){
     esc_html_e( include_once('staff_regist.php'), 'textdomain' );  
 }
+
+
+

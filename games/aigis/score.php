@@ -154,12 +154,12 @@ if($res0 = mysqli_query($mysqli,$sql)){
 Thanks for Your Playing!
 </span>
 <span class="thanks_tag">H.N.</span> <input type="text" value="名無し王子" name="score_name" class="thanks_name">
-<button id="thanks_set" type="button" class="thanks_btn">SET</button>
-<button id="thanks_back" type="button" class="thanks_btn">BACK</button>
+<button id="thanks_set" type="button" class="thanks_btn"></button>
 </div>
 
 
 </body>
 </html>
+
 
 

@@ -111,7 +111,7 @@ $(function(){
 
 
     $('.score_lv').on('click',function(){
-		Tag=$(this).attr('id');
+		Tag=$(this).attr('id').replace('s_','');
 	    $('.score_lv').removeClass('score_lv_on');
 	    $(this).addClass('score_lv_on');
 	    $('.score_table').hide();
@@ -227,7 +227,7 @@ $(function(){
 			$('#rest'+Turn).animate({'top':Size_t,'right':Size_r,'height':Size_h,'width':Size_w,'border-width':W10,'border-radius':W20},300).delay(100).fadeOut(200);
 			$('.main_card').delay(300).fadeIn(0).html(data);
 		
-		}).fail(function(xhr, textStatus, errorThrown) {
+		}).fail(function(xhr, textStatus, errorThrown){
    			console.log("NG:" + xhr.status);
 			console.log("ST:" + textStatus);
       	});
@@ -433,11 +433,32 @@ $(function(){
 					console.log("ST:" + textStatus);
 				});
 			}
-
-				console.log(data2);
-				console.log(Turn);
-				Turn++;
-
+			console.log(data2);
+			console.log(Turn);
+			Turn++;
 		});
+	});
+
+    $('.last_res').on('click','.thanks_btn',function(){
+		$.post({
+			url:'post_score.php',
+			data:{
+				"name"		:$('.thanks_name').val(),
+				"log_id"	:$('#log_id').val(),
+			}
+		}).done(function(data3, textStatus, jqXHR){
+			console.log(data3);
+		    $('.page_00').fadeIn(300);
+			$('.last_res').fadeOut(300);
+			$('.page_01').show();
+	    });
+    });
+
+    $('.last_res').on('click','.thanks_back',function(){
+	    $('.page_00').fadeIn(500);
+		$('.last_res').fadeOut(300);
+		$('.page_01').show();
     });
 });
+
+
