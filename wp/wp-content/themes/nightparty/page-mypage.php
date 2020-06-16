@@ -78,10 +78,7 @@ if($_SESSION){
 		chmod($dir."/m/", 0777);
 	}
 */
-
 	$page_title="スケジュール";
-
-
 
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
@@ -281,319 +278,325 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</form>
 	</div>
 	<?if($err){?>
-	<div class="err">
-	<?=$err?>
-	</div>
+		<div class="err">
+			<?=$err?>
+		</div>
 	<? }?>
 
 <?}else{?>
-<div class="mypage_head">
-	<div class="head_mymenu">
-		<div class="mymenu_a"></div>
-		<div class="mymenu_b"></div>
-		<div class="mymenu_c"></div>
-	</div>	
-	<div class="head_mymenu_comm">
-	<div class="head_mymenu_arrow"></div>
-	<span class="head_mymenu_ttl"><?=$page_title?></span>
-
-	</div>
-</div>
-<div class="mypage_slide">
-	<ul class="mypage_menu">
-		<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
-		<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
-		<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
-		<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
-		<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
-		<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
-		<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
-	</ul>
-</div>
-
-<div class="mypage_main">
-<?if($cast_page==1){?>
-
-<?}elseif($cast_page==2){?>
-
-<div class="mypage_customer">
-<?for($n=0;$n<count($customer);$n++){?>
-
-	<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
-		<?if($customer[$n]["face"]){?>
-			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
-			<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["face"]?>">
-		<?}else{?>
-			<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
-		<? } ?>
-		<div class="customer_list_fav">
-			<?for($s=1;$s<6;$s++){?>
-				<span class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
-			<?}?>
+	<div class="mypage_head">
+		<div class="head_mymenu">
+			<div class="mymenu_a"></div>
+			<div class="mymenu_b"></div>
+			<div class="mymenu_c"></div>
+		</div>	
+		<div class="head_mymenu_comm">
+		<div class="head_mymenu_arrow"></div>
+		<span class="head_mymenu_ttl"><?=$page_title?></span>
 		</div>
-
-		<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
-		<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
-		<span class="mail_al"></span>
-		<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
-		<input type="hidden" class="customer_hidden_yy" value="<?=$customer[$n]["yy"]?>">
-		<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
-		<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
-		<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
 	</div>
-<?}?>
 
-	<div class="customer_detail">
-		<table class="customer_base">
-		<tr>
-			<td class="customer_base_img" rowspan="3">
-			<img src="" class="customer_detail_img">
-			<span class="customer_camera"></span>
-			</td>
-			<td class="customer_base_tag">最終</td>
-			<td id="" class="customer_base_item">16日前</td>
-		</tr>
-		<tr>
-			<td class="customer_base_tag">名前</td>
-			<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" value="" class="item_basebox"></td>
-		</tr>
-		<tr>
-			<td class="customer_base_tag">呼び名</td>
-			<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" value="" class="item_basebox"></td>
-		</tr>
-		<tr>
-			<td class="customer_base_fav">
-				<span id="fav_1" class="customer_fav"></span>
-				<span id="fav_2" class="customer_fav"></span>
-				<span id="fav_3" class="customer_fav"></span>
-				<span id="fav_4" class="customer_fav"></span>
-				<span id="fav_5" class="customer_fav"></span>
-			</td>
-			<td class="customer_base_tag">誕生日</td>
-			<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">
-			<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
-		</tr>
-		</table>
+	<div class="mypage_slide">
+		<ul class="mypage_menu">
+			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
+			<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
+			<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
+			<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
+			<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
+			<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
+		</ul>
+	</div>
 
-		<div class="customer_tag">
-		<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">基本情報</div>
-		<div id="tag_1" class="tag_set">詳細情報</div>
-		<div id="tag_2" class="tag_set">連絡先</div>
-		<div id="tag_3" class="tag_set">メモ</div>
-		<button class="tag_btn">更新</button>
-		</div>
+	<div class="mypage_main">
+	<?if($cast_page==1){?>
 
-		<div class="customer_body">
-			<?for($n=0;$n<3;$n++){?>
-				<table id="tag_<?=$n?>_tbl" class="customer_memo">
-					<?foreach($c_list_name[$n] as $a1=> $a2){?>
-						<?if($c_list_style[$a1] == 2){?>
-							<tr>
-								<td class="customer_memo_tag"><?=$a2?></td>
-								<td class="customer_memo_item">
-									<input id="m_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="m_a" class="cousomer_marrige">既婚</label>
-									<input id="m_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="m_b" class="cousomer_marrige">未婚</label>
-									<input id="m_c" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="m_c" class="cousomer_marrige">離婚</label>
-								</td>
-							</tr>
+	<?}elseif($cast_page==2){?>
 
-						<?}elseif($c_list_style[$a1] == 3){?>
-							<tr>
-								<td class="customer_memo_tag"><?=$a2?></td>
-								<td class="customer_memo_item">
-									<input id="b_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="b_a" class="cousomer_blood">Ａ</label>
-									<input id="b_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="b_b" class="cousomer_blood">Ｂ</label>
-									<input id="b_o" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="b_o" class="cousomer_blood">Ｏ</label>
-									<input id="b_ab" type="radio" name="cas[<?=$a1?>]" value="4" class="rd"><label for="b_ab" class="cousomer_blood">AB</label>
-								</td>
-							</tr>
+	<div class="mypage_customer">
+	<?for($n=0;$n<count($customer);$n++){?>
 
-						<?}else{?>
-							<tr>
-								<td class="customer_memo_tag"><?=$a2?></td>
-								<td class="customer_memo_item"><input type="text" name="cas[<?=$a1?>]"class="item_textbox"></td>
-							</tr>
-						<? } ?>
-					<? } ?>
-				</table>
+		<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
+			<?if($customer[$n]["face"]){?>
+				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
+				<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["face"]?>">
+			<?}else{?>
+				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
 			<? } ?>
+			<div class="customer_list_fav">
+				<?for($s=1;$s<6;$s++){?>
+					<span class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
+				<?}?>
+			</div>
+
+			<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
+			<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
+			<span class="mail_al"></span>
+			<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
+			<input type="hidden" class="customer_hidden_yy" value="<?=$customer[$n]["yy"]?>">
+			<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
+			<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
+			<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
 		</div>
-	</div>
-</div>
-
-<?}elseif($cast_page==3){?>
-<div class="mypage_mail">
-	<?for($s=0;$s<count($mail_data);$s++){?>
-	<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-		<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
-		<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
-		<span id="mail_icon<?=$s?>" class="mail_icon">
-			<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
-			<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
-			<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
-		</span>
-
-		<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
-		<span id="mail<?=$s?>" class="mail_al"></span>
-		<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
-
-		<input id="mail_address<?=$s?>" type="hidden" value="<?=$mail_data[$s]["from_address"]?>">
-		<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
-		<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_1"]?>'><? } ?>
-		<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>'><? } ?>
-		<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>'><? } ?>
-	</div>
 	<?}?>
-</div>
-<div class="mypage_mail_detail">
-	<span class="mail_detail_from">
-		<span class="mail_detail_back"></span>
-		<span class="mail_detail_name"></span>
-		<span class="mail_detail_address"></span>
-		<img class="mail_detail_img">
-	</span>
-	<span class="mail_detail_body">
-		<span class="mail_detail_head">
-			<span class="mail_detail_date"></span>
-			<span class="mail_detail_icon"></span>
-			<span class="mail_detail_title"></span>
-		</span>
-		<span class="mail_detail_log"></span>
 
-		<span class="mail_detail_img_box">
-			<span id="sum_img_a" class="mail_detail_tmp"></span>
-			<span id="sum_img_b" class="mail_detail_tmp"></span>
-			<span id="sum_img_c" class="mail_detail_tmp"></span>
-		</span>
-	</span>
-</div>
-<input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
-<div class="detail_modal">
-	<div class="detail_modal_box">
-		<span class="detail_modal_out">×</span>
-		<img src="" class="detail_modal_img">
-		<div class="detail_modal_link">
-		</div>
-	</div>
-</div>
+		<div class="customer_detail">
+			<table class="customer_base">
+			<tr>
+				<td class="customer_base_img" rowspan="3">
+				<img src="" class="customer_detail_img">
+				<span class="customer_camera"></span>
+				</td>
+				<td class="customer_base_tag">最終</td>
+				<td id="" class="customer_base_item">16日前</td>
+			</tr>
+			<tr>
+				<td class="customer_base_tag">名前</td>
+				<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" value="" class="item_basebox"></td>
+			</tr>
+			<tr>
+				<td class="customer_base_tag">呼び名</td>
+				<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" value="" class="item_basebox"></td>
+			</tr>
+			<tr>
+				<td class="customer_base_fav">
+					<span id="fav_1" class="customer_fav"></span>
+					<span id="fav_2" class="customer_fav"></span>
+					<span id="fav_3" class="customer_fav"></span>
+					<span id="fav_4" class="customer_fav"></span>
+					<span id="fav_5" class="customer_fav"></span>
+				</td>
+				<td class="customer_base_tag">誕生日</td>
+				<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">
+				<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
+			</tr>
+			</table>
 
-<?}elseif($cast_page==4){?>
-<div>
-<button type="button" class="mypage_blog_set">新規投稿</button>
-<div class="mypage_blog_write">
-	<div class="mypage_blog_pack">
-		<span class="mypage_blog_title_tag">投稿日</span><br>
-		<div style="text-align:left;margin-bottom:3vw;">	
-		<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
-		<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
-		<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
-		</div>
-		<span class="mypage_blog_title_tag">タイトル</span><br>
-		<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
+			<div class="customer_tag">
+			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">基本情報</div>
+			<div id="tag_1" class="tag_set">詳細情報</div>
+			<div id="tag_2" class="tag_set">連絡先</div>
+			<div id="tag_3" class="tag_set">メモ</div>
+			<button class="tag_btn">更新</button>
+			</div>
 
-		<span class="mypage_blog_title_tag">本文</span><br>
-		<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
-	</div>
-	<div class="upload_icon tag_open"></div>
-	<div class="upload_icon img_open"></div>
-</div>
-<div class="mypage_blog_hist">
-<img src="" class="hist_img">
-<span class="hist_date">2020/05/08 06:00</span>
-<span class="hist_title">にゃんにゃかにゃー</span>
-<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-</div>
-<div class="mypage_blog_hist">
-<img src="" class="hist_img">
-<span class="hist_date">2020/05/08 06:00</span>
-<span class="hist_title">にゃんにゃかにゃー</span>
-<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-</div>
+			<div class="customer_body">
+				<?for($n=0;$n<3;$n++){?>
+					<table id="tag_<?=$n?>_tbl" class="customer_memo">
+						<?foreach($c_list_name[$n] as $a1=> $a2){?>
+							<?if($c_list_style[$a1] == 2){?>
+								<tr>
+									<td class="customer_memo_tag"><?=$a2?></td>
+									<td class="customer_memo_item">
+										<input id="m_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="m_a" class="cousomer_marrige">既婚</label>
+										<input id="m_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="m_b" class="cousomer_marrige">未婚</label>
+										<input id="m_c" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="m_c" class="cousomer_marrige">離婚</label>
+									</td>
+								</tr>
 
-<input id="img_top" type="hidden" name="img_top" value="10">
-<input id="img_left" type="hidden" name="img_left" value="10">
-<input id="img_width" type="hidden" name="img_width" value="10">
-<input id="img_height" type="hidden" name="img_height" value="10">
-<input id="img_zoom" type="hidden" name="img_zoom" value="100">
-<input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
-</div>
-<?}elseif($cast_page==5){?>
-<div class="mypage_config">
-<div class="config_menu">
-名前：
-CAST_ID：
-PASSWORD：
-お知らせADDRESS
-</div>
+							<?}elseif($c_list_style[$a1] == 3){?>
+								<tr>
+									<td class="customer_memo_tag"><?=$a2?></td>
+									<td class="customer_memo_item">
+										<input id="b_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="b_a" class="cousomer_blood">Ａ</label>
+										<input id="b_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="b_b" class="cousomer_blood">Ｂ</label>
+										<input id="b_o" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="b_o" class="cousomer_blood">Ｏ</label>
+										<input id="b_ab" type="radio" name="cas[<?=$a1?>]" value="4" class="rd"><label for="b_ab" class="cousomer_blood">AB</label>
+									</td>
+								</tr>
 
-</div>
-<?}else{?>
-<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
-<input id="week_start" type="hidden" value="<?=$week_start?>">
-<div>
-<div class="mypage_cal">
-<?for($c=0;$c<3;$c++){?>
-<table class="cal_table">
-<tr>
-<td class="cal_top" colspan="1"></td>
-<td class="cal_top" colspan="1"><span class="cal_prev"></span></td>
-<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
-<td class="cal_top" colspan="1"><span class="cal_next"></span></td>
-<td class="cal_top" colspan="1"></td>
-</tr>
-<tr>
-<?
-for($s=0;$s<7;$s++){
-$w=($s+$week_start) % 7;
-?>
-<td class="cal_td <?PHP ECHO $week_tag[$w]?>"><?PHP ECHO $week[$w]?></td>
-<? } ?>
-<?=$cal[$c]?>
-</tr>
-</table>
-<?}?>
-</div>
-</div>
-<div class="cal_days">
-</div>
-<div class="cal_set_btn">スケジュール入力</div>
-<div class="cal_weeks">
-	<div class="cal_weeks_prev">前週</div>
-	<div class="cal_weeks_box">
-		<div class="cal_weeks_box_2">
-			<?for($n=0;$n<21;$n++){
-				$tmp_wk=($n+$week_start)%7;
-			?>
-				<div class="cal_list">
-					<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-<?if($base_now>$base_day+86400*$n){?>
-						<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
-						<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
-<?}else{?>
-					<select id="sel_in<?=$n?>" class="sch_time_in">
-						<option class="sel_txt"></option>
-						<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
-							<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
-						<?}?>
-					</select>
-					<select id="sel_out<?=$n?>" class="sch_time_out">
-						<option class="sel_txt"></option>
-						<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
-							<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
-						<?}?>
-					</select>
+							<?}else{?>
+								<tr>
+									<td class="customer_memo_tag"><?=$a2?></td>
+									<td class="customer_memo_item"><input type="text" name="cas[<?=$a1?>]"class="item_textbox"></td>
+								</tr>
+							<? } ?>
+						<? } ?>
+					</table>
 				<? } ?>
-				</div>
-			<? } ?>
+			</div>
 		</div>
 	</div>
-	<div class="cal_weeks_next">翌週</div>
-	<div class="sch_set">SCHE_SET</div>
-	<span class="sch_set_done">スケジュールが登録されました</span>
+
+	<?}elseif($cast_page==3){?>
+	<div class="mypage_mail">
+		<?for($s=0;$s<count($mail_data);$s++){?>
+		<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
+			<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
+			<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
+			<span id="mail_icon<?=$s?>" class="mail_icon">
+				<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
+				<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
+				<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
+			</span>
+
+			<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
+			<span id="mail<?=$s?>" class="mail_al"></span>
+			<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
+
+			<input id="mail_address<?=$s?>" type="hidden" value="<?=$mail_data[$s]["from_address"]?>">
+			<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
+			<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_1"]?>'><? } ?>
+			<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>'><? } ?>
+			<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>'><? } ?>
+		</div>
+		<?}?>
+	</div>
+	<div class="mypage_mail_detail">
+		<span class="mail_detail_from">
+			<span class="mail_detail_back"></span>
+			<span class="mail_detail_name"></span>
+			<span class="mail_detail_address"></span>
+			<img class="mail_detail_img">
+		</span>
+		<span class="mail_detail_body">
+			<span class="mail_detail_head">
+				<span class="mail_detail_date"></span>
+				<span class="mail_detail_icon"></span>
+				<span class="mail_detail_title"></span>
+			</span>
+			<span class="mail_detail_log"></span>
+
+			<span class="mail_detail_img_box">
+				<span id="sum_img_a" class="mail_detail_tmp"></span>
+				<span id="sum_img_b" class="mail_detail_tmp"></span>
+				<span id="sum_img_c" class="mail_detail_tmp"></span>
+			</span>
+		</span>
+	</div>
+	<input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
+	<div class="detail_modal">
+		<div class="detail_modal_box">
+			<span class="detail_modal_out">×</span>
+			<img src="" class="detail_modal_img">
+			<div class="detail_modal_link">
+			</div>
+		</div>
+	</div>
+
+	<?}elseif($cast_page==4){?>
+	<div>
+	<button type="button" class="mypage_blog_set">新規投稿</button>
+	<div class="mypage_blog_write">
+		<div class="mypage_blog_pack">
+			<span class="mypage_blog_title_tag">投稿日</span><br>
+			<div style="text-align:left;margin-bottom:3vw;">	
+			<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
+			<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
+			<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
+			</div>
+			<span class="mypage_blog_title_tag">タイトル</span><br>
+			<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
+
+			<span class="mypage_blog_title_tag">本文</span><br>
+			<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
+		</div>
+		<div class="upload_icon tag_open"></div>
+		<div class="upload_icon img_open"></div>
+	</div>
+	<div class="mypage_blog_hist">
+	<img src="" class="hist_img">
+	<span class="hist_date">2020/05/08 06:00</span>
+	<span class="hist_title">にゃんにゃかにゃー</span>
+	<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+	<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+	</div>
+	<div class="mypage_blog_hist">
+	<img src="" class="hist_img">
+	<span class="hist_date">2020/05/08 06:00</span>
+	<span class="hist_title">にゃんにゃかにゃー</span>
+	<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+	<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+	</div>
+
+	<input id="img_top" type="hidden" name="img_top" value="10">
+	<input id="img_left" type="hidden" name="img_left" value="10">
+	<input id="img_width" type="hidden" name="img_width" value="10">
+	<input id="img_height" type="hidden" name="img_height" value="10">
+	<input id="img_zoom" type="hidden" name="img_zoom" value="100">
+	<input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
+	</div>
+	<?}elseif($cast_page==5){?>
+		<div class="mypage_config">
+			<div class="config_menu">
+			名前：
+			CAST_ID：
+			PASSWORD：
+			お知らせADDRESS
+			</div>
+		</div>
+
+	<?}else{?>
+		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
+		<input id="week_start" type="hidden" value="<?=$week_start?>">
+		<div>
+			<div class="mypage_cal">
+				<?for($c=0;$c<3;$c++){?>
+					<table class="cal_table">
+						<tr>
+							<td class="cal_top" colspan="1"></td>
+							<td class="cal_top" colspan="1"><span class="cal_prev"></span></td>
+							<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
+							<td class="cal_top" colspan="1"><span class="cal_next"></span></td>
+							<td class="cal_top" colspan="1"></td>
+						</tr>
+						<tr>
+							<?
+							for($s=0;$s<7;$s++){
+							$w=($s+$week_start) % 7;
+							?>
+							<td class="cal_td <?PHP ECHO $week_tag[$w]?>"><?PHP ECHO $week[$w]?></td>
+							<? } ?>
+							<?=$cal[$c]?>
+						</tr>
+					</table>
+				<?}?>
+			</div>
+		</div>
+		<div class="cal_set_btn">スケジュール入力</div>
+		<div class="cal_days">
+		</div>
+	<? } ?>
 </div>
+
+<div class="img_back">
+	<div class="cal_weeks">
+		<div class="cal_weeks_prev">前週</div>
+		<div class="cal_weeks_box">
+			<div class="cal_weeks_box_2">
+				<?for($n=0;$n<21;$n++){
+					$tmp_wk=($n+$week_start)%7;
+				?>
+					<div class="cal_list">
+						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
+<?if($base_now>$base_day+86400*$n){?>
+							<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
+							<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
+<?}else{?>
+						<select id="sel_in<?=$n?>" class="sch_time_in">
+							<option class="sel_txt"></option>
+							<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
+								<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
+							<?}?>
+						</select>
+						<select id="sel_out<?=$n?>" class="sch_time_out">
+							<option class="sel_txt"></option>
+							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
+								<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
+							<?}?>
+						</select>
 <? } ?>
+					</div>
+				<? } ?>
+			</div>
+		</div>
+		<div class="cal_weeks_next">翌週</div>
+		<div class="sch_set">SCHE_SET</div>
+		<span class="sch_set_done">スケジュールが登録されました</span>
+	</div>
+</div>
+
+
 
 <div class="img_back">
 	<div class="img_box">
@@ -629,7 +632,6 @@ $w=($s+$week_start) % 7;
 		</div>
 	</div>
 </div>
-
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
@@ -642,6 +644,7 @@ $w=($s+$week_start) % 7;
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
+
 <? }?>
 </body>
 </html>
