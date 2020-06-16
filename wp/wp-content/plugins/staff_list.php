@@ -1,5 +1,6 @@
 <div class="wrap">
 <h2>スタッフ一覧</h2>
+
 <table class="wp-list-table widefat fixed striped posts">
 <tr>
 <th class='manage-column column-author'>ID</th>

@@ -11,7 +11,7 @@ $base_day	=$_POST['base_day']+32400+86400*7;
 $sel_in		=$_POST['sel_in'];
 $sel_out	=$_POST['sel_out'];
 
-$now=date("Y-m-d H:i:s");
+$now=date("Y-m-d H:i:s",time()+32400);
 
 $sql_log="INSERT INTO wp01_0schedule ";
 $sql_log.="(sche_date,date,cast_id,stime,etime)";

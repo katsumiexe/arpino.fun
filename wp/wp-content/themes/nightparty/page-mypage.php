@@ -552,6 +552,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 					</table>
 				<?}?>
 			</div>
+			<div class="sch_set_done">スケジュールが登録されました</div>
 		</div>
 		<div class="cal_set_btn">スケジュール入力</div>
 		<div class="cal_days">
@@ -559,7 +560,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<? } ?>
 </div>
 
-<div class="img_back">
+<div class="cal_back">
 	<div class="cal_weeks">
 		<div class="cal_weeks_prev">前週</div>
 		<div class="cal_weeks_box">
@@ -574,13 +575,13 @@ const CastId='<?=$_SESSION["id"] ?>';
 							<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
 <?}else{?>
 						<select id="sel_in<?=$n?>" class="sch_time_in">
-							<option class="sel_txt"></option>
+							<option class="sel_txt" value=""></option>
 							<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
 								<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
 							<?}?>
 						</select>
 						<select id="sel_out<?=$n?>" class="sch_time_out">
-							<option class="sel_txt"></option>
+							<option class="sel_txt" value=""></option>
 							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
 								<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
 							<?}?>
@@ -591,12 +592,15 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</div>
 		</div>
 		<div class="cal_weeks_next">翌週</div>
-		<div class="sch_set">SCHE_SET</div>
-		<span class="sch_set_done">スケジュールが登録されました</span>
+
+		<div id="sch_set_arrow" class="sch_set_btn">
+			<div class="sch_set_arrow"></div>
+		</div>
+		<div class="sch_set">登録</div>
+		<div id="sch_set_trush" class="sch_set_btn"></div>
+		<div id="sch_set_copy" class="sch_set_btn"></div>
 	</div>
 </div>
-
-
 
 <div class="img_back">
 	<div class="img_box">

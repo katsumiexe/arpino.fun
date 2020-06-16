@@ -8,6 +8,10 @@ Author: KatsumiArai
 Author URI:
 */
 
+/*
+require_once ("../wp-load.php");
+global $wpdb;
+*/
 
 if($_POST["staff_set"]){
 	$staff_name		=$_POST["staff_name"];
@@ -20,41 +24,51 @@ if($_POST["staff_set"]){
 	$staff_tel		=$_POST["staff_tel"];
 	$staff_address	=$_POST["staff_address"];
 	$staff_registday=$_POST["staff_registday"];
-	if(!$staff_registday) $staff_registday=date("Y-m-d");
 
+	$cast_id		=$_POST["cast_id"];
+	$cast_pass		=$_POST["cast_pass"];
+	$genji			=$_POST["genji"];
+	$genji_kana		=$_POST["genji_kana"];
+	$castmail		=$_POST["castmail"];
+	$castmail_pass	=$_POST["castmail_pass"];
+
+	if(!$staff_registday) $staff_registday=date("Y-m-d");
 	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`address`,`registday`)";
 	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$staff_birthday}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_address}','{$staff_registday}')";
 	$wpdb->query($sql);
 
-	$tmp_auto=$wpdb->insert_id;
-	$id_8	=substr("00000000".$tmp_auto,-8);
-	$id_0	=$tmp_auto % 20;
+	if($genji){
+		$tmp_auto=$wpdb->insert_id;
+		$id_8	=substr("00000000".$tmp_auto,-8);
+		$id_0	=$tmp_auto % 20;
+
+		$sql="INSERT INTO wp01_0cast (`id`,genji`,`genji_kana`,`cast_id`,`cast_pass`,`castmail`,`castmail_pass`)";
+		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$castmail}','{$castmail_pass}')";
+		$wpdb->query($sql);
 	
-	
-	$sql ="SELECT * FROM wp01_0encode"; 
-	$enc0 = $wpdb->get_results($sql,ARRAY_A );
-	foreach($enc0 as $row){
-		$enc[$row["key"]]				=$row["value"];
-		$dec[$row["gp"]][$row["value"]]	=$row["key"];
-	}
+		$sql ="SELECT * FROM wp01_0encode"; 
+		$enc0 = $wpdb->get_results($sql,ARRAY_A );
+		foreach($enc0 as $row){
+			$enc[$row["key"]]				=$row["value"];
+			$dec[$row["gp"]][$row["value"]]	=$row["key"];
+		}
 
-	for($n=0;$n<8;$n++){
-		$rnd=rand(0,19);
-		$tmp_id=substr($id_8,$n,1);
-		$tmp_dir.=$dec[$id_0][$tmp_id];
-	}
-	$mk_dir="../wp-content/themes/nightparty/img/cast/".$tmp_dir;
+		for($n=0;$n<8;$n++){
+			$rnd=rand(0,19);
+			$tmp_id=substr($id_8,$n,1);
+			$tmp_dir.=$dec[$id_0][$tmp_id];
+		}
 
-	if(!is_dir($mk_dir)) {
-		mkdir($mk_dir."/c/", 0777, TRUE);
-		chmod($mk_dir."/c/", 0777);
+		$mk_dir="../wp-content/themes/nightparty/img/cast/".$tmp_dir;
+		if(!is_dir($mk_dir)) {
+			mkdir($mk_dir."/c/", 0777, TRUE);
+			chmod($mk_dir."/c/", 0777);
 
-		mkdir($mk_dir."/m/", 0777, TRUE);
-		chmod($mk_dir."/m/", 0777);
-//print($mk_dir);
+			mkdir($mk_dir."/m/", 0777, TRUE);
+			chmod($mk_dir."/m/", 0777);
+		}
 	}
 }
-
 
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
@@ -88,17 +102,17 @@ function cast_list(){
     esc_html_e( include_once('cast_list.php'), 'textdomain' );  
 }
 
+//var_dump($wpdb);
+
 function staff_list(){
+	global $wpdb;
 	$n=0;
 	$sql	 ="SELECT * FROM wp01_0staff";
 	$sql	.=" ORDER BY staff_id DESC";
-//	$tmp = $wpdb->get_results($sql,ARRAY_A);
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
 
-	print($sql);
-
-	foreach($tmp as $res){
+	foreach($tmp_list as $res){
 		$member[$n]=$res;
-		print($res[$n]["staff_id"]);
 		$n++;
 	}
     esc_html_e(include_once('staff_list.php'),'textdomain');  
