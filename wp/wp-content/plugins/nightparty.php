@@ -129,7 +129,7 @@ function staff_list(){
 }
 
 function staff_regist(){
-    esc_html_e( include_once('staff_regist.php'), 'textdomain' );  
+    esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }
 
 

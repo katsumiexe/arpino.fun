@@ -684,11 +684,7 @@ input:focus{
 
 .login_box{
 	display			:inline-block;
-	position		:absolute;
-	top				:10vh;
-	left			:0;
-	right			:0;
-	margin			:auto;
+	margin			:3vh auto;
 	width			:70vw;
 	border			:1vw solid #ffd0d0;
 	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.6);
