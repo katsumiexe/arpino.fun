@@ -372,6 +372,16 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</tr>
 			</table>
 
+			<div class="customer_sns">
+			<span id="customer_tel" class="customer_sns_btn"></span>
+			<span id="customer_mail" class="customer_sns_btn"></span>
+			<span id="customer_twitter" class="customer_sns_btn"></span>
+			<span id="customer_instagram" class="customer_sns_btn"></span>
+			<span id="customer_facebook" class="customer_sns_btn"></span>
+			<span id="customer_blog" class="customer_sns_btn"></span>
+			<span id="customer_web" class="customer_sns_btn"></span>
+			</div>
+
 			<div class="customer_tag">
 			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">基本情報</div>
 			<div id="tag_1" class="tag_set">詳細情報</div>

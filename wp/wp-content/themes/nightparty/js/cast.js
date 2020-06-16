@@ -283,7 +283,7 @@ $(function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
 
-		var TmpHgt=VhBase*100-VwBase*70;
+		var TmpHgt=VhBase*100-VwBase*81;
 		$('.customer_body').css('height',TmpHgt);
 
 		C_Id=$(this).attr('id').replace('clist','');
