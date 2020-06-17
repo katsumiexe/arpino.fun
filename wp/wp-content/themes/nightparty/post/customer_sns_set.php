@@ -10,10 +10,12 @@ $c_id		=$_POST['c_id'];
 $text		=$_POST['text'];
 $kind		=$_POST['kind'];
 
-$sql	="UPLOAD wp01_0customer";
+
+
+$sql	="UPDATE wp01_0customer";
 $sql	.=" SET {$kind}='{$text}'";
 $sql	.=" WHERE id='{$c_id}'";
-$wpdb->query($sql_log);
+$wpdb->query($sql);
 echo $kind;
 exit();
 ?>

@@ -443,11 +443,10 @@ const CastId='<?=$_SESSION["id"] ?>';
 										<input id="b_ab" type="radio" name="cas[<?=$a1?>]" value="4" class="rd"><label for="b_ab" class="cousomer_blood">AB</label>
 									</td>
 								</tr>
-
 							<?}else{?>
 								<tr>
 									<td class="customer_memo_tag"><?=$a2?></td>
-									<td class="customer_memo_item"><input type="text" name="cas[<?=$a1?>]"class="item_textbox"></td>
+									<td class="customer_memo_item"><input id="list_all_<?=$a1?>" type="text" value="" name="cas[<?=$a1?>]"class="item_textbox"></td>
 								</tr>
 							<? } ?>
 						<? } ?>
