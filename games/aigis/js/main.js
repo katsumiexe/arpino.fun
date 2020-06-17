@@ -448,16 +448,12 @@ $(function(){
 			}
 		}).done(function(data3, textStatus, jqXHR){
 			console.log(data3);
-		    $('.page_00').fadeIn(300);
-			$('.last_res').fadeOut(300);
-			$('.page_01').show();
+			$('#reset_top').submit();
 	    });
     });
 
     $('.last_res').on('click','.thanks_back',function(){
-	    $('.page_00').fadeIn(500);
-		$('.last_res').fadeOut(300);
-		$('.page_01').show();
+		$('#reset_top').submit();
     });
 });
 

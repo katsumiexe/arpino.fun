@@ -29,25 +29,28 @@ foreach($getp as $a1 => $a2){
 	$get[$a2][$a1]=floor($getn[$a1]+0);
 }
 
-$app.="<div class=\"thanks\">";
-$app.="<span class=\"thanks_ttl\">Thanks for Your Playing!</span>";
-$app.="<span class=\"thanks_tag\">H.N.</span> <input type=\"text\" value=\"名無し王子\" class=\"thanks_name\" maxlength=\"10\">";
-$app.="<div id=\"thanks_set\" class=\"thanks_btn\"></div>";
-$app.="<div id=\"thanks_set\" class=\"thanks_back\"></div>";
-$app.="</div>";
-
 foreach($pts as $a1 => $a2){
 	if($a1 !="l"){
 		if($a2 != $tmp_a2){
 			$order++;
 		}
 
-		if($order == 1 && $a1 =="p"){
-			$sql="INSERT INTO score_data(`date`, `unit`, `level`,`score`)";	
-			$sql.=" VALUES('{$date}', '{$doll['p']}', '{$lv}','{$pts['p']}')";	
-			mysqli_query($mysqli,$sql);
-			$tmp_auto=mysqli_insert_id($mysqli);	
-			$app.="<input id=\"log_id\" type=\"hidden\" value=\"{$tmp_auto}\">";
+		if($order == 1){
+			$app.="<div class=\"thanks\">";
+			$app.="<span class=\"thanks_ttl\">Thanks for Your Playing!</span>";
+
+			if( $a1 =="p"){
+				$sql="INSERT INTO score_data(`date`, `unit`, `level`,`score`)";	
+				$sql.=" VALUES('{$date}', '{$doll['p']}', '{$lv}','{$pts['p']}')";	
+				mysqli_query($mysqli,$sql);
+				$tmp_auto=mysqli_insert_id($mysqli);	
+				$app.="<span class=\"thanks_tag\">H.N.</span> <input type=\"text\" value=\"名無し王子\" class=\"thanks_name\" maxlength=\"10\">";
+				$app.="<input id=\"log_id\" type=\"hidden\" value=\"{$tmp_auto}\">";
+				$app.="<div id=\"thanks_set\" class=\"thanks_btn\"></div>";
+			}
+
+			$app.="<div id=\"thanks_set\" class=\"thanks_back\"></div>";
+			$app.="</div>";
 		}
 
 		$tmp_a2=$a2;

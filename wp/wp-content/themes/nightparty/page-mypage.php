@@ -315,7 +315,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 
 	<div class="mypage_customer">
 	<?for($n=0;$n<count($customer);$n++){?>
-
 		<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 			<?if($customer[$n]["face"]){?>
 				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
@@ -337,6 +336,14 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
 			<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
 			<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
+
+			<input type="hidden" class="customer_hidden_mail" value="<?=$customer[$n]["mail"]?>">
+			<input type="hidden" class="customer_hidden_tel" value="<?=$customer[$n]["tel"]?>">
+			<input type="hidden" class="customer_hidden_twitter" value="<?=$customer[$n]["twitter"]?>">
+			<input type="hidden" class="customer_hidden_facebook" value="<?=$customer[$n]["facebook"]?>">
+			<input type="hidden" class="customer_hidden_insta" value="<?=$customer[$n]["insta"]?>">
+			<input type="hidden" class="customer_hidden_blog" value="<?=$customer[$n]["blog"]?>">
+			<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 		</div>
 	<?}?>
 
@@ -372,15 +379,37 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</tr>
 			</table>
 
-			<div class="customer_sns">
-			<span id="customer_tel" class="customer_sns_btn"></span>
-			<span id="customer_mail" class="customer_sns_btn"></span>
-			<span id="customer_twitter" class="customer_sns_btn"></span>
-			<span id="customer_instagram" class="customer_sns_btn"></span>
-			<span id="customer_facebook" class="customer_sns_btn"></span>
-			<span id="customer_blog" class="customer_sns_btn"></span>
-			<span id="customer_web" class="customer_sns_btn"></span>
+			<table class="customer_sns">
+			<tr>
+			<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
+			<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
+			<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
+			<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
+			<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
+			<td class="customer_sns_1"><span id="customer_blog" class="customer_sns_btn"></span></td>
+			<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
+			</tr>
+			<tr class="customer_sns_tr">
+			<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
+			<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
+			<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
+			<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
+			<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
+			<td class="customer_sns_2"><span id="a_customer_blog" class="sns_arrow_a"></span></td>
+			<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
+			</tr>
+			</table>			
+			<div class="customer_sns_box">
+			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			</div>
+
+			<input id="h_customer_tel" type="hidden" value="いなだ">
+			<input id="h_customer_mail" type="hidden" value="">
+			<input id="h_customer_twitter" type="hidden" value="">
+			<input id="h_customer_facebook" type="hidden" value="">
+			<input id="h_customer_insta" type="hidden" value="">
+			<input id="h_customer_blog" type="hidden" value="">
+			<input id="h_customer_web" type="hidden" value="">
 
 			<div class="customer_tag">
 			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">基本情報</div>
@@ -562,7 +591,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 					</table>
 				<?}?>
 			</div>
-			<div class="sch_set_done">スケジュールが登録されました</div>
 		</div>
 		<div class="cal_set_btn">スケジュール入力</div>
 		<div class="cal_days">
@@ -570,6 +598,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<? } ?>
 </div>
 
+<div class="sch_set_done">スケジュールが登録されました</div>
 <div class="cal_back">
 	<div class="cal_weeks">
 		<div class="cal_weeks_prev">前週</div>

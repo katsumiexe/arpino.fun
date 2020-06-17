@@ -29,59 +29,55 @@
 }
 
 .thanks{
-	margin			:1vw auto;
+	margin			:5px auto;
 	position		:relative;
 	display			:inline-block;
-	width			:96vw;
-	height			:20vw;
+	width			:550px;
+	height			:60px;
 	background		:linear-gradient(#c0a000,#a09000);
 	font-size		:0;
 }
 
 .thanks_ttl{
-	margin			:1vw;
+	margin			:5px 10px;
 	display			:inline-block;
-	width			:94vw;
-	height			:6vw;
-	line-height		:6vw;
-	font-size		:4vw;
+	width			:530px;
+	height			:20px;
+	line-height		:20px;
+	font-size		:16px;
 	font-weight		:700;
 	color			:#fafafa;	
-	border-bottom	:0.5vw solid #fafafa;
+	border-bottom	:2px solid #fafafa;
 }
 
 .thanks_tag{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:1vw;
-	left			:1vw;
+	bottom			:5px;
+	left			:5px;
 
-	width			:16vw;
-	height			:8vw;
-	line-height		:8vw;
+	width			:80px;
+	height			:30px;
+	line-height		:30px;
 	background		:linear-gradient(#00a000,#009000);
 	color			:#fafafa;
 	font-weight		:600;
-	font-size		:4vw;
-	margin			:1vw 0;
-	padding			:0;
+	font-size		:16px;
 }
 
 .thanks_btn{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:1vw;
-	left			:75vw;
-	width			:8vw;
-	height			:8vw;
-	line-height		:8vw;
+	bottom			:5px;
+	left			:350px;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
 	background		:linear-gradient(#cccccc,#bbbbbb);
 	color			:#fafafa;
 	font-weight		:600;
-	margin			:1vw;
 	font-family		:at_icon;
-	padding			:0;
-	font-size		:4.5vw;
+	font-size		:20px;
 	text-align		:center;
 }
 
@@ -105,18 +101,16 @@
 
 .thanks_name{
 	position		:absolute;
-	bottom			:1vw;
-	left			:17vw;
-
-	width			:55vw;
-	height			:7vw;
-	line-height		:7vw;
+	bottom			:5px;
+	left			:100px;
+	width			:250px;
+	height			:30px;
+	line-height		:30px;
 	background		:#fafafa;
 	color			:#606060;
 	font-weight		:600;
-	margin			:1vw 0;
-	border			:0.5vw solid #009000;
-	padding			:0 1vw;
+	font-size		:20px;
+	border			:1ox solid #009000;
 }
 
 .icon_github{
@@ -411,8 +405,6 @@ body {
 	width		:120px;
 	height		:120px;
 }
-
-
 
 .a_sub{
 	font-family		:at_item;
@@ -1364,6 +1356,36 @@ body {
 	font-family		:at_icon;
 	border-radius	:50%;
 }
+
+
+.page_01_guide{
+	position		:relative;
+	height			:60px;
+	width			:460px;
+	margin			:10px auto;
+	background		:linear-gradient(#fff0d0,#ffe8c0);
+	box-shadow		:5px 5px 5px rgba(30,30,30,0.6),0 0 50px 10px rgba(168,148,106,0.8) inset;
+}
+
+.page_01_guide_in{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	height			:30px;
+	width			:430px;
+	font-weight		:600;
+	font-size		:15px;
+	color			:#505050;
+	text-align		:left;
+	line-height		:30px;
+	box-shadow		:0px 0px 10px 0px rgba(150,120,80,0.6);
+	padding			:5px;
+}
+
+
 
 
 .howto_main{
@@ -2404,6 +2426,76 @@ body {
 	font-size		:7vw;
 	font-weight:800;
 	padding-right:1.5vw;
+}
+
+
+
+.page_01_guide{
+	height			:10vw;
+	width			:80vw;
+	margin			:2vw auto;
+}
+
+.page_01_guide_in{
+	height			:9vw;
+	width			:79vw;
+	font-size		:4vw;
+	line-height		:9vw;
+	padding			:5px;
+}
+
+
+.thanks{
+	margin			:1vw auto;
+	width			:96vw;
+	height			:20vw;
+}
+
+.thanks_ttl{
+	margin			:1vw;
+	width			:94vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	border-bottom	:0.5vw solid #fafafa;
+}
+
+.thanks_tag{
+	bottom			:1vw;
+	left			:1vw;
+	width			:16vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-size		:4vw;
+	padding			:0;
+}
+
+.thanks_btn{
+	bottom			:1vw;
+	left			:75vw;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-size		:4.5vw;
+}
+
+.thanks_back{
+	bottom			:1vw;
+	left			:85vw;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-size		:4.5vw;
+}
+
+.thanks_name{
+	bottom			:1vw;
+	left			:17vw;
+	width			:55vw;
+	height			:7vw;
+	line-height		:7vw;
+	border			:0.5vw solid #009000;
+	padding			:0 1vw;
 }
 
 

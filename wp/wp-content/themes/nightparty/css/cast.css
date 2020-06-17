@@ -434,15 +434,106 @@ input:focus{
 }
 
 .customer_sns{
-	width		:95vw;
-	height		:11vw;
-	line-height	:11vw;	
-	margin		:0 auto;
-	text-align:center;
+	width			:95vw;
+	height			:11vw;
+	line-height		:11vw;	
+	margin			:0 auto;
+	text-align		:center;
+	border			:none;
+	border-collapse	:collapse;
+
 }
 
+.customer_sns_1{
+	height			:11vw;
+	text-align		:center;
+}
+
+.customer_sns_2{
+	position		:relative;
+	height			:3vw;
+	text-align		:center;
+}
+
+.customer_sns_box{
+	display			:none;
+	position		:relative;
+	width			:95vw;
+	height			:12vw;
+	background		:#c0c0c0;
+	margin			:0 auto 3vw auto;
+	z-index			:11;
+}
+.jump_on{
+	background:linear-gradient(ff9080,f17766);
+	color:#fafafa;
+
+}
+
+.customer_sns_tr{
+	display:none;
+}
+
+.sns_jump{
+	position		:absolute;
+	top				:1.5vw;
+	left			:1.5vw;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	background		:#c0c0c0;
+	border			:0.5vw solid #c0c0c0;
+	color			:#fafafa;
+	font-size		:6vw;
+	font-family		:at_icon;
+}
+
+.sns_btn{
+	position		:absolute;
+	top				:1.5vw;
+	left			:84vw;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	background		:linear-gradient(#ff9080,#f17766);
+	border			:0.5vw solid #f17766;
+	color			:#fafafa;
+	font-size		:5vw;
+	font-family		:at_icon;
+}
+
+.sns_text{
+	position		:absolute;
+	top				:1.5vw;
+	left			:12.5vw;
+	width			:70vw;
+	height			:9vw;
+	line-height		:9vw;
+	font-size		:4.5vw;
+	margin			:auto;
+	background		:#fafafa;
+	border			:0.5vw solid #303030;
+}
+
+
+.sns_arrow_a{
+	display			:none;
+	position		:absolute;
+	top				:0.5vw;
+	left			:0;
+	right			:0;
+	width			:5vw;
+	height			:5vw;
+	margin			:auto;
+	transform		:rotate(45deg);
+	background		:#c0c0c0;
+}
+
+
 .customer_sns_btn{
-	display:inline-block;
+	display			:inline-block;
 	width			:9vw;
 	height			:9vw;
 	border-radius	:50%;
@@ -453,6 +544,7 @@ input:focus{
 	font-family		:at_icon;
 	margin			:1vw;
 	font-size		:4.5vw;
+	cursor			:pointer;
 }
 
 
@@ -2005,3 +2097,32 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 .outof{
 	color:#dddddd;
 }
+
+.c_customer_twitter{
+	background:#00acee;
+}
+
+.c_customer_facebook{
+	background:#3d5a99;
+}
+
+.c_customer_insta{
+	background:#ff7f50;
+}
+
+.c_customer_web{
+	background:#008000;
+}
+
+.c_customer_blog{
+	background:#804818;
+}
+
+.c_customer_tel{
+	background:#c0a0ff;
+}
+
+.c_customer_mail{
+	background:#ff80c0;
+}
+

@@ -191,12 +191,10 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<span class="sns">
 			<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
 			<a href="https://github.com/katsumiexe" class="icon_github"></a>
-			<a href="./post.php" class="icon_mail"></a>
 			</span>
 		</div>
 	</div>
 </div>
-
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
@@ -211,6 +209,13 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
 	</div>
 <?}?>
+
+<div class="page_01_guide">
+<div class="page_01_guide_in">
+お好きなユニットを一つ選んでください。<Br>
+</div>
+</div>
+
 </div>
 <div class="page_02">
 	<div class="player">
@@ -527,6 +532,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		</div>
 	</div>
 </div>
+<form id="reset_top" action="./index.php" method="post">
+</form>
 
 </body>
 </html>
