@@ -65,8 +65,7 @@ $t_ip=$_SERVER['SERVER_ADDR'];
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <meta name="description" content="">
 <meta name="keywords" content="">
-<link rel="stylesheet" href="./css/set_icon.css?_<?=date("YmdHi")?>">
-<link rel="stylesheet" href="./css/first.css?_<?=date("YmdHi")?>">
+<link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
 
 <script src="./js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -87,71 +86,11 @@ $(function(){
 });
 </script>
 <style>
-.box_01{
-	width:92vw;
-	background:#fff0e0;
-	border-radius:1vw;
-	border:1vw solid #f17766;
-	padding:2vw;
-	margin:2vw auto ;
-	font-size:3.8vw;
-	line-height:5vw;
-}
-
-.box_02{
-	margin:1vw auto;
-	width:88vw;
-	text-align:left;
-}
-
-.box_03{
-	text-align:center;
-}
-
-
-.box_04{
-	width:88vw;
-	background:#ffffff;
-	border-radius:1vw;
-	border:0.5vw solid #d0a000;
-	padding:1vw;
-	margin:2vw auto ;
-	color:#606060;
-	font-size:3.5vw;
-	text-align:left;
-}
-
-
-.title{
-	font-weight:600;
-	font-size:3.5vw;
-	color:#606060;
-}
-
-.post_area{
-	width		:85vw;
-	height		:40vw;
-	font-size	:4.5vw;
-    border		:0.5vw solid #3498db;
-	padding		:0.5vw;
-	margin		:1vw;
-	resize:none;
-}
-
-
-.post_text{
-	width		:85vw;
-	height		:10vw;
-	font-size	:5vw;
-	padding-left:0.5vw;
-	margin		:1vw;
-}
 
 </style>
 </head>
-<body class="body">
-<div class="main_irr sp_only">
-<h1 class="h1">ご意見メール</h1>
+<body style="text-align:center;background:#303030">
+<div class="main">
 <form id="forms" action="./outpost.php" method="post">
 <div id="err" style="color:#ff0000; font-weight:600; margin:3px auto; width:90%;height:20px;">　</div>
 	<?if($mode == 1){?>
@@ -211,7 +150,7 @@ $(function(){
 			<div class="box_03">
 				<input type="hidden" value="<?=$mode+0?>" name="mode">
 				<input type="hidden" value="send" name="send">
-				<button id="send" type="submit" style="width:70vw; height:9vw; font-size:4vw; font-weight:600;background:linear-gradient(#f0f0f0,#d0d0d0)">送　信</button>
+				<button id="send" type="submit" class="post_send">送　信</button>
 			</div>
 		</div>
 	<?}?>
