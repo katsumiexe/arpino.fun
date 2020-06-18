@@ -35,7 +35,7 @@ if($mode==1){
 
 
 if($mode==2){
-	$sql_up	 ="INSERT INTO me_post(`date`,`name`, `mail`, `log`,`ua`,`ip`,`width`,`height`)";
+	$sql_up	 ="INSERT INTO data_post(`date`,`name`, `mail`, `log`,`ua`,`ip`,`width`,`height`)";
 	$sql_up	.="VALUES('{$date}', '{$ask_name}', '{$ask_mail}', '{$ask_log}','{$_REQUEST["n_ua"]}','{$_REQUEST["n_ip"]}','{$_REQUEST["n_width"]}','{$_REQUEST["n_height"]}'
 )";
 	mysqli_query ($mysqli,$sql_up);
@@ -45,7 +45,7 @@ if($mode==2){
 	$to      = "cpunterpost2016@gmail.com";
 	$subject = "Aigis_POST(out)";
 	$message = $ask_log;
-	$headers = 'From: dummy@arpino.fun' . "\r\n";
+	$headers = 'From: aigis@arpino.fun' . "\r\n";
 	mb_send_mail($to, $subject, $message, $headers);
 
 	$_POST="";
@@ -88,7 +88,7 @@ $(function(){
 </script>
 <style>
 .box_01{
-	width:90vw;
+	width:92vw;
 	background:#fff0e0;
 	border-radius:1vw;
 	border:1vw solid #f17766;
@@ -100,7 +100,7 @@ $(function(){
 
 .box_02{
 	margin:1vw auto;
-	width:80vw;
+	width:88vw;
 	text-align:left;
 }
 
@@ -110,7 +110,7 @@ $(function(){
 
 
 .box_04{
-	width:80vw;
+	width:88vw;
 	background:#ffffff;
 	border-radius:1vw;
 	border:0.5vw solid #d0a000;
@@ -128,22 +128,30 @@ $(function(){
 	color:#606060;
 }
 
-.area{
-	width:77vw;
-	height:30vw;
-	font-size:4.5vw;
-    border: 0.5vw solid #3498db;
-	padding:1vw;
-	margin:1vw;
+.post_area{
+	width		:85vw;
+	height		:40vw;
+	font-size	:4.5vw;
+    border		:0.5vw solid #3498db;
+	padding		:0.5vw;
+	margin		:1vw;
+	resize:none;
+}
+
+
+.post_text{
+	width		:85vw;
+	height		:10vw;
+	font-size	:5vw;
+	padding-left:0.5vw;
+	margin		:1vw;
 }
 
 </style>
 </head>
-
 <body class="body">
-
 <div class="main_irr sp_only">
-<h1 class="h1_irr"><span class="h1_title">ご意見メール</span></h1>
+<h1 class="h1">ご意見メール</h1>
 <form id="forms" action="./outpost.php" method="post">
 <div id="err" style="color:#ff0000; font-weight:600; margin:3px auto; width:90%;height:20px;">　</div>
 	<?if($mode == 1){?>
@@ -188,16 +196,16 @@ $(function(){
 		<div class="box_01">
 			<div class="box_02">
 				<span class="title">お名前</span><br>
-				<input type="text" value="<?=$ask_name?>" name="ask_name" placeholder="匿名でもいいよ" style="width:78vw; height:8vw;"><br>
+				<input type="text" value="<?=$ask_name?>" name="ask_name" placeholder="匿名でもいいよ" class="post_text"><br>
 			</div>
 
 			<div class="box_02">
 				<span class="title">メールアドレス</span><br>
-				<input type="text" value="<?=$ask_mail?>" name="ask_mail" placeholder="なくてもいいよ" style="width:78vw; height:8vw;"><br>
+				<input type="text" value="<?=$ask_mail?>" name="ask_mail" placeholder="なくてもいいよ" class="post_text"><br>
 			</div>
 
 			<div class="box_02">
-				<textarea id="ask_log" class="area" name="ask_log"><?=$ask_log?></textarea>
+				<textarea id="ask_log" class="post_area" name="ask_log"><?=$ask_log?></textarea>
 			</div>
 
 			<div class="box_03">
