@@ -151,50 +151,49 @@ if($res0 = mysqli_query($mysqli,$sql)){
 </head>
 <body style="text-align:center;background:#303030">
 <div class="main">
-
-<div class="page_00">
-	<div class="first_play">
-		<div class="first_play_ttl">
-			<span>アイギスカードゲーム(仮)</span>
-		</div>
-		<div id="lv0" class="first_play_level">
-			<span class="first_icon"></span>
-			<span class="first_comm">★☆☆</span>
-			<span class="first_comm">-easy-</span>
-		</div>
-		<div id="lv1" class="first_play_level">
-			<span class="first_icon"></span>
-			<span class="first_comm">★★☆</span>
-			<span class="first_comm">-normal-</span>
-		</div>
-		<div id="lv2" class="first_play_level">
-			<span class="first_icon"></span>
-			<span class="first_comm">★★★</span>
-			<span class="first_comm">-ONI!-</span>
-		</div>
-		<div id="lv4" class="first_play_level">
-			<span class="first_icon"></span>
-			<span class="first_comm">ランキング</span>
-			<span class="first_comm">-Ranking-</span>
-		</div>
-		<div id="lv5" class="first_play_level">
-			<span class="first_icon"></span>
-			<span class="first_comm">遊び方</span>
-			<span class="first_comm">-Howto-</span>
-		</div>
-		<div id="lv6" class="first_play_level">
-			<span class="first_icon"></span>
-			<span class="first_comm">問合せ</span>
-			<span class="first_comm">-AskMe-</span>
-		</div>
-		<div class="first_play_btm">
-			<span class="sns">
-			<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
-			<a href="https://github.com/katsumiexe" class="icon_github"></a>
-			</span>
+	<div class="page_00">
+		<div class="first_play">
+			<div class="first_play_ttl">
+				<span>アイギスカードゲーム(仮)</span>
+			</div>
+			<div id="lv0" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">★☆☆</span>
+				<span class="first_comm">-easy-</span>
+			</div>
+			<div id="lv1" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">★★☆</span>
+				<span class="first_comm">-normal-</span>
+			</div>
+			<div id="lv2" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">★★★</span>
+				<span class="first_comm">-ONI!-</span>
+			</div>
+			<div id="lv4" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">ランキング</span>
+				<span class="first_comm">-Ranking-</span>
+			</div>
+			<div id="lv5" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">遊び方</span>
+				<span class="first_comm">-Howto-</span>
+			</div>
+			<a href="./outpost.php" id="lv6" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">問合せ</span>
+				<span class="first_comm">-AskMe-</span>
+			</a>
+			<div class="first_play_btm">
+				<span class="sns">
+				<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
+				<a href="https://github.com/katsumiexe" class="icon_github"></a>
+				</span>
+			</div>
 		</div>
 	</div>
-</div>
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
@@ -209,11 +208,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	<span class="sel_c"><?=$unit[$e]["name"]?></span>
 	</div>
 <?}?>
-
 <div class="page_01_guide">
-<div class="page_01_guide_in">
 お好きなユニットを一つ選んでください。<Br>
-</div>
 </div>
 
 </div>
@@ -442,7 +438,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	<? } ?>
 	</table>
 </div>
-
 
 <div class="howto">
 	<div class="howto_page">
