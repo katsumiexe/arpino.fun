@@ -70,7 +70,6 @@ foreach($pts as $a1 => $a2){
 	$tmp_pts=$a2;
 }
 
-
 $base_date=date("Y-m-01 00:00:00");
 $now=date("Y/m");
 $n=1;
@@ -149,7 +148,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <script>
 </script>
 </head>
-<body style="text-align:center;background:#303030">
+<body style="text-align:center;background:#888888">
 <div class="main">
 	<div class="page_00">
 		<div class="first_play">

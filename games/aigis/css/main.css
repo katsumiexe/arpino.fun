@@ -32,8 +32,8 @@
 	margin			:5px auto;
 	position		:relative;
 	display			:inline-block;
-	width			:550px;
-	height			:60px;
+	width			:535px;
+	height			:80px;
 	background		:linear-gradient(#c0a000,#a09000);
 	font-size		:0;
 }
@@ -42,8 +42,8 @@
 	margin			:5px 10px;
 	display			:inline-block;
 	width			:530px;
-	height			:20px;
-	line-height		:20px;
+	height			:25px;
+	line-height		:25px;
 	font-size		:16px;
 	font-weight		:700;
 	color			:#fafafa;	
@@ -53,56 +53,56 @@
 .thanks_tag{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:5px;
+	bottom			:4px;
 	left			:5px;
 
 	width			:80px;
-	height			:30px;
-	line-height		:30px;
-	background		:linear-gradient(#00a000,#009000);
+	height			:36px;
+	line-height		:36px;
+	background		:linear-gradient(#0000a0,#000090);
 	color			:#fafafa;
 	font-weight		:600;
-	font-size		:16px;
+	font-size		:20px;
 }
 
 .thanks_btn{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:5px;
-	left			:350px;
-	width			:30px;
-	height			:30px;
-	line-height		:30px;
-	background		:linear-gradient(#cccccc,#bbbbbb);
+	bottom			:4px;
+	right			:5px;
+	width			:40px;
+	height			:36px;
+	line-height		:36px;
+	background		:linear-gradient(#c0c0c0,#a0a0a0);
 	color			:#fafafa;
 	font-weight		:600;
 	font-family		:at_icon;
-	font-size		:20px;
+	font-size		:24px;
 	text-align		:center;
+	cursor			:pointer;
 }
 
 .thanks_back{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:1vw;
-	left			:85vw;
-	width			:8vw;
-	height			:8vw;
-	line-height		:8vw;
-	background		:linear-gradient(#cccccc,#bbbbbb);
+	bottom			:4px;
+	right			:5px;
+	width			:40px;
+	height			:36px;
+	line-height		:36px;
+	background		:linear-gradient(#c0c0c0,#a0a0a0);
 	color			:#fafafa;
 	font-weight		:600;
-	margin			:1vw;
 	font-family		:at_icon;
-	padding			:0;
-	font-size		:4.5vw;
+	font-size		:24px;
 	text-align		:center;
+	cursor			:pointer;
 }
 
 .thanks_name{
 	position		:absolute;
 	bottom			:5px;
-	left			:100px;
+	left			:90px;
 	width			:250px;
 	height			:30px;
 	line-height		:30px;
@@ -110,7 +110,6 @@
 	color			:#606060;
 	font-weight		:600;
 	font-size		:20px;
-	border			:1ox solid #009000;
 }
 
 .icon_github{
@@ -169,12 +168,12 @@ body {
 }
 
 .page_00{
-	position			:fixed;
-	top					:-10vh;
-	left				:-10vw;
-	width				:120vw;
-	height				:120vh;
-	background			:#202535;
+	position			:absolute;
+	top					:0;
+	left				:0;
+	width				:100%;
+	height				:100%;
+	background			:#102030;
 	z-index				:77;
 }
 
@@ -246,9 +245,6 @@ body {
 	height				:40px;
 	line-height			:40px;
 }
-
-
-
 
 .first_icon{
 	font-family			:at_icon;
@@ -1168,11 +1164,11 @@ body {
 }
 
 .table_res{
-	width:550px;
-	margin:0 auto;
+	width			:535px;
+	margin			:0 auto;
 	border-collapse	:separate;
-	border-spacing: 0 3px;
-	background:#fafafa;
+	border-spacing	:0 3px;
+	background		:#fafafa;
 }
 
 .td_res{
@@ -1600,6 +1596,7 @@ body {
 }
 
 .score_table_name{
+	width			:320px;
 	height			:30px;
 	text-align		:left;
 	border-bottom	:2px solid #303030;
@@ -1609,7 +1606,6 @@ body {
 }
 
 .score_table_score{
-	width			:80px;
 	text-align		:right;
 	border-bottom	:2px solid #303030;
 	padding-right	:5px;
@@ -1622,9 +1618,8 @@ body {
 	box-shadow		:0 0 5px 10px rgba(255,240,10,0.6);
 }
 
-
-
 .box_01{
+	position		:relative;
 	width			:550px;
 	background		:#fff0e0;
 	border-radius	:10px;
@@ -1634,6 +1629,40 @@ body {
 	font-size		:16px;
 	line-height		:30px;
 }
+
+.box_01_btn{
+	line-height		:40px;
+	height			:50px;
+	display			:inline-block;
+	margin			:5px auto;
+	width			:500px;
+	text-align		:center;
+}
+
+.box_01_c1{
+	background: linear-gradient(#ff90a0 0%, #ffa0a0 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #d00000;
+}
+
+.box_01_c2{
+	background: linear-gradient(#ddddff 0%, #ccccff 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #3030ff;
+}
+
+
+.box_btn{
+	border-radius	:5px;
+	font-size		:18px;
+	height			:50px;
+	line-height		:50px;
+	width			:100px;
+	border			:5px solid #ffffff;
+}
+
 
 .box_02{
 	margin			:5px auto;
@@ -1711,19 +1740,28 @@ body {
 	line-height:5vw;
 }
 
+.box_01_btn{
+	line-height		:10vw;
+	height			:10vw;
+	margin			:1vw auto;
+	width			:80vw;
+}
+
+
+
 .box_02{
 	margin:1vw auto;
 	width:88vw;
 }
 
 .box_04{
-	width:88vw;
-	background:#ffffff;
-	border-radius:1vw;
-	border:0.5vw solid #d0a000;
-	padding:1vw;
-	margin:2vw auto ;
-	font-size:3.5vw;
+	width			:88vw;
+	background		:#ffffff;
+	border-radius	:1vw;
+	border			:0.5vw solid #d0a000;
+	padding			:1vw;
+	margin			:2vw auto ;
+	font-size		:3.5vw;
 }
 
 
@@ -1800,23 +1838,13 @@ body {
 }
 
 
-.btn {
+.box_btn {
 	border-radius	:2vw;
 	font-size		:4.5vw;
-	height			:7vw;
-	line-height		:7vw;
-	width			:17vw;
+	height			:10vw;
+	line-height		:10vw;
+	width			:30vw;
 	border			:1vw solid #ffffff;
-}
-
-.c1{
-	bottom	:2vw;
-	right	:4vw;
-}
-
-.c2{
-	bottom	:2vw;
-	left	:4vw;
 }
 
 .myimg{
@@ -2274,7 +2302,7 @@ body {
 }
 
 .table_res{
-	width:95vw;
+	width:94vw;
 	border-spacing: 0 0.5vw;
 	height:20vw;
 }
@@ -2524,6 +2552,7 @@ body {
 }
 
 .score_table_name{
+	width			:57vw;
 	height			:5.5vw;
 	text-align		:left;
 	font-size		:5vw;
@@ -2533,7 +2562,6 @@ body {
 }
 
 .score_table_score{
-	width			:15vw;
 	text-align		:right;
 	border-bottom	:0.5vw solid #303030;
 	font-size		:7vw;
@@ -2553,8 +2581,8 @@ body {
 
 .thanks{
 	margin			:1vw auto;
-	width			:96vw;
-	height			:20vw;
+	width			:94vw;
+	height			:18vw;
 }
 
 .thanks_ttl{
@@ -2577,20 +2605,20 @@ body {
 }
 
 .thanks_btn{
-	bottom			:1vw;
-	left			:75vw;
+	bottom			:1.5vw;
+	left			:75.5vw;
 	width			:8vw;
-	height			:8vw;
-	line-height		:8vw;
+	height			:7vw;
+	line-height		:7vw;
 	font-size		:4.5vw;
 }
 
 .thanks_back{
-	bottom			:1vw;
-	left			:85vw;
+	bottom			:1.5vw;
+	right			:1.5vw;
 	width			:8vw;
-	height			:8vw;
-	line-height		:8vw;
+	height			:7vw;
+	line-height		:7vw;
 	font-size		:4.5vw;
 }
 
@@ -2600,7 +2628,7 @@ body {
 	width			:55vw;
 	height			:7vw;
 	line-height		:7vw;
-	border			:0.5vw solid #009000;
+	border			:0.5vw solid #0000a0;
 	padding			:0 1vw;
 }
 

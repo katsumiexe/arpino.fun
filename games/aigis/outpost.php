@@ -35,7 +35,7 @@ if($mode==1){
 
 
 if($mode==2){
-	$sql_up	 ="INSERT INTO data_post(`date`,`name`, `mail`, `log`,`ua`,`ip`,`width`,`height`)";
+	$sql_up	 ="INSERT INTO post_data(`date`,`name`, `mail`, `log`,`ua`,`ip`,`width`,`height`)";
 	$sql_up	.="VALUES('{$date}', '{$ask_name}', '{$ask_mail}', '{$ask_log}','{$_REQUEST["n_ua"]}','{$_REQUEST["n_ip"]}','{$_REQUEST["n_width"]}','{$_REQUEST["n_height"]}'
 )";
 	mysqli_query ($mysqli,$sql_up);
@@ -94,12 +94,13 @@ $(function(){
 <form id="forms" action="./outpost.php" method="post">
 <div id="err" style="color:#ff0000; font-weight:600; margin:3px auto; width:90%;height:20px;">　</div>
 	<?if($mode == 1){?>
+
 		<div class="box_01">
 			下記のメールを送信します。よろしいですか。<br>
 			<div class="box_04">
-			<span style="font-weight:700;">おなまえ：</span><?=$tmp_name?><br>
-			<span style="font-weight:700;">アドレス：</span><?=$tmp_mail?><br>
-			<?=$tmp_log?>
+				<span style="font-weight:700;">おなまえ：</span><?=$tmp_name?><br>
+				<span style="font-weight:700;">アドレス：</span><?=$tmp_mail?><br>
+				<?=$tmp_log?>
 			</div>
 
 			<input type="hidden" value="<?=$ask_name?>" name="ask_name">
@@ -112,9 +113,11 @@ $(function(){
 			<input type="hidden" id="t_ua" name="n_ua" value="<?=$t_ua?>">
 			<input type="hidden" id="t_ip" name="n_ip" value="<?=$t_ip?>">
 
-			<div style="text-align:center;">
-				<button type="submit" value="send" name="send" class="btn c2">送信</button>
-				<button type="submit" value="back" name="back" class="btn c1">戻る</button>
+ 
+
+			<div class="box_01_btn">
+				<button type="submit" value="send" name="send" class="box_btn box_01_c1">送信</button>
+				<button type="submit" value="back" name="back" class="box_btn box_01_c2">戻る</button>
 			</div>
 		</div>
 
@@ -128,8 +131,8 @@ $(function(){
 		</div>
 	<?}else{?>
 		<div class="box_01" style="text-align:left;">
-			便利で使いやすいサイトにするため、お客様のご意見、ご要望をお寄せ下さいませ。<br>
-			ご意見、ご要望、システム上の不具合や機能の希望などなんでも結構です。<br>
+			ご意見、ご要望をお寄せ下さいませ。<br>
+			システム上の不具合や機能の希望、所感などなどなんでも結構です。<br>
 		</div>
 
 		<div class="box_01">
