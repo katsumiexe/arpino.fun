@@ -179,7 +179,7 @@ body {
 
 .first_play{
 	position			:absolute;
-	top					:20vh;
+	top					:0.5vw;
 	left				:0;
 	right				:0;
 	margin				:auto;
@@ -2488,7 +2488,7 @@ body {
 	height			:8vw;
 	line-height		:8vw;
 	border			:0.5vw solid #303030;
-	margin			:2vw auto;
+	margin			:0.5vw auto;
 	font-size		:4.5vw;	
 	text-align		:right;
 }
@@ -2520,7 +2520,7 @@ body {
 }
 
 .score_table{
-	top				:13vw;
+	top				:10vw;
 	width			:96vw;
 	border			:0.5vw solid #303030;
 }
@@ -2546,16 +2546,16 @@ body {
 }
 
 .score_table_date{
-	height			:4vw;
+	height			:3.5vw;
 	text-align		:left;
 	font-size		:3vw;
 }
 
 .score_table_name{
 	width			:57vw;
-	height			:5.5vw;
+	height			:5vw;
 	text-align		:left;
-	font-size		:5vw;
+	font-size		:4.5vw;
 	font-weight		:800;
 	overflow		:hidden;
 	border-bottom	:0.5vw solid #303030;
