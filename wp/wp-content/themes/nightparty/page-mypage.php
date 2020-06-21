@@ -6,6 +6,7 @@ if($_POST["log_out"] == 1){
 	$_SESSION="";
 	session_destroy();
 }
+$jst=time()+32400;
 
 $week[0]="日";
 $week[1]="月";
@@ -23,6 +24,8 @@ $week_tag[4]="c2";
 $week_tag[5]="c2";
 $week_tag[6]="c3";
 
+$week_tag[n]="c4";
+
 $week_tag2[0]="ca1";
 $week_tag2[1]="ca2";
 $week_tag2[2]="ca2";
@@ -31,11 +34,12 @@ $week_tag2[4]="ca2";
 $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
 
+
 if($_SESSION){
-	if(time()<$_SESSION["time"]+3600){
+	if($jst<$_SESSION["time"]+3600){
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
 		$_SESSION=$rows;
-		$_SESSION["time"]=time();
+		$_SESSION["time"]=$jst;
 
 	}else{
 		$_SESSION="";
@@ -46,7 +50,7 @@ if($_SESSION){
 	$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_POST["log_in_set"]."' AND cast_pass='".$_POST["log_pass_set"]."'",ARRAY_A );
 	if($rows){
 		$_SESSION=$rows;
-		$_SESSION["time"]=time();
+		$_SESSION["time"]=$jst;
 
 	}else{
 		$err="IDもしくはパスワードが違います";
@@ -171,7 +175,6 @@ if($_SESSION){
 
 			$tmp_w		=$m % 7;
 			if($tmp_w==0){
-
 				if($now_month<$tmp_month){
 					break 1;
 				}else{
@@ -181,6 +184,9 @@ if($_SESSION){
 
 			if($ob_holiday[$tmp_ymd]){
 				$tmp_week=0;
+
+			}elseif($tmp_ymd ==date("Ymd",$jst)){
+				$tmp_week=7;
 			}
 
 			if($now_month!=$tmp_month){
@@ -195,6 +201,7 @@ if($_SESSION){
 			}else{
 				$jb="";
 			}
+
 			$cal[$n].="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 n1\"></span>";
@@ -291,8 +298,16 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div class="mymenu_c"></div>
 		</div>	
 		<div class="head_mymenu_comm">
-		<div class="head_mymenu_arrow"></div>
-		<span class="head_mymenu_ttl"><?=$page_title?></span>
+			<div class="head_mymenu_arrow"></div>
+			<span class="head_mymenu_ttl"><?=$page_title?></span>
+		</div>
+		<div class="schedule_regist">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">登録</span>
+		</div>
+		<div class="customer_regist">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">新規</span>
 		</div>
 	</div>
 
@@ -347,6 +362,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 	<?}?>
 
+	<form action="<?php echo get_template_directory_uri(); ?>/mypage" method="post">
 		<div class="customer_detail">
 			<table class="customer_base">
 			<tr>
@@ -389,6 +405,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<td class="customer_sns_1"><span id="customer_blog" class="customer_sns_btn"></span></td>
 			<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
 			</tr>
+
 			<tr class="customer_sns_tr">
 			<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
 			<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
@@ -403,7 +420,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			</div>
 
-			<input id="h_customer_tel" type="hidden" value="いなだ">
+			<input id="h_customer_tel" type="hidden" value="">
 			<input id="h_customer_mail" type="hidden" value="">
 			<input id="h_customer_twitter" type="hidden" value="">
 			<input id="h_customer_facebook" type="hidden" value="">
@@ -412,51 +429,23 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input id="h_customer_web" type="hidden" value="">
 
 			<div class="customer_tag">
-			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">基本情報</div>
-			<div id="tag_1" class="tag_set">詳細情報</div>
-			<div id="tag_2" class="tag_set">連絡先</div>
-			<div id="tag_3" class="tag_set">メモ</div>
+			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
+			<div id="tag_1" class="tag_set">メモ</div>
+			<div id="tag_2" class="tag_set">履歴</div>
 			<button class="tag_btn">更新</button>
 			</div>
 
 			<div class="customer_body">
-				<?for($n=0;$n<3;$n++){?>
-					<table id="tag_<?=$n?>_tbl" class="customer_memo">
-						<?foreach($c_list_name[$n] as $a1=> $a2){?>
-							<?if($c_list_style[$a1] == 2){?>
-								<tr>
-									<td class="customer_memo_tag"><?=$a2?></td>
-									<td class="customer_memo_item">
-										<input id="m_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="m_a" class="cousomer_marrige">既婚</label>
-										<input id="m_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="m_b" class="cousomer_marrige">未婚</label>
-										<input id="m_c" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="m_c" class="cousomer_marrige">離婚</label>
-									</td>
-								</tr>
-
-							<?}elseif($c_list_style[$a1] == 3){?>
-								<tr>
-									<td class="customer_memo_tag"><?=$a2?></td>
-									<td class="customer_memo_item">
-										<input id="b_a" type="radio" name="cas[<?=$a1?>]" value="1" class="rd"><label for="b_a" class="cousomer_blood">Ａ</label>
-										<input id="b_b" type="radio" name="cas[<?=$a1?>]" value="2" class="rd"><label for="b_b" class="cousomer_blood">Ｂ</label>
-										<input id="b_o" type="radio" name="cas[<?=$a1?>]" value="3" class="rd"><label for="b_o" class="cousomer_blood">Ｏ</label>
-										<input id="b_ab" type="radio" name="cas[<?=$a1?>]" value="4" class="rd"><label for="b_ab" class="cousomer_blood">AB</label>
-									</td>
-								</tr>
-							<?}else{?>
-								<tr>
-									<td class="customer_memo_tag"><?=$a2?></td>
-									<td class="customer_memo_item"><input id="list_all_<?=$a1?>" type="text" value="" name="cas[<?=$a1?>]"class="item_textbox"></td>
-								</tr>
-							<? } ?>
-						<? } ?>
-					</table>
-				<? } ?>
+				<table id="tag_0_tbl" class="customer_memo"></table>
+				<table id="tag_1_tbl" class="customer_memo"></table>
+				<table id="tag_2_tbl" class="customer_memo"></table>
 			</div>
 		</div>
+	</form>
 	</div>
 
 	<?}elseif($cast_page==3){?>
+
 	<div class="mypage_mail">
 		<?for($s=0;$s<count($mail_data);$s++){?>
 		<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
@@ -583,7 +572,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 							for($s=0;$s<7;$s++){
 							$w=($s+$week_start) % 7;
 							?>
-							<td class="cal_td <?PHP ECHO $week_tag[$w]?>"><?PHP ECHO $week[$w]?></td>
+							<td class="cal_td <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 							<? } ?>
 							<?=$cal[$c]?>
 						</tr>
@@ -591,7 +580,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<?}?>
 			</div>
 		</div>
-		<div class="cal_set_btn">スケジュール入力</div>
 		<div class="cal_days">
 		</div>
 	<? } ?>

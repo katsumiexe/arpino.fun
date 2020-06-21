@@ -88,12 +88,54 @@ input:focus{
 	margin		:auto;	
 	display		:inline-block;
 	height		:10vw;
-	width		:70vw;
+	width		:65vw;
 	background	:#fafafa;
 	border-radius:5vw;
 	box-shadow:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.6) inset;
 }
 
+.schedule_regist,.customer_regist{
+	display		:inline-bloc;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	right		:2vw;
+	margin		:auto;	
+	height		:10vw;
+	width		:10vw;
+	background	:#f17766;
+	border-radius:1vw;
+	color		:#fafafa;
+}
+
+.customer_regist{
+	display		:none;
+
+}
+
+.regist_icon{
+	display		:inline-block;
+	position	:absolute;
+	top			:0.5vw;
+	left		:0.5vw;
+	right		:0.5vw;
+	text-align	:center;
+	margin		:auto;	
+	font-size	:5vw;
+	font-family	:at_icon;
+}
+
+.regist_txt{
+	display		:inline-block;
+	position	:absolute;
+	bottom		:1vw;
+	left		:1vw;
+	right		:1vw;
+	margin		:auto;	
+	text-align	:center;
+	font-size	:2.8vw;
+	font-weight	:600;
+}
 
 .head_mymenu_arrow{
 	display		:inline-block;
@@ -179,12 +221,11 @@ input:focus{
 }
 
 
-.dy0{
+.dy1,.dy2,.dy3,.dy4,.dy5,.dy6,.dy7{
 	display		:inline-block;
 	position	:absolute;
 	top			:0;
 	left		:0;
-	background	:#ff6060;
 	font-size	:3vw;
 	font-weight	:600;
 	color		:#fafafa;
@@ -192,36 +233,22 @@ input:focus{
 	line-height	:5vw;
 	width		:6vw;
 	text-align	:center;
+}
+
+.dy0{
+	background	:#ff6060;
 }
 
 .dy6{
-	display:inline-block;
-	position	:absolute;
-	top			:0;
-	left		:0;
 	background	:#90a0ff;
-	font-size	:3vw;
-	font-weight	:600;
-	color		:#fafafa;
-	height		:5vw;
-	line-height	:5vw;
-	width		:6vw;
-	text-align	:center;
+}
+
+.dy7{
+	background	:#fffaea;
 }
 
 .dy1,.dy2,.dy3,.dy4,.dy5{
-	display:inline-block;
-	position	:absolute;
-	top			:0;
-	left		:0;
 	background	:#f0f0f0	;
-	font-size	:3vw;
-	font-weight	:600;
-	color		:#c0b0a0;
-	height		:5vw;
-	line-height	:5vw;
-	width		:6vw;
-	text-align	:center;
 }
 
 .menu_sel{
@@ -433,6 +460,12 @@ input:focus{
 	display:none;
 }
 
+.rd:checked+ label {
+	background		:#f17766;
+	color			:#fafafa;	
+} 
+ 
+ 
 .customer_sns{
 	width			:95vw;
 	height			:11vw;
@@ -464,11 +497,7 @@ input:focus{
 	margin			:0 auto 3vw auto;
 	z-index			:11;
 }
-.jump_on{
-	background:linear-gradient(ff9080,f17766);
-	color:#fafafa;
 
-}
 
 .customer_sns_tr{
 	display:none;
@@ -560,14 +589,11 @@ input:focus{
 	border-radius	:1vw;
 	font-size		:4vw;
 	color			:#f17766;	
-	font-weight:700;
+	font-weight		:700;
+	margin			:0 0.5vw;
 }
 
-.rd:checked+ label {
-	background		:#f17766;
-	color			:#fafafa;	
-} 
- 
+
 .cousomer_blood{
 	display			:inline-block;
 	width			:10vw;
@@ -579,13 +605,9 @@ input:focus{
 	border-radius	:1vw;
 	font-size		:4vw;
 	color			:#f17766;	
-	font-weight:700;
+	font-weight		:700;
+	margin			:0 0.5vw;
 }
-
-.rd:checked+ label {
-	background		:#f17766;
-	color			:#fafafa;	
-} 
 
 .customer_detail{
 	position		:fixed;
@@ -2084,11 +2106,16 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	background	:#fff0f0;
 	background	:linear-gradient(#fff0f0,#ffe0e0);
 }
+
 .cc6{
 	background	:#f0f0ff;
 	background	:linear-gradient(#f0f0ff,#e0e0ff);
 }
 
+.cc7{
+	background	:#fffaea;
+	background	:linear-gradient(#eeeed0,#ddddc0);
+}
 
 .nowmonth{
 	color:#666666;
@@ -2126,3 +2153,8 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	background:#ff80c0;
 }
 
+.jump_on{
+	background:linear-gradient(#ff9080,#f17766);
+	color:#fafafa;
+
+}

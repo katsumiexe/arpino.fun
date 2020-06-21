@@ -1,8 +1,9 @@
 <?
 /*
 顧客情報読み込み
-ini_set('display_errors',1);
 */
+ini_set('display_errors',1);
+
 require_once ("../../../../wp-load.php");
 global $wpdb;
 
@@ -19,9 +20,11 @@ foreach($dat0 AS $dat1){
 
 $sql	 ="SELECT * FROM wp01_0customer_item";
 $sql	 .=" WHERE del=0";
+$sql	 .=" AND gp=0";
 $dat0 = $wpdb->get_results($sql,ARRAY_A );
 
 foreach($dat0 AS $dat1){
+
 	if($dat1["style"] == 2){
 		$s2[$cas[$dat1["id"]]]=" checked=\"checked\"";
 		$dat.="<tr><td class=\"customer_memo_tag\">{$dat1["item_name"]}</td>";
@@ -33,7 +36,6 @@ foreach($dat0 AS $dat1){
 		
 	}elseif($dat1["style"] == 3){
 		$s3[$cas[$dat1["id"]]]=" checked=\"checked\"";
-
 		$dat.="<tr><td class=\"customer_memo_tag\">{$dat1["item_name"]}</td>";
 		$dat.="<td class=\"customer_memo_item\">";
 		$dat.="<input id=\"b_a\" type=\"radio\" name=\"cas[{$dat1["id"]}]\" value=\"1\" {$s2[1]} class=\"rd\"><label for=\"b_a\" class=\"cousomer_blood\">Ａ</label>";
@@ -44,11 +46,10 @@ foreach($dat0 AS $dat1){
 
 	}else{
 		$dat.="<tr><td class=\"customer_memo_tag\">{$dat1["item_name"]}</td>";
-		$dat.="<td class=\"customer_memo_item\"><input type=\"text\" value="{$cas[$dat1["id"]]}" name=\"cas[<?=$a1?>]\" class="\item_textbox\"></td></tr>"
+		$dat.="<td class=\"customer_memo_item\"><input type=\"text\" value=\"{$cas[$dat1["id"]]}\" name=\"cas[{$dat1["id"]}]\" class=\"item_textbox\"></td></tr>";
 	}
 }
 
 echo $dat;
 exit();
 ?>
-

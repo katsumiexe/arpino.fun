@@ -7,8 +7,9 @@ $week[3]="(水)";
 $week[4]="(木)";
 $week[5]="(金)";
 $week[6]="(土)";
-$t_day=date("Ymd",time()-21600);
-$n_day=date("Ymd",time()+86400*7-21600);
+
+$t_day=date("Ymd",time()+32400);
+$n_day=date("Ymd",time()+32400+86400*7);
 
 $tmp=explode("/",$_SERVER["REQUEST_URI"]);
 $val=$tmp[count($tmp)-2];
@@ -54,7 +55,7 @@ foreach($res2 as $a2):
 endforeach;
 
 for($n=0;$n<7;$n++){
-	$t_sch=date("Ymd",time()+(86400*$n)-21600);
+	$t_sch=date("Ymd",time()+(86400*$n)+32400);
 
 	$tmp_s=$sch[$t_sch]->stime;
 	$tmp_e=$sch[$t_sch]->etime;

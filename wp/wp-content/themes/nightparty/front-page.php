@@ -11,14 +11,14 @@ $dat[7]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 $dat[8]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 $dat[9]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 
-$now=date("Ymd",time()-21600);
+$now=date("Ymd",time()+32400);
 
+print($now);
 $res = $wpdb->get_results('SELECT * FROM wp01_0cast',ARRAY_A);
 
 $n=0;
 foreach($res as $a1){
 	$dat[$n]	=$a1;
-
 	if($a1["face1"] > 0){
 		$dat[$n]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/".$a1["face1"].".jpg";			
 	}else{
@@ -29,10 +29,11 @@ foreach($res as $a1){
 }
 
 
-$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}'";
+$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
 
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
+
 	if($a2["stime"] && $a2["etime"]):
 		$sch[$a2["cast_id"]]	="{$a2["stime"]} - {$a2["etime"]}";
 
@@ -63,6 +64,7 @@ foreach($res2 as $a2){
 	</a>
 <?}?>
 </div>
+
 <div class="main_c">
 	<div class="main_c_1">
 <?php echo $cast[1]["genji"]?><bR>

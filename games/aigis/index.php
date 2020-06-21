@@ -76,7 +76,7 @@ $n=1;
 $sql	 ="SELECT * FROM score_data";
 $sql	.=" WHERE date>='{$base_date}'";
 $sql	.=" AND level='0'";
-$sql	.=" ORDER BY score DESC";
+$sql	.=" ORDER BY score DESC, date DESC";
 $sql	.=" LIMIT 10";
 if($res0 = mysqli_query($mysqli,$sql)){
 	while($row0 = mysqli_fetch_assoc($res0)){

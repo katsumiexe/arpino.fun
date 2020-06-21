@@ -990,14 +990,14 @@ body {
 }
 
 .turn_name{
-	position:absolute;
-	top:5px;
+	position	:absolute;
+	top			:5px;
 	left		:0;
 	right		:0;
-	margin:auto;
-	font-size:13px;
-	font-weight:700;
-	color:#906000;
+	margin		:auto;
+	font-size	:13px;
+	font-weight	:700;
+	color		:#906000;
 }
 
 .turn_img{
@@ -1027,18 +1027,18 @@ body {
 }
 
 .turn_title{
-	position	:absolute;
-	display		:inline-block;
-	bottom		:65px;
-	left		:25px;
-	padding		:2px 4px;
-	background	:linear-gradient(#f0d060,#d0a020);
-	border-radius:2px;
-	font-size	:14px;
-	font-weight	:600;
-	color		:#fafafa;
-	text-shadow:1px 1px 0px #303030;
-	z-index		:111;
+	position		:absolute;
+	display			:inline-block;
+	bottom			:65px;
+	left			:25px;
+	padding			:2px 4px;
+	background		:linear-gradient(#f0d060,#d0a020);
+	border-radius	:2px;
+	font-size		:14px;
+	font-weight		:600;
+	color			:#fafafa;
+	text-shadow		:1px 1px 0px #303030;
+	z-index			:111;
 }
 
 .turn_pta{
@@ -1747,8 +1747,6 @@ body {
 	width			:80vw;
 }
 
-
-
 .box_02{
 	margin:1vw auto;
 	width:88vw;
@@ -1764,6 +1762,25 @@ body {
 	font-size		:3.5vw;
 }
 
+
+.btn {
+	border-radius	:1vw;
+	font-size		:4vw;
+	height			:6vw;
+	line-height		:7vw;
+	width			:18vw;
+	border			:1vw solid #ffffff;
+}
+
+.c1{
+	bottom:1.5vw;
+	right:2vw;
+}
+
+.c2{
+	bottom:1.5vw;
+	left:2vw;
+}
 
 .title{
 	font-size:3.5vw;
@@ -2179,8 +2196,8 @@ body {
 
 
 .turn_title{
-	bottom			:15.5vw;
-	left			:2vw;
+	bottom			:17vw;
+	left			:4vw;
 	padding			:0.5vw 1vw;
 	border-radius	:0.5vw;
 	font-size		:3.5vw;
@@ -2190,10 +2207,10 @@ body {
 .turn_comm{
 	bottom		:1vw;
 	width		:40vw;
-	padding		:1vw;
+	padding		:3vw 0.5vw 0.5vw 0.5vw;
 	font-size	:3vw;
-	height		:13vw
-	line-height	:4vw
+	height		:14vw
+	line-height	:3.5vw
 }
 
 .turn_pta{

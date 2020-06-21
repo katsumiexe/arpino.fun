@@ -380,16 +380,16 @@ $(function(){
 			data:{
 				'c_id':C_Id,
 			},
-			dataType: 'json',
+/*			dataType: 'json',*/
 		}).done(function(data, textStatus, jqXHR){
-			Object.keys(data).forEach( function(value) {
-			    console.log( value + '□' + this[value] );
-//				$('#list_all_'+value).val(this[value]);
-				$('input[name="cas['+value+']"]').val(this[value]);
-			}, data);
+			console.log(data);
+			$('#tag_0_tbl').html(data);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
 	});
-
 
 
 
@@ -402,13 +402,24 @@ $(function(){
 				'kind':Tmp.replace('customer_',''),
 			},
 
+
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
 
 			if($('.sns_text').val()){
 				$('#customer_'+data).addClass('c_customer_'+data);		
+				$('.customer_sns_box').addClass('c_customer_'+data);		
+				$('#a_customer_'+data).addClass('c_customer_'+data);
+				$('#customer_'+data).addClass('c_customer_'+data);
+				$('.sns_jump').addClass('jump_on');
+
+
 			}else{
 				$('#customer_'+data).removeClass('c_customer_'+data);		
+				$('.customer_sns_box').removeClass('c_customer_'+data);		
+				$('#a_customer_'+data).removeClass('c_customer_'+data);
+				$('#customer_'+data).removeClass('c_customer_'+data);
+				$('.sns_jump').removeClass('jump_on');
 			}
 			$('#h_customer_'+data).val($('.sns_text').val());
 		});
@@ -449,7 +460,7 @@ $(function(){
 		$('.img_back').fadeIn(100);
 	});
 
-	$('.cal_set_btn').on('click',function(){
+	$('.schedule_regist').on('click',function(){
 		$('.cal_weeks').animate({'top':'18vw'},200);
 		$('.cal_back').fadeIn(100);
 	});
