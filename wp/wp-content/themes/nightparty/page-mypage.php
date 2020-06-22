@@ -173,7 +173,7 @@ if($_SESSION){
 			$tmp_day	=date("d",$st+($m*86400));
 			$tmp_week	=date("w",$st+($m*86400));
 
-			$tmp_w		=$m % 7;
+			$tmp_w	=$m % 7;
 			if($tmp_w==0){
 				if($now_month<$tmp_month){
 					break 1;
@@ -202,7 +202,7 @@ if($_SESSION){
 				$jb="";
 			}
 
-			$cal[$n].="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
+			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 n1\"></span>";
 			$cal[$n].="<span class=\"cal_i2{$jb}\"></span>";
@@ -572,7 +572,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 							for($s=0;$s<7;$s++){
 							$w=($s+$week_start) % 7;
 							?>
-							<td class="cal_td <?=$week_tag[$w]?>"><?=$week[$w]?></td>
+							<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 							<? } ?>
 							<?=$cal[$c]?>
 						</tr>
@@ -581,9 +581,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</div>
 		</div>
 		<div class="cal_days">
+			<div class="cal_days_date"></div>
 		</div>
 	<? } ?>
 </div>
+
 
 <div class="sch_set_done">スケジュールが登録されました</div>
 <div class="cal_back">
@@ -647,7 +649,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="upload_icon upload_rote"></span>
 			<span class="upload_icon upload_reset"></span>
 			<span class="upload_icon upload_trush"></span>
-
 		</div>
 
 		<div class="img_box_in3">
@@ -662,6 +663,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 	</div>
 </div>
+
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">

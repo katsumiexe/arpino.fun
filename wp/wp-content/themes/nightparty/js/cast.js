@@ -603,9 +603,10 @@ $(function(){
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
-				'c_month':$('#c_month').val(),
+				'c_month'	:$('#c_month').val(),
 				'week_start':$('#week_start').val(),
-				'pre':'1',
+				'cast_id'	:CastId,
+				'pre'		:'1',
 			},
 			dataType: 'json',
 
@@ -796,8 +797,8 @@ $(function(){
 					$('.mypage_cal').prepend(data.html).css('left','-100vw');
 					$(".mypage_cal").children().last().remove();
 					$('#c_month').val(data.date);
-
-					console.log(data.html)
+					console.log(data.sql);
+					console.log(data.html);
 				});
 
 			}else if(ui.position.left < VwBase*(-120)){
@@ -816,12 +817,25 @@ $(function(){
 					$('.mypage_cal').append(data.html).css('left','-100vw');
 					$(".mypage_cal").children().first().remove();
 					$('#c_month').val(data.date);
+					console.log(data.sql);
+					console.log(data.html);
 				});
 			}else{
 				$('.mypage_cal').animate({'left':'-100vw'},100);
 			}
 		},
 	});
+
+	$('.cal_td').on('click',function (){
+		$('.cal_td').removeClass('cc8');
+		$(this).addClass('cc8');
+
+		ToMon=$(this).attr('id').substr(5,2);
+		ToDay=$(this).attr('id').substr(7,2);
+		ToWeek=$(this).attr('week');
+		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
+	});
+
 
 	$('.mypage_slide').draggable({
 		axis: 'x',

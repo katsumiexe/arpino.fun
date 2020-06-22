@@ -203,14 +203,42 @@ input:focus{
 	font-weight		:700;
 }
 
+.cal_days{
+	position		:absolute;
+	top				:82vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	display			:inline-block;
+	width			:90vw;
+	border			:2vw solid #a0b0f0;
+	background		:#e0f0ff;
+	height			:40vw;
+}
 
-.cal_td{
-	position	:relative;
-	height		:10vw;
-	text-align	:center;
-	font-size	:0;
-	border		:0.5vw solid #fafafa;
-	background	:linear-gradient(#f0f0f0,#e5e5e5);
+.cal_days_date{
+	position		:absolute;
+	top				:-7vw;
+	left			:3vw;
+	width			:42vw;
+	height			:8vw;
+	line-height		:8vw;
+	border			:2vw solid #a0b0f0;
+	background		:#e0f0ff;
+	font-size		:5vw;
+	font-weight		:700;
+	color			:#0000ff;
+}
+
+
+.cal_td,.cal_th{
+	position		:relative;
+	height			:10vw;
+	text-align		:center;
+	font-size		:0;
+	border			:0.5vw solid #fafafa;
+	background		:linear-gradient(#f0f0f0,#e5e5e5);
+	cursor			:pointer;
 }
 
 .c1,.c2,.c3{
@@ -244,7 +272,7 @@ input:focus{
 }
 
 .dy7{
-	background	:#fffaea;
+	background	:#d2b48c;
 }
 
 .dy1,.dy2,.dy3,.dy4,.dy5{
@@ -1770,18 +1798,6 @@ input[type=range]::-moz-range-thumb{
 }
 
 
-.cal_days{
-	position		:absolute;
-	top				:82vw;
-	left			:0;
-	right			:0;
-	margin			:auto;
-	display			:inline-block;
-	width			:92vw;
-	border			:1vw solid #0000d0;
-	background		:#ffd0f0;
-	height			:40vw;
-}
 
 .sch_set,.sch_set_btn{
 	position		:relative;
@@ -2113,8 +2129,13 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 }
 
 .cc7{
-	background	:#fffaea;
 	background	:linear-gradient(#eeeed0,#ddddc0);
+	background	:#f0e0d5;
+}
+
+.cc8{
+	background	:linear-gradient(#eeeed0,#ddddc0);
+	background	:#d5f0e0;
 }
 
 .nowmonth{
