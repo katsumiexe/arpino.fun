@@ -277,6 +277,15 @@ $(function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
 		$('.customer_detail').animate({'left':'100vw'},300);
 		$('.head_mymenu_ttl').html('顧客リスト');
+
+		$('.customer_sns_box').hide();
+		$('.customer_sns_tr').hide();
+		$('.sns_arrow_a').hide();
+		$('.sns_text').val('');
+		$('.customer_sns_box').removeClass('c_'+Tmp);
+		$('.sns_jump').removeClass('jump_on');
+
+
 	});
 
 	$('.customer_list').on('click',function(){
@@ -826,7 +835,7 @@ $(function(){
 		},
 	});
 
-	$('.cal_td').on('click',function (){
+	$('.mypage_cal').on('click','.cal_td',function (){
 		$('.cal_td').removeClass('cc8');
 		$(this).addClass('cc8');
 
@@ -835,7 +844,6 @@ $(function(){
 		ToWeek=$(this).attr('week');
 		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
 	});
-
 
 	$('.mypage_slide').draggable({
 		axis: 'x',
@@ -879,3 +887,4 @@ $(function(){
 		}
 	});
 });
+

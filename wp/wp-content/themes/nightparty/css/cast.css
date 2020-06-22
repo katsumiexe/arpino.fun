@@ -210,16 +210,16 @@ input:focus{
 	right			:0;
 	margin			:auto;
 	display			:inline-block;
-	width			:90vw;
+	width			:88vw;
 	border			:2vw solid #a0b0f0;
 	background		:#e0f0ff;
-	height			:40vw;
+	height			:39vw;
 }
 
 .cal_days_date{
 	position		:absolute;
-	top				:-7vw;
-	left			:3vw;
+	top				:-4vw;
+	left			:-4vw;
 	width			:42vw;
 	height			:8vw;
 	line-height		:8vw;
@@ -1797,8 +1797,6 @@ input[type=range]::-moz-range-thumb{
 	width			:300vw;
 }
 
-
-
 .sch_set,.sch_set_btn{
 	position		:relative;
 	display			:inline-block;
@@ -1958,7 +1956,7 @@ input[type=range]::-moz-range-thumb{
 	padding		:1.5vw;
 	font-size	:4vw;
 	z-index		:40;
-	box-shadow:0 0 2vw 2vw rgba(5255,255,255,0.5);
+	box-shadow	:0 0 2vw 2vw rgba(5255,255,255,0.5);
 }
 
 td.ui-datepicker-week-end:first-child a.ui-state-default{

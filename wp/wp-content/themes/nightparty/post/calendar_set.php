@@ -138,13 +138,15 @@ for($m=0; $m<42;$m++){
 	}else{
 		$day_tag=" nowmonth";
 	}
-	$cal["html"].="<td id=\"{$tmp_ymd}\" class=\"cal_td cc{$tmp_week}\">";
+	$cal["html"].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
 	$cal["html"].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 	$cal["html"].="<span class=\"cal_i1 {$birth_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="<span class=\"cal_i2 {$sch_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="</td>";
 }
+
+
 
 $cal["html"].="</tr>";
 $cal["html"].="</table>";
