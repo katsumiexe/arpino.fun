@@ -94,23 +94,17 @@ input:focus{
 	box-shadow:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.6) inset;
 }
 
-.schedule_regist,.customer_regist{
-	display		:inline-bloc;
-	position	:absolute;
-	top			:0;
-	bottom		:0;
-	right		:2vw;
-	margin		:auto;	
-	height		:10vw;
-	width		:10vw;
-	background	:#f17766;
-	border-radius:1vw;
-	color		:#fafafa;
-}
-
-.customer_regist{
-	display		:none;
-
+.regist_btn{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:2vw;
+	margin			:auto;	
+	height			:10vw;
+	width			:10vw;
+	background		:#f17766;
+	border-radius	:1vw;
+	color			:#fafafa;
 }
 
 .regist_icon{
@@ -121,14 +115,14 @@ input:focus{
 	right		:0.5vw;
 	text-align	:center;
 	margin		:auto;	
-	font-size	:5vw;
+	font-size	:4.5vw;
 	font-family	:at_icon;
 }
 
 .regist_txt{
 	display		:inline-block;
 	position	:absolute;
-	bottom		:1vw;
+	bottom		:0.5vw;
 	left		:1vw;
 	right		:1vw;
 	margin		:auto;	

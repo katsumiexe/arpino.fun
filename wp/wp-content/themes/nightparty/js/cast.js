@@ -487,38 +487,51 @@ $(function(){
 			var ImgHeight	=$('#img_Height').val();
 			var ImgZoom		=$('#img_zoom').val();
 
-			$.post(Dir + ".post/blog_img_set.php",
-			{
-				'cast_id':CastId,
-				'img_url':IdTmp,
-				'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
-				'img_top':ImgTop,
-				'img_left':ImgLeft,
-				'img_width':cvs_W,
-				'img_height':cvs_H,
-				'vw_base':VwBase,
-				'img_zoom':ImgZoom,
-				'img_rote':Rote
+
+
+			$.post({
+				url:Dir + "/post/img_set.php",
+				data:{
+					'cast_id':CastId,
+					'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+					'img_top':ImgTop,
+					'img_left':ImgLeft,
+					'img_width':cvs_W,
+					'img_height':cvs_H,
+					'vw_base':VwBase,
+					'img_zoom':ImgZoom,
+					'img_rote':Rote,
+					'c_id':C_Id
 				},
-			function(data){
+	/*			dataType: 'json',*/
 
-				$('.pop00,.pop05').hide();
-				var cvs = document.getElementById('cvs1');
-				var ctx = cvs.getContext('2d');
-				ctx.clearRect(0, 0, cvs_A,cvs_A);
-				$('.config_img_a1, #my_face, #sumb' + IdTmp).attr('src',data + '?t=<?=time()?>');
+			}).done(function(data, textStatus, jqXHR){
+				console.log(data);
+	/*
+					$('.pop00,.pop05').hide();
+					var cvs = document.getElementById('cvs1');
+					var ctx = cvs.getContext('2d');
+					ctx.clearRect(0, 0, cvs_A,cvs_A);
+					$('.config_img_a1, #my_face, #sumb' + IdTmp).attr('src',data + '?t=<?=time()?>');
 
-				$('#s1, #s2, #s3').removeClass('img_sel');
-				$('#s' +IdTmp).addClass('img_sel btn_chg');
-				$('#d' +IdTmp).addClass('btn_del');
-				$('#wait').hide();
+					$('#s1, #s2, #s3').removeClass('img_sel');
+					$('#s' +IdTmp).addClass('img_sel btn_chg');
+					$('#d' +IdTmp).addClass('btn_del');
+					$('#wait').hide();
 
-				$('.zoom_box').text('100');
-				$('#img_zoom').val('100');
-				$('#input_zoom').val('100');
+					$('.zoom_box').text('100');
+					$('#img_zoom').val('100');
+					$('#input_zoom').val('100');
+	*/
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+
 			});
 		}
 	});
+
 
 	$('.mail_detail_img_box').on('mail_detail_tmp','click',function(){
 		
@@ -533,7 +546,6 @@ $(function(){
 				});
 			},
 		});
-
 		Rote -=90;
 		if(Rote <0){
 			Rote+=360;

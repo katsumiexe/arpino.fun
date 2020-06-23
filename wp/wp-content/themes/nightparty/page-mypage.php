@@ -270,20 +270,51 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div class="mymenu_b"></div>
 			<div class="mymenu_c"></div>
 		</div>	
+
 		<div class="head_mymenu_comm">
 			<div class="head_mymenu_arrow"></div>
 			<span class="head_mymenu_ttl"><?=$page_title?></span>
 		</div>
-		<div class="schedule_regist">
+
+	<?if($cast_page==1){?>
+		<div id="regist_schedule" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">登録</span>
 		</div>
-		<div class="customer_regist">
-			<span class="regist_icon"></span>
+	<?}elseif($cast_page==2){?>
+		<div id="regist_customer_set" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">登録</span>
+		</div>
+		<div id="regist_customer" class="regist_btn">
+			<span class="regist_icon"></span>
 			<span class="regist_txt">新規</span>
 		</div>
+	<?}elseif($cast_page==3){?>
+		<div id="regist_customer_set" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">送信</span>
+		</div>
+		<div id="regist_customer" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">作成</span>
+		</div>
+	<?}elseif($cast_page==4){?>
+		<div id="regist_brog_set" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">登録</span>
+		</div>
+		<div id="regist_brog" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">投稿</span>
+		</div>
+	<?}elseif($cast_page==5){?>
+		<div id="regist_brog" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">変更</span>
+		</div>
+	<?}?>
 	</div>
-
 	<div class="mypage_slide">
 		<ul class="mypage_menu">
 			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
@@ -295,12 +326,38 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
-
 	<div class="mypage_main">
 	<?if($cast_page==1){?>
-
+		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
+		<input id="week_start" type="hidden" value="<?=$week_start?>">
+		<div>
+			<div class="mypage_cal">
+				<?for($c=0;$c<3;$c++){?>
+					<table class="cal_table">
+						<tr>
+							<td class="cal_top" colspan="1"></td>
+							<td class="cal_top" colspan="1"><span class="cal_prev"></span></td>
+							<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
+							<td class="cal_top" colspan="1"><span class="cal_next"></span></td>
+							<td class="cal_top" colspan="1"></td>
+						</tr>
+						<tr>
+							<?
+							for($s=0;$s<7;$s++){
+							$w=($s+$week_start) % 7;
+							?>
+							<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
+							<? } ?>
+							<?=$cal[$c]?>
+						</tr>
+					</table>
+				<?}?>
+			</div>
+		</div>
+		<div class="cal_days">
+			<div class="cal_days_date"></div>
+		</div>
 	<?}elseif($cast_page==2){?>
-
 	<div class="mypage_customer">
 	<?for($n=0;$n<count($customer);$n++){?>
 		<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
@@ -334,7 +391,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 		</div>
 	<?}?>
-
 	<form action="<?php echo get_template_directory_uri(); ?>/mypage" method="post">
 		<div class="customer_detail">
 			<table class="customer_base">
@@ -508,13 +564,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 	<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
 	</div>
-
-	<input id="img_top" type="hidden" name="img_top" value="10">
-	<input id="img_left" type="hidden" name="img_left" value="10">
-	<input id="img_width" type="hidden" name="img_width" value="10">
-	<input id="img_height" type="hidden" name="img_height" value="10">
-	<input id="img_zoom" type="hidden" name="img_zoom" value="100">
-	<input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
 	</div>
 	<?}elseif($cast_page==5){?>
 		<div class="mypage_config">
@@ -527,35 +576,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 	<?}else{?>
-		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
-		<input id="week_start" type="hidden" value="<?=$week_start?>">
-		<div>
-			<div class="mypage_cal">
-				<?for($c=0;$c<3;$c++){?>
-					<table class="cal_table">
-						<tr>
-							<td class="cal_top" colspan="1"></td>
-							<td class="cal_top" colspan="1"><span class="cal_prev"></span></td>
-							<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
-							<td class="cal_top" colspan="1"><span class="cal_next"></span></td>
-							<td class="cal_top" colspan="1"></td>
-						</tr>
-						<tr>
-							<?
-							for($s=0;$s<7;$s++){
-							$w=($s+$week_start) % 7;
-							?>
-							<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
-							<? } ?>
-							<?=$cal[$c]?>
-						</tr>
-					</table>
-				<?}?>
-			</div>
-		</div>
-		<div class="cal_days">
-			<div class="cal_days_date"></div>
-		</div>
+
 	<? } ?>
 </div>
 
@@ -635,6 +656,14 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div class="btn c1">戻る</div>
 		</div>
 	</div>
+	<input id="img_top" type="hidden" name="img_top" value="10">
+	<input id="img_left" type="hidden" name="img_left" value="10">
+	<input id="img_width" type="hidden" name="img_width" value="10">
+	<input id="img_height" type="hidden" name="img_height" value="10">
+	<input id="img_zoom" type="hidden" name="img_zoom" value="100">
+	<input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
+
+
 </div>
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
