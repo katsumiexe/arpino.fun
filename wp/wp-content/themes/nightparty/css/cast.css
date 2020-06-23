@@ -158,11 +158,12 @@ input:focus{
 }
 
 .cal_table{
-	border-collapse	:collapse;
+	border-collapse: separate;
 	width			:99vw;
-	border			:0.5vw solid #fafafa;
+	border			:none;
 	margin			:1vw auto;
 	table-layout	:fixed;
+	border-spacing	: 0.5vw;
 }
 
 .cal_next,.cal_prev{
@@ -211,8 +212,8 @@ input:focus{
 	margin			:auto;
 	display			:inline-block;
 	width			:88vw;
-	border			:2vw solid #a0b0f0;
-	background		:#e0f0ff;
+	border			:2vw solid #C7BBA5;
+	background		:#E7E3D8;
 	height			:39vw;
 }
 
@@ -223,11 +224,11 @@ input:focus{
 	width			:42vw;
 	height			:8vw;
 	line-height		:8vw;
-	border			:2vw solid #a0b0f0;
-	background		:#e0f0ff;
+	border			:2vw solid #C7BBA5;
+	background		:#E7E3D8;
 	font-size		:5vw;
 	font-weight		:700;
-	color			:#0000ff;
+	color			:#C7a090;
 }
 
 
@@ -236,8 +237,8 @@ input:focus{
 	height			:10vw;
 	text-align		:center;
 	font-size		:0;
-	border			:0.5vw solid #fafafa;
-	background		:linear-gradient(#f0f0f0,#e5e5e5);
+//	border			:0.5vw solid #fafafa;
+	background		:linear-gradient(#f0f0f0,#E7E3D8);
 	cursor			:pointer;
 }
 
@@ -335,12 +336,13 @@ input:focus{
 	display			:inline-block;
 	position		:absolute;
 	bottom			:0.5vw;
-	width			:3.5vw;
-	height			:3.5vw;
-	line-height		:3.5vw;
+
+	width			:4vw;
+	height			:4vw;
+	line-height		:4vw;
 	text-align		:center;
-	font-size		:3.5vw;
-	color			:#cccccc;
+	font-size		:4vw;
+	color			:#b0b0b0;
 }
 
 .cal_i1{
@@ -2086,11 +2088,15 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 
 /*-------------------------------------------------------------------*/
 .n1{
-	color		:#108020;
+	color	:#800090;
 }
 
 .n2{
-	color		:#d03040;
+	color	:#802010;
+}
+
+.n3{
+	color	:#000080;
 }
 
 
@@ -2107,7 +2113,7 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	color		:#fafafa;
 }
 .c2{
-	background	:#cccccc;
+	background	:#C7BBA5;
 	color		:#fafafa;
 }
 .c3{
@@ -2128,18 +2134,17 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 
 .cc7{
 	background	:linear-gradient(#eeeed0,#ddddc0);
-	background	:#f0e0d5;
+	background	:#f0f000;
 }
 
 .cc8{
-	background	:linear-gradient(#eeeed0,#ddddc0);
-	background	:#d5f0e0;
+	box-shadow:2px 2px 0 #ff0000, 2px -2px 0 #ff0000,-2px 2px 0 #ff0000, -2px -2px 0 #ff0000;
 }
 
 .nowmonth{
 	color:#666666;
-
 }
+
 .outof{
 	color:#dddddd;
 }
@@ -2175,5 +2180,4 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 .jump_on{
 	background:linear-gradient(#ff9080,#f17766);
 	color:#fafafa;
-
 }
