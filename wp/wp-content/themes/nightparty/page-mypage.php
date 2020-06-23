@@ -58,30 +58,7 @@ if($_SESSION){
 }
 
 if($_SESSION){
-/*
-	$id_8	=substr("00000000".$_SESSION["id_8"],-8);
-	$id_20	=$_SESSION["id_8"]%20;
-	
-	$sql ="SELECT * FROM wp01_0encode"; 
-	$enc0 = $wpdb->get_results($sql,ARRAY_A );
-	foreach($enc0 as $enc1){
-		$enc[$row["key"]]			=$row["value"];
-		$dec[$gp][$row["value"]]	=$row["key"];
-	}
-	for($n=0;$n<8;$N++){
-		$tmp_dir.=$dec[$id_20][$n];
-	}
-	$dir=get_template_directory_uri()."img/cast/".$tmp_dir;
-	
-	if(!file_exists($dir)){
-		mkdir($dir."/c/", 0777, TRUE);
-		chmod($dir."/c/", 0777);
-		mkdir($dir."/m/", 0777, TRUE);
-		chmod($dir."/m/", 0777);
-	}
-*/
 	$page_title="スケジュール";
-
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
 	$ob_holiday = json_decode($holiday,true);
