@@ -13,11 +13,9 @@ function custom_menu() {
 }
 add_action('after_setup_theme','custom_menu');
 
-function geotag_queryvars( $qvars )
-{
+function geotag_queryvars( $qvars ){
 	$qvars[] = 'val';
 	return $qvars;
 }
 add_filter('query_vars', 'geotag_queryvars' );
-
 ?>

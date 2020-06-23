@@ -68,11 +68,9 @@ if($_SESSION){
 		$enc[$row["key"]]			=$row["value"];
 		$dec[$gp][$row["value"]]	=$row["key"];
 	}
-
 	for($n=0;$n<8;$N++){
 		$tmp_dir.=$dec[$id_20][$n];
 	}
-
 	$dir=get_template_directory_uri()."img/cast/".$tmp_dir;
 	
 	if(!file_exists($dir)){
@@ -117,7 +115,6 @@ if($_SESSION){
 	/*
 	$s_url	=get_option('mailserver_url');
 	$s_port	=get_option('mailserver_port');
-
 	$sv="{".$s_url.":".$s_port."/pop3}INBOX";
 	$sv="{".$s_url.":".$s_port."}INBOX";	
 	$sv="{".$s_url."}INBOX";
