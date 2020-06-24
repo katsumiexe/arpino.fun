@@ -6,18 +6,17 @@ ini_set('display_errors',1);
 require_once ("../../../../wp-load.php");
 global $wpdb;
 
+$cast_id	=$_POST["cast_id"];
 $img_code	=$_POST["img_code"];
-	$img_zoom	=$_POST["img_zoom"];
-	$img_top	=$_POST["img_top"];
-	$img_left	=$_POST["img_left"];
+$img_zoom	=$_POST["img_zoom"];
+$img_top	=$_POST["img_top"];
+$img_left	=$_POST["img_left"];
 $img_width	=$_POST["img_width"];
 $img_height	=$_POST["img_height"];
 $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 $c_id		=$_POST["c_id"]+0;
 
-var_dump($_POST);
-/*
 $tmp		=substr("0".$tmp_key+$img_id,-2,2);
 $prof_x		=$enc[$tmp].".jpg";
 $link		="./".$dir3.$prof_x;
@@ -29,13 +28,17 @@ foreach($enc0 as $row){
 	$dec[$row["gp"]][$row["value"]]	=$row["key"];
 }
 
+$id_8=substr("00000000".$cast_id,-8);
+$id_0	=$cast_id % 20;
+
+
 for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$tmp_dir.=$dec[$id_0][$tmp_id];
 }
 
 for($n=0;$n<strlen($c_id);$n++){
-	$cus=substr($n,1);
+	$cus=substr($c_id,$n,1);
 	$rnd=rand(0,19);
 	$clist=$dec[$rnd][$cus];
 }
@@ -72,6 +75,6 @@ $wpdb->query($sql);
 ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 480, 800, $tmp_width, $tmp_height);
 
 imagejpeg($img2,$link);
-*/
+
 ?>
 <?=$link?>
