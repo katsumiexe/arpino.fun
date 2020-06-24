@@ -7,15 +7,17 @@ require_once ("../../../../wp-load.php");
 global $wpdb;
 
 $img_code	=$_POST["img_code"];
-$img_zoom	=$_POST["img_zoom"];
-$img_top	=$_POST["img_top"];
-$img_left	=$_POST["img_left"];
+	$img_zoom	=$_POST["img_zoom"];
+	$img_top	=$_POST["img_top"];
+	$img_left	=$_POST["img_left"];
 $img_width	=$_POST["img_width"];
 $img_height	=$_POST["img_height"];
 $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
-$cus_id		=$_POST["c_id"]+0;
+$c_id		=$_POST["c_id"]+0;
 
+var_dump($_POST);
+/*
 $tmp		=substr("0".$tmp_key+$img_id,-2,2);
 $prof_x		=$enc[$tmp].".jpg";
 $link		="./".$dir3.$prof_x;
@@ -70,6 +72,6 @@ $wpdb->query($sql);
 ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 480, 800, $tmp_width, $tmp_height);
 
 imagejpeg($img2,$link);
-
+*/
 ?>
 <?=$link?>
