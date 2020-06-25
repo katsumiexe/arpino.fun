@@ -58,6 +58,25 @@ if($_SESSION){
 }
 
 if($_SESSION){
+
+$sql ="SELECT * FROM wp01_0encode"; 
+$enc0 = $wpdb->get_results($sql,ARRAY_A );
+foreach($enc0 as $row){
+	$enc[$row["key"]]				=$row["value"];
+	$dec[$row["gp"]][$row["value"]]	=$row["key"];
+}
+
+$id_8=substr("00000000".$_SESSION["id"],-8);
+$id_0	=$_SESSION["id"] % 20;
+
+
+for($n=0;$n<8;$n++){
+	$tmp_id=substr($id_8,$n,1);
+	$box_no.=$dec[$id_0][$tmp_id];
+}
+
+
+
 	$page_title="スケジュール";
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
@@ -362,8 +381,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<?for($n=0;$n<count($customer);$n++){?>
 		<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 			<?if($customer[$n]["face"]){?>
-				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
-				<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["face"]?>">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>" class="mail_img">
+				<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 			<?}else{?>
 				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
 			<? } ?>
