@@ -42,6 +42,8 @@ if($_POST["staff_set"]){
 		$id_8	=substr("00000000".$tmp_auto,-8);
 		$id_0	=$tmp_auto % 20;
 
+
+
 		$sql="INSERT INTO wp01_0cast (`id`,genji`,`genji_kana`,`cast_id`,`cast_pass`,`castmail`,`castmail_pass`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$castmail}','{$castmail_pass}')";
 		$wpdb->query($sql);
@@ -66,6 +68,12 @@ if($_POST["staff_set"]){
 
 			mkdir($mk_dir."/m/", 0777, TRUE);
 			chmod($mk_dir."/m/", 0777);
+		}
+
+		$mk_dir="../wp-content/themes/nightparty/img/page/".$tmp_auto."/";
+		if(!is_dir($mk_dir)) {
+			mkdir($mk_dir, 0777, TRUE);
+			chmod($mk_dir, 0777);
 		}
 	}
 }
@@ -131,6 +139,3 @@ function staff_list(){
 function staff_regist(){
     esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }
-
-
-

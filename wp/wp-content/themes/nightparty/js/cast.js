@@ -284,9 +284,8 @@ $(function(){
 		$('.sns_text').val('');
 		$('.customer_sns_box').removeClass('c_'+Tmp);
 		$('.sns_jump').removeClass('jump_on');
-
-
 	});
+
 
 	$('.customer_list').on('click',function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
