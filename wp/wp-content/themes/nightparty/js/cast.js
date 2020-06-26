@@ -67,6 +67,8 @@ $(function(){
 			$('.customer_memo').fadeOut(300);
 			$('#'+Tmp_tr).fadeIn(300);
 
+			Tmp=$(this).attr('id').replace("tag_","");
+			$('#h_customer_page').val(Tmp);
 		}
 	});
 
@@ -329,6 +331,10 @@ $(function(){
 
 		$('#area').val(1);
 
+		$('#h_customer_id').val(C_Id);
+		$('#h_customer_set').val("0");
+		$('#h_customer_page').val("0");
+
 		Tmp=$(this).children('.customer_hidden_group').val();
 		$('#customer_group').val(Tmp);
 
@@ -488,6 +494,7 @@ $(function(){
 			$('#err').text('画像の登録がありません');
 			$('#err').fadeIn(100).delay(500).fadeOut(500);
 			return false;
+
 		}else{
 			$('#wait').show();
 			var ImgTop		=$('#img_top').val();
@@ -518,26 +525,23 @@ $(function(){
 				console.log(data);
 				$('.img_back').fadeOut(200);
 
-					var cvs = document.getElementById('cvs1');
-					var ctx = cvs.getContext('2d');
-					ctx.clearRect(0, 0, cvs_A,cvs_A);
-					$('.customer_detail_img, #sumb' + C_Id).attr('src',data + '?t=<?=time()?>');
-					$('#wait').hide();
+				var cvs = document.getElementById('cvs1');
+				var ctx = cvs.getContext('2d');
+				ctx.clearRect(0, 0, cvs_A,cvs_A);
+				$('.customer_detail_img, #sumb' + C_Id).attr('src',data + '?t=<?=time()?>');
+				$('#wait').hide();
 
-					$('.zoom_box').text('100');
-					$('#img_zoom').val('100');
-					$('#input_zoom').val('100');
-					Rote=0;
-
+				$('.zoom_box').text('100');
+				$('#img_zoom').val('100');
+				$('#input_zoom').val('100');
+				Rote=0;
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);
 				console.log(errorThrown);
-
 			});
 		}
 	});
-
 
 	$('.mail_detail_img_box').on('mail_detail_tmp','click',function(){
 		

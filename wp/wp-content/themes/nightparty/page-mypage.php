@@ -69,12 +69,10 @@ foreach($enc0 as $row){
 $id_8=substr("00000000".$_SESSION["id"],-8);
 $id_0	=$_SESSION["id"] % 20;
 
-
 for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$box_no.=$dec[$id_0][$tmp_id];
 }
-
 	$page_title="スケジュール";
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
@@ -199,6 +197,52 @@ for($n=0;$n<8;$n++){
 			$cal[$n].="<span class=\"cal_i3\"></span>";
 			$cal[$n].="</td>";
 		}
+	}
+
+	if($_POST["cus_set"]){
+		$cast_page=2;
+		$cus_id		=$_POST["cus_id"];
+		$cus_set	=$_POST["cus_set"];
+		$cus_page	=$_POST["cus_page"];
+		$cus_fav	=$_POST["cus_fav"];
+		$cus_group	=$_POST["cus_group"];
+		$cus_name	=$_POST["cus_name"];
+		$cus_nick	=$_POST["cus_nick"];
+		$cus_b_y	=$_POST["cus_b_y"];
+		$cus_b_m	=$_POST["cus_b_m"];
+		$cus_b_d	=$_POST["cus_b_d"];
+		$cus		=$_POST["cus"];
+
+		if($cus_set == 0){
+			if($cus_page == 0){
+				$sql_log ="UPDATE wp01_0customer SET";
+				$sql_log.=" `name`='{$cus_name}',";
+				$sql_log.=" `nickname`='{$cus_nick}',";
+				$sql_log.=" `fav`='{$cus_fav}',";
+				$sql_log.=" `group`='{$cus_group}'";
+				$sql_log.=" WHERE id='{$cus_id}'";
+				$wpdb->query($sql_log);
+
+				$sql_log ="DELETE FROM wp01_0customer_list";
+				$sql_log.=" WHERE id='{$cus_id}'";
+				$wpdb->query($sql_log);
+
+				$sql_log ="INSERT INTO wp01_0customer_list(`cast_id`,`customer_id`,`item`,`comm`) VALUES ";
+				foreach($cus as $a1 => $a2){
+					$sql_log.=" ('{$_SESSION["id"]}','{$_SESSION["cus_id"]}','{$a1}','{$a2}'),";
+				}
+				$sql_log=substr($sql_log,0,-1);
+				$wpdb->query($sql_log);
+
+			}elseif($cus_page == 1){		
+
+
+			}	
+
+		}elseif($cus_set == 1){		
+
+		}
+
 	}
 
 	$n=0;
@@ -424,7 +468,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 		</div>
 	<?}?>
-	<form action="<?php echo get_template_directory_uri(); ?>/mypage" method="post">
+	<form action="" method="post">
 		<div class="customer_detail">
 			<table class="customer_base">
 				<tr>
@@ -459,7 +503,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 						<span id="fav_5" class="customer_fav"></span>
 					</td>
 					<td class="customer_base_tag">誕生日</td>
-					<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">
+					<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" name="cus_b_y" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" name="cus_b_m" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" name="cus_b_d" value="10" class="item_basebox_mm">
 					<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
 				</tr>
 			</table>
@@ -488,7 +532,9 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			</div>
 
-			<input id="h_customer_fav" type="hidden" name="cus_fav" value="">
+			<input id="h_customer_id" type="hidden" name="cus_id" value="">
+			<input id="h_customer_set" type="hidden" name="cus_set" value="0">
+			<input id="h_customer_page" type="hidden" name="cus_page" value="0">
 
 			<input id="h_customer_tel" type="hidden" value="">
 			<input id="h_customer_mail" type="hidden" value="">
