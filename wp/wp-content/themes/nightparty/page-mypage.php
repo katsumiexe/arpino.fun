@@ -213,8 +213,8 @@ for($n=0;$n<8;$n++){
 		$cus_b_d	=$_POST["cus_b_d"];
 		$cus		=$_POST["cus"];
 
-		if($cus_set == 0){
-			if($cus_page == 0){
+		if($cus_set == 1){
+			if($cus_page == 1){
 				$sql_log ="UPDATE wp01_0customer SET";
 				$sql_log.=" `name`='{$cus_name}',";
 				$sql_log.=" `nickname`='{$cus_nick}',";
@@ -224,25 +224,33 @@ for($n=0;$n<8;$n++){
 				$wpdb->query($sql_log);
 
 				$sql_log ="DELETE FROM wp01_0customer_list";
-				$sql_log.=" WHERE id='{$cus_id}'";
+				$sql_log.=" WHERE customer_id='{$cus_id}'";
 				$wpdb->query($sql_log);
 
 				$sql_log ="INSERT INTO wp01_0customer_list(`cast_id`,`customer_id`,`item`,`comm`) VALUES ";
 				foreach($cus as $a1 => $a2){
-					$sql_log.=" ('{$_SESSION["id"]}','{$_SESSION["cus_id"]}','{$a1}','{$a2}'),";
+					$sql_log.=" ('{$_SESSION["id"]}','{$cus_id}','{$a1}','{$a2}'),";
 				}
 				$sql_log=substr($sql_log,0,-1);
 				$wpdb->query($sql_log);
 
-			}elseif($cus_page == 1){		
-
+			}elseif($cus_page == 2){		
 
 			}	
+		}elseif($cus_set == 2){		
+			$to_day=date("Y-m-d");
+			$birth=$cus_b_y."-".$cus_b_m."-".$cus_b_d;	
+			$sql_log ="INSERT INTO wp01_0customer(`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`fav`,`group`) VALUES ";
+			$sql_log.=" ('{$_SESSION["id"]}','{$cus_nick}','{$cus_name}','{$to_day}','{$birth}','{$cus_fav}','{$cus_group}')";
+			$tmp_auto=$wpdb->insert_id;
 
-		}elseif($cus_set == 1){		
-
+			$sql_log ="INSERT INTO wp01_0customer_list(`cast_id`,`customer_id`,`item`,`comm`) VALUES ";
+			foreach($cus as $a1 => $a2){
+				$sql_log.=" ('{$_SESSION["id"]}','{$tmp_auto}','{$a1}','{$a2}'),";
+			}
+			$sql_log=substr($sql_log,0,-1);
+			$wpdb->query($sql_log);
 		}
-
 	}
 
 	$n=0;
@@ -289,6 +297,7 @@ for($n=0;$n<8;$n++){
 	}
 }
 
+var_dump($_POST);
 ?>
 <html lang="ja">
 <head>
@@ -365,7 +374,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 	<?}elseif($cast_page==3){?>
-		<div id="regist_customer_set" class="regist_btn">
+		<div id="regist_mail_set" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">送信</span>
 		</div>
@@ -468,7 +477,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 		</div>
 	<?}?>
-	<form action="" method="post">
+
+	<form action="<?php the_permalink();?>" method="post">
 		<div class="customer_detail">
 			<table class="customer_base">
 				<tr>
@@ -533,8 +543,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</div>
 
 			<input id="h_customer_id" type="hidden" name="cus_id" value="">
-			<input id="h_customer_set" type="hidden" name="cus_set" value="0">
-			<input id="h_customer_page" type="hidden" name="cus_page" value="0">
+			<input id="h_customer_set" type="hidden" name="cus_set" value="1">
+			<input id="h_customer_page" type="hidden" name="cus_page" value="1">
 
 			<input id="h_customer_tel" type="hidden" value="">
 			<input id="h_customer_mail" type="hidden" value="">
@@ -545,16 +555,16 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input id="h_customer_web" type="hidden" value="">
 
 			<div class="customer_tag">
-			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
-			<div id="tag_1" class="tag_set">メモ</div>
-			<div id="tag_2" class="tag_set">履歴</div>
+			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
+			<div id="tag_2" class="tag_set">メモ</div>
+			<div id="tag_3" class="tag_set">履歴</div>
 			<button class="tag_btn" type="submit">更新</button>
 			</div>
 
 			<div class="customer_body">
-				<table id="tag_0_tbl" class="customer_memo"></table>
 				<table id="tag_1_tbl" class="customer_memo"></table>
 				<table id="tag_2_tbl" class="customer_memo"></table>
+				<table id="tag_3_tbl" class="customer_memo"></table>
 			</div>
 		</div>
 	</form>
@@ -709,6 +719,30 @@ const CastId='<?=$_SESSION["id"] ?>';
 	</div>
 </div>
 
+
+<div class="customer_regist_back">
+<table class="customer_regist_tbl">
+	<tr>
+		<td class="customer_regist_tag">名前</td>
+		<td class="customer_regist_box"><input type="text" id="customer_regist_name" name="cus_name" value="" class="item_basebox"></td>
+	</tr><tr>
+		<td class="customer_regist_tag">呼び名</td>
+		<td><input type="text" id="customer_regist_nick" name="cus_name" value="" class="item_basebox"></td>
+	</tr><tr>
+		<td class="customer_regist_tag">誕生日</td>
+		<td><input type="text" id="customer_regist_yy" name="cus_b_y" value="1977"  class="item_basebox_yy">/<input type="text" id="customer_regist_mm" name="cus_b_m" value="06" class="item_basebox_mm">/<input type="text" id="customer_regist_dd" name="cus_b_d" value="10" class="item_basebox_mm"><span class="detail_age"><span id="customer_regist_ag"></span>歳</span></td>
+	</tr><tr>
+		<td class="customer_regist_tag">グループ</td>
+		<td><select id="customer_regist_group" name="cus_group" value="" class="customer_regist_sel">
+			<option value="0">通常</option>
+			<?foreach($cus_group_sel as $a1=>$a2){?>
+			<option value="<?=$a1?>"><?=$a2?></option>	
+			<?}?>
+			</select>
+		</td>
+	</tr>
+</table>
+</div>
 <div class="img_back">
 	<div class="img_box">
 		<div class="img_box_in">
@@ -729,7 +763,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="upload_icon upload_reset"></span>
 			<span class="upload_icon upload_trush"></span>
 		</div>
-
 		<div class="img_box_in3">
 			<div class="zoom_mi">-</div>
 			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>

@@ -61,7 +61,7 @@ $(function(){
 		if($(this).hasClass('tag_set_ck')!='true'){
 
 			Tmp_tr=$(this).attr('id')+"_tbl";
-			$('.tag_set_ck').removeClass('tag_set_ck').animate({'top':'2vw'},200);
+			$('.tag_set_ck').removeClass('tag_set_ck').animate({'top':'3vw'},200);
 			$(this).addClass('tag_set_ck').animate({'top':'0.5vw'},200);
 
 			$('.customer_memo').fadeOut(300);
@@ -145,6 +145,10 @@ $(function(){
 			$('#cast_page').val(Tmp);
 			$('#menu_sel').submit();
 		}
+	});
+
+	$('#regist_customer_set').on('click',function () {
+		$('.customer_regist_back').show();
 	});
 
 	$('.mypage_blog_set').on('click',function () {
@@ -332,8 +336,8 @@ $(function(){
 		$('#area').val(1);
 
 		$('#h_customer_id').val(C_Id);
-		$('#h_customer_set').val("0");
-		$('#h_customer_page').val("0");
+		$('#h_customer_set').val("1");
+		$('#h_customer_page').val("1");
 
 		Tmp=$(this).children('.customer_hidden_group').val();
 		$('#customer_group').val(Tmp);
@@ -411,7 +415,7 @@ $(function(){
 /*			dataType: 'json',*/
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('#tag_0_tbl').html(data);
+			$('#tag_1_tbl').html(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
