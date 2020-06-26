@@ -81,7 +81,6 @@ $(function(){
 		}
 	});
 
-
 	$('.mail_al').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'0'},150);
 		Tmp=$(this).attr('id').replace('mail','');
@@ -190,7 +189,7 @@ $(function(){
 					img_S2=60*VwBase;
 
 					if(img_H > img_W){
-						cvs_W=800;
+						cvs_W=600;
 						cvs_H=img_H*(cvs_W/img_W);
 						cvs_A=Math.ceil(cvs_H);
 
@@ -203,8 +202,9 @@ $(function(){
 						css_A=css_H;
 						css_B=10*VwBase-(css_A-60*VwBase)/2;
 
+
 					}else{
-						cvs_H=800;
+						cvs_H=600;
 						cvs_W=img_W*(cvs_H/img_H);
 						cvs_A=Math.ceil(cvs_W);
 
@@ -282,7 +282,8 @@ $(function(){
 		$('.customer_sns_tr').hide();
 		$('.sns_arrow_a').hide();
 		$('.sns_text').val('');
-		$('.customer_sns_box').removeClass('c_'+Tmp);
+
+		$('.customer_sns_box,.sns_arrow_a,.customer_sns_btn').removeClass('c_customer_twitter c_customer_facebook c_customer_insta c_customer_web c_customer_blog c_customer_tel c_customer_mail');
 		$('.sns_jump').removeClass('jump_on');
 	});
 
@@ -326,6 +327,11 @@ $(function(){
 			}
 		Fav=Tmp;
 
+		$('#area').val(1);
+
+		Tmp=$(this).children('.customer_hidden_group').val();
+		$('#customer_group').val(Tmp);
+
 		Tmp=$(this).children('.customer_hidden_yy').val();
 		$('#customer_detail_yy').val(Tmp);
 
@@ -338,11 +344,19 @@ $(function(){
 		Tmp=$(this).children('.customer_hidden_ag').val();
 		$('#customer_detail_ag').text(Tmp);
 
+		Tmp=$(this).children('.customer_hidden_face').val();
+		$('#img_url').val(Tmp);
+
+		Tmp=$(this).children('.customer_hidden_fav').val();
+		$('#h_customer_fav').val(Tmp);
+
+
 
 		Tmp=$(this).children('.customer_hidden_tel').val();
 		$('#h_customer_tel').val(Tmp);
 		if(Tmp){
-			$('#customer_tel').addClass('c_customer_tel');		
+			$('#customer_tel').addCla
+			ss('c_customer_tel');		
 		}
 
 		Tmp=$(this).children('.customer_hidden_mail').val();
@@ -399,8 +413,6 @@ $(function(){
 		});
 	});
 
-
-
 	$('.sns_btn').on('click',function(){
 		$.post({
 			url:Dir + "/post/customer_sns_set.php",
@@ -409,7 +421,6 @@ $(function(){
 				'text':$('.sns_text').val(),
 				'kind':Tmp.replace('customer_',''),
 			},
-
 
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
@@ -420,7 +431,6 @@ $(function(){
 				$('#a_customer_'+data).addClass('c_customer_'+data);
 				$('#customer_'+data).addClass('c_customer_'+data);
 				$('.sns_jump').addClass('jump_on');
-
 
 			}else{
 				$('#customer_'+data).removeClass('c_customer_'+data);		
@@ -485,14 +495,14 @@ $(function(){
 			var ImgWidth	=$('#img_width').val();
 			var ImgHeight	=$('#img_Height').val();
 			var ImgZoom		=$('#img_zoom').val();
-
-
+			var ImgUrl		=$('#img_url').val();
 
 			$.post({
 				url:Dir + "/post/img_set.php",
 				data:{
 					'cast_id':CastId,
 					'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+					'img_url':ImgUrl,
 					'img_top':ImgTop,
 					'img_left':ImgLeft,
 					'img_width':cvs_W,
@@ -506,22 +516,19 @@ $(function(){
 
 			}).done(function(data, textStatus, jqXHR){
 				console.log(data);
-	/*
-					$('.pop00,.pop05').hide();
+				$('.img_back').fadeOut(200);
+
 					var cvs = document.getElementById('cvs1');
 					var ctx = cvs.getContext('2d');
 					ctx.clearRect(0, 0, cvs_A,cvs_A);
-					$('.config_img_a1, #my_face, #sumb' + IdTmp).attr('src',data + '?t=<?=time()?>');
-
-					$('#s1, #s2, #s3').removeClass('img_sel');
-					$('#s' +IdTmp).addClass('img_sel btn_chg');
-					$('#d' +IdTmp).addClass('btn_del');
+					$('.customer_detail_img, #sumb' + C_Id).attr('src',data + '?t=<?=time()?>');
 					$('#wait').hide();
 
 					$('.zoom_box').text('100');
 					$('#img_zoom').val('100');
 					$('#input_zoom').val('100');
-	*/
+					Rote=0;
+
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);

@@ -75,8 +75,6 @@ for($n=0;$n<8;$n++){
 	$box_no.=$dec[$id_0][$tmp_id];
 }
 
-
-
 	$page_title="スケジュール";
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
@@ -235,7 +233,18 @@ for($n=0;$n<8;$n++){
 		$c_list_name[$cus2["gp"]][$cus2["id"]]=$cus2["item_name"];
 		$c_list_style[$cus2["id"]]=$cus2["style"];
 	}
+
+	$sql	 ="SELECT * FROM wp01_0customer_group";
+	$sql	.=" WHERE del='0'";
+	$sql	.=" AND cast_id='{$_SESSION["id"]}'";
+	$sql	.=" ORDER BY sort ASC";
+	$dat2 = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat2 as $cus2){
+		$cus_group_sel[$cus2["sort"]]=$cus2["tag"];
+	}
 }
+
 ?>
 <html lang="ja">
 <head>
@@ -300,6 +309,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="regist_icon"></span>
 			<span class="regist_txt">登録</span>
 		</div>
+
 	<?}elseif($cast_page==2){?>
 		<div id="regist_customer_set" class="regist_btn">
 			<span class="regist_icon"></span>
@@ -309,6 +319,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="regist_icon"></span>
 			<span class="regist_txt">新規</span>
 		</div>
+
 	<?}elseif($cast_page==3){?>
 		<div id="regist_customer_set" class="regist_btn">
 			<span class="regist_icon"></span>
@@ -318,6 +329,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="regist_icon"></span>
 			<span class="regist_txt">作成</span>
 		</div>
+
 	<?}elseif($cast_page==4){?>
 		<div id="regist_brog_set" class="regist_btn">
 			<span class="regist_icon"></span>
@@ -327,6 +339,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="regist_icon"></span>
 			<span class="regist_txt">投稿</span>
 		</div>
+
 	<?}elseif($cast_page==5){?>
 		<div id="regist_brog" class="regist_btn">
 			<span class="regist_icon"></span>
@@ -381,10 +394,10 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<?for($n=0;$n<count($customer);$n++){?>
 		<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 			<?if($customer[$n]["face"]){?>
-				<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>" class="mail_img">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 				<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 			<?}else{?>
-				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 			<? } ?>
 			<div class="customer_list_fav">
 				<?for($s=1;$s<6;$s++){?>
@@ -400,6 +413,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
 			<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
 			<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
+			<input type="hidden" class="customer_hidden_group" value="<?=$customer[$n]["group"]?>">
 
 			<input type="hidden" class="customer_hidden_mail" value="<?=$customer[$n]["mail"]?>">
 			<input type="hidden" class="customer_hidden_tel" value="<?=$customer[$n]["tel"]?>">
@@ -413,60 +427,68 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<form action="<?php echo get_template_directory_uri(); ?>/mypage" method="post">
 		<div class="customer_detail">
 			<table class="customer_base">
-			<tr>
-				<td class="customer_base_img" rowspan="3">
-				<img src="" class="customer_detail_img">
-				<span class="customer_camera"></span>
-				</td>
-				<td class="customer_base_tag">最終</td>
-				<td id="" class="customer_base_item">16日前</td>
-			</tr>
-			<tr>
-				<td class="customer_base_tag">名前</td>
-				<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" value="" class="item_basebox"></td>
-			</tr>
-			<tr>
-				<td class="customer_base_tag">呼び名</td>
-				<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" value="" class="item_basebox"></td>
-			</tr>
-			<tr>
-				<td class="customer_base_fav">
-					<span id="fav_1" class="customer_fav"></span>
-					<span id="fav_2" class="customer_fav"></span>
-					<span id="fav_3" class="customer_fav"></span>
-					<span id="fav_4" class="customer_fav"></span>
-					<span id="fav_5" class="customer_fav"></span>
-				</td>
-				<td class="customer_base_tag">誕生日</td>
-				<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">
-				<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
-			</tr>
+				<tr>
+					<td class="customer_base_img" rowspan="3">
+					<img src="" class="customer_detail_img">
+					<span class="customer_camera"></span>
+					</td>
+					<td class="customer_base_tag">分類</td>
+					<td id="" class="customer_base_item">
+					<select id="customer_group" name="cus_group" value="" class="item_group">
+					<option value="0">通常</option>
+					<?foreach($cus_group_sel as $a1=>$a2){?>
+					<option value="<?=$a1?>"><?=$a2?></option>
+					<?}?>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="customer_base_tag">名前</td>
+					<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" name="cus_name" value="" class="item_basebox"></td>
+				</tr>
+				<tr>
+					<td class="customer_base_tag">呼び名</td>
+					<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" name="cus_nick" value="" class="item_basebox"></td>
+				</tr>
+				<tr>
+					<td class="customer_base_fav">
+						<span id="fav_1" class="customer_fav"></span>
+						<span id="fav_2" class="customer_fav"></span>
+						<span id="fav_3" class="customer_fav"></span>
+						<span id="fav_4" class="customer_fav"></span>
+						<span id="fav_5" class="customer_fav"></span>
+					</td>
+					<td class="customer_base_tag">誕生日</td>
+					<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" value="10" class="item_basebox_mm">
+					<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
+				</tr>
 			</table>
-
 			<table class="customer_sns">
-			<tr>
-			<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
-			<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
-			<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
-			<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
-			<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
-			<td class="customer_sns_1"><span id="customer_blog" class="customer_sns_btn"></span></td>
-			<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
-			</tr>
+				<tr>
+					<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_blog" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
+				</tr>
 
-			<tr class="customer_sns_tr">
-			<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
-			<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
-			<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
-			<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
-			<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
-			<td class="customer_sns_2"><span id="a_customer_blog" class="sns_arrow_a"></span></td>
-			<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
-			</tr>
+				<tr class="customer_sns_tr">
+					<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_blog" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
+				</tr>
 			</table>			
 			<div class="customer_sns_box">
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			</div>
+
+			<input id="h_customer_fav" type="hidden" name="cus_fav" value="">
 
 			<input id="h_customer_tel" type="hidden" value="">
 			<input id="h_customer_mail" type="hidden" value="">
@@ -480,7 +502,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div id="tag_0" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
 			<div id="tag_1" class="tag_set">メモ</div>
 			<div id="tag_2" class="tag_set">履歴</div>
-			<button class="tag_btn">更新</button>
+			<button class="tag_btn" type="submit">更新</button>
 			</div>
 
 			<div class="customer_body">
@@ -493,7 +515,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 	</div>
 
 	<?}elseif($cast_page==3){?>
-
 	<div class="mypage_mail">
 		<?for($s=0;$s<count($mail_data);$s++){?>
 		<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
@@ -593,7 +614,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			お知らせADDRESS
 			</div>
 		</div>
-
 	<?}else{?>
 
 	<? } ?>
@@ -681,11 +701,9 @@ const CastId='<?=$_SESSION["id"] ?>';
 <input id="img_width" type="hidden" name="img_width" value="10">
 <input id="img_height" type="hidden" name="img_height" value="10">
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
-<input id="img_url" type="hidden" name="img_url" value="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$_SESSION["id"]?>/<?=date("Ymd")?>.jpg">
-
+<input id="img_url" type="hidden" name="img_url" value="">
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
-
 <form id="logout" action="<?php the_permalink();?>" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>
@@ -694,7 +712,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
 </form>
-
 <? }?>
 </body>
 </html>

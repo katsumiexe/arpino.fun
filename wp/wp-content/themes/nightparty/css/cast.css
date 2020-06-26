@@ -449,6 +449,14 @@ input:focus{
 	border-color	:#f17766;
 }
 
+.item_group{
+	height			:9vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:43vw;
+}
+
 .item_basebox{
 	height			:9vw;
 	margin			:0;

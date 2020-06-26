@@ -16,12 +16,7 @@ $img_height	=$_POST["img_height"];
 $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 $c_id		=$_POST["c_id"]+0;
-
-var_dump($_POST);
-
-$tmp		=substr("0".$tmp_key+$img_id,-2,2);
-$prof_x		=$enc[$tmp].".jpg";
-$link		="./".$dir3.$prof_x;
+$img_url	=$_POST["img_url"];
 
 $sql ="SELECT * FROM wp01_0encode"; 
 $enc0 = $wpdb->get_results($sql,ARRAY_A );
@@ -39,30 +34,32 @@ for($n=0;$n<8;$n++){
 	$tmp_dir.=$dec[$id_0][$tmp_id];
 }
 
-for($n=0;$n<strlen($c_id);$n++){
-	$cus=substr($c_id,$n,1);
-	$rnd=rand(0,19);
-	$clist=$dec[$rnd][$cus];
+if(!$img_url){
+	for($n=0;$n<strlen($c_id);$n++){
+		$cus=substr($c_id,$n,1);
+		$rnd=rand(0,19);
+		$clist=$dec[$rnd][$cus];
+	}
+	$clist.=".png";
+	$sql_log ="UPDATE wp01_0customer SET";
+	$sql_log.=" `face`='{$clist}'";
+	$sql_log.=" WHERE id='{$c_id}'";
+	$wpdb->query($sql_log);
+
+}else{
+	$clist.=$img_url;
 }
 
-$clist.=".jpg";
-
-
-//$link=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$clist;
+$res=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$clist;
 $link="../img/cast/".$tmp_dir."/c/".$clist;
 
-$img2 		= imagecreatetruecolor(800,800);
-/*
-$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
-$tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
-*/
+$img2 		= imagecreatetruecolor(600,600);
 
 $tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 $tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
 
-
-$tmp_width	=floor(800/($img_zoom/100));
-$tmp_height	=floor(800/($img_zoom/100));
+$tmp_width	=floor(600/($img_zoom/100));
+$tmp_height	=floor(600/($img_zoom/100));
 
 if($img_rote ==90){
 	$new_img = imagecreatefromstring(base64_decode($img_code));	
@@ -76,13 +73,9 @@ if($img_rote ==90){
 	$img = imagecreatefromstring(base64_decode($img_code));
 }
 
-$sql_log ="UPDATE wp01_0customer SET";
-$sql_log.=" `face`='{$clist}'";
-$sql_log.=" WHERE id='{$c_id}'";
-$wpdb->query($sql_log);
+ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 600, $tmp_width, $tmp_height);
+imagepng($img2,$link);
 
-ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 800, 800, $tmp_width, $tmp_height);
-imagejpeg($img2,$link);
-
+echo($res);
+exit()
 ?>
-TOP:<?=$tmp_top?>■LEFT:<?=$tmp_left?>
