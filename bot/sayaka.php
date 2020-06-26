@@ -119,13 +119,14 @@ function curl_get_contents( $url, $timeout = 300 ){
 	curl_close( $ch );
 	return $result;
 }
-
 ?>
 <html>
 <head>
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-Done
+Done<br>
+<?=$sql?>
+
 </body>
 </html>
