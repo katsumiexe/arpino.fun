@@ -734,8 +734,38 @@ $(function(){
 	$('#sch_set_trush').on('click',function () {
 //		$('.sch_time_in,.sch_time_out').val("");
 		$('.cal_weeks_box_2').children().slice(7,14).children('.sch_time_in,.sch_time_out').val("");
+	});
+
+	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
+		Tmp=$(this).attr('id').replace("m_txt","");
+		$('#'+Tmp).val("");
+	});
+
+	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
+		Tmp=$(this).attr('id').replace("m_txt","");
+		$('#'+Tmp).val("");
+	});
+
+	$('#tag_2_tbl').on('click','.customer_memo_set',function () {
+		Log=$('.customer_memo_txt_new').val();
+		$.post({
+			url:Dir + "/post/customer_memo_set.php",
+			data:{
+				'cast_id'	:cast_Id,
+				'c_id'		:C_Id,
+				'log'		:Log,
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('#tag_2_tbl').prepend(data.html).animate({'left':'-100vw'},200);
+
+		});
+
 
 	});
+
 
 	$('.mypage_cal').on('click','.cal_prev',function () {
 /*		$('.mypage_cal').animate({'left':'0'},200);*/

@@ -7,7 +7,15 @@ ini_set('display_errors',1);
 require_once ("../../../../wp-load.php");
 global $wpdb;
 
-$c_id=$_POST["c_id"];
+$now=date("Y-m-d H:i");
+
+$c_id		=$_POST["c_id"];
+$log		=$_POST["log"];
+$cast_id	=$_POST["cast_id"];
+
+$sql_log ="INSERT INTO wp01_0customer_memo(`date`,`cast_id`,`customer_id`,`log`,`birth_day`,`fav`,`group`) VALUES ";
+$sql_log.=" ('{$now}','{$_SESSION["id"]}','{$cus_nick}','{$cus_name}','{$to_day}','{$birth}','{$cus_fav}','{$cus_group}')";
+$tmp_auto=$wpdb->insert_id;
 
 $sql	 ="SELECT * FROM wp01_0customer_memo";
 $sql	 .=" WHERE del=0";
