@@ -288,6 +288,7 @@ for($n=0;$n<8;$n++){
 
 	$sql	 ="SELECT * FROM wp01_0customer_group";
 	$sql	.=" WHERE del='0'";
+	$sql	.=" AND group_id='1'";
 	$sql	.=" AND cast_id='{$_SESSION["id"]}'";
 	$sql	.=" ORDER BY sort ASC";
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
@@ -297,7 +298,7 @@ for($n=0;$n<8;$n++){
 	}
 }
 
-var_dump($_POST);
+//var_dump($_POST);
 ?>
 <html lang="ja">
 <head>
@@ -442,6 +443,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<div class="cal_days">
 			<div class="cal_days_date"></div>
 		</div>
+
 	<?}elseif($cast_page==2){?>
 	<div class="mypage_customer">
 	<?for($n=0;$n<count($customer);$n++){?>
@@ -454,7 +456,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<? } ?>
 			<div class="customer_list_fav">
 				<?for($s=1;$s<6;$s++){?>
-					<span class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
+					<span id="fav_<?=$customer[$n]["id"]?>_<?=$s?>" class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
 				<?}?>
 			</div>
 
@@ -546,6 +548,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<input id="h_customer_set" type="hidden" name="cus_set" value="1">
 			<input id="h_customer_page" type="hidden" name="cus_page" value="1">
 
+			<input id="h_customer_fav" type="hidden" name="cus_fav" value="0">
+
 			<input id="h_customer_tel" type="hidden" value="">
 			<input id="h_customer_mail" type="hidden" value="">
 			<input id="h_customer_twitter" type="hidden" value="">
@@ -559,12 +563,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div id="tag_2" class="tag_set">メモ</div>
 			<div id="tag_3" class="tag_set">履歴</div>
 			<button class="tag_btn" type="submit">更新</button>
-			</div>
-
 			<div class="customer_body">
 				<table id="tag_1_tbl" class="customer_memo"></table>
 				<table id="tag_2_tbl" class="customer_memo"></table>
 				<table id="tag_3_tbl" class="customer_memo"></table>
+			</div>
 			</div>
 		</div>
 	</form>

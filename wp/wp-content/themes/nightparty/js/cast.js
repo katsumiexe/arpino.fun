@@ -61,8 +61,8 @@ $(function(){
 		if($(this).hasClass('tag_set_ck')!='true'){
 
 			Tmp_tr=$(this).attr('id')+"_tbl";
-			$('.tag_set_ck').removeClass('tag_set_ck').animate({'top':'3vw'},200);
-			$(this).addClass('tag_set_ck').animate({'top':'0.5vw'},200);
+			$('.tag_set_ck').removeClass('tag_set_ck').animate({'top':'3vw','height':'5.5vw'},200);
+			$(this).addClass('tag_set_ck').animate({'top':'0.5vw','height':'8vw'},200);
 
 			$('.customer_memo').fadeOut(300);
 			$('#'+Tmp_tr).fadeIn(300);
@@ -81,7 +81,40 @@ $(function(){
 			Fav=0;
 			$('.customer_fav').css('color','#cccccc');
 		}
+		$('#h_customer_fav').val(Fav);
+		$('#clist'+C_Id).children('.customer_hidden_fav').val(Fav);
+
+		if(Fav>0){
+			$('#fav_'+C_Id+'_1').addClass('fav_in');
+		}else{
+			$('#fav_'+C_Id+'_1').removeClass('fav_in');
+		}
+
+		if(Fav>1){
+			$('#fav_'+C_Id+'_2').addClass('fav_in');
+		}else{
+			$('#fav_'+C_Id+'_2').removeClass('fav_in');
+		}
+
+		if(Fav>2){
+			$('#fav_'+C_Id+'_3').addClass('fav_in');
+		}else{
+			$('#fav_'+C_Id+'_3').removeClass('fav_in');
+		}
+
+		if(Fav>3){
+			$('#fav_'+C_Id+'_4').addClass('fav_in');
+		}else{
+			$('#fav_'+C_Id+'_4').removeClass('fav_in');
+		}
+
+		if(Fav>4){
+			$('#fav_'+C_Id+'_5').addClass('fav_in');
+		}else{
+			$('#fav_'+C_Id+'_5').removeClass('fav_in');
+		}
 	});
+
 
 	$('.mail_al').on('click',function () {
 		$('.mypage_mail_detail').animate({'right':'0'},150);
@@ -414,13 +447,32 @@ $(function(){
 			},
 /*			dataType: 'json',*/
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('#tag_1_tbl').html(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
 		});
+
+
+		$.post({
+			url:Dir + "/post/customer_memo_read.php",
+			data:{
+				'c_id':C_Id,
+			},
+/*			dataType: 'json',*/
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('#tag_2_tbl').html(data);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+
+
+
+
 	});
 
 	$('.sns_btn').on('click',function(){
@@ -433,7 +485,6 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 
 			if($('.sns_text').val()){
 				$('#customer_'+data).addClass('c_customer_'+data);		
@@ -450,6 +501,8 @@ $(function(){
 				$('.sns_jump').removeClass('jump_on');
 			}
 			$('#h_customer_'+data).val($('.sns_text').val());
+			$('#clist'+C_Id).children('.customer_hidden_'+data).val($('.sns_text').val());
+
 		});
 	});
 
@@ -511,17 +564,17 @@ $(function(){
 			$.post({
 				url:Dir + "/post/img_set.php",
 				data:{
-					'cast_id':CastId,
-					'img_code':ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
-					'img_url':ImgUrl,
-					'img_top':ImgTop,
-					'img_left':ImgLeft,
-					'img_width':cvs_W,
+					'cast_id'	:CastId,
+					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+					'img_url'	:ImgUrl,
+					'img_top'	:ImgTop,
+					'img_left'	:ImgLeft,
+					'img_width'	:cvs_W,
 					'img_height':cvs_H,
-					'vw_base':VwBase,
-					'img_zoom':ImgZoom,
-					'img_rote':Rote,
-					'c_id':C_Id
+					'vw_base'	:VwBase,
+					'img_zoom'	:ImgZoom,
+					'img_rote'	:Rote,
+					'c_id'		:C_Id
 				},
 	/*			dataType: 'json',*/
 
@@ -533,6 +586,10 @@ $(function(){
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 				$('.customer_detail_img, #sumb' + C_Id).attr('src',data + '?t=<?=time()?>');
+				$('#clist'+C_Id).children('.mail_img').attr('src',data + '?t=<?=time()?>');
+
+
+
 				$('#wait').hide();
 
 				$('.zoom_box').text('100');
@@ -633,26 +690,6 @@ $(function(){
 		$('.back').fadeIn(500);
 	});
 
-	$('.mypage_cal').on('click','.cal_prev',function () {
-		$('.mypage_cal').animate({'left':'0'},200);
-		$.post({
-			url:Dir + "/post/calendar_set.php",
-			data:{
-				'c_month'	:$('#c_month').val(),
-				'week_start':$('#week_start').val(),
-				'cast_id'	:CastId,
-				'pre'		:'1',
-			},
-			dataType: 'json',
-
-		}).done(function(data, textStatus, jqXHR){
-			$('.mypage_cal').prepend(data.html).css('left','-100vw');
-			$(".mypage_cal").children().last().remove();
-			$('#c_month').val(data.date);
-		});
-	});
-
-
 	$('.sch_set').on('click',function () {
 		$.post({
 			url:Dir + "/post/sch_set.php",
@@ -700,19 +737,38 @@ $(function(){
 
 	});
 
+	$('.mypage_cal').on('click','.cal_prev',function () {
+/*		$('.mypage_cal').animate({'left':'0'},200);*/
+		$.post({
+			url:Dir + "/post/calendar_set.php",
+			data:{
+				'c_month'	:$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'cast_id'	:CastId,
+				'pre'		:'1',
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.mypage_cal').prepend(data.html).animate({'left':'-100vw'},200);
+			$(".mypage_cal").children().last().remove();
+			$('#c_month').val(data.date);
+		});
+	});
+
 	$('.mypage_cal').on('click','.cal_next',function () {
-		$('.mypage_cal').stop(false,true).animate({'left':'-200vw'},200);
+//		$('.mypage_cal').animate({'left':'-200vw'},200);
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
 				'c_month':$('#c_month').val(),
 				'week_start':$('#week_start').val(),
-				'cast_id':CastId,
+				'cast_id':CastId,	
 				'pre':'2',
 			},
 			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
-			$('.mypage_cal').append(data.html).css('left','-100vw');
+			$('.mypage_cal').append(data.html).animate({'left':'-100vw'},200);
 			$(".mypage_cal").children().first().remove();
 			$('#c_month').val(data.date);
 		});

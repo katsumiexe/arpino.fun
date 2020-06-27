@@ -366,8 +366,6 @@ input:focus{
 	position		:relative;
 	width			:95vw;
 	margin			:0 auto;
-	height			:10vw;
-	overflow		:hidden;
 }
 
 .tag_btn{
@@ -385,10 +383,12 @@ input:focus{
 	position		:absolute;
 	top				:3vw;
 	width			:18vw;
-	height			:10vw;
-	line-height		:7vw;
+	height			:5.5vw;
+	line-height		:5.5vw;
 	font-size		:4vw;
-	border			:1.5vw solid #ffa0c0;
+	border-top		:1.5vw solid #ffa0c0;
+	border-left		:1.5vw solid #ffa0c0;
+	border-right	:1.5vw solid #ffa0c0;
 	border-radius	:5vw 5vw 0 0;
 	background		:#fafafa;
 	cursor			:pointer;
@@ -401,6 +401,8 @@ input:focus{
 	color			:#f17766;
 	border-color	:#f17766;
 	background		:#fff0f5;
+	height			:8vw;
+	line-height		:7vw;
 	z-index			:18;
 }
 
@@ -698,10 +700,14 @@ input:focus{
 }
 
 .customer_body{
+	position		:absolute;
+	top				:10vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
 	width			:96vw;
 	overflow-y		:scroll;
 	overflow-x		:hidden;
-	margin			:0 auto;
 	background		:#fafafa;
 	z-index			:19;
 	border-top		:1vw solid #f17766;
@@ -865,6 +871,42 @@ input:focus{
 	font-size	:0;
 	margin		:1vw;
 	border		:1px solid #303030;
+}
+
+.customer_memo_td{
+	border-bottom:0.5vw solid #906000;
+	
+}
+
+.customer_memo_date{
+	display			:inline-block;
+	padding			:0.5vw 1vw;
+	font-size		:4vw;
+	margin			:0.5vw 1vw;
+	width			:60vw;
+	text-align:left;
+}
+
+.customer_memo_del,.customer_memo_chg{
+	display			:inline-block;
+	padding			:0.5vw 1vw;
+	font-size		:4vw;
+	background		:#606090;
+	margin			:0.5vw 1vw;
+	color			:#fafafa;
+	font-weight		:600;
+	border-radius	:1vw;
+}
+
+.customer_memo_txt{
+	width			:90vw;
+	border			:0.5vw solid #aaaaaa;
+	padding			:1vw;
+	font-size		:4.5vw;
+	background		:#fafafa;
+	margin			:1vw auto 3vw auto;
+	min-height		:20vw;
+	resize:none;
 }
 
 .mypage_main{
@@ -2109,21 +2151,19 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	border			:2px solid #fafafa;
 	padding-left	:10px;
 }
-
 }
-
 
 /*-------------------------------------------------------------------*/
 .n1{
-	color	:#800090;
+	color	:#ff30d0;
 }
 
 .n2{
-	color	:#802010;
+	color	:#0000ff;
 }
 
 .n3{
-	color	:#000080;
+	color	:#00c000;
 }
 
 

@@ -37,10 +37,10 @@ foreach($dat0 AS $dat1){
 		$s3[$cus[$dat1["id"]]]=" checked=\"checked\"";
 		$dat.="<tr><td class=\"customer_memo_tag\">{$dat1["item_name"]}</td>";
 		$dat.="<td class=\"customer_memo_item\">";
-		$dat.="<input id=\"b_a\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"1\" {$s2[1]} class=\"rd\"><label for=\"b_a\" class=\"cousomer_blood\">Ａ</label>";
-		$dat.="<input id=\"b_b\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"2\" {$s2[2]} class=\"rd\"><label for=\"b_b\" class=\"cousomer_blood\">Ｂ</label>";
-		$dat.="<input id=\"b_o\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"3\" {$s2[3]} class=\"rd\"><label for=\"b_o\" class=\"cousomer_blood\">Ｏ</label>";
-		$dat.="<input id=\"b_ab\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"4\" {$s2[4]} class=\"rd\"><label for=\"b_ab\" class=\"cousomer_blood\">AB</label>";
+		$dat.="<input id=\"b_a\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"1\" {$s3[1]} class=\"rd\"><label for=\"b_a\" class=\"cousomer_blood\">Ａ</label>";
+		$dat.="<input id=\"b_b\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"2\" {$s3[2]} class=\"rd\"><label for=\"b_b\" class=\"cousomer_blood\">Ｂ</label>";
+		$dat.="<input id=\"b_o\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"3\" {$s3[3]} class=\"rd\"><label for=\"b_o\" class=\"cousomer_blood\">Ｏ</label>";
+		$dat.="<input id=\"b_ab\" type=\"radio\" name=\"cus[{$dat1["id"]}]\" value=\"4\" {$s3[4]} class=\"rd\"><label for=\"b_ab\" class=\"cousomer_blood\">AB</label>";
 		$dat.="</td></tr>";
 
 	}else{
