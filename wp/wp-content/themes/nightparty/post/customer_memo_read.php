@@ -17,7 +17,7 @@ $sql	 .=" ORDER BY id DESC";
 $now=date("Y-m-d H:i");
 $dat0 = $wpdb->get_results($sql,ARRAY_A );
 
-	$dat ="<tr><td class=\"customer_memo_td\">";
+	$dat ="<tr id=\"memo_top\"><td class=\"customer_memo_td\">";
 	$dat.="<div class=\"customer_memo_date\">{$now}</div>";
 	$dat.="<div id=\"m_chg0\" class=\"customer_memo_set\">登録</div>";
 	$dat.="<div id=\"m_del0\" class=\"customer_memo_del\">削除</div>";

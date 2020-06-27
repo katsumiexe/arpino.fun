@@ -758,8 +758,7 @@ $(function(){
 			},
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('#tag_2_tbl').prepend(data.html).animate({'left':'-100vw'},200);
-
+			$('#memo_top').after(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
