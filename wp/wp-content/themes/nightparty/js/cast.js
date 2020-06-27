@@ -737,8 +737,9 @@ $(function(){
 	});
 
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
-		Tmp=$(this).attr('id').replace("m_txt","");
+		Tmp=$(this).attr('id').replace("m_chg","m_txt");
 		$('#'+Tmp).val("");
+	console.log("■");
 	});
 
 	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
@@ -751,19 +752,19 @@ $(function(){
 		$.post({
 			url:Dir + "/post/customer_memo_set.php",
 			data:{
-				'cast_id'	:cast_Id,
+				'cast_id'	:CastId,
 				'c_id'		:C_Id,
 				'log'		:Log,
 			},
-			dataType: 'json',
-
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
 			$('#tag_2_tbl').prepend(data.html).animate({'left':'-100vw'},200);
 
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
-
-
 	});
 
 
