@@ -724,28 +724,32 @@ const CastId='<?=$_SESSION["id"] ?>';
 
 
 <div class="customer_regist_back">
-<table class="customer_regist_tbl">
-	<tr>
-		<td class="customer_regist_tag">名前</td>
-		<td class="customer_regist_box"><input type="text" id="customer_regist_name" name="cus_name" value="" class="item_basebox"></td>
-	</tr><tr>
-		<td class="customer_regist_tag">呼び名</td>
-		<td><input type="text" id="customer_regist_nick" name="cus_name" value="" class="item_basebox"></td>
-	</tr><tr>
-		<td class="customer_regist_tag">誕生日</td>
-		<td><input type="text" id="customer_regist_yy" name="cus_b_y" value="1977"  class="item_basebox_yy">/<input type="text" id="customer_regist_mm" name="cus_b_m" value="06" class="item_basebox_mm">/<input type="text" id="customer_regist_dd" name="cus_b_d" value="10" class="item_basebox_mm"><span class="detail_age"><span id="customer_regist_ag"></span>歳</span></td>
-	</tr><tr>
-		<td class="customer_regist_tag">グループ</td>
-		<td><select id="customer_regist_group" name="cus_group" value="" class="customer_regist_sel">
-			<option value="0">通常</option>
-			<?foreach($cus_group_sel as $a1=>$a2){?>
-			<option value="<?=$a1?>"><?=$a2?></option>	
-			<?}?>
-			</select>
-		</td>
-	</tr>
-</table>
+	<div class="customer_regist_back_in">
+		<div class="customer_regist_ttl">新規顧客登録</div>
+		<table class="customer_regist_tbl">
+			<tr>
+				<td class="customer_regist_tag">名前</td>
+				<td class="customer_regist_box"><input type="text" id="customer_regist_name" name="cus_name" value="" class="item_basebox"></td>
+			</tr><tr>
+				<td class="customer_regist_tag">呼び名</td>
+				<td><input type="text" id="customer_regist_nick" name="cus_name" value="" class="item_basebox"></td>
+			</tr><tr>
+				<td class="customer_regist_tag">誕生日</td>
+				<td><input type="text" id="customer_regist_yy" name="cus_b_y" value="1977"  class="item_basebox_yy">/<input type="text" id="customer_regist_mm" name="cus_b_m" value="06" class="item_basebox_mm">/<input type="text" id="customer_regist_dd" name="cus_b_d" value="10" class="item_basebox_mm"><span class="detail_age"></td>
+			</tr><tr>
+				<td class="customer_regist_tag">グループ</td>
+				<td><select id="customer_regist_group" name="cus_group" value="" class="customer_regist_sel">
+					<option value="0">通常</option>
+					<?foreach($cus_group_sel as $a1=>$a2){?>
+					<option value="<?=$a1?>"><?=$a2?></option>	
+					<?}?>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
+
 <div class="img_back">
 	<div class="img_box">
 		<div class="img_box_in">

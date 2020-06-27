@@ -489,26 +489,48 @@ input:focus{
 	padding:0.5vw 0;
 }
 
-.customer_regist_tbl{
+.customer_regist_back_in{
 	position		:absolute;
 	top				:0;
 	left			:0;
 	right			:0;
 	bottom			:0;
 	margin			:auto;
-	width:80vw;
-	border:0.5vw solid #303030;
-	box-shadow:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	width			:70vw;
+	height:69vw;
+	text-align		:center;
+	background	:#f010a0;
+	padding:1vw;
+}
+
+.customer_regist_ttl{
+	display		:inline-block;
+	margin 		:0 auto;
+	text-align	:center;
+	background	:#f010a0;
+	font-size	:5vw;
+	height		:8vw;
+	line-height	:8vw;
+	color		:#fafafa
+	font-weight:600;
+}
+
+.customer_regist_tbl{
+	border			:0.5vw solid #303030;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	width			:70vw;
+	height			:60vw;
+	background		:#fafafa;
 }
 
 .customer_regist_tag{
 	width:30vw;
-	border:0.5vw solid #303030;
 	height:10vw;
+	paddomg:1vw;
+	font-size:5vw;
 }
 
 .customer_regist_box{
-	border:0.5vw solid #303030;
 }
 
 
@@ -882,9 +904,11 @@ input:focus{
 	display			:inline-block;
 	padding			:0.5vw 1vw;
 	font-size		:4vw;
-	margin			:0.5vw 1vw;
+	margin			:1vw 1vw 0 1vw;
 	width			:60vw;
-	text-align:left;
+	text-align		:left;
+	font-weight		:600;
+	
 }
 
 .customer_memo_del,.customer_memo_chg{
@@ -1177,8 +1201,8 @@ input:focus{
 .img_back,.cal_back,.customer_regist_back{
 	display			:none;
 	position		:fixed;
-	top				:-10vw;
-	left			:-10vh;
+	top				:-10vh;
+	left			:-10vw;
 	width			:120vw;
 	height			:120vh;
 	background		:rgba(30,30,30,0.7);

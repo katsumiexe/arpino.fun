@@ -180,7 +180,7 @@ $(function(){
 		}
 	});
 
-	$('#regist_customer_set').on('click',function () {
+	$('#regist_customer').on('click',function () {
 		$('.customer_regist_back').show();
 	});
 
