@@ -721,6 +721,29 @@ const CastId='<?=$_SESSION["id"] ?>';
 	</div>
 </div>
 
+<div class="customer_memo_del_back">
+<div class="customer_memo_del_back_in">
+	削除します。よろしいですか
+<div class="customer_memo_del_back_in_btn">
+	<div id="memo_del_set" class="btn btn_c2">削除</div>　
+	<div id="memo_del_back" class="btn btn_c1">戻る</div>
+</div>
+
+	<input id="del_id" type="hidden">
+</div>
+</div>
+
+
+
+<div class="customer_memo_back">
+	<div class="customer_memo_back_in">
+	<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
+	<div class="customer_memo_new_set"></div>
+	<div class="customer_memo_new_del"></div>
+	<textarea class="customer_memo_new_txt"></textarea>
+	</div>
+</div>
+<div class="customer_memo_set"></div>
 
 <div class="customer_regist_back">
 	<div class="customer_regist_back_in">
@@ -776,11 +799,13 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 		<div class="img_box_in4">
-			<div id="yes_5" class="btn c2">登録</div>　
-			<div class="btn c1">戻る</div>
+			<div id="yes_5" class="btn btn_c2">登録</div>　
+			<div id="img_close" class="btn btn_c1">戻る</div>
 		</div>
 	</div>
 </div>
+
+
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">

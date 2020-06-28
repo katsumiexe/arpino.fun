@@ -16,12 +16,17 @@ $sql_log.=" ('{$now}','{$cast_id}','{$c_id}','{$log}')";
 $wpdb->query($sql_log);
 
 $tmp_auto=$wpdb->insert_id;
-	$dat ="<tr><td class=\"customer_memo_td\">";
+	$log=str_replace("\n","<br>",$log);
+
+	$dat ="<tr><td class=\"customer_memo_td1\">";
 	$dat.="<div class=\"customer_memo_date\">{$now}</div>";
-	$dat.="<div id=\"m_chg{$tmp_auto}\" class=\"customer_memo_chg\">修正</div>";
-	$dat.="<div id=\"m_del{$tmp_auto}\" class=\"customer_memo_del\">削除</div>";
-	$dat.="<textarea id=\"m_txt{$tmp_auto}\" class=\"customer_memo_txt\">{$log}</textarea>";
+	$dat.="<div id=\"m_chg{$tmp_auto}\" class=\"customer_memo_chg\"></div>";
+	$dat.="<div id=\"m_del{$tmp_auto}\" class=\"customer_memo_del\"></div>";
+	$dat.="</td></tr><tr><td class=\"customer_memo_td2\">";
+	$dat.="{$log}";
 	$dat.="</td></tr>";
+
 echo $dat;
 exit();
 ?>
+

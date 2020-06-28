@@ -1,14 +1,19 @@
 <?
 /*
-顧客情報読み込み
+メモ削除
 */
 ini_set('display_errors',1);
-
 require_once ("../../../../wp-load.php");
 global $wpdb;
+$now=date("Y-m-d H:i:s",time()+32400);
 
+$memo_id		=$_POST["memo_id"];
 $c_id		=$_POST["c_id"];
-$cast_id	=$_POST["cast_id"];
+
+$sql_log ="UPDATE wp01_0customer_memo SET";
+$sql_log.=" `del`='1'";
+$sql_log.=" WHERE id='{$memo_id}'";
+$wpdb->query($sql_log);
 
 $sql	 ="SELECT * FROM wp01_0customer_memo";
 $sql	 .=" WHERE del=0";
@@ -34,4 +39,3 @@ foreach($dat0 AS $dat1){
 echo $dat;
 exit();
 ?>
-

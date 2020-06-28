@@ -895,35 +895,103 @@ input:focus{
 	border		:1px solid #303030;
 }
 
-.customer_memo_td{
-	border-bottom:0.5vw solid #906000;
-	
+.customer_memo_td1{
+	position:relative;
+	width:90vw;
+	height:8vw;
 }
 
 .customer_memo_date{
 	display			:inline-block;
-	padding			:0.5vw 1vw;
-	font-size		:4vw;
-	margin			:1vw 1vw 0 1vw;
-	width			:60vw;
-	text-align		:left;
+	position		:absolute;
+	left			:1vw;
+	bottom			:1vw;
+	font-size		:3.5vw;
 	font-weight		:600;
-	
 }
 
-.customer_memo_set,.customer_memo_del,.customer_memo_chg{
+.customer_memo_set{
+	display			:none;
+	position		:fixed;
+	right			:5vw;
+	bottom			:5vw;
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
+	font-size		:5vw;
+	border-radius	:50%;
+	color			:#fafafa;
+	opacity			:0.9;
+	background		:#008020;
+	font-family		:at_icon;
+	cursor			:pointer;
+	z-index			:22;
+}
+
+
+.customer_memo_del,.customer_memo_chg{
 	display			:inline-block;
-	padding			:0.5vw 1vw;
+	position		:absolute;
+	bottom			:1vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:8vw;
+	margin			:auto;
+	text-align		:center;
 	font-size		:4vw;
 	background		:#606090;
-	margin			:0.5vw 1vw;
 	color			:#fafafa;
 	font-weight		:600;
 	border-radius	:1vw;
-	cursor:pointer;
+	cursor			:pointer;
+	font-family		:at_icon;
 }
 
-.customer_memo_txt,.customer_memo_txt_new{
+.customer_memo_del{
+	right:2vw;
+}
+.customer_memo_chg{
+	right:12vw;
+}
+
+.customer_memo_del_back_in{
+	border			:0.5vw solid #303030;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5;);
+	background		:#fafafa;
+	color			:#30300;
+	font-size		:4vw;
+	text-align		:center;
+	padding			:1vw;
+	position		:absolute;
+	top				:50vw;
+	left			:0;
+	right			:0;
+	margin			:2vw auto;	
+	width			:60vw;
+	height			:30vw;
+}
+
+.customer_memo_del_back_in_btn{
+	position		:absolute;
+	bottom			:3vw;
+	left			:0;
+	right			:0;
+	margin			:auto;	
+	text-align		:center;
+	width			:58vw;
+}
+
+.customer_memo_td2{
+	padding			:1vw;
+	font-size		:3.5vw;
+	line-height		:5vw;
+	background		:#fafafa;
+	min-height		:20vw;
+	border-top		:1px solid #906000;
+	border-bottom	:3px solid #906000;
+}
+
+.customer_memo_txt_new{
 	width			:90vw;
 	border			:0.5vw solid #aaaaaa;
 	padding			:1vw;
@@ -933,6 +1001,68 @@ input:focus{
 	min-height		:20vw;
 	resize			:none;
 }
+
+.customer_memo_new_txt{
+	position		:absolute;
+	top				:10vw;
+	left			:0vw;
+	right			:0vw;
+	margin			:auto;
+	font-size		:4.5vw;
+	width			:80vw;
+	height			:75vw;
+	resize			:none;
+	padding			:1vw;
+}
+
+.customer_memo_back_in{
+	position		:fixed;
+	top				:100vh;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:90vw;
+	height			:90vw;
+	background		:#dafaca;
+	text-align		:center;
+	border-radius	:1vw
+}
+
+.customer_memo_new_date{
+	display			:inline-block;
+	position		:absolute;
+	left			:7vw;
+	top				:5vw;
+	font-size		:3.5vw;
+	font-weight		:600;
+}
+
+.customer_memo_new_set,.customer_memo_new_del{
+	display			:inline-block;
+	position		:absolute;
+	top				:2vw;
+	height			:6vw;
+	line-height		:6vw;
+	width			:6vw;
+	margin			:auto;
+	text-align		:center;
+	font-size		:4vw;
+	background		:#606090;
+	color			:#fafafa;
+	font-weight		:600;
+	border-radius	:1vw;
+	cursor			:pointer;
+	font-family		:at_icon;
+}
+
+.customer_memo_new_set{
+	right			:14vw;
+}
+
+.customer_memo_new_del{
+	right			:6vw;
+}
+
 
 .mypage_main{
 	position		:fixed;
@@ -1199,7 +1329,7 @@ input:focus{
 	right			:1vw;
 }
 
-.img_back,.cal_back,.customer_regist_back{
+.img_back,.cal_back,.customer_regist_back,.customer_memo_back,.customer_memo_del_back{
 	display			:none;
 	position		:fixed;
 	top				:-10vh;
@@ -1552,6 +1682,30 @@ input[type=range]::-moz-range-thumb{
 	transform: translateY(2px);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
 	background-image: linear-gradient(#eeeeee 0%, #dddddd 100%);
+}
+
+.btn_c1{
+	background: linear-gradient(#ff90a0 0%, #ffa0a0 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #d00000;
+	width: 20vw;
+}
+
+.btn_c2{
+	background: linear-gradient(#ddddff 0%, #ccccff 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #3030ff;
+	width: 20vw;
+}
+
+.btn_c3{
+	background: linear-gradient(#ffd090 0%, #ffc060 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #909030;
+	width: 12vw;
 }
 
 
