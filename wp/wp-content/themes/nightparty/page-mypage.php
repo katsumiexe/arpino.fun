@@ -34,7 +34,6 @@ $week_tag2[4]="ca2";
 $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
 
-
 if($_SESSION){
 	if($jst<$_SESSION["time"]+3600){
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
@@ -112,9 +111,7 @@ for($n=0;$n<8;$n++){
 	$sv="{".$s_url."}INBOX";
 	$m_list=imap_open ($sv,$_SESSION["castmail"],$_SESSION["castmail_pass"]);
 	$num = imap_num_msg($m_list);
-	*/
 
-	/*--■スケジュール--*/
 	$sql	 ="SELECT * FROM wp01_0castmail_receive ";
 	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receive.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
@@ -125,7 +122,9 @@ for($n=0;$n<8;$n++){
 		$mail_data[$n]=$tmp;
 		$n++;
 	}
+	*/
 
+	/*--■スケジュール--*/
 	$sql ="SELECT * FROM wp01_0sch_table";
 	$sql.=" ORDER BY sort ASC";
 	$dat = $wpdb->get_results($sql,ARRAY_A );
@@ -144,6 +143,21 @@ for($n=0;$n<8;$n++){
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}
+
+	$b_month=substr($c_month,4,4);
+	$sql	 ="SELECT * FROM wp01_0customer";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$sql	.=" AND birth_day LIKE '%{$b_month}%'";
+	$sql	.=" AND del='0'";
+
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $tmp){
+		$birth=str_replace("-","",$tmp["birth_day"]);
+		$birth=substr($c_month,0,4).substr($birth,4,4);
+		$birth_dat[$birth]="n1";
+//---	$cal_app.="<input class=\"cal_b_{$birth}\" type=\"hidden\" value=\"{$tmp["nickname"]}\">";
+	}
+
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
@@ -543,6 +557,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 					<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
 				</tr>
 			</table>			
+
 			<div class="customer_sns_box">
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			</div>

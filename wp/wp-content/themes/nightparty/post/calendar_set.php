@@ -43,16 +43,16 @@ if($pre == 1){
 	$cal["date"]	=date("Y-m-01",strtotime($c_month)-86400);
 	$c_month		=date("Y-m-01",strtotime($c_month)-3456000);
 
-	$sc_st=str_replace('-','',$c_month);
-	$sc_ed=str_replace('-','',$cal["date"]);
-
-}else{
+}elseif($pre == 2){
 	$cal["date"]	=date("Y-m-01",strtotime($c_month)+3456000);
 	$c_month		=date("Y-m-01",strtotime($c_month)+6912000);
 
-	$sc_st=str_replace('-','',$c_month);
-	$sc_ed=date("Ym01",strtotime($c_month)+3456000);
+}else{
+	$cal["date"]	=date("Y-m-01",strtotime($c_month));
+	$c_month		=date("Y-m-01",strtotime($c_month)+3456000);
 }
+	$sc_st=str_replace('-','',$c_month);
+	$sc_ed=str_replace('-','',$cal["date"]);
 
 $b_month=substr($c_month,4,4);
 
@@ -78,11 +78,16 @@ $dat = $wpdb->get_results($sql,ARRAY_A );
 foreach($dat as $tmp){
 	if($tmp["stime"] && $tmp["etime"]){;
 		$sch_dat[$tmp["sche_date"]]="n2";
-		$cal_app.="<input class=\"cal_s_{$tmp["sche_date"]}\" type=\"hidden\" value=\"{$tmp["stime"]}-{$tmp["etime"]}\">";
+		$h_sch[$tmp["sche_date"]]="{$tmp["stime"]}-{$tmp["etime"]}";
+
 	}else{
 		$sch_dat[$tmp["sche_date"]]="";
-		$cal_app.="<input class=\"cal_s_{$tmp["sche_date"]}\" type=\"hidden\" value=\"\">";
+		$h_sch[$tmp["sche_date"]]="";
 	}
+}
+
+foreach($h_sch as $a1 => $a2){
+	$cal_app.="<input class=\"cal_s_{$a1}\" type=\"hidden\" value=\"{$a2}\">";
 }
 
 $sql	 ="SELECT * FROM wp01_0schedule_memo";
@@ -97,7 +102,6 @@ foreach($dat as $tmp){
 	$cal_app.="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
 }
 
-
 $now_month	=date("m",strtotime($c_month));
 $t			=date("t",strtotime($c_month));
 $wk			=$week_start-date("w",strtotime($c_month));
@@ -108,11 +112,10 @@ $v_year		=substr($c_month,0,4)."年";
 $v_month	=substr($c_month,5,2)."月";
 
 $cal["html"].="<table class=\"cal_table\"><tr>";
-$cal["html"].="<td class=\"cal_top\" colspan=\"1\"></td>";
-$cal["html"].="<td class=\"cal_top\" colspan=\"1\"><span id=\"prev\" class=\"cal_prev\"></span></td>";
-$cal["html"].="<td class=\"cal_top\" colspan=\"3\"><span class=\"v_year\">{$v_year}</span><span class=\"v_month\">{$v_month}</span></td>";
-$cal["html"].="<td class=\"cal_top\" colspan=\"1\"><span id=\"next\" class=\"cal_next\"></span></td>";
-$cal["html"].="<td class=\"cal_top\" colspan=\"1\"></td>";
+$cal["html"].="<td class=\"cal_top\" colspan=\"7\">";
+$cal["html"].="<span class=\"cal_prev\"></span>";
+$cal["html"].="<span class=\"cal_table_ym\"><span class=\"v_year\">{$v_year}</span><span class=\"v_month\">{$v_month}</span></span>";
+$cal["html"].="<span class=\"cal_next\"></span></td>";
 $cal["html"].="</tr><tr>";
 
 for($s=0;$s<7;$s++){
@@ -128,7 +131,6 @@ for($m=0; $m<42;$m++){
 
 	$tmp_w		=$m % 7;
 	if($tmp_w==0){
-
 		if($now_month<$tmp_month){
 			break 1;
 
@@ -154,6 +156,7 @@ for($m=0; $m<42;$m++){
 	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="</td>";
 }
+
 $cal["html"].="</tr>";
 $cal["html"].=$cal_app;
 $cal["html"].="</table>";
@@ -161,4 +164,3 @@ $cal["html"].="</table>";
 echo json_encode($cal);
 exit();
 ?>
-

@@ -1,7 +1,6 @@
 $(function(){ 
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
-
 	var Fav=0;
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
@@ -543,7 +542,7 @@ $(function(){
 		$('.img_back').fadeIn(100);
 	});
 
-	$('.schedule_regist').on('click',function(){
+	$('#regist_schedule').on('click',function(){
 		$('.cal_weeks').animate({'top':'18vw'},200);
 		$('.cal_back').fadeIn(100);
 	});
@@ -1001,25 +1000,26 @@ $(function(){
 		ToWeek=$(this).attr('week');
 		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
 
-		Tmp=$(this).attr('id').substr('c','cal_s_');
-		if(Tmp){
+		var Tmp=$(this).attr('id').replace('c','cal_s_');
+console.log(Tmp);
+		if($('.'+Tmp).val()){
+			$('.days_day').text($('.'+Tmp).val());
+		}else{
+			$('.days_day').text('休み');
+		}		
+
+
+		var Tmp=$(this).attr('id').replace('c','cal_b_');
+		if($('.'+Tmp).val()){
 			$('.cal_days_birth').show();
-			$('.days_birth').text(Tmp);
+			$('.days_birth').text($('.'+Tmp).val());
 		}else{
 			$('.cal_days_birth').hide();
 			$('.days_birth').text('');
-		}		
+		}
 
-		Tmp=$(this).attr('id').substr('c','cal_b_');
-		if(Tmp){
-			$('.days_birth').text(Tmp);
-		}else{
-			$('.days_birth').text('まだ何もありません');
-		}		
-
-		Tmp=$(this).attr('id').substr('c','cal_m_').replace("\n","<br>");
-		$('.days_memo').html(Tmp);
-
+		var Tmp=$(this).attr('id').replace('c','cal_m_');
+		$('.days_memo').html($('.'+Tmp).val());
 
 	});
 

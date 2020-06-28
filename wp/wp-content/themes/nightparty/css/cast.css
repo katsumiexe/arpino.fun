@@ -253,6 +253,20 @@ input:focus{
 	padding			:0.5vw;
 }
 
+.cal_days_birth{
+	position		:absolute;
+	display			:inline-block;
+	top				:16vw;
+	left			:1vw;
+	width			:34vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	color			:#C7a090;
+	text-align		:left;
+	padding			:0.5vw;
+}
+
 .days_icon{
 	font-family		:at_icon;
 }
