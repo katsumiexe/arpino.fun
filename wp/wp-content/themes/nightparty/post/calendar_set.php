@@ -61,14 +61,12 @@ $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND birth_day LIKE '%{$b_month}%'";
 $sql	.=" AND del='0'";
 
-$cal["sql"]=$sql;
-
 $dat = $wpdb->get_results($sql,ARRAY_A );
 foreach($dat as $tmp){
 	$birth=str_replace("-","",$tmp["birth_day"]);
 	$birth=substr($c_month,0,4).substr($birth,4,4);
 	$birth_dat[$birth]="n1";
-	$cal["sql"].="□".$birth;
+	$cal_app.="<input class=\"cal_b_{$birth}\" type=\"hidden\" value=\"{$tmp["nickname"]}\">";
 }
 
 $sql	 ="SELECT * FROM wp01_0schedule";
@@ -76,16 +74,27 @@ $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND sche_date>='{$sc_st}'";
 $sql	.=" AND sche_date<'{$sc_ed}'";
 /*$sql	.=" AND (`stime` IS NOT NULL AND `etime` IS NOT NULL)";*/
-
 $dat = $wpdb->get_results($sql,ARRAY_A );
-
-
 foreach($dat as $tmp){
 	if($tmp["stime"] && $tmp["etime"]){;
 		$sch_dat[$tmp["sche_date"]]="n2";
+		$cal_app.="<input class=\"cal_s_{$tmp["sche_date"]}\" type=\"hidden\" value=\"{$tmp["stime"]}-{$tmp["etime"]}\">";
 	}else{
 		$sch_dat[$tmp["sche_date"]]="";
+		$cal_app.="<input class=\"cal_s_{$tmp["sche_date"]}\" type=\"hidden\" value=\"\">";
 	}
+}
+
+$sql	 ="SELECT * FROM wp01_0schedule_memo";
+$sql	.=" WHERE cast_id='{$cast_id}'";
+$sql	.=" AND date_8>='{$sc_st}'";
+$sql	.=" AND date_8<'{$sc_ed}'";
+$sql	.=" AND `log` IS NOT NULL";
+$dat = $wpdb->get_results($sql,ARRAY_A );
+
+foreach($dat as $tmp){
+	$memo_dat[$tmp["date_8"]]="n3";
+	$cal_app.="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
 }
 
 
@@ -145,10 +154,8 @@ for($m=0; $m<42;$m++){
 	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="</td>";
 }
-
-
-
 $cal["html"].="</tr>";
+$cal["html"].=$cal_app;
 $cal["html"].="</table>";
 
 echo json_encode($cal);

@@ -421,11 +421,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<?for($c=0;$c<3;$c++){?>
 					<table class="cal_table">
 						<tr>
-							<td class="cal_top" colspan="1"></td>
-							<td class="cal_top" colspan="1"><span class="cal_prev"></span></td>
-							<td class="cal_top" colspan="3"><span class="v_year"><?PHP ECHO $v_year[$c]?></span><span class="v_month"><?PHP ECHO $v_month[$c]?></span></td>
-							<td class="cal_top" colspan="1"><span class="cal_next"></span></td>
-							<td class="cal_top" colspan="1"></td>
+							<td class="cal_top" colspan="7">
+								<span class="cal_prev"></span>
+								<span class="cal_table_ym"><span class="v_year"><?=$v_year[$c]?></span><span class="v_month"><?=$v_month[$c]?></span></span>
+								<span class="cal_next"></span>
+							</td>
 						</tr>
 						<tr>
 							<?
@@ -440,8 +440,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<?}?>
 			</div>
 		</div>
+
 		<div class="cal_days">
-			<div class="cal_days_date"></div>
+			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
+			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day">19:00-22:00</span></span>
+			<span class="cal_days_birth"><span class="days_icon"></span><span class="days_birth"></span></span>
 		</div>
 
 	<?}elseif($cast_page==2){?>

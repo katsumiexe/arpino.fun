@@ -785,14 +785,13 @@ $(function(){
 
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
 		$('.customer_memo_del_back').show();
-
-		$('del_id').val();
+		Tmp=$(this).attr('id').replace("m_del","");
+		$('#del_id').val(Tmp);
 
 	});
 
 	$('#memo_del_back').on('click',function () {
-		Tmp=$(this).attr('id').replace("del_","");
-		$('#del_id').val(Tmp);
+		$('.customer_memo_del_back').hide();
 	});
 
 	$('#memo_del_set').on('click',function () {
@@ -806,8 +805,8 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('.customer_memo_del_in').hide();
-			$('#tag_2_tbl').prepend(data);
+			$('.customer_memo_del_back').hide();
+			$('#tag_2_tbl').html(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -815,10 +814,7 @@ $(function(){
 		});
 	});
 
-
-
 	$('.mypage_cal').on('click','.cal_prev',function () {
-/*		$('.mypage_cal').animate({'left':'0'},200);*/
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
@@ -837,7 +833,6 @@ $(function(){
 	});
 
 	$('.mypage_cal').on('click','.cal_next',function () {
-//		$('.mypage_cal').animate({'left':'-200vw'},200);
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
@@ -1005,6 +1000,27 @@ $(function(){
 		ToDay=$(this).attr('id').substr(7,2);
 		ToWeek=$(this).attr('week');
 		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
+
+		Tmp=$(this).attr('id').substr('c','cal_s_');
+		if(Tmp){
+			$('.cal_days_birth').show();
+			$('.days_birth').text(Tmp);
+		}else{
+			$('.cal_days_birth').hide();
+			$('.days_birth').text('');
+		}		
+
+		Tmp=$(this).attr('id').substr('c','cal_b_');
+		if(Tmp){
+			$('.days_birth').text(Tmp);
+		}else{
+			$('.days_birth').text('まだ何もありません');
+		}		
+
+		Tmp=$(this).attr('id').substr('c','cal_m_').replace("\n","<br>");
+		$('.days_memo').html(Tmp);
+
+
 	});
 
 	$('.mypage_slide').draggable({

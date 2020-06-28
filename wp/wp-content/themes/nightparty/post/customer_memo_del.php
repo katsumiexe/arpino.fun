@@ -7,7 +7,7 @@ require_once ("../../../../wp-load.php");
 global $wpdb;
 $now=date("Y-m-d H:i:s",time()+32400);
 
-$memo_id		=$_POST["memo_id"];
+$memo_id	=$_POST["memo_id"];
 $c_id		=$_POST["c_id"];
 
 $sql_log ="UPDATE wp01_0customer_memo SET";

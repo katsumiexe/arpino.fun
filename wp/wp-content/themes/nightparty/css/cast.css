@@ -172,6 +172,16 @@ input:focus{
 	color:#fafafa;
 }
 
+.cal_table_ym{
+	position		:relative;
+	display			:inline-block;
+	width			:50vw;
+	vertical-align	:bottom;
+	text-align		:center;
+	height			:10vw;
+	line-height		:10vw;
+}
+
 .cal_top{
 	height			:10vw;
 	vertical-align	:bottom;
@@ -191,7 +201,8 @@ input:focus{
 
 .v_year{
 	display			:inline-block;
-	height			:6vw;
+	height			:10vw;
+	line-height		:14vw;
 	vertical-align	:bottom;
 	text-align		:center;
 	color			:#fafafa;
@@ -207,25 +218,44 @@ input:focus{
 	margin			:auto;
 	display			:inline-block;
 	width			:88vw;
-	border			:2vw solid #C7BBA5;
+	border			:1.5vw solid #C7BBA5;
 	background		:#E7E3D8;
 	height			:39vw;
 }
 
 .cal_days_date{
 	position		:absolute;
-	top				:-4vw;
-	left			:-4vw;
-	width			:42vw;
-	height			:8vw;
-	line-height		:8vw;
-	border			:2vw solid #C7BBA5;
-	background		:#E7E3D8;
-	font-size		:5vw;
+	display			:inline-block;
+	top				:0.5vw;
+	left			:1vw;
+	width			:34vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
 	font-weight		:700;
+	border-bottom	:0.5vw solid #fafafa;
 	color			:#C7a090;
+	text-align		:left;
+	padding			:0.5vw 1vw;
 }
 
+.cal_days_sche{
+	position		:absolute;
+	display			:inline-block;
+	top				:8vw;
+	left			:1vw;
+	width			:34vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	color			:#C7a090;
+	text-align		:left;
+	padding			:0.5vw;
+}
+
+.days_icon{
+	font-family		:at_icon;
+}
 
 .cal_td,.cal_th{
 	position		:relative;
@@ -1004,13 +1034,13 @@ input:focus{
 
 .customer_memo_new_txt{
 	position		:absolute;
-	top				:10vw;
+	top				:15vw;
 	left			:0vw;
 	right			:0vw;
 	margin			:auto;
 	font-size		:4.5vw;
 	width			:80vw;
-	height			:75vw;
+	height			:70vw;
 	resize			:none;
 	padding			:1vw;
 }
@@ -1032,8 +1062,8 @@ input:focus{
 	display			:inline-block;
 	position		:absolute;
 	left			:7vw;
-	top				:5vw;
-	font-size		:3.5vw;
+	top				:8vw;
+	font-size		:4vw;
 	font-weight		:600;
 }
 
@@ -1041,12 +1071,12 @@ input:focus{
 	display			:inline-block;
 	position		:absolute;
 	top				:2vw;
-	height			:6vw;
-	line-height		:6vw;
-	width			:6vw;
+	height			:10vw;
+	line-height		:10vw;
+	width			:10vw;
 	margin			:auto;
 	text-align		:center;
-	font-size		:4vw;
+	font-size		:6vw;
 	background		:#606090;
 	color			:#fafafa;
 	font-weight		:600;
@@ -1056,7 +1086,7 @@ input:focus{
 }
 
 .customer_memo_new_set{
-	right			:14vw;
+	right			:19vw;
 }
 
 .customer_memo_new_del{
