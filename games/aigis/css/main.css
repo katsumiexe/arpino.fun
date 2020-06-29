@@ -1382,6 +1382,7 @@ body {
 .howto_in{
 	display			:none;
 	position		:absolute;
+	padding			:5px;
 	top				:0;
 	left			:0;
 	right			:0;

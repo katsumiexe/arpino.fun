@@ -195,7 +195,7 @@ $(function(){
 			PersonaJ= JSON.stringify(Persona);
 */
 
-
+/*
 			console.log(Persona);
 			console.log('a◆:'+Persona.a);
 			console.log('b◆:'+Persona.b);
@@ -209,6 +209,7 @@ $(function(){
 			console.log(Up['c']);
 			console.log(Up['d']);
 			console.log(Up['e']);
+*/
 		});
 	});
 
@@ -401,10 +402,10 @@ $(function(){
 				var GetPJ	 	= JSON.stringify(GetP);
 				var GetNJ	 	= JSON.stringify(GetN);
 				var PersonaJ	= JSON.stringify(Persona);
-
+/*
 				console.log(GetN);
 				console.log(GetNJ);
-
+*/
 				$('.player_c').stop(false, true).delay(2800).slideUp(100);
 				$('.pl1').delay(4500).animate({'top':'100vh'},500);
 				$('.pl2').delay(3500).animate({'left':0},200).delay(1000).animate({'top':'100vh'},500);
@@ -433,8 +434,10 @@ $(function(){
 					console.log("ST:" + textStatus);
 				});
 			}
+/*
 			console.log(data2);
 			console.log(Turn);
+*/
 			Turn++;
 		});
 	});
@@ -447,7 +450,7 @@ $(function(){
 				"log_id"	:$('#log_id').val(),
 			}
 		}).done(function(data3, textStatus, jqXHR){
-			console.log(data3);
+//			console.log(data3);
 			$('#reset_top').submit();
 	    });
     });
