@@ -659,6 +659,18 @@ body {
 	z-index		:75;
 }
 
+.player_s{
+	display		:block;
+	position	:relative;
+	width		:600px;
+	height		:100px;
+	background	:#f0f0f0;
+	margin		:0;
+	z-index		:210;
+	background	:#f000f0;
+
+}
+
 .player_0{
 	display		:inline-block;
 	position	:absolute;
@@ -700,18 +712,6 @@ body {
 	font-size	:24px;
 }
 
-.player_e{
-	display		:none;
-	position	:absolute;
-	width		:116px;
-	height		:345px;
-	margin		:auto;
-	background	:#e0d000;
-	color		:#fafafa;
-	font-size	:24px;
-}
-
-
 .player_d{
 	position	:absolute;
 	bottom		:5px;
@@ -727,6 +727,17 @@ body {
 	text-shadow:1px 1px #0000c0;
 }
 
+.player_e{
+	display		:none;
+	position	:absolute;
+	width		:116px;
+	height		:345px;
+	margin		:auto;
+	background	:#e0d000;
+	color		:#fafafa;
+	font-size	:24px;
+	z-index		:210;
+}
 
 .player_f{
 	display:	inline-box;
@@ -1996,7 +2007,12 @@ body {
 
 .player{
 	width		:99vw;
-	height		:44vw;
+	height		:38vw;
+}
+
+.player_s{
+	width		:99vw;
+	height		:20vw;
 }
 
 #set_a,#down_a1{
@@ -2007,13 +2023,11 @@ body {
 #set_b,#down_b1{
 	top			:37.5vw;
 	left		:26vw;
-
 }
 
 #set_c,#down_c1{
 	top			:37.5vw;
 	left		:51vw;
-
 }
 
 #set_d,#down_d1{
@@ -2021,14 +2035,11 @@ body {
 	left		:76vw;
 }
 
-
-
 .player_0{
 	top			:8vw;
 	width		:24vw;
 	height		:28vw;
 }
-
 
 .player_a{
 	top			:2vw;
@@ -2051,6 +2062,8 @@ body {
 	line-height	:6.5vw;
 	font-size	:5vw;
 }
+
+
 
 .player_d{
 	position	:absolute;
@@ -2183,7 +2196,6 @@ body {
 	right			:30vw;
 	width			:45vw;
 	height			:54vw;
-	z-index			:100;
 }
 
 .turn_name{

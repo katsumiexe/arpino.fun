@@ -109,7 +109,6 @@ $(function(){
 	    $('.score').fadeOut(500);
     });
 
-
     $('.score_lv').on('click',function(){
 		Tag=$(this).attr('id').replace('s_','');
 	    $('.score_lv').removeClass('score_lv_on');

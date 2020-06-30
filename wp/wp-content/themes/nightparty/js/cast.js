@@ -865,26 +865,25 @@ $(function(){
 
 
 
-	$('.notice_box_item1').on('click',function (){
+	$('.notice_box_item2').on('click',function (){
 		Tmp=$(this).attr('id').replace("title","hidden");
 		$('.notice_box_log').html($('#'+Tmp).val());
 
 	});
 
-	$('.notice_box_item2').on('click',function (){
-			Nid=$(this).attr('id').replace("notice_box_title","");
+	$('.notice_box_item1').on('click',function (){
+		Nid=$(this).attr('id').replace("notice_box_title","");
+		Tmp=$(this).attr('id').replace("title","hidden");
+		$(this).removeClass('notice_box_item1').addClass('notice_box_item2');
+		$(this).children('div').removeClass('notice_yet1').addClass('notice_yet2');
+		$('.notice_box_log').html($('#'+Tmp).val());
+
 		$.post({
 			url:Dir + "/post/notice_ck.php",
 			data:{
 				'n_id':Nid,
 				'cast_id':CastId,
 			},
-
-		}).done(function(data, textStatus, jqXHR){
-			$(this).removeClass('notice_box_item2').addClass('notice_box_item1');
-			$(this).chiledren('div').removeClass('notice_yet2').addClass('notice_yet1');
-			Tmp=$(this).attr('id').replace("title","hidden");
-			$('.notice_box_log').html($('#'+Tmp).val());
 		});
 	});
 

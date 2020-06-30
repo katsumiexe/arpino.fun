@@ -16,4 +16,5 @@ $sql	 ="UPDATE wp01_0notice_ck SET";
 $sql	.=" status='2'";
 $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND notice_id='{$n_id}'";
+$wpdb->query($sql);
 ?>
