@@ -62,8 +62,8 @@ $sql	.=" AND birth_day LIKE '%{$b_month}%'";
 $sql	.=" AND del='0'";
 
 $dat = $wpdb->get_results($sql,ARRAY_A );
-foreach($dat as $tmp){
-	$birth=str_replace("-","",$tmp["birth_day"]);
+	foreach($dat as $tmp){
+		$birth=str_replace("-","",$tmp["birth_day"]);
 	$birth=substr($c_month,0,4).substr($birth,4,4);
 	$birth_dat[$birth]="n1";
 	$cal_app.="<input class=\"cal_b_{$birth}\" type=\"hidden\" value=\"{$tmp["nickname"]}\">";

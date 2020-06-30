@@ -189,7 +189,7 @@ $(function(){
 		$('.customer_regist_back').show();
 	});
 
-	$('.mypage_blog_set').on('click',function () {
+	$('#regist_brog').on('click',function () {
 		if($('.mypage_blog_write').css('display') == 'none'){
 			$('.mypage_blog_write').slideDown(100);
 		}else{
@@ -204,7 +204,7 @@ $(function(){
 	});
 
 	$('#upd').on('change', function(e){
-		var file = e.target.files[0];
+		var file = e.target.files[0];	
 		var reader = new FileReader();
 
 		if(file.type.indexOf("image") < 0){
@@ -863,9 +863,33 @@ $(function(){
 		});
 	});
 
+
+
+	$('.notice_box_item1').on('click',function (){
+		Tmp=$(this).attr('id').replace("title","hidden");
+		$('.notice_box_log').html($('#'+Tmp).val());
+
+	});
+
+	$('.notice_box_item2').on('click',function (){
+			Nid=$(this).attr('id').replace("notice_box_title","");
+		$.post({
+			url:Dir + "/post/notice_ck.php",
+			data:{
+				'n_id':Nid,
+				'cast_id':CastId,
+			},
+
+		}).done(function(data, textStatus, jqXHR){
+			$(this).removeClass('notice_box_item2').addClass('notice_box_item1');
+			$(this).chiledren('div').removeClass('notice_yet2').addClass('notice_yet1');
+			Tmp=$(this).attr('id').replace("title","hidden");
+			$('.notice_box_log').html($('#'+Tmp).val());
+		});
+	});
+
 	$('.cal_weeks_next').on('click',function (){
 		$('.cal_weeks_box_2').animate({'top':'-147vw'},200);
-
 		$.post({
 			url:Dir + "/post/chg_weeks.php",
 			data:{
@@ -993,6 +1017,7 @@ $(function(){
 
 		ToMon=$(this).attr('id').substr(5,2);
 		ToDay=$(this).attr('id').substr(7,2);
+		ToMD=$(this).attr('id').substr(5,4);
 		ToWeek=$(this).attr('week');
 		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
 
@@ -1004,11 +1029,10 @@ console.log(Tmp);
 			$('.days_day').text('休み');
 		}		
 
-
-		var Tmp=$(this).attr('id').replace('c','cal_b_');
-		if($('.'+Tmp).val()){
+		var Tmp=$(this).attr('id').substr(5,4);
+		if($('.cal_b_'+Tmp).val()){
 			$('.cal_days_birth').show();
-			$('.days_birth').text($('.'+Tmp).val());
+			$('.days_birth').text($('.cal_b_'+Tmp).val());
 		}else{
 			$('.cal_days_birth').hide();
 			$('.days_birth').text('');

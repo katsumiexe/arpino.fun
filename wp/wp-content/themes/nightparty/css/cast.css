@@ -146,6 +146,98 @@ input:focus{
 	transform	:rotate(-45deg);
 }
 
+.notice_ttl{
+	display			:inline-block;
+	margin			:1vw auto 0 auto;
+	width			:80vw;
+	text-align		:left;
+}
+
+.notice_ttl_in{
+	display			:inline-block;
+	height			:6vw;
+	line-height		:6vw;
+	width			:25vw;
+	text-align		:left;
+	border-radius	:0 3vw 0 0;
+	font-size		:4vw;
+	background		:#d0d0e0;
+	padding			:1vw;
+}
+
+.notice_box{
+	display			:inline-block;
+	margin			:0 auto 3vw auto;
+	width			:80vw;
+	font-size		:4vw;
+	background		:#fafafa;
+	text-align		:left;
+}
+
+.notice_box_sche,.notice_box_item2,.notice_box_mail,.notice_box_birth{
+	display			:inline-block;
+	position		:relative;
+	height			:7vw;
+	line-height		:7vw;
+	width			:78vw;
+	font-size		:4vw;
+	background		:linear-gradient(#f0f0f0,#e8e8e8);
+	padding-left	:1vw;
+	border-bottom	:dashed 0.5vw #fafafa;
+	margin			:0.5vw;
+}
+
+.notice_box_item1{
+	display			:inline-block;
+	position		:relative;
+	height			:7vw;
+	line-height		:7vw;
+	width			:78vw;
+	font-size		:4vw;
+	background		:linear-gradient(#f0e0e0,#e8d0d0);
+	padding-left	:1vw;
+	border-bottom	:dashed 0.5vw #fafafa;
+	margin			:0.5vw;
+	font-weight		:600;
+}
+
+.notice_box_log{
+	display			:inline-block;
+	margin			:0 auto 3vw auto;
+	width			:78vw;
+	font-size		:4vw;
+	background		:#fafafa;
+	text-align		:left;
+	padding			:1vw;
+	color			:#606060;
+	min-height		:30vw;
+	border			:1vw solid #d00000;
+}
+
+.notice_icon{
+	font-family		:at_icon;
+}
+
+.notice_yet2{
+	display:none;
+}
+
+.notice_yet1{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:1vw;
+	margin			:auto;
+	display			:inline-block;
+	height			:5vw;
+	line-height		:5vw;
+	width			:5vw;
+	font-size		:5vw;
+	
+	font-family		:at_icon;
+	color			:#d00000;
+}
+
 
 .cal_box{
 	display			:inline-block;
@@ -212,7 +304,7 @@ input:focus{
 
 .cal_days{
 	position		:absolute;
-	top				:82vw;
+	top				:83vw;
 	left			:0;
 	right			:0;
 	margin			:auto;
@@ -220,7 +312,7 @@ input:focus{
 	width			:88vw;
 	border			:1.5vw solid #C7BBA5;
 	background		:#E7E3D8;
-	height			:39vw;
+	height			:38vw;
 }
 
 .cal_days_date{
