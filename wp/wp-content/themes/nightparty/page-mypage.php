@@ -817,12 +817,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 		<div class="img_box_in4">
-			<div id="yes_5" class="btn btn_c2">登録</div>　
+			<div id="img_set" class="btn btn_c2">登録</div>　
 			<div id="img_close" class="btn btn_c1">戻る</div>
 		</div>
 	</div>
 </div>
-
 
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">

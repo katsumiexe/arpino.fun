@@ -547,11 +547,6 @@ $(function(){
 		$('.cal_back').fadeIn(100);
 	});
 
-	$('#img_close').on('click',function(){
-				$('.img_back').fadeOut(200);
-		$('.img_box	').animate({'top':'100vh'},200);
-	});
-
 	$('#img_set').on('click',function(){
 		if($('#upd').val() == '') {
 			$('#err').text('画像の登録がありません');
@@ -607,6 +602,14 @@ $(function(){
 		}
 	});
 
+	$('.img_close').on('click',function(){
+			$('.img_back').fadeOut(200);
+			$('.img_box	').animate({'top':'100vh'},200);
+		var cvs = document.getElementById('cvs1');
+		var ctx = cvs.getContext('2d');
+		ctx.clearRect(0, 0, cvs_A,cvs_A);
+	});
+
 	$('.mail_detail_img_box').on('mail_detail_tmp','click',function(){
 		
 	});
@@ -624,13 +627,6 @@ $(function(){
 		if(Rote <0){
 			Rote+=360;
 		}
-	});
-
-	$('.c1').on('click',function(){
-		$('.back').fadeOut(150);
-		var cvs = document.getElementById('cvs1');
-		var ctx = cvs.getContext('2d');
-		ctx.clearRect(0, 0, cvs_A,cvs_A);
 	});
 
 	$('.zoom_mi').on( 'click', function () {
