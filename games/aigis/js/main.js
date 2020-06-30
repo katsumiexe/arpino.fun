@@ -66,9 +66,9 @@ if ($(window).width()>619) {
 
 
 	var Size_t="46vw";
-	var Size_r="30vw";
-	var Size_h="54vw";
-	var Size_w="45vw";
+	var Size_r="26vw";
+	var Size_h="51vw";
+	var Size_w="43vw";
 
 	var W540="87.5vw";
 	var W420="62.5vw";
@@ -241,7 +241,6 @@ $(function(){
 		$('.f'+Tmp_No).css('color','#e0e0e0');		
 
 		if($('#'+Tmp_Id).css("display") == 'none'){
-
 			for(i=Turn ;i<12;i++){
 				$('#'+Tmp_Id).children('.f'+Up[Tmp_No][i]).css('color','#906000');		
 			}

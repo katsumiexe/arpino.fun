@@ -211,7 +211,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		お好きなユニットを一つ選んでください。<Br>
 		</div>
 	</div>
-
 	<div class="page_02">
 		<div class="player">
 			<div class="player_0 pl1">

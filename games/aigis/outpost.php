@@ -42,7 +42,7 @@ if($mode==2){
 
 	mb_language("Japanese");
 	mb_internal_encoding("UTF-8");
-	$to      = "cpunterpost2016@gmail.com";
+	$to      = "counterpost2016@gmail.com";
 	$subject = "Aigis_POST(out)";
 	$message = $ask_log;
 	$headers = 'From: aigis@arpino.fun' . "\r\n";
