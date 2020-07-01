@@ -39,16 +39,23 @@
 }
 
 .thanks_ttl{
+	display			:inline-block;
 	margin			:5px 10px;
 	display			:inline-block;
-	width			:530px;
+	width			:500px;
+	border-bottom	:2px solid #fafafa;
+	height			:30px;
+	line-height		:30px;
+}
+
+.thanks_ttl_in{
 	height			:25px;
 	line-height		:25px;
 	font-size		:16px;
 	font-weight		:700;
 	color			:#fafafa;	
-	border-bottom	:2px solid #fafafa;
 }
+
 
 .thanks_tag{
 	display			:inline-block;
@@ -266,6 +273,36 @@ body {
 	color				:#906000;
 	width				:140px;
 }
+
+.eno{
+	display				:inline-block;
+	height				:25px;
+	line-height			:25px;
+	margin				:0 5px;
+}
+
+.eno_icon{
+	display				:inline-block;
+	height				:25px;
+	width				:25px;
+	line-height			:25px;
+	text-align			:center;
+	font-size			:18px;
+	font-family			:at_icon;
+	color				:#fafafa;
+}
+
+.eno_star{
+	display				:inline-block;
+	height				:25px;
+	width				:60px;
+	line-height			:25px;
+	text-align			:center;
+	font-size			:18px;
+	color				:#fafafa;
+	background			:#906000;
+}
+
 
 .page_01{
 	position:absolute;
@@ -2650,12 +2687,41 @@ body {
 	height			:18vw;
 }
 
-.thanks_ttl{
-	margin			:1vw;
-	width			:94vw;
+
+
+.thanks_ttl_in{
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;
+}
+
+.eno{
+	height				:5vw;
+	line-height			:5vw;
+	margin				:0.5vw 1vw;
+}
+
+.eno_icon{
+	height				:5vw;
+	width				:5vw;
+	line-height			:5vw;
+	font-size			:3.5vw;
+	margin:0;
+}
+
+.eno_star{
+	height				:5vw;
+	width				:15vw;
+	line-height			:5vw;
+	font-size			:3.8vw;
+	margin:0;
+}
+
+.thanks_ttl{
+	margin			:1vw;
+	width			:90vw;
+	height			:6vw;
+	line-height		:6vw;
 	border-bottom	:0.5vw solid #fafafa;
 }
 

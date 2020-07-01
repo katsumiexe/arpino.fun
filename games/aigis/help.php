@@ -16,6 +16,7 @@
 <body style="text-align:center;background:#303030">
 <div class="main">
 
+
 	<div class="howto">
 		<div class="howto_page">
 			<span class="howto_back"></span>

@@ -30,8 +30,6 @@
 その間、女神は毎晩一つ、女性の魅力を信奉者に下賜します。
 王子のハートを射止めることができるのは、果たして誰でしょうか......
 </div>
-</div>
-
 
 <div id="box2" class="howto_box">
 <div class="howto_box_1">
@@ -40,7 +38,6 @@
 各プレイヤーはスタート時に1枚選択します。<br>
 各ユニットは『巨乳』『幼女』『知的』『清楚』『天使』の5つのチャームポイントのうち、2つを有しています。<br>
 他のプレイヤーがどのユニットを選択したかは、ゲーム終了までわかりません。<br>
-</div>
 </div>
 
 
@@ -66,7 +63,7 @@
 の順となります。<br>
 </div>
 
-<div id="box4" class="howto_box">
+<div id="box2" class="howto_box">
 <div class="howto_box_1">
 <div class="howto_box_2">魅力（12種類）</div>
 
@@ -86,7 +83,7 @@
 魅力ポイント+2、対象の魅力を所持しているユニットだと逆効果となり-2となります。<br>
 </div>
 
-<div class= id="box2" class="howto_box">進行</div>
+<div class= id="box2""title_1">進行</div>
 <div class="title_3">
 ターンのはじめに『魅力』が一枚提示されます。<br>
 各プレイヤーはそれぞれ『好感度アイテム』を一枚捧げます。<br>

@@ -3,7 +3,7 @@ include_once("./library/session.php");
 $date=date("Y-m-d H:i:s");
 
 $log_id		=$_POST["log_id"];
-$lv			=$_POST["lv"];
+$lv			=$_POST["lv"]+0;
 $doll		=json_decode($_POST["doll"]);
 $persona	=json_decode($_POST["persona"]);
 $pts		=json_decode($_POST["pts"]);
@@ -25,6 +25,14 @@ $p=0;
 $r=0;
 $n=0;
 
+$icon[0]="";
+$icon[1]="";
+$icon[2]="";
+
+$star[0]="★☆☆";
+$star[1]="★★☆";
+$star[2]="★★★";
+
 foreach($getp as $a1 => $a2){
 	$get[$a2][$a1]=floor($getn[$a1]+0);
 }
@@ -37,8 +45,7 @@ foreach($pts as $a1 => $a2){
 
 		if($order == 1){
 			$app.="<div class=\"thanks\">";
-			$app.="<span class=\"thanks_ttl\">Thanks for Your Playing!</span>";
-
+			$app.="<span class=\"thanks_ttl\"><div class=\"eno\"><span class=\"eno_icon\">{$icon[$lv]}</span><span class=\"eno_star\">{$star[$lv]}</span></div><span class=\"thanks_ttl_in\">Thanks for Your Playing!</span></span>";
 			if( $a1 =="p"){
 				$sql="INSERT INTO score_data(`date`, `unit`, `level`,`score`)";	
 				$sql.=" VALUES('{$date}', '{$doll['p']}', '{$lv}','{$pts['p']}')";	
@@ -48,7 +55,6 @@ foreach($pts as $a1 => $a2){
 				$app.="<input id=\"log_id\" type=\"hidden\" value=\"{$tmp_auto}\">";
 				$app.="<div id=\"thanks_set\" class=\"thanks_btn\"></div>";
 			}
-
 			$app.="<div id=\"thanks_set\" class=\"thanks_back\"></div>";
 			$app.="</div>";
 		}
