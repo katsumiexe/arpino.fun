@@ -92,6 +92,20 @@ $(function(){
 	    $('#tbl_lv'+N1).fadeIn(1000);
 	},10000);
 
+	$('.rank_detail').on('click',function(){
+		Tmp=$(this).attr('id').replace('d','tr');
+		$('.tr0,.tr1,.tr2').slideUp(500);
+
+		if($(this).css('background')=="#d00000"){
+			$(this).css('background','#909090');
+
+		}else{
+			$(this).css('background',"#d00000");
+			$('.'+Tmp).slideDown(500);
+
+		}
+
+    });
 
     $('#lv5').on('click',function(){
 	    $('.howto').fadeIn(500);
@@ -122,7 +136,6 @@ $(function(){
 	    $('.howto_in').hide();
 	    $('#'+Tag).fadeIn(500);
     });
-
 
     $('#lv0, #lv1, #lv2').on('click',function(){
 	    $('.page_00').fadeOut(500);

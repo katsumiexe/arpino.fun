@@ -368,7 +368,6 @@ input:focus{
 	height			:10vw;
 	text-align		:center;
 	font-size		:0;
-//	border			:0.5vw solid #fafafa;
 	background		:linear-gradient(#f0f0f0,#E7E3D8);
 	cursor			:pointer;
 }
@@ -495,7 +494,7 @@ input:focus{
 	left			:0;
 	bottom			:4vw;
 	background		:#fad0e0;
-	font-size:4ve;
+	font-size		:4vw;
 }
 
 .customer_tag{
@@ -647,7 +646,7 @@ input:focus{
 	font-size	:5vw;
 	height		:8vw;
 	line-height	:8vw;
-	color		:#fafafa
+	color		:#fafafa;
 	font-weight:600;
 }
 
@@ -660,10 +659,10 @@ input:focus{
 }
 
 .customer_regist_tag{
-	width:30vw;
-	height:10vw;
-	paddomg:1vw;
-	font-size:5vw;
+	width		:30vw;
+	height		:10vw;
+	padding		:1vw;
+	font-size	:5vw;
 }
 
 .customer_regist_box{
@@ -1092,9 +1091,9 @@ input:focus{
 
 .customer_memo_del_back_in{
 	border			:0.5vw solid #303030;
-	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5;);
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
 	background		:#fafafa;
-	color			:#30300;
+	color			:#303030;
 	font-size		:4vw;
 	text-align		:center;
 	padding			:1vw;
