@@ -207,7 +207,7 @@ $(function(){
 			PersonaJ= JSON.stringify(Persona);
 */
 
-/*
+
 			console.log(Persona);
 			console.log('a◆:'+Persona.a);
 			console.log('b◆:'+Persona.b);
@@ -221,7 +221,7 @@ $(function(){
 			console.log(Up['c']);
 			console.log(Up['d']);
 			console.log(Up['e']);
-*/
+
 		});
 	});
 
@@ -268,6 +268,7 @@ $(function(){
 
     $('.td_b2').on('click','.p_pts_on',function(){
 		$('.guard').show();
+		$('.player_e').slideUp(100);		
 
         $(this).removeClass('p_pts_on');
         No=$(this).attr('id').replace('i','');

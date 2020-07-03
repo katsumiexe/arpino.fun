@@ -76,7 +76,7 @@ arsort($rank_unit);
 </script>
 </head>
 <body style="text-align:center;background:#888888">
-<div class="main">
+<div class="main_ana">
 
 <table class="rank_m">
 <?for($s=0;$s<3;$s++){ ?>
