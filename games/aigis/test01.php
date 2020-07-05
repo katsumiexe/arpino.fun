@@ -25,35 +25,22 @@ td{
 <script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
 $(function(){ 
-$(".btn").on('click',function(){
-	$('.box').animate({"width":"toggle"},100);
+$('.box').on('click',function(){
+	Tmp=$(this).text();
+	$('#num').val(Tmp);
 });
 });
 </script>
 </head>
 <body>
-<button type="button" class="btn">BUTTON</button>
+<div class="box">10</div>
+<div class="box">11</div>
+<div class="box">12</div>
+<div class="box">13</div>
+<div class="box">14</div>
 
-<table style="border:1px solid #303030;">
-<tr>
-<td>商品</td>
-<td>価格</td>
-<td class="box"><span class="tag">送料</span></td>
-<td class="box"><span class="tag">消費税</span></td>
-</tr>
+<input id="num" type="number" value="" class="form-control" name="stage">
 
-<tr>
-<td>みかん</td>
-<td>200</td>
-<td class="box"><span class="tag">100</span></td>
-<td class="box"><span class="tag">20</span></td>
-</tr>
-<tr>
-<td>りんご</td>
-<td>500</td>
-<td class="box"><span class="tag">150</span></td>
-<td class="box"><span class="tag">50</span></td>
-</tr>
-</table>
+
 </body>
 </html>
