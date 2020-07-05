@@ -827,48 +827,10 @@ $(function(){
 		});
 	});
 
-	$('.mypage_cal').on('click','.cal_next',function () {
-		$.post({
-			url:Dir + "/post/calendar_set.php",
-			data:{
-				'c_month':$('#c_month').val(),
-				'week_start':$('#week_start').val(),
-				'cast_id':CastId,	
-				'pre':'2',
-			},
-			dataType: 'json',
-		}).done(function(data, textStatus, jqXHR){
-			$('.mypage_cal').append(data.html).animate({'left':'-100vw'},200);
-			$(".mypage_cal").children().first().remove();
-			$('#c_month').val(data.date);
-		});
-	});
-
-	$('.cal_weeks_prev').on('click',function (){
-		$('.cal_weeks_box_2').stop(false,true).animate({'top':'0'},200);
-		$.post({
-			url:Dir + "/post/chg_weeks.php",
-			data:{
-				'c_month':$('#c_month').val(),
-				'base_day':$('#base_day').val(),
-				'cast_id':CastId,
-				'pre':'1',
-			},
-			dataType: 'json',
-
-		}).done(function(data, textStatus, jqXHR){
-			$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
-			$('.cal_weeks_box_2').children().slice(-7,0).remove();
-			$('#base_day').val(data.date);
-		});
-	});
-
-
 
 	$('.notice_box_item2').on('click',function (){
 		Tmp=$(this).attr('id').replace("title","hidden");
 		$('.notice_box_log').html($('#'+Tmp).val());
-
 	});
 
 	$('.notice_box_item1').on('click',function (){
@@ -887,8 +849,50 @@ $(function(){
 		});
 	});
 
+
+	$('.mypage_cal').on('click','.cal_next',function () {
+		$.post({
+			url:Dir + "/post/calendar_set.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'cast_id':CastId,	
+				'pre':'2',
+			},
+			dataType: 'json',
+		}).done(function(data, textStatus, jqXHR){
+			$('.mypage_cal').append(data.html).animate({'left':'-100vw'},200);
+			$(".mypage_cal").children().first().remove();
+			$('#c_month').val(data.date);
+		});
+	});
+
+
+	$('.cal_weeks_prev').on('click',function (){
+/*		$('.cal_weeks_box_2').animate({'top':'0'},2000);*/
+		$.post({
+			url:Dir + "/post/chg_weeks.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'base_day':$('#base_day').val(),
+				'cast_id':CastId,
+				'pre':'1',
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.cal_weeks_box_2').prepend(data.html).animate({'top':'-73.5vw'},2000);
+			$('.cal_weeks_box_2').children().slice(-7).remove();
+			$('#base_day').val(data.date);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
 	$('.cal_weeks_next').on('click',function (){
-		$('.cal_weeks_box_2').animate({'top':'-147vw'},200);
+/*		$('.cal_weeks_box_2').animate({'top':'-73.5vw'},200);*/
 		$.post({
 			url:Dir + "/post/chg_weeks.php",
 			data:{
@@ -900,8 +904,8 @@ $(function(){
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
 			$('.cal_weeks_box_2').children().slice(0,7).remove();
+			$('.cal_weeks_box_2').append(data.html).css({'top':'-73.5vw'});
 			$('#base_day').val(data.date);
 		});
 	});
@@ -929,7 +933,7 @@ $(function(){
 
 				}).done(function(data, textStatus, jqXHR){
 					$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
-					$('.cal_weeks_box_2').children().slice(-7,0).remove();
+					$('.cal_weeks_box_2').children().slice(-7).remove();
 					$('#base_day').val(data.date);
 				});
 
@@ -1031,7 +1035,7 @@ console.log(Tmp);
 		var Tmp=$(this).attr('id').substr(5,4);
 		if($('.cal_b_'+Tmp).val()){
 			$('.cal_days_birth').show();
-			$('.days_birth').text($('.cal_b_'+Tmp).val());
+			$('.days_birth').html($('.cal_b_'+Tmp).val());
 		}else{
 			$('.cal_days_birth').hide();
 			$('.days_birth').text('');

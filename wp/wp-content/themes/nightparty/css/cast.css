@@ -311,7 +311,7 @@ input:focus{
 	display			:inline-block;
 	width			:88vw;
 	border			:1.5vw solid #C7BBA5;
-	background		:#E7E3D8;
+	background		:#f0eae5;
 	height			:38vw;
 }
 
@@ -325,8 +325,8 @@ input:focus{
 	line-height		:6vw;
 	font-size		:4vw;
 	font-weight		:700;
-	border-bottom	:0.5vw solid #fafafa;
-	color			:#C7a090;
+	border-bottom	:0.5vw solid #C7a090;
+	color			:303030;
 	text-align		:left;
 	padding			:0.5vw 1vw;
 }
@@ -334,13 +334,13 @@ input:focus{
 .cal_days_sche{
 	position		:absolute;
 	display			:inline-block;
-	top				:8vw;
+	top				:9vw;
 	left			:1vw;
 	width			:34vw;
-	height			:6vw;
-	line-height		:6vw;
+	height			:5vw;
+	line-height		:5vw;
 	font-size		:4vw;
-	color			:#C7a090;
+	color			:#303030;
 	text-align		:left;
 	padding			:0.5vw;
 }
@@ -348,18 +348,21 @@ input:focus{
 .cal_days_birth{
 	position		:absolute;
 	display			:inline-block;
-	top				:16vw;
+	top				:15vw;
 	left			:1vw;
 	width			:34vw;
-	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;
-	color			:#C7a090;
+	color			:#303030;
 	text-align		:left;
-	padding			:0.5vw;
 }
 
-.days_icon{
+i,.days_icon{
+	display			:inline-block;
+	width			:5vw;
+	height			:5vw;
+	line-height		:5vw;	
+	text-align		:left;
 	font-family		:at_icon;
 }
 

@@ -17,7 +17,7 @@ $item[2]="";
 $item[1]="";
 $item[0]="";
 
-$check[1]="";
+$check[1]="";
 $check[2]="";
 
 $card[1]="";
@@ -138,7 +138,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Card_Game_Aigis:2</title>
+<title>Document</title>
 <link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
 <style>
 </style>
@@ -146,15 +146,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <script src="./js/jquery.easing.1.3.js"></script>
 <script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
-</script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171407668-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-171407668-1');
 </script>
 </head>
 <body style="text-align:center;background:#888888">
@@ -164,52 +155,36 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<div class="first_play_ttl">
 				<span>アイギスカードゲーム(仮)</span>
 			</div>
-
-			<div id="labo1" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">変更</span>
-				<span class="labo_comm">-Log-</span>
+			<div id="lv0" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">★☆☆</span>
+				<span class="first_comm">-easy-</span>
 			</div>
-			<div class="labo_box">
-			<span class="labo_box_line">▼2020/07/03　表示の修正</span><br>	
-			<span class="labo_box_detail">
-			・他プレイヤーのアイテム表示がカードの下になってしまう個所を修正しました。<br>
-			・最終結果の表示に、挑戦した難易度も表示しました。<br>
-			</span>	
-			<span class="labo_box_line">▼2020/07/04　メニューの追加</span><br>
-			<span class="labo_box_detail">
-			・ご意見、制作手記、解析を追加しました。<br>
-			</span>	
+			<div id="lv1" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">★★☆</span>
+				<span class="first_comm">-normal-</span>
 			</div>
-
-			<a href="./bbs.php" id="labo2" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">ご意見</span>
-				<span class="labo_comm">-BBS-</span>
+			<div id="lv2" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">★★★</span>
+				<span class="first_comm">-ONI!-</span>
+			</div>
+			<div id="lv4" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">ランキング</span>
+				<span class="first_comm">-Ranking-</span>
+			</div>
+			<div id="lv5" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">遊び方</span>
+				<span class="first_comm">-Howto-</span>
+			</div>
+			<a href="./outpost.php" id="lv6" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">問合せ</span>
+				<span class="first_comm">-AskMe-</span>
 			</a>
-
-			<a href="./ana.php" id="labo3" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">解析</span>
-				<span class="labo_comm">-Analytics-</span>
-			</a>
-
-			<a href="./outpost.php" id="labo4" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">問合せ</span>
-				<span class="labo_comm">-AskMe-</span>
-			</a>
-
-			<div id="labo5" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">制作手記</span>
-				<span class="labo_comm">-Katsumi-</span>
-			</div>
-			<div class="labo_box">
-			<span class="labo_box_line">▼2020/07/04　お礼と今後の展開と</span><br>
-			</div>
-
-
 			<div class="first_play_btm">
 				<span class="sns">
 				<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
@@ -218,7 +193,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			</div>
 		</div>
 	</div>
-
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
@@ -236,8 +210,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <div class="page_01_guide">
 お好きなユニットを一つ選んでください。<Br>
 </div>
-</div>
 
+</div>
 <div class="page_02">
 	<div class="player">
 		<div class="player_0 pl1">
@@ -285,7 +259,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<div class="turn">TURN</div>
 			<div class="turn_count">0</div>
 		</div>
-
+	</div>
+	<div class="player_s">
 		<div id="set_a" class="player_c"></div>
 		<div id="down_a1" class="player_e">
 			<div class="player_f fa f11"></div>
@@ -349,51 +324,50 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<div class="player_f fd f1"></div>
 			<div class="player_f fd f0"></div>
 		</div>
-
-		<?for($n=0;$n<12;$n++){?>
-			<span id="rest<?=$n?>" class="rest_card"></span>
-		<?}?>
-
-		<div class="guard3"></div>
-		<div class="turn_start_main">START</div>
-		<div class="main_card"></div>
 	</div>
 
-	<table class="table_a">
-		<tr>
-			<td class="td_a">
-				<span class="get_icon"><?=$card[1]?></span>
-				<span id="count_p" class="get_count">0</span>
-			</td>
-			<td class="td_a">
-				<span class="get_icon2"></span>
-				<span id="pts_p" class="get_count">0</span>
-			</td>
-			<td class="td_a">
-				<span id="sub_p" class="a_sub"><?=$check[1]?></span>
-				<span id="ring_p" class="a_ring"><?=$check[2]?></span>
-			</td>
-		</tr>
-	</table>
+<?for($n=0;$n<12;$n++){?>
+<span id="rest<?=$n?>" class="rest_card"></span>
+<?}?>
 
-	<div class="last_res"></div>
-	<img id="myicon" src="" class="myimg">
-	<table class="table_b">
-		<tr>
-			<td class="td_b1">
-				<span id="myname" class="p_name">みりあ</span><?for($n=1;$n<6;$n++){?><span id="status_<?=$n?>" class="p_status"><?=$status[$n]["name"]?></span><?}?>
-			</td>
-		</tr>
-		<tr>
-			<td class="td_b2">
-				<div class="guard"></div>
-				<?for($s=11;$s>-1;$s--){?>
-				<span id="i<?=$s?>" class="p_pts p_pts_on"><?=$item[$s]?></span>
-				<?}?>
-			</td>
-		</tr>
-	</table>
+<div class="guard3"></div>
+<div class="turn_start_main">START</div>
+<div class="main_card"></div>
+<table class="table_a">
+	<tr>
+		<td class="td_a">
+			<span class="get_icon"><?=$card[1]?></span>
+			<span id="count_p" class="get_count">0</span>
+		</td>
+		<td class="td_a">
+			<span class="get_icon2"></span>
+			<span id="pts_p" class="get_count">0</span>
+		</td>
+		<td class="td_a">
+			<span id="sub_p" class="a_sub"><?=$check[1]?></span>
+			<span id="ring_p" class="a_ring"><?=$check[2]?></span>
+		</td>
+	</tr>
+</table>
+<div class="last_res"></div>
+<img id="myicon" src="" class="myimg">
+<table class="table_b">
+	<tr>
+		<td class="td_b1">
+			<span id="myname" class="p_name">みりあ</span><?for($n=1;$n<6;$n++){?><span id="status_<?=$n?>" class="p_status"><?=$status[$n]["name"]?></span><?}?>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_b2">
+			<div class="guard"></div>
+			<?for($s=11;$s>-1;$s--){?>
+			<span id="i<?=$s?>" class="p_pts p_pts_on"><?=$item[$s]?></span>
+			<?}?>
+		</td>
+	</tr>
+</table>
 </div>
+
 </div>
 <div class="pop_back">
 	<div class="pop_a">

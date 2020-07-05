@@ -13,16 +13,119 @@
 	src: url(../font/border/bordc1__.ttf) format('truetype');
 }
 
-.rank_m{
-	width:500px;
-	margin: 0 auto;
+.rank_table{
+	margin: 5px;
 	border-collapse:collapse;
 	background:#fafafa;
 }
 
-.rank_t{
+.analytics{
+	width		:100%;
+	background	:#0000d0;
+	text-align	:center;
+	display		:inline-block;
+	color		:#fafafa;
+	font-weight	:600;
+	font-size	:16px;
+	height		:24px;
+	line-height	:24px;
+	margin:0 auto 10px auto;
+}
+.rank_ttl{
+	height		:22px;
+	line-height	:22px;
+	border		:1px solid #303030;
+	font-size	:16px;
+	font-weight	:600;
+	text-align	:center;
+	background:#e8f8ff;
+}
+
+.rank_d1,.rank_h1{
+	padding		:5px;
+	width		:60px;
+	height		:20px;
+	max-height	:20px;
+	line-height	:20px;
+	border		:1px solid #303030;
+	font-size	:16px;
+	text-align	:right;
+}
+
+.rank_d2,.rank_h2{
 	padding		:5px;
 	width		:80px;
+	height		:20px;
+	max-height	:20px;
+	line-height	:20px;
+	border		:1px solid #303030;
+	font-size	:16px;
+	text-align	:right;
+}
+
+
+.rank_u1,.rank_c1{
+	padding		:5px;
+	width		:40px;
+	height		:40px;
+	max-height	:40px;
+	line-height	:40px;
+	border		:1px solid #303030;
+	font-size	:20px;
+	font-weight	:600;
+	text-align	:center;
+}
+
+.rank_u2,.rank_c2{
+	position	:relative;
+	width		:50px;
+	height		:50px;
+	max-height	:50px;
+	line-height	:50px;
+	border		:1px solid #303030;
+	font-size:0;
+}
+
+.rank_u2i{
+	position	:absolute;
+	top			:0;
+	left		:0;
+	right		:0;
+	bottom		:0;
+	margin		:auto;
+	width		:50px;
+	height		:50px;
+}
+
+
+.rank_u3,.rank_c3{
+	width		:100px;
+	padding		:5px;
+	height		:40px;
+	max-height	:40px;
+	line-height	:40px;
+	border		:1px solid #303030;
+}
+
+.rank_u4,.rank_c4{
+	width		:80px;
+	padding		:5px;
+	height		:40px;
+	max-height	:40px;
+	line-height	:40px;
+	border		:1px solid #303030;
+	text-align	:right;
+}
+
+.rank_c1,.rank_c2,.rank_c3,.rank_c4{
+	height		:20px;
+	max-height	:20px;
+	line-height	:20px;
+}
+
+.rank_t{
+	padding		:5px;
+	width		:60px;
 	height		:20px;
 	line-height	:20px;
 	border		:1px solid #303030;
@@ -31,26 +134,12 @@
 
 .rank_p{
 	padding		:5px;
-	width		:60px;
+	width		:50px;
 	height		:20px;
 	line-height	:20px;
 	text-align	:right;
 	border		:1px solid #303030;
 	font-size	:14px;
-}
-
-.rank_g{
-	padding		:0px;
-	width		:380px;
-	text-align	:left;
-	border:1px solid #303030;
-}
-
-.rank_bar{
-	display:inline-block;
-	background:#ff3030;
-	height		:20px;
-	line-height	:20px;
 }
 
 
@@ -234,7 +323,17 @@ body {
     max-width		:600px;
     background		:#f0f0f0;
     margin			:0 auto;    
-	height			:100vh;
+	min-height		:100vh;
+}
+
+.main_ana{
+	position		:relative;;
+    width			:100%;
+    max-width		:600px;
+    background		:#f0f0f0;
+    margin			:0 auto;    
+	text-align		:left;	
+	min-height		:100vh;
 }
 
 .page_00{
@@ -277,6 +376,73 @@ body {
 .first_play_level:hover{
 	background			:#fff0f8;
 }
+
+.labo_item:hover{
+	background			:#d0a040;
+}
+
+.labo_item{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:350px;
+	border				:2px solid #d0a090;
+	width				:350px;	
+	height				:30px;
+	font-size			:0;
+	text-decoration		:none;
+	background			:#b08020;
+	color				:#fafafa;
+}
+
+
+.labo_icon{
+	font-family			:at_icon;
+	display				:inline-block;
+	height				:30px;
+	line-height			:30px;
+	width				:50px;	
+	text-align			:center;
+	font-size			:25px;
+}
+
+.labo_comm{
+	display				:inline-block;
+	height				:30px;
+	line-height			:30px;
+	text-align			:left;
+	font-size			:25px;
+	width				:140px;
+}
+
+.labo_box{
+	display				:none;
+	text-align			:left;
+	border				:2px solid #d0a090;
+	width				:350px;
+}
+
+.labo_box_line{
+	display				:inline-block;
+	text-align			:left;
+	width				:336px;
+	height				:18px;
+	line-height			:18px;
+	font-size			:14px;
+	color				:#906000;
+	border-top			:solid 1px #906000;
+	border-bottom		:dashed 1px #906000;
+	padding				:5px;
+}
+	
+.labo_box_detail{
+	padding				:5px;
+	display				:none;
+	text-align			:left;
+	width				:336px;
+	font-size			:14px;
+	color				:#906000;
+}
+
 
 .first_play_ttl{
 	display				:inline-block;
@@ -336,6 +502,8 @@ body {
 	color				:#906000;
 	width				:140px;
 }
+
+
 
 .eno{
 	position			:absolute;
@@ -841,13 +1009,12 @@ body {
 	display		:none;
 	position	:absolute;
 	width		:116px;
-	height		:345px;
 	margin		:auto;
 	background	:#cccccc;
 	color		:#fafafa;
 	font-size	:24px;
 	z-index		:210;
-	padding-top:2px;
+	padding		:2px;
 }
 
 .player_f{
@@ -1994,13 +2161,6 @@ body {
 
 }
 
-.main{
-	position:fixed;
-	top		:0;
-	right	:0;
-    width	:100vw;
-	height	:100vh;
-}
 
 .pop_a{
 	width		:50vw;
@@ -2233,8 +2393,6 @@ body {
 	font-size	:5vw;
 }
 
-
-
 .player_d{
 	position	:absolute;
 	bottom		:1vw;
@@ -2248,7 +2406,6 @@ body {
 .player_e{
 	top			:16vw;
 	width		:23vw;
-	height		:71vw;
 	font-size	:4vw;
 }
 
@@ -2873,5 +3030,111 @@ body {
 	padding			:0 1vw;
 }
 
+.rank_table{
+	margin: 1vw;
+}
+
+.analytics{
+	width		:100%;
+	font-size	:4vw;
+	height		:6vw;
+	line-height	:6vw;
+	margin:0 auto 2vw auto;
+}
+.rank_ttl{
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:3.5vw;
+}
+
+.rank_d1,.rank_h1{
+	padding		:1vw;
+	width		:10vw;
+	height		:5vw;
+	max-height	:5vw;
+	line-height	:5vw;
+	font-size	:3.5vw;
+}
+
+.rank_d2,.rank_h2{
+	padding		:1vw;
+	width		:15vw;
+	height		:5vw;
+	max-height	:5vw;
+	line-height	:5vw;
+	font-size	:3.5vw;
+}
+
+
+.rank_u1,.rank_c1{
+	padding		:1vw;
+	width		:8vw;
+	height		:6vw;
+	max-height	:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
+}
+
+.rank_u2,.rank_c2{
+	position	:relative;
+	width		:8vw;
+	height		:8vw;
+	max-height	:8vw;
+	line-height	:8vw;
+}
+
+.rank_u2i{
+	position	:absolute;
+	top			:0;
+	left		:0;
+	right		:0;
+	bottom		:0;
+	margin		:auto;
+	width		:8vw;
+	height		:8vw;
+}
+
+
+.rank_u3,.rank_c3{
+	padding		:1vw;
+	width		:15vw;
+	height		:6vw;
+	max-height	:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
+}
+
+.rank_u4,.rank_c4{
+	padding		:1vw;
+	width		:10vw;
+	height		:6vw;
+	max-height	:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
+}
+
+.rank_c1,.rank_c2,.rank_c3,.rank_c4{
+	height		:5vw;
+	max-height	:5vw;
+	line-height	:5vw;
+}
+
+.rank_t{
+	padding		:0.5vw;
+	width		:11vw;
+	height		:6vw;
+	max-height	:6vw;
+	line-height	:6vw;
+	font-size	:3.2vw;
+}
+
+.rank_p{
+	padding		:0.5vw;
+	width		:11vw;
+	height		:6vw;
+	max-height	:6vw;
+	line-height	:6vw;
+	font-size	:3.2vw;
+}
 
 }

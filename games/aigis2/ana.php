@@ -1,7 +1,7 @@
 <?php
 include_once("./library/session.php");
 $st_month="2020-07-01 00:00:00";
-
+$st_month=date("Y-m--01 00:00:00",time()-21600);
 $tag[0]="★☆☆";
 $tag[1]="★★☆";
 $tag[2]="★★★";
@@ -39,8 +39,15 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$rank[$row0["level"]][6]++;		
 		}
 		$rank_all[$row0["level"]]++;		
+
 		if($row0["unit_p"]>0){
 			$rank_unit[$row0["unit_p"]]++;		
+	
+			$rank_charm[1]+=$unit[$row0["unit_p"]]["status_1"];
+			$rank_charm[2]+=$unit[$row0["unit_p"]]["status_2"];
+			$rank_charm[3]+=$unit[$row0["unit_p"]]["status_3"];
+			$rank_charm[4]+=$unit[$row0["unit_p"]]["status_4"];
+			$rank_charm[5]+=$unit[$row0["unit_p"]]["status_5"];
 		}
 	}
 }
@@ -51,12 +58,14 @@ $rank_all_bar[2]=floor(($rank_all[2]/($rank_all[0]+$rank_all[1]+$rank_all[2]))*1
 
 
 for($s=0;$s<3;$s++){
-for($t=1;$t<7;$t++){
-$rank_bar[$s][$t]=floor(($rank[$s][$t]/$rank_all[$s])*100);
-}
+	for($t=1;$t<7;$t++){
+		$rank_bar[$s][$t]=floor(($rank[$s][$t]/$rank_all[$s])*100);
+	}
 }
 
 arsort($rank_unit);
+arsort($rank_charm);
+
 
 ?>
 
@@ -76,61 +85,105 @@ arsort($rank_unit);
 </script>
 </head>
 <body style="text-align:center;background:#888888">
-<div class="main">
+<div class="main_ana">
+<div class="analytics">analytics(<?=date("Y年m月",time()-21600)?>)</div>
 
-<table class="rank_m">
-<?for($s=0;$s<3;$s++){ ?>
+<table class="rank_table">
 <tr>
-<td class="rank_t"><span id="d<?=$s?>" class="rank_detail">▼</span>　<?=$tag[$s]?></td>
-<td class="rank_p"><?=$rank_all[$s]?></td>
-<td class="rank_g"><span class="rank_bar" style="width:<?=$rank_all_bar[$s]?>%"></td>
+<td class="rank_ttl" colspan="8">ランク別順位</td>
 </tr>
-<?for($n=1;$n<6;$n++){ ?>
-<tr class="tr<?=$s?>">
-<td class="rank_t"><?=$n?>位</td>
-<td class="rank_p"><?=$rank[$s][$n]?></td>
-<td class="rank_g"><span class="rank_bar_s" style="width:<?=$rank_bar[$s][$n]?>%"></td>
+<tr>
+	<td class="rank_ttl">Lev.</td>
+	<td class="rank_ttl">合計</td>
+	<td class="rank_ttl">1位</td> 
+	<td class="rank_ttl">2位</td>
+	<td class="rank_ttl">3位</td>
+	<td class="rank_ttl">4位</td>
+	<td class="rank_ttl">5位</td>
+	<td class="rank_ttl">リタ</td>
 </tr>
-<? } ?>
-<tr class="tr<?=$s?>">
-<td class="rank_t">リタ</td>
-<td class="rank_p"><?=$rank[$s][6]?></td>
-<td class="rank_g"><span class="rank_bar_s" style="width:<?=$rank_bar[$s][6]?>%"></td>
-</tr>
+<?for($s=0;$s<3;$s++){ ?>
+	<tr>
+		<td class="rank_t"><?=$tag[$s]?></td>
+		<td class="rank_p"><?=$rank_all[$s]?></td>
+	<?for($n=1;$n<7;$n++){ ?>
+		<td class="rank_p"><?=$rank[$s][$n]?></td>
+	<? } ?>
+	</tr>
 <? } ?>
 </table>
-
-
-<table class="rank_m">
+<table class="rank_table">
+<tr>
+<td class="rank_ttl" colspan="4">ユニット別使用数</td>
+</tr>
+<tr>
+<td class="rank_ttl">順位</td>
+<td class="rank_ttl" colspan="2">ユニット</td>
+<td class="rank_ttl">使用数</td>
+</tr>
 <?foreach($rank_unit as $a3 => $a4){ ?>
 <?$cnt++;?>
 <tr>
-<td class="rank_t"><?=$cnt?></td>
-<td class="rank_t"><img src="./img/unit/unit_<?=$a3?>.png" style="width:30px;"></td>
-<td class="rank_p"><?=$a4?></td>
-<td class="rank_g"><span class="rank_bar" style="width:<?=$rank_all_bar[$s]?>%"></td>
+<td class="rank_u1"><?=$cnt?></td>
+<td class="rank_u2"><img src="./img/unit/unit_<?=$a3?>.png" class="rank_u2i"></td>
+<td class="rank_u3"><?=$unit[$a3]["name"]?></td>
+<td class="rank_u4"><?=$a4?></td>
 </tr>
 <?}?>
 </table>
 
-<table class="rank_m">
+<table class="rank_table">
+<tr>
+<td class="rank_ttl" colspan="3">魅力別使用数</td>
+</tr>
+<tr>
+<td class="rank_ttl">順位</td>
+<td class="rank_ttl">魅力</td>
+<td class="rank_ttl">使用数</td>
+</tr>
+<?foreach($rank_charm as $a3 => $a4){ ?>
+<?$cnt2++;?>
+<tr>
+<td class="rank_c1"><?=$cnt2?></td>
+<td class="rank_c3"><?=$status[$a3]["name"]?></td>
+<td class="rank_c4"><?=$a4?></td>
+</tr>
+<?}?>
+</table>
+
+
+<table class="rank_table">
+<tr>
+<td class="rank_ttl" colspan="3">日別使用数</td>
+</tr>
+<tr>
+<td class="rank_ttl">日</td>
+<td class="rank_ttl">件数</td>
+</tr>
 <?foreach($dat["p_day"] as $a1 => $a2){ ?>
 <tr>
-<td class="rank_t"><?=$a1?></td>
-<td class="rank_p"><?=$a2?></td>
+<td class="rank_d1"><?=$a1?></td>
+<td class="rank_d2"><?=$a2?></td>
 </tr>
 <?}?>
 </table>
 
-<table class="rank_m">
+<table class="rank_table">
+<tr>
+<td class="rank_ttl" colspan="3">時間帯別使用数</td>
+</tr>
+<tr>
+<td class="rank_ttl">時間</td>
+<td class="rank_ttl">件数</td>
+</tr>
 <?foreach($dat["p_hour"] as $a1 => $a2){ ?>
 <tr>
-<td class="rank_t"><?=$a1?></td>
-<td class="rank_p"><?=$a2?></td>
+<td class="rank_h1"><?=$a1?></td>
+<td class="rank_h2"><?=$a2?></td>
 </tr>
 <?}?>
 </table>
-
+<br>
 </div>
 </body>
 </html>

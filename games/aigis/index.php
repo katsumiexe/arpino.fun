@@ -164,6 +164,24 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<div class="first_play_ttl">
 				<span>アイギスカードゲーム(仮)</span>
 			</div>
+
+			<div id="labo1" class="labo_item">
+				<span class="labo_icon"></span>
+				<span class="labo_comm">変更</span>
+				<span class="labo_comm">-Log-</span>
+			</div>
+			<div class="labo_box">
+			<span id="l20200704" class="labo_box_line">▼2020/07/04　メニューの追加</span>
+			<span id="b20200704" class="labo_box_detail">
+			・解析を追加しました。<br>
+			</span>	
+			<span id="l20200703" class="labo_box_line">▼2020/07/03　表示の修正</span>
+			<span id="b20200703" class="labo_box_detail">
+			・他プレイヤーのアイテム表示がカードの下になってしまう個所を修正しました。<br>
+			・最終結果の表示に、挑戦した難易度も表示しました。<br>
+			</span>	
+			</div>
+
 			<div id="lv0" class="first_play_level">
 				<span class="first_icon"></span>
 				<span class="first_comm">★☆☆</span>
@@ -189,11 +207,35 @@ if($res0 = mysqli_query($mysqli,$sql)){
 				<span class="first_comm">遊び方</span>
 				<span class="first_comm">-Howto-</span>
 			</div>
-			<a href="./outpost.php" id="lv6" class="first_play_level">
+
+<!--
+			<a href="./outpost.php" id="labo2" class="labo_item">
+				<span class="labo_icon"></span>
+				<span class="labo_comm">ご意見</span>
+				<span class="labo_comm">-BBS-</span>
+			</a>
+-->
+			<a href="./ana.php" id="labo3" class="first_play_level">
+				<span class="first_icon"></span>
+				<span class="first_comm">解析</span>
+				<span class="first_comm">-Chart-</span>
+			</a>
+
+			<a href="./outpost.php" id="labo4" class="first_play_level">
 				<span class="first_icon"></span>
 				<span class="first_comm">問合せ</span>
 				<span class="first_comm">-AskMe-</span>
 			</a>
+<!--
+			<div id="labo5" class="labo_item">
+				<span class="labo_icon"></span>
+				<span class="labo_comm">制作手記</span>
+				<span class="labo_comm">-Katsumi-</span>
+			</div>
+			<div id="labo1_box" class="labo_box">
+				<a href="./readme.php" class="labo_box_line">▼2020/07/04　お礼と今後の展開と</a><br>
+			</div>
+-->
 			<div class="first_play_btm">
 				<span class="sns">
 				<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
@@ -271,66 +313,30 @@ if($res0 = mysqli_query($mysqli,$sql)){
 
 		<div id="set_a" class="player_c"></div>
 		<div id="down_a1" class="player_e">
-			<div class="player_f fa f11"></div>
-			<div class="player_f fa f10"></div>
-			<div class="player_f fa f9"></div>
-			<div class="player_f fa f8"></div>
-			<div class="player_f fa f7"></div>
-			<div class="player_f fa f6"></div>
-			<div class="player_f fa f5"></div>
-			<div class="player_f fa f4"></div>
-			<div class="player_f fa f3"></div>
-			<div class="player_f fa f2"></div>
-			<div class="player_f fa f1"></div>
-			<div class="player_f fa f0"></div>
+			<?for($s=11;$s>-1;$s--){?>
+			<div class="player_f fa f<?=$s?>"><?=$item[$s]?></div>
+			<?}?>
 		</div>
 
 		<div id="set_b" class="player_c"></div>
 		<div id="down_b1" class="player_e">
-			<div class="player_f fb f11"></div>
-			<div class="player_f fb f10"></div>
-			<div class="player_f fb f9"></div>
-			<div class="player_f fb f8"></div>
-			<div class="player_f fb f7"></div>
-			<div class="player_f fb f6"></div>
-			<div class="player_f fb f5"></div>
-			<div class="player_f fb f4"></div>
-			<div class="player_f fb f3"></div>
-			<div class="player_f fb f2"></div>
-			<div class="player_f fb f1"></div>
-			<div class="player_f fb f0"></div>
+			<?for($s=11;$s>-1;$s--){?>
+			<div class="player_f fb f<?=$s?>"><?=$item[$s]?></div>
+			<?}?>
 		</div>
 
 		<div id="set_c" class="player_c"></div>
 		<div id="down_c1" class="player_e">
-			<div class="player_f fc f11"></div>
-			<div class="player_f fc f10"></div>
-			<div class="player_f fc f9"></div>
-			<div class="player_f fc f8"></div>
-			<div class="player_f fc f7"></div>
-			<div class="player_f fc f6"></div>
-			<div class="player_f fc f5"></div>
-			<div class="player_f fc f4"></div>
-			<div class="player_f fc f3"></div>
-			<div class="player_f fc f2"></div>
-			<div class="player_f fc f1"></div>
-			<div class="player_f fc f0"></div>
+			<?for($s=11;$s>-1;$s--){?>
+			<div class="player_f fc f<?=$s?>"><?=$item[$s]?></div>
+			<?}?>
 		</div>
 
 		<div id="set_d" class="player_c"></div>
 		<div id="down_d1" class="player_e">
-			<div class="player_f fd f11"></div>
-			<div class="player_f fd f10"></div>
-			<div class="player_f fd f9"></div>
-			<div class="player_f fd f8"></div>
-			<div class="player_f fd f7"></div>
-			<div class="player_f fd f6"></div>
-			<div class="player_f fd f5"></div>
-			<div class="player_f fd f4"></div>
-			<div class="player_f fd f3"></div>
-			<div class="player_f fd f2"></div>
-			<div class="player_f fd f1"></div>
-			<div class="player_f fd f0"></div>
+			<?for($s=11;$s>-1;$s--){?>
+			<div class="player_f fd f<?=$s?>"><?=$item[$s]?></div>
+			<?}?>
 		</div>
 
 		<?for($n=0;$n<12;$n++){?>

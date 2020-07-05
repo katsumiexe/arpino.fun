@@ -8,6 +8,8 @@ if($_POST["log_out"] == 1){
 }
 $jst=time()+32400;
 
+$now_ymd=date("Ymd",$jst);
+
 $week[0]="日";
 $week[1]="月";
 $week[2]="火";
@@ -86,6 +88,7 @@ for($n=0;$n<8;$n++){
 	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
 	$calendar[1]=$c_month;
 	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
+	$calendar[3]=date("Y-m-01",strtotime($calendar[2])+3456000);
 
 	$month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);	
 	$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
@@ -103,8 +106,8 @@ for($n=0;$n<8;$n++){
 	$week_st=date("Ymd",$base_day);
 	$week_ed=date("Ymd",$base_day+604800);
 
-	$month_st=date("Ymd",strtotime($calendar[1]));
-	$month_ed=date("Ymd",strtotime($calendar[2]));
+	$month_st=date("Ymd",strtotime($calendar[0]));
+	$month_ed=date("Ymd",strtotime($calendar[3]));
 
 	/*--■メールチェック--*/
 	/*
@@ -137,15 +140,27 @@ for($n=0;$n<8;$n++){
 		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
 	}
 
+	$days_sche="休み";
 	$sql	 ="SELECT * FROM wp01_0schedule";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND sche_date>='{$month_st}'";
 	$sql	.=" AND sche_date<'{$month_ed}'";
+	$sq	   	.=" ORDER BY id ASC";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp2){
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+
+		if($tmp2["sche_date"] ==$now_ymd){
+			if($tmp2["stime"] && $tmp2["etime"]){
+				$days_sche="{$tmp2["stime"]}-{$tmp2["etime"]}";
+
+			}else{
+				$days_sche="休み";
+
+			}
+		}
 	}
 
 	$b_month=substr($c_month,4,4);
@@ -162,8 +177,20 @@ for($n=0;$n<8;$n++){
 		$birth_d	=substr($birth,6,2);
 		$birth_dat[$birth_m.$birth_d]="n1";
 
-		$birth_app[$birth_m].="<input class=\"cal_b_{$birth_m}{$birth_d}\" type=\"hidden\" value=\"{$tmp["nickname"]}\">";
+		$birth_hidden[$birth_m][$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+
+		if(substr($birth,4,4) == substr($now_ymd,4,4)){
+		$days_birth.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+		}
+
 	}
+
+	foreach($birth_hidden as $a1 => $a2){
+		foreach($birth_hidden[$a1] as $a3 => $a4){
+			$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+		}
+	}
+
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
@@ -208,7 +235,6 @@ for($n=0;$n<8;$n++){
 			$app_n1=$birth_dat[substr($tmp_ymd,4,4)];
 
 			if($stime[$tmp_ymd] && $etime[$tmp_ymd]){
-
 				$app_n2=" n2";
 				$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$stime[$tmp_ymd]}-{$etime[$tmp_ymd]}\">";
 			}else{
@@ -244,7 +270,7 @@ for($n=0;$n<8;$n++){
 				$sql_log.=" `name`='{$cus_name}',";
 				$sql_log.=" `nickname`='{$cus_nick}',";
 				$sql_log.=" `fav`='{$cus_fav}',";
-				$sql_log.=" `group`='{$cus_group}'";
+				$sql_log.=" `c_group`='{$cus_group}'";
 				$sql_log.=" WHERE id='{$cus_id}'";
 				$wpdb->query($sql_log);
 
@@ -265,7 +291,7 @@ for($n=0;$n<8;$n++){
 		}elseif($cus_set == 2){		
 			$to_day=date("Y-m-d");
 			$birth=$cus_b_y."-".$cus_b_m."-".$cus_b_d;	
-			$sql_log ="INSERT INTO wp01_0customer(`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`fav`,`group`) VALUES ";
+			$sql_log ="INSERT INTO wp01_0customer(`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`fav`,`c_group`) VALUES ";
 			$sql_log.=" ('{$_SESSION["id"]}','{$cus_nick}','{$cus_name}','{$to_day}','{$birth}','{$cus_fav}','{$cus_group}')";
 			$tmp_auto=$wpdb->insert_id;
 
@@ -279,7 +305,6 @@ for($n=0;$n<8;$n++){
 	}
 
 	$n=0;
-	$now=date("Ymd");
 	$sql	 ="SELECT * FROM wp01_0customer";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND `del`='0'";
@@ -297,7 +322,7 @@ for($n=0;$n<8;$n++){
 			$customer[$n]["yy"]=substr($cus2["birth_day"],0,4);
 			$customer[$n]["mm"]=substr($cus2["birth_day"],5,2);
 			$customer[$n]["dd"]=substr($cus2["birth_day"],8,2);
-			$customer[$n]["ag"]= floor(($now-str_replace("-", "", $cus2["birth_day"]))/10000);
+			$customer[$n]["ag"]= floor(($now_ymd-str_replace("-", "", $cus2["birth_day"]))/10000);
 		}
 		$n++;
 	}
@@ -482,8 +507,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
-			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day">19:00-22:00</span></span>
-			<span class="cal_days_birth"><span class="days_icon"></span><span class="days_birth"></span></span>
+			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
+			<span class="cal_days_birth"><span class="days_birth"><?=$days_birth?></span></span>
 		</div>
 
 	<?}elseif($cast_page==2){?>
@@ -509,7 +534,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
 				<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
 				<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
-				<input type="hidden" class="customer_hidden_group" value="<?=$customer[$n]["group"]?>">
+				<input type="hidden" class="customer_hidden_group" value="<?=$customer[$n]["c_group"]?>">
 
 				<input type="hidden" class="customer_hidden_mail" value="<?=$customer[$n]["mail"]?>">
 				<input type="hidden" class="customer_hidden_tel" value="<?=$customer[$n]["tel"]?>">
@@ -612,6 +637,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</div>
 		</div>
 	</form>
+
+
 
 	<?}elseif($cast_page==3){?>
 		<?for($s=0;$s<count($mail_data);$s++){?>
@@ -784,9 +811,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<input id="del_id" type="hidden">
 </div>
 </div>
-
-
-
 <div class="customer_memo_back">
 	<div class="customer_memo_back_in">
 	<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
@@ -865,6 +889,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 <input id="img_url" type="hidden" name="img_url" value="">
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
+<input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
+<input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
+
+
+
 <form id="logout" action="<?php the_permalink();?>" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>

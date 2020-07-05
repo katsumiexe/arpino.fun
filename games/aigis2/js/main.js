@@ -92,21 +92,6 @@ $(function(){
 	    $('#tbl_lv'+N1).fadeIn(1000);
 	},10000);
 
-	$('.rank_detail').on('click',function(){
-		Tmp=$(this).attr('id').replace('d','tr');
-		$('.tr0,.tr1,.tr2').slideUp(500);
-
-		if($(this).css('background')=="#d00000"){
-			$(this).css('background','#909090');
-
-		}else{
-			$(this).css('background',"#d00000");
-			$('.'+Tmp).slideDown(500);
-
-		}
-
-    });
-
     $('#lv5').on('click',function(){
 	    $('.howto').fadeIn(500);
     });
@@ -122,6 +107,18 @@ $(function(){
     $('.score_back').on('click',function(){
 	    $('.score').fadeOut(500);
     });
+
+    $('#labo1,#labo5,.labo_box').on('click',function(){
+		if($('+.labo_box',this).css('display')=='none'){
+		    $('.labo_box').slideUp(200);
+		    $('+.labo_box',this).slideDown(200);
+
+		}else{
+		    $('.labo_box').slideUp(200);
+		}
+	});
+
+
 
     $('.score_lv').on('click',function(){
 		Tag=$(this).attr('id').replace('s_','');
@@ -207,7 +204,7 @@ $(function(){
 			PersonaJ= JSON.stringify(Persona);
 */
 
-/*
+
 			console.log(Persona);
 			console.log('a◆:'+Persona.a);
 			console.log('b◆:'+Persona.b);
@@ -221,7 +218,7 @@ $(function(){
 			console.log(Up['c']);
 			console.log(Up['d']);
 			console.log(Up['e']);
-*/
+
 		});
 	});
 

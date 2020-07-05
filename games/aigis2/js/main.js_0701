@@ -92,6 +92,7 @@ $(function(){
 	    $('#tbl_lv'+N1).fadeIn(1000);
 	},10000);
 
+
     $('#lv5').on('click',function(){
 	    $('.howto').fadeIn(500);
     });
@@ -108,28 +109,6 @@ $(function(){
 	    $('.score').fadeOut(500);
     });
 
-    $('#labo1,#labo5').on('click',function(){
-
-console.log($('+.labo_box',this).css('display'));
-
-		if($('+.labo_box',this).css('display')=='none'){
-		    $('.labo_box').slideUp(200);
-		    $('+.labo_box',this).slideDown(200);
-
-		}else{
-		    $('.labo_box').slideUp(200);
-		}
-	});
-
-    $('.labo_box_line').on('click',function(){
-		Tag=$(this).attr('id').replace('l','b');
-	    $('.labo_box_detail').hide();
-
-		if($('#'+Tag).css('display')=='none'){
-		    $('#'+Tag).slideDown(200);
-		}
-	});
-
     $('.score_lv').on('click',function(){
 		Tag=$(this).attr('id').replace('s_','');
 	    $('.score_lv').removeClass('score_lv_on');
@@ -143,6 +122,7 @@ console.log($('+.labo_box',this).css('display'));
 	    $('.howto_in').hide();
 	    $('#'+Tag).fadeIn(500);
     });
+
 
     $('#lv0, #lv1, #lv2').on('click',function(){
 	    $('.page_00').fadeOut(500);
@@ -214,7 +194,7 @@ console.log($('+.labo_box',this).css('display'));
 			PersonaJ= JSON.stringify(Persona);
 */
 
-
+/*
 			console.log(Persona);
 			console.log('a◆:'+Persona.a);
 			console.log('b◆:'+Persona.b);
@@ -228,7 +208,7 @@ console.log($('+.labo_box',this).css('display'));
 			console.log(Up['c']);
 			console.log(Up['d']);
 			console.log(Up['e']);
-
+*/
 		});
 	});
 
@@ -275,7 +255,6 @@ console.log($('+.labo_box',this).css('display'));
 
     $('.td_b2').on('click','.p_pts_on',function(){
 		$('.guard').show();
-		$('.player_e').slideUp(100);		
 
         $(this).removeClass('p_pts_on');
         No=$(this).attr('id').replace('i','');
