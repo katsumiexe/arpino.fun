@@ -101,7 +101,7 @@ $pg_max=ceil($dat["max"]/30)+1;
 			</td>
 		</tr><tr>
 			<td class="td_top3" colspan="3">
-				<a href="./notice.php">【notice】ご利用について</a><br>
+				<a href="./notice.php">【notice】ご利用に関するお願い</a><br>
 			</td>
 		</tr>
 	</table>

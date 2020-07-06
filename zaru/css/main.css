@@ -142,7 +142,7 @@ td.s{
 	text-align:center;
 	font-size:16px;
 	font-weight:600;
-	ppadding:2px;
+	padding:2px;
 	background:#ffffff;
 }
 
@@ -151,7 +151,7 @@ td.s1{
 	text-align:center;
 	font-size:16px;
 	font-weight:600;
-	ppadding:2px;
+	padding:2px;
 	background:#f0e0ff;
 }
 
@@ -299,13 +299,15 @@ color:#0000ff;
 }
 
 h1{
-	width:100%;
+	width:890px;
+	max-width:890px;
 	text-align:left;
 	font-weight:700;
 	padding:5px;
 	background:linear-gradient(#ffbbaa,#f17766);
 	color:#fafafa;
 	font-size:15px;
+	margin:0 auto;
 }
 
 h2{
@@ -317,7 +319,7 @@ h2{
 	border-bottom:1px solid #f17766;
 	padding:5px;
 	background:#fff0f5;
-	color:#f17766
+	color:#f17766;
 	margin:0;
 }
 
@@ -327,18 +329,12 @@ h2{
 	background:#fafafa;
 	padding:5px;
 	width:90%;
-	margin:0 auto;
+	margin:5px auto;
 	border-radius:5px;
-	color:606060;
+	color:#303030;
+	text-align:left;
 }
 
-.box_2{
-	background:#fafafa;
-	padding:5px;
-	width:90%;
-	margin:0 auto 10px auto;
-	color:#606060;
-}
 
 .table_n{
 	margin:0 auto;
@@ -353,9 +349,11 @@ h2{
 }
 
 .pack{
-	width:900px;
+	max-width:900px;
 	margin:0 auto;	
 	background:#fff0f0;
+	display:inline-block;
+	text-align:center;
 }
 
 
@@ -364,6 +362,10 @@ h2{
 	display:none;
 }
 
+h1{
+	width:95vw;
+	padding:0.5vw;
+}
 .pack{
 	width:96vw;
 
