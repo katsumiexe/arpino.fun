@@ -9,7 +9,7 @@
     <title>ZARU-BOX notice</title>
 
 </head>
-<body>
+<body style="text-align:center;">
 <h1>ご利用に関するお願い</h1>
 <div class="pack">  
 <div class="box_1">
