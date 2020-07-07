@@ -163,10 +163,10 @@ for($n=0;$n<8;$n++){
 		}
 	}
 
+
 	$b_month=substr($c_month,4,4);
 	$sql	 ="SELECT * FROM wp01_0customer";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
-//	$sql	.=" AND birth_day LIKE '%{$b_month}%'";
 	$sql	.=" AND del='0'";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
