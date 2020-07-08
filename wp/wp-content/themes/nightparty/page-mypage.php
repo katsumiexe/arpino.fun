@@ -917,8 +917,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
 
-
-
 <form id="logout" action="<?php the_permalink();?>" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>
