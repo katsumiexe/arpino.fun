@@ -158,11 +158,27 @@ for($n=0;$n<8;$n++){
 
 			}else{
 				$days_sche="休み";
-
 			}
 		}
 	}
 
+	$sql	 ="SELECT * FROM wp01_0schedule_memo";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$sql	.=" AND date_8>='{$month_st}'";
+	$sql	.=" AND date_8<'{$month_ed}'";
+	$sql	.=" AND `log` IS NOT NULL";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat as $tmp){
+		if(trim($tmp["log"])){
+			$memo_dat[$tmp["date_8"]]="n3";
+			$cal_app[substr($tmp["date_8"],0,6)].="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
+
+			if($now_ymd == $tmp["date_8"]){
+				$days_memo.=$tmp["log"];
+			}
+		}
+	}
 
 	$b_month=substr($c_month,4,4);
 	$sql	 ="SELECT * FROM wp01_0customer";
@@ -226,7 +242,7 @@ for($n=0;$n<8;$n++){
 			}
 
 			if($now_month!=$tmp_month){
-				$day_tag=" outof";
+					$day_tag=" outof";
 
 			}else{
 				$day_tag=" nowmonth";
@@ -241,11 +257,14 @@ for($n=0;$n<8;$n++){
 				$app_n2="";
 			}
 
+			$app_n3=$memo_dat[$tmp_ymd];
+
+
 			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
-			$cal[$n].="<span class=\"cal_i3\"></span>";
+			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
 			$cal[$n].="</td>";
 		}
 	}
@@ -288,6 +307,7 @@ for($n=0;$n<8;$n++){
 			}elseif($cus_page == 2){		
 
 			}	
+
 		}elseif($cus_set == 2){		
 			$to_day=date("Y-m-d");
 			$birth=$cus_b_y."-".$cus_b_m."-".$cus_b_d;	
@@ -326,20 +346,6 @@ for($n=0;$n<8;$n++){
 		}
 		$n++;
 	}
-	
-	$sql	 ="SELECT * FROM wp01_0schedule_memo";
-	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
-	$sql	.=" AND date_8>='{$sc_st}'";
-	$sql	.=" AND date_8<'{$sc_ed}'";
-	$sql	.=" AND `log` IS NOT NULL";
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-
-	foreach($dat as $tmp){
-		$memo_dat[$tmp["date_8"]]="n3";
-		$cal_app.="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
-	}
-
-
 
 	$sql	 ="SELECT * FROM wp01_0notice";
 	$sql	.=" LEFT JOIN  wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
@@ -514,9 +520,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 						<? } ?>
 					</tr>
 						<?=$cal[$c]?>
+						<span id="para<?=$month_ym[$c]?>">
 						<?=$cal_app[$month_ym[$c]]?>
 						<?=$birth_app[substr($month_ym[$c],-2)]?>
 						<?=$memo_app[$month_ym[$c]]?>
+						</span>
 				</table>
 			<?}?>
 		</div>
@@ -524,8 +532,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
 			<span class="cal_days_birth"><span class="days_birth"><?=$days_birth?></span></span>
-			<span class="cal_days_memo"><span class="days_memo"><?=$days_memo?></span></span>
+			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
+			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
 		</div>
+
+
 
 	<?}elseif($cast_page==2){?>
 		<?for($n=0;$n<count($customer);$n++){?>
@@ -621,7 +632,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 					<td class="customer_sns_2"><span id="a_customer_blog" class="sns_arrow_a"></span></td>
 					<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
 				</tr>
-			</table>			
+			</table>
 
 			<div class="customer_sns_box">
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
@@ -787,6 +798,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 <?if($base_now>$base_day+86400*$n){?>
 							<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
 							<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
+							<input id="sel_in<?=$n?>" type="hidden" value="<?=$stime[date("Ymd",$base_day+86400*$n)]?>">
+							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>">
 <?}else{?>
 						<select id="sel_in<?=$n?>" class="sch_time_in">
 							<option class="sel_txt" value=""></option>

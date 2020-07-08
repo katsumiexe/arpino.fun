@@ -849,7 +849,6 @@ $(function(){
 		});
 	});
 
-
 	$('.mypage_cal').on('click','.cal_next',function () {
 		$.post({
 			url:Dir + "/post/calendar_set.php",
@@ -1014,14 +1013,42 @@ $(function(){
 		},
 	});
 
+
+	$('.cal_days_memo').on('change',function (){
+		TmpLog=$('.cal_days_memo').val();
+		TmpCal='cal_m_'+$('#set_date').val();
+		$('.'+TmpCal).removeClass(TmpCal);
+
+		$.post({
+			url:Dir + "/post/calendar_memo_set.php",
+			data:{
+			'set_date'	:$('#set_date').val(),
+			'cast_id'	:CastId,
+			'log'		:TmpLog,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			Tmp=$('#set_date').val().substr(0,6)
+			$('#para'+Tmp).append(data);
+			if(TmpLog){
+				$('#c'+$('#set_date').val()).children('.cal_i3').addClass('n3');
+			}else{
+				$('#c'+$('#set_date').val()).children('.cal_i3').removeClass('n3');
+			}
+		});
+	});
+
 	$('.mypage_cal').on('click','.cal_td',function (){
 		$('.cal_td').removeClass('cc8');
 		$(this).addClass('cc8');
 
-		ToMon=$(this).attr('id').substr(5,2);
-		ToDay=$(this).attr('id').substr(7,2);
-		ToMD=$(this).attr('id').substr(5,4);
-		ToWeek=$(this).attr('week');
+		DaySet =$(this).attr('id').replace("c","");
+		$('#set_date').val(DaySet);
+	
+		ToMon	=$(this).attr('id').substr(5,2);
+		ToDay	=$(this).attr('id').substr(7,2);
+		ToMD	=$(this).attr('id').substr(5,4);
+		ToWeek	=$(this).attr('week');
 		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
 
 		var Tmp=$(this).attr('id').replace('c','cal_s_');
@@ -1042,13 +1069,14 @@ $(function(){
 
 		var Tmp=$(this).attr('id').replace('c','cal_m_');
 		if($('.'+Tmp).val()){
-			$('.days_memo').html($('.'+Tmp).val());
+			$('.cal_days_memo').val($('.'+Tmp).val());
 		}else{
-			$('.days_memo').html('');
+			$('.cal_days_memo').val('');
 		}
 		console.log(Tmp);
-
 	});
+
+
 
 	$('.mypage_slide').draggable({
 		axis: 'x',
