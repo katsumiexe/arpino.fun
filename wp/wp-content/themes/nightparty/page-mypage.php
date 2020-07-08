@@ -379,6 +379,7 @@ for($n=0;$n<8;$n++){
 	foreach($dat2 as $cus2){
 		$cus_group_sel[$cus2["sort"]]=$cus2["tag"];
 	}
+	print($sql);
 }
 
 //var_dump($_POST);
@@ -534,9 +535,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
 		</div>
-
-
-
 	<?}elseif($cast_page==2){?>
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
@@ -754,12 +752,13 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 	<?}elseif($cast_page==5){?>
-			<div class="config_menu">
+		<div class="config_menu">
 			名前：
 			CAST_ID：
 			PASSWORD：
 			お知らせADDRESS
-			</div>
+		</div>
+
 	<?}else{?>
 		<div class="notice_ttl"><div class="notice_ttl_in">お知らせ</div></div>
 		<div class="notice_box">
