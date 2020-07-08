@@ -369,12 +369,11 @@ for($n=0;$n<8;$n++){
 		$c_list_style[$cus2["id"]]=$cus2["style"];
 	}
 
-
 	$sql	 ="SELECT * FROM wp01_0customer_group";
-	$sql	.=" WHERE del='0'";
+	$sql	.=" WHERE `del`='0'";
 	$sql	.=" AND group_id='1'";
 	$sql	.=" AND cast_id='{$_SESSION["id"]}'";
-	$sql	.=" ORDER BY sort ASC";
+	$sql	.=" ORDER BY `sort` ASC";
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
 
 	foreach($dat2 as $cus2){
@@ -664,8 +663,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</div>
 		</div>
 	</form>
-
-
 
 	<?}elseif($cast_page==3){?>
 		<?for($s=0;$s<count($mail_data);$s++){?>
