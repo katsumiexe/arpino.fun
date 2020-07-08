@@ -1025,7 +1025,6 @@ $(function(){
 		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
 
 		var Tmp=$(this).attr('id').replace('c','cal_s_');
-console.log(Tmp);
 		if($('.'+Tmp).val()){
 			$('.days_day').text($('.'+Tmp).val());
 		}else{
@@ -1042,7 +1041,12 @@ console.log(Tmp);
 		}
 
 		var Tmp=$(this).attr('id').replace('c','cal_m_');
-		$('.days_memo').html($('.'+Tmp).val());
+		if($('.'+Tmp).val()){
+			$('.days_memo').html($('.'+Tmp).val());
+		}else{
+			$('.days_memo').html('');
+		}
+		console.log(Tmp);
 
 	});
 

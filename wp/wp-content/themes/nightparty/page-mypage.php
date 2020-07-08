@@ -326,6 +326,20 @@ for($n=0;$n<8;$n++){
 		}
 		$n++;
 	}
+	
+	$sql	 ="SELECT * FROM wp01_0schedule_memo";
+	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$sql	.=" AND date_8>='{$sc_st}'";
+	$sql	.=" AND date_8<'{$sc_ed}'";
+	$sql	.=" AND `log` IS NOT NULL";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat as $tmp){
+		$memo_dat[$tmp["date_8"]]="n3";
+		$cal_app.="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
+	}
+
+
 
 	$sql	 ="SELECT * FROM wp01_0notice";
 	$sql	.=" LEFT JOIN  wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
@@ -502,6 +516,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 						<?=$cal[$c]?>
 						<?=$cal_app[$month_ym[$c]]?>
 						<?=$birth_app[substr($month_ym[$c],-2)]?>
+						<?=$memo_app[$month_ym[$c]]?>
 				</table>
 			<?}?>
 		</div>
@@ -509,6 +524,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
 			<span class="cal_days_birth"><span class="days_birth"><?=$days_birth?></span></span>
+			<span class="cal_days_memo"><span class="days_memo"><?=$days_memo?></span></span>
 		</div>
 
 	<?}elseif($cast_page==2){?>

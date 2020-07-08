@@ -46,16 +46,13 @@ if($pre == 1){
 }elseif($pre == 2){
 	$cal["date"]	=date("Y-m-01",strtotime($c_month)+3456000);
 	$c_month		=date("Y-m-01",strtotime($c_month)+6912000);
-
-}else{
-	$cal["date"]	=date("Y-m-01",strtotime($c_month));
-	$c_month		=date("Y-m-01",strtotime($c_month)+3456000);
 }
+
 	$sc_st=str_replace('-','',$c_month);
-	$sc_ed=str_replace('-','',$cal["date"]);
+	$sc_ed=date("Ym01",strtotime($c_month)+3456000);
 
+/*
 $b_month=substr($c_month,4,4);
-
 $sql	 ="SELECT * FROM wp01_0customer";
 $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND birth_day LIKE '%{$b_month}%'";
@@ -63,10 +60,31 @@ $sql	.=" AND del='0'";
 
 $dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp){
-		$birth=str_replace("-","",$tmp["birth_day"]);
+	$birth=str_replace("-","",$tmp["birth_day"]);
 	$birth=substr($c_month,0,4).substr($birth,4,4);
 	$birth_dat[$birth]="n1";
 	$cal_app.="<input class=\"cal_b_{$birth}\" type=\"hidden\" value=\"{$tmp["nickname"]}\">";
+}
+*/
+
+$b_month=substr($c_month,4,4);
+$sql	 ="SELECT * FROM wp01_0customer";
+$sql	.=" WHERE cast_id='{$cast_id}'";
+$sql	.=" AND birth_day LIKE '%{$b_month}%'";
+$sql	.=" AND del='0'";
+
+$dat = $wpdb->get_results($sql,ARRAY_A );
+foreach($dat as $tmp){
+	$birth=str_replace("-","",$tmp["birth_day"]);
+	$birth_y	=substr($birth,0,4);
+	$birth_m	=substr($birth,4,2);
+	$birth_d	=substr($birth,6,2);
+	$birth_dat[$birth_m.$birth_d]="n1";
+	$birth_hidden[$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+}
+
+foreach($birth_hidden as $a1 => $a2){
+	$birth_app.="<input class=\"cal_b_{$birth_m}{$a1}\" type=\"hidden\" value=\"{$a2}\">";
 }
 
 $sql	 ="SELECT * FROM wp01_0schedule";
@@ -74,6 +92,8 @@ $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND sche_date>='{$sc_st}'";
 $sql	.=" AND sche_date<'{$sc_ed}'";
 /*$sql	.=" AND (`stime` IS NOT NULL AND `etime` IS NOT NULL)";*/
+
+$cal["sql"]=$sql;
 $dat = $wpdb->get_results($sql,ARRAY_A );
 foreach($dat as $tmp){
 	if($tmp["stime"] && $tmp["etime"]){;
@@ -125,6 +145,7 @@ for($s=0;$s<7;$s++){
 
 for($m=0; $m<42;$m++){
 	$tmp_ymd	=date("Ymd",$st+($m*86400));
+	$tmp_md		=date("md",$st+($m*86400));
 	$tmp_month	=date("m",$st+($m*86400));
 	$tmp_day	=date("d",$st+($m*86400));
 	$tmp_week	=date("w",$st+($m*86400));
@@ -151,7 +172,7 @@ for($m=0; $m<42;$m++){
 	}
 	$cal["html"].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
 	$cal["html"].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
-	$cal["html"].="<span class=\"cal_i1 {$birth_dat[$tmp_ymd]}\"></span>";
+	$cal["html"].="<span class=\"cal_i1 {$birth_dat[$tmp_md]}\"></span>";
 	$cal["html"].="<span class=\"cal_i2 {$sch_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="</td>";
@@ -159,6 +180,8 @@ for($m=0; $m<42;$m++){
 
 $cal["html"].="</tr>";
 $cal["html"].=$cal_app;
+$cal["html"].=$birth_app;
+$cal["html"].=$memo_app;
 $cal["html"].="</table>";
 
 echo json_encode($cal);

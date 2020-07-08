@@ -357,6 +357,24 @@ input:focus{
 	text-align		:left;
 }
 
+.cal_days_memo{
+	position		:absolute;
+	display			:inline-block;
+	top				:2vw;
+	left			:39vw;
+	width			:45vw;
+	height			:32vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	font-weight		:700;
+	color			:303030;
+	text-align		:left;
+	padding			:1vw;
+	background		:#fafafa;
+	box-shadow		:0.5vw 0.5vw 5vw rgba(240,240,250) inset, -0.5vw -0.5vw 5vw rgba(240,240,250) inset;
+}
+
+
 i,.days_icon{
 	display			:inline-block;
 	width			:5vw;
