@@ -1,46 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
-<style>
-td{
-	border:1px solid #303030;
-	height:26px;
-	max-height:26px;
-	width:50px;
-	text-align:center;
-}
-.tag{
-	display:inline-block;
-	overflow:hidden;
-	max-height:20px;
-	line-height:20px;
-}
-</style>
+<meta charset="utf-8">
 <script src="./js/jquery-3.2.1.min.js"></script>
-<script src="./js/jquery.easing.1.3.js"></script>
-<script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
 $(function(){ 
-$('.box').on('click',function(){
-	Tmp=$(this).text();
-	$('#num').val(Tmp);
+$('input:radio').change( function() {
+Tmp=$(this).attr('class');
+$('#'+Tmp).val($(this).val());
 });
 });
 </script>
 </head>
 <body>
-<div class="box">10</div>
-<div class="box">11</div>
-<div class="box">12</div>
-<div class="box">13</div>
-<div class="box">14</div>
+<div>
+	<br>選択<br/>
+	<input type="radio" name="btn1" class="r1" value="あ">A
+	<input type="radio" name="btn1" class="r1" value="い">B
+</div>
+<br/>
+<textarea id="r1" class="text" cols=40 rows=2></textarea>
 
-<input id="num" type="number" value="" class="form-control" name="stage">
+<div>
+<br>選択<br/> 
+	<input type="radio" name="btn2" class="r2" value="き">G
+	<input type="radio" name="btn2" class="r2" value="く">H
+</div>
+<br/>
+<textarea id="r2" class="text" cols=40 rows=2></textarea>
 
 
-</body>
-</html>
+
+
+</body></html>

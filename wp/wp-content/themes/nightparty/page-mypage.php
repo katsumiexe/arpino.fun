@@ -379,10 +379,9 @@ for($n=0;$n<8;$n++){
 	foreach($dat2 as $cus2){
 		$cus_group_sel[$cus2["sort"]]=$cus2["tag"];
 	}
-	print($sql);
 }
-
 //var_dump($_POST);
+
 ?>
 <html lang="ja">
 <head>
@@ -484,7 +483,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 	<?}?>
 	</div>
-
 	<div class="mypage_slide">
 		<ul class="mypage_menu">
 			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
@@ -535,6 +533,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
 		</div>
+
 	<?}elseif($cast_page==2){?>
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
@@ -580,7 +579,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 					</td>
 					<td class="customer_base_tag">分類</td>
 					<td id="" class="customer_base_item">
-					<select id="customer_group" name="cus_group" value="" class="item_group">
+					<select id="customer_group" name="cus_group" value="" class="item_group cas_set">
 					<option value="0">通常</option>
 					<?foreach($cus_group_sel as $a1=>$a2){?>
 					<option value="<?=$a1?>"><?=$a2?></option>
@@ -590,11 +589,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 				</tr>
 				<tr>
 					<td class="customer_base_tag">名前</td>
-					<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" name="cus_name" value="" class="item_basebox"></td>
+					<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" name="cus_name" value="" class="item_basebox cas_set"></td>
 				</tr>
 				<tr>
 					<td class="customer_base_tag">呼び名</td>
-					<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" name="cus_nick" value="" class="item_basebox"></td>
+					<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" name="cus_nick" value="" class="item_basebox cas_set"></td>
 				</tr>
 				<tr>
 					<td class="customer_base_fav">
@@ -605,8 +604,27 @@ const CastId='<?=$_SESSION["id"] ?>';
 						<span id="fav_5" class="customer_fav"></span>
 					</td>
 					<td class="customer_base_tag">誕生日</td>
-					<td id="c_birth" class="customer_base_item"><input type="text" id="customer_detail_yy" name="cus_b_y" value="1977" class="item_basebox_yy">/<input type="text" id="customer_detail_mm" name="cus_b_m" value="06" class="item_basebox_mm">/<input type="text" id="customer_detail_dd" name="cus_b_d" value="10" class="item_basebox_mm">
-					<span class="detail_age"><span id="customer_detail_ag"></span>歳</span></td>
+					<td id="c_birth" class="customer_base_item">
+					<select id="customer_detail_yy" name="cus_b_y" value="1977" class="item_basebox_yy cas_set2">
+						<?for($n=1930;$n<date("Y");$n++){?>
+						<option value="<?=$n?>"><?=$n?></option>
+						<?}?>
+					</select>/<select id="customer_detail_mm" name="cus_b_m" value="" class="item_basebox_mm cas_set2">
+						<?for($n=1;$n<13;$n++){?>
+						<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+						<?}?>
+					</select>/<select id="customer_detail_dd" name="cus_b_d" value="" class="item_basebox_mm cas_set2">
+						<?for($n=1;$n<32;$n++){?>
+						<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+						<?}?>
+					</select><span class="detail_age">
+						<select id="customer_detail_ag" name="cus_b_a" value="20" class="item_basebox_ag cas_set2">
+							<?for($n=0;$n<date("Y")-1930;$n++){?>
+							<option value="<?=$n?>"><?=$n?></option>
+							<?}?>
+						</select>
+					歳</span>
+					</td>
 				</tr>
 			</table>
 			<table class="customer_sns">
@@ -760,17 +778,31 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 	<?}else{?>
-		<div class="notice_ttl"><div class="notice_ttl_in">お知らせ</div></div>
-		<div class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span>19:00-22:00</span>
-			<span class="notice_box_mail"><span class="notice_icon"></span>未読メール：2件</span>
-			<span class="notice_box_birth"><span class="notice_icon"></span>本日：たぬぬぽんの誕生日です</span>
+		<div class="notice_ttl">
+			<div class="notice_ttl_day"><span class="notice_icon"></span><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</div>
+			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
+			<div id="notice_ttl_2" class="notice_ttl_in">明日</div>
+			<div id="notice_ttl_3" class="notice_ttl_in">明後日</div>
+		</div>
+		<div id="notice_box_1" class="notice_box">
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span>
+			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
 		</div>
 
-		<div class="notice_ttl"><div class="notice_ttl_in">連絡事項</div></div>
-		<div class="notice_box">
+		<div id="notice_box_2" class="notice_box">
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span>
+			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
+		</div>
+
+		<div id="notice_box_3" class="notice_box">
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span>
+			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
+		</div>
+
+		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
+		<div class="notice_list">
 	<?for($n=0;$n<count($notice);$n++){?>
-			<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><span class="notice_icon"></span><?=substr($notice[$n]["date"],5,5)?>　<?=$notice[$n]["title"]?>
+		<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><span class="notice_icon"></span><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日　<?=$notice[$n]["title"]?>
 <div class="notice_yet<?=$notice[$n]["status"]?>"></div></div>
 <input id="notice_box_hidden<?=$notice[$n]["id"]?>" type="hidden" value="<?=$notice[$n]["log"]?>">
 	<? } ?>
@@ -778,7 +810,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<div id="notice_box_log<?=$notice[$n]["id"]?>" class="notice_box_log"></div>
 	<? } ?>
 </div>
-
 
 <div class="sch_set_done">スケジュールが登録されました</div>
 <div class="cal_back">
@@ -840,11 +871,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 	<div class="customer_memo_back_in">
 	<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
 	<div class="customer_memo_new_set"></div>
-	<div class="customer_memo_new_del"></div>
+	<div class="customer_memo_new_del"></div>
 	<textarea class="customer_memo_new_txt"></textarea>
 	</div>
 </div>
-<div class="customer_memo_set"></div>
+<div class="customer_memo_set"></div>
 
 <div class="customer_regist_back">
 	<div class="customer_regist_back_in">

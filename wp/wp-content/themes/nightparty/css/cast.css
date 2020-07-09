@@ -149,72 +149,138 @@ input:focus{
 .notice_ttl{
 	display			:inline-block;
 	margin			:1vw auto 0 auto;
-	width			:80vw;
+	width			:86vw;
+	height			:6.5vw;
 	text-align		:left;
+	font-size		:0;
 }
 
 .notice_ttl_in{
 	display			:inline-block;
-	height			:6vw;
-	line-height		:6vw;
-	width			:25vw;
+	height			:5.5vw;
+	line-height		:5.5vw;
+	width			:14vw;
+	font-size		:3.5vw;
+	font-weight		:700;
+	border			:0.5vw solid #303030;
+	color			:#303030;
+	background		:#fafafa;
+	text-align		:center;
+}
+
+.notice_sel{
+	background		:#303030;
+	color			:#fafafa;
+}
+
+
+.notice_ttl_day{
+	display			:inline-block;
+	height			:7vw;
+	line-height		:7vw;
+	width			:38vw;
 	text-align		:left;
-	border-radius	:0 3vw 0 0;
 	font-size		:4vw;
-	background		:#d0d0e0;
-	padding			:1vw;
+	font-weight		:700;
+	background		:#fafafa;
 }
 
 .notice_box{
-	display			:inline-block;
+	display			:none;
 	margin			:0 auto 3vw auto;
-	width			:80vw;
+	width			:85vw;
 	font-size		:4vw;
-	background		:#fafafa;
 	text-align		:left;
+	border			:0.5vw solid #303030;
+	background		:#fafafa;
 }
 
-.notice_box_sche,.notice_box_item2,.notice_box_mail,.notice_box_birth{
+.notice_list{
+	display			:inline-block;
+	margin			:0 auto 3vw auto;
+	width			:85vw;
+	font-size		:4vw;
+	text-align		:left;
+	border			:0.5vw solid #303030;
+	background		:#fafafa;
+}
+
+#notice_box_1{
+	display			:inline-block;
+}
+
+
+.notice_box_sche,.notice_box_mail{
+	display			:inline-block;
+	position		:relative;
+	height			:5vw;
+	line-height		:5vw;
+	width			:82vw;
+	font-size		:4vw;
+	padding-left	:1vw;
+	border-bottom	:dashed 0.5vw #303030;
+	color			:#303030;
+	margin			:1vw;
+}
+
+
+.notice_box_birth{
+	display			:inline-block;
+	position		:relative;
+	line-height		:5vw;
+	width			:40vw;
+	font-size		:4vw;
+	padding-left	:1vw;
+	color			:#30a0d0;
+	margin			:1vw;
+}
+
+.notice_box_item2,.notice_box_item1{
 	display			:inline-block;
 	position		:relative;
 	height			:7vw;
 	line-height		:7vw;
-	width			:78vw;
+	width			:84vw;
 	font-size		:4vw;
-	background		:linear-gradient(#f0f0f0,#e8e8e8);
 	padding-left	:1vw;
-	border-bottom	:dashed 0.5vw #fafafa;
-	margin			:0.5vw;
+	margin			:0;
+
 }
 
 .notice_box_item1{
-	display			:inline-block;
-	position		:relative;
-	height			:7vw;
-	line-height		:7vw;
-	width			:78vw;
-	font-size		:4vw;
-	background		:linear-gradient(#f0e0e0,#e8d0d0);
-	padding-left	:1vw;
-	border-bottom	:dashed 0.5vw #fafafa;
-	margin			:0.5vw;
 	font-weight		:600;
+	background		:#f0f0f0;
 }
+
+
+.notice_list_in{
+	display			:inline-block;
+	height			:5.5vw;
+	line-height		:5.5vw;
+	width			:20vw;
+	font-size		:3.5vw;
+	font-weight		:700;
+	border			:0.5vw solid #303030;
+	color			:#fafafa;
+	background		:#303030;
+	text-align		:center;
+}
+
 
 .notice_box_log{
 	display			:inline-block;
 	margin			:0 auto 3vw auto;
-	width			:78vw;
+	width			:83vw;
 	font-size		:4vw;
 	background		:#fafafa;
 	text-align		:left;
 	padding			:1vw;
-	color			:#606060;
+	color			:#303030;
 	min-height		:30vw;
 	border			:1vw solid #d00000;
 }
 
-.notice_icon{
+notice_icon{
 	font-family		:at_icon;
 }
 
@@ -610,6 +676,7 @@ i,.days_icon{
 	border			:none;
 	font-size		:4.5vw;
 	width			:43vw;
+	background		:#fafafa;
 }
 
 .item_basebox{
@@ -622,26 +689,44 @@ i,.days_icon{
 }
 
 .item_basebox_yy{
-	text-align		:center;
+	text-align		:right;
 	height			:9vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:12vw;
-	border-color	:#f17766;
-	padding:0.5vw 0;
+	width			:11.5vw;
+	background		:#fafafa;
+	padding			:0;
 }
 
+
 .item_basebox_mm{
-	text-align		:center;
+	text-align		:right;
 	height			:9vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:7vw;
-	border-color	:#f17766;
-	padding:0.5vw 0;
+	width			:6.5vw;
+	background		:#fafafa;
+	padding			:0;
+	padding			:0 0.5vw;
 }
+
+.item_basebox_ag{
+	text-align:-webkit-right;
+	text-align		:right;
+	height			:8vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:8vw;
+	background		:none;
+	color			:#008000;
+	font-weight		:700;
+	padding			:0 1vw;
+}
+
+
 
 .customer_regist_back_in{
 	position		:absolute;
@@ -854,9 +939,6 @@ i,.days_icon{
 	z-index			:12;
 }
 
-#customer_detail_ag{
-	font-size		:4.5vw;
-}
 
 .detail_age{
 	position		:absolute;
@@ -864,13 +946,13 @@ i,.days_icon{
 	top				:0vw;
 	bottom			:0;
 	margin			:auto;
-	height			:7vw;
-	line-height		:7vw;
+	height			:8vw;
+	line-height		:8vw;
 	border-radius	:1vw;
-	background		:#00a000;
+	background		:#d0ffe0;
 	font-size		:3vw;
 	font-weight		:600;
-	color			:#fafafa;
+	color			:#008000;
 	text-align		:center;
 	padding			:0 1vw; 
 }
@@ -1072,7 +1154,7 @@ i,.days_icon{
 	width			:15vw;
 	height			:15vw;
 	line-height		:15vw;
-	font-size		:8vw;
+	font-size		:6vw;
 	border-radius	:50%;
 	color			:#fafafa;
 	opacity			:0.9;
@@ -1203,7 +1285,6 @@ i,.days_icon{
 	font-size		:6vw;
 	background		:#606090;
 	color			:#fafafa;
-	font-weight		:600;
 	border-radius	:1vw;
 	cursor			:pointer;
 	font-family		:at_icon;

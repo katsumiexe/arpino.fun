@@ -390,7 +390,7 @@ $(function(){
 		$('#customer_detail_dd').val(Tmp);
 
 		Tmp=$(this).children('.customer_hidden_ag').val();
-		$('#customer_detail_ag').text(Tmp);
+		$('#customer_detail_ag').val(Tmp);
 
 		Tmp=$(this).children('.customer_hidden_face').val();
 		$('#img_url').val(Tmp);
@@ -538,7 +538,7 @@ $(function(){
 	});
 
 	$('.customer_base_img').on('click',function(){
-		$('.img_box').animate({'top':'20vw'},200);
+		$('.img_box').animate({'top':'10vw'},200);
 		$('.img_back').fadeIn(100);
 	});
 
@@ -602,7 +602,7 @@ $(function(){
 		}
 	});
 
-	$('.img_close').on('click',function(){
+	$('#img_close').on('click',function(){
 			$('.img_back').fadeOut(200);
 			$('.img_box	').animate({'top':'100vh'},200);
 		var cvs = document.getElementById('cvs1');
@@ -789,6 +789,45 @@ $(function(){
 		$('.customer_memo_del_back').hide();
 	});
 
+	$('.cas_set').on('change',function () {
+		if($(this).attr('id')=='customer_detail_name'){
+			$('#clist'+C_Id).children('.customer_list_name').html($(this).val()+' 様');
+
+		}else if($(this).attr('id')=='customer_detail_nick'){
+			$('#clist'+C_Id).children('.customer_list_nickname').html($(this).val());
+
+		}else if($(this).attr('id')=='customer_group'){
+
+		}
+
+		$.post({
+			url:Dir + "/post/customer_detail_set.php",
+			data:{
+			'c_id'		:C_Id,
+			'id'		:$(this).attr('id'),
+			'param'		:$(this).val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+		});
+	});
+
+	$('.cas_set2').on('change',function () {
+		$.post({
+			url:Dir + "/post/customer_detail_set2.php",
+			data:{
+			'c_id'		:C_Id,
+			'id'		:$(this).attr('id'),
+			'yy'		:$('#customer_detail_yy').val(),
+			'mm'		:$('#customer_detail_mm').val(),
+			'dd'		:$('#customer_detail_dd').val(),
+			'ag'		:$('#customer_detail_ag').val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+
+		});
+	});
+
+
 	$('#memo_del_set').on('click',function () {
 		$.post({
 			url:Dir + "/post/customer_memo_del.php",
@@ -825,6 +864,16 @@ $(function(){
 			$(".mypage_cal").children().last().remove();
 			$('#c_month').val(data.date);
 		});
+	});
+
+	$('.notice_ttl_in').on('click',function(){
+		if(!$(this).hasClass('notice_sel')){
+			Tmp=$(this).attr('id').replace('ttl','box');
+			$('.notice_ttl_in').removeClass('notice_sel');
+			$(this).addClass('notice_sel');
+			$('.notice_box').hide();
+			$('#'+Tmp).fadeIn(0);
+		}
 	});
 
 
