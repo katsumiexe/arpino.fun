@@ -1300,14 +1300,15 @@ i,.days_icon{
 
 
 .mypage_main{
-	position		:fixed;
+//	position		:fixed;
 	left			:0;
 	top				:14vw;
 	display			:inline-block;
 	background		:#fafafa;
 	width			:100vw;
-	height			:100vh;
+//	min-height		:100vh;
 	max-width		:650px;
+	margin-top:14.5vw;
 }
 
 .login_box{
