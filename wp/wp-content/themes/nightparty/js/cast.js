@@ -880,6 +880,9 @@ $(function(){
 	$('.notice_box_item2').on('click',function (){
 		Tmp=$(this).attr('id').replace("title","hidden");
 		$('.notice_box_log').html($('#'+Tmp).val());
+		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
+		$(this).addClass('notice_box_sel');
+
 	});
 
 	$('.notice_box_item1').on('click',function (){
@@ -888,6 +891,9 @@ $(function(){
 		$(this).removeClass('notice_box_item1').addClass('notice_box_item2');
 		$(this).children('div').removeClass('notice_yet1').addClass('notice_yet2');
 		$('.notice_box_log').html($('#'+Tmp).val());
+
+		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
+		$(this).addClass('notice_box_sel');
 
 		$.post({
 			url:Dir + "/post/notice_ck.php",
