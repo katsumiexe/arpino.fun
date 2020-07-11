@@ -1,12 +1,8 @@
 <?
 /*
-
 誕生日変更
 */
-ini_set('display_errors',1);
-
-require_once ("../../../../wp-load.php");
-global $wpdb;
+require_once ("./post_inc.php");
 
 $c_id	=$_POST["c_id"];
 $id		=$_POST["id"];
@@ -15,22 +11,31 @@ $mm		=$_POST["mm"];
 $dd		=$_POST["dd"];
 $ag		=$_POST["ag"];
 
-if($id == "customer_group"){
-	$app=" c_group='{$param}'";
+if($id == "customer_detail_ag"){
+	$tmp=$mm.$dd;
 
-}elseif($id == "customer_detail_name"){
-	$app=" `name`='{$param}'";
-
-}elseif($id == "customer_detail_nick"){
-	$app=" `nickname`='{$param}'";
+	if(date("md")>$tmp){
+		$yy=date("Y")-$ag-1;
+	}else{
+		$yy=date("Y")-$ag;
+	}
+}else{
+	$tmp=$yy.$mm.$dd;
+	$ag		= floor(($now_8-$tmp)/10000);
 }
 
+$birth	=$yy."-".$mm."-".$dd;
+
 $sql_log ="UPDATE wp01_0customer SET";
-$sql_log .=$app;
+$sql_log .=" birth_day='{$birth}'";
 $sql_log .=" WHERE id={$c_id}";
 $wpdb->query($sql_log);
 
-echo($sql_log);
+$dat["yy"]=$yy;
+$dat["mm"]=$mm;
+$dat["dd"]=$dd;
+$dat["ag"]=$ag;
 
+echo json_encode($dat);
 exit();
 ?>

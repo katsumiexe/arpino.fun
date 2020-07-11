@@ -39,7 +39,7 @@ input:focus{
 	height		:14vw;
 	width		:100vw;
 	background	:#ffe0f0;
-	z-index		:15;
+	z-index		:101;
 	text-align	:left;
 	box-shadow	:0.5vw 0.5vw 0.5vw rgba(60,60,60,0.4);
 }
@@ -53,7 +53,7 @@ input:focus{
 	width		:70vw;
 	background	:#606060;
 	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
-	z-index		:12;
+	z-index		:100;
 }
 
 .mypage_menu{
@@ -147,7 +147,7 @@ input:focus{
 }
 
 .notice_ttl{
-	display			:inline-block;
+	display			:flex;
 	margin			:1vw auto 0 auto;
 	width			:86vw;
 	height			:6.5vw;
@@ -157,12 +157,15 @@ input:focus{
 
 .notice_ttl_in{
 	display			:inline-block;
-	height			:5.5vw;
-	line-height		:5.5vw;
+	height			:6vw;
+	line-height		:6vw;
 	width			:14vw;
+	flex-basis		:14vw;
 	font-size		:3.5vw;
 	font-weight		:700;
-	border			:0.5vw solid #303030;
+	border-top		:0.5vw solid #303030;
+	border-left		:0.5vw solid #303030;
+	border-right	:0.5vw solid #303030;
 	color			:#303030;
 	background		:#fafafa;
 	text-align		:center;
@@ -176,13 +179,14 @@ input:focus{
 
 .notice_ttl_day{
 	display			:inline-block;
-	height			:7vw;
-	line-height		:7vw;
+	height			:6vw;
+	line-height		:6vw;
 	width			:38vw;
-	text-align		:left;
+	text-align		:center;
 	font-size		:4vw;
 	font-weight		:700;
 	background		:#fafafa;
+	flex:1;
 }
 
 .notice_box{
@@ -732,22 +736,22 @@ i,.days_icon{
 
 
 
-.customer_regist_back_in{
+.customer_regist{
 	position		:absolute;
-	top				:0;
+	top				:120vh;
 	left			:0;
 	right			:0;
 	bottom			:0;
 	margin			:auto;
-	width			:70vw;
-	height:69vw;
+	width			:99vw;
+	height			:50vw;
 	text-align		:center;
-	background	:#f010a0;
-	padding:1vw;
+	background		:#f010a0;
+	padding			:1vw;
 }
 
 .customer_regist_ttl{
-	display		:inline-block;
+	display		:block;
 	margin 		:0 auto;
 	text-align	:center;
 	background	:#f010a0;
@@ -788,10 +792,7 @@ i,.days_icon{
 	color			:#fafafa;	
 } 
 
-.customer_regist{
-	display:none;
-} 
- 
+
 .customer_sns{
 	width			:95vw;
 	height			:11vw;
@@ -984,12 +985,16 @@ i,.days_icon{
 	border-spacing	:2vw 0;
 }
 
-.customer_base{
+.customer_base,.customer_regist_base{
 	width			:95vw;
 	border-collapse	:separate;
 	border-spacing	:1vw 0;
 	margin			:15vw auto 2vw auto;
 	background		:#fafafa;
+}
+
+.customer_regist_base{
+	margin			:0 auto 2vw auto;
 }
 
 .customer_base_img{
@@ -1195,6 +1200,7 @@ i,.days_icon{
 }
 
 .customer_memo_del_back_in{
+	display:none;
 	border			:0.5vw solid #303030;
 	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
 	background		:#fafafa;
@@ -1304,15 +1310,24 @@ i,.days_icon{
 
 
 .mypage_main{
-//	position		:fixed;
 	left			:0;
 	top				:14vw;
 	display			:inline-block;
 	background		:#fafafa;
 	width			:100vw;
-//	min-height		:100vh;
 	max-width		:650px;
 	margin-top:14.5vw;
+}
+
+.mypage_main_sch{
+	position		:fixed;
+	left			:0;
+	top				:14vw;
+	display			:inline-block;
+	background		:#fafafa;
+	width			:100vw;
+	min-height		:100vh;
+	max-width		:650px;
 }
 
 .login_box{
@@ -1569,7 +1584,7 @@ i,.days_icon{
 	right			:1vw;
 }
 
-.img_back,.cal_back,.customer_regist_back,.customer_memo_back,.customer_memo_del_back{
+.set_back{
 	display			:none;
 	position		:fixed;
 	top				:-10vh;
@@ -1577,7 +1592,7 @@ i,.days_icon{
 	width			:120vw;
 	height			:120vh;
 	background		:rgba(30,30,30,0.7);
-	z-index			:20;
+	z-index			:120;
 }
 
 .img_open{
@@ -2323,6 +2338,7 @@ input[type=range]::-moz-range-thumb{
 	border-bottom	:1vw solid #fafafa;
 	transform		:rotate(-45deg);
 }
+
 
 .cal_weeks{
 	position		:fixed; 

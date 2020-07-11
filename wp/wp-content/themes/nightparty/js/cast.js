@@ -81,43 +81,57 @@ $(function(){
 		if(Fav == 0){
 			Fav=$(this).attr('id').replace('fav_','');
 			$('.customer_base_fav').children().slice(0,Fav).css('color','#ff3030');
-
 		}else{
 			Fav=0;
 			$('.customer_fav').css('color','#cccccc');
 		}
-		$('#h_customer_fav').val(Fav);
-		$('#clist'+C_Id).children('.customer_hidden_fav').val(Fav);
 
-		if(Fav>0){
-			$('#fav_'+C_Id+'_1').addClass('fav_in');
-		}else{
-			$('#fav_'+C_Id+'_1').removeClass('fav_in');
-		}
+		$.post({
+			url:Dir + "/post/customer_detail_set3.php",
+			data:{
+			'c_id'		:C_Id,
+			'fav'		:Fav,
+			},
 
-		if(Fav>1){
-			$('#fav_'+C_Id+'_2').addClass('fav_in');
-		}else{
-			$('#fav_'+C_Id+'_2').removeClass('fav_in');
-		}
+		}).done(function(data, textStatus, jqXHR){
+/*			colsole.log(data);*/
+			$('#h_customer_fav').val(Fav);
+			$('#clist'+C_Id).children('.customer_hidden_fav').val(Fav);
 
-		if(Fav>2){
-			$('#fav_'+C_Id+'_3').addClass('fav_in');
-		}else{
-			$('#fav_'+C_Id+'_3').removeClass('fav_in');
-		}
+			if(Fav>0){
+				$('#fav_'+C_Id+'_1').addClass('fav_in');
+			}else{
+				$('#fav_'+C_Id+'_1').removeClass('fav_in');
+			}
 
-		if(Fav>3){
-			$('#fav_'+C_Id+'_4').addClass('fav_in');
-		}else{
-			$('#fav_'+C_Id+'_4').removeClass('fav_in');
-		}
+			if(Fav>1){
+				$('#fav_'+C_Id+'_2').addClass('fav_in');
+			}else{
+				$('#fav_'+C_Id+'_2').removeClass('fav_in');
+			}
 
-		if(Fav>4){
-			$('#fav_'+C_Id+'_5').addClass('fav_in');
-		}else{
-			$('#fav_'+C_Id+'_5').removeClass('fav_in');
-		}
+			if(Fav>2){
+				$('#fav_'+C_Id+'_3').addClass('fav_in');
+			}else{
+				$('#fav_'+C_Id+'_3').removeClass('fav_in');
+			}
+
+			if(Fav>3){
+				$('#fav_'+C_Id+'_4').addClass('fav_in');
+			}else{
+				$('#fav_'+C_Id+'_4').removeClass('fav_in');
+			}
+
+			if(Fav>4){
+				$('#fav_'+C_Id+'_5').addClass('fav_in');
+			}else{
+				$('#fav_'+C_Id+'_5').removeClass('fav_in');
+			}
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+
+		});
 	});
 
 
@@ -186,7 +200,16 @@ $(function(){
 	});
 
 	$('#regist_customer').on('click',function () {
-		$('.customer_regist_back').show();
+		if($(this).hasClass('regist_set')){
+			$(this).removeClass('regist_set');
+			$('.customer_regist').animate({'top':'100vh'},200);
+			$('.set_back').fadeOut(100);
+
+		}else{
+			$(this).addClass('regist_set');
+			$('.set_back').fadeIn(100);
+			$('.customer_regist').animate({'top':'10vw'},200);
+		}
 	});
 
 	$('#regist_brog').on('click',function () {
@@ -544,7 +567,7 @@ $(function(){
 
 	$('#regist_schedule').on('click',function(){
 		$('.cal_weeks').animate({'top':'18vw'},200);
-		$('.cal_back').fadeIn(100);
+		$('.set_back').fadeIn(100);
 	});
 
 	$('#img_set').on('click',function(){
@@ -717,7 +740,7 @@ $(function(){
 			console.log(data);
 			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
 			$('.cal_weeks').animate({'top':'100vh'},200);
-			$('.cal_back').fadeOut(100);
+			$('.set_back').fadeOut(100);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -727,7 +750,7 @@ $(function(){
 
 	$('#sch_set_arrow').on('click',function () {
 		$('.cal_weeks').animate({'top':'100vh'},200);
-		$('.cal_back').fadeOut(100);
+		$('.set_back').fadeOut(100);
 	});
 
 	$('#sch_set_trush').on('click',function () {
@@ -745,13 +768,13 @@ $(function(){
 	});
 
 	$('.customer_memo_set').on('click',function () {
-		if($('.customer_memo_back').css('display') ==='none'){
-			$('.customer_memo_back').fadeIn(200);
-			$('.customer_memo_back_in').animate({'top':'10vh'},200);
+		if($('.set_back').css('display') ==='none'){
+			$('.set_back').fadeIn(200);
+			$('.set_back_in').animate({'top':'10vh'},200);
 		
 		}else{
-			$('.customer_memo_back').fadeOut(200);
-			$('.customer_memo_back_in').animate({'top':'100vh'},200);
+			$('.set_back').fadeOut(200);
+			$('.set_back_in').animate({'top':'100vh'},200);
 		}
 	});
 
@@ -766,8 +789,8 @@ $(function(){
 			},
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('.customer_memo_back').hide();
-			$('.customer_memo_back_in').animate({'top':'100vh'},200);
+			$('.set_back').hide();
+			$('.set_back_in').animate({'top':'100vh'},200);
 			$('#tag_2_tbl').prepend(data);
 			$('.customer_memo_new_txt').val('');
 
@@ -779,14 +802,14 @@ $(function(){
 	});
 
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
-		$('.customer_memo_del_back').show();
+		$('.set_back').show();
 		Tmp=$(this).attr('id').replace("m_del","");
 		$('#del_id').val(Tmp);
 
 	});
 
 	$('#memo_del_back').on('click',function () {
-		$('.customer_memo_del_back').hide();
+		$('.set_back').hide();
 	});
 
 	$('.cas_set').on('change',function () {
@@ -822,8 +845,17 @@ $(function(){
 			'dd'		:$('#customer_detail_dd').val(),
 			'ag'		:$('#customer_detail_ag').val(),
 			},
+			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
-
+			console.log(data);
+			$('#customer_detail_yy').val(data.yy),
+			$('#customer_detail_mm').val(data.mm),
+			$('#customer_detail_dd').val(data.dd),
+			$('#customer_detail_ag').val(data.ag),
+			$('#clist'+C_Id).children('.customer_hidden_yy').val(data.yy);
+			$('#clist'+C_Id).children('.customer_hidden_mm').val(data.mm);
+			$('#clist'+C_Id).children('.customer_hidden_dd').val(data.dd);
+			$('#clist'+C_Id).children('.customer_hidden_ag').val(data.ag);
 		});
 	});
 
@@ -839,7 +871,7 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('.customer_memo_del_back').hide();
+			$('.set_back').hide();
 			$('#tag_2_tbl').html(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
@@ -1039,13 +1071,16 @@ $(function(){
 					$('.mypage_cal').prepend(data.html).css('left','-100vw');
 					$(".mypage_cal").children().last().remove();
 					$('#c_month').val(data.date);
+/*
 					console.log(data.sql);
 					console.log(data.html);
+*/
+					console.log($(".mypage_cal").children().last());
+
 				});
 
 			}else if(ui.position.left < VwBase*(-120)){
 				$('.mypage_cal').animate({'left':'-200vw'},100);
-
 				$.post({
 					url:Dir + "/post/calendar_set.php",
 					data:{
@@ -1062,6 +1097,7 @@ $(function(){
 					console.log(data.sql);
 					console.log(data.html);
 				});
+
 			}else{
 				$('.mypage_cal').animate({'left':'-100vw'},100);
 			}

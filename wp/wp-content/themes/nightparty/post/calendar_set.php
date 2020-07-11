@@ -5,6 +5,7 @@
 ini_set('display_errors',1);
 require_once ("../../../../wp-load.php");
 global $wpdb;
+$jst=time()+32400;
 
 $week[0]="日";
 $week[1]="月";
@@ -118,8 +119,10 @@ $sql	.=" AND `log` IS NOT NULL";
 $dat = $wpdb->get_results($sql,ARRAY_A );
 
 foreach($dat as $tmp){
-	$memo_dat[$tmp["date_8"]]="n3";
-	$cal_app.="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
+	if(trim($tmp["log"])){
+		$memo_dat[$tmp["date_8"]]="n3";
+		$cal_app.="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
+	}
 }
 
 $now_month	=date("m",strtotime($c_month));
@@ -135,13 +138,22 @@ $cal["html"].="<table class=\"cal_table\"><tr>";
 $cal["html"].="<td class=\"cal_top\" colspan=\"7\">";
 $cal["html"].="<span class=\"cal_prev\"></span>";
 $cal["html"].="<span class=\"cal_table_ym\"><span class=\"v_year\">{$v_year}</span><span class=\"v_month\">{$v_month}</span></span>";
-$cal["html"].="<span class=\"cal_next\"></span></td>";
+$cal["html"].="<span class=\"cal_next\"></span>";
+
+$cal["html"].="<span id=\"para{$tmp_ymd}\">";
+$cal["html"].=$cal_app;
+$cal["html"].=$birth_app;
+$cal["html"].=$memo_app;
+$cal["html"].="</span>";
+
+$cal["html"].="</td>";
 $cal["html"].="</tr><tr>";
 
 for($s=0;$s<7;$s++){
 	$w=($s+$week_start) % 7;
 	$cal["html"].="<td class=\"cal_td {$week_tag[$w]}\">{$week[$w]}</td>";
 }
+
 
 for($m=0; $m<42;$m++){
 	$tmp_ymd	=date("Ymd",$st+($m*86400));
@@ -160,7 +172,10 @@ for($m=0; $m<42;$m++){
 		}
 	}
 
-	if($ob_holiday[$tmp_ymd]){
+	if($tmp_ymd ==date("Ymd",$jst)){
+		$tmp_week=7;
+
+	}elseif($ob_holiday[$tmp_ymd]){
 		$tmp_week=0;
 	}
 
@@ -179,11 +194,6 @@ for($m=0; $m<42;$m++){
 }
 
 $cal["html"].="</tr>";
-$cal["html"].="<span id=\"para{$tmp_ymd}\">";
-$cal["html"].=$cal_app;
-$cal["html"].=$birth_app;
-$cal["html"].=$memo_app;
-$cal["html"].="</span>";
 $cal["html"].="</table>";
 
 echo json_encode($cal);

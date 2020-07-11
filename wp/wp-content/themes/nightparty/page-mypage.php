@@ -7,8 +7,9 @@ if($_POST["log_out"] == 1){
 	session_destroy();
 }
 $jst=time()+32400;
-
-$now_ymd=date("Ymd",$jst);
+$now_ymd	=date("Ymd",$jst);
+$now_ymd_2	=date("Ymd",$jst+86400);
+$now_ymd_3	=date("Ymd",$jst+172800);
 
 $week[0]="日";
 $week[1]="月";
@@ -159,6 +160,22 @@ for($n=0;$n<8;$n++){
 			}else{
 				$days_sche="休み";
 			}
+
+		}elseif($tmp2["sche_date"] ==$now_ymd_2){
+			if($tmp2["stime"] && $tmp2["etime"]){
+				$days_sche_2="{$tmp2["stime"]}-{$tmp2["etime"]}";
+
+			}else{
+				$days_sche_2="休み";
+			}
+
+		}elseif($tmp2["sche_date"] ==$now_ymd_3){
+			if($tmp2["stime"] && $tmp2["etime"]){
+				$days_sche_3="{$tmp2["stime"]}-{$tmp2["etime"]}";
+
+			}else{
+				$days_sche_3="休み";
+			}
 		}
 	}
 
@@ -196,9 +213,14 @@ for($n=0;$n<8;$n++){
 		$birth_hidden[$birth_m][$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
 
 		if(substr($birth,4,4) == substr($now_ymd,4,4)){
-		$days_birth.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
-		}
+			$days_birth.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
 
+		}elseif(substr($birth,4,4) == substr($now_ymd_2,4,4)){
+			$days_birth_2.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+
+		}elseif(substr($birth,4,4) == substr($now_ymd_3,4,4)){
+			$days_birth_3.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+		}
 	}
 
 	foreach($birth_hidden as $a1 => $a2){
@@ -206,7 +228,6 @@ for($n=0;$n<8;$n++){
 			$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
 		}
 	}
-
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
@@ -495,8 +516,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</ul>
 	</div>
 
-	<div class="mypage_main">
 	<?if($cast_page==1){?>
+	<div class="mypage_main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
 		<input id="week_start" type="hidden" value="<?=$week_start?>">
 		<div class="mypage_cal">
@@ -507,6 +528,11 @@ const CastId='<?=$_SESSION["id"] ?>';
 							<span class="cal_prev"></span>
 							<span class="cal_table_ym"><span class="v_year"><?=$v_year[$c]?></span><span class="v_month"><?=$v_month[$c]?></span></span>
 							<span class="cal_next"></span>
+							<span id="para<?=$month_ym[$c]?>">
+							<?=$cal_app[$month_ym[$c]]?>
+							<?=$birth_app[substr($month_ym[$c],-2)]?>
+							<?=$memo_app[$month_ym[$c]]?>
+							</span>
 						</td>
 					</tr>
 					<tr>
@@ -516,13 +542,8 @@ const CastId='<?=$_SESSION["id"] ?>';
 						?>
 						<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 						<? } ?>
-					</tr>
+
 						<?=$cal[$c]?>
-						<span id="para<?=$month_ym[$c]?>">
-						<?=$cal_app[$month_ym[$c]]?>
-						<?=$birth_app[substr($month_ym[$c],-2)]?>
-						<?=$memo_app[$month_ym[$c]]?>
-						</span>
 				</table>
 			<?}?>
 		</div>
@@ -533,8 +554,9 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
 		</div>
-
+	</div>
 	<?}elseif($cast_page==2){?>
+	<div class="mypage_main">
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 				<?if($customer[$n]["face"]){?>
@@ -568,8 +590,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 			</div>
 		<?}?>
-
-	<form action="<?php the_permalink();?>" method="post">
 		<div class="customer_detail">
 			<table class="customer_base">
 				<tr>
@@ -577,7 +597,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 					<img src="" class="customer_detail_img">
 					<span class="customer_camera"></span>
 					</td>
-					<td class="customer_base_tag">分類</td>
+					<td class="customer_base_tag">タグ</td>
 					<td id="" class="customer_base_item">
 					<select id="customer_group" name="cus_group" value="" class="item_group cas_set">
 					<option value="0">通常</option>
@@ -670,7 +690,6 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
 			<div id="tag_2" class="tag_set">メモ</div>
 			<div id="tag_3" class="tag_set">履歴</div>
-			<button class="tag_btn" type="submit">更新</button>
 			<div class="customer_body">
 				<table id="tag_1_tbl" class="customer_memo"></table>
 				<table id="tag_2_tbl" class="customer_memo"></table>
@@ -678,9 +697,9 @@ const CastId='<?=$_SESSION["id"] ?>';
 			</div>
 			</div>
 		</div>
-	</form>
-
+	</div>
 	<?}elseif($cast_page==3){?>
+	<div class="mypage_main">
 		<?for($s=0;$s<count($mail_data);$s++){?>
 			<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
@@ -734,50 +753,54 @@ const CastId='<?=$_SESSION["id"] ?>';
 				</div>
 			</div>
 		</div>
+	</div>
 
 	<?}elseif($cast_page==4){?>
-		<div class="mypage_blog_hist">
-			<img src="" class="hist_img">
-			<span class="hist_date">2020/05/08 06:00</span>
-			<span class="hist_title">にゃんにゃかにゃー</span>
-			<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-			<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-		</div>
-		<div class="mypage_blog_hist">
-			<img src="" class="hist_img">
-			<span class="hist_date">2020/05/08 06:00</span>
-			<span class="hist_title">にゃんにゃかにゃー</span>
-			<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-			<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-		</div>
-
-		<div class="mypage_blog_write">
-			<div class="mypage_blog_pack">
-				<span class="mypage_blog_title_tag">投稿日</span><br>
-				<div style="text-align:left;margin-bottom:3vw;">	
-				<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
-				<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
-				<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
-				</div>
-				<span class="mypage_blog_title_tag">タイトル</span><br>
-				<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
-
-				<span class="mypage_blog_title_tag">本文</span><br>
-				<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
+		<div class="mypage_main">
+			<div class="mypage_blog_hist">
+				<img src="" class="hist_img">
+				<span class="hist_date">2020/05/08 06:00</span>
+				<span class="hist_title">にゃんにゃかにゃー</span>
+				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
 			</div>
-			<div class="upload_icon tag_open"></div>
-			<div class="upload_icon img_open"></div>
-		</div>
+			<div class="mypage_blog_hist">
+				<img src="" class="hist_img">
+				<span class="hist_date">2020/05/08 06:00</span>
+				<span class="hist_title">にゃんにゃかにゃー</span>
+				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+			</div>
 
+			<div class="mypage_blog_write">
+				<div class="mypage_blog_pack">
+					<span class="mypage_blog_title_tag">投稿日</span><br>
+					<div style="text-align:left;margin-bottom:3vw;">	
+					<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
+					<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
+					<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
+					</div>
+					<span class="mypage_blog_title_tag">タイトル</span><br>
+					<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
+
+					<span class="mypage_blog_title_tag">本文</span><br>
+					<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
+				</div>
+				<div class="upload_icon tag_open"></div>
+				<div class="upload_icon img_open"></div>
+			</div>
+		</div>
 	<?}elseif($cast_page==5){?>
+	<div class="mypage_main_sch">
 		<div class="config_menu">
 			名前：
 			CAST_ID：
 			PASSWORD：
 			お知らせADDRESS
 		</div>
-
+	</div>
 	<?}else{?>
+	<div class="mypage_main">
 		<div class="notice_ttl">
 			<div class="notice_ttl_day"><span class="notice_icon"></span><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</div>
 			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
@@ -790,29 +813,32 @@ const CastId='<?=$_SESSION["id"] ?>';
 		</div>
 
 		<div id="notice_box_2" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span>
-			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_2?></span>
+			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_2?></span></span>
 		</div>
 
 		<div id="notice_box_3" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span>
-			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span>
+			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_3?></span></span>
 		</div>
 
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 		<div class="notice_list">
-	<?for($n=0;$n<count($notice);$n++){?>
-		<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><span class="notice_icon"></span><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日　<?=$notice[$n]["title"]?>
-<div class="notice_yet<?=$notice[$n]["status"]?>"></div></div>
-<input id="notice_box_hidden<?=$notice[$n]["id"]?>" type="hidden" value="<?=$notice[$n]["log"]?>">
-	<? } ?>
+			<?for($n=0;$n<count($notice);$n++){?>
+				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><span class="notice_icon"></span><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日　<?=$notice[$n]["title"]?>
+				<div class="notice_yet<?=$notice[$n]["status"]?>"></div></div>
+				<input id="notice_box_hidden<?=$notice[$n]["id"]?>" type="hidden" value="<?=$notice[$n]["log"]?>">
+			<? } ?>
 		</div>
 		<div id="notice_box_log<?=$notice[$n]["id"]?>" class="notice_box_log"></div>
 	<? } ?>
 </div>
 
+<div class="customer_memo_set"></div>
+
 <div class="sch_set_done">スケジュールが登録されました</div>
-<div class="cal_back">
+
+<div class="set_back">
 	<div class="cal_weeks">
 		<div class="cal_weeks_prev">前週</div>
 		<div class="cal_weeks_box">
@@ -822,31 +848,34 @@ const CastId='<?=$_SESSION["id"] ?>';
 				?>
 					<div class="cal_list">
 						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-<?if($base_now>$base_day+86400*$n){?>
+						<?if($base_now>$base_day+86400*$n){?>
 							<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
 							<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
 							<input id="sel_in<?=$n?>" type="hidden" value="<?=$stime[date("Ymd",$base_day+86400*$n)]?>">
 							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>">
-<?}else{?>
+
+						<?}else{?>
 						<select id="sel_in<?=$n?>" class="sch_time_in">
 							<option class="sel_txt" value=""></option>
 							<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
 								<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
 							<?}?>
 						</select>
+
 						<select id="sel_out<?=$n?>" class="sch_time_out">
 							<option class="sel_txt" value=""></option>
 							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
 								<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
 							<?}?>
 						</select>
-<? } ?>
+
+						<? } ?>
 					</div>
 				<? } ?>
 			</div>
 		</div>
-		<div class="cal_weeks_next">翌週</div>
 
+		<div class="cal_weeks_next">翌週</div>
 		<div id="sch_set_arrow" class="sch_set_btn">
 			<div class="sch_set_arrow"></div>
 		</div>
@@ -854,57 +883,83 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<div id="sch_set_trush" class="sch_set_btn"></div>
 		<div id="sch_set_copy" class="sch_set_btn"></div>
 	</div>
-</div>
 
-<div class="customer_memo_del_back">
-<div class="customer_memo_del_back_in">
-	削除します。よろしいですか
-<div class="customer_memo_del_back_in_btn">
-	<div id="memo_del_set" class="btn btn_c2">削除</div>　
-	<div id="memo_del_back" class="btn btn_c1">戻る</div>
-</div>
-
-	<input id="del_id" type="hidden">
-</div>
-</div>
-<div class="customer_memo_back">
-	<div class="customer_memo_back_in">
-	<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
-	<div class="customer_memo_new_set"></div>
-	<div class="customer_memo_new_del"></div>
-	<textarea class="customer_memo_new_txt"></textarea>
+	<div class="customer_memo_del_back_in">
+			削除します。よろしいですか
+		<div class="customer_memo_del_back_in_btn">
+			<div id="memo_del_set" class="btn btn_c2">削除</div>　
+			<div id="memo_del_back" class="btn btn_c1">戻る</div>
+		</div>
+		<input id="del_id" type="hidden">
 	</div>
-</div>
-<div class="customer_memo_set"></div>
 
-<div class="customer_regist_back">
-	<div class="customer_regist_back_in">
+	<div class="customer_memo_back_in">
+		<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
+		<div class="customer_memo_new_set"></div>
+		<div class="customer_memo_new_del"></div>
+		<textarea class="customer_memo_new_txt"></textarea>
+	</div>
+
+	<div class="customer_regist">
 		<div class="customer_regist_ttl">新規顧客登録</div>
-		<table class="customer_regist_tbl">
+		<table class="customer_regist_base">
 			<tr>
-				<td class="customer_regist_tag">名前</td>
-				<td class="customer_regist_box"><input type="text" id="customer_regist_name" name="cus_name" value="" class="item_basebox"></td>
-			</tr><tr>
-				<td class="customer_regist_tag">呼び名</td>
-				<td><input type="text" id="customer_regist_nick" name="cus_name" value="" class="item_basebox"></td>
-			</tr><tr>
-				<td class="customer_regist_tag">誕生日</td>
-				<td><input type="text" id="customer_regist_yy" name="cus_b_y" value="1977"  class="item_basebox_yy">/<input type="text" id="customer_regist_mm" name="cus_b_m" value="06" class="item_basebox_mm">/<input type="text" id="customer_regist_dd" name="cus_b_d" value="10" class="item_basebox_mm"><span class="detail_age"></td>
-			</tr><tr>
-				<td class="customer_regist_tag">グループ</td>
-				<td><select id="customer_regist_group" name="cus_group" value="" class="customer_regist_sel">
-					<option value="0">通常</option>
-					<?foreach($cus_group_sel as $a1=>$a2){?>
-					<option value="<?=$a1?>"><?=$a2?></option>	
+				<td class="customer_base_img" rowspan="3">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="customer_detail_img">
+				<span class="customer_camera"></span>
+				</td>
+				<td class="customer_base_tag">タグ</td>
+				<td id="" class="customer_base_item">
+				<select id="regist_group" name="cus_group" value="" class="item_group">
+				<option value="0">通常</option>
+				<?foreach($cus_group_sel as $a1=>$a2){?>
+				<option value="<?=$a1?>"><?=$a2?></option>
+				<?}?>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="customer_base_tag">名前</td>
+				<td class="customer_base_item"><input type="text" id="regist_name" name="cus_name" value="" class="item_basebox"></td>
+			</tr>
+			<tr>
+				<td class="customer_base_tag">呼び名</td>
+				<td class="customer_base_item"><input type="text" id="regist_nick" name="cus_nick" value="" class="item_basebox"></td>
+			</tr>
+			<tr>
+				<td class="customer_base_fav">
+					<span id="reg_fav_1" class="customer_fav"></span>
+					<span id="reg_fav_2" class="customer_fav"></span>
+					<span id="reg_fav_3" class="customer_fav"></span>
+					<span id="reg_fav_4" class="customer_fav"></span>
+					<span id="reg_fav_5" class="customer_fav"></span>
+				</td>
+				<td class="customer_base_tag">誕生日</td>
+				<td class="customer_base_item">
+				<select id="reg_yy" name="cus_b_y" value="1977" class="item_basebox_yy">
+					<?for($n=1930;$n<date("Y");$n++){?>
+					<option value="<?=$n?>"><?=$n?></option>
 					<?}?>
+				</select>/<select id="reg_mm" name="cus_b_m" value="" class="item_basebox_mm">
+					<?for($n=1;$n<13;$n++){?>
+					<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+					<?}?>
+				</select>/<select id="reg_dd" name="cus_b_d" value="" class="item_basebox_mm">
+					<?for($n=1;$n<32;$n++){?>
+					<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+					<?}?>
+				</select><span class="detail_age">
+					<select id="reg_ag" name="cus_b_a" value="20" class="item_basebox_ag">
+						<?for($n=0;$n<date("Y")-1930;$n++){?>
+						<option value="<?=$n?>"><?=$n?></option>
+						<?}?>
 					</select>
+				歳</span>
 				</td>
 			</tr>
 		</table>
 	</div>
-</div>
 
-<div class="img_back">
 	<div class="img_box">
 		<div class="img_box_in">
 			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
