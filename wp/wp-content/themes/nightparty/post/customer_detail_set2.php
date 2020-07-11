@@ -11,6 +11,14 @@ $mm		=$_POST["mm"];
 $dd		=$_POST["dd"];
 $ag		=$_POST["ag"];
 
+$dt=$yy.$mm."01";
+
+$dt2=date("t",strtotime($dt));
+
+if($dt2<$dd+0){
+	$dd=$dt2;
+}
+
 if($id == "customer_detail_ag"){
 	$tmp=$mm.$dd;
 
@@ -35,6 +43,9 @@ $dat["yy"]=$yy;
 $dat["mm"]=$mm;
 $dat["dd"]=$dd;
 $dat["ag"]=$ag;
+$dat["dt"]=$dt2;
+
+
 
 echo json_encode($dat);
 exit();
