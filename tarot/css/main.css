@@ -1,0 +1,65 @@
+@font-face {
+	font-family: at_icon;
+	src: url(../font/font_1/fonts/icomoon.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: at_item;
+	src: url(../font/font_2/fonts/icomoon.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: at_border1;
+	src: url(../font/border/bordc1__.ttf) format('truetype');
+}
+
+@keyframes r1 {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes r2 {
+	0%   { transform: rotate(0deg); }
+	50% { transform: rotate(-260deg); }
+	100% { transform: rotate(0deg); }
+}
+
+
+.main{
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+	background:#90ffc0;
+	width:280px;
+	height:200px;
+}
+
+.card_bk{
+	display		:inline-block;
+	position	:absolute;
+	height		:65px;
+	width		:40px;
+	border		:5px solid #fafafa;
+	background	:linear-gradient(#c0a000,#a08000);
+	border-radius:10px;
+}
+
+#c0{
+	top:40px;
+	left:40px;
+	animation		:r1 10s linear infinite;
+	transform-origin: 0px 25px;
+}
+
+#c1{
+	top:40px;
+	right:40px;
+	animation		:r2 6s linear infinite;
+	transform-origin: 0px 25px;
+}
+
+
+
