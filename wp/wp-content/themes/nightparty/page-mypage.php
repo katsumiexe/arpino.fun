@@ -75,6 +75,11 @@ for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$box_no.=$dec[$id_0][$tmp_id];
 }
+
+$reg_base_yy=1980;
+$reg_base_ag=date("Y")-1980;
+
+
 	$page_title="スケジュール";
 	/*--■祝日カレンダー--*/
 	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
@@ -197,17 +202,36 @@ for($n=0;$n<8;$n++){
 		}
 	}
 
+	$n=0;
 	$b_month=substr($c_month,4,4);
 	$sql	 ="SELECT * FROM wp01_0customer";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND del='0'";
+	$sql	.=" ORDER BY id DESC";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp){
+		$customer[$n]=$tmp;
+
+		if(!$tmp["birth_day"] || $tmp["birth_day"]=="0000-00-00"){
+			$customer[$n]["yy"]="----";
+			$customer[$n]["mm"]="--";
+			$customer[$n]["dd"]="--";
+			$customer[$n]["ag"]="--";
+
+		}else{
+			$customer[$n]["yy"]=substr($tmp["birth_day"],0,4);
+			$customer[$n]["mm"]=substr($tmp["birth_day"],5,2);
+			$customer[$n]["dd"]=substr($tmp["birth_day"],8,2);
+			$customer[$n]["ag"]= floor(($now_ymd-str_replace("-", "", $tmp["birth_day"]))/10000);
+		}
+		$n++;
+
 		$birth=str_replace("-","",$tmp["birth_day"]);
 		$birth_y	=substr($birth,0,4);
 		$birth_m	=substr($birth,4,2);
 		$birth_d	=substr($birth,6,2);
+
 		$birth_dat[$birth_m.$birth_d]="n1";
 
 		$birth_hidden[$birth_m][$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
@@ -290,12 +314,14 @@ for($n=0;$n<8;$n++){
 		}
 	}
 
+
 	if($_POST["cus_set"]){
 		$cast_page=2;
 		$cus_id		=$_POST["cus_id"];
 		$cus_set	=$_POST["cus_set"];
 		$cus_page	=$_POST["cus_page"];
-		$cus_fav	=$_POST["cus_fav"];
+		$cus_
+			=$_POST["cus_fav"];
 		$cus_group	=$_POST["cus_group"];
 		$cus_name	=$_POST["cus_name"];
 		$cus_nick	=$_POST["cus_nick"];
@@ -343,29 +369,6 @@ for($n=0;$n<8;$n++){
 			$sql_log=substr($sql_log,0,-1);
 			$wpdb->query($sql_log);
 		}
-	}
-
-	$n=0;
-	$sql	 ="SELECT * FROM wp01_0customer";
-	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
-	$sql	.=" AND `del`='0'";
-	$dat2 = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat2 as $cus2){
-		$customer[$n]=$cus2;
-
-		if(!$cus2["birth_day"] || $cus2["birth_day"]=="0000-00-00"){
-			$customer[$n]["yy"]="----";
-			$customer[$n]["mm"]="--";
-			$customer[$n]["dd"]="--";
-			$customer[$n]["ag"]="--";
-
-		}else{
-			$customer[$n]["yy"]=substr($cus2["birth_day"],0,4);
-			$customer[$n]["mm"]=substr($cus2["birth_day"],5,2);
-			$customer[$n]["dd"]=substr($cus2["birth_day"],8,2);
-			$customer[$n]["ag"]= floor(($now_ymd-str_replace("-", "", $cus2["birth_day"]))/10000);
-		}
-		$n++;
 	}
 
 	$sql	 ="SELECT * FROM wp01_0notice";
@@ -429,6 +432,9 @@ for($n=0;$n<8;$n++){
 <script>
 const Dir='<?php echo get_template_directory_uri(); ?>'; 
 const CastId='<?=$_SESSION["id"] ?>'; 
+const Now_md=<?=date("md",$jst)+0?>;
+const Now_Y	=<?=date("Y",$jst)+0?>;
+
 </script>
 </head>
 <body class="body">
@@ -594,7 +600,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<table class="customer_base">
 				<tr>
 					<td class="customer_base_img" rowspan="3">
-					<img src="" class="customer_detail_img">
+					<img id="customer_img" src="" class="customer_detail_img">
 					<span class="customer_camera"></span>
 					</td>
 					<td class="customer_base_tag">タグ</td>
@@ -808,24 +814,24 @@ const CastId='<?=$_SESSION["id"] ?>';
 			<div id="notice_ttl_3" class="notice_ttl_in">明後日</div>
 		</div>
 		<div id="notice_box_1" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
 			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
 		</div>
 
 		<div id="notice_box_2" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_2?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_2?></span><br>
 			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_2?></span></span>
 		</div>
 
 		<div id="notice_box_3" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span><br>
 			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_3?></span></span>
 		</div>
 
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 		<div class="notice_list">
 			<?for($n=0;$n<count($notice);$n++){?>
-				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><span class="notice_icon"></span><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日　<?=$notice[$n]["title"]?>
+				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日　<?=$notice[$n]["title"]?>
 				<div class="notice_yet<?=$notice[$n]["status"]?>"></div></div>
 				<input id="notice_box_hidden<?=$notice[$n]["id"]?>" type="hidden" value="<?=$notice[$n]["log"]?>">
 			<? } ?>
@@ -893,7 +899,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 		<input id="del_id" type="hidden">
 	</div>
 
-	<div class="customer_memo_back_in">
+	<div class="customer_memo_in">
 		<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
 		<div class="customer_memo_new_set"></div>
 		<div class="customer_memo_new_del"></div>
@@ -902,6 +908,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 
 	<div class="customer_regist">
 		<div class="customer_regist_ttl">新規顧客登録</div>
+		<span class="customer_regist_no">×</span>
 		<table class="customer_regist_base">
 			<tr>
 				<td class="customer_base_img" rowspan="3">
@@ -910,7 +917,7 @@ const CastId='<?=$_SESSION["id"] ?>';
 				</td>
 				<td class="customer_base_tag">タグ</td>
 				<td id="" class="customer_base_item">
-				<select id="regist_group" name="cus_group" value="" class="item_group">
+				<select id="regist_group" name="cus_group" value="0" class="item_group">
 				<option value="0">通常</option>
 				<?foreach($cus_group_sel as $a1=>$a2){?>
 				<option value="<?=$a1?>"><?=$a2?></option>
@@ -922,23 +929,25 @@ const CastId='<?=$_SESSION["id"] ?>';
 				<td class="customer_base_tag">名前</td>
 				<td class="customer_base_item"><input type="text" id="regist_name" name="cus_name" value="" class="item_basebox"></td>
 			</tr>
+
 			<tr>
 				<td class="customer_base_tag">呼び名</td>
 				<td class="customer_base_item"><input type="text" id="regist_nick" name="cus_nick" value="" class="item_basebox"></td>
 			</tr>
+
 			<tr>
-				<td class="customer_base_fav">
-					<span id="reg_fav_1" class="customer_fav"></span>
-					<span id="reg_fav_2" class="customer_fav"></span>
-					<span id="reg_fav_3" class="customer_fav"></span>
-					<span id="reg_fav_4" class="customer_fav"></span>
-					<span id="reg_fav_5" class="customer_fav"></span>
+				<td class="regist_fav">
+					<span id="reg_fav_1" class="reg_fav"></span>
+					<span id="reg_fav_2" class="reg_fav"></span>
+					<span id="reg_fav_3" class="reg_fav"></span>
+					<span id="reg_fav_4" class="reg_fav"></span>
+					<span id="reg_fav_5" class="reg_fav"></span>
 				</td>
 				<td class="customer_base_tag">誕生日</td>
 				<td class="customer_base_item">
 				<select id="reg_yy" name="cus_b_y" value="1977" class="item_basebox_yy">
 					<?for($n=1930;$n<date("Y");$n++){?>
-					<option value="<?=$n?>"><?=$n?></option>
+					<option value="<?=$n?>" <?if($n==$reg_base_yy){?> selected="selected"<?}?>><?=$n?></option>
 					<?}?>
 				</select>/<select id="reg_mm" name="cus_b_m" value="" class="item_basebox_mm">
 					<?for($n=1;$n<13;$n++){?>
@@ -951,13 +960,15 @@ const CastId='<?=$_SESSION["id"] ?>';
 				</select><span class="detail_age">
 					<select id="reg_ag" name="cus_b_a" value="20" class="item_basebox_ag">
 						<?for($n=0;$n<date("Y")-1930;$n++){?>
-						<option value="<?=$n?>"><?=$n?></option>
+						<option value="<?=$n?>" <?if($n==$reg_base_ag){?> selected="selected"<?}?>><?=$n?></option>
 						<?}?>
 					</select>
 				歳</span>
 				</td>
 			</tr>
 		</table>
+		<div class="customer_regist_set">登録</div>
+		<input id="regist_fav" type="hidden" value="0">
 	</div>
 
 	<div class="img_box">
