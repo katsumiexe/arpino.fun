@@ -698,7 +698,7 @@ i,.days_icon{
 }
 
 .item_group{
-	height			:9vw;
+	height			:7vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
@@ -707,17 +707,18 @@ i,.days_icon{
 }
 
 .item_basebox{
-	height			:9vw;
+	height			:8vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:43vw;
+	width			:50vw;
 	border-color	:#f17766;
+	padding:0 0.5vw;
 }
 
 .item_basebox_yy{
 	text-align		:right;
-	height			:9vw;
+	height			:7vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
@@ -729,7 +730,7 @@ i,.days_icon{
 
 .item_basebox_mm{
 	text-align		:right;
-	height			:9vw;
+	height			:7vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
@@ -742,7 +743,7 @@ i,.days_icon{
 .item_basebox_ag{
 	text-align:-webkit-right;
 	text-align		:right;
-	height			:8vw;
+	height			:7vw;
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
@@ -1031,10 +1032,10 @@ i,.days_icon{
 }
 
 .customer_base,.customer_regist_base{
-	width			:95vw;
+	width			:98vw;
 	border-collapse	:separate;
 	border-spacing	:1vw 0;
-	margin			:15vw auto 2vw auto;
+	margin			:15.5vw auto 2vw auto;
 	background		:#fafafa;
 }
 
@@ -1044,7 +1045,7 @@ i,.days_icon{
 
 .customer_base_img{
 	position		:relative;
-	width			:30vw;
+	width			:25vw;
 	background		:#f0f0ff;
 }
 .customer_detail_img{
@@ -1053,8 +1054,8 @@ i,.days_icon{
 	left			:0vw;
 	bottom			:0vw;
 	right			:0vw;
-	width			:28vw;
-	height			:28vw;
+	width			:25vw;
+	height			:25vw;
 	margin			:auto;
 }
 
@@ -1077,7 +1078,7 @@ i,.days_icon{
 
 
 .customer_base_tag{
-	width			:15vw;
+	width			:14vw;
 	border-bottom	:0.5vw solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
@@ -1088,7 +1089,7 @@ i,.days_icon{
 	border-bottom	:0.5vw solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
-	height			:10vw;
+	height			:9vw;
 }
 
 .customer_base_fav,.regist_fav{
@@ -1101,7 +1102,7 @@ i,.days_icon{
 	display			:inline-block;
 	height			:8vw;
 	line-height		:8vw;
-	width			:5.5vw;
+	width			:5vw;
 	font-size		:4vw;
 	text-align		:center;
 	color			:#cccccc;
@@ -1183,6 +1184,7 @@ i,.days_icon{
 	font-size	:0;
 	margin		:1vw;
 	border		:1px solid #303030;
+	background:#fafafa;
 }
 
 .customer_memo_td1{

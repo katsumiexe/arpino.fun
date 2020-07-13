@@ -916,7 +916,7 @@ const Now_Y	=<?=date("Y",$jst)+0?>;
 		<table class="customer_regist_base">
 			<tr>
 				<td class="customer_base_img" rowspan="3">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="customer_detail_img">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img">
 				<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
