@@ -261,16 +261,19 @@ input:focus{
 	padding-left	:1vw;
 	margin			:0;
 	text-align		:left;
-	color:#303030;
+	background		:#fafafa;
+	color			:#303030;
 }
 
 .notice_box_item1{
 	color:#000000;
-	background		:#f0eeee;
+	text-shadow:1px 1px #000000;
+	background		:#e0ffff;
 }
 
 .notice_box_sel{
 	background:#fff0f8;
+	color:#000000;
 }
 
 
