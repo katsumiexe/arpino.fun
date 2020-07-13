@@ -987,11 +987,15 @@ $(function(){
 
 	$('.notice_ttl_in').on('click',function(){
 		if(!$(this).hasClass('notice_sel')){
-			Tmp=$(this).attr('id').replace('ttl','box');
+			Tmp=$(this).attr('id');
+			$('#h_'+Tmp).val();
+			$('#notice_day').text($('#h_'+Tmp).val());
+
+			Tmp2=$(this).attr('id').replace('ttl','box');
 			$('.notice_ttl_in').removeClass('notice_sel');
 			$(this).addClass('notice_sel');
 			$('.notice_box').hide();
-			$('#'+Tmp).fadeIn(0);
+			$('#'+Tmp2).fadeIn(0);
 		}
 	});
 

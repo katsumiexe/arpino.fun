@@ -808,10 +808,14 @@ const Now_Y	=<?=date("Y",$jst)+0?>;
 	<?}else{?>
 	<div class="mypage_main">
 		<div class="notice_ttl">
-			<div class="notice_ttl_day"><span class="notice_icon"></span><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</div>
+			<div class="notice_ttl_day"><span class="notice_icon"></span><span id="notice_day"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span></div>
 			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
 			<div id="notice_ttl_2" class="notice_ttl_in">明日</div>
 			<div id="notice_ttl_3" class="notice_ttl_in">明後日</div>
+			<input id="h_notice_ttl_1" type="hidden" value="<?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]">
+			<input id="h_notice_ttl_2" type="hidden" value="<?=date("m月d日",$jst+86400)?>[<?=$week[date("w",$jst+86400)]?>]">
+			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$jst+172800)?>[<?=$week[date("w",$jst+172800)]?>]">
+
 		</div>
 		<div id="notice_box_1" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
