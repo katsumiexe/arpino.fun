@@ -132,6 +132,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		$n++;	
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -148,123 +149,12 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/jquery.easing.1.3.js"></script>
 <script src="./js/main.js?_<?=date("YmdHi")?>"></script>
+<script src="./js/pvp.js?_<?=date("YmdHi")?>"></script>
 <script>
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171407668-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-171407668-1');
-</script>
 </head>
 <body style="text-align:center;background:#888888">
-<div class="main">
-	<div class="page_00">
-		<div class="first_play">
-			<div class="first_play_ttl">
-				<span>アイギスカードゲーム(仮)</span>
-			</div>
-
-			<div id="labo1" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">変更</span>
-				<span class="labo_comm">-Log-</span>
-			</div>
-			<div class="labo_box">
-			<span id="l20200704" class="labo_box_line">▼2020/07/04　メニューの追加</span>
-			<span id="b20200704" class="labo_box_detail">
-			・解析を追加しました。<br>
-			</span>	
-			<span id="l20200703" class="labo_box_line">▼2020/07/03　表示の修正</span>
-			<span id="b20200703" class="labo_box_detail">
-			・他プレイヤーのアイテム表示がカードの下になってしまう個所を修正しました。<br>
-			・最終結果の表示に、挑戦した難易度も表示しました。<br>
-			</span>	
-			</div>
-
-			<div id="lv0" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">★☆☆</span>
-				<span class="first_comm">-easy-</span>
-			</div>
-			<div id="lv1" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">★★☆</span>
-				<span class="first_comm">-normal-</span>
-			</div>
-			<div id="lv2" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">★★★</span>
-				<span class="first_comm">-ONI!-</span>
-			</div>
-			<div id="lv4" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">ランキング</span>
-				<span class="first_comm">-Ranking-</span>
-			</div>
-			<div id="lv5" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">遊び方</span>
-				<span class="first_comm">-Howto-</span>
-			</div>
-
-<!--
-			<a href="./outpost.php" id="labo2" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">ご意見</span>
-				<span class="labo_comm">-BBS-</span>
-			</a>
--->
-			<a href="./ana.php" id="labo3" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">解析</span>
-				<span class="first_comm">-Chart-</span>
-			</a>
-
-			<a href="./outpost.php" id="labo4" class="first_play_level">
-				<span class="first_icon"></span>
-				<span class="first_comm">問合せ</span>
-				<span class="first_comm">-AskMe-</span>
-			</a>
-<!--
-			<div id="labo5" class="labo_item">
-				<span class="labo_icon"></span>
-				<span class="labo_comm">制作手記</span>
-				<span class="labo_comm">-Katsumi-</span>
-			</div>
-			<div id="labo1_box" class="labo_box">
-				<a href="./readme.php" class="labo_box_line">▼2020/07/04　お礼と今後の展開と</a><br>
-			</div>
--->
-			<div class="first_play_btm">
-				<span class="sns">
-				<a href="https://twitter.com/serra_geddon" class="icon_twitter"></a>
-				<a href="https://github.com/katsumiexe" class="icon_github"></a>
-				</span>
-			</div>
-		</div>
-	</div>
-<div class="page_01">
-<?for($e=1;$e<11;$e++){?>
-	<div id="s<?=$e?>" class="sel">
-	<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
-	<span class="sel_b">
-	<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_3"]==1){?>sel_on<?}?>"><?=$status[3]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_4"]==1){?>sel_on<?}?>"><?=$status[4]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
-	</span>
-	<span class="sel_c"><?=$unit[$e]["name"]?></span>
-	</div>
-<?}?>
-<div class="page_01_guide">
-お好きなユニットを一つ選んでください。<Br>
-</div>
-</div>
 
 <div class="page_02">
 	<div class="player">
@@ -380,13 +270,14 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			<td class="td_b2">
 				<div class="guard"></div>
 				<?for($s=11;$s>-1;$s--){?>
-				<span id="i<?=$s?>" class="p_pts p_pts_on"><?=$item[$s]?></span>
+				<span id="p_i<?=$s?>" class="p_pts pvp_pts_on"><?=$item[$s]?></span>
 				<?}?>
 			</td>
 		</tr>
 	</table>
 </div>
 </div>
+
 <div class="pop_back">
 	<div class="pop_a">
 		<img src="" class="pop_a_1">
@@ -397,155 +288,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	</div>
 </div>
 
-<div class="score">
-	<div class="score_top">	Ranking(<?=$now?>)　<span id="s_lv2" class="score_lv score_lv_on">★★★</span><span id="s_lv1" class="score_lv">★★☆</span><span id="s_lv0" class="score_lv">★☆☆</span><span class="score_back"></span></div>
-	<table id="tbl_lv0" class="score_table">
-		<tr>
-			<td class="score_table_ttl">Rank</td>
-			<td class="score_table_ttl">Unit</td>
-			<td class="score_table_ttl">Date/Name</td>
-			<td class="score_table_ttl">Score</td>
-		</tr>
-	<?for($n=1;$n<11;$n++){?>
-		<tr>
-			<td class="score_table_rank" rowspan="2"><?=$n?></td>
-			<td class="score_table_unit" rowspan="2"><?=$rank0[$n]["img"]?></td>
-			<td class="score_table_date"><?=$rank0[$n]["date"]?></td>
-			<td class="score_table_score" rowspan="2"><?=$rank0[$n]["score"]?></td>
-		</tr>
-		<tr>
-			<td class="score_table_name"><?=$rank0[$n]["name"]?></td>
-		</tr>
-	<? } ?>
-	</table>
-	<table id="tbl_lv1" class="score_table">
-		<tr>
-			<td class="score_table_ttl">Rank</td>
-			<td class="score_table_ttl">Unit</td>
-			<td class="score_table_ttl">Date/Name</td>
-			<td class="score_table_ttl">Score</td>
-		</tr>
-	<?for($n=1;$n<11;$n++){?>
-		<tr>
-			<td class="score_table_rank" rowspan="2"><?=$n?></td>
-			<td class="score_table_unit" rowspan="2"><?=$rank1[$n]["img"]?></td>
-			<td class="score_table_date"><?=$rank1[$n]["date"]?></td>
-			<td class="score_table_score" rowspan="2"><?=$rank1[$n]["score"]?></td>
-		</tr>
-		<tr>
-			<td class="score_table_name"><?=$rank1[$n]["name"]?></td>
-		</tr>
-	<? } ?>
-	</table>
-	<table id="tbl_lv2" class="score_table">
-		<tr>
-			<td class="score_table_ttl">Rank</td>
-			<td class="score_table_ttl">Unit</td>
-			<td class="score_table_ttl">Date/Name</td>
-			<td class="score_table_ttl">Score</td>
-		</tr>
-	<?for($n=1;$n<11;$n++){?>
-		<tr>
-			<td class="score_table_rank" rowspan="2"><?=$n?></td>
-			<td class="score_table_unit" rowspan="2"><?=$rank2[$n]["img"]?></td>
-			<td class="score_table_date"><?=$rank2[$n]["date"]?></td>
-			<td class="score_table_score" rowspan="2"><?=$rank2[$n]["score"]?></td>
-		</tr>
-		<tr>
-			<td class="score_table_name"><?=$rank2[$n]["name"]?></td>
-		</tr>
-	<? } ?>
-	</table>
-</div>
 
-<div class="howto">
-	<div class="howto_page">
-		<span class="howto_back"></span>
-		<span id="ibox0" class="howto_page_tag">準備</span>
-		<span id="ibox1" class="howto_page_tag">進行</span>
-
-		<span id="ibox2" class="howto_page_tag">ユニット</span>
-		<span id="ibox3" class="howto_page_tag">アイテム</span>
-		<span id="ibox4" class="howto_page_tag">魅力</span>
-
-		<span id="ibox5" class="howto_page_ttl">カード種類</span>
-
-	</div>
-
-	<div class="howto_main">
-		<div id="box0" class="howto_in" style="display:block;">
-			<div class="howto_title">準備</div>
-			各プレイヤーに1枚、<span style="color:#a04030">『ユニットカード』</span>を裏向きで1枚配ります。<bR>
-			配られた<span style="color:#a04030">『ユニットカード』</span>は見ることが可能ですが、他のプレイヤーにはゲーム終了まで見せないようにしてください。<br>
-			<span style="color:#a04030">『アイテムカード』</span>を各1枚づつ、計12枚を各プレイヤーに配ります。<bR>
-			<span style="color:#a04030">『魅力カード』</span>をシャッフルし、裏向けに置いてゲームスタートです。<br>
-		</div>
-		
-		<div id="box1" class="howto_in">
-			<div class="howto_title">進行</div>
-			ターンのはじめに<span style="color:#a04030">『魅力カード』</span>が一枚提示されます。<br>
-			各プレイヤーはそれぞれ<span style="color:#a04030">『アイテムカード』</span>を一枚捧げます。<br>
-			このときに、最も価値の高いものを出した人が<span style="color:#a04030">『魅力カード』</span>を獲得できます。<br>
-			ただし、同じ<span style="color:#a04030">『アイテムカード』</span>を出した人がいた場合はブッキングとなり、対象は次に高い人になります。<br>
-			全員がブッキングした場合、その魅力はだれも受け取ることが出来ません。<br>
-			一度使った<span style="color:#a04030">『アイテムカード』</span>は再度使うことはできません。<br>
-			これを12ターン行い、【魅力ポイント】が最も高いプレイヤーの勝利です。<br>
-			<br>
-			同点の場合は、<br>
-			▼「副官任命」を持っているユニット<br>
-			▼「リング」を持っているユニット<br>
-			の順に順位がつけられます。<br>
-			それでも同じ場合は、同点となります。
-		</div>
-
-		<div id="box2" class="howto_in">
-			<div class="howto_title">ユニットカード（10種類）</div>
-			王子を慕う10人の女性ユニットです。<br>
-			各プレイヤーはスタート時に1枚選択します。<br>
-			各ユニットは『巨乳』『幼女』『知的』『清楚』『天使』の5つのチャームポイントのうち、2つを有しています。<br>
-			他のプレイヤーがどのユニットを選択したかは、ゲーム終了までわかりません。<br>
-		</div>
-
-		<div id="box3" class="howto_in">
-			<div class="howto_title">アイテムカード（12種類）</div>
-			王子から頂いたプレゼントでこれを捧げることで、<span style="color:#a04030">【魅力ポイント】</span>を獲得することができます。<br>
-			スタート時は各1つづつ、計12個を所持しています。<br>
-			アイテムの価値は<br>
-			<span class="howto_item"></span>ダイヤ3<br>
-			<span class="howto_item"></span>ダイヤ2<br>
-			<span class="howto_item"></span>ダイヤ1<br>
-			<span class="howto_item"></span>ルビー3<br>
-			<span class="howto_item"></span>ルビー2<br>
-			<span class="howto_item"></span>ルビー1<br>
-			<span class="howto_item"></span>パール3<br>
-			<span class="howto_item"></span>パール2<br>
-			<span class="howto_item"></span>パール1<br>
-			<span class="howto_item"></span>花束3<br>
-			<span class="howto_item"></span>花束2<br>
-			<span class="howto_item"></span>花束1<br>
-			の順となります。<br>
-		</div>
-
-
-		<div id="box4" class="howto_in">
-			<div class="howto_title">魅力カード（12種類）</div>
-			『魅力カード』には、それぞれ【魅力ポイント】が設定されており、それを他のプレイヤーより多く獲得することが目的となります。<br>
-			選んだ<span style="color:#a04030">『ユニットカード』</span>が持つチャームポイントによって、獲得ポイントが変わるものもあります。<br>
-			<br>
-			▼副官任命（1枚）<br>
-			魅力ポイント+3<br>
-			<br>
-			▼リング（1枚）<br>
-			魅力ポイント+2<br>
-			<br>
-			▼ボーナスカード（5枚）<br>
-			魅力ポイント+1、対象の魅力を所持しているユニットだと+3となります。<br>
-			<br>
-			▼アンチカード（5枚）<br>
-			魅力ポイント+2、対象の魅力を所持しているユニットだと逆効果となり-2となります。<br>
-		</div>
-	</div>
-</div>
 <form id="reset_top" action="./index.php" method="post">
 </form>
 
