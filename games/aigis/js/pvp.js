@@ -91,6 +91,8 @@ $(function(){
 			},
 		}).done(function(data, textStatus, jqXHR){
 
+				data.win;
+				math.floor(data.pts)
 
 
 
