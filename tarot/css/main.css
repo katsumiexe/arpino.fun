@@ -50,14 +50,14 @@
 #c0{
 	top:40px;
 	left:40px;
-	animation		:r1 10s linear infinite;
+//	animation		:r1 10s linear infinite;
 	transform-origin: 0px 25px;
 }
 
 #c1{
 	top:40px;
 	right:40px;
-	animation		:r2 6s linear infinite;
+//	animation		:r2 6s linear infinite;
 	transform-origin: 0px 25px;
 }
 

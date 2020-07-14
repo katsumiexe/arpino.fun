@@ -692,9 +692,9 @@ $(function(){
 			}).done(function(data, textStatus, jqXHR){
 				console.log(data);
 				$('.img_back').fadeOut(200);
-
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
+
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 				$('#customer_img, #sumb' + C_Id).attr('src',data + '?t=<?=time()?>');
 				$('#clist'+C_Id).children('.mail_img').attr('src',data + '?t=<?=time()?>');
@@ -715,6 +715,7 @@ $(function(){
 	$('#img_close').on('click',function(){
 			$('.img_back').fadeOut(200);
 			$('.img_box	').animate({'top':'100vh'},200);
+
 		var cvs = document.getElementById('cvs1');
 		var ctx = cvs.getContext('2d');
 		ctx.clearRect(0, 0, cvs_A,cvs_A);
