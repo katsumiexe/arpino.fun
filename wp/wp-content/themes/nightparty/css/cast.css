@@ -1074,6 +1074,7 @@ i,.days_icon{
 }
 
 .regist_img{
+	position		:absolute;
 	width			:25vw;
 	height			:25vw;
 }

@@ -709,13 +709,11 @@ $(function(){
 				});
 
 			}else{
-
-				var Tmp_w=math.floor(25 * ImgZoom / 100) ;
-				var Tmp_t=Imgtop*(-1);
-				var Tmp_l=ImgLeft*(-1);
+				var Tmp_w=Math.floor(25/(ImgZoom/100)) ;
+				var Tmp_t=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
+				var Tmp_l=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 				var Tmp_r=Rote;
 
-				$('.set_back').fadeOut(200);
 				$('.img_box	').animate({'top':'100vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
@@ -727,8 +725,8 @@ $(function(){
 	});
 
 	$('#img_close').on('click',function(){
-			$('.set_back').fadeOut(200);
-			$('.img_box	').animate({'top':'100vh'},200);
+		$('.set_back').fadeOut(200);
+		$('.img_box	').animate({'top':'100vh'},200);
 
 		var cvs = document.getElementById('cvs1');
 		var ctx = cvs.getContext('2d');

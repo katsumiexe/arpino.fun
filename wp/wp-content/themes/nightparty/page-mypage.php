@@ -917,7 +917,7 @@ var C_Id_tmp=0;
 		<span class="customer_regist_no">×</span>
 		<table class="customer_regist_base">
 			<tr>
-				<td class="customer_base_img" rowspan="3">
+				<td id="set_new_img" class="customer_base_img" rowspan="3">
 				<span class="regist_img_pack">					
 				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img">
 				</span>					
