@@ -649,7 +649,7 @@ $(function(){
 
 	$('.customer_base_img').on('click',function(){
 		$('.img_box').animate({'top':'10vw'},200);
-		$('.img_back').fadeIn(100);
+		$('.set_back').fadeIn(100);
 	});
 
 	$('#regist_schedule').on('click',function(){
@@ -691,7 +691,7 @@ $(function(){
 
 			}).done(function(data, textStatus, jqXHR){
 				console.log(data);
-				$('.img_back').fadeOut(200);
+				$('.set_back').fadeOut(200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
 
@@ -713,7 +713,7 @@ $(function(){
 	});
 
 	$('#img_close').on('click',function(){
-			$('.img_back').fadeOut(200);
+			$('.set_back').fadeOut(200);
 			$('.img_box	').animate({'top':'100vh'},200);
 
 		var cvs = document.getElementById('cvs1');

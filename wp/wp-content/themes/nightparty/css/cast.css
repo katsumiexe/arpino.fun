@@ -2459,7 +2459,7 @@ input[type=range]::-moz-range-thumb{
 	position	:absolute;
 	bottom		:1vw;
 	border		:0.5vw solid #909090;
-	width		:25vw;
+	width		:24vw;
 	height		:8vw;
 	line-height	:8vw;
 	background	:#fafafa;
@@ -2467,20 +2467,23 @@ input[type=range]::-moz-range-thumb{
 	font-weight	:600;
 	color		:#909090;
 	text-align	:center;
+	padding-left:1vw;
+	border-radius:0;
 }
 
 .d_sch_time_in,.d_sch_time_out{
 	position	:absolute;
 	bottom		:1vw;
 	border		:0.5vw solid #909090;
-	width		:24vw;
+	width		:22vw;
 	height		:8vw;
 	line-height	:8vw;
 	background	:#fff0fa;
 	font-size	:5vw;
 	font-weight	:600;
 	color		:#909090;
-	text-align	:center;
+	text-align	:left;
+	padding-left:1vw;
 }
 
 .sch_time_in,.d_sch_time_in{
