@@ -434,6 +434,8 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 const CastId='<?=$_SESSION["id"] ?>'; 
 const Now_md=<?=date("md",$jst)+0?>;
 const Now_Y	=<?=date("Y",$jst)+0?>;
+var C_Id=0;
+var C_Id_tmp=0;
 
 </script>
 </head>
@@ -916,7 +918,9 @@ const Now_Y	=<?=date("Y",$jst)+0?>;
 		<table class="customer_regist_base">
 			<tr>
 				<td class="customer_base_img" rowspan="3">
+				<span class="regist_img_pack">					
 				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img">
+				</span>					
 				<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>

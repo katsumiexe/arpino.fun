@@ -42,9 +42,7 @@ if($_POST["staff_set"]){
 		$id_8	=substr("00000000".$tmp_auto,-8);
 		$id_0	=$tmp_auto % 20;
 
-
-
-		$sql="INSERT INTO wp01_0cast (`id`,genji`,`genji_kana`,`cast_id`,`cast_pass`,`castmail`,`castmail_pass`)";
+	$sql="INSERT INTO wp01_0cast (`id`,genji`,`genji_kana`,`cast_id`,`cast_pass`,`castmail`,`castmail_pass`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$castmail}','{$castmail_pass}')";
 		$wpdb->query($sql);
 	

@@ -1048,6 +1048,7 @@ i,.days_icon{
 	width			:25vw;
 	background		:#f0f0ff;
 }
+
 .customer_detail_img{
 	position		:absolute;
 	top				:0vw;
@@ -1058,6 +1059,25 @@ i,.days_icon{
 	height			:25vw;
 	margin			:auto;
 }
+
+.regist_img_pack{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:0vw;
+	bottom			:0vw;
+	right			:0vw;
+	width			:25vw;
+	height			:25vw;
+	margin			:auto;
+	overflow		:hidden;
+}
+
+.regist_img{
+	width			:25vw;
+	height			:25vw;
+}
+
 
 .customer_camera{
 	display			:inline-block;
