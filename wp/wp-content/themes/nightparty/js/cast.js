@@ -217,12 +217,12 @@ $(function(){
 				'dd'		:$('#reg_dd').val(),
 				'ag'		:$('#reg_ag').val(),
 	
-				'img_top'	:$('#img_top').val();
-				'img_left'	:$('#img_left').val();
-				'img_width'	:$('#img_width').val();
-				'img_height':$('#img_Height').val();
-				'img_zoom'	:$('#img_zoom').val();
-				'img_code'	:$('#img_code').val();
+				'img_top'	:$('#img_top').val(),
+				'img_left'	:$('#img_left').val(),
+				'img_width'	:$('#img_width').val(),
+				'img_height':$('#img_Height').val(),
+				'img_zoom'	:$('#img_zoom').val(),
+				'img_code'	:$('#img_code').val(),
 
 			},
 /*			dataType: 'json',*/
@@ -719,8 +719,8 @@ $(function(){
 				$('.img_box	').animate({'top':'100vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
-				$('.regist_img').attr('src','data:image/png;base64,+' ImgCode.replace(/^data:image\/jpeg;base64,/, ""))
-				.css({'top:'+Tmp_t+'vw','left:'+Tmp_l+'vw','width:'+Tmp_w+'vw','height:'+Tmp_w+'vw','transform: rotate('+Tmp_r+'deg)'});
+				$('.regist_img').attr('src','data:image/png;base64,'+ ImgCode.replace(/^data:image\/jpeg;base64,/, ""))
+				.css({'top':Tmp_t+'vw','left':Tmp_l+'vw','width':Tmp_w+'vw','height':Tmp_w+'vw','transform':'rotate('+Tmp_r+'deg)'});
 
 			}
 		}

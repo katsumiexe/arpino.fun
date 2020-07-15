@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
 <script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
 <script src="./js/jquery.easing.1.3.js"></script>
 <script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
@@ -17,6 +18,8 @@
 <body style="text-align:center;background:#888888">
 <div class="btn">push</div>
 <div class="main">
+<div class="hand"></div>
+
 <div id="c0" class="card_bk"></div>
 <div id="c1" class="card_bk"></div>
 <div id="c2" class="card_bk"></div>
