@@ -12,6 +12,8 @@ $nick	=$_POST["nick"];
 $fav	=$_POST["fav"];
 $cast_id=$_POST["cast_id"];
 $img	=$_POST["img"];
+$vw_base=$_POST["vw_base"];
+
 
 $yy	=$_POST["yy"];
 $mm	=$_POST["mm"];
@@ -28,7 +30,18 @@ $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 
 
+if($yy && $mm && $dd){
+	$birth=$yy."-".$mm."-".$dd;
+}else{
+	$birth="0000-00-00";
+}
+
+$sql_log ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
+$sql_log .=" VALUES('{$cast_id}','{$nick}','{$name}','{$regist_date}','{$birth}','{$clist}','{$fav}','{$group}')";
+$wpdb->query($sql_log);
+
 if($img_code){
+	$tmp_auto=$wpdb->insert_id;
 	$sql ="SELECT * FROM wp01_0encode"; 
 	$enc0 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($enc0 as $row){
@@ -44,8 +57,8 @@ if($img_code){
 		$tmp_dir.=$dec[$id_0][$tmp_id];
 	}
 
-	for($n=0;$n<strlen($c_id);$n++){
-		$cus=substr($c_id,$n,1);
+	for($n=0;$n<strlen($tmp_auto);$n++){
+		$cus=substr($tmp_auto,$n,1);
 		$rnd=rand(0,19);
 		$clist=$dec[$rnd][$cus];
 	}
@@ -75,17 +88,12 @@ if($img_code){
 	}
 	ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 600, $tmp_width, $tmp_height);
 	imagepng($img2,$link);
-}
 
-if($yy && $mm && $dd){
-	$birth=$yy."-".$mm."-".$dd;
-}else{
-	$birth="0000-00-00";
+	$sql_log ="UPDATE wp01_0customer SET";
+	$sql_log .=" face='{$clist}'";
+	$sql_log .=" WHERE id='{$tmp_auto}'";
+	$wpdb->query($sql_log);
 }
-
-$sql_log ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
-$sql_log .=" VALUES('{$cast_id}','{$nick}','{$name}','{$regist_date}','{$birth}','{$clist}','{$fav}','{$group}')";
-$wpdb->query($sql_log);
 
 echo($sql_log);
 exit();

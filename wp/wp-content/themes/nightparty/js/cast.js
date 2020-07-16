@@ -2,6 +2,8 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 	var Fav=0;
+	var cvs_A=0;
+
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
 			$(this).removeClass('mypage_on');
@@ -223,6 +225,7 @@ $(function(){
 				'img_height':$('#img_Height').val(),
 				'img_zoom'	:$('#img_zoom').val(),
 				'img_code'	:$('#img_code').val(),
+				'vw_base'	:VwBase,
 
 			},
 /*			dataType: 'json',*/
@@ -668,7 +671,7 @@ $(function(){
 			var ImgZoom		=$('#img_zoom').val();
 			var ImgUrl		=$('#img_url').val();
 
-			if(C_Id_Tmp>0){
+			if(C_Id>0){
 				$('#wait').show();
 				$.post({
 					url:Dir + "/post/img_set.php",
@@ -717,7 +720,8 @@ $(function(){
 				$('.img_box	').animate({'top':'100vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
-				$('.regist_img').attr('src','data:image/png;base64,'+ ImgCode.replace(/^data:image\/jpeg;base64,/, ""))
+				$('#img_code').val(ImgCode)
+				$('.regist_img').attr('src',ImgCode)
 				.css({'top':Tmp_t+'vw','left':Tmp_l+'vw','width':Tmp_w+'vw','height':Tmp_w+'vw','transform':'rotate('+Tmp_r+'deg)'});
 
 			}

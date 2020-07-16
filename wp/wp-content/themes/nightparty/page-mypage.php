@@ -1017,6 +1017,8 @@ var C_Id_tmp=0;
 <input id="img_height" type="hidden" name="img_height" value="10">
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="img_url" type="hidden" name="img_url" value="">
+<input id="img_code" type="hidden" name="img_code" value="">
+
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
