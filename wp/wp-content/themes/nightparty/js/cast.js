@@ -719,8 +719,8 @@ $(function(){
 //				var Tmp_t=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 //				var Tmp_l=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 
-				var Tmp_t=(ImgTop+css_B+VwBase*10)+0;
-				var Tmp_l=(ImgLeft+css_B+VwBase*10)+0;
+				var Tmp_t=(parseInt(ImgTop))+0;
+				var Tmp_l=(parseInt(ImgLeft))+0;
 
 				var Tmp_r=Rote;
 
@@ -728,6 +728,9 @@ console.log("cvs_w:"+cvs_W);
 console.log("cvs_h:"+cvs_H);
 console.log("css_A:"+css_A);
 console.log("css_B:"+css_B);
+
+console.log("Tmp_t:"+Tmp_t);
+console.log("Tmp_l:"+Tmp_l);
 
 console.log("ImgTop:"+ImgTop);
 console.log("ImgLeft:"+ImgLeft);	

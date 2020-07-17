@@ -16,6 +16,8 @@ a{
 	width		:100vw;
 }
 
+
+
 .main{
 	display		:flex;
 	flex-wrap	:wrap;
@@ -28,6 +30,7 @@ a{
 	padding-top	:80px;
 	font-size	:0;
 }
+
 
 .head{
 	position	:fixed;
@@ -119,6 +122,29 @@ a{
 	border-radius	:8px;
 }
 
+.cast_tag{
+	display		:flex;
+	width		:1020px;
+	background	:#302520;
+	text-align	:left;
+	height		:30px;
+	overflow	:hidden;
+}
+
+.cast_tag_box{
+	display		:inline-block;
+	position	:relative;
+	width		:125px;
+	flex-basis	:125px;
+	height		:30px;
+	line-height	:30px;
+	margin		:0 1px;
+	background	:#fafafa;
+	text-align	:center;
+	border		:1px solid #906000;
+	font-size	:14px;
+	border-radius:0 25px 0 0;
+}
 
 .main_b{
 	display		:inline-block;
@@ -133,7 +159,7 @@ a{
 	display		:inline-block;
 	width		:1020px;
 	background	:#302520;
-	text-align:left;
+	text-align	:left;
 }
 
 .main_b_title{
@@ -225,4 +251,3 @@ a{
 	border		:2px solid #c08000;
 	background	:#302520;
 }
-

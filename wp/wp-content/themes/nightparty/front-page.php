@@ -11,8 +11,7 @@ $dat[7]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 $dat[8]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 $dat[9]->face=get_template_directory_uri()."/img/cast/noimage.jpg";
 
-$now=date("Ymd",time()+32400);
-
+$now=date("Ymd",time()+54000);
 print($now);
 $res = $wpdb->get_results('SELECT * FROM wp01_0cast',ARRAY_A);
 
@@ -64,7 +63,6 @@ foreach($res2 as $a2){
 	</a>
 <?}?>
 </div>
-
 <div class="main_c">
 	<div class="main_c_1">
 <?php echo $cast[1]["genji"]?><bR>

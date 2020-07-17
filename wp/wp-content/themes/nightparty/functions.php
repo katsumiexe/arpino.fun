@@ -18,4 +18,5 @@ function geotag_queryvars( $qvars ){
 	return $qvars;
 }
 add_filter('query_vars', 'geotag_queryvars' );
+
 ?>
