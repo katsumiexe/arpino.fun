@@ -157,31 +157,24 @@ $reg_base_ag=date("Y")-1980;
 	foreach($dat as $tmp2){
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+	}
 
-		if($tmp2["sche_date"] ==$now_ymd){
-			if($tmp2["stime"] && $tmp2["etime"]){
-				$days_sche="{$tmp2["stime"]}-{$tmp2["etime"]}";
+	if($stime[$now_ymd] && $etime[$now_ymd]){
+		$days_sche="{$stime[$now_ymd]}-{$etime[$now_ymd]}";
+	}else{
+		$days_sche="休み";
+	}
 
-			}else{
-				$days_sche="休み";
-			}
+	if($stime[$now_ymd_2] && $etime[$now_ymd_2]){
+		$days_sche="{$stime[$now_ymd_2]}-{$etime[$now_ymd_2]}";
+	}else{
+		$days_sche="休み";
+	}
 
-		}elseif($tmp2["sche_date"] ==$now_ymd_2){
-			if($tmp2["stime"] && $tmp2["etime"]){
-				$days_sche_2="{$tmp2["stime"]}-{$tmp2["etime"]}";
-
-			}else{
-				$days_sche_2="休み";
-			}
-
-		}elseif($tmp2["sche_date"] ==$now_ymd_3){
-			if($tmp2["stime"] && $tmp2["etime"]){
-				$days_sche_3="{$tmp2["stime"]}-{$tmp2["etime"]}";
-
-			}else{
-				$days_sche_3="休み";
-			}
-		}
+	if($stime[$now_ymd_3] && $etime[$now_ymd_3]){
+		$days_sche="{$stime[$now_ymd_3]}-{$etime[$now_ymd_3]}";
+	}else{
+		$days_sche="休み";
 	}
 
 	$sql	 ="SELECT * FROM wp01_0schedule_memo";
@@ -304,7 +297,6 @@ $reg_base_ag=date("Y")-1980;
 
 			$app_n3=$memo_dat[$tmp_ymd];
 
-
 			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
@@ -313,7 +305,6 @@ $reg_base_ag=date("Y")-1980;
 			$cal[$n].="</td>";
 		}
 	}
-
 
 	if($_POST["cus_set"]){
 		$cast_page=2;
