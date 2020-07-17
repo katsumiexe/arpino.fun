@@ -40,20 +40,19 @@ $(function(){
 	$('.hand').draggable({
 		drag: function( event, ui ) {
 			Tmp++;
-			Rt+=2;
+			Rt-=2;
 			if(Tmp>115){
 				Tmp=0;
 			}
 
-			if(Rt>359){
+			if(Rt<-359){
 				Rt=0;
 			}
 			 $('#c2').css({'top':By[Tmp]+'px','left':Bx[Tmp]+'px','transform':'rotate('+Rt+'deg)'});
 			 $('#c1').css({'top':Cy[Tmp]+'px','left':Cx[Tmp]+'px','transform':'rotate('+Rt+'deg)'});
 		},
-
 		stop: function( event, ui ) {
-
+			 $('.card_bk').animate({'top':'10px','left':'10px'},200).css({'transform':'rotate(0deg)'});
 		},
     });
 
@@ -79,8 +78,6 @@ $(function(){
 	    })
 
 	});
-
-
 });
 
 

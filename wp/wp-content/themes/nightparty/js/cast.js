@@ -713,26 +713,25 @@ $(function(){
 				});
 
 			}else{
-				var Tmp_w=Math.floor(cvs_W*25/(ImgZoom/100)/600);
-				var Tmp_h=Math.floor(cvs_H*25/(ImgZoom/100)/600);
+				var Tmp_w=Math.floor(cvs_A*25/(ImgZoom/100)/600);
+				var Tmp_h=Math.floor(cvs_A*25/(ImgZoom/100)/600);
 
 //				var Tmp_t=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 //				var Tmp_l=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 
-				var Tmp_t=(ImgTop+css_B+VwBase*10);
-				var Tmp_l=(ImgLeft+css_B+VwBase*10);
+				var Tmp_t=(ImgTop+css_B+VwBase*10)+0;
+				var Tmp_l=(ImgLeft+css_B+VwBase*10)+0;
 
 				var Tmp_r=Rote;
 
 console.log("cvs_w:"+cvs_W);
 console.log("cvs_h:"+cvs_H);
 console.log("css_A:"+css_A);
+console.log("css_B:"+css_B);
 
 console.log("ImgTop:"+ImgTop);
 console.log("ImgLeft:"+ImgLeft);	
 console.log("VwBase:"+VwBase);
-
-
 
 				$('.img_box	').animate({'top':'100vh'},200);
 				var cvs = document.getElementById('cvs1');
