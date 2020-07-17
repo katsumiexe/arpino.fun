@@ -166,16 +166,18 @@ $reg_base_ag=date("Y")-1980;
 	}
 
 	if($stime[$now_ymd_2] && $etime[$now_ymd_2]){
-		$days_sche="{$stime[$now_ymd_2]}-{$etime[$now_ymd_2]}";
+		$days_sche_2="{$stime[$now_ymd_2]}-{$etime[$now_ymd_2]}";
 	}else{
-		$days_sche="休み";
+		$days_sche_2="休み";
 	}
 
 	if($stime[$now_ymd_3] && $etime[$now_ymd_3]){
-		$days_sche="{$stime[$now_ymd_3]}-{$etime[$now_ymd_3]}";
+		$days_sche_3="{$stime[$now_ymd_3]}-{$etime[$now_ymd_3]}";
 	}else{
-		$days_sche="休み";
+		$days_sche_3="休み";
 	}
+
+
 
 	$sql	 ="SELECT * FROM wp01_0schedule_memo";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";

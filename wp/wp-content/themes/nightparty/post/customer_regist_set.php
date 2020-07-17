@@ -29,7 +29,6 @@ $img_height	=$_POST["img_height"];
 $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 
-
 if($yy && $mm && $dd){
 	$birth=$yy."-".$mm."-".$dd;
 }else{
