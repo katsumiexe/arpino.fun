@@ -904,7 +904,6 @@ var C_Id_tmp=0;
 		<div class="customer_memo_new_del"></div>
 		<textarea class="customer_memo_new_txt"></textarea>
 	</div>
-
 	<div class="customer_regist">
 		<div class="customer_regist_ttl">新規顧客登録</div>
 		<span class="customer_regist_no">×</span>

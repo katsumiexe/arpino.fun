@@ -18,6 +18,13 @@ a{
 
 
 
+.menu{
+	display		:block;
+	text-align	:center;
+	width		:1050px;
+	margin		:0 auto;
+	font-size	:0;
+}
 .main{
 	display		:flex;
 	flex-wrap	:wrap;
@@ -32,6 +39,7 @@ a{
 }
 
 
+
 .head{
 	position	:fixed;
 	top			:0;
@@ -44,6 +52,7 @@ a{
 	text-align	:center;
 	box-shadow	:5px 5px 5px rgba(100,50,0,0.6);
 	z-index		:10;
+	padding:0;
 }
 
 .menu-item{

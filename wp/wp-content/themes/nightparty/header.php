@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/person.css?t=<?=time()?>">
 <?php wp_head(); ?>
 </head>
-<body class="body"><?php
+<body class="body">
+<div class="menu">
+<?php
 	$args = array(
 		'theme_location'	=>'global', 
 		'menu_id'			=>'',
@@ -21,4 +23,6 @@
 		'container_id'    => '',
 	 );
 wp_nav_menu($args);
-?><div class="main">
+?>
+</div>
+<div class="main">

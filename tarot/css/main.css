@@ -72,6 +72,10 @@
 	transform-origin: center;
 }
 
+.card_bk:hover{
+	top:290px;
+}
+
 #c0{
 	top:40px;
 	left:40px;
