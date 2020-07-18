@@ -28,8 +28,8 @@ $week[4]="(木)";
 $week[5]="(金)";
 $week[6]="(土)";
 
-$cl[0]="_sun";
-$cl[6]="_sat";
+$cl[0]="tag_sun";
+$cl[6]="tag_sat";
 
 for($e=0;$e<7;$e++){
 	$cast_tag[$e]=date("m月d日",$now+86400*$e).$week[date("w",$now+86400*$e)];
@@ -38,9 +38,7 @@ for($e=0;$e<7;$e++){
 ?>
 <div class="cast_tag">
 <div class="cast_tag_box">ALL</div>
-<? for($e=0;$e<7;$e++){?>
-<div class="cast_tag_box" <?PHP echo $cl[$e]?>><?PHP echo $cast_tag[$e]?></div>
-<?}?>
+<? for($e=0;$e<7;$e++){?><div class="cast_tag_box <?PHP echo $cl[$e]?>"><?PHP echo $cast_tag[$e]?></div><?}?>
 </div>
 <div class="main_b_all">
 	<? for($s=0;$s<$n;$s++){?>
