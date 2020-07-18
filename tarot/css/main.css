@@ -4,11 +4,6 @@
 }
 
 @font-face {
-	font-family: at_item;
-	src: url(../font/font_2/fonts/icomoon.ttf) format('truetype');
-}
-
-@font-face {
 	font-family: at_border1;
 	src: url(../font/border/bordc1__.ttf) format('truetype');
 }
@@ -26,36 +21,55 @@
 
 
 .main{
-	position:absolute;
-	top:0;
-	left:0;
-	bottom:0;
-	right:0;
-	margin:auto;
-	background:#90ffc0;
-	width:280px;
-	height:200px;
+	position	:absolute;
+	top			:0;
+	left		:0;
+	bottom		:0;
+	right		:0;
+	margin		:auto;
+	background	:#90ffc0;
+	width		:500px;
+	height		:400px;
+}
+
+.guard{
+	position	:absolute;
+	top			:0;
+	left		:0;
+	bottom		:0;
+	right		:0;
+	margin		:auto;
+	width		:500px;
+	height		:400px;
+	z-index		:50;
 }
 
 .hand{
 	display		:inline-block;
 	position	:absolute;
-	height		:20px;
-	width		:20px;
-	background	:#d0d000;
+	top			:200px;
+	left		:250px;
+	height		:50px;
+	line-height	:50px;
+	width		:50px;
+	text-align	:center;
+	color		:#d0a060;
 	z-index		:100;
+	font-size	:40px;
+	font-family	:at_icon;
+	cursor		:pointer;
+	text-shadow	:2px 2px 2px #303030;
 }
-
 
 .card_bk{
 	display		:inline-block;
 	position	:absolute;
-	height		:65px;
-	width		:40px;
+	height		:80px;
+	width		:50px;
 	border		:5px solid #fafafa;
-	background	:linear-gradient(#c0a000,#a08000);
+	background	:linear-gradient(#90a0ff,#6080ff);
 	border-radius:10px;
-transform-origin: center;
+	transform-origin: center;
 }
 
 #c0{
