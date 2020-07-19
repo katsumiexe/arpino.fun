@@ -37,10 +37,10 @@ for($e=0;$e<7;$e++){
 
 ?>
 <div class="cast_tag">
-<div class="cast_tag_box">ALL</div>
+<div class="cast_tag_box cast_tag_box_sel">ALL</div>
 <? for($e=0;$e<7;$e++){?><div class="cast_tag_box <?PHP echo $cl[$e]?>"><?PHP echo $cast_tag[$e]?></div><?}?>
 </div>
-<div class="main_b_all">
+<div class="main_d">
 	<? for($s=0;$s<$n;$s++){?>
 		<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $dat[$s]->id?>" id="<?PHP echo $dat[$s]->id?>" class="main_b_1">
 		<img src="<?PHP ECHO $dat[$s]->face?>" class="main_b_1_1">

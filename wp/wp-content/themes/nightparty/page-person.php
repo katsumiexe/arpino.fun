@@ -102,6 +102,7 @@ endforeach;
 </table>
 </div>
 
+
 <div class="person_right">
 </div>
 </div>

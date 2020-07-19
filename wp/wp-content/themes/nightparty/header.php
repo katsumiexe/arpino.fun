@@ -12,12 +12,12 @@
 <?php wp_head(); ?>
 </head>
 <body class="body">
-<div class="menu">
+<div class="head">
 <?php
 	$args = array(
 		'theme_location'	=>'global', 
 		'menu_id'			=>'',
-		'menu_class'		=>'head',
+		'menu_class'		=>'menu',
 		'container'       => '',
 		'container_class' => '',
 		'container_id'    => '',
