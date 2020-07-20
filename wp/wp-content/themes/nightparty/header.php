@@ -9,6 +9,10 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?t=<?=time()?>">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/person.css?t=<?=time()?>">
+<script>
+const Dir='<?php echo get_template_directory_uri(); ?>'; 
+</script>
+
 <?php wp_head(); ?>
 </head>
 <body class="body">

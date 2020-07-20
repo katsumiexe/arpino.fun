@@ -18,6 +18,23 @@ $(function(){
 	function () {
 		$(this).children('.main_b_1_3').fadeOut(0);
 	});
-});
 
+	$('.cast_tag_box').on('click',function(){
+		if(!$(this).hasClass('cast_tag_box_sel')){
+			Tmp=$(this).attr('id').replace('d','');
+
+			$.post({
+				url:Dir + "/post/cast_tag_box.php",
+				data:{
+					'date':Tmp,
+				},
+			}).done(function(data, textStatus, jqXHR){
+				$('.cast_tag_box_sel').removeClass('cast_tag_box_sel');		
+				$(this).addClass('cast_tag_box_sel');		
+				$('.main_d').html(data);		
+			});
+		};
+	});
+
+});
 

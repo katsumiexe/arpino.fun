@@ -153,8 +153,10 @@ a{
 	border-radius	:0 25px 0 0;
 	font-weight		:700;
 	color			:#FFD67D;
+	color			:#fff0a0;
 	border			:2px solid #c08000;
 	padding-left	:5px;
+	cursor:pointer;
 }
 
 .cast_tag_box_sel{
