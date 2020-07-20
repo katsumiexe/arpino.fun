@@ -18,6 +18,7 @@ $sql=" SELECT * FROM wp01_0cast";
 $sql.=" WHERE del=0";
 $res = $wpdb->get_results($sql,ARRAY_A);
 
+
 foreach($res as $a1){
 	$dat[$a1["id"]]=$a1;
 
@@ -27,30 +28,38 @@ foreach($res as $a1){
 	$res2 = $wpdb->get_results($sql,ARRAY_A);
 
 	foreach($res2 as $a2){
-	if(strlen($a2["stime"])>0 && strlen($a2["etime"])>0){
-		$dat[$a1["id"]]["sch"]="{$a2["stime"]}-{$a2["etime"]}";
-		$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
-	}else{
+		if($a2["stime"] && $a2["etime"]){
+			$dat[$a1["id"]]["sch"]="{$a2["stime"]}-{$a2["etime"]}";
+			$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
+		}else{
+			$dat[$a1["id"]]["sch"]="";
+		}
+	}
+
+	if(!$dat[$a1["id"]]["sch"]){
 		$dat[$a1["id"]]["sch"]="休み";
 		$sort[$a1["id"]]=999999;
 	}
 
 	if($a1["face1"] > 0){
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/{$a1["id"]}/{$a1["face1"]}.jpg";			
+		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/{$a1["face1"]}.jpg";			
 	}else{
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
+		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
 	}
+
+
+
 }
 asort($sort);
-$link=get_template_directory_uri();
 
 foreach($sort as $b1=> $b2){
 
 $html.="<a href=\"{$link}/person/{$b1}\" id=\"i{$b1}\" class=\"main_b_1\">";
 $html.="<img src=\"{$dat[$b1]["face"]}\" class=\"main_b_1_1\">";
-$html.="<span class=\"main_b_1_2\">{$dat[$b1]["genji"]}</span>";
-$html.="<div class=\"main_b_1_3\">{$dat[$b1]["sch"]}</div>";
-$html.="</a>";
+$html.="<span class=\"main_b_1_2\">";
+$html.="<span class=\"main_b_1_2_name\">{$dat[$b1]["genji"]}</span>";
+$html.="<div class=\"main_b_1_2_sch\">{$dat[$b1]["sch"]}</div>";
+$html.="</span></a>";
 }
 echo $html;
 exit();

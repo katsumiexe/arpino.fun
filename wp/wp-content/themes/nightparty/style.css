@@ -212,17 +212,6 @@ a{
 	height		:200px;
 }
 
-.main_b_1_3{
-	position	:absolute;
-	display		:none;
-	bottom		:5px;
-	left		:5px;
-	width		:136px;
-	height		:186px;
-	border		:2px solid #906000;
-	z-index		:11;	
-}	
-
 .main_b_1_2{
 	position	:absolute;
 	display		:inline-block;
@@ -230,12 +219,28 @@ a{
 	left		:5px;
 	width		:130px;
 	height		:50px;
-	line-height	:25px;
 	background	:rgba(245,245,245,0.9);
-	color		:#903000;
+	padding		:5px;
+}
+
+.main_b_1_2_name{
+	display		:inline-block;
+	width		:130px;
+	height		:25px;
+	line-height	:25px;
+	color		:#c08000;
 	font-size	:16px;
 	font-weight	:600;	
-	padding		:5px;
+}
+
+.main_b_1_2_sch{
+	display		:inline-block;
+	width		:130px;
+	height		:25px;
+	line-height	:25px;
+	color		:#c08000;
+	font-size	:16px;
+	font-weight	:600;	
 }
 
 .main_c{
