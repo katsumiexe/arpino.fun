@@ -10,55 +10,59 @@ $week[6]="(土)";
 
 $t_day=date("Ymd",time()+32400);
 $n_day=date("Ymd",time()+32400+86400*7);
+$tm=time();
+$link=get_template_directory_uri();
 
 $tmp=explode("/",$_SERVER["REQUEST_URI"]);
 $val=$tmp[count($tmp)-2];
 
 $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
-$res = $wpdb->get_results($sql);
-foreach($res as $a1):
-	$charm[1]=$a1->charm01;
-	$charm[2]=$a1->charm02;
-	$charm[3]=$a1->charm03;
-	$charm[4]=$a1->charm04;
-	$charm[5]=$a1->charm05;
-	$charm[6]=$a1->charm06;
-	$charm[7]=$a1->charm07;
-	$charm[8]=$a1->charm08;
-	$charm[9]=$a1->charm09;
+$res = $wpdb->get_results($sql,ARRAY_A);
+foreach($res as $a1){
+	$charm[1]=$a1["charm01"];
+	$charm[2]=$a1["charm02"];
+	$charm[3]=$a1["charm03"];
+	$charm[4]=$a1["charm04"];
+	$charm[5]=$a1["charm05"];
+	$charm[6]=$a1["charm06"];
+	$charm[7]=$a1["charm07"];
+	$charm[8]=$a1["charm08"];
+	$charm[9]=$a1["charm09"];
 
-	if($a1->face1 > 0):
-		$face_a="<img src=\"".get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face1.".jpg\" class=\"person_img_main\">";
-		$face_b="<img id=\"i1\" src=\"".get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face1.".jpg\" class=\"person_img_sub\">";
-	else:
-		$a1->face=get_template_directory_uri()."/img/cast/noimage.jpg";			
-		$face_a="<img src=\"".get_template_directory_uri()."/img/page/noimage.jpg\" class=\"person_img_main\">";
-	endif;
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
+		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_main\">";
+		$face_b="<img id=\"i1\" src=\"{$link}/img/page/{$a1["id"]}/{$a1["face1"]}.jpg?t={$tm}\" class=\"person_img_sub\">";
 
-	if($a1->face2 > 0):
-		$face_b.="<img id=\"i2\" src=\"".get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face2.".jpg\" class=\"person_img_sub\">";
-	endif;
+//		if($a1["face2"] > 0){
 
-	if($a1->face3 > 0):
-		$face_b.="<img id=\"i3\" src=\"".get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face3.".jpg\" class=\"person_img_sub\">";
-	endif;
+		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/2.jpg")) {
+			$face_b.="<img id=\"i2\" src=\"{$link}/img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
+		}
+		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/3.jpg")) {
+			$face_b.="<img id=\"i3\" src=\"{$link}/img/page/{$a1["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
+		}
+		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/4.jpg")) {
+			$face_b.="<img id=\"i4\" src=\"{$link}/img/page/{$a1["id"]}/4.jpg?t={$tm}\" class=\"person_img_sub\">";
+		}
 
-	if($a1->face4 > 0):
-		$face_b.="<img id=\"i4\" src=\"".get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face4.".jpg\" class=\"person_img_sub\">";
-	endif;
-endforeach;
+	}else{
+		$a1["face"]="{$link}/img/cast/noimage.jpg";			
+		$face_a="<img src=\"{$link}/img/page/noimage.jpg\" class=\"person_img_main\">";
+	}
+
+}
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
-$res2 = $wpdb->get_results($sql);
+$res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2):
-	$sch[$a2->sche_date]=$a2;
+	$sch[$a2["sche_date"]]=$a2;
 endforeach;
 
 for($n=0;$n<7;$n++){
 	$t_sch=date("Ymd",time()+(86400*$n)+32400);
 
-	$tmp_s=$sch[$t_sch]->stime;
-	$tmp_e=$sch[$t_sch]->etime;
+	$tmp_s=$sch[$t_sch]["stime"];
+	$tmp_e=$sch[$t_sch]["etime"];
 
 	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
 	$list_week=date("w",strtotime($t_sch));
@@ -77,9 +81,9 @@ for($n=0;$n<7;$n++){
 }
 
 $sql="SELECT * FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
-$res3 = $wpdb->get_results($sql);
+$res3 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res3 as $a3):
-	$charm_list.="<tr><td class=\"prof_l\">".$a3->charm."</td><td class=\"prof_r\">".$charm[$a3->id]."</td></tr>";
+	$charm_list.="<tr><td class=\"prof_l\">".$a3["charm"]."</td><td class=\"prof_r\">".$charm[$a3["id"]]."</td></tr>";
 endforeach;
 ?>
 <div class="person_main">
@@ -93,7 +97,7 @@ endforeach;
 <table class="prof">
 <tr>
 <td class="prof_l">名前</td>
-<td class="prof_r"><?PHP ECHO $a1->genji?></td>
+<td class="prof_r"><?PHP ECHO $a1["genji"]?></td>
 </tr>
 <?PHP ECHO $charm_list?>
 </table>

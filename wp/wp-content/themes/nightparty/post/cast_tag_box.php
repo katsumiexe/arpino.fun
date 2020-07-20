@@ -58,8 +58,8 @@ $html.="<a href=\"{$link}/person/{$b1}\" id=\"i{$b1}\" class=\"main_b_1\">";
 $html.="<img src=\"{$dat[$b1]["face"]}\" class=\"main_b_1_1\">";
 $html.="<span class=\"main_b_1_2\">";
 $html.="<span class=\"main_b_1_2_name\">{$dat[$b1]["genji"]}</span>";
-$html.="<div class=\"main_b_1_2_sch\">{$dat[$b1]["sch"]}</div>";
-$html.="</span></a>";
+$html.="<span class=\"main_b_1_2_sch\">{$dat[$b1]["sch"]}</span>";
+$html.="</span><span class=\"main_b_1_3\"></span></a>";
 }
 echo $html;
 exit();
