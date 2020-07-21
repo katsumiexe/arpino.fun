@@ -2,7 +2,6 @@
 get_header();
 $now=date("Ymd",time()+32400);
 
-
 $sql=" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
@@ -22,8 +21,6 @@ foreach($res as $a1){
 		$dat[$a1["id"]]["sch"]="休み";
 		$sort[$a1["id"]]=999999;
 }
-
-var_dump($sort);
 
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
@@ -57,7 +54,7 @@ foreach($res2 as $a2){
 <div class="main_b">
 <h1 class="main_b_title">本日の出勤キャスト</h1>
 <? foreach($sort as $b1=> $b2){?>
-	<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $db1?>" id="<?PHP echo $b1?>" class="main_b_1">
+	<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $b1?>" id="<?PHP echo $b1?>" class="main_b_1">
 		<img src="<?PHP ECHO $dat[$b1]["face"]?>" class="main_b_1_1">
 		<span class="main_b_1_2">
 			<span class="main_b_1_2_name"><?PHP echo $dat[$b1]["genji"]?></span>

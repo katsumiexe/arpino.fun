@@ -9,6 +9,7 @@ $(document).ready(function () {
 		TMP=$(this).attr('src');
 		$('.person_img_main').hide().fadeIn(300).attr('src',TMP);
 	});
+
 	$(document).on({
 		'mouseenter': function() {	
 			$(this).children('.main_b_1_3').fadeIn(100);

@@ -27,7 +27,8 @@
 	bottom		:0;
 	right		:0;
 	margin		:auto;
-	background	:#90ffc0;
+	background-image: url("../img/paper.png");
+	background-size:contain;
 	width		:500px;
 	height		:400px;
 }
@@ -74,6 +75,11 @@
 
 .card_bk:hover{
 	top:290px;
+}
+
+.card_get{
+	border		:5px solid #d00000;
+
 }
 
 #c0{

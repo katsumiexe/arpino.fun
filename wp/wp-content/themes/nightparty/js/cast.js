@@ -70,6 +70,7 @@ $(function(){
 
 			Tmp=$(this).attr('id').replace("tag_","");
 			$('#h_customer_page').val(Tmp);
+
 			if(Tmp == 2){
 				$('.customer_memo_set').show();
 
@@ -113,6 +114,7 @@ $(function(){
 			}
 
 			if(Fav>2){
+			
 				$('#fav_'+C_Id+'_3').addClass('fav_in');
 			}else{
 				$('#fav_'+C_Id+'_3').removeClass('fav_in');
@@ -713,21 +715,27 @@ $(function(){
 				});
 
 			}else{
-				var Tmp_w=Math.floor(cvs_A*25/(ImgZoom/100)/600);
-				var Tmp_h=Math.floor(cvs_A*25/(ImgZoom/100)/600);
+//				var Tmp_w=Math.ceil(cvs_A*25/(ImgZoom/100)/600);
+//				var Tmp_h=Math.ceil(cvs_A*25/(ImgZoom/100)/600);
+
+				var Tmp_w=(css_A/VwBase)*(25/70)/(ImgZoom/100);
+				var Tmp_h=(css_A/VwBase)*(25/70)/(ImgZoom/100);
+
 
 //				var Tmp_t=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 //				var Tmp_l=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 
-				var Tmp_t=(parseInt(ImgTop))+0;
-				var Tmp_l=(parseInt(ImgLeft))+0;
-
+				var Tmp_t=(parseFloat(ImgTop)-VwBase/10)/VwBase;
+				var Tmp_l=(parseFloat(ImgLeft)-VwBase/10)/VwBase;
 				var Tmp_r=Rote;
 
 console.log("cvs_w:"+cvs_W);
 console.log("cvs_h:"+cvs_H);
 console.log("css_A:"+css_A);
 console.log("css_B:"+css_B);
+
+console.log("Tmp_w:"+Tmp_w);
+console.log("Tmp_h:"+Tmp_h);
 
 console.log("Tmp_t:"+Tmp_t);
 console.log("Tmp_l:"+Tmp_l);

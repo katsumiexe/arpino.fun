@@ -15,35 +15,32 @@
 </script>
 </head>
 <body style="text-align:center;background:#888888">
-<div class="btn">push</div>
 <div class="main">
 <div class="hand"></div>
 
-<div id="c21" class="card_bk card_sel"></div>
-<div id="c20" class="card_bk card_sel"></div>
-<div id="c19" class="card_bk card_sel"></div>
-<div id="c18" class="card_bk card_sel"></div>
-<div id="c17" class="card_bk card_sel"></div>
-<div id="c16" class="card_bk card_sel"></div>
-<div id="c15" class="card_bk card_sel"></div>
-<div id="c14" class="card_bk card_sel"></div>
-<div id="c13" class="card_bk card_sel"></div>
-<div id="c12" class="card_bk card_sel"></div>
-<div id="c11" class="card_bk card_sel"></div>
-<div id="c10" class="card_bk card_sel"></div>
-<div id="c9" class="card_bk card_sel"></div>
-<div id="c8" class="card_bk card_sel"></div>
-<div id="c7" class="card_bk card_sel"></div>
-<div id="c6" class="card_bk card_sel"></div>
-<div id="c5" class="card_bk card_sel"></div>
-<div id="c4" class="card_bk card_sel"></div>
-<div id="c3" class="card_bk card_sel"></div>
-<div id="c2" class="card_bk card_sel"></div>
-<div id="c1" class="card_bk card_sel"></div>
-<div id="c0" class="card_bk card_sel"></div>
+<div id="c21" class="card_bk"></div>
+<div id="c20" class="card_bk"></div>
+<div id="c19" class="card_bk"></div>
+<div id="c18" class="card_bk"></div>
+<div id="c17" class="card_bk"></div>
+<div id="c16" class="card_bk"></div>
+<div id="c15" class="card_bk"></div>
+<div id="c14" class="card_bk"></div>
+<div id="c13" class="card_bk"></div>
+<div id="c12" class="card_bk"></div>
+<div id="c11" class="card_bk"></div>
+<div id="c10" class="card_bk"></div>
+<div id="c9" class="card_bk"></div>
+<div id="c8" class="card_bk"></div>
+<div id="c7" class="card_bk"></div>
+<div id="c6" class="card_bk"></div>
+<div id="c5" class="card_bk"></div>
+<div id="c4" class="card_bk"></div>
+<div id="c3" class="card_bk"></div>
+<div id="c2" class="card_bk"></div>
+<div id="c1" class="card_bk"></div>
+<div id="c0" class="card_bk"></div>
 </div>
 <div class="guard"></div>
-
 </body>
 </html>
-
