@@ -3,18 +3,22 @@
 Template Name: cast
 */
 get_header();
-$res = $wpdb->get_results('
- SELECT * FROM wp01_0cast
-');
+
+$sql=" SELECT * FROM wp01_0cast";
+$res = $wpdb->get_results($sql,ARRAY_A);
+
+
 $n=0;
 foreach($res as $a1):
 	$dat[$n]=$a1;
-	if($a1->face1 > 0):
+
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
 		$dat[$n]->face=get_template_directory_uri()."/img/page/".$a1->id."/".$a1->face1.".jpg";			
-	else:
+	}else{
 		$dat[$n]->face=get_template_directory_uri()."/img/page/noimage.jpg";			
-	endif;
-	$n++;
+	}
+
+$n++;
 endforeach;
 wp_reset_postdata();
 
