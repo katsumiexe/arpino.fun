@@ -4,7 +4,7 @@ var cd_cnt=[];
 var Tmp_X=[];
 var Tmp_Y=[];
 var Tmp=[0,0,0,0,0,0,0];
-var CardCnt=10;
+var CardCnt=60;
 
 var cd_x=[
 [105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,395,390,385,380,375,370,365,360,355,350,345,340,335,330,325,320,315,310,305,300,295,290,285,280,275,270,265,260,255,250,245,240,235,230,225,220,215,210,205,200,195,190,185,180,175,170,165,160,155,150,145,140,135,130,125,120,115,110,105,100,],
@@ -98,23 +98,21 @@ $(function(){
 
 	$(document).on({
 		'mouseenter': function() {	
-			if(CardCnt<220){
+			if(CardCnt<230){
 				 $(this).animate({'top':'290px'},20).addClass('card_get');
 			}
 		},
 
 		'mouseleave': function() {
-			if(CardCnt<220){
+			if(CardCnt<230){
 				 $(this).animate({'top':'300px'},0).removeClass('card_get');
 			}
 		}
 	}, '.card_sel');
 
-
 	$('.main').on('click','.card_get',function(){
-
-		if(CardCnt<220){
-			 $(this).animate({'top':'10px','left':CardCnt+'px'},500).removeClass('card_sel');
+		if(CardCnt<230){
+			 $(this).animate({'top':'60px','left':CardCnt+'px'},500).removeClass('card_sel');
 			CardCnt+=80;
 		}
 	});
