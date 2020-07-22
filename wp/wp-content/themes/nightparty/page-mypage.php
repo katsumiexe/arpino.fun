@@ -827,7 +827,6 @@ var C_Id_tmp=0;
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span><br>
 			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_3?></span></span>
 		</div>
-
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 		<div class="notice_list">
 			<?for($n=0;$n<count($notice);$n++){?>

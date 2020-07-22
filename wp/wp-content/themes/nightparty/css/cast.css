@@ -203,7 +203,7 @@ input:focus{
 .notice_list{
 	display			:flex;
 	flex-direction: column;
-	margin			:0 auto 3vw auto;
+	margin			:0 auto;
 	width			:85vw;
 	font-size		:4vw;
 	text-align		:left;
