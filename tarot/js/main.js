@@ -43,38 +43,38 @@ $(function(){
 	cd_cnt[6]=cd_y[6].length;
 
 	for(i=0;i<22;i++){
-		Tmp[i]	= Math.floor(Math.random() * 50);
-		Rt[i]	= Math.floor(Math.random() * 250);
 
 		var i2=i % 7;
-		var i3=Math.floor(i/7)*3;
-		Tmp_X=cd_x[i2][Tmp[i]]+i3;			
-		Tmp_Y=cd_y[i2][Tmp[i]]+i3;			
+		Tmp[i]	= Math.floor(Math.random() * cd_cnt[i2]);
+		Rt[i]	= Math.floor(Math.random() * 250);
+
+		Tmp_X=cd_x[i2][Tmp[i]];			
+		Tmp_Y=cd_y[i2][Tmp[i]];			
+
 		$('#c'+i).css({'top':Tmp_Y+'px','left':Tmp_X+'px','transform':'rotate('+Rt[i]+'deg)'});
-
+	
 	}
-
 	$('.hand').draggable({
 		drag: function( event, ui ) {
 			for(var N=0;N<22;N++){
+				var N2=N % 7;
 
 				Tmp[N]+=N%2+1;
-				if(Tmp[N]>cd_cnt[N]){
+				if(Tmp[N]>cd_cnt[N2]){
 					Tmp[N]=0;
-				}
+				}	
 
 				Rt[N]-=N%3+1;
 				if(Rt[N]<-359){
 					Rt[N]=0;
 				}
 
-				var N2=N % 7;
-				var N3=Math.floor(N/7)*3;
-				Tmp_X=cd_x[N2][Tmp[N2]]+N3;			
-				Tmp_Y=cd_y[N2][Tmp[N2]]+N3;			
+				Tmp_X=cd_x[N2][Tmp[N]];			
+				Tmp_Y=cd_y[N2][Tmp[N]];			
 				 $('#c'+N).css({'top':Tmp_Y+'px','left':Tmp_X+'px','transform':'rotate('+Rt[N]+'deg)'});
 			}
 		},
+
 		stop: function( event, ui ) {
 			 $('.hand').fadeOut(1000);
 			 $('.card_bk').animate({'top':'300px','left':'10px'},300).css({'transform':'rotate(0deg)'});
@@ -115,7 +115,7 @@ $(function(){
 
 		if(CardCnt<220){
 			 $(this).animate({'top':'10px','left':CardCnt+'px'},500).removeClass('card_sel');
-			CardCnt+=70;
+			CardCnt+=80;
 		}
 	});
 });

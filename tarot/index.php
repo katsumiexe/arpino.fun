@@ -17,7 +17,9 @@
 <body style="text-align:center;background:#888888">
 <div class="main">
 <div class="hand"></div>
-
+<div id="p1" class="card_ps"></div>
+<div id="p2" class="card_ps"></div>
+<div id="p3" class="card_ps"></div>
 <div id="c21" class="card_bk"></div>
 <div id="c20" class="card_bk"></div>
 <div id="c19" class="card_bk"></div>
