@@ -571,7 +571,6 @@ var C_Id_tmp=0;
 						<span id="fav_<?=$customer[$n]["id"]?>_<?=$s?>" class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
 					<?}?>
 				</div>
-
 				<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
 				<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
 				<span class="mail_al"></span>
@@ -758,29 +757,45 @@ var C_Id_tmp=0;
 	</div>
 
 	<?}elseif($cast_page==4){?>
-		<div class="mypage_main">
-			<div class="mypage_blog_hist">
-				<img src="" class="hist_img">
-				<span class="hist_date">2020/05/08 06:00</span>
-				<span class="hist_title">にゃんにゃかにゃー</span>
-				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-			</div>
-			<div class="mypage_blog_hist">
-				<img src="" class="hist_img">
-				<span class="hist_date">2020/05/08 06:00</span>
-				<span class="hist_title">にゃんにゃかにゃー</span>
-				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-			</div>
 
+		<div class="mypage_main">
 			<div class="mypage_blog_write">
 				<div class="mypage_blog_pack">
 					<span class="mypage_blog_title_tag">投稿日</span><br>
 					<div style="text-align:left;margin-bottom:3vw;">	
-					<input id="mypage_blog_date" type="text" name="mypage_blog_date" class="mypage_blog_date_box" value="<?=$blog_date?>">
-					<input id="mypage_blog_hour" type="text" name="mypage_blog_hour" class="mypage_blog_hour_box">
-					<input id="mypage_blog_minute" type="text" name="mypage_blog_minute" class="mypage_blog_hour_box"><br>
+					<select id="mypage_blog_yy" name="mypage_blog_yy" class="mypage_blog_4">
+						<?for($n=2018;$n<date("Y")+3;$n++){?>
+							<?$n1=substr("00".$n,-2,2)?>
+							<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
+						<?}?>
+					</select>年
+					<select id="mypage_blog_mm" name="mypage_blog_mm" class="mypage_blog_2">
+						<?for($n=1;$n<13;$n++){?>
+							<?$n1=substr("00".$n,-2,2)?>
+							<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+						<?}?>
+					</select>月
+					<select id="mypage_blog_dd" name="mypage_blog_dd" class="mypage_blog_2">
+						<?for($n=1;$n<32;$n++){?>
+							<?$n1=substr("00".$n,-2,2)?>
+							<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+						<?}?>
+					</select>日　
+					<select id="mypage_blog_hh" name="mypage_blog_hh" class="mypage_blog_2">
+						<?for($n=0;$n<24;$n++){?>
+							<?$n1=substr("00".$n,-2,2)?>
+							<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+						<?}?>
+					</select>
+					：
+					<select id="mypage_blog_ii" name="mypage_blog_ii" class="mypage_blog_2">
+						<?for($n=0;$n<60;$n++){?>
+						<?$n1=substr("00".$n,-2,2)?>
+							<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+						<?}?>
+					</select>
+					<br>
+
 					</div>
 					<span class="mypage_blog_title_tag">タイトル</span><br>
 					<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
@@ -791,14 +806,38 @@ var C_Id_tmp=0;
 				<div class="upload_icon tag_open"></div>
 				<div class="upload_icon img_open"></div>
 			</div>
+
+			<div class="mypage_blog_hist">
+				<img src="" class="hist_img">
+				<span class="hist_date">2020/05/08 06:00</span>
+				<span class="hist_title">にゃんにゃかにゃー</span>
+				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+			</div>
+			<div class="mypage_blog_hist">
+				<img src="" class="hist_img">
+				<span class="hist_date">2020/05/08 06:00</span>
+				<span class="hist_title">にゃんにゃかにゃー</span>
+				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+			</div>
 		</div>
+
+
 	<?}elseif($cast_page==5){?>
 	<div class="mypage_main_sch">
 		<div class="config_menu">
-			名前：
-			CAST_ID：
-			PASSWORD：
-			お知らせADDRESS
+
+名前：
+CAST_ID：
+LOGIN ID
+PASSWORD
+アドレス
+
+顧客グループ設定
+
+
+
 		</div>
 	</div>
 	<?}else{?>

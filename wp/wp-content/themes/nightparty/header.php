@@ -12,7 +12,6 @@
 <script>
 const Dir='<?php echo get_template_directory_uri(); ?>'; 
 </script>
-
 <?php wp_head(); ?>
 </head>
 <body class="body">

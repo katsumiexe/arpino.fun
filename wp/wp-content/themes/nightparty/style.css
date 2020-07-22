@@ -16,8 +16,6 @@ a{
 	width		:100vw;
 }
 
-
-
 .menu{
 	display		:block;
 	text-align	:center;
@@ -61,7 +59,7 @@ a{
 	flex-basis	:150px;
 	line-height	:50px;
 	background	:#252018;
-	border		:2px solid #c08000;
+	border		:2px solid #c8b880;
 	margin		:10px 5px;
 	text-align	:center;
 	overflow	:hidden;
@@ -133,7 +131,6 @@ a{
 .cast_tag{
 	display		:inline-flex;
 	width		:1024px;
-	background	:#302520;
 	text-align	:left;
 	height		:30px;
 	overflow	:hidden;
@@ -297,3 +294,5 @@ a{
 	border		:2px solid #c08000;
 	background	:#302520;
 }
+
+

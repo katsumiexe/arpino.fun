@@ -38,7 +38,6 @@ foreach($res2 as $a2){
 	}
 }
 
-
 $now=time()+32400+$chg_time*86400;
 
 $week[0]="(日)";

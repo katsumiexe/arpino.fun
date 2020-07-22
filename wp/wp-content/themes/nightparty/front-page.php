@@ -22,7 +22,6 @@ foreach($res as $a1){
 		$sort[$a1["id"]]=999999;
 }
 
-
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 
@@ -37,7 +36,6 @@ foreach($res2 as $a2){
 	}
 }
 ?>
-
 <div class="slide">
 	<div class="slide_img"></div>
 	<div class="slide_point">
@@ -49,7 +47,6 @@ foreach($res2 as $a2){
 		<div class="slide_dot"></div>
 	</div>
 </div>
-
 <div class="main_b">
 <h1 class="main_b_title">本日の出勤キャスト</h1>
 <? foreach($sort as $b1=> $b2){?>
