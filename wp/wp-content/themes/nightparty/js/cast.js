@@ -3,6 +3,8 @@ $(function(){
 	var VhBase	=$(window).height()/100;
 	var Fav=0;
 	var cvs_A=0;
+	var Rote=0;
+	var ImgZoom=100;
 
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('mypage_on')){
@@ -319,13 +321,11 @@ $(function(){
 		var file = e.target.files[0];	
 		var reader = new FileReader();
 
+
 		if(file.type.indexOf("image") < 0){
 			alert("NO IMAGE FILES");
 			return false;
 		}
-
-		Rote	=0;
-		Zoom	=100;
 
 		var img = new Image();
 		var cvs = document.getElementById('cvs1');
@@ -380,12 +380,16 @@ $(function(){
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
 					ImgCode = cvs.toDataURL("image/jpeg");
 
-					console.log(css_B);
-	
 					$('#img_top').val(css_B);
 					$('#img_left').val(css_B);
 
+					var ImgTop		=css_B;
+					var ImgLeft		=css_B;
+					var Rote		=100;
+					var ImgZoom		=100;
+
 				}
+
 			};
 		})(file);
 		reader.readAsDataURL(file);
@@ -718,21 +722,22 @@ $(function(){
 //				var Tmp_w=Math.ceil(cvs_A*25/(ImgZoom/100)/600);
 //				var Tmp_h=Math.ceil(cvs_A*25/(ImgZoom/100)/600);
 
-				var Tmp_w=(css_A/VwBase)*(25/70)/(ImgZoom/100);
-				var Tmp_h=(css_A/VwBase)*(25/70)/(ImgZoom/100);
+				var Tmp_w=(css_A/VwBase)*(25/60)*(ImgZoom/100);
+				var Tmp_h=(css_A/VwBase)*(25/60)*(ImgZoom/100);
 
 
 //				var Tmp_t=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 //				var Tmp_l=Math.floor((((VwBase*10-ImgTop)*10)/VwBase)*100/ImgZoom);
 
-				var Tmp_t=(parseFloat(ImgTop)-VwBase/10)/VwBase;
-				var Tmp_l=(parseFloat(ImgLeft)-VwBase/10)/VwBase;
+				var Tmp_t=(parseFloat(ImgTop)/VwBase-10)*(25/60);
+				var Tmp_l=(parseFloat(ImgLeft)/VwBase-10)*(25/60);
+
 				var Tmp_r=Rote;
 
 console.log("cvs_w:"+cvs_W);
 console.log("cvs_h:"+cvs_H);
 console.log("css_A:"+css_A);
-console.log("css_B:"+css_B);
+console.log("css_B:"+css_B);	
 
 console.log("Tmp_w:"+Tmp_w);
 console.log("Tmp_h:"+Tmp_h);
@@ -749,6 +754,8 @@ console.log("VwBase:"+VwBase);
 				var ctx = cvs.getContext('2d');
 				$('#img_code').val(ImgCode)
 				$('.regist_img').attr('src',ImgCode).css({'top':Tmp_t+'vw','left':Tmp_l+'vw','width':Tmp_w+'vw','height':Tmp_h+'vw','transform':'rotate('+Tmp_r+'deg)'});
+
+
 			}
 		}
 	});

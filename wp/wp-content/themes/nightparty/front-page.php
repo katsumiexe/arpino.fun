@@ -36,9 +36,8 @@ foreach($res2 as $a2){
 		$sort[$a1["id"]]=999999;
 	}
 }
-
-
 ?>
+
 <div class="slide">
 	<div class="slide_img"></div>
 	<div class="slide_point">
