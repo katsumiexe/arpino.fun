@@ -21,6 +21,7 @@
 
 
 .main{
+	display:none;
 	position	:absolute;
 	top			:0;
 	left		:0;	
@@ -32,6 +33,64 @@
 	width		:500px;
 	height		:400px;
 }
+
+.ans{
+	position	:relative;
+	display		:inline-flex;
+	margin		:0 auto;
+	width		:500px;
+	background	:#f0f0f0;
+}
+
+.ans_left{
+	position	:relative;
+	flex-basis	:230px;
+	background	:#c0f000;
+}
+
+.ans_left_img{
+	width:210px;
+	margin:10px;
+}
+
+.ans_left_msg{
+	display		:inline-block;
+	margin		:0 auto;
+	position	:relative;
+	width		:210px;
+	background	:#c020f0;
+	font-size	:0;
+}
+
+.ans_left_msg_ttl{
+	display		:inline-block;
+	width		:200px;
+	background	:#909090;
+	padding		:5px;
+	font-size	:14px;
+	text-align:left;
+}
+
+.ans_left_msg_comm{
+	display		:inline-block;
+	width		:200px;
+	background	:#cccccc;
+	padding		:5px;
+	font-size	:13px;
+	text-align:left;
+}
+
+
+.ans_right{
+	position	:relative;
+	flex		:1;
+	background	:#f090f0;
+	padding		:5px;
+	font-size	:13px;
+	text-align	:left;
+	line-height	:20px;
+}
+
 
 .guard{
 	position	:absolute;
@@ -62,26 +121,50 @@
 	text-shadow	:2px 2px 2px #303030;
 }
 
-.card_bk{
-	display		:inline-block;
-	position	:absolute;
-	height		:80px;
-	width		:50px;
-	border		:5px solid #f5f5f5;
+.card{
+	perspective		:150rem;
+	display			:inline-block;
+	position		:absolute;
+	height			:105px;
+	width			:65px;
+	border-radius	:5px;
+	transform-origin:center;
+	z-index			:12;
+}
+
+.card_f,.card_b{
+	transition	:.8s;
+	position	: absolute;
+	top			: 0;
+	left		: 0;
+	backface-visibility: hidden;
+	border-radius	:5px;
+}
+
+.card_f{
 	background	:linear-gradient(#8040b0,#400080);
-	border-radius:10px;
-	transform-origin: center;
-	z-index:12;
+	height		:95px;
+	width		:55px;
+	border		:5px solid #f5f5f5;
+}
+
+.card_b{
+	height		:95px;
+	width		:55px;
+	border		:5px solid #f5f5f5;
+	background-size:contain;
+	transform		:rotateY(180deg);
 }
 
 
+
 .card_ps{
-	display		:inline-block;
-	position	:absolute;
-	height		:96px;
-	width		:66px;
-	background	:rgba(90,60,10,0.2);
-	border-radius:10px;
+	display			:inline-block;
+	position		:absolute;
+	height			:111px;
+	width			:71px;
+	background		:rgba(90,60,10,0.2);
+	border-radius	:5px;
 }
 
 #p1{
@@ -99,14 +182,10 @@
 	left:218px;
 }
 
-
 .card_bk:hover{
 	top:290px;
 }
 
-.card_get{
-	border		:5px solid #800080;
-}
 
 #c0{
 	top:40px;

@@ -3,8 +3,10 @@ var Rt=[0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105];
 var cd_cnt=[];
 var Tmp_X=[];
 var Tmp_Y=[];
+var Sei	=[];
 var Tmp=[0,0,0,0,0,0,0];
 var CardCnt=60;
+var S_G=['rotate(180deg)',''];
 
 var cd_x=[
 [105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,395,390,385,380,375,370,365,360,355,350,345,340,335,330,325,320,315,310,305,300,295,290,285,280,275,270,265,260,255,250,245,240,235,230,225,220,215,210,205,200,195,190,185,180,175,170,165,160,155,150,145,140,135,130,125,120,115,110,105,100,],
@@ -34,6 +36,7 @@ $(function(){
 		 Cd[No1]	=Cd[No2];
 		 Cd[No2]	=Tmp_s;
 	}
+console.log(Cd);
 	cd_cnt[0]=cd_y[0].length;
 	cd_cnt[1]=cd_y[1].length;
 	cd_cnt[2]=cd_y[2].length;
@@ -43,17 +46,20 @@ $(function(){
 	cd_cnt[6]=cd_y[6].length;
 
 	for(i=0;i<22;i++){
-
-		var i2=i % 7;
+		var i2	=i % 7;
 		Tmp[i]	= Math.floor(Math.random() * cd_cnt[i2]);
 		Rt[i]	= Math.floor(Math.random() * 250);
+		Sei[i]	=Math.floor(Math.random() * 2);
 
 		Tmp_X=cd_x[i2][Tmp[i]];			
-		Tmp_Y=cd_y[i2][Tmp[i]];			
+		Tmp_Y=cd_y[i2][Tmp[i]];
+
+		Tmp_i='url("./img/tarot_'+Cd[i]+'.jpg")';
 
 		$('#c'+i).css({'top':Tmp_Y+'px','left':Tmp_X+'px','transform':'rotate('+Rt[i]+'deg)'});
-	
+		$('#b'+i).css({'background-image':Tmp_i,'transform':'rotateY(180deg) '+S_G[Sei[i]]});
 	}
+
 	$('.hand').draggable({
 		drag: function( event, ui ) {
 			for(var N=0;N<22;N++){
@@ -77,14 +83,14 @@ $(function(){
 
 		stop: function( event, ui ) {
 			 $('.hand').fadeOut(1000);
-			 $('.card_bk').animate({'top':'300px','left':'10px'},300).css({'transform':'rotate(0deg)'});
+			 $('.card').animate({'top':'250px','left':'25px'},300).css({'transform':'rotate(0deg)'});
 			for(var N=0;　N < 22;N++){
-			Tmp_a=430-N*20;
-			Tmp_b=500+N*50;
+				Tmp_a=405-N*18;
+				Tmp_b=500+N*40;
 				 $('#c'+N).delay(Tmp_b).animate({'left':Tmp_a+'px'},500).addClass('card_sel');
 			}
-				 $('.guard').delay(2000).fadeOut(0);
-				 $('.card_bk').addClass('card_sel');
+			 $('.guard').delay(2000).fadeOut(0);
+			 $('.card').addClass('card_sel').delay(2000).css({'transform':'rotate(0)'});
 		},
     });
 
@@ -99,22 +105,27 @@ $(function(){
 	$(document).on({
 		'mouseenter': function() {	
 			if(CardCnt<230){
-				 $(this).animate({'top':'290px'},20).addClass('card_get');
+				 $(this).animate({'top':'240px'},20).addClass('card_get');
 			}
 		},
 
 		'mouseleave': function() {
 			if(CardCnt<230){
-				 $(this).animate({'top':'300px'},0).removeClass('card_get');
+				 $(this).animate({'top':'250px'},0).removeClass('card_get');
 			}
 		}
 	}, '.card_sel');
 
 	$('.main').on('click','.card_get',function(){
+		TmpId=$(this).attr('id').replace('c','');
 		if(CardCnt<230){
-			 $(this).animate({'top':'60px','left':CardCnt+'px'},500).removeClass('card_sel');
+			 $(this)
+			 	.removeClass('card_sel')
+			 	.animate({'top':'60px','left':CardCnt+'px'},500)
+			 
+			 $(this).children('.card_f').css('transform','rotateY(-180deg)');
+			 $(this).children('.card_b').css('transform','rotateY(0) '+S_G[Sei[TmpId]]);
 			CardCnt+=80;
 		}
 	});
 });
-
