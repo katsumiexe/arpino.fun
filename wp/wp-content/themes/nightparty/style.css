@@ -67,7 +67,7 @@ a{
 }
 
 .menu-item a{
-	color		:#FFD67D;
+	color		:#c8b880;
 	font-size	:18px;
 	font-weight	:600;
 	display		:inline-block;
@@ -78,7 +78,7 @@ a{
 }
 
 .menu-item a:hover{
-	background	:linear-gradient(#ffd080,#e0b060);
+	background	:linear-gradient(#e0d098,#c8b880);
 	color		:#fafafa;
 }
 
@@ -116,7 +116,7 @@ a{
 	margin			:auto;
 	border-radius	:10px;
 	text-align		:center;
-	border			:2px solid #c08000;
+	border			:2px solid #c8b880;
 }
 
 .slide_dot{
@@ -151,20 +151,20 @@ a{
 	font-weight		:700;
 	color			:#FFD67D;
 	color			:#fff0a0;
-	border			:2px solid #c08000;
+	border			:2px solid #c8b880;
 	padding-left	:5px;
 	cursor:pointer;
 }
 
 .cast_tag_box_sel{
-	background	:#c08000;
+	background	:#c8b880;
 	color:#fafafa;
 }
 
 
 .main_b{
 	display		:inline-block;
-	border		:2px solid #c08000;
+	border		:2px solid #c8b880;
 	flex-basis	:680px;
 	width		:680px;
 	background	:#302520;
@@ -186,7 +186,7 @@ a{
 	height		:40px;
 	line-height	:40px;
 	color		:#fafafa;
-	background	:linear-gradient(#907000 0%, #e0a000 50% , #907000 100%);
+	background	:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
 	margin		:5px;
 	font-size	:18px;
 	font-weight	:600;
@@ -225,7 +225,7 @@ a{
 	width		:130px;
 	height		:25px;
 	line-height	:25px;
-	color		:#c08000;
+	color		:#c8b880;
 	font-size	:16px;
 	font-weight	:600;	
 }
@@ -235,7 +235,7 @@ a{
 	width		:130px;
 	height		:25px;
 	line-height	:25px;
-	color		:#c08000;
+	color		:#c8b880;
 	font-size	:16px;
 	font-weight	:600;	
 }
@@ -256,7 +256,7 @@ a{
 	flex-basis	:312px;
 	width		:312px;
 	background	:#302520;
-	border		:2px solid #c08000;
+	border		:2px solid #c8b880;
 	margin		:0 5px auto 5px;
 	padding		:0 5px;
 	text-align	:center;
@@ -281,7 +281,7 @@ a{
 	background	:#302520;
 	text-align	:left;
 	min-height:90vh;
-	border		:2px solid #c08000;
+	border		:2px solid #c8b880;
 }
 
 
@@ -290,8 +290,8 @@ a{
 	width		:1020px;
 	height		:100px;
 	background	:#101213;
-	margin		:10px; auto;
-	border		:2px solid #c08000;
+	margin		:10px auto;
+	border		:2px solid #c8b880;
 	background	:#302520;
 }
 
