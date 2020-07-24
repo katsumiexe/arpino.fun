@@ -1583,7 +1583,8 @@ i,.days_icon{
 }
 
 .blog_tag_td{
-	
+	position:relative;
+	height:9vw;
 }
 
 .blog_set{
@@ -1593,11 +1594,51 @@ i,.days_icon{
 	text-align		:center;
 }
 
+.tag_icon{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:0.5vw;
+	margin			:auto;
+	line-height		:7vw;
+	height			:7vw;
+	width			:6vw;
+	text-align		:center;
+	font-size		:5vw;
+	background		:#008000;
+	color:#fafafa;
+
+
+
+}
+.tag_ttl{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:6.5vw;
+	margin			:auto;
+	line-height		:7vw;
+	height			:7vw;
+	width			:12vw;
+	text-align		:center;
+	font-size		:5vw;
+	background		:#008000;
+	color:#fafafa;
+	font-weigh:700;
+}
+
 .blog_tag_sel{
 	height			:7vw;
-	margin			:0;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:18.5vw;
+	margin			:auto;
 	font-size		:4.5vw;
-	width			:60vw;
+	width			:56vw;
 	background		:#fafafa;
 }
 

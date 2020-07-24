@@ -810,7 +810,8 @@ var C_Id_tmp=0;
 							<span class="customer_camera"></span>
 							</td>
 							<td class="blog_tag_td">
-								<span class="upload_icon tag_open"></span>
+								<span class="tag_icon"></span>
+								<span class=" tag_ttl">タグ</span>
 								<select name="blog_tag" class="blog_tag_sel">
 									<option value="1">Blog</option>
 									<option value="2">日常</option>
