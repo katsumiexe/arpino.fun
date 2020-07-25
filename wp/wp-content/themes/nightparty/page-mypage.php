@@ -402,19 +402,51 @@ $reg_base_ag=date("Y")-1980;
 
 	$sql ="SELECT * FROM wp01_posts";
 	$sql.=" WHERE post_author='{$_SESSION["id"]}'";
-	$sql.=" AND post_status='publish'";
-	$sql.=" AND post_date<'{$now}'";
+	$sql.=" AND post_name='post'";
 	$sql.=" ORDER BY id DESC";
 	$sql.=" LIMIT 20";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+
+	$n=0;
 	foreach($dat as $tmp){
-		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
-		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+		$blog[$n]["date"]	=$tmp["post_date"];
+		$blog[$n]["title"]	=$tmp["post_title"];
+		$blog[$n]["content"]=$tmp["post_content"];
+		$blog[$n]["count"]	=$tmp["comment_count"];
+
+		if($tmp["post_date"] > $now){
+			$blog[$n]["status"]=1;
+
+		}elseif($tmp["post_status"] == "draft"){
+			$blog[$n]["status"]=2;
+
+		}elseif($tmp["post_status"] == "pending"){
+			$blog[$n]["status"]=3;
+
+		}elseif($tmp["post_status"] == "publish"){
+			$blog[$n]["status"]=0;
+	
+		}else{
+			$blog[$n]["status"]=3;
+		}	
+
+		$blog_img="../wp-content/uploads/np{$_SESSION["id"]}/{$tmp["ID"]}.png";
+		if(file_exists($blog_img)){
+			$blog[$n]["img"]=$blog_img;
+		}else{
+			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
+		}
+			$blog[$n]["img"]=$blog_img;
+
+		$n++;
 	}
 
-
-
+$blog_status[0]="公開";
+$blog_status[1]="予約";
+$blog_status[2]="削除";
+$blog_status[3]="非公開";
 }
 
 ?>
@@ -844,23 +876,16 @@ var C_Id_tmp=0;
 					</table>
 				</div>
 			</div>
+			<?for($n=0;$n<count($blog);$n++){?>
 			<div class="blog_hist">
-				<img src="" class="hist_img">
-				<span class="hist_date">2020/05/08 06:00</span>
-				<span class="hist_title">にゃんにゃかにゃー</span>
+				<img src="<?=$blog[$n]["img"]?>" class="hist_img">
+				<span class="hist_date"><?=$blog[$n]["date"]?></span>
+				<span class="hist_title"><?=$blog[$n]["title"]?></span>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
+				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
 			</div>
-			<div class="blog_hist">
-				<img src="" class="hist_img">
-				<span class="hist_date">2020/05/08 06:00</span>
-				<span class="hist_title">にゃんにゃかにゃー</span>
-				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
-			</div>
+			<? } ?>
 		</div>
-
-
 	<?}elseif($cast_page==5){?>
 	<div class="main_sch">
 		<div class="config_menu">
