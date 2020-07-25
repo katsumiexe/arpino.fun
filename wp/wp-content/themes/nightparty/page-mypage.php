@@ -757,56 +757,72 @@ var C_Id_tmp=0;
 	</div>
 
 	<?}elseif($cast_page==4){?>
-
 		<div class="mypage_main">
 			<div class="mypage_blog_write">
 				<div class="mypage_blog_pack">
 					<span class="mypage_blog_title_tag">投稿日</span><br>
 					<div style="text-align:left;margin-bottom:3vw;">	
-					<select id="mypage_blog_yy" name="mypage_blog_yy" class="mypage_blog_4">
-						<?for($n=2018;$n<date("Y")+3;$n++){?>
+						<select id="mypage_blog_yy" name="mypage_blog_yy" class="mypage_blog_4">
+							<?for($n=2018;$n<date("Y")+3;$n++){?>
+								<?$n1=substr("00".$n,-2,2)?>
+								<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
+							<?}?>
+						</select>年
+						<select id="mypage_blog_mm" name="mypage_blog_mm" class="mypage_blog_2">
+							<?for($n=1;$n<13;$n++){?>
+								<?$n1=substr("00".$n,-2,2)?>
+								<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+							<?}?>
+						</select>月
+						<select id="mypage_blog_dd" name="mypage_blog_dd" class="mypage_blog_2">
+							<?for($n=1;$n<32;$n++){?>
+								<?$n1=substr("00".$n,-2,2)?>
+								<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+							<?}?>
+						</select>日　
+						<select id="mypage_blog_hh" name="mypage_blog_hh" class="mypage_blog_2">
+							<?for($n=0;$n<24;$n++){?>
+								<?$n1=substr("00".$n,-2,2)?>
+								<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+							<?}?>
+						</select>
+						：
+						<select id="mypage_blog_ii" name="mypage_blog_ii" class="mypage_blog_2">
+							<?for($n=0;$n<60;$n++){?>
 							<?$n1=substr("00".$n,-2,2)?>
-							<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
-						<?}?>
-					</select>年
-					<select id="mypage_blog_mm" name="mypage_blog_mm" class="mypage_blog_2">
-						<?for($n=1;$n<13;$n++){?>
-							<?$n1=substr("00".$n,-2,2)?>
-							<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-						<?}?>
-					</select>月
-					<select id="mypage_blog_dd" name="mypage_blog_dd" class="mypage_blog_2">
-						<?for($n=1;$n<32;$n++){?>
-							<?$n1=substr("00".$n,-2,2)?>
-							<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-						<?}?>
-					</select>日　
-					<select id="mypage_blog_hh" name="mypage_blog_hh" class="mypage_blog_2">
-						<?for($n=0;$n<24;$n++){?>
-							<?$n1=substr("00".$n,-2,2)?>
-							<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-						<?}?>
-					</select>
-					：
-					<select id="mypage_blog_ii" name="mypage_blog_ii" class="mypage_blog_2">
-						<?for($n=0;$n<60;$n++){?>
-						<?$n1=substr("00".$n,-2,2)?>
-							<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-						<?}?>
-					</select>
-					<br>
-
+								<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+							<?}?>
+						</select>
+						<br>
 					</div>
 					<span class="mypage_blog_title_tag">タイトル</span><br>
 					<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
 
 					<span class="mypage_blog_title_tag">本文</span><br>
 					<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
-				</div>
-				<div class="upload_icon tag_open"></div>
-				<div class="upload_icon img_open"></div>
-			</div>
 
+					<table class="blog_table_set">
+						<tr>
+							<td  class="blog_td_img" rowspan="2">
+								<span class="blog_img_pack">
+									<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+								</span>					
+								<span class="customer_camera"></span>
+							</td>
+							<td class="blog_tag_td">
+								<span class="upload_icon tag_open"></span>
+								<select name="blog_tag" class="blog_tag_sel">
+									<option value="1">Blog</option>
+									<option value="2">日常</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="blog_tag_td"><div class="blog_set">投稿する</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 			<div class="mypage_blog_hist">
 				<img src="" class="hist_img">
 				<span class="hist_date">2020/05/08 06:00</span>

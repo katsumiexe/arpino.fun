@@ -1398,6 +1398,8 @@ i,.days_icon{
 	max-width		:650px;
 }
 
+
+
 .login_box{
 	display			:inline-block;
 	margin			:3vh auto;
@@ -1524,8 +1526,8 @@ i,.days_icon{
 .mypage_blog_title_tag{
 	display		:inline-block;
 	width		:94vw;
-	height		:4vw;
-	line-height	:4vw;
+	height		:5vw;
+	line-height	:5vw;
 	font-size	:3.5vw;
 	text-align	:left;
 	font-weight	:600;
@@ -1535,6 +1537,15 @@ i,.days_icon{
 	width			:96vw;
 	height			:8vw;
 	font-size		:5vw;
+	margin-bottom	:3vw;
+}
+
+.mypage_blog_log_box{
+	width			:96vw;
+	height			:50vw;
+	font-size		:5vw;
+	overflow-y		:scroll;
+	resize			:none;
 	margin-bottom	:3vw;
 }
 
@@ -1554,13 +1565,40 @@ i,.days_icon{
 	background		:#fafafa;
 }
 
-.mypage_blog_log_box{
-	width			:96vw;
-	height			:50vw;
+.blog_table_set{
+	width			:92vw;
+	height			:20vw;
+	font-size		:0;
+}
+
+.blog_td_img{
+	position		:relative;
+	width			:20vw;
+	height			:20vw;
+}
+
+.blog_img{
+	width			:20vw;
+	height			:20vw;
+}
+
+.blog_tag_td{
+	
+}
+
+.blog_set{
+	height			:10vw;
+	line-height		:10vw;
 	font-size		:5vw;
-	overflow-y		:scroll;
-	resize			:none;
-	margin-bottom	:3vw;
+	text-align		:center;
+}
+
+.blog_tag_sel{
+	height			:7vw;
+	margin			:0;
+	font-size		:4.5vw;
+	width			:60vw;
+	background		:#fafafa;
 }
 
 .mypage_blog_hist{
@@ -1571,6 +1609,18 @@ i,.days_icon{
 	margin			:1vw auto;
 	border			:0.5vw solid #0000d0;
 }
+
+
+.mypage_blog_hist{
+	position		:relative;
+	display			:inline-block;
+	width			:96vw;
+	margin			:1vw auto;
+	border			:0.5vw solid #0000d0;
+}
+
+
+
 
 .hist_img{
 	position		:absolute;
