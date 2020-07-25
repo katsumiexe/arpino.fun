@@ -804,6 +804,7 @@ var C_Id_tmp=0;
 					<table class="blog_table_set">
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
+<<<<<<< HEAD
 								<span class="blog_img_pack">
 									<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
 								</span>					
@@ -811,6 +812,16 @@ var C_Id_tmp=0;
 							</td>
 							<td class="blog_tag_td">
 								<span class="upload_icon tag_open"></span>
+=======
+							<span class="blog_img_pack">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+							</span>					
+							<span class="customer_camera"></span>
+							</td>
+							<td class="blog_tag_td">
+								<span class="tag_icon"></span>
+								<span class=" tag_ttl">タグ</span>
+>>>>>>> a7ad38691aee435e88819f8203ec2a6bf01a4179
 								<select name="blog_tag" class="blog_tag_sel">
 									<option value="1">Blog</option>
 									<option value="2">日常</option>
@@ -818,7 +829,13 @@ var C_Id_tmp=0;
 							</td>
 						</tr>
 						<tr>
+<<<<<<< HEAD
 							<td class="blog_tag_td"><div class="blog_set">投稿する</td>
+=======
+							<td class="blog_tag_td">
+							<div id="blog_set" class="btn btn_l1">登録</div>　
+							</td>
+>>>>>>> a7ad38691aee435e88819f8203ec2a6bf01a4179
 						</tr>
 					</table>
 				</div>
