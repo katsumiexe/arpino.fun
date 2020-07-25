@@ -7,6 +7,9 @@ if($_POST["log_out"] == 1){
 	session_destroy();
 }
 $jst=time()+32400;
+
+$now		=date("Y-m-d H:i:s",$jst);
+
 $now_ymd	=date("Ymd",$jst);
 $now_ymd_2	=date("Ymd",$jst+86400);
 $now_ymd_3	=date("Ymd",$jst+172800);
@@ -176,8 +179,6 @@ $reg_base_ag=date("Y")-1980;
 	}else{
 		$days_sche_3="休み";
 	}
-
-
 
 	$sql	 ="SELECT * FROM wp01_0schedule_memo";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
@@ -396,8 +397,25 @@ $reg_base_ag=date("Y")-1980;
 	foreach($dat2 as $cus2){
 		$cus_group_sel[$cus2["sort"]]=$cus2["tag"];
 	}
+
+//■Blog------------------
+
+	$sql ="SELECT * FROM wp01_posts";
+	$sql.=" WHERE post_author='{$_SESSION["id"]}'";
+	$sql.=" AND post_status='publish'";
+	$sql.=" AND post_date<'{$now}'";
+	$sql.=" ORDER BY id DESC";
+	$sql.=" LIMIT 20";
+
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $tmp){
+		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
+		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+	}
+
+
+
 }
-//var_dump($_POST);
 
 ?>
 <html lang="ja">
@@ -811,11 +829,11 @@ var C_Id_tmp=0;
 							</td>
 							<td class="blog_tag_td">
 								<span class="tag_icon"></span>
-								<span class=" tag_ttl">タグ</span>
 								<select id="blog_tag_sel" name="blog_tag" class="blog_tag_sel">
 									<option value="1" selected="selected">Blog</option>
 									<option value="2">日常</option>
 								</select>
+								<span class=" tag_ttl">タグ</span>
 							</td>
 						</tr>
 						<tr>

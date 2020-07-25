@@ -1073,6 +1073,7 @@ i,.days_icon{
 	overflow		:hidden;
 }
 
+
 .regist_img{
 	position		:absolute;
 	width			:25vw;
@@ -1573,11 +1574,26 @@ i,.days_icon{
 
 .blog_td_img{
 	position		:relative;
+	width			:22vw;
+	height			:22vw;
+	background:#909090;
+}
+
+.blog_img_pack{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:0vw;
+	bottom			:0vw;
+	right			:0vw;
 	width			:20vw;
 	height			:20vw;
+	margin			:auto;
+	overflow		:hidden;
 }
 
 .blog_img{
+	position		:absolute;
 	width			:20vw;
 	height			:20vw;
 }
@@ -1602,8 +1618,8 @@ i,.days_icon{
 	bottom			:0;
 	left			:0.5vw;
 	margin			:auto;
-	line-height		:7vw;
-	height			:7vw;
+	line-height		:8vw;
+	height			:8vw;
 	width			:6vw;
 	text-align		:center;
 	font-size		:5vw;
@@ -1620,9 +1636,9 @@ i,.days_icon{
 	bottom			:0;
 	left			:6.5vw;
 	margin			:auto;
-	line-height		:7vw;
-	height			:7vw;
-	width			:12vw;
+	line-height		:8vw;
+	height			:8vw;
+	width			:12.5vw;
 	text-align		:center;
 	font-size		:5vw;
 	background		:#008000;
@@ -1631,15 +1647,16 @@ i,.days_icon{
 }
 
 .blog_tag_sel{
-	height			:7vw;
+	height			:8vw;
 	position		:absolute;
 	top				:0;
 	bottom			:0;
 	left			:18.5vw;
 	margin			:auto;
 	font-size		:4.5vw;
-	width			:56vw;
+	width			:40vw;
 	background		:#fafafa;
+	padding-left	:1vw;
 }
 
 .blog_hist{
@@ -2130,7 +2147,7 @@ input[type=range]::-moz-range-thumb{
 	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
 	color: #d00000;
-	width: 71vw;
+	width: 56vw;
 }
 
 .mail_hist{

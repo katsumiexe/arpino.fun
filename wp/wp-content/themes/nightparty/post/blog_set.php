@@ -39,8 +39,6 @@ if($chg){
 }else{
 	$sql.=",'open','open','post','blog/{$cast_id}/{$chg}-revision-v1/','post','0')";
 }
-echo $sql;
-
 
 $wpdb->query($sql);
 $tmp_auto=$wpdb->insert_id;
@@ -78,11 +76,13 @@ if($img_code){
 	imagepng($img2,$link2);
 
 	$sql="INSERT INTO wp01_posts ";
-	$sql.="(post_auther,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_parent)";
+	$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_parent)";
 	$sql.="VALUES";
-	$sql.="'{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto}','inherit','{$date_jst}','{$date_gmt}'";
-	$sql.="'close','close','img_{$tmp_auto}','{$link}','image/png','{$tmp_auto}'";
+	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto}','inherit','{$date_jst}','{$date_gmt}'";
+	$sql.=",'close','close','img_{$tmp_auto}','{$link}','image/png','{$tmp_auto}')";
 	$wpdb->query($sql);
+	echo $sql;
+
 }
 
 exit();
