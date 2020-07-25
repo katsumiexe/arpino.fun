@@ -7,9 +7,9 @@ $(function(){
 	var ImgZoom=100;
 
 	$('.head_mymenu').on('click',function(){
-		if($(this).hasClass('mypage_on')){
-			$(this).removeClass('mypage_on');
-			$('.mypage_slide').animate({'left':'-70vw'},150);
+		if($(this).hasClass('on')){
+			$(this).removeClass('on');
+			$('.slide').animate({'left':'-70vw'},150);
 			$('.mymenu_b').fadeIn(150);
 
 			$('.mymenu_a,.mymenu_c').animate({'left':'1vw','width':'8vw'},150);
@@ -34,8 +34,8 @@ $(function(){
 			});
 
 		}else{
-			$(this).addClass('mypage_on');
-			$('.mypage_slide').animate({'left':'0'},150);
+			$(this).addClass('on');
+			$('.slide').animate({'left':'0'},150);
 			$('.mymenu_b').fadeOut(150);
 			$('.mymenu_a,.mymenu_c').animate({'left':'0.5vw','width':'7vw'},150);
 			$('.head_mymenu').animate({'border-radius':'5vw'},150);
@@ -142,7 +142,7 @@ $(function(){
 
 
 	$('.mail_al').on('click',function () {
-		$('.mypage_mail_detail').animate({'right':'0'},150);
+		$('.mail_detail').animate({'right':'0'},150);
 		Tmp=$(this).attr('id').replace('mail','');
 		Dir=$('#dir').val();
 
@@ -190,7 +190,7 @@ $(function(){
 	});
 
 	$('.mail_detail_back').on('click',function () {
-		$('.mypage_mail_detail').animate({'right':'-100vw'},100);
+		$('.mail_detail').animate({'right':'-100vw'},100);
 		$('.detail_modal_link').html();
 	});
 
@@ -235,7 +235,7 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('.mypage_main').append(data);
+			$('.main').append(data);
 			$('.customer_regist').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
 
@@ -304,14 +304,14 @@ $(function(){
 	});
 
 	$('#regist_brog').on('click',function () {
-		if($('.mypage_blog_write').css('display') == 'none'){
-			$('.mypage_blog_write').slideDown(100);
+		if($('.blog_write').css('display') == 'none'){
+			$('.blog_write').slideDown(100);
 		}else{
-			$('.mypage_blog_write').slideUp(50);
+			$('.blog_write').slideUp(50);
 		}
 	});
 
-	$('#mypage_blog_date').datepicker({
+	$('#blog_date').datepicker({
 		dateFormat: 'yy/mm/dd',
 		monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
 		firstDay: 1,
@@ -435,7 +435,7 @@ $(function(){
 		$('#img_left').val(Left);
 	});
 
-	$('.mypage_head').on('click','.arrow_customer',function(){
+	$('.head').on('click','.arrow_customer',function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
 		$('.customer_detail').animate({'left':'100vw'},300);
 		$('.head_mymenu_ttl').html('顧客リスト');
@@ -447,8 +447,13 @@ $(function(){
 
 		$('.customer_sns_box,.sns_arrow_a,.customer_sns_btn').removeClass('c_customer_twitter c_customer_facebook c_customer_insta c_customer_web c_customer_blog c_customer_tel c_customer_mail');
 		$('.sns_jump').removeClass('jump_on');
-	});
 
+		$('.tag_set').removeClass('tag_set_ck').animate({'top':'3vw','height':'5.5vw'},300);
+		$('#tag_1').addClass('tag_set_ck').animate({'top':'0.5vw','height':'8vw'},300);
+
+		$('.customer_memo').hide();
+		$('#tag_1_tbl').show();
+	});
 
 	$('.customer_list').on('click',function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
@@ -515,8 +520,6 @@ $(function(){
 
 		Tmp=$(this).children('.customer_hidden_fav').val();
 		$('#h_customer_fav').val(Tmp);
-
-
 
 		Tmp=$(this).children('.customer_hidden_tel').val();
 		$('#h_customer_tel').val(Tmp);
@@ -592,6 +595,35 @@ $(function(){
 		});
 	});
 
+	$('#blog_set').on('click',function(){
+
+		$.post({
+			url:Dir + "/post/blog_set.php",
+			data:{
+			'cast_id':CastId,
+				'ttl':$('#blog_title').val(),
+				'log':$('#blog_log').val(),
+				'tag':$('#blog_tag_sel').val(),
+
+				'yy':$('#blog_yy').val(),
+				'mm':$('#blog_mm').val(),
+				'dd':$('#blog_dd').val(),
+
+				'hh':$('#blog_hh').val(),
+				'ii':$('#blog_ii').val(),
+
+				'ii':$('#blog_ii').val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('.blog_write').slideUp(500);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
 	$('.sns_btn').on('click',function(){
 		$.post({
 			url:Dir + "/post/customer_sns_set.php",
@@ -620,6 +652,9 @@ $(function(){
 			$('#h_customer_'+data).val($('.sns_text').val());
 			$('#clist'+C_Id).children('.customer_hidden_'+data).val($('.sns_text').val());
 
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
 	});
 
@@ -1015,7 +1050,7 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
-	$('.mypage_cal').on('click','.cal_prev',function () {
+	$('.cal').on('click','.cal_prev',function () {
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
@@ -1027,8 +1062,8 @@ console.log("VwBase:"+VwBase);
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.mypage_cal').prepend(data.html).animate({'left':'-100vw'},200);
-			$(".mypage_cal").children().last().remove();
+			$('.cal').prepend(data.html).animate({'left':'-100vw'},200);
+			$(".cal").children().last().remove();
 			$('#c_month').val(data.date);
 		});
 	});
@@ -1075,7 +1110,7 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
-	$('.mypage_cal').on('click','.cal_next',function () {
+	$('.cal').on('click','.cal_next',function () {
 		$.post({
 			url:Dir + "/post/calendar_set.php",
 			data:{
@@ -1086,8 +1121,8 @@ console.log("VwBase:"+VwBase);
 			},
 			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
-			$('.mypage_cal').append(data.html).animate({'left':'-100vw'},200);
-			$(".mypage_cal").children().first().remove();
+			$('.cal').append(data.html).animate({'left':'-100vw'},200);
+			$(".cal").children().first().remove();
 			$('#c_month').val(data.date);
 		});
 	});
@@ -1187,14 +1222,14 @@ console.log("VwBase:"+VwBase);
 		},
 	});
 
-	$('.mypage_cal').draggable({
+	$('.cal').draggable({
 		axis: 'x',
 		drag: function( event, ui ) {
 		},
 
 		stop: function( event, ui ) {
 			if(ui.position.left > VwBase*(-80)){
-				$('.mypage_cal').animate({'left':'0'},100);
+				$('.cal').animate({'left':'0'},100);
 
 				$.post({
 					url:Dir + "/post/calendar_set.php",
@@ -1207,19 +1242,19 @@ console.log("VwBase:"+VwBase);
 					dataType: 'json',
 
 				}).done(function(data, textStatus, jqXHR){
-					$('.mypage_cal').prepend(data.html).css('left','-100vw');
-					$(".mypage_cal").children().last().remove();
+					$('.cal').prepend(data.html).css('left','-100vw');
+					$(".cal").children().last().remove();
 					$('#c_month').val(data.date);
 /*
 					console.log(data.sql);
 					console.log(data.html);
 */
-					console.log($(".mypage_cal").children().last());
+					console.log($(".cal").children().last());
 
 				});
 
 			}else if(ui.position.left < VwBase*(-120)){
-				$('.mypage_cal').animate({'left':'-200vw'},100);
+				$('.cal').animate({'left':'-200vw'},100);
 				$.post({
 					url:Dir + "/post/calendar_set.php",
 					data:{
@@ -1230,15 +1265,15 @@ console.log("VwBase:"+VwBase);
 					},
 					dataType: 'json',
 				}).done(function(data, textStatus, jqXHR){
-					$('.mypage_cal').append(data.html).css('left','-100vw');
-					$(".mypage_cal").children().first().remove();
+					$('.cal').append(data.html).css('left','-100vw');
+					$(".cal").children().first().remove();
 					$('#c_month').val(data.date);
 					console.log(data.sql);
 					console.log(data.html);
 				});
 
 			}else{
-				$('.mypage_cal').animate({'left':'-100vw'},100);
+				$('.cal').animate({'left':'-100vw'},100);
 			}
 		},
 	});
@@ -1268,7 +1303,7 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
-	$('.mypage_cal').on('click','.cal_td',function (){
+	$('.cal').on('click','.cal_td',function (){
 		$('.cal_td').removeClass('cc8');
 		$(this).addClass('cc8');
 
@@ -1308,7 +1343,7 @@ console.log("VwBase:"+VwBase);
 
 
 
-	$('.mypage_slide').draggable({
+	$('.slide').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
 			startPosition = ui.position.left;
@@ -1319,9 +1354,9 @@ console.log("VwBase:"+VwBase);
 
 		stop: function( event, ui ) {
 			if(ui.position.left < -50){
-				$('.mypage_slide').animate({'left':'-70vw'},200);
+				$('.slide').animate({'left':'-70vw'},200);
 
-				$('.head_mymenu').removeClass('mypage_on');
+				$('.head_mymenu').removeClass('on');
 				$('.mymenu_b').fadeIn(150);
 
 				$('.mymenu_a,.mymenu_c').animate({'left':'1vw','width':'8vw'},100);
@@ -1345,7 +1380,7 @@ console.log("VwBase:"+VwBase);
 					},
 				});
 			}else{
-				$('.mypage_slide').animate({'left': '0vw'},100);
+				$('.slide').animate({'left': '0vw'},100);
 			}
 		}
 	});

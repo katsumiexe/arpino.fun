@@ -32,7 +32,7 @@ input:focus{
 	line-height		:15vw;
 }
 
-.mypage_head{
+.head{
 	position	:fixed;
 	top			:0;
 	left		:0;
@@ -44,7 +44,7 @@ input:focus{
 	box-shadow	:0.5vw 0.5vw 0.5vw rgba(60,60,60,0.4);
 }
 
-.mypage_slide{
+.slide{
 	position	:fixed;
 	left		:-70vw;		
 	top			:0;
@@ -56,7 +56,7 @@ input:focus{
 	z-index		:100;
 }
 
-.mypage_menu{
+.menu{
 	position	:absolute;
 	top			:16vw;
 	left		:0;
@@ -1377,7 +1377,7 @@ i,.days_icon{
 }
 
 
-.mypage_main{
+.main{
 	left			:0;
 	top				:14vw;
 	display			:inline-block;
@@ -1387,7 +1387,7 @@ i,.days_icon{
 	margin-top:14.5vw;
 }
 
-.mypage_main_sch{
+.main_sch{
 	position		:fixed;
 	left			:0;
 	top				:14vw;
@@ -1439,7 +1439,7 @@ i,.days_icon{
 	color			:#303030;
 }
 
-.mypage_on{
+.on{
 	background:#d00000 !important;
 }
 
@@ -1494,7 +1494,7 @@ i,.days_icon{
 	transform-origin:right;
 }
 
-.mypage_blog_set{
+.blog_set{
 	width			:60vw;
 	height			:10vw;
 	font-size		:6vw;	
@@ -1504,7 +1504,7 @@ i,.days_icon{
 	background		:linear-gradient(#00a000,#008000);
 }
 
-.mypage_blog_write{
+.blog_write{
 	display		:none;
 	width		:99vw;
 	min-height	:99vh;
@@ -1514,7 +1514,7 @@ i,.days_icon{
 	padding		:2vw;
 }
 
-.mypage_blog_pack{
+.blog_pack{
 	position	:relative;
 	display		:inline-block;
 	width		:96vw;
@@ -1523,7 +1523,7 @@ i,.days_icon{
 	text-align	:center;
 }
 
-.mypage_blog_title_tag{
+.blog_title_tag{
 	display		:inline-block;
 	width		:94vw;
 	height		:5vw;
@@ -1533,14 +1533,14 @@ i,.days_icon{
 	font-weight	:600;
 }
 
-.mypage_blog_title_box{
+.blog_title_box{
 	width			:96vw;
 	height			:8vw;
 	font-size		:5vw;
 	margin-bottom	:3vw;
 }
 
-.mypage_blog_log_box{
+.blog_log_box{
 	width			:96vw;
 	height			:50vw;
 	font-size		:5vw;
@@ -1549,7 +1549,7 @@ i,.days_icon{
 	margin-bottom	:3vw;
 }
 
-.mypage_blog_4{
+.blog_4{
 	width			:18vw;
 	height			:7vw;
 	font-size		:5vw;
@@ -1557,7 +1557,7 @@ i,.days_icon{
 	background		:#fafafa;
 }
 
-.mypage_blog_2{
+.blog_2{
 	width			:10vw;
 	height			:7vw;
 	font-size		:5vw;
@@ -1642,7 +1642,7 @@ i,.days_icon{
 	background		:#fafafa;
 }
 
-.mypage_blog_hist{
+.blog_hist{
 	position		:relative;
 	display			:inline-block;
 	height			:16vw;
@@ -1652,7 +1652,7 @@ i,.days_icon{
 }
 
 
-.mypage_blog_hist{
+.blog_hist{
 	position		:relative;
 	display			:inline-block;
 	width			:96vw;
@@ -2133,7 +2133,7 @@ input[type=range]::-moz-range-thumb{
 	width: 71vw;
 }
 
-.mypage_mail_hist{
+.mail_hist{
 	position		:relative;
 	display			:inline-block;
 	height			:18vw;
@@ -2142,7 +2142,7 @@ input[type=range]::-moz-range-thumb{
 	border			:0.5vw solid #cccccc;
 }
 
-.mypage_mail_detail{
+.mail_detail{
 	display			:inline-block;
 	position		:fixed;
 	top				:0;
@@ -2463,7 +2463,7 @@ input[type=range]::-moz-range-thumb{
 	left			:19vw;
 }
 
-.mypage_cal{
+.cal{
 	display			:flex;
 	position		:absolute;
 	top				:0;
@@ -2659,7 +2659,7 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	display:none;
 }
 
-.mypage_menu{
+.menu{
 	width			:300px;
 	height			:400px;
 	padding			:20px;
@@ -2705,7 +2705,7 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 960px) {
 
-.mypage_main{
+.main{
 	left			:0;
 	right			:0;
 	top				:0;
@@ -2714,7 +2714,7 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	margin			:auto;
 }
 
-.mypage_menu{
+.menu{
 	width			:300px;
 	height			:400px;
 	padding			:20px;

@@ -450,7 +450,7 @@ var C_Id_tmp=0;
 	<? }?>
 
 <?}else{?>
-	<div class="mypage_head">
+	<div class="head">
 		<div class="head_mymenu">
 			<div class="mymenu_a"></div>
 			<div class="mymenu_b"></div>
@@ -505,8 +505,8 @@ var C_Id_tmp=0;
 		</div>
 	<?}?>
 	</div>
-	<div class="mypage_slide">
-		<ul class="mypage_menu">
+	<div class="slide">
+		<ul class="menu">
 			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
 			<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
 			<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
@@ -518,10 +518,10 @@ var C_Id_tmp=0;
 	</div>
 
 	<?if($cast_page==1){?>
-	<div class="mypage_main_sch">
+	<div class="main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
 		<input id="week_start" type="hidden" value="<?=$week_start?>">
-		<div class="mypage_cal">
+		<div class="cal">
 			<?for($c=0;$c<3;$c++){?>
 				<table class="cal_table">
 					<tr>
@@ -557,7 +557,7 @@ var C_Id_tmp=0;
 		</div>
 	</div>
 	<?}elseif($cast_page==2){?>
-	<div class="mypage_main">
+	<div class="main">
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 				<?if($customer[$n]["face"]){?>
@@ -700,9 +700,9 @@ var C_Id_tmp=0;
 		</div>
 	</div>
 	<?}elseif($cast_page==3){?>
-	<div class="mypage_main">
+	<div class="main">
 		<?for($s=0;$s<count($mail_data);$s++){?>
-			<div class="mypage_mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
+			<div class="mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
 				<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
 				<span id="mail_icon<?=$s?>" class="mail_icon">
@@ -723,7 +723,7 @@ var C_Id_tmp=0;
 			</div>
 		<?}?>
 
-		<div class="mypage_mail_detail">
+		<div class="mail_detail">
 			<span class="mail_detail_from">
 				<span class="mail_detail_back"></span>
 				<span class="mail_detail_name"></span>
@@ -757,37 +757,37 @@ var C_Id_tmp=0;
 	</div>
 
 	<?}elseif($cast_page==4){?>
-		<div class="mypage_main">
-			<div class="mypage_blog_write">
-				<div class="mypage_blog_pack">
-					<span class="mypage_blog_title_tag">投稿日</span><br>
+		<div class="main">
+			<div class="blog_write">
+				<div class="blog_pack">
+					<span class="blog_title_tag">投稿日</span><br>
 					<div style="text-align:left;margin-bottom:3vw;">	
-						<select id="mypage_blog_yy" name="mypage_blog_yy" class="mypage_blog_4">
+						<select id="blog_yy" name="blog_yy" class="blog_4">
 							<?for($n=2018;$n<date("Y")+3;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
 								<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
 							<?}?>
 						</select>年
-						<select id="mypage_blog_mm" name="mypage_blog_mm" class="mypage_blog_2">
+						<select id="blog_mm" name="blog_mm" class="blog_2">
 							<?for($n=1;$n<13;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
 								<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>月
-						<select id="mypage_blog_dd" name="mypage_blog_dd" class="mypage_blog_2">
+						<select id="blog_dd" name="blog_dd" class="blog_2">
 							<?for($n=1;$n<32;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
 								<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>日　
-						<select id="mypage_blog_hh" name="mypage_blog_hh" class="mypage_blog_2">
+						<select id="blog_hh" name="blog_hh" class="blog_2">
 							<?for($n=0;$n<24;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
 								<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>
 						：
-						<select id="mypage_blog_ii" name="mypage_blog_ii" class="mypage_blog_2">
+						<select id="blog_ii" name="blog_ii" class="blog_2">
 							<?for($n=0;$n<60;$n++){?>
 							<?$n1=substr("00".$n,-2,2)?>
 								<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
@@ -795,11 +795,11 @@ var C_Id_tmp=0;
 						</select>
 						<br>
 					</div>
-					<span class="mypage_blog_title_tag">タイトル</span><br>
-					<input id="mypage_blog_title" type="text" name="mypage_blog_title" class="mypage_blog_title_box"><br>
+					<span class="blog_title_tag">タイトル</span><br>
+					<input id="blog_title" type="text" name="blog_title" class="blog_title_box"><br>
 
-					<span class="mypage_blog_title_tag">本文</span><br>
-					<textarea id="mypage_blog_log" type="text" name="mypage_blog_log" class="mypage_blog_log_box"></textarea><br>
+					<span class="blog_title_tag">本文</span><br>
+					<textarea id="blog_log" type="text" name="blog_log" class="blog_log_box"></textarea><br>
 
 					<table class="blog_table_set">
 						<tr>
@@ -812,8 +812,8 @@ var C_Id_tmp=0;
 							<td class="blog_tag_td">
 								<span class="tag_icon"></span>
 								<span class=" tag_ttl">タグ</span>
-								<select name="blog_tag" class="blog_tag_sel">
-									<option value="1">Blog</option>
+								<select id="blog_tag_sel" name="blog_tag" class="blog_tag_sel">
+									<option value="1" selected="selected">Blog</option>
 									<option value="2">日常</option>
 								</select>
 							</td>
@@ -826,14 +826,14 @@ var C_Id_tmp=0;
 					</table>
 				</div>
 			</div>
-			<div class="mypage_blog_hist">
+			<div class="blog_hist">
 				<img src="" class="hist_img">
 				<span class="hist_date">2020/05/08 06:00</span>
 				<span class="hist_title">にゃんにゃかにゃー</span>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c">0</span></span>
 			</div>
-			<div class="mypage_blog_hist">
+			<div class="blog_hist">
 				<img src="" class="hist_img">
 				<span class="hist_date">2020/05/08 06:00</span>
 				<span class="hist_title">にゃんにゃかにゃー</span>
@@ -844,7 +844,7 @@ var C_Id_tmp=0;
 
 
 	<?}elseif($cast_page==5){?>
-	<div class="mypage_main_sch">
+	<div class="main_sch">
 		<div class="config_menu">
 
 名前：
@@ -860,7 +860,7 @@ PASSWORD
 		</div>
 	</div>
 	<?}else{?>
-	<div class="mypage_main">
+	<div class="main">
 		<div class="notice_ttl">
 			<div class="notice_ttl_day"><span class="notice_icon"></span><span id="notice_day"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span></div>
 			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
