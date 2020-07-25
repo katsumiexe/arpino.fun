@@ -1583,12 +1583,8 @@ i,.days_icon{
 }
 
 .blog_tag_td{
-<<<<<<< HEAD
-	
-=======
 	position:relative;
 	height:9vw;
->>>>>>> a7ad38691aee435e88819f8203ec2a6bf01a4179
 }
 
 .blog_set{
@@ -1598,13 +1594,6 @@ i,.days_icon{
 	text-align		:center;
 }
 
-<<<<<<< HEAD
-.blog_tag_sel{
-	height			:7vw;
-	margin			:0;
-	font-size		:4.5vw;
-	width			:60vw;
-=======
 .tag_icon{
 	font-family		:at_icon;
 	display			:inline-block;
@@ -1650,7 +1639,6 @@ i,.days_icon{
 	margin			:auto;
 	font-size		:4.5vw;
 	width			:56vw;
->>>>>>> a7ad38691aee435e88819f8203ec2a6bf01a4179
 	background		:#fafafa;
 }
 
