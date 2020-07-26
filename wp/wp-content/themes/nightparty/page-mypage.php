@@ -401,6 +401,8 @@ $reg_base_ag=date("Y")-1980;
 //■Blog------------------
 
 	$sql ="SELECT * FROM wp01_posts";
+	$sql.=" LEFT JOIN ";
+
 	$sql.=" WHERE post_author='{$_SESSION["id"]}'";
 	$sql.=" AND post_name='post'";
 	$sql.=" ORDER BY id DESC";
@@ -432,21 +434,29 @@ $reg_base_ag=date("Y")-1980;
 			$blog[$n]["status"]=3;
 		}	
 
-		$blog_img="../wp-content/uploads/np{$_SESSION["id"]}/{$tmp["ID"]}.png";
-		if(file_exists($blog_img)){
-			$blog[$n]["img"]=$blog_img;
+
+		$updir = wp_upload_dir();
+		if(file_exists("{$updir['basedir']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png")){
+			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png";
 		}else{
 			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
 		}
-			$blog[$n]["img"]=$blog_img;
-
 		$n++;
 	}
 
-$blog_status[0]="公開";
-$blog_status[1]="予約";
-$blog_status[2]="削除";
-$blog_status[3]="非公開";
+	$blog_status[0]="公開";
+	$blog_status[1]="予約";
+	$blog_status[2]="削除";
+	$blog_status[3]="非公開";
+
+	$sql ="SELECT * FROM wp01_terms";
+	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_terms.term_id=wp01_term_taxonomy.term_id";
+	$sql.=" WHERE taxonomy='post_tag'";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat as $a1){
+		$tag_list[$a1["slug"]]=$a1["name"];
+	}
 }
 
 ?>
@@ -862,8 +872,9 @@ var C_Id_tmp=0;
 							<td class="blog_tag_td">
 								<span class="tag_icon"></span>
 								<select id="blog_tag_sel" name="blog_tag" class="blog_tag_sel">
-									<option value="1" selected="selected">Blog</option>
-									<option value="2">日常</option>
+								<?foreach($tag_list as $a1=> $a2){?>
+									<option value="<?=$a1?>"><?=$a2?></option>
+								<?}?>
 								</select>
 								<span class=" tag_ttl">タグ</span>
 							</td>

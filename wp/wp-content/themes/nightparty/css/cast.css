@@ -217,13 +217,14 @@ input:focus{
 	position		:relative;
 	height			:7vw;
 	line-height		:7vw;
-	width			:32vw;
+	width			:35vw;
 	font-size		:4vw;
 	text-align		:left;
 	color			:#fafafa;
 	margin			:1vw;
 	background		:#0000d0;	
-	border-radius:1vw;
+	border-radius	:1vw;
+	overflow		:hidden;
 }
 
 .notice_box_mail{
