@@ -73,7 +73,7 @@ if($chg){
 
 	if($img_code){
 		$tmp_auto2=$tmp_auto+2;
-		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto}.png";
+		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto}-600x600.png";
 
 		$img2 		= imagecreatetruecolor(600,600);
 		$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
