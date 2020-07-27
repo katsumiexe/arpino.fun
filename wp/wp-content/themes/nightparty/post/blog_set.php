@@ -100,7 +100,7 @@ if($chg){
 		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type,post_parent)";
 		$sql.="VALUES";
 		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto}','inherit','{$date_jst}','{$date_gmt}'";
-		$sql.=",'close','close','img_{$tmp_auto}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto}.png','attachment','image/png','{$tmp_auto}')";
+		$sql.=",'open','closed','img_{$tmp_auto}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto}.png','attachment','image/png','{$tmp_auto}')";
 		$wpdb->query($sql);
 		echo $sql;
 
@@ -108,9 +108,9 @@ if($chg){
 
 		$sql	 ="INSERT INTO wp01_postmeta(post_id,meta_key,meta_value)";
 		$sql	.="VALUES('{$tmp_auto}','_thumbnail_id','{$tmp_auto2}'),";
-		$sql	.="('{$tmp_auto}','_wp_attachment_image_alt','{$date_jst}'),";
 		$sql	.="('{$tmp_auto}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto}.png'),";
-		$sql	.="('{$tmp_auto}','_wp_attachment_metadata','{$tmp_in}')";
+		$sql	.="('{$tmp_auto}','_wp_attachment_metadata','{$tmp_in}'),";
+		$sql	.="('{$tmp_auto}','_wp_attachment_image_alt','{$date_jst}')";
 		$wpdb->query($sql);
 	}
 }
