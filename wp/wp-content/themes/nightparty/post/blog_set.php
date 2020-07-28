@@ -73,7 +73,7 @@ if($chg){
 
 	if($img_code){
 		$tmp_auto2=$tmp_auto+2;
-		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto}-600x600.png";
+		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto2}.png";
 
 		$img2 		= imagecreatetruecolor(600,600);
 		$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
@@ -99,35 +99,35 @@ if($chg){
 		$sql="INSERT INTO wp01_posts ";
 		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type,post_parent)";
 		$sql.="VALUES";
-		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto}','inherit','{$date_jst}','{$date_gmt}'";
-		$sql.=",'open','closed','img_{$tmp_auto}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto}.png','attachment','image/png','{$tmp_auto}')";
+		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto2}','inherit','{$date_jst}','{$date_gmt}'";
+		$sql.=",'open','closed','img_{$tmp_auto2}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png','attachment','image/png','{$tmp_auto2}')";
 		$wpdb->query($sql);
 
-		$img_origin			="img_{$tmp_auto}-600x600.png";
+		$img_origin			="img_{$tmp_auto2}-600x600.png";
 		$img_origin_cnt		=mb_strlen($img_origin);
 
-		$img_thumbnail		="img_{$tmp_auto}-150x150.png";
+		$img_thumbnail		="img_{$tmp_auto2}-150x150.png";
 		$img_thumbnail_cnt	=mb_strlen($img_thumbnail);
 
-		$img_large			="img_{$tmp_auto}-600x600.png";
+		$img_large			="img_{$tmp_auto2}-600x600.png";
 		$img_large_cnt		=mb_strlen($img_large);
 
-		$img_origin			="img_{$tmp_auto}.png";
+		$img_origin			="img_{$tmp_auto2}.png";
 		$img_origin_cnt		=mb_strlen($img_origin);
 
-		$img_thumbnail		="img_{$tmp_auto}.png";
+		$img_thumbnail		="img_{$tmp_auto2}.png";
 		$img_thumbnail_cnt	=mb_strlen($img_thumbnail);
 
-		$img_large			="img_{$tmp_auto}.png";
+		$img_large			="img_{$tmp_auto2}.png";
 		$img_large_cnt		=mb_strlen($img_large);
 
 		$tmp_in="a:5:{s:5:\"width\";i:600;s:6:\"height\";i:600;s:4:\"file\";s:{$img_origin_cnt}:\"{$img_origin}\";s:5:\"sizes\";a:2:{s:9:\"thumbnail\";a:4:{s:4:\"file\";s:{$img_thumbnail_cnt}:\"{$img_thumbnail}\";s:5:\"width\";i:150;s:6:\"height\";i:150;s:9:\"mime-type\";s:9:\"image/png\";}s:12:\"large\";a:4:{s:4:\"file\";s:{$img_large_cnt}:\"{$img_large}\";s:5:\"width\";i:600;s:6:\"height\";i:600;s:9:\"mime-type\";s:9:\"image/png\";}}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}";
 
 		$sql	 ="INSERT INTO wp01_postmeta(post_id,meta_key,meta_value)";
 		$sql	.="VALUES('{$tmp_auto}','_thumbnail_id','{$tmp_auto2}'),";
-		$sql	.="('{$tmp_auto}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto}.png'),";
-		$sql	.="('{$tmp_auto}','_wp_attachment_metadata','{$tmp_in}'),";
-		$sql	.="('{$tmp_auto}','_wp_attachment_image_alt','{$date_jst}')";
+		$sql	.="('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
+		$sql	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
+		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
 		$wpdb->query($sql);
 		echo $sql;
 	}

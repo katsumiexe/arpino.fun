@@ -2,8 +2,9 @@
 /*
 お知らせ見た処理
 */
-session_start();
-$_SESSION["time"]=time()+32400;;
+require_once ("./post_inc.php");
+$now=date("Y-m-d H:i:s",$jst);
+
 
 ini_set('display_errors',1);
 require_once ("../../../../wp-load.php");
