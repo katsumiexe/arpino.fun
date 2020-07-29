@@ -1,16 +1,16 @@
 .sys_box{
-    display		: inline-block;
-    width		: 1000px;
-    background	: #302520;
-    text-align	: left;
-    border		: 2px solid #c8b880;
+    display		:inline-block;
+    width		:800px;
+    background	:#302520;
+    text-align	:left;
+    border		:2px solid #c8b880;
 	padding		:10px;
-	font-size:0;
-	margin:3vw auto;
+	font-size	:0;
+	margin		:10px auto;
 }
 
 .sys_box_ttl{
-    display		: inline-block;
+    display		:inline-block;
 	font-size	:17px;
 	font-weight	:800;
 	color		:#c8b880;
@@ -33,7 +33,7 @@
 	width		:1020px;
 	margin		: 0 auto;
 	text-align	:center;
-	font-size:0;
+	font-size	:0;
 }
 .person_left{
 	display		:inline-block;
