@@ -99,6 +99,28 @@ $reg_base_ag=date("Y")-1980;
 
 	/*--■イニシャライズ--*/
 	$cast_page=$_POST["cast_page"]+0;
+
+	if($cast_page == 1){
+		$page_title="スケジュール";
+
+	}elseif($cast_page == 2){
+		$page_title="顧客リスト";
+
+	}elseif($cast_page == 3){
+		$page_title="メール";
+
+	}elseif($cast_page == 4){
+		$page_title="ブログ";
+
+	}elseif($cast_page == 5){
+		$page_title="各種設定";
+
+	}else{
+		$page_title="トップページ";
+	}
+	
+	
+
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
 
@@ -319,11 +341,12 @@ $reg_base_ag=date("Y")-1980;
 
 	if($_POST["cus_set"]){
 		$cast_page=2;
+
+
 		$cus_id		=$_POST["cus_id"];
 		$cus_set	=$_POST["cus_set"];
 		$cus_page	=$_POST["cus_page"];
-		$cus_
-			=$_POST["cus_fav"];
+		$cus_fav	=$_POST["cus_fav"];
 		$cus_group	=$_POST["cus_group"];
 		$cus_name	=$_POST["cus_name"];
 		$cus_nick	=$_POST["cus_nick"];
@@ -577,12 +600,12 @@ var C_Id_tmp=0;
 	</div>
 	<div class="slide">
 		<ul class="menu">
-			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップ</span></li>
+			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップページ</span></li>
 			<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
-			<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客管理</span></li>
+			<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客リスト</span></li>
 			<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
 			<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
-			<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">設定</span></li>
+			<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">各種設定</span></li>
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
