@@ -1,12 +1,15 @@
 <?
 /*
-通常ページ　CAST読み込み
+スケジュールセット処理
 */
 require_once ("./post_inc.php");
+
+$cast_id	=$_POST['cast_id'];
+$base_day	=$_POST['base_day']+32400+86400*7;
+$sel_in		=$_POST['sel_in'];
+$sel_out	=$_POST['sel_out'];
+
 $now=date("Y-m-d H:i:s",$jst);
-
-$date		=$_POST['date'];
-
 
 $sql_log="INSERT INTO wp01_0schedule ";
 $sql_log.="(sche_date,date,cast_id,stime,etime)";

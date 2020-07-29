@@ -2,7 +2,9 @@
 /*
 画像登録処理
 */
-require_once ("./post_inc.php");
+ini_set('display_errors',1);
+require_once ("../../../../wp-load.php");
+global $wpdb;
 
 $cast_id	=$_POST["cast_id"];
 $img_code	=$_POST["img_code"];

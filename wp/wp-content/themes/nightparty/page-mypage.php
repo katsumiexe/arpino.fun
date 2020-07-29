@@ -9,10 +9,12 @@ if($_POST["log_out"] == 1){
 $jst=time()+32400;
 
 $now		=date("Y-m-d H:i:s",$jst);
-
 $now_ymd	=date("Ymd",$jst);
 $now_ymd_2	=date("Ymd",$jst+86400);
 $now_ymd_3	=date("Ymd",$jst+172800);
+
+
+
 
 $week[0]="日";
 $week[1]="月";
@@ -63,6 +65,12 @@ if($_SESSION){
 }
 
 if($_SESSION){
+
+$sql ="SELECT term_id FROM wp01_terms"; 
+$sql .=" WHERE slug='{$_SESSION["id"]}'"; 
+$cate_id = $wpdb->get_var($sql);
+
+
 
 $sql ="SELECT * FROM wp01_0encode"; 
 $enc0 = $wpdb->get_results($sql,ARRAY_A );
@@ -399,20 +407,30 @@ $reg_base_ag=date("Y")-1980;
 	}
 
 //■Blog------------------
-
 	$sql ="SELECT * FROM wp01_posts";
-	$sql.=" LEFT JOIN ";
-
-	$sql.=" WHERE post_author='{$_SESSION["id"]}'";
+	$sql.=" WHERE post_password='{$_SESSION["id"]}'";
 	$sql.=" AND post_name='post'";
-	$sql.=" ORDER BY id DESC";
+	$sql.=" ORDER BY post_date DESC";
 	$sql.=" LIMIT 20";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
-
-
 	$n=0;
 	foreach($dat as $tmp){
+
+		$img_tmp=$tmp["ID"]+2;
+		$updir = wp_upload_dir();
+
+		$sql ="SELECT * FROM wp01_postmeta";
+		$sql.=" WHERE post_id='{$tmp["ID"]}'";
+		$sql.=" AND meta_key='_thumbnail_id'";
+		$thumb = $wpdb->get_var($sql);
+		if($thumb){
+			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
+
+		}else{
+			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
+		}
+
 		$blog[$n]["date"]	=$tmp["post_date"];
 		$blog[$n]["title"]	=$tmp["post_title"];
 		$blog[$n]["content"]=$tmp["post_content"];
@@ -433,14 +451,6 @@ $reg_base_ag=date("Y")-1980;
 		}else{
 			$blog[$n]["status"]=3;
 		}	
-
-
-		$updir = wp_upload_dir();
-		if(file_exists("{$updir['basedir']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png")){
-			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png";
-		}else{
-			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
-		}
 		$n++;
 	}
 

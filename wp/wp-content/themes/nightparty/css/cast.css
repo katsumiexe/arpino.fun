@@ -1508,12 +1508,13 @@ i,.days_icon{
 
 .blog_write{
 	display		:none;
-	width		:99vw;
-	min-height	:99vh;
+	width		:98vw;
 	background	:#f0f0f0;
-	margin		:2vw auto;
+	margin		:1vw auto;
 	text-align	:left;
 	padding		:2vw;
+	height		:50vw;
+	background:#fafafa;
 }
 
 .blog_pack{
@@ -1667,6 +1668,7 @@ i,.days_icon{
 	width			:96vw;
 	margin			:1vw auto;
 	border			:0.5vw solid #0000d0;
+	background		:#fafafa;
 }
 
 

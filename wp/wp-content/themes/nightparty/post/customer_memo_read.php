@@ -17,7 +17,7 @@ $sql	 .=" AND `log` IS NOT NULL";
 $sql	 .=" ORDER BY id DESC";
 
 $now=date("Y-m-d H:i");
-$dat0 = $wpdb->get_results($sql,ARRAY_A);
+$dat0 = $wpdb->get_results($sql,ARRAY_A );
 
 foreach($dat0 AS $dat1){
 	$dat1["log"]=str_replace("\n","<br>",$dat1["log"]);
