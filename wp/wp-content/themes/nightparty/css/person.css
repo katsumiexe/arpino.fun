@@ -1,3 +1,33 @@
+.sys_box{
+    display		: inline-block;
+    width		: 1000px;
+    background	: #302520;
+    text-align	: left;
+    border		: 2px solid #c8b880;
+	padding		:10px;
+	font-size:0;
+	margin:3vw auto;
+}
+
+.sys_box_ttl{
+    display		: inline-block;
+	font-size	:17px;
+	font-weight	:800;
+	color		:#c8b880;
+	text-shadow	:1px 1px 0px rgba(30,30,30,0);
+	padding		:5px 10px;
+	border-bottom:double 2px #c8b880;
+}
+
+.sys_box_log{
+    display		: inline-block;
+	font-size	:14px;
+	font-weight	:600;
+	padding		:5px 10px;
+	color		:#c8c8b8;
+	text-shadow	:1px 1px 0px rgba(30,30,30,0);
+}
+
 .person_main{
 	display		:flex;
 	width		:1020px;
