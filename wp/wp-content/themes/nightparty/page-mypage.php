@@ -831,7 +831,9 @@ var C_Id_tmp=0;
 			<div class="blog_write">
 				<div class="blog_pack">
 					<span class="blog_title_tag">投稿日</span><br>
-					<div style="text-align:left;margin-bottom:3vw;">	
+
+					<div class="blog_box">	
+
 						<select id="blog_yy" name="blog_yy" class="blog_4">
 							<?for($n=2018;$n<date("Y")+3;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>

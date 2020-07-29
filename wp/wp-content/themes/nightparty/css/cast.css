@@ -1508,19 +1508,27 @@ i,.days_icon{
 
 .blog_write{
 	display		:none;
-	width		:98vw;
+	width		:97vw;
 	background	:#f0f0f0;
 	margin		:1vw auto;
 	text-align	:left;
-	padding		:2vw;
-	height		:50vw;
-	background:#fafafa;
+	height		:115vw;
+	background:#fff0fa;
+	box-shadow:0 2px 2px rgba(30,30,30,0.6);
+
+}
+
+.blog_box{
+	display:inline-block;
+	width:94vw;
+	text-align:left;
+	margin-bottom:3vw;
 }
 
 .blog_pack{
 	position	:relative;
 	display		:inline-block;
-	width		:96vw;
+	width		:95vw;
 	margin		:1vw auto;
 	font-size	:4vw;
 	text-align	:center;
@@ -1528,23 +1536,23 @@ i,.days_icon{
 
 .blog_title_tag{
 	display		:inline-block;
-	width		:94vw;
-	height		:5vw;
-	line-height	:5vw;
+	width		:91vw;
+	height		:6vw;
+	line-height	:6vw;
 	font-size	:3.5vw;
 	text-align	:left;
 	font-weight	:600;
 }
 
 .blog_title_box{
-	width			:96vw;
+	width			:94vw;
 	height			:8vw;
 	font-size		:5vw;
 	margin-bottom	:3vw;
 }
 
 .blog_log_box{
-	width			:96vw;
+	width			:94vw;
 	height			:50vw;
 	font-size		:5vw;
 	overflow-y		:scroll;
@@ -1671,7 +1679,6 @@ i,.days_icon{
 	background		:#fafafa;
 }
 
-
 .blog_hist{
 	position		:relative;
 	display			:inline-block;
@@ -1679,9 +1686,6 @@ i,.days_icon{
 	margin			:1vw auto;
 	border			:0.5vw solid #0000d0;
 }
-
-
-
 
 .hist_img{
 	position		:absolute;
