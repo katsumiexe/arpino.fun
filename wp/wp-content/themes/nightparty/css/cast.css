@@ -1672,19 +1672,43 @@ i,.days_icon{
 .blog_hist{
 	position		:relative;
 	display			:inline-block;
-	height			:16vw;
 	width			:96vw;
 	margin			:1vw auto;
 	border			:0.5vw solid #0000d0;
 	background		:#fafafa;
 }
 
-.blog_hist{
+.blog_hist_in{
 	position		:relative;
 	display			:inline-block;
+	height			:16vw;
 	width			:96vw;
+	background		:#fafafa;
+}
+
+.hist_log{
+	display			:none;
+	margin			:1vw auto 0 auto;
+	width			:91vw;
+	border-top		:1px solid #303030;
+	padding			:1vw;
+	text-align		:left;
+	font-size		:3.5vw;
+	line-height		:6vw
+}
+
+.hist_img_in{
+	display			:inline-block;
+	height			:50vw;
+	width			:90vw;
 	margin			:1vw auto;
-	border			:0.5vw solid #0000d0;
+	text-align:center;
+}
+
+.hist_img_on{
+	height			:50vw;
+	width			:50vw;
+	margin			:0vw auto;
 }
 
 .hist_img{

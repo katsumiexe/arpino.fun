@@ -49,7 +49,6 @@ foreach($res as $a1){
 		$a1["face"]="{$link}/img/cast/noimage.jpg";			
 		$face_a="<img src=\"{$link}/img/page/noimage.jpg\" class=\"person_img_main\">";
 	}
-
 }
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
@@ -82,10 +81,37 @@ for($n=0;$n<7;$n++){
 
 $sql="SELECT * FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
 $res3 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res3 as $a3):
-	$charm_list.="<tr><td class=\"prof_l\">".$a3["charm"]."</td><td class=\"prof_r\">".$charm[$a3["id"]]."</td></tr>";
-endforeach;
+foreach($res3 as $a3){
+	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr>";
+}
+
+$n=0;
+$sql="SELECT * FROM wp01_posts WHERE post_name='post' AND post_password='{$a1["id"]}' ORDER BY post_date DESC LIMIT 6;";
+$res = $wpdb->get_results($sql,ARRAY_A);
+foreach($res as $a2){
+	$blog[$n]=$a2;
+	$img_tmp=$a2["ID"]+2;
+	$updir = wp_upload_dir();
+
+	$sql ="SELECT * FROM wp01_postmeta";
+	$sql.=" WHERE post_id='{$a2["ID"]}'";
+	$sql.=" AND meta_key='_thumbnail_id'";
+
+	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
+
+	$thumb = $wpdb->get_var($sql);
+	if($thumb){
+		$blog[$n]["img"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
+		$blog[$n]["img_on"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
+
+	}else{
+		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
+	}
+	$n++;
+}
 ?>
+
+
 <div class="person_main">
 <div class="person_left">
 		<?PHP ECHO $face_a?>
@@ -99,15 +125,24 @@ endforeach;
 <td class="prof_l">名前</td>
 <td class="prof_r"><?PHP ECHO $a1["genji"]?></td>
 </tr>
-<?PHP ECHO $charm_list?>
+<?=$charm_list?>
 </table>
 <table class="sche">
-<?PHP ECHO $list?>
+<?=$list?>
 </table>
 </div>
-
-
 <div class="person_right">
+<div class="person_blog_ttl">Blog</div>
+<?for($n=0;$n<count($blog);$n++){?>
+<div class="person_blog">
+	<img src="<?=$blog[$n]["img"]?>" class="person_blog_img">
+	<span class="person_blog_date"><?=$blog[$n]["date"]?></span>
+	<span class="person_blog_title"><?=$blog[$n]["post_title"]?></span>
+	<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
+	<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$n]["count"]+0?></span></span>
+
+</div>
+<?}?>
 </div>
 </div>
 <?php get_footer(); ?>

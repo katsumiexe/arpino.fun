@@ -449,6 +449,7 @@ $reg_base_ag=date("Y")-1980;
 		$thumb = $wpdb->get_var($sql);
 		if($thumb){
 			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
+			$blog[$n]["img_on"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
 
 		}else{
 			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
@@ -456,7 +457,7 @@ $reg_base_ag=date("Y")-1980;
 
 		$blog[$n]["date"]	=$tmp["post_date"];
 		$blog[$n]["title"]	=$tmp["post_title"];
-		$blog[$n]["content"]=$tmp["post_content"];
+		$blog[$n]["content"]=str_replace("\n","<br>",$tmp["post_content"]);
 		$blog[$n]["count"]	=$tmp["comment_count"];
 
 		if($tmp["post_date"] > $now){
@@ -924,11 +925,20 @@ var C_Id_tmp=0;
 			</div>
 			<?for($n=0;$n<count($blog);$n++){?>
 			<div class="blog_hist">
+			<div class="blog_hist_in">
 				<img src="<?=$blog[$n]["img"]?>" class="hist_img">
 				<span class="hist_date"><?=$blog[$n]["date"]?></span>
 				<span class="hist_title"><?=$blog[$n]["title"]?></span>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
+			</div>
+				<div class="hist_log">
+				<?if($blog[$n]["img_on"]){?>
+				<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+				<?}?>
+				<?=$blog[$n]["content"]?>
+				</div>
+
 			</div>
 			<? } ?>
 		</div>

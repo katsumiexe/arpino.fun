@@ -82,6 +82,18 @@ $(function(){
 		}
 	});
 
+	$('.blog_hist').on('click',function () {
+		if($(this).children('.hist_log').css('display')=='none'){
+			$(this).children('.hist_log').slideDown(200);
+			$('.blog_hist').not(this).slideUp(200);
+
+		}else{
+			$(this).children('.hist_log').slideUp(200);
+			$('.blog_hist').slideDown(200);
+		
+		}
+	});
+
 	$('.customer_fav').on('click',function () {
 		if(Fav == 0){
 			Fav=$(this).attr('id').replace('fav_','');
