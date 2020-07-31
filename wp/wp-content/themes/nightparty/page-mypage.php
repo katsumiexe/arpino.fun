@@ -118,8 +118,7 @@ $reg_base_ag=date("Y")-1980;
 	}else{
 		$page_title="トップページ";
 	}
-	
-	
+
 
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
@@ -169,8 +168,8 @@ $reg_base_ag=date("Y")-1980;
 		$n++;
 	}
 	*/
-
 	/*--■スケジュール--*/
+
 	$sql ="SELECT * FROM wp01_0sch_table";
 	$sql.=" ORDER BY sort ASC";
 	$dat = $wpdb->get_results($sql,ARRAY_A );
@@ -331,10 +330,11 @@ $reg_base_ag=date("Y")-1980;
 			$app_n3=$memo_dat[$tmp_ymd];
 
 			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
-			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
+			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
-			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
+			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
+			$cal[$n].="<span class=\"cal_i4 {$app_n4}\"></span>";
 			$cal[$n].="</td>";
 		}
 	}
@@ -404,7 +404,6 @@ $reg_base_ag=date("Y")-1980;
 	$sql	.=" ORDER BY date DESC";
 
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
-
 	foreach($dat2 as $cus2){
 		$notice[]=$cus2;
 	}
@@ -439,7 +438,6 @@ $reg_base_ag=date("Y")-1980;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	$n=0;
 	foreach($dat as $tmp){
-
 		$img_tmp=$tmp["ID"]+2;
 		$updir = wp_upload_dir();
 
@@ -477,7 +475,6 @@ $reg_base_ag=date("Y")-1980;
 		}	
 		$n++;
 	}
-
 	$blog_status[0]="公開";
 	$blog_status[1]="予約";
 	$blog_status[2]="削除";
@@ -931,6 +928,8 @@ var C_Id_tmp=0;
 				<span class="hist_title"><?=$blog[$n]["title"]?></span>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
+				<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
+
 			</div>
 				<div class="hist_log">
 				<?if($blog[$n]["img_on"]){?>

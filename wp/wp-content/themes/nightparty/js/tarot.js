@@ -5,6 +5,7 @@ var Tmp_X=[];
 var Tmp_Y=[];
 var Sei	=[];
 var N	=0;
+var M	=0;
 
 var Tarot_cd	=[];
 var Tarot_rv	=[];
@@ -12,6 +13,8 @@ var Tarot_rv	=[];
 var Tmp=[0,0,0,0,0,0,0];
 var CardCnt=60;
 var S_G=['rotate(180deg)',''];
+
+var N_R=['逆位置','正位置'];
 
 var cd_x=[
 [105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,395,390,385,380,375,370,365,360,355,350,345,340,335,330,325,320,315,310,305,300,295,290,285,280,275,270,265,260,255,250,245,240,235,230,225,220,215,210,205,200,195,190,185,180,175,170,165,160,155,150,145,140,135,130,125,120,115,110,105,100,],
@@ -34,7 +37,7 @@ var cd_y=[
 ]
 
 $(function(){ 
-	for(i=0;i<50;i++){
+	for(var i=0;i<50;i++){
 		var No1		= Math.floor(Math.random() * 22);
 		var No2		= Math.floor(Math.random() * 22);
 		var Tmp_s	=Cd[No1];
@@ -42,6 +45,7 @@ $(function(){
 		 Cd[No2]	=Tmp_s;
 	}
 console.log(Cd);
+
 	cd_cnt[0]=cd_y[0].length;
 	cd_cnt[1]=cd_y[1].length;
 	cd_cnt[2]=cd_y[2].length;
@@ -50,7 +54,7 @@ console.log(Cd);
 	cd_cnt[5]=cd_y[5].length;
 	cd_cnt[6]=cd_y[6].length;
 
-	for(i=0;i<22;i++){
+	for(var i=0;i<22;i++){
 		var i2	=i % 7;
 		Tmp[i]	= Math.floor(Math.random() * cd_cnt[i2]);
 		Rt[i]	= Math.floor(Math.random() * 250);
@@ -59,8 +63,7 @@ console.log(Cd);
 		Tmp_X=cd_x[i2][Tmp[i]];			
 		Tmp_Y=cd_y[i2][Tmp[i]];
 
-		Tmp_i='url("./img/tarot_'+Cd[i]+'.jpg")';
-
+		Tmp_i='url("'+Dir+'/img/tarot/tarot_'+Cd[i]+'.jpg")';
 		$('#c'+i).css({'top':Tmp_Y+'px','left':Tmp_X+'px','transform':'rotate('+Rt[i]+'deg)'});
 		$('#b'+i).css({'background-image':Tmp_i,'transform':'rotateY(180deg) '+S_G[Sei[i]]});
 	}
@@ -94,8 +97,8 @@ console.log(Cd);
 				Tmp_b=500+N*40;
 				 $('#c'+N).delay(Tmp_b).animate({'left':Tmp_a+'px'},500).addClass('card_sel');
 			}
-			 $('.guard').delay(2000).fadeOut(0);
-			 $('.card').addClass('card_sel').delay(2000).css({'transform':'rotate(0)'});
+			 $('.guard').delay(1500).fadeOut(0);
+			 $('.card').addClass('card_sel').delay(1500).css({'transform':'rotate(0)'});
 		},
     });
 
@@ -130,24 +133,25 @@ console.log(Cd);
 			 $(this).children('.card_f').css('transform','rotateY(-180deg)');
 			 $(this).children('.card_b').css('transform','rotateY(0) '+S_G[Sei[TmpId]]);
 			CardCnt+=80;
-			Tarot_cd[N]=Cd[TmpId];
-			Tarot_rv[N]=Sei[TmpId];
+			Tarot_cd[M]=Cd[TmpId];
+			Tarot_rv[M]=Sei[TmpId];
+			M++;
+		}
+		if(M>2){
+			$('.ans').delay(800).fadeIn(500);
+			$('.main').delay(800).fadeOut(500);
+			for(var i=0;i<3;i++){
+				$('#img-'+i).attr('src',Dir+ '/img/tarot/tarot_'+ Tarot_cd[i] +'.jpg');
+				$('#rev-'+i).text(N_R[Tarot_rv[i]]);
+				$('#no-'+i).text($('#no_r_'+Tarot_cd[i]).val());
+				$('#name_j-'+i).text($('#name_j_'+Tarot_cd[i]).val());
+				$('#name_e-'+i).text($('#name_e_'+Tarot_cd[i]).val());
+				$('#mean-'+i).text($('#mean_'+Tarot_rv[i]+'_'+Tarot_cd[i]).val());
 
-console.log(Tarot_cd[N]);
-console.log(Tarot_rv[N]);
-
-			N++;
-		}else{
-console.log(Tarot_cd[0]);
-console.log(Tarot_cd[1]);
-console.log(Tarot_cd[2]);
-
-console.log(Tarot_rv[0]);
-console.log(Tarot_rv[1]);
-console.log(Tarot_rv[2]);
-	
-		
+				if(Tarot_rv[i] ==0){
+				$('#img-'+i).addClass('img_rev');
+				}
+			}
 		}
 	});
 });
-

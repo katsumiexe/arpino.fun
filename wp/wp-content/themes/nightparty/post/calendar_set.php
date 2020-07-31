@@ -2,10 +2,7 @@
 /*
 カレンダースライドセット処理
 */
-ini_set('display_errors',1);
-require_once ("../../../../wp-load.php");
-global $wpdb;
-$jst=time()+32400;
+require_once ("./post_inc.php");
 
 $week[0]="日";
 $week[1]="月";
@@ -125,7 +122,7 @@ foreach($dat as $tmp){
 	}
 }
 
-$now_month	=date("m",strtotime($c_month));
+$now_month	=date("Ym",strtotime($c_month));
 $t			=date("t",strtotime($c_month));
 $wk			=$week_start-date("w",strtotime($c_month));
 if($wk>0) $wk-=7;
@@ -139,7 +136,6 @@ $cal["html"].="<td class=\"cal_top\" colspan=\"7\">";
 $cal["html"].="<span class=\"cal_prev\"></span>";
 $cal["html"].="<span class=\"cal_table_ym\"><span class=\"v_year\">{$v_year}</span><span class=\"v_month\">{$v_month}</span></span>";
 $cal["html"].="<span class=\"cal_next\"></span>";
-
 $cal["html"].="<span id=\"para{$tmp_ymd}\">";
 $cal["html"].=$cal_app;
 $cal["html"].=$birth_app;
@@ -154,13 +150,14 @@ for($s=0;$s<7;$s++){
 	$cal["html"].="<td class=\"cal_td {$week_tag[$w]}\">{$week[$w]}</td>";
 }
 
-
-for($m=0; $m<42;$m++){
+$m_limit=42;
+for($m=0; $m<$m_limit;$m++){
 	$tmp_ymd	=date("Ymd",$st+($m*86400));
 	$tmp_md		=date("md",$st+($m*86400));
-	$tmp_month	=date("m",$st+($m*86400));
+	$tmp_month	=date("Ym",$st+($m*86400));
 	$tmp_day	=date("d",$st+($m*86400));
 	$tmp_week	=date("w",$st+($m*86400));
+
 
 	$tmp_w		=$m % 7;
 	if($tmp_w==0){
@@ -190,6 +187,7 @@ for($m=0; $m<42;$m++){
 	$cal["html"].="<span class=\"cal_i1 {$birth_dat[$tmp_md]}\"></span>";
 	$cal["html"].="<span class=\"cal_i2 {$sch_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
+	$cal["html"].="<span class=\"cal_i4 {$memo_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="</td>";
 }
 

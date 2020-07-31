@@ -1,14 +1,29 @@
+<?
+$sql	 ="SELECT * FROM score_data";
+$sql	.=" WHERE date>='{$base_date}'";
+$sql	.=" AND level='0'";
+$sql	.=" ORDER BY score DESC, date DESC";
+$sql	.=" LIMIT 10";
+
+if($res0 = mysqli_query($mysqli,$sql)){
+		while($row0 = mysqli_fetch_assoc($res0)){
+
+	}
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <title>TAROT</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
+<link rel="stylesheet" href="./css/tarot.css?_<?=date("YmdHi")?>">
 <script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/jquery-ui.min.js"></script>
 <script src="./js/jquery.easing.1.3.js"></script>
-<script src="./js/main.js?_<?=date("YmdHi")?>"></script>
+<script src="./js/tarot.js?_<?=date("YmdHi")?>"></script>
 <script>
 
 

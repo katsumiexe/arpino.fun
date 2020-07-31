@@ -944,7 +944,6 @@ console.log("VwBase:"+VwBase);
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
 			$('.cal_weeks').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
@@ -995,7 +994,6 @@ console.log("VwBase:"+VwBase);
 				'log'		:Log,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.set_back').hide();
 			$('.set_back_in').animate({'top':'100vh'},200);
 			$('#tag_2_tbl').prepend(data);
@@ -1054,7 +1052,6 @@ console.log("VwBase:"+VwBase);
 			},
 			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('#customer_detail_yy').val(data.yy),
 			$('#customer_detail_mm').val(data.mm),
 			$('#customer_detail_dd').val(data.dd),
@@ -1077,7 +1074,6 @@ console.log("VwBase:"+VwBase);
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.set_back').hide();
 			$('#tag_2_tbl').html(data);
 

@@ -132,22 +132,32 @@ console.log(Cd);
 			CardCnt+=80;
 			Tarot_cd[N]=Cd[TmpId];
 			Tarot_rv[N]=Sei[TmpId];
-
-console.log(Tarot_cd[N]);
-console.log(Tarot_rv[N]);
-
 			N++;
-		}else{
-console.log(Tarot_cd[0]);
-console.log(Tarot_cd[1]);
-console.log(Tarot_cd[2]);
 
-console.log(Tarot_rv[0]);
-console.log(Tarot_rv[1]);
-console.log(Tarot_rv[2]);
-	
-		
+
+/*
+			$.post({
+				url:"post_tarot_set.php",
+				data:{
+					"card0"	:Tarot_cd[0],
+					"card1"	:Tarot_cd[1],
+					"card2"	:Tarot_cd[2],
+					"rv0"	:Tarot_rv[0],
+					"rv1"	:Tarot_rv[1],
+					"rv2"	:Tarot_rv[2]
+				},
+			}).done(function(data, textStatus, jqXHR){
+			
+			}).fail(function(xhr, textStatus, errorThrown){
+			
+			}
+*/
+
 		}
+
+
+
+
 	});
 });
 

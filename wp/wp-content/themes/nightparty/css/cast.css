@@ -345,6 +345,7 @@ input:focus{
 	margin			:1vw auto;
 	table-layout	:fixed;
 	border-spacing	: 0.5vw;
+	background:#303030;
 }
 
 .cal_next,.cal_prev{
@@ -481,7 +482,7 @@ i,.days_icon{
 	height			:10vw;
 	text-align		:center;
 	font-size		:0;
-	background		:linear-gradient(#f0f0f0,#E7E3D8);
+	background		:linear-gradient(#fcfcfc,#f8f8f8);
 	cursor			:pointer;
 }
 
@@ -500,7 +501,6 @@ i,.days_icon{
 	left		:0;
 	font-size	:3vw;
 	font-weight	:600;
-	color		:#fafafa;
 	height		:5vw;
 	line-height	:5vw;
 	width		:6vw;
@@ -508,19 +508,19 @@ i,.days_icon{
 }
 
 .dy0{
-	background	:#ff6060;
+	background	:#ffc0c0;
 }
 
 .dy6{
-	background	:#90a0ff;
+	background	:#d0d0ff;
 }
 
 .dy7{
-	background	:#d2b48c;
+	background	:#dddd30;
 }
 
 .dy1,.dy2,.dy3,.dy4,.dy5{
-	background	:#f0f0f0	;
+	color		:#eeeeee;
 }
 
 .menu_sel{
@@ -574,32 +574,39 @@ i,.days_icon{
 	font-weight		:600;
 }
 
-.cal_i1,.cal_i2,.cal_i3{
+.cal_i1,.cal_i2,.cal_i3,.cal_i4{
 	font-family		:at_icon;
 	display			:inline-block;
 	position		:absolute;
 	bottom			:0.5vw;
-
 	width			:4vw;
 	height			:4vw;
 	line-height		:4vw;
 	text-align		:center;
 	font-size		:4vw;
-	color			:#b0b0b0;
+	color			:#dddddd;
 }
 
 .cal_i1{
 	left			:0.5vw;
+	bottom			:0.5vw;
 }
 
 .cal_i2{
-	left			:0;
-	right			:0;
-	margin			:auto;
+	right			:0.5vw;
+	top				:0.5vw;
 }
 
 .cal_i3{
 	right			:0.5vw;
+	bottom			:0.5vw;
+}
+
+.cal_i4{
+	left			:0;
+	right			:0;
+	bottom			:0.5vw;
+	margin			:auto;
 }
 
 .cal_set_btn{
@@ -1730,6 +1737,44 @@ i,.days_icon{
 	font-size		:3vw;
 	padding:0.5vw;
 }	
+
+.hist_status{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1vw;
+	right			:1vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	width:15vw;
+}
+
+.hist_0{
+	background:#0000d0;
+	color:#fafafa;
+	font-weight:600;
+}
+
+.hist_1{
+	background:#009000;
+	color:#fafafa;
+	font-weight:600;
+
+}
+
+.hist_2{
+	background:#aaaaaa;
+	color:#fafafa;
+	font-weight:600;
+
+}
+
+.hist_3{
+	background:#d00000;
+	color:#fafafa;
+	font-weight:600;
+
+}
 
 
 .hist_title{
