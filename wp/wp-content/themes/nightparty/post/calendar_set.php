@@ -108,6 +108,23 @@ foreach($h_sch as $a1 => $a2){
 	$cal_app.="<input class=\"cal_s_{$a1}\" type=\"hidden\" value=\"{$a2}\">";
 }
 
+$st_blog=$c_month." 00:00:00";
+$ed_blog=date("Y-m-d 00:00:00",strtotime($st_blog)+3456000);
+
+$sql	 ="SELECT * FROM wp01_posts";
+$sql	.=" WHERE post_password='{$cast_id}'";
+$sql	.=" AND post_name='post'";
+$sql	.=" AND post_date>='{$st_blog}'";
+$sql	.=" AND post_date<'{$ed_blog}'";
+$dat = $wpdb->get_results($sql,ARRAY_A );
+
+foreach($dat as $tmp){
+	if(trim($tmp["post_content"])){
+		$tmp_date=substr($tmp["post_date"],0,4).substr($tmp["post_date"],5,2).substr($tmp["post_date"],8,2);
+		$blog_dat[$tmp_date]="n4";
+	}
+}
+
 $sql	 ="SELECT * FROM wp01_0schedule_memo";
 $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND date_8>='{$sc_st}'";
@@ -158,7 +175,6 @@ for($m=0; $m<$m_limit;$m++){
 	$tmp_day	=date("d",$st+($m*86400));
 	$tmp_week	=date("w",$st+($m*86400));
 
-
 	$tmp_w		=$m % 7;
 	if($tmp_w==0){
 		if($now_month<$tmp_month){
@@ -186,8 +202,8 @@ for($m=0; $m<$m_limit;$m++){
 	$cal["html"].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
 	$cal["html"].="<span class=\"cal_i1 {$birth_dat[$tmp_md]}\"></span>";
 	$cal["html"].="<span class=\"cal_i2 {$sch_dat[$tmp_ymd]}\"></span>";
-	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
-	$cal["html"].="<span class=\"cal_i4 {$memo_dat[$tmp_ymd]}\"></span>";
+	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
+	$cal["html"].="<span class=\"cal_i4 {$blog_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="</td>";
 }
 

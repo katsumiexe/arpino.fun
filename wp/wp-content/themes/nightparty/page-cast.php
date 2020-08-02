@@ -58,6 +58,17 @@ for($e=0;$e<7;$e++){
 }
 
 ?>
+<div class="footmark">
+	<a href="<?=home_url()?>" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">TOP</span>
+	</a>
+	<span class="footmark_icon"></span>
+	<div class="footmark_box">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">CAST</span>
+	</div>
+</div>
 <div class="cast_tag">
 <!--div id="d0" class="cast_tag_box cast_tag_box_sel">ALL</div-->
 <? for($e=0;$e<7;$e++){?><div id="d<?PHP echo $cast_id[$e]?>" class="cast_tag_box <?PHP echo $cl[$e]?><?if($e == 0){?> cast_tag_box_sel<?}?>"><?PHP echo $cast_tag[$e]?></div><?}?>

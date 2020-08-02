@@ -1,5 +1,4 @@
 <?php
-get_header();
 $week[0]="(日)";
 $week[1]="(月)";
 $week[2]="(火)";
@@ -109,16 +108,32 @@ foreach($res as $a2){
 	}
 	$n++;
 }
+get_header();
 ?>
-
-
-<div class="person_main">
-<div class="person_left">
-		<?PHP ECHO $face_a?>
-	<div class="person_img_list">
-		<?PHP ECHO $face_b?>
+<div class="main_top">
+	<div class="footmark">
+		<a href="<?=home_url()?>" class="footmark_box box_a">
+			<span class="footmark_icon"></span>
+			<span class="footmark_text">TOP</span>
+		</a>
+		<span class="footmark_icon"></span>
+		<a href="<?=home_url()?>/cast/" class="footmark_box box_a">
+			<span class="footmark_icon"></span>
+			<span class="footmark_text">CAST</span>
+		</a>
+		<span class="footmark_icon"></span>
+		<div class="footmark_box">
+			<span class="footmark_icon"></span>
+			<span class="footmark_text"><?=$a1["genji"]?></span>
+		</div>
 	</div>
-</div>
+<div class="person_main">
+	<div class="person_left">
+			<?PHP ECHO $face_a?>
+		<div class="person_img_list">
+			<?PHP ECHO $face_b?>
+		</div>
+	</div>
 <div class="person_middle">
 <table class="prof">
 <tr>
@@ -140,7 +155,6 @@ foreach($res as $a2){
 	<span class="person_blog_title"><?=$blog[$n]["post_title"]?></span>
 	<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
 	<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$n]["count"]+0?></span></span>
-
 </div>
 <?}?>
 </div>

@@ -36,12 +36,29 @@ if($yy && $mm && $dd){
 	$birth="0000-00-00";
 }
 
+$sql ="SELECT * FROM wp01_0customer_item"; 
+$sql .=" WHERE gp=0"; 
+$sql .=" AND del=0"; 
+$res0 = $wpdb->get_results($sql,ARRAY_A );
+foreach($res0 as $row1){
+	$dat[]=$row1["id"];
+}
+
+
 $sql_log ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
 $sql_log .=" VALUES('{$cast_id}','{$nick}','{$name}','{$regist_date}','{$birth}','{$clist}','{$fav}','{$group}')";
 $wpdb->query($sql_log);
+$tmp_auto=$wpdb->insert_id;
+
+$sql ="INSERT INTO wp01_0customer_list (`cast_id`,`customer_id`,`item`) VALUES";
+foreach($dat as $a1){
+	$sql .="('{$cast_id}','{$tmp_auto}','{$a1}'),";
+}
+$sql=substr($sql,0,-1);
+$wpdb->query($sql);
+
 
 if($img_code){
-	$tmp_auto=$wpdb->insert_id;
 	$sql ="SELECT * FROM wp01_0encode"; 
 	$enc0 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($enc0 as $row){

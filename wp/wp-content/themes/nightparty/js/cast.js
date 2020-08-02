@@ -1,6 +1,6 @@
 $(function(){ 
-	var VwBase	=$(window).width()/100;
-	var VhBase	=$(window).height()/100;
+	var VwBase	=screen.width/100;
+	var VhBase	=screen.height/100;
 	var Fav=0;
 	var cvs_A=0;
 	var Rote=0;
@@ -152,6 +152,26 @@ $(function(){
 		});
 	});
 
+	$('#tag_1_tbl').on('change','.item_textbox,.rd',function(){
+
+		$.post({
+			url:Dir + "/post/customer_detail_set4.php",
+			data:{
+				'c_id'		:C_Id,
+				'cast_id'	:CastId,
+				'value'		:$(this).val(),
+				'item'		:$(this).attr('name').replace('cus',''),
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+
+		});
+	});
 
 	$('.mail_al').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
@@ -224,7 +244,6 @@ $(function(){
 			url:Dir + "/post/customer_regist_set.php",
 			data:{
 				'cast_id'	:CastId,
-
 				'group'		:$('#regist_group').val(),
 				'name'		:$('#regist_name').val(),
 				'nick'		:$('#regist_nick').val(),
@@ -471,7 +490,7 @@ $(function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
 
-		var TmpHgt=VhBase*100-VwBase*81;
+		var TmpHgt=VhBase*100-VwBase*95;
 		$('.customer_body').css('height',TmpHgt);
 
 		C_Id=$(this).attr('id').replace('clist','');
@@ -1039,6 +1058,7 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
+
 	$('.cas_set2').on('change',function () {
 		$.post({
 			url:Dir + "/post/customer_detail_set2.php",
@@ -1105,7 +1125,7 @@ console.log("VwBase:"+VwBase);
 		if(!$(this).hasClass('notice_sel')){
 			Tmp=$(this).attr('id');
 			$('#h_'+Tmp).val();
-			$('#notice_day').text($('#h_'+Tmp).val());
+			$('#notice_day').hide().fadeIn(800).text($('#h_'+Tmp).val());
 
 			Tmp2=$(this).attr('id').replace('ttl','box');
 			$('.notice_ttl_in').removeClass('notice_sel');
@@ -1358,11 +1378,9 @@ console.log("VwBase:"+VwBase);
 
 		var Tmp=$(this).attr('id').substr(5,4);
 		if($('.cal_b_'+Tmp).val()){
-			$('.cal_days_birth').show();
-			$('.days_birth').html($('.cal_b_'+Tmp).val());
+			$('.cal_days_birth').html($('.cal_b_'+Tmp).val());
 		}else{
-			$('.cal_days_birth').hide();
-			$('.days_birth').text('');
+			$('.cal_days_birth').text('');
 		}
 
 		var Tmp=$(this).attr('id').replace('c','cal_m_');

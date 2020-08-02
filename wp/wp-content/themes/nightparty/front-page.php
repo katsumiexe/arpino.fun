@@ -1,5 +1,4 @@
 <?php
-get_header();
 $now=date("Ymd",time()+32400);
 
 $sql=" SELECT * FROM wp01_0sch_table";
@@ -36,51 +35,36 @@ foreach($res2 as $a2){
 		$sort[$a1["id"]]=999999;
 	}
 }
-
-
+get_header();
 ?>
-<div class="slide">
-	<div class="slide_img"></div>
-	<div class="slide_point">
-		<div class="slide_dot"></div>
-		<div class="slide_dot"></div>
-		<div class="slide_dot"></div>
-		<div class="slide_dot"></div>
-		<div class="slide_dot"></div>
-		<div class="slide_dot"></div>
-	</div>
-</div>
 
-<div class="main_b">
-<h1 class="main_b_title">本日の出勤キャスト</h1>
-<? foreach($sort as $b1=> $b2){?>
-	<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $b1?>" id="<?PHP echo $b1?>" class="main_b_1">
-		<img src="<?PHP ECHO $dat[$b1]["face"]?>" class="main_b_1_1">
-		<span class="main_b_1_2">
-			<span class="main_b_1_2_name"><?PHP echo $dat[$b1]["genji"]?></span>
-			<span class="main_b_1_2_sch"></span>
-		</span>
-		<span class="main_b_1_3"></span>
-	</a>
-<? } ?>
-</div>
-<div class="main_c">
-	<div class="main_c_1">
-<?php echo $cast[1]["genji"]?><bR>
-	にゃんにゃか<br>
-	にゃんにゃか<br>
-	にゃんにゃか<br>
-	にゃんにゃか<br>
-	にゃんにゃか<br>
+<div class="main_top">
+	<div class="slide">
+		<div class="slide_img"></div>
+		<div class="slide_point">
+			<div class="slide_dot"></div>
+			<div class="slide_dot"></div>
+			<div class="slide_dot"></div>
+			<div class="slide_dot"></div>
+			<div class="slide_dot"></div>
+			<div class="slide_dot"></div>
+		</div>
 	</div>
-
-	<div class="main_c_1">
-	にゃんにゃか<br>
-	にゃんにゃか<br>
-	にゃんにゃか<br>
-	にゃんにゃか<br>
+	<div class="main_b">
+		<h2 class="main_b_title">本日の出勤キャスト</h2>
+		<? foreach($sort as $b1=> $b2){?>
+			<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $b1?>" id="<?PHP echo $b1?>" class="main_b_1">
+				<img src="<?PHP ECHO $dat[$b1]["face"]?>" class="main_b_1_1">
+				<span class="main_b_1_2">
+					<span class="main_b_1_2_name"><?PHP echo $dat[$b1]["genji"]?></span>
+					<span class="main_b_1_2_sch"></span>
+				</span>
+				<span class="main_b_1_3"></span>
+			</a>
+		<? } ?>
 	</div>
-	<div class="main_c_1">
+	<div class="main_c">
+		<a class="twitter-timeline" data-width="310" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
 <?php get_footer(); ?>

@@ -170,6 +170,8 @@ $reg_base_ag=date("Y")-1980;
 	*/
 	/*--■スケジュール--*/
 
+	$tmp_today[$now_ymd]="cc8";
+
 	$sql ="SELECT * FROM wp01_0sch_table";
 	$sql.=" ORDER BY sort ASC";
 	$dat = $wpdb->get_results($sql,ARRAY_A );
@@ -227,6 +229,20 @@ $reg_base_ag=date("Y")-1980;
 		}
 	}
 
+	$sql	 ="SELECT * FROM wp01_posts";
+	$sql	.=" WHERE post_password='{$_SESSION["id"]}'";
+	$sql	.=" AND post_name='post'";
+	$sql	.=" AND post_date>='{$calendar[0]}'";
+	$sql	.=" AND post_date<'$calendar[3]}'";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+	foreach($dat as $tmp){
+		if(trim($tmp["post_content"])){
+			$tmp_date=substr($tmp["post_date"],0,4).substr($tmp["post_date"],5,2).substr($tmp["post_date"],8,2);
+			$blog_dat[$tmp_date]="n4";
+		}
+	}
+
 	$n=0;
 	$b_month=substr($c_month,4,4);
 	$sql	 ="SELECT * FROM wp01_0customer";
@@ -258,18 +274,19 @@ $reg_base_ag=date("Y")-1980;
 		$birth_d	=substr($birth,6,2);
 
 		$birth_dat[$birth_m.$birth_d]="n1";
-
-		$birth_hidden[$birth_m][$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
 
 		if(substr($birth,4,4) == substr($now_ymd,4,4)){
-			$days_birth.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+			$days_birth.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
 
 		}elseif(substr($birth,4,4) == substr($now_ymd_2,4,4)){
-			$days_birth_2.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+			$days_birth_2.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
 
 		}elseif(substr($birth,4,4) == substr($now_ymd_3,4,4)){
-			$days_birth_3.="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
+
 		}
+
 	}
 
 	foreach($birth_hidden as $a1 => $a2){
@@ -307,7 +324,7 @@ $reg_base_ag=date("Y")-1980;
 			if($ob_holiday[$tmp_ymd]){
 				$tmp_week=0;
 
-			}elseif($tmp_ymd ==date("Ymd",$jst)){
+			}elseif($tmp_ymd ==$now_ymd){
 				$tmp_week=7;
 			}
 
@@ -328,8 +345,11 @@ $reg_base_ag=date("Y")-1980;
 			}
 
 			$app_n3=$memo_dat[$tmp_ymd];
+			$app_n4=$blog_dat[$tmp_ymd];
 
-			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
+
+
+			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
@@ -642,7 +662,7 @@ var C_Id_tmp=0;
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
-			<span class="cal_days_birth"><span class="days_birth"><?=$days_birth?></span></span>
+			<span class="cal_days_birth"><?=$days_birth?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
 		</div>
@@ -950,17 +970,13 @@ CAST_ID：
 LOGIN ID
 PASSWORD
 アドレス
-
 顧客グループ設定
-
-
-
 		</div>
 	</div>
 	<?}else{?>
 	<div class="main">
 		<div class="notice_ttl">
-			<div class="notice_ttl_day"><span class="notice_icon"></span><span id="notice_day"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span></div>
+			<div class="notice_ttl_day"><span id="notice_day"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span></div>
 			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
 			<div id="notice_ttl_2" class="notice_ttl_in">明日</div>
 			<div id="notice_ttl_3" class="notice_ttl_in">明後日</div>
@@ -971,17 +987,17 @@ PASSWORD
 		</div>
 		<div id="notice_box_1" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
-			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth?></span></span>
+			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
 
 		<div id="notice_box_2" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_2?></span><br>
-			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_2?></span></span>
+			<span class="notice_box_birth"><?=$days_birth_2?></span>
 		</div>
 
 		<div id="notice_box_3" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span><br>
-			<span class="notice_box_birth"><span class="days_birth"><?=$days_birth_3?></span></span>
+			<span class="notice_box_birth"><?=$days_birth_3?></span>
 		</div>
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 		<div class="notice_list">

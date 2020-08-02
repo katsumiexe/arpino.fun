@@ -87,6 +87,3 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 </body>
 </html>
 
-
-
-

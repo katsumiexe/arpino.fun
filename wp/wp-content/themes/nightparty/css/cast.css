@@ -169,6 +169,7 @@ input:focus{
 	color			:#f17766;
 	background		:#fafafa;
 	text-align		:center;
+	cursor:pointer;
 }
 
 .notice_sel{
@@ -196,6 +197,7 @@ input:focus{
 	text-align		:left;
 	border			:0.5vw solid #f17766;
 	background		:#fafafa;
+	min-height:15vw;
 }
 
 #notice_box_1{display:block;}
@@ -307,9 +309,9 @@ input:focus{
 
 .notice_icon{
 	font-family		:at_icon;
-	display:inline-block;
-	width:5vw;
-	text-align:center;
+	display			:inline-block;
+	width			:5vw;
+	text-align		:center;
 }
 
 .notice_yet2{
@@ -404,7 +406,7 @@ input:focus{
 	right			:0;
 	margin			:auto;
 	display			:inline-block;
-	width			:88vw;
+	width			:96vw;
 	border			:1.5vw solid #C7BBA5;
 	background		:#f0eae5;
 	height			:38vw;
@@ -418,7 +420,7 @@ input:focus{
 	width			:34vw;
 	height			:6vw;
 	line-height		:6vw;
-	font-size		:4vw;
+	font-size		:3.5vw;
 	font-weight		:700;
 	border-bottom	:0.5vw solid #C7a090;
 	color			:303030;
@@ -431,21 +433,20 @@ input:focus{
 	display			:inline-block;
 	top				:9vw;
 	left			:1vw;
-	width			:34vw;
+	width			:38vw;
 	height			:5vw;
 	line-height		:5vw;
-	font-size		:4vw;
 	color			:#303030;
 	text-align		:left;
-	padding			:0.5vw;
+	font-size:0;
 }
 
 .cal_days_birth{
 	position		:absolute;
 	display			:inline-block;
-	top				:15vw;
+	top				:14.5vw;
 	left			:1vw;
-	width			:34vw;
+	width			:38vw;
 	line-height		:6vw;
 	font-size		:4vw;
 	color			:#303030;
@@ -456,11 +457,11 @@ input:focus{
 	position		:absolute;
 	display			:inline-block;
 	top				:1vw;
-	left			:38vw;
+	left			:43vw;
 	border			:1px solid #303030;
 	transform		: scale(0.85,0.85);
 	transform-origin: top left;
-	width			:57.5vw;
+	width			:61.5vw;
 	height			:42vw;
 	resize			:none;
 	background		:#fafafa;
@@ -470,11 +471,35 @@ input:focus{
 
 i,.days_icon{
 	display			:inline-block;
-	width			:5vw;
+	width			:4vw;
+	height			:4vw;
+	line-height		:4vw;	
+	text-align		:center;
+	font-family		:at_icon;
+	font-size		:3.5vw;
+	vertical-align:top;
+}
+
+.days_birth{
+	display			:inline-block;
+	width			:38vw;
 	height			:5vw;
 	line-height		:5vw;	
 	text-align		:left;
-	font-family		:at_icon;
+	font-size		:3.5vw;
+	overflow		:hidden;
+	vertical-align:top;
+}
+
+.days_day{
+	display			:inline-block;
+	width			:33vw;
+	height			:4vw;
+	line-height		:4vw;	
+	text-align		:left;
+	font-size		:3.5vw;
+	overflow		:hidden;
+	vertical-align:top;
 }
 
 .cal_td,.cal_th{
@@ -2864,6 +2889,10 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 
 .n3{
 	color	:#009000;
+}
+
+.n4{
+	color	:#600090;
 }
 
 

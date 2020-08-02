@@ -8,6 +8,19 @@ foreach($res as $a1){
 }
 //ksort($sys);
 ?>
+<div class="main_top">
+<div class="footmark">
+	<a href="<?=home_url()?>" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">TOP</span>
+	</a>
+	<span class="footmark_icon"></span>
+	<div class="footmark_box">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">SYSTEM</span>
+	</div>
+</div>
+
 <?foreach($sys as $a1){?>
 <?if($a1["post_content"]){?>
 <div class="sys_box">
@@ -21,4 +34,5 @@ foreach($res as $a1){
 <span class="sys_box_log">情報はまだありません</span><br>
 </div>
 <?}?>
+</div>
 <?php get_footer(); ?>

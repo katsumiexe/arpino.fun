@@ -38,7 +38,7 @@
 .person_left{
 	display		:inline-block;
 	position	:relative;
-	flex-basis	:330px;
+	flex-basis	:332px;
 	min-height	:565px;	
 }
 
@@ -65,7 +65,7 @@
 	margin			:8px auto 2px auto;
 	background		:#C8B880;
 	border			:1px solid #C8B880;
-	color:#fafafa;
+	color			:#fafafa;
 	font-size		:15px;
 }
 .person_blog{
