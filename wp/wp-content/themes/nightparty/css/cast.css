@@ -1,6 +1,6 @@
 *{
 -webkit-appearance: none;
- -webkit-text-size-adjust: 100%;
+-webkit-text-size-adjust: 100%;
 }
 
 input:focus{
@@ -2706,7 +2706,6 @@ input[type=range]::-moz-range-thumb{
 	font-size	:5vw;
 	font-weight	:600;
 	color		:#909090;
-	text-align	:center;
 	padding-left:1vw;
 	border-radius:0;
 }
@@ -2945,6 +2944,10 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	color:#dddddd;
 }
 
+.c_customer_line{
+	background:#00B900;
+}
+
 .c_customer_twitter{
 	background:#00acee;
 }
@@ -2958,7 +2961,7 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 }
 
 .c_customer_web{
-	background:#008000;
+	background:#DD5144;
 }
 
 .c_customer_blog{

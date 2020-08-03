@@ -761,23 +761,23 @@ var C_Id_tmp=0;
 
 			<table class="customer_sns">
 				<tr>
-					<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_line" class="customer_sns_btn"></span></td>
 					<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
 					<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
 					<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_blog" class="customer_sns_btn"></span></td>
 					<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
+					<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
 				</tr>
 
 				<tr class="customer_sns_tr">
-					<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_line" class="sns_arrow_a"></span></td>
 					<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
 					<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
 					<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_blog" class="sns_arrow_a"></span></td>
 					<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
+					<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
 				</tr>
 			</table>
 
@@ -799,14 +799,14 @@ var C_Id_tmp=0;
 			<input id="h_customer_web" type="hidden" value="">
 
 			<div class="customer_tag">
-			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
-			<div id="tag_2" class="tag_set">メモ</div>
-			<div id="tag_3" class="tag_set">履歴</div>
-			<div class="customer_body">
-				<table id="tag_1_tbl" class="customer_memo"></table>
-				<table id="tag_2_tbl" class="customer_memo"></table>
-				<table id="tag_3_tbl" class="customer_memo"></table>
-			</div>
+				<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
+				<div id="tag_2" class="tag_set">メモ</div>
+				<div id="tag_3" class="tag_set">履歴</div>
+				<div class="customer_body">
+					<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
+					<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>
+					<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -983,18 +983,15 @@ PASSWORD
 			<input id="h_notice_ttl_1" type="hidden" value="<?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]">
 			<input id="h_notice_ttl_2" type="hidden" value="<?=date("m月d日",$jst+86400)?>[<?=$week[date("w",$jst+86400)]?>]">
 			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$jst+172800)?>[<?=$week[date("w",$jst+172800)]?>]">
-
 		</div>
 		<div id="notice_box_1" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
 			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
-
 		<div id="notice_box_2" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_2?></span><br>
 			<span class="notice_box_birth"><?=$days_birth_2?></span>
 		</div>
-
 		<div id="notice_box_3" class="notice_box">
 			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span><br>
 			<span class="notice_box_birth"><?=$days_birth_3?></span>
@@ -1010,9 +1007,7 @@ PASSWORD
 		<div id="notice_box_log<?=$notice[$n]["id"]?>" class="notice_box_log"></div>
 	<? } ?>
 </div>
-
 <div class="customer_memo_set"></div>
-
 <div class="sch_set_done">スケジュールが登録されました</div>
 
 <div class="set_back">
@@ -1032,14 +1027,13 @@ PASSWORD
 							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>">
 
 						<?}else{?>
-						<select id="sel_in<?=$n?>" class="sch_time_in">
-							<option class="sel_txt" value=""></option>
-							<?for($s=0;$s<count($sche_table_name["in"]);$s++){?>
-								<option class="sel_txt" value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
-							<?}?>
-						</select>
+<select id="sel_in<?=$n?>" name="sel_in<?=$n?>" class="sch_time_in">
+<option value=""></option>
+<?for($s=0;$s<count($sche_table_name["in"]);$s++){?><option value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
+<?}?>
+</select>
 
-						<select id="sel_out<?=$n?>" class="sch_time_out">
+						<select id="sel_out<?=$n?>" name="sel_out<?=$n?>" class="sch_time_out">
 							<option class="sel_txt" value=""></option>
 							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
 								<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>

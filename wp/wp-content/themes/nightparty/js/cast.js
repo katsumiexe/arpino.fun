@@ -490,7 +490,10 @@ $(function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
 
-		var TmpHgt=VhBase*100-VwBase*95;
+console.log(VhBase);
+console.log(VwBase);
+
+		var TmpHgt=VhBase*100-VwBase*115;
 		$('.customer_body').css('height',TmpHgt);
 
 		C_Id=$(this).attr('id').replace('clist','');
@@ -555,8 +558,7 @@ $(function(){
 		Tmp=$(this).children('.customer_hidden_tel').val();
 		$('#h_customer_tel').val(Tmp);
 		if(Tmp){
-			$('#customer_tel').addCla
-			ss('c_customer_tel');		
+			$('#customer_tel').addClass('c_customer_tel');		
 		}
 
 		Tmp=$(this).children('.customer_hidden_mail').val();
