@@ -239,7 +239,7 @@ $(function(){
 	});
 
 
-	$('.customer_regist_set').on('click',function () {
+	$('#customer_regist_set').on('click',function () {
 		$.post({
 			url:Dir + "/post/customer_regist_set.php",
 			data:{
@@ -280,6 +280,7 @@ $(function(){
 			$('#reg_dd').val('01');
 			$('#reg_ag').val('30');
 			$('.reg_fav').css('color','#cccccc');
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -470,6 +471,7 @@ $(function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
 		$('.customer_detail').animate({'left':'100vw'},300);
 		$('.head_mymenu_ttl').html('顧客リスト');
+		$('.menu').css({'heigh':'auto'});
 
 		$('.customer_sns_box').hide();
 		$('.customer_sns_tr').hide();
@@ -484,18 +486,61 @@ $(function(){
 
 		$('.customer_memo').hide();
 		$('#tag_1_tbl').show();
+		$('.customer_fav').css('color','#cccccc');
+		$('.main').css('height','auto');
 	});
+
+	$('.customer_detail').not('.customer_body').draggable({
+		axis: 'x',
+		start: function( event, ui ) {
+			startPosition = ui.position.left;
+		},
+		drag: function( event, ui ) {
+			if(ui.position.left < startPosition) ui.position.left = startPosition;
+		},
+		stop: function( event, ui ) {
+			if(ui.position.left > 50){
+				$('.customer_detail').animate({'left':'100vw'},200);
+
+				$('.head_mymenu_comm').removeClass('arrow_customer');
+				$('.head_mymenu_ttl').html('顧客リスト');
+
+				$('.customer_sns_box').hide();
+				$('.customer_sns_tr').hide();
+				$('.sns_arrow_a').hide();
+				$('.sns_text').val('');
+
+				$('.customer_sns_box,.sns_arrow_a,.customer_sns_btn').removeClass('c_customer_twitter c_customer_facebook c_customer_insta c_customer_web c_customer_blog c_customer_tel c_customer_mail');
+				$('.sns_jump').removeClass('jump_on');
+
+				$('.tag_set').removeClass('tag_set_ck').animate({'top':'3vw','height':'5.5vw'},300);
+				$('#tag_1').addClass('tag_set_ck').animate({'top':'0.5vw','height':'8vw'},300);
+
+				$('.customer_memo').hide();
+				$('#tag_1_tbl').show();
+				$('.customer_fav').css('color','#cccccc');
+
+			}else{
+				$('.customer_detail').animate({'left':'0vw'},200);
+				$('.menu').css({'heigh':'auto'});
+			}
+		}
+	});
+
+
 
 	$('.customer_list').on('click',function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
+		$('.main').css('height','100vh');
+
+
+		var TmpHgt=VhBase*100-VwBase*115;
 
 console.log(VhBase);
 console.log(VwBase);
 
-		var TmpHgt=VhBase*100-VwBase*115;
 		$('.customer_body').css('height',TmpHgt);
-
 		C_Id=$(this).attr('id').replace('clist','');
 
 		Tmp=$(this).children('.mail_img').attr('src');
@@ -579,6 +624,7 @@ console.log(VwBase);
 			$('#customer_facebook').addClass('c_customer_facebook');		
 		}
 
+
 		Tmp=$(this).children('.customer_hidden_insta').val();
 		$('#h_customer_insta').val(Tmp);
 		if(Tmp){
@@ -598,6 +644,7 @@ console.log(VwBase);
 		}
 
 		$('.customer_detail').animate({'left':'0'},300);
+		$('.menu').css({'heigh':'100vh'});
 
 		$.post({
 			url:Dir + "/post/customer_detail_read.php",

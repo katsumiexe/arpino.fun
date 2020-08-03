@@ -847,7 +847,7 @@ i,.days_icon{
 
 .customer_regist_set{
 	display		:inline-block;
-	width		:95vw;
+	width		:96vw;
 	height		:8vw;
 	line-height	:8vw;
 	font-size	:5vw;
@@ -1048,6 +1048,7 @@ i,.days_icon{
 	right			:0;
 	margin			:auto;
 	width			:96vw;
+	height			:40vw;
 	overflow-y		:scroll;
 	overflow-x		:hidden;
 	background		:#fafafa;
@@ -1073,12 +1074,13 @@ i,.days_icon{
 }
 
 .customer_regist_base{
+	width			:96vw;
 	margin			:0 auto 2vw auto;
 }
 
 .customer_base_img{
 	position		:relative;
-	width			:25vw;
+	width			:28vw;
 	background		:#f0f0ff;
 }
 
@@ -1430,6 +1432,7 @@ i,.days_icon{
 	width			:100vw;
 	min-height		:100vh;
 	max-width		:650px;
+	overflow		:hidden;
 }
 
 
@@ -2249,6 +2252,14 @@ input[type=range]::-moz-range-thumb{
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
 	color: #d00000;
 	width: 56vw;
+}
+
+.btn_l2{
+	background: linear-gradient(#ddddff 0%, #ccccff 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #3030ff;
+	width: 94vw;
 }
 
 .mail_hist{

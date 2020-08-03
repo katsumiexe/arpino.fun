@@ -654,8 +654,8 @@ var C_Id_tmp=0;
 						?>
 						<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 						<? } ?>
-
 						<?=$cal[$c]?>
+					</tr>
 				</table>
 			<?}?>
 		</div>
@@ -701,112 +701,111 @@ var C_Id_tmp=0;
 				<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 			</div>
 		<?}?>
-		<div class="customer_detail">
-			<table class="customer_base">
-				<tr>
-					<td class="customer_base_img" rowspan="3">
-					<img id="customer_img" src="" class="customer_detail_img">
-					<span class="customer_camera"></span>
-					</td>
-					<td class="customer_base_tag">タグ</td>
-					<td id="" class="customer_base_item">
-					<select id="customer_group" name="cus_group" value="" class="item_group cas_set">
-					<option value="0">通常</option>
-					<?foreach($cus_group_sel as $a1=>$a2){?>
-					<option value="<?=$a1?>"><?=$a2?></option>
+	</div>
+	<div class="customer_detail">
+		<table class="customer_base">
+			<tr>
+				<td class="customer_base_img" rowspan="3">
+				<img id="customer_img" src="" class="customer_detail_img">
+				<span class="customer_camera"></span>
+				</td>
+				<td class="customer_base_tag">タグ</td>
+				<td id="" class="customer_base_item">
+				<select id="customer_group" name="cus_group" value="" class="item_group cas_set">
+				<option value="0">通常</option>
+				<?foreach($cus_group_sel as $a1=>$a2){?>
+				<option value="<?=$a1?>"><?=$a2?></option>
+				<?}?>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="customer_base_tag">名前</td>
+				<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" name="cus_name" value="" class="item_basebox cas_set"></td>
+			</tr>
+			<tr>
+				<td class="customer_base_tag">呼び名</td>
+				<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" name="cus_nick" value="" class="item_basebox cas_set"></td>
+			</tr>
+			<tr>
+				<td class="customer_base_fav">
+					<span id="fav_1" class="customer_fav"></span>
+					<span id="fav_2" class="customer_fav"></span>
+					<span id="fav_3" class="customer_fav"></span>
+					<span id="fav_4" class="customer_fav"></span>
+					<span id="fav_5" class="customer_fav"></span>
+				</td>
+				<td class="customer_base_tag">誕生日</td>
+				<td id="c_birth" class="customer_base_item">
+				<select id="customer_detail_yy" name="cus_b_y" value="1977" class="item_basebox_yy cas_set2">
+					<?for($n=1930;$n<date("Y");$n++){?>
+					<option value="<?=$n?>"><?=$n?></option>
 					<?}?>
-					</select>
-					</td>
-				</tr>
-				<tr>
-					<td class="customer_base_tag">名前</td>
-					<td id="c_name" class="customer_base_item"><input type="text" id="customer_detail_name" name="cus_name" value="" class="item_basebox cas_set"></td>
-				</tr>
-				<tr>
-					<td class="customer_base_tag">呼び名</td>
-					<td id="c_nick" class="customer_base_item"><input type="text" id="customer_detail_nick" name="cus_nick" value="" class="item_basebox cas_set"></td>
-				</tr>
-				<tr>
-					<td class="customer_base_fav">
-						<span id="fav_1" class="customer_fav"></span>
-						<span id="fav_2" class="customer_fav"></span>
-						<span id="fav_3" class="customer_fav"></span>
-						<span id="fav_4" class="customer_fav"></span>
-						<span id="fav_5" class="customer_fav"></span>
-					</td>
-					<td class="customer_base_tag">誕生日</td>
-					<td id="c_birth" class="customer_base_item">
-					<select id="customer_detail_yy" name="cus_b_y" value="1977" class="item_basebox_yy cas_set2">
-						<?for($n=1930;$n<date("Y");$n++){?>
+				</select>/<select id="customer_detail_mm" name="cus_b_m" value="" class="item_basebox_mm cas_set2">
+					<?for($n=1;$n<13;$n++){?>
+					<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+					<?}?>
+				</select>/<select id="customer_detail_dd" name="cus_b_d" value="" class="item_basebox_mm cas_set2">
+					<?for($n=1;$n<32;$n++){?>
+					<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+					<?}?>
+				</select><span class="detail_age">
+					<select id="customer_detail_ag" name="cus_b_a" value="20" class="item_basebox_ag cas_set2">
+						<?for($n=0;$n<date("Y")-1930;$n++){?>
 						<option value="<?=$n?>"><?=$n?></option>
 						<?}?>
-					</select>/<select id="customer_detail_mm" name="cus_b_m" value="" class="item_basebox_mm cas_set2">
-						<?for($n=1;$n<13;$n++){?>
-						<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
-						<?}?>
-					</select>/<select id="customer_detail_dd" name="cus_b_d" value="" class="item_basebox_mm cas_set2">
-						<?for($n=1;$n<32;$n++){?>
-						<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
-						<?}?>
-					</select><span class="detail_age">
-						<select id="customer_detail_ag" name="cus_b_a" value="20" class="item_basebox_ag cas_set2">
-							<?for($n=0;$n<date("Y")-1930;$n++){?>
-							<option value="<?=$n?>"><?=$n?></option>
-							<?}?>
-						</select>
-					歳</span>
-					</td>
-				</tr>
-			</table>
+					</select>
+				歳</span>
+				</td>
+			</tr>
+		</table>
+		<table class="customer_sns">
+			<tr>
+				<td class="customer_sns_1"><span id="customer_line" class="customer_sns_btn"></span></td>
+				<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
+				<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
+				<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
+				<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
+				<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
+				<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
+			</tr>
 
-			<table class="customer_sns">
-				<tr>
-					<td class="customer_sns_1"><span id="customer_line" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
-					<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
-				</tr>
+			<tr class="customer_sns_tr">
+				<td class="customer_sns_2"><span id="a_customer_line" class="sns_arrow_a"></span></td>
+				<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
+				<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
+				<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
+				<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
+				<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
+				<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
+			</tr>
+		</table>
 
-				<tr class="customer_sns_tr">
-					<td class="customer_sns_2"><span id="a_customer_line" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
-					<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
-				</tr>
-			</table>
+		<div class="customer_sns_box">
+		<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
+		</div>
 
-			<div class="customer_sns_box">
-			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
-			</div>
+		<input id="h_customer_id" type="hidden" name="cus_id" value="">
+		<input id="h_customer_set" type="hidden" name="cus_set" value="1">
+		<input id="h_customer_page" type="hidden" name="cus_page" value="1">
+		<input id="h_customer_fav" type="hidden" name="cus_fav" value="0">
 
-			<input id="h_customer_id" type="hidden" name="cus_id" value="">
-			<input id="h_customer_set" type="hidden" name="cus_set" value="1">
-			<input id="h_customer_page" type="hidden" name="cus_page" value="1">
-			<input id="h_customer_fav" type="hidden" name="cus_fav" value="0">
+		<input id="h_customer_tel" type="hidden" value="">
+		<input id="h_customer_mail" type="hidden" value="">
+		<input id="h_customer_twitter" type="hidden" value="">
+		<input id="h_customer_facebook" type="hidden" value="">
+		<input id="h_customer_insta" type="hidden" value="">
+		<input id="h_customer_blog" type="hidden" value="">
+		<input id="h_customer_web" type="hidden" value="">
 
-			<input id="h_customer_tel" type="hidden" value="">
-			<input id="h_customer_mail" type="hidden" value="">
-			<input id="h_customer_twitter" type="hidden" value="">
-			<input id="h_customer_facebook" type="hidden" value="">
-			<input id="h_customer_insta" type="hidden" value="">
-			<input id="h_customer_blog" type="hidden" value="">
-			<input id="h_customer_web" type="hidden" value="">
-
-			<div class="customer_tag">
-				<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
-				<div id="tag_2" class="tag_set">メモ</div>
-				<div id="tag_3" class="tag_set">履歴</div>
-				<div class="customer_body">
-					<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
-					<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>
-					<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
-				</div>
+		<div class="customer_tag">
+			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
+			<div id="tag_2" class="tag_set">メモ</div>
+			<div id="tag_3" class="tag_set">履歴</div>
+			<div class="customer_body">
+				<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
+				<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>
+				<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
 			</div>
 		</div>
 	</div>
@@ -970,7 +969,15 @@ CAST_ID：
 LOGIN ID
 PASSWORD
 アドレス
+
 顧客グループ設定
+履歴アイテム設定
+画面ロック時間
+LINE連携
+Twitter連携
+
+
+
 		</div>
 	</div>
 	<?}else{?>
@@ -1027,12 +1034,11 @@ PASSWORD
 							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>">
 
 						<?}else{?>
-<select id="sel_in<?=$n?>" name="sel_in<?=$n?>" class="sch_time_in">
+<select id="sel_in<?=$n?>" value="" name="sel_in<?=$n?>" class="sch_time_in">
 <option value=""></option>
 <?for($s=0;$s<count($sche_table_name["in"]);$s++){?><option value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
 <?}?>
 </select>
-
 						<select id="sel_out<?=$n?>" name="sel_out<?=$n?>" class="sch_time_out">
 							<option class="sel_txt" value=""></option>
 							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
@@ -1070,15 +1076,14 @@ PASSWORD
 		<div class="customer_memo_new_del"></div>
 		<textarea class="customer_memo_new_txt"></textarea>
 	</div>
+
 	<div class="customer_regist">
 		<div class="customer_regist_ttl">新規顧客登録</div>
 		<span class="customer_regist_no">×</span>
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-				<span class="regist_img_pack">					
-				<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img">
-				</span>					
+				<span class="regist_img_pack"><img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
 				<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
@@ -1133,7 +1138,7 @@ PASSWORD
 				</td>
 			</tr>
 		</table>
-		<div class="customer_regist_set">登録</div>
+		<div id="customer_regist_set" class="btn btn_l2">登録</div>
 		<input id="regist_fav" type="hidden" value="0">
 	</div>
 
