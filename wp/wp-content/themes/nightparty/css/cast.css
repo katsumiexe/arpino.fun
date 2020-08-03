@@ -372,9 +372,10 @@ input:focus{
 }
 
 .cal_top{
+	position		:relative;
 	height			:10vw;
 	vertical-align	:bottom;
-	text-align		:center;
+	text-align		:left;
 	background		:#ffc090;
 }
 
@@ -547,6 +548,58 @@ i,.days_icon{
 .dy1,.dy2,.dy3,.dy4,.dy5{
 	color		:#eeeeee;
 }
+
+.cal_btn{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	right			:1vw;
+	height			:9vw;
+	width			:20vw;
+	border-radius	:4vw;
+	background		:linear-gradient(#f0f0e0,#e0e0d0);
+}
+
+.cal_btn_on1,.cal_btn_on2{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	height			:8vw;
+	line-height		:8vw;
+	width			:8vw;
+	text-align		:center;
+	font-size		:5vw;
+	border-radius	:3.5vw;
+	font-family		:at_icon;
+	color			:#b0b0a0;
+}
+
+.cal_btn_on1{
+	left			:0.5vw;
+	color:#ffa0e0;
+}
+
+.cal_btn_on2{
+	right			:0.5vw;
+}
+
+
+.cal_circle{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	left			:0vw;
+	height			:8vw;
+	width			:8vw;
+	border-radius	:4vw;
+	border			:0.5vw solid #ffa0e0;
+	background		:rgba(255,0,200,0.2);
+}
+
+
 
 .menu_sel{
 	background		:#d03030 !important;
@@ -2829,6 +2882,8 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	padding-left	:10px;
 }
 
+
+
 }
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 960px) {
@@ -2991,3 +3046,5 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	background:linear-gradient(#ff9080,#f17766);
 	color:#fafafa;
 }
+
+

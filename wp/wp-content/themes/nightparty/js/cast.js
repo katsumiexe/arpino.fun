@@ -490,7 +490,7 @@ $(function(){
 		$('.main').css('height','auto');
 	});
 
-	$('.customer_detail').not('.customer_body').draggable({
+	$('.customer_detail').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
 			startPosition = ui.position.left;
@@ -539,6 +539,7 @@ $(function(){
 
 console.log(VhBase);
 console.log(VwBase);
+console.log(TmpHgt);
 
 		$('.customer_body').css('height',TmpHgt);
 		C_Id=$(this).attr('id').replace('clist','');
@@ -1150,6 +1151,21 @@ console.log("VwBase:"+VwBase);
 			console.log(textStatus);
 			console.log(errorThrown);
 		});
+	});
+
+	$('.cal').on('click','.cal_btn_on1',function () {
+		$('.cal_circle').animate({'left':'0vw'},200);
+
+		$('.cal_btn_on1').animate({'color':'#ffa0e0'},200);
+		$('.cal_btn_on2').animate({'color':'#b0b0a0'},200);
+
+	});
+
+	$('.cal').on('click','.cal_btn_on2',function () {
+		$('.cal_circle').animate({'left':'11vw'},200);
+		$('.cal_btn_on2').animate({'color':'#ffa0e0'},200);
+		$('.cal_btn_on1').animate({'color':'#b0b0a0'},200);
+
 	});
 
 	$('.cal').on('click','.cal_prev',function () {
