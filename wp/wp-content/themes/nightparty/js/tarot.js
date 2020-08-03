@@ -14,7 +14,7 @@ var Tmp=[0,0,0,0,0,0,0];
 var CardCnt=60;
 var S_G=['rotate(180deg)',''];
 
-var N_R=['逆位置','正位置'];
+var N_R=['逆','正'];
 
 var cd_x=[
 [105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,395,390,385,380,375,370,365,360,355,350,345,340,335,330,325,320,315,310,305,300,295,290,285,280,275,270,265,260,255,250,245,240,235,230,225,220,215,210,205,200,195,190,185,180,175,170,165,160,155,150,145,140,135,130,125,120,115,110,105,100,],
@@ -137,21 +137,46 @@ console.log(Cd);
 			Tarot_rv[M]=Sei[TmpId];
 			M++;
 		}
-		if(M>2){
-			$('.ans').delay(800).fadeIn(500);
-			$('.main').delay(800).fadeOut(500);
-			for(var i=0;i<3;i++){
-				$('#img-'+i).attr('src',Dir+ '/img/tarot/tarot_'+ Tarot_cd[i] +'.jpg');
-				$('#rev-'+i).text(N_R[Tarot_rv[i]]);
-				$('#no-'+i).text($('#no_r_'+Tarot_cd[i]).val());
-				$('#name_j-'+i).text($('#name_j_'+Tarot_cd[i]).val());
-				$('#name_e-'+i).text($('#name_e_'+Tarot_cd[i]).val());
-				$('#mean-'+i).text($('#mean_'+Tarot_rv[i]+'_'+Tarot_cd[i]).val());
 
-				if(Tarot_rv[i] ==0){
-				$('#img-'+i).addClass('img_rev');
+		if(M>2){
+			$.post({
+				url:Dir + "/post/read_tarot.php",
+				data:{
+					'tarot_id0'	:Tarot_cd[0],
+					'tarot_id1'	:Tarot_cd[1],
+					'tarot_id2'	:Tarot_cd[2],
+
+					'n_r0'		:Tarot_rv[0],
+					'n_r1'		:Tarot_rv[1],
+					'n_r2'		:Tarot_rv[2]
+				},
+				dataType: 'json',
+
+			}).done(function(data, textStatus, jqXHR){
+				console.log(data);
+
+				$('.ans').delay(800).fadeIn(500);
+				$('.main').delay(800).fadeOut(500);
+				for(var i=0;i<3;i++){
+					$('#img-'+i).attr('src',Dir+ '/img/tarot/tarot_'+ Tarot_cd[i] +'.jpg');
+					$('#rev-'+i).addClass('n'+Tarot_rv[i]).text(N_R[Tarot_rv[i]]);
+					$('#no-'+i).text($('#no_r_'+Tarot_cd[i]).val());
+					$('#name_j-'+i).text($('#name_j_'+Tarot_cd[i]).val());
+					$('#name_e-'+i).text($('#name_e_'+Tarot_cd[i]).val());
+					$('#mean-'+i).text($('#mean_'+Tarot_rv[i]+'_'+Tarot_cd[i]).val());
+
+					$('#log-'+i).text(data[i]);
+
+					if(Tarot_rv[i] ==0){
+					$('#img-'+i).addClass('img_rev');
+					}
 				}
-			}
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
+
 		}
 	});
 });

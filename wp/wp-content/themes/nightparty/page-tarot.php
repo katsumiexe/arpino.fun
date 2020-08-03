@@ -4,8 +4,9 @@ $jst=time()+32400;
 $sql	 ="SELECT * FROM tarot_base";
 $sql1 = $wpdb->get_results($sql,ARRAY_A );
 foreach($sql1 as $nn){
-	$tarot_data[$nn["id"]]=$nn;
+	$tarot_base[$nn["id"]]=$nn;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -14,10 +15,8 @@ foreach($sql1 as $nn){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/tarot.css?_<?=date("YmdHi")?>">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.easing.1.3.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/tarot.js?_<?=date("YmdHi")?>"></script>
 <script>
@@ -63,27 +62,26 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 
 <div class="ans">
 	<img id="img-0" src="<?php echo get_template_directory_uri(); ?>/img/tarot/tarot_0.jpg" class="ans_img">
-	<div class="ans_ttl">【<span id="no-0" class="card_no">0</span>】<span id="name_j-0">愚者</span>/<span id="name_e-0">The Fool</span>≪<span id="rev-0">正</span>≫</div>
+	<div class="ans_ttl">【<span id="no-0" class="card_no">0</span>】<span id="name_j-0">愚者</span>/<span id="name_e-0">The Fool</span><span id="rev-0" class="face">正</span></div>
 	<div class="ans_msg"><span id="mean-0"></span></div>
-	<div class="ans_comm"></div>
+	<div id="log-0" class="ans_comm"></div>
 </div>
 
 <div class="ans">
 	<img id="img-1" src="<?php echo get_template_directory_uri(); ?>/img/tarot/tarot_0.jpg" class="ans_img">
-	<div class="ans_ttl">【<span id="no-1" class="card_no">0</span>】<span id="name_j-1">愚者</span>/<span id="name_e-1">The Fool</span>≪<span id="rev-1">正</span>≫</div>
+	<div class="ans_ttl">【<span id="no-1" class="card_no">0</span>】<span id="name_j-1">愚者</span>/<span id="name_e-1">The Fool</span>≪<span id="rev-1" class="face">正</span>≫</div>
 	<div class="ans_msg"><span id="mean-1"></span></div>
-	<div class="ans_comm"></div>
+	<div id="log-1" class="ans_comm"></div>
 </div>
 
 <div class="ans">
 	<img id="img-2" src="<?php echo get_template_directory_uri(); ?>/img/tarot/tarot_0.jpg" class="ans_img">
-	<div class="ans_ttl">【<span id="no-2" class="card_no">0</span>】<span id="name_j-2">愚者</span>/<span id="name_e-2">The Fool</span>≪<span id="rev-2">正</span>≫</div>
+	<div class="ans_ttl">【<span id="no-2" class="card_no">0</span>】<span id="name_j-2">愚者</span>/<span id="name_e-2">The Fool</span><span id="rev-2" class="face">正</span></div>
 	<div class="ans_msg"><span id="mean-2"></span></div>
-	<div class="ans_comm"></div>
+	<div id="log-2" class="ans_comm"></div>
 </div>
 
-<?foreach($tarot_data as $a1 => $a2 ){?><?foreach($a2 as $a3 => $a4){?>
+<?foreach($tarot_base as $a1 => $a2 ){?><?foreach($a2 as $a3 => $a4){?>
 <input type="hidden" id="<?=$a3?>_<?=$a1?>" value="<?=$a4?>"><?}?><?}?>
 </body>
 </html>
-
