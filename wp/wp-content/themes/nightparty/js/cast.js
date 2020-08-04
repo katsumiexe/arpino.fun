@@ -799,10 +799,38 @@ console.log(TmpHgt);
 
 	$('#img_set').on('click',function(){
 		if($('#upd').val() == '') {
+			$.post({
+				url:Dir + "/post/img_del.php",
+				data:{
+					'cast_id'	:CastId,
+					'c_id'		:C_Id,
+					'imgurl'	:$('#img_url').val(),
+				},
+
+			}).done(function(data, textStatus, jqXHR){
+				console.log(data);
+				$('.set_back').fadeOut(200);
+				$('.img_box	').animate({'top':'100vh'},200);
+
+				$('#customer_img, #sumb' + C_Id).attr('src',data);
+				$('#clist'+C_Id).children('.mail_img').attr('src',data);
+
+				$('#wait').hide();
+				$('.zoom_box').text('100');
+				$('#img_zoom').val('11000');
+				$('#input_zoom').val('100');
+				Rote=0;
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
+
+/*
 			$('#err').text('画像の登録がありません');
 			$('#err').fadeIn(100).delay(500).fadeOut(500);
 			return false;
-
+*/
 		}else{
 
 			var ImgTop		=$('#img_top').val();

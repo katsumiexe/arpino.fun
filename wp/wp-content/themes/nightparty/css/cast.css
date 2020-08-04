@@ -2192,6 +2192,16 @@ input[type=range]::-moz-range-thumb{
 	padding			:0 1.5vw;
 }
 
+.upload_icon_p{
+	display			:inline-block;
+	position		:relative;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-family		:at_icon;
+	font-size		:6vw;
+}
+
 .upload_icon{
 	display			:inline-block;
 	position		:relative;

@@ -1172,9 +1172,8 @@ Twitter連携
 		</div>
 -->
 		<div class="img_box_in2">
-			<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
+			<label for="upd" class="upload_btn"><span class="upload_icon_p"></span><span class="upload_txt">画像選択</span></label>
 			<span class="upload_icon upload_rote"></span>
-			<span class="upload_icon upload_reset"></span>
 			<span class="upload_icon upload_trush"></span>
 		</div>
 		<div class="img_box_in3">
