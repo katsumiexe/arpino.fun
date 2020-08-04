@@ -849,9 +849,9 @@ i,.days_icon{
 	right			:0;
 	margin			:auto;
 	width			:96vw;
-	height			:60vw;
+	height			:58vw;
 	text-align		:center;
-	background		:#f010a0;
+	background		:#ffe0f0;
 	padding			:1vw;
 }
 
@@ -875,12 +875,11 @@ i,.days_icon{
 	display		:block;
 	margin 		:0 auto;
 	text-align	:center;
-	background	:#f010a0;
 	font-size	:5vw;
 	height		:8vw;
 	line-height	:8vw;
-	color		:#fafafa;
-	font-weight:600;
+	color		:#f17766;
+	font-weight:700;
 }
 
 .customer_regist_tbl{
@@ -1134,7 +1133,6 @@ i,.days_icon{
 .customer_base_img{
 	position		:relative;
 	width			:28vw;
-	background		:#f0f0ff;
 }
 
 .customer_detail_img{
@@ -2179,11 +2177,6 @@ input[type=range]::-moz-range-thumb{
 	font-size			:4vw;
 }
 
-.upload_icon{
-	font-family		:at_icon;
-	font-size		:6vw;
-}
-
 .upload_btn{
 	display			:inline-block;
 	position		:relative;
@@ -2199,12 +2192,14 @@ input[type=range]::-moz-range-thumb{
 	padding			:0 1.5vw;
 }
 
-.upload_rote,.upload_reset,.upload_trush{
+.upload_icon{
 	display			:inline-block;
 	position		:relative;
 	width			:9vw;
 	height			:8vw;
 	line-height		:8vw;
+	font-family		:at_icon;
+	font-size		:6vw;
 	margin			:0 1vw;
 	border-radius	:1.5vw;
 	border			:1px solid #cccccc;
@@ -2296,7 +2291,7 @@ input[type=range]::-moz-range-thumb{
 	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
 	color: #909030;
-	width: 12vw;
+	width: 20vw;
 }
 
 .btn_l1{

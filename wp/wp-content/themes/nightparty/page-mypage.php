@@ -1162,9 +1162,12 @@ Twitter連携
 		</div>
 
 		<div class="img_box_in2">
-			<label for="upd" class="upload_btn"><span class="upload_icon"></span><span class="upload_txt">画像選択</span></label>
+			<label for="upd" class="upload_icon"></label>
+			<span id="img_set_line" class="upload_icon"></span>
+			<span id="img_set_twitter" class="upload_icon"></span>
+			<span id="img_set_insta" class="upload_icon"></span>
+			<span id="img_set_facebook" class="upload_icon"></span>　
 			<span class="upload_icon upload_rote"></span>
-			<span class="upload_icon upload_reset"></span>
 			<span class="upload_icon upload_trush"></span>
 		</div>
 		<div class="img_box_in3">
@@ -1175,7 +1178,8 @@ Twitter連携
 
 		<div class="img_box_in4">
 			<div id="img_set" class="btn btn_c2">登録</div>　
-			<div id="img_close" class="btn btn_c1">戻る</div>
+			<div id="img_close" class="btn btn_c1">戻る</div>　
+			<div id="img_reset" class="btn btn_c3">リセット</div>
 		</div>
 	</div>
 </div>
@@ -1187,7 +1191,6 @@ Twitter連携
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="img_url" type="hidden" name="img_url" value="">
 <input id="img_code" type="hidden" name="img_code" value="">
-
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">

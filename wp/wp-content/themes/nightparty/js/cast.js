@@ -489,7 +489,7 @@ $(function(){
 		$('.customer_fav').css('color','#cccccc');
 		$('.main').css('height','auto');
 	});
-
+/*
 	$('.customer_detail').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
@@ -526,7 +526,7 @@ $(function(){
 			}
 		}
 	});
-
+*/
 
 
 	$('.customer_list').on('click',function(){
@@ -535,7 +535,7 @@ $(function(){
 		$('.main').css('height','100vh');
 
 
-		var TmpHgt=VhBase*100-VwBase*115;
+		var TmpHgt=VhBase*100-VwBase*10;
 
 console.log(VhBase);
 console.log(VwBase);
@@ -668,8 +668,9 @@ console.log(TmpHgt);
 				'c_id':C_Id,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$('#tag_2_tbl').html(data);
-
+			if(data){
+				$('#tag_2_tbl').html(data);
+			}
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
@@ -972,7 +973,7 @@ console.log("VwBase:"+VwBase);
 		$('#img_zoom').val(Zoom);
 	});
 
-	$('.upload_reset').on( 'click', function () {
+	$('#img_reset').on( 'click', function () {
 		Zoom=100;
 		Left=css_B;
 		Right=css_B;
