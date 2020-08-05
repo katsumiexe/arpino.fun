@@ -1185,14 +1185,14 @@ console.log("VwBase:"+VwBase);
 	$('.cal').on('click','.cal_btn_on1',function () {
 		$('.cal_circle').animate({'left':'0vw'},200);
 
-		$('.cal_btn_on1').animate({'color':'#ffa0e0'},200);
+		$('.cal_btn_on1').animate({'color':'#f17766'},200);
 		$('.cal_btn_on2').animate({'color':'#b0b0a0'},200);
 
 	});
 
 	$('.cal').on('click','.cal_btn_on2',function () {
 		$('.cal_circle').animate({'left':'11vw'},200);
-		$('.cal_btn_on2').animate({'color':'#ffa0e0'},200);
+		$('.cal_btn_on2').animate({'color':'#f17766'},200);
 		$('.cal_btn_on1').animate({'color':'#b0b0a0'},200);
 
 	});

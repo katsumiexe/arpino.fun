@@ -546,7 +546,7 @@ i,.days_icon{
 }
 
 .dy1,.dy2,.dy3,.dy4,.dy5{
-	color		:#eeeeee;
+	background		:#eeeeee;
 }
 
 .cal_btn{
@@ -557,7 +557,7 @@ i,.days_icon{
 	right			:1vw;
 	height			:9vw;
 	width			:20vw;
-	border-radius	:4vw;
+	border-radius	:4.5vw;
 	background		:linear-gradient(#f0f0e0,#e0e0d0);
 }
 
@@ -578,7 +578,7 @@ i,.days_icon{
 
 .cal_btn_on1{
 	left			:0.5vw;
-	color:#ffa0e0;
+	color:#f17766;
 }
 
 .cal_btn_on2{
@@ -594,8 +594,8 @@ i,.days_icon{
 	left			:0vw;
 	height			:8vw;
 	width			:8vw;
-	border-radius	:4vw;
-	border			:0.5vw solid #ffa0e0;
+	border-radius	:4.5vw;
+	border			:0.5vw solid #f17766;
 	background		:rgba(255,0,200,0.2);
 }
 
@@ -3008,11 +3008,11 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 }
 
 .nowmonth{
-	color:#666666;
+	color:#303030;
 }
 
 .outof{
-	color:#dddddd;
+	color:#c0c0c0;
 }
 
 .c_customer_line{
