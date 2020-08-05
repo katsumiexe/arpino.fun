@@ -66,5 +66,6 @@ get_header();
 	<div class="main_c">
 		<a class="twitter-timeline" data-width="310" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
+
 </div>
 <?php get_footer(); ?>
