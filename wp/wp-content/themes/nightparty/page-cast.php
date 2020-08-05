@@ -4,6 +4,9 @@ Template Name: cast
 */
 get_header();
 
+$now=time()+32400+$chg_time*86400;
+$now_ymd=date("Ymd",$now);
+
 $sql=" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
@@ -24,22 +27,23 @@ foreach($res as $a1){
 		$sort[$a1["id"]]=999999;
 }
 
-$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
+$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_ymd}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
-
+print($sql);
 foreach($res2 as $a2){
 	if($a2["stime"] && $a2["etime"]){
-		$dat[$a1["id"]]["sch"]	="{$a2["stime"]} - {$a2["etime"]}";
-		$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
+		$dat[$a2["cast_id"]]["sch"]	="{$a2["stime"]} - {$a2["etime"]}";
+		$sort[$a2["cast_id"]]=$sch_table["in"][$a2["stime"]];
+
+print($a2["cast_id"]."■".$a2["stime"]."■".$a2["etime"]."■<br>\n");
 
 	}else{
 		$sch[$a2["cast_id"]]	="休み";
-		$sort[$a1["id"]]=999999;
+		$sort[$a2["cast_id"]]=999999;
 	}
 }
 
 
-$now=time()+32400+$chg_time*86400;
 
 $week[0]="(日)";
 $week[1]="(月)";
@@ -78,8 +82,8 @@ for($e=0;$e<7;$e++){
 	<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $b1?>" id="<?PHP echo $b1?>" class="main_b_1">
 		<img src="<?PHP ECHO $dat[$b1]["face"]?>" class="main_b_1_1">
 		<span class="main_b_1_2">
-			<span class="main_b_1_2_name"><?PHP echo $dat[$b1]["genji"]?></span>
-			<span class="main_b_1_2_sch"></span>
+			<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
+			<span class="main_b_1_2_sch"><?=$dat[$b1]["sch"]?></span>
 		</span>
 		<span class="main_b_1_3"></span>
 	</a>
