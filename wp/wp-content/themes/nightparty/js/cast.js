@@ -1184,9 +1184,12 @@ console.log("VwBase:"+VwBase);
 
 	$('.cal').on('click','.cal_btn_on1',function () {
 		$('.cal_circle').animate({'left':'0vw'},200);
-
 		$('.cal_btn_on1').animate({'color':'#f17766'},200);
 		$('.cal_btn_on2').animate({'color':'#b0b0a0'},200);
+
+		$('.cal_days').animate({'top':'83vw'},200);
+		$('span.cal_log').animate({'height':'0'},200);
+		$('.cal_td_h').animate({'height':'10vw'},200);
 
 	});
 
@@ -1194,6 +1197,11 @@ console.log("VwBase:"+VwBase);
 		$('.cal_circle').animate({'left':'11vw'},200);
 		$('.cal_btn_on2').animate({'color':'#f17766'},200);
 		$('.cal_btn_on1').animate({'color':'#b0b0a0'},200);
+		$('span.cal_log').animate({'height':'10vw'},200);
+		$('.cal_td_h').animate({'height':'15vw'},200);
+		$('.cal_days').animate({'top':'100vh'},200);
+
+
 
 	});
 

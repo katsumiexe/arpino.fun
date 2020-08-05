@@ -400,6 +400,7 @@ input:focus{
 	font-weight		:700;
 }
 
+
 .cal_days{
 	position		:absolute;
 	top				:83vw;
@@ -505,11 +506,21 @@ i,.days_icon{
 
 .cal_td,.cal_th{
 	position		:relative;
-	height			:10vw;
 	text-align		:center;
 	font-size		:0;
 	background		:linear-gradient(#fcfcfc,#f8f8f8);
 	cursor			:pointer;
+}
+.cal_td_h{
+	height:10vw;
+}
+
+.cal_log{
+	position:absolute;
+	bottom:0;
+	left:0;
+	height:0;
+	width:13.5vw;
 }
 
 .c1,.c2,.c3{
@@ -2985,6 +2996,10 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 .c3{
 	background	:#90a0ff;
 	color		:#fafafa;
+}
+
+.cc1,.cc2,.cc3,.cc4,.cc5{
+	background		:linear-gradient(#fcfcfc,#f8f8f8);
 }
 
 

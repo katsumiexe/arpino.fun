@@ -13,9 +13,6 @@ $now_ymd	=date("Ymd",$jst);
 $now_ymd_2	=date("Ymd",$jst+86400);
 $now_ymd_3	=date("Ymd",$jst+172800);
 
-
-
-
 $week[0]="日";
 $week[1]="月";
 $week[2]="火";
@@ -348,13 +345,20 @@ $reg_base_ag=date("Y")-1980;
 			$app_n4=$blog_dat[$tmp_ymd];
 
 
+			if($tmp_w ==0){
+				$td_h="cal_td_h";
+			}else{
+				$td_h="";
+			}
 
-			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]}\">";
+			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} {$td_h}\">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
 			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
 			$cal[$n].="<span class=\"cal_i4 {$app_n4}\"></span>";
+			$cal[$n].="<span class=\"cal_log cc{$tmp_week}\"></span>";
+
 			$cal[$n].="</td>";
 		}
 	}
