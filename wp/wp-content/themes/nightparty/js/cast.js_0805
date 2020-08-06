@@ -469,7 +469,7 @@ $(function(){
 
 	$('.head').on('click','.arrow_customer',function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
-		$('.customer_detail').animate({'left':'100vw'},300);
+		$('.customer_detail').slideUp(300);
 		$('.head_mymenu_ttl').html('顧客リスト');
 		$('.menu').css({'heigh':'auto'});
 
@@ -487,7 +487,7 @@ $(function(){
 		$('.customer_memo').hide();
 		$('#tag_1_tbl').show();
 		$('.customer_fav').css('color','#cccccc');
-		$('.main').css('position','static');
+		$('.main').css('height','auto');
 	});
 /*
 	$('.customer_detail').draggable({
@@ -532,16 +532,13 @@ $(function(){
 	$('.customer_list').on('click',function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
-		$('.main').css('positon','fixed');
 
-
-		var TmpHgt=VhBase*100-VwBase*115;
+		var TmpHgt=VhBase*100-VwBase*10;
 
 console.log(VhBase);
 console.log(VwBase);
 console.log(TmpHgt);
 
-		$('.customer_body').css('height',TmpHgt);
 		C_Id=$(this).attr('id').replace('clist','');
 
 		Tmp=$(this).children('.mail_img').attr('src');
@@ -625,7 +622,6 @@ console.log(TmpHgt);
 			$('#customer_facebook').addClass('c_customer_facebook');		
 		}
 
-
 		Tmp=$(this).children('.customer_hidden_insta').val();
 		$('#h_customer_insta').val(Tmp);
 		if(Tmp){
@@ -644,8 +640,7 @@ console.log(TmpHgt);
 			$('#customer_web').addClass('c_customer_web');		
 		}
 
-		$('.customer_detail').animate({'left':'0'},300);
-		$('.menu').css({'heigh':'100vh'});
+		$('.customer_detail').slideDown(300);
 
 		$.post({
 			url:Dir + "/post/customer_detail_read.php",
@@ -1237,13 +1232,11 @@ console.log("VwBase:"+VwBase);
 		}
 	});
 
-
 	$('.notice_box_item2').on('click',function (){
 		Tmp=$(this).attr('id').replace("title","hidden");
 		$('.notice_box_log').html($('#'+Tmp).val());
 		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
 		$(this).addClass('notice_box_sel');
-
 	});
 
 	$('.notice_box_item1').on('click',function (){

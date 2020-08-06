@@ -707,8 +707,10 @@ i,.days_icon{
 }
 
 .customer_tag{
+	display			:inline-block;
 	position		:relative;
 	width			:95vw;
+	height			:10vw;
 	margin			:0 auto;
 }
 
@@ -1077,13 +1079,12 @@ i,.days_icon{
 }
 
 .customer_detail{
-	position		:fixed;
-	top				:0;
-	left			:100vw;
-	width			:100vw;
-	height			:100vh;
+	display:none;
+	position		:relative;
+	width			:99vw;
+	min-height		:95vh;	
+	margin			:0 auto;
 	background		:linear-gradient(#ffe0f0,#ffe8f8);
-	z-index			:12;
 }
 
 
@@ -1105,14 +1106,9 @@ i,.days_icon{
 }
 
 .customer_body{
-	position		:absolute;
-	top				:10vw;
-	left			:0;
-	right			:0;
-	margin			:auto;
+	position		:relative;
+	margin			:0 auto;
 	width			:96vw;
-	height			:40vw;
-	overflow-y		:scroll;
 	overflow-x		:hidden;
 	background		:#fafafa;
 	z-index			:19;
@@ -1132,7 +1128,7 @@ i,.days_icon{
 	width			:98vw;
 	border-collapse	:separate;
 	border-spacing	:1vw 0;
-	margin			:15.5vw auto 2vw auto;
+	margin			:2vw auto;
 	background		:#fafafa;
 }
 
