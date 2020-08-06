@@ -265,7 +265,6 @@ $(function(){
 /*			dataType: 'json',*/
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.main').append(data);
 			$('.customer_regist').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
@@ -624,7 +623,6 @@ console.log(TmpHgt);
 		if(Tmp){
 			$('#customer_facebook').addClass('c_customer_facebook');		
 		}
-
 
 		Tmp=$(this).children('.customer_hidden_insta').val();
 		$('#h_customer_insta').val(Tmp);
@@ -1136,7 +1134,6 @@ console.log("VwBase:"+VwBase);
 		}).done(function(data, textStatus, jqXHR){
 		});
 	});
-
 
 	$('.cas_set2').on('change',function () {
 		$.post({

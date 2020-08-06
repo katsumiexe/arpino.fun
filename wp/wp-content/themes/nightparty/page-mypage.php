@@ -727,7 +727,7 @@ var C_Id_tmp=0;
 				<input type="hidden" class="customer_hidden_twitter" value="<?=$customer[$n]["twitter"]?>">
 				<input type="hidden" class="customer_hidden_facebook" value="<?=$customer[$n]["facebook"]?>">
 				<input type="hidden" class="customer_hidden_insta" value="<?=$customer[$n]["insta"]?>">
-				<input type="hidden" class="customer_hidden_blog" value="<?=$customer[$n]["blog"]?>">
+				<input type="hidden" class="customer_hidden_line" value="<?=$customer[$n]["line"]?>">
 				<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 			</div>
 		<?}?>
@@ -1028,7 +1028,6 @@ Twitter連携
 	</td>
 	<td class="log_td">
 		<div id="item_select_id<?=$a1["sort"]?>" class="item_select" style="background:<?=$base_color[$a1["item_color"]]?>"></div>
-
 		<div id="item_select_<?=$a1["sort"]?>" class="item_select_box">
 			<?foreach($base_color as $b1 => $b2){?>
 				<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="item_select_label" style="background:<?=$b2?>;"></span>
@@ -1039,11 +1038,14 @@ Twitter連携
 	</td>
 
 	<td class="log_td">
-		<select id="item_icon[<?=$a1["sort"]?>]" class="item_select">
-		<?foreach($base_icon as $b1 => $b2){?>
-		<option value="<?=$b1?>" <?if($a1["item_icon"] == $b1){?>selected="selected"<?}?>>-<?=$b2?>-</option>
-		<?}?>
-		</select>
+
+		<div id="item_select2_id<?=$a1["sort"]?>" class="item_select" style="color:<?=$base_color[$a1["item_color"]]?>"><?=$base_icon[$a1["item_icon"]]?></div>
+		<div id="item_select2_<?=$a1["sort"]?>" class="item_select_box">
+			<?foreach($base_icon as $b1 => $b2){?>
+				<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="item_select_label"><?=$b2?></span>
+			<?}?>
+		</div>
+		<input id="item_icon_<?=$a1["sort"]?>" type="hidden" value="<?=$a1["item_icon"]?>">
 	</td>
 	<td class="log_td">
 		<input id="item_name[<?=$a1["sort"]?>]" type="text" value="<?=$a1["item_name"]?>" class="item_name">

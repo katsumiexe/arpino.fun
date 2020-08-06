@@ -716,10 +716,8 @@ i,.days_icon{
 }
 
 .customer_tag{
-	display			:inline-block;
 	position		:relative;
 	width			:95vw;
-	height			:10vw;
 	margin			:0 auto;
 }
 
@@ -1088,12 +1086,13 @@ i,.days_icon{
 }
 
 .customer_detail{
-	display:none;
-	position		:relative;
-	width			:99vw;
-	min-height		:95vh;	
-	margin			:0 auto;
+	position		:fixed;
+	top				:0;
+	left			:100vw;
+	width			:100vw;
+	height			:100vh;
 	background		:linear-gradient(#ffe0f0,#ffe8f8);
+	z-index			:12;
 }
 
 
@@ -1115,16 +1114,19 @@ i,.days_icon{
 }
 
 .customer_body{
-	position		:relative;
-	margin			:0 auto;
+	position		:absolute;
+	top				:10vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
 	width			:96vw;
+	overflow-y		:scroll;
 	overflow-x		:hidden;
 	background		:#fafafa;
 	z-index			:19;
 	border-top		:1vw solid #f17766;
 	border-bottom	:1vw solid #f17766;
 }
-
 
 .customer_memo{
 	width			:95vw;
@@ -1137,7 +1139,7 @@ i,.days_icon{
 	width			:98vw;
 	border-collapse	:separate;
 	border-spacing	:1vw 0;
-	margin			:2vw auto;
+	margin			:15.5vw auto 2vw auto;
 	background		:#fafafa;
 }
 
@@ -2850,7 +2852,8 @@ input[type=range]::-moz-range-thumb{
 	line-height	:5vw;
 	font-size	:4vw;
 	text-align	:center;
-	margin: 0.5vw 1vw;
+	margin		: 0.5vw 1vw;
+	font-family	:at_icon;
 }
 
 .item_select{
@@ -2858,8 +2861,9 @@ input[type=range]::-moz-range-thumb{
 	width		:8vw;
 	height		:8vw;
 	line-height	:8vw;
-	font-size	:4.5vw;
+	font-size	:7vw;
 	text-align	:center;
+	font-family	:at_icon;
 }
 
 .item_name{

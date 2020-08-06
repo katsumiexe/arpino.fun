@@ -3,7 +3,6 @@
 顧客情報読み込み
 */
 require_once ("./post_inc.php");
-
 $regist_date=date("Y-m-d H:i:s",$jst);
 
 $group	=$_POST["group"];
@@ -110,8 +109,48 @@ if($img_code){
 	$sql_log .=" face='{$clist}'";
 	$sql_log .=" WHERE id='{$tmp_auto}'";
 	$wpdb->query($sql_log);
+
+
+	$html_img ="<img src=\"{$link}\" class=\"mail_img\">";
+	$html_img.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$clist}\">";
+}else{
+//	$html_img="<img src=\"{php echo get_template_directory_uri();}/img/customer_no_img.jpg\" class=\"mail_img\">";
 }
 
-echo($sql_log);
+
+for($s=1;$s<6;$s++){
+	$html_fav.="<span id=\"fav_{$tmp_auto}_{$s}\" class=\"customer_list_fav_icon";
+
+	if($customer[$n]["fav"]>=$s){
+		$html_fav.=" fav_in";
+	}
+	$html_fav.="\"></span>\"";
+}
+
+$html="<div id=\"clist{$tmp_auto}\" class=\"customer_list\">";
+$html.=$html_img;
+$html.="<div class=\"customer_list_fav\">";
+$html.=$html_fav;
+$html.="</div>";
+
+$html.="<div class=\"customer_list_name\">{$name} 様</div>";
+$html.="<div class=\"customer_list_nickname\">{$name}</div>";
+$html.="<span class=\"mail_al\"></span>";
+$html.="<input type=\"hidden\" class=\"customer_hidden_fav\" value=\"{$fav}\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_yy\" value=\"{$yy}\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_mm\" value=\"{$mm}\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_dd\" value=\"{$dd}\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_ag\" value=\"{$ag}\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_group\" value=\"{$group}\">";
+
+$html.="<input type=\"hidden\" class=\"customer_hidden_mail\" value=\"\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_tel\" value=\"\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_twitter\" value=\"\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_facebook\" value=\"\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_insta\" value=\"\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_line\" value=\"\">";
+$html.="<input type=\"hidden\" class=\"customer_hidden_web\" value=\"\">";
+$html.="</div>";
+echo $html;
 exit();
 ?>
