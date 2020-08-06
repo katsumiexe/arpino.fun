@@ -1424,6 +1424,16 @@ console.log("VwBase:"+VwBase);
 		},
 	});
 
+	$('.item_select').on('click',function (){
+
+		Tmp =$(this).attr('id').replace("id","");
+		console.log(Tmp);
+		$('.item_select_box').slideUp(100);
+		if($('#'+Tmp).css('display')=='none'){
+			$('#'+Tmp).slideDown(100);
+		}
+
+	});
 
 	$('.cal_days_memo').on('change',function (){
 		TmpLog=$('.cal_days_memo').val();

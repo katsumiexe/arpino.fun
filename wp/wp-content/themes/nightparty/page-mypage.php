@@ -1027,12 +1027,16 @@ Twitter連携
 		<?=$a1["sort"]?>
 	</td>
 	<td class="log_td">
-		<select id="item_color[<?=$a1["sort"]?>]" class="item_select" style="background:<?=$base_color[$a1["item_color"]]?>;color:<?=$base_color[$a1["item_color"]]?>">
+		<div id="item_select_id<?=$a1["sort"]?>" class="item_select" style="background:<?=$base_color[$a1["item_color"]]?>"></div>
+		<div id="item_select_<?=$a1["sort"]?>" class="item_select_box">
 		<?foreach($base_color as $b1 => $b2){?>
-		<option value="<?=$b1?>" style="background:<?=$b2?>; color:<?=$b2?>;" <?if($a1["item_color"] == $b1){?>selected="selected"<?}?>>-■-</option>
+			<label class="item_select_label" style="background:<?=$b2?>;">
+				<input type="radio" name="item_color[<?=$a1["sort"]?>]" value="<?=$b1?>" <?if($a1["item_color"] == $b1){?>checked="checked"<?}?>>
+			</label>
 		<?}?>
-		</select>
+		</div>
 	</td>
+
 	<td class="log_td">
 		<select id="item_icon[<?=$a1["sort"]?>]" class="item_select">
 		<?foreach($base_icon as $b1 => $b2){?>

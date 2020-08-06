@@ -2839,27 +2839,52 @@ input[type=range]::-moz-range-thumb{
 	box-shadow	:0 0 2vw 2vw rgba(5255,255,255,0.5);
 }
 
+.log_td{
+	position:relative;
+
+}
+
+
+.item_select_label{
+	display		:inline-block;
+	width		:8vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:4.5vw;
+	text-align	:center;
+}
+
 .item_select{
-	width:8vw;
-	height:8vw;
-	font-size:5vw;
+	display:inline-block;
+	width		:8vw;
+	height		:8vw;
+	line-height	:8vw;
+	font-size	:4.5vw;
+	text-align	:center;
 }
 
 
 .item_name{
-	width:50vw;
+	width:45vw;
 	height:8vw;
 	font-size:5vw;
 	text-align:left;	
 }
 
 .item_price{
-	width:20vw;
+	width:25vw;
 	height:8vw;
 	font-size:5vw;
 	text-align:right;	
 }
 
+.item_select_box{
+	display		:none;
+	width		:8vw;
+	position	:absolute;
+	top			:8vw;
+	left		:0;
+}
 
 
 /*-------------------------------------------------------------------*/
