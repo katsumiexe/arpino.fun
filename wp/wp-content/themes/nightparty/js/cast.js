@@ -1432,8 +1432,8 @@ console.log("VwBase:"+VwBase);
 		if($('#'+Tmp).css('display')=='none'){
 			$('#'+Tmp).slideDown(100);
 		}
-
 	});
+
 
 	$('.cal_days_memo').on('change',function (){
 		TmpLog=$('.cal_days_memo').val();
