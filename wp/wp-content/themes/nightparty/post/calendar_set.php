@@ -150,9 +150,16 @@ $v_month	=substr($c_month,5,2)."月";
 
 $cal["html"].="<table class=\"cal_table\"><tr>";
 $cal["html"].="<td class=\"cal_top\" colspan=\"7\">";
+$cal["html"].="<div class=\"cal_title\">";
 $cal["html"].="<span class=\"cal_prev\"></span>";
 $cal["html"].="<span class=\"cal_table_ym\"><span class=\"v_year\">{$v_year}</span><span class=\"v_month\">{$v_month}</span></span>";
 $cal["html"].="<span class=\"cal_next\"></span>";
+$cal["html"].="</div>";
+$cal["html"].="<div class=\"cal_btn\">";
+$cal["html"].="<div class=\"cal_btn_on1\"></div>";
+$cal["html"].="<div class=\"cal_btn_on2\"></div>";
+$cal["html"].="<div class=\"cal_circle\"></div>";
+$cal["html"].="</div>";
 $cal["html"].="<span id=\"para{$tmp_ymd}\">";
 $cal["html"].=$cal_app;
 $cal["html"].=$birth_app;

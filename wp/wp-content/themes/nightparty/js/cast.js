@@ -1186,23 +1186,12 @@ console.log("VwBase:"+VwBase);
 		$('.cal_circle').animate({'left':'0vw'},200);
 		$('.cal_btn_on1').animate({'color':'#f17766'},200);
 		$('.cal_btn_on2').animate({'color':'#b0b0a0'},200);
-
-		$('.cal_days').animate({'top':'83vw'},200);
-		$('span.cal_log').animate({'height':'0'},200);
-		$('.cal_td_h').animate({'height':'10vw'},200);
-
 	});
 
 	$('.cal').on('click','.cal_btn_on2',function () {
 		$('.cal_circle').animate({'left':'11vw'},200);
 		$('.cal_btn_on2').animate({'color':'#f17766'},200);
 		$('.cal_btn_on1').animate({'color':'#b0b0a0'},200);
-		$('span.cal_log').animate({'height':'10vw'},200);
-		$('.cal_td_h').animate({'height':'15vw'},200);
-		$('.cal_days').animate({'top':'100vh'},200);
-
-
-
 	});
 
 	$('.cal').on('click','.cal_prev',function () {
@@ -1380,12 +1369,13 @@ console.log("VwBase:"+VwBase);
 	$('.cal').draggable({
 		axis: 'x',
 		drag: function( event, ui ) {
+			console.log(ui.position.left)
+
 		},
 
 		stop: function( event, ui ) {
-			if(ui.position.left > VwBase*(-80)){
-				$('.cal').animate({'left':'0'},100);
-
+			if(ui.position.left > VwBase*(-90)){/*■先月*/
+				$('.cal').animate({'left':'0'},200);
 				$.post({
 					url:Dir + "/post/calendar_set.php",
 					data:{
@@ -1397,7 +1387,8 @@ console.log("VwBase:"+VwBase);
 					dataType: 'json',
 
 				}).done(function(data, textStatus, jqXHR){
-					$('.cal').prepend(data.html).css('left','-100vw');
+
+					$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
 					$(".cal").children().last().remove();
 					$('#c_month').val(data.date);
 /*
@@ -1408,8 +1399,8 @@ console.log("VwBase:"+VwBase);
 
 				});
 
-			}else if(ui.position.left < VwBase*(-120)){
-				$('.cal').animate({'left':'-200vw'},100);
+			}else if(ui.position.left < VwBase*(-110)){/*■来月*/
+				$('.cal').animate({'left':'-200vw'},200);
 				$.post({
 					url:Dir + "/post/calendar_set.php",
 					data:{
@@ -1420,7 +1411,7 @@ console.log("VwBase:"+VwBase);
 					},
 					dataType: 'json',
 				}).done(function(data, textStatus, jqXHR){
-					$('.cal').append(data.html).css('left','-100vw');
+					$('.cal').append(data.html).animate({'left':'-100vw'},0);
 					$(".cal").children().first().remove();
 					$('#c_month').val(data.date);
 					console.log(data.sql);

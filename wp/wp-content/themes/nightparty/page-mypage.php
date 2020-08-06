@@ -344,20 +344,12 @@ $reg_base_ag=date("Y")-1980;
 			$app_n3=$memo_dat[$tmp_ymd];
 			$app_n4=$blog_dat[$tmp_ymd];
 
-
-			if($tmp_w ==0){
-				$td_h="cal_td_h";
-			}else{
-				$td_h="";
-			}
-
-			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} {$td_h}\">";
+			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
 			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
 			$cal[$n].="<span class=\"cal_i4 {$app_n4}\"></span>";
-			$cal[$n].="<span class=\"cal_log cc{$tmp_week}\"></span>";
 
 			$cal[$n].="</td>";
 		}
@@ -512,6 +504,14 @@ $reg_base_ag=date("Y")-1980;
 	foreach($dat as $a1){
 		$tag_list[$a1["slug"]]=$a1["name"];
 	}
+
+	$sql ="SELECT * FROM wp01_0cast_log_table";
+	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $a1){
+		$log_item[$a1["sort"]]=$a1;
+	}
+	ksort($log_item);
 }
 
 ?>
@@ -641,6 +641,7 @@ var C_Id_tmp=0;
 				<table class="cal_table">
 					<tr>
 						<td class="cal_top" colspan="7">
+							<div class="cal_title">
 							<span class="cal_prev"></span>
 							<span class="cal_table_ym"><span class="v_year"><?=$v_year[$c]?></span><span class="v_month"><?=$v_month[$c]?></span></span>
 							<span class="cal_next"></span>
@@ -649,11 +650,11 @@ var C_Id_tmp=0;
 							<?=$birth_app[substr($month_ym[$c],-2)]?>
 							<?=$memo_app[$month_ym[$c]]?>
 							</span>
-
+							</div>
 							<div class="cal_btn">
-							<div class="cal_btn_on1"></div>
-							<div class="cal_btn_on2"></div>
-							<div class="cal_circle"></div>
+								<div class="cal_btn_on1"></div>
+								<div class="cal_btn_on2"></div>
+								<div class="cal_circle"></div>
 							</div>
 						</td>
 					</tr>
@@ -984,8 +985,12 @@ PASSWORD
 画面ロック時間
 LINE連携
 Twitter連携
+<br>
+<hr>
 
-
+<?foreach($log_item as $a1){?>
+<div id="logitem_<?=$a1["sort"]?>" class="color_<?=$a1["item_color"]?>"><span><?=$a1["item_icon"]?></span><?=$a1["item_name"]?>　￥<?=$a1["price"]?></div>
+<?}?>
 
 		</div>
 	</div>
