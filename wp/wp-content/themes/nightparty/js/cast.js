@@ -1425,15 +1425,23 @@ console.log("VwBase:"+VwBase);
 	});
 
 	$('.item_select').on('click',function (){
-
 		Tmp =$(this).attr('id').replace("id","");
-		console.log(Tmp);
 		$('.item_select_box').slideUp(100);
 		if($('#'+Tmp).css('display')=='none'){
 			$('#'+Tmp).slideDown(100);
 		}
 	});
 
+	$('.item_select_label').on('click',function (){
+		$('.item_select_box').slideUp(100);
+		Tmp=$(this).attr('pm');
+		Clr=$(this).css('background');
+		Cds=$(this).attr('cd');
+
+		$('#item_select_id'+Tmp).css('background',Clr);
+		$('#item_color_'+Tmp).val(Cds);
+
+	});
 
 	$('.cal_days_memo').on('change',function (){
 		TmpLog=$('.cal_days_memo').val();
