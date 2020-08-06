@@ -2839,20 +2839,28 @@ input[type=range]::-moz-range-thumb{
 	box-shadow	:0 0 2vw 2vw rgba(5255,255,255,0.5);
 }
 
-td.ui-datepicker-week-end:first-child a.ui-state-default{
-	background-color: #ffecec;
-	color: #f00!important;
+.item_select{
+	width:8vw;
+	height:8vw;
+	font-size:5vw;
 }
-td.ui-datepicker-week-end:last-child a.ui-state-default{
-	background-color: #eaeaff;
-	color: #00f!important;
+
+
+.item_name{
+	width:50vw;
+	height:8vw;
+	font-size:5vw;
+	text-align:left;	
 }
-td.ui-datepicker-week-end a.ui-state-hover{
-	opacity: 0.8;
+
+.item_price{
+	width:20vw;
+	height:8vw;
+	font-size:5vw;
+	text-align:right;	
 }
-td.ui-datepicker-week-end a.ui-state-highlight{
-	background-color: #fffa90!important;
-}
+
+
 
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
@@ -3072,7 +3080,6 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 	color:#fafafa;
 }
 
-
 .color_1{background:#303030;}
 .color_2{background:#000080;}
 .color_3{background:#008000;}
@@ -3085,5 +3092,3 @@ td.ui-datepicker-week-end a.ui-state-highlight{
 .color_10{background:#ffd700;}
 .color_11{background:ffc0cb;}
 .color_12{background:#b0e0e6;}
-
-

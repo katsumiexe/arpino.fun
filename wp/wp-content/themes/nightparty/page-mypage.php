@@ -512,6 +512,25 @@ $reg_base_ag=date("Y")-1980;
 		$log_item[$a1["sort"]]=$a1;
 	}
 	ksort($log_item);
+
+	$sql ="SELECT item_color,item_id FROM wp01_0item_color";
+	$sql.=" WHERE del='0'";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $a1){
+		$base_color[$a1["item_id"]]=$a1["item_color"];
+	}
+	ksort($base_color);
+
+	$sql ="SELECT item_icon,item_id FROM wp01_0item_icon";
+	$sql.=" WHERE del='0'";
+	$dat = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat as $a1){
+		$base_icon[$a1["item_id"]]=$a1["item_icon"];
+	}
+	ksort($base_icon);
+
+
+
 }
 
 ?>
@@ -988,9 +1007,48 @@ Twitter連携
 <br>
 <hr>
 
+<select id="" name="log_item">
 <?foreach($log_item as $a1){?>
-<div id="logitem_<?=$a1["sort"]?>" class="color_<?=$a1["item_color"]?>"><span><?=$a1["item_icon"]?></span><?=$a1["item_name"]?>　￥<?=$a1["price"]?></div>
+<option value="<?=$a1["sort"]?>" class="color_<?=$a1["item_color"]?>">	<span><?=$a1["item_icon"]?></span>　<?=$a1["item_name"]?>　￥<?=$a1["price"]?></div></option>
 <?}?>
+</select>
+
+<table class="log_item_set">
+	<tr>
+		<td class="log_item_order">順</td>
+		<td class="log_item_color">色</td>
+		<td class="log_item_icon">絵</td>
+		<td class="log_item_name">名前</td>
+		<td class="log_item_price">金額</td>
+	</tr>
+<?foreach($log_item as $a1){?>
+<tr>
+	<td class="log_td">
+		<?=$a1["sort"]?>
+	</td>
+	<td class="log_td">
+		<select id="item_color[<?=$a1["sort"]?>]" class="item_select" style="background:<?=$base_color[$a1["item_color"]]?>;color:<?=$base_color[$a1["item_color"]]?>">
+		<?foreach($base_color as $b1 => $b2){?>
+		<option value="<?=$b1?>" style="background:<?=$b2?>; color:<?=$b2?>;" <?if($a1["item_color"] == $b1){?>selected="selected"<?}?>>-■-</option>
+		<?}?>
+		</select>
+	</td>
+	<td class="log_td">
+		<select id="item_icon[<?=$a1["sort"]?>]" class="item_select">
+		<?foreach($base_icon as $b1 => $b2){?>
+		<option value="<?=$b1?>" <?if($a1["item_icon"] == $b1){?>selected="selected"<?}?>>-<?=$b2?>-</option>
+		<?}?>
+		</select>
+	</td>
+	<td class="log_td">
+		<input id="item_name[<?=$a1["sort"]?>]" type="text" value="<?=$a1["item_name"]?>" class="item_name">
+	</td>
+	<td class="log_td">
+		<input id="item_price[<?=$a1["sort"]?>]" type="text" value="<?=$a1["price"]?>" class="item_price">
+	</td>
+</tr>
+<?}?>
+</table>
 
 		</div>
 	</div>
