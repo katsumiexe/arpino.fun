@@ -438,7 +438,7 @@ input:focus{
 	width			:38vw;
 	height			:5vw;
 	line-height		:5vw;
-	color			:#303030;
+	color			:#0000d0;
 	text-align		:left;
 	font-size:0;
 }
@@ -446,13 +446,16 @@ input:focus{
 .cal_days_birth{
 	position		:absolute;
 	display			:inline-block;
-	top				:14.5vw;
+	top				:14vw;
 	left			:1vw;
 	width			:38vw;
 	line-height		:6vw;
 	font-size		:4vw;
 	color			:#303030;
 	text-align		:left;
+	height			:24vw;
+	overflow-x		:hidden;
+	overflow-y		:scroll;
 }
 
 .cal_days_memo{
@@ -575,9 +578,9 @@ i,.days_icon{
 	bottom			:0;
 	margin			:auto;
 	right			:1vw;
-	height			:9vw;
+	height			:8vw;
 	width			:20vw;
-	border-radius	:4.5vw;
+	border-radius	:4vw;
 	background		:linear-gradient(#f0f0e0,#e0e0d0);
 }
 
@@ -586,12 +589,12 @@ i,.days_icon{
 	top				:0;
 	bottom			:0;
 	margin			:auto;
-	height			:8vw;
-	line-height		:8vw;
-	width			:8vw;
+	height			:7vw;
+	line-height		:7vw;
+	width			:7vw;
 	text-align		:center;
 	font-size		:5vw;
-	border-radius	:3.5vw;
+	border-radius	:4vw;
 	font-family		:at_icon;
 	color			:#b0b0a0;
 }
@@ -612,9 +615,9 @@ i,.days_icon{
 	bottom			:0;
 	margin			:auto;
 	left			:0vw;
-	height			:8vw;
-	width			:8vw;
-	border-radius	:4.5vw;
+	height			:7vw;
+	width			:7vw;
+	border-radius	:4vw;
 	border			:0.5vw solid #f17766;
 	background		:rgba(255,0,200,0.2);
 }
@@ -2841,8 +2844,75 @@ input[type=range]::-moz-range-thumb{
 	box-shadow	:0 0 2vw 2vw rgba(5255,255,255,0.5);
 }
 
-.log_td{
-	position:relative;
+.log_item_set{
+	margin:0 auto;
+	border-collapse: collapse;
+}
+
+.log_td_top{
+	color		:#fafafa;
+	background	:#f17766;
+	position	:relative;
+	border		:1px solid #303030;
+	text-align	:center;
+	font-weight	:700;
+	font-size:4vw;
+}
+
+.log_td_order{
+	font-size	:5vw;
+	text-align	:right;
+	height		:5vw;
+	line-height	:5vw;
+	width		:8vw;
+	background	:#fafafa;
+	border		:1px solid #303030;
+}
+
+.log_td_color,.log_td_icon,.log_td_handle{
+	font-size	:3.5vw;
+	text-align	:center;
+	height		:5vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	width		:8vw;
+	border		:1px solid #303030;
+}
+
+.log_td_name{
+	height		:5vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	width:36vw;
+	border		:1px solid #303030;
+}
+
+.log_td_price{
+	height		:5vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	width		:21vw;
+	border		:1px solid #303030;
+}
+
+.color_picker{
+	position	:absolute;
+	display		:flex;
+	flex-wrap	:wrap;
+	width		:72vw;
+	height		:36vw;
+	font-size	:0;
+	background	:#fafafa;
+	border		:1vw solid #fafafa;
+	z-index		:20;	
+	box-shadow	:1px 1px 2px rgba(30,30,30,0.6);
+}
+
+.color_picker_list{
+	display		:inline-block;
+	flex-basis	:4vw;
+	height		:4vw;
+	margin		:1vw;
 }
 
 .item_select_label{
@@ -2857,27 +2927,31 @@ input[type=range]::-moz-range-thumb{
 }
 
 .item_select{
-	display:inline-block;
+	display		:inline-block;
 	width		:8vw;
-	height		:8vw;
-	line-height	:8vw;
+	height		:9vw;
+	line-height	:9vw;
 	font-size	:7vw;
 	text-align	:center;
 	font-family	:at_icon;
 }
 
 .item_name{
-	width:45vw;
-	height:8vw;
-	font-size:5vw;
-	text-align:left;	
+	width		:35vw;
+	height		:8vw;
+	font-size	:5vw;
+	text-align	:left;	
+	border		:0.5vw solid #fafafa;
+	padding:0;
 }
 
 .item_price{
-	width:22vw;
+	width:20vw;
 	height:8vw;
 	font-size:5vw;
 	text-align:right;	
+	border:0.5vw solid #fafafa;
+	padding:0;
 }
 
 .item_select_box{

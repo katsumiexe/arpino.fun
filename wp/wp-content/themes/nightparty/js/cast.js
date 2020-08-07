@@ -6,6 +6,10 @@ $(function(){
 	var Rote=0;
 	var ImgZoom=100;
 
+
+	$('.color_picker').hide();
+
+
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('on')){
 			$(this).removeClass('on');
@@ -527,18 +531,12 @@ $(function(){
 	});
 */
 
-
 	$('.customer_list').on('click',function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
-		$('.main').css('positon','fixed');
 
-
+		$('.main').css('position','fixed');
 		var TmpHgt=VhBase*100-VwBase*115;
-
-console.log(VhBase);
-console.log(VwBase);
-console.log(TmpHgt);
 
 		$('.customer_body').css('height',TmpHgt);
 		C_Id=$(this).attr('id').replace('clist','');
@@ -1186,7 +1184,7 @@ console.log("VwBase:"+VwBase);
 	});
 
 	$('.cal').on('click','.cal_btn_on2',function () {
-		$('.cal_circle').animate({'left':'11vw'},200);
+		$('.cal_circle').animate({'left':'12vw'},200);
 		$('.cal_btn_on2').animate({'color':'#f17766'},200);
 		$('.cal_btn_on1').animate({'color':'#b0b0a0'},200);
 	});
@@ -1429,8 +1427,8 @@ console.log("VwBase:"+VwBase);
 		}
 	});
 
-	$('.item_select_label').on('click',function (){
-		$('.item_select_box').slideUp(100);
+	$('.color_picker_list').on('click',function (){
+		$('.color_picker').slideUp(100);
 		Tmp=$(this).attr('pm');
 		Clr=$(this).css('background');
 		Cds=$(this).attr('cd');
@@ -1542,6 +1540,36 @@ console.log("VwBase:"+VwBase);
 				$('.slide').animate({'left': '0vw'},100);
 			}
 		}
+	})
+
+	$('#item_sort').sortable({
+		axis: 'y',
+        handle: '.log_td_handle',
+		update : function() {
+			var ChgList=$(this).sortable("toArray");
+			var Cnt=ChgList.length;
+			console.log(ChgList);
+			var Tmp=1;
+	  		for(i=0;i<Cnt;i++){
+				TmpId=ChgList[i].replace('i','');
+				$('#'+ChgList[i]).children('.log_td_order').text(Tmp);
+
+				$('#'+ChgList[i]).find('.item_select').attr('id','item_select_id'+Tmp);
+				$('#'+ChgList[i]).find('.item_select_box').attr('id','item_select_'+Tmp);
+				$('#'+ChgList[i]).find('#item_color_'+TmpId).attr('id','item_color_'+Tmp);
+				$('#'+ChgList[i]).find('#item_icon_'+TmpId).attr('id','item_icon_'+Tmp);
+
+				$('#'+ChgList[i]).find('#item_name_'+TmpId).attr('id','#item_name_'+Tmp);
+				$('#'+ChgList[i]).find('#item_price_'+TmpId).attr('id','#item_price_'+Tmp);
+
+/*				$('#'+ChgList[i]).attr('id','i'+Tmp);*/
+				console.log('tmp'+Tmp);
+				console.log('chg'+ChgList[i]);
+
+				Tmp++;
+	  		}
+        }
 	});
 });
+
 
