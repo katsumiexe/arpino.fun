@@ -429,7 +429,7 @@ input:focus{
 	font-size		:3.5vw;
 	font-weight		:700;
 	border-bottom	:0.5vw solid #C7a090;
-	color			:303030;
+	color			:#303030;
 	text-align		:left;
 	padding			:0.5vw 1vw;
 }
@@ -475,7 +475,7 @@ input:focus{
 	resize			:none;
 	background		:#fafafa;
 	font-size		:4.5vw;
-	color			:303030;
+	color			:#303030;
 }
 
 i,.days_icon{
@@ -799,26 +799,72 @@ i,.days_icon{
 	padding-left	:1vw;
 	font-size		:4vw;
 	height			:10vw;
+}
 
+
+.customer_log_td{
+	border-bottom:0.5vw solid #303030;
+	margin-bottom:1vw;
+}
+
+.customer_log_icon{
+	display		:inline-block;
+	width		:4.5vw;
+	height		:4.5vw;
+	font-family:at_icon;		
+}
+
+.customer_log_date{
+	font-size	:4vw;
+	font-weight	:600;
+	color		:#303030;
+	border-bottom:1px solif #9000c0;
+	margin-bottom:0.5vw;
+}
+
+.customer_log_list{
+	display			:inline-block;
+	position		:relative;
+	width			:40vw;
+	vertical-align	:top;
+}
+
+.customer_log_memo{
+	display			:inline-block;
+	border			:1px solid #303030;
+	width			:47vw;
+	background		:#fafafa;
+	font-size		:3.5vw;
+	color			:#303030;
+	padding			:0.5vw;
+	min-height		:10vw;
+	vertical-align	:top;
+	margin			:0.5vw 1vw auto 0.5vw; 
 }
 
 .customer_log_item{
 	position		:relative;
 	font-size		:3.5vw;
-	height			:6vw;
-	line-height		:6vw;
-	width			:32vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:38vw;
 	background		:#fafaf0;
-	margin			:0.5vw;
+	margin			:1px;
+}
+
+.log_item_icon{
+	position		:absolute;
+	left			:0.5vw;
+	top				:0;
+	bottom			:0;
+	font-family		:at_icon;
 }
 
 .log_item_name{
 	position		:absolute;
-
-	left			:0.5vw;
+	left			:5vw;
 	top				:0;
 	bottom			:0;
-	font-weight		:600;
 }
 
 .log_item_price{
@@ -826,9 +872,7 @@ i,.days_icon{
 	right			:0.5vw;
 	top				:0;
 	bottom			:0;
-	font-weight		:600;
 }
-
 
 .item_textbox{
 	height			:9vw;
@@ -967,9 +1011,6 @@ i,.days_icon{
 	cursor:pointer;
 }
 
-
-
-
 .rd{
 	display:none;
 }
@@ -978,7 +1019,6 @@ i,.days_icon{
 	background		:#f17766;
 	color			:#fafafa;	
 } 
-
 
 .customer_sns{
 	width			:95vw;
@@ -1792,8 +1832,8 @@ i,.days_icon{
 	text-align		:center;
 	font-size		:5vw;
 	background		:#008000;
-	color:#fafafa;
-	font-weigh:700;
+	color			:#fafafa;
+	font-weight		:700;
 }
 
 .blog_tag_sel{
@@ -2902,15 +2942,28 @@ input[type=range]::-moz-range-thumb{
 	border		:1px solid #303030;
 }
 
+.log_td_order_new{
+	font-size	:5vw;
+	text-align	:center;
+	height		:9vw;
+	line-height	:9vw;
+	width		:8vw;
+	background	:#0000d0;
+	border		:1px solid #303030;
+	color	:#fafafa;
+	font-weight:900;
+}
+
 .log_td_color,.log_td_icon,.log_td_handle{
-	font-size	:3.5vw;
+	font-size	:6vw;
 	text-align	:center;
 	height		:9vw;
 	line-height	:9vw;
 	background	:#fafafa;
 	width		:8vw;
 	border		:1px solid #303030;
-	cursor:pointer;
+	cursor		:pointer;
+	font-family:at_icon;
 }
 
 
@@ -3233,5 +3286,5 @@ input[type=range]::-moz-range-thumb{
 .color_8{background:#d2b48c;}
 .color_9{background:#c0c0c0;}
 .color_10{background:#ffd700;}
-.color_11{background:ffc0cb;}
+.color_11{background:#ffc0cb;}
 .color_12{background:#b0e0e6;}
