@@ -104,6 +104,53 @@ $c_code[61]="#c0c040";
 $c_code[62]="#c0c080";
 $c_code[63]="#c0c0c0";
 
+
+$i_code[0]="";
+$i_code[1]="";
+$i_code[2]="";
+$i_code[3]="";
+$i_code[4]="";
+$i_code[5]="";
+$i_code[6]="";
+$i_code[7]="";
+$i_code[8]="";
+$i_code[9]="";
+
+$i_code[10]="";
+$i_code[11]="";
+$i_code[12]="";
+$i_code[13]="";
+$i_code[14]="";
+$i_code[15]="";
+$i_code[16]="";
+$i_code[17]="";
+$i_code[18]="";
+$i_code[19]="";
+
+$i_code[20]="";
+$i_code[21]="";
+$i_code[22]="";
+$i_code[23]="";
+$i_code[24]="";
+$i_code[25]="";
+$i_code[26]="";
+$i_code[27]="";
+$i_code[28]="";
+$i_code[29]="";
+
+$i_code[30]="";
+$i_code[31]="";
+$i_code[32]="";
+$i_code[33]="";
+$i_code[34]="";
+$i_code[35]="";
+$i_code[36]="";
+$i_code[37]="";
+$i_code[38]="";
+$i_code[39]="";
+
+
+
 if($_SESSION){
 	if($jst<$_SESSION["time"]+32400){
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
@@ -1076,24 +1123,26 @@ Twitter連携
 			<td class="log_td_order">
 				<?=$a1["sort"]?>
 			</td>
+
 			<td class="log_td_color">
-				<div id="item_select_id<?=$a1["sort"]?>" class="item_select" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
-				<div id="item_select_<?=$a1["sort"]?>" class="color_picker">
+				<div id="item_color_<?=$a1["sort"]?>" class="item_color" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
+				<div id="color_picker_<?=$a1["sort"]?>" class="color_picker">
 					<?foreach($c_code as $b1 => $b2){?>
 						<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
 					<?}?>
 				</div>
-				<input id="item_color_<?=$a1["sort"]?>" type="hidden" value="<?=$a1["item_color"]?>">
+				<input id="color_hidden_<?=$a1["sort"]?>" class="color_hidden" type="hidden" value="<?=$a1["item_color"]?>">
 			</td>
 
 			<td class="log_td_icon">	
-				<div id="item_select2_id<?=$a1["sort"]?>" class="item_select" style="color:<?=$base_color[$a1["item_color"]]?>"><?=$base_icon[$a1["item_icon"]]?></div>
-				<div id="item_select2_<?=$a1["sort"]?>" class="item_select_box">
-					<?foreach($base_icon as $b1 => $b2){?>
-						<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="item_select_label"><?=$b2?></span>
+				<div id="item_icon_<?=$a1["sort"]?>" class="item_icon" style="color:<?=$c_code[$a1["item_color"]]?>"><?=$i_code[$a1["item_icon"]]?></div>
+				<div id="icon_picker_<?=$a1["sort"]?>" class="icon_picker">
+					<?foreach($i_code as $b1 => $b2){?>
+						<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
 					<?}?>
 				</div>
-				<input id="item_icon_<?=$a1["sort"]?>" type="hidden" value="<?=$a1["item_icon"]?>">
+				<input id="item_icon_hidden_<?=$a1["sort"]?>" type="hidden" value="<?=$a1["item_icon"]?>">
+
 			</td>
 			<td class="log_td_name">
 				<input id="item_name_<?=$a1["sort"]?>" type="text" value="<?=$a1["item_name"]?>" class="item_name">
@@ -1109,9 +1158,60 @@ Twitter連携
 </tbody>
 </table>
 
+<div class="box">
+<table class="log_item_set">
+<thead>
+	<tr>
+		<td class="log_td_top" colspan="6">新規登録</td>
+	</tr>
+	<tr>
+		<td class="log_td_top">順</td>
+		<td class="log_td_top">色</td>
+		<td class="log_td_top">絵</td>
+		<td class="log_td_top">名前</td>
+		<td class="log_td_top">金額</td>
+		<td class="log_td_top"></td>
+	</tr>
+</thead>
 
+	<tr style="background:#f0faff">
+		<td class="log_td_order">新</td>
+		<td class="log_td_color">
+			<div class="item_color" style="background:<?=$c_code[10]?>"></div>
+			<div class="color_picker">
+				<?foreach($c_code as $b1 => $b2){?>
+					<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
+				<?}?>
+			</div>
+			<input id="color_new" type="hidden" value="<?=$c_code[10]?>">
+		</td>
 
+		<td class="log_td_icon">	
+			<div class="item_icon" style="color:<?=$c_code[10]?>"><?=$i_code[8]?></div>
+			<div class="icon_picker">
+				<?foreach($i_code as $b1 => $b2){?>
+					<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
+				<?}?>
+			</div>
+			<input id="icon_new" type="hidden" value="<?=$i_code[8]?>">
+		</td>
 
+		<td class="log_td_name">
+			<input id="name_new" type="text" value=" " class="item_name">
+		</td>
+		<td class="log_td_price">
+			<input id="price_new" type="text" value="0" class="item_price">
+		</td>
+		<td class="log_td_handle">
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="box">
+<div class="item_set">変更</div>
+<div class="item_reset">戻す</div>
+</div>
 
 		</div>
 	</div>

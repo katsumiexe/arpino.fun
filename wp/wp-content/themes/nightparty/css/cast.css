@@ -795,7 +795,35 @@ i,.days_icon{
 	padding-left	:1vw;
 	font-size		:4vw;
 	height			:10vw;
+
 }
+
+.customer_log_item{
+	position		:relative;
+	font-size		:3.5vw;
+	height			:6vw;
+	line-height		:6vw;
+	width			:32vw;
+	background		:#fafaf0;
+	margin			:0.5vw;
+}
+
+.log_item_name{
+	position		:absolute;
+	left			:0.5vw;
+	top				:0;
+	bottom			:0;
+	font-weight		:600;
+}
+
+.log_item_price{
+	position		:absolute;
+	right			:0.5vw;
+	top				:0;
+	bottom			:0;
+	font-weight		:600;
+}
+
 
 .item_textbox{
 	height			:9vw;
@@ -2877,7 +2905,9 @@ input[type=range]::-moz-range-thumb{
 	background	:#fafafa;
 	width		:8vw;
 	border		:1px solid #303030;
+	cursor:pointer;
 }
+
 
 .log_td_name{
 	height		:5vw;
@@ -2908,32 +2938,39 @@ input[type=range]::-moz-range-thumb{
 	box-shadow	:1px 1px 2px rgba(30,30,30,0.6);
 }
 
+.icon_picker{
+	position	:absolute;
+	display		:flex;
+	flex-wrap	:wrap;
+	width		:70vw;
+	height		:40vw;
+	font-size	:0;
+	background	:#fafafa;
+	border		:1vw solid #fafafa;
+	z-index		:20;	
+	box-shadow	:1px 1px 2px rgba(30,30,30,0.6);
+}
+
 .color_picker_list{
 	display		:inline-block;
 	flex-basis	:4vw;
 	height		:4vw;
 	margin		:1vw;
+	cursor:pointer;
 }
 
-.item_select_label{
+.icon_picker_list{
 	display		:inline-block;
-	width		:6vw;
-	height		:5vw;
-	line-height	:5vw;
-	font-size	:4vw;
-	text-align	:center;
-	margin		: 0.5vw 1vw;
-	font-family	:at_icon;
-}
+	flex-basis	:6vw;
+	height		:6vw;
+	margin		:0.5vw;
+	cursor:pointer;
 
-.item_select{
-	display		:inline-block;
-	width		:8vw;
-	height		:9vw;
-	line-height	:9vw;
-	font-size	:7vw;
-	text-align	:center;
-	font-family	:at_icon;
+	font-size		:5.5vw;
+	line-height		:6vw;
+	text-align		:center;
+	color			:#303030;
+	font-family		:at_icon;
 }
 
 .item_name{
@@ -2954,16 +2991,13 @@ input[type=range]::-moz-range-thumb{
 	padding:0;
 }
 
-.item_select_box{
-	background:#fafafa;
-	display		:none;
+.item_color,.item_icon{
 	width		:8vw;
-	position	:absolute;
-	top			:9vw;
-	left		:0;
-	right		:0;
-	margin		:auto;
-	z-index		:20;
+	height		:8vw;
+	font-family	:at_icon;
+	font-size	:6vw;
+	line-height:8vw;
+	text-align:center;
 }
 
 
@@ -3015,7 +3049,6 @@ input[type=range]::-moz-range-thumb{
 	border			:2px solid #fafafa;
 	padding-left	:10px;
 }
-
 
 
 }
