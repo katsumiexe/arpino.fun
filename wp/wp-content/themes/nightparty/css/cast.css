@@ -64,6 +64,10 @@ input:focus{
 	padding		:0;
 }
 
+.box{
+	width:96vw;
+	margin:2vw auto;
+}
 
 .head_mymenu_ttl{
 	display		:inline-block;
@@ -810,6 +814,7 @@ i,.days_icon{
 
 .log_item_name{
 	position		:absolute;
+
 	left			:0.5vw;
 	top				:0;
 	bottom			:0;
@@ -2890,8 +2895,8 @@ input[type=range]::-moz-range-thumb{
 .log_td_order{
 	font-size	:5vw;
 	text-align	:right;
-	height		:5vw;
-	line-height	:5vw;
+	height		:9vw;
+	line-height	:9vw;
 	width		:8vw;
 	background	:#fafafa;
 	border		:1px solid #303030;
@@ -2900,8 +2905,8 @@ input[type=range]::-moz-range-thumb{
 .log_td_color,.log_td_icon,.log_td_handle{
 	font-size	:3.5vw;
 	text-align	:center;
-	height		:5vw;
-	line-height	:5vw;
+	height		:9vw;
+	line-height	:9vw;
 	background	:#fafafa;
 	width		:8vw;
 	border		:1px solid #303030;
@@ -2910,16 +2915,16 @@ input[type=range]::-moz-range-thumb{
 
 
 .log_td_name{
-	height		:5vw;
-	line-height	:5vw;
+	height		:9vw;
+	line-height	:9vw;
 	background	:#fafafa;
 	width:36vw;
 	border		:1px solid #303030;
 }
 
 .log_td_price{
-	height		:5vw;
-	line-height	:5vw;
+	height		:9vw;
+	line-height	:9vw;
 	background	:#fafafa;
 	width		:21vw;
 	border		:1px solid #303030;
@@ -2993,10 +2998,10 @@ input[type=range]::-moz-range-thumb{
 
 .item_color,.item_icon{
 	width		:8vw;
-	height		:8vw;
+	height		:9vw;
 	font-family	:at_icon;
-	font-size	:6vw;
-	line-height:8vw;
+	font-size	:6.5vw;
+	line-height:9vw;
 	text-align:center;
 }
 

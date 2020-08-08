@@ -1156,44 +1156,26 @@ Twitter連携
 		</tr>
 	<?}?>
 </tbody>
-</table>
-
-<div class="box">
-<table class="log_item_set">
-<thead>
-	<tr>
-		<td class="log_td_top" colspan="6">新規登録</td>
-	</tr>
-	<tr>
-		<td class="log_td_top">順</td>
-		<td class="log_td_top">色</td>
-		<td class="log_td_top">絵</td>
-		<td class="log_td_top">名前</td>
-		<td class="log_td_top">金額</td>
-		<td class="log_td_top"></td>
-	</tr>
-</thead>
-
-	<tr style="background:#f0faff">
+	<tr style="border-top:2px solid #202020;">
 		<td class="log_td_order">新</td>
 		<td class="log_td_color">
-			<div class="item_color" style="background:<?=$c_code[10]?>"></div>
+			<div class="item_color" style="background:<?=$c_code[0]?>"></div>
 			<div class="color_picker">
 				<?foreach($c_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
 				<?}?>
 			</div>
-			<input id="color_new" type="hidden" value="<?=$c_code[10]?>">
+			<input id="color_new" type="hidden" value="<?=$c_code[0]?>">
 		</td>
 
 		<td class="log_td_icon">	
-			<div class="item_icon" style="color:<?=$c_code[10]?>"><?=$i_code[8]?></div>
+			<div class="item_icon" style="color:<?=$c_code[10]?>"><?=$i_code[0]?></div>
 			<div class="icon_picker">
 				<?foreach($i_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
 				<?}?>
 			</div>
-			<input id="icon_new" type="hidden" value="<?=$i_code[8]?>">
+			<input id="icon_new" type="hidden" value="<?=$i_code[0]?>">
 		</td>
 
 		<td class="log_td_name">
@@ -1206,11 +1188,11 @@ Twitter連携
 		</td>
 	</tr>
 </table>
-</div>
 
 <div class="box">
-<div class="item_set">変更</div>
-<div class="item_reset">戻す</div>
+<div id="item_set" class="btn btn_c2">変更</div>
+　　
+<div id="item_reset" class="btn btn_c1">戻す</div>
 </div>
 
 		</div>
