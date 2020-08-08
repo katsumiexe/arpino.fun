@@ -1436,46 +1436,37 @@ console.log("VwBase:"+VwBase);
 		},
 	});
 
-	$('.item_color').on('click',function (){
-		Tmp =$(this).attr('id').replace("item_color","color_picker");
-		$('.color_picker').slideUp(100);
-		if($('#'+Tmp).css('display')!='flex'){
-			$('#'+Tmp).slideDown(100);
+	$('#item_sort').on('click','.item_color',function (){
+		$('.color_picker,.icon_picker').slideUp(100);
+		if($(this).next().css('display')=='none'){
+			$(this).next().slideDown(100);
 		}
-
-		console.log(Tmp);
-
 	});
 
 	$('#item_sort').on('click','.color_picker_list',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
-		Tmp=$(this).attr('pm');
 		Clr=$(this).css('background');
 		Cds=$(this).attr('cd');
-
-		$('#item_color_'+Tmp).css('background',Clr);
-		$('#color_hidden_'+Tmp).val(Cds);
+		$(this).parent().prev().css('background',Clr);
+		$(this).parent().next().val(Cds);
+		$(this).parent().parent().next().css('color',Clr);
 	});
 
+
 	$('#item_sort').on('click','.item_icon',function (){
-		Tmp =$(this).attr('id').replace("item_icon","icon_picker");
-		console.log(Tmp);
-		$('.icon_picker').slideUp(100);
-		if($('#'+Tmp).css('display')=='none'){
-			$('#'+Tmp).slideDown(100);
+		$('.icon_picker,.color_picker').slideUp(100);
+		if($(this).next().css('display')=='none'){
+			$(this).next().slideDown(100);
 		}
 	});
 
 	$('#item_sort').on('click','.icon_picker_list',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
-		Tmp=$(this).attr('pm');
 		Clr=$(this).text();
 		Cds=$(this).attr('cd');
-
-		$('#item_icon_'+Tmp).text(Clr);
-		$('#item_hidden_'+Tmp).val(Cds);
+		$(this).parent().prev().text(Clr);
+		$(this).parent().next().val(Cds);
 	});
-
 
 
 	$('.cal_days_memo').on('change',function (){
@@ -1619,13 +1610,42 @@ console.log("VwBase:"+VwBase);
         }
 	});
 
+	$('#new_set').on('click',function(){
+		$.post({
+			url:Dir + "/post/log_item_new.php",
+			data:{
+			'cast_id'		:CastId,
+			'price'			:$('#price_new').val(),
+			'item_name'		:$('#name_new').val(),
+			'item_icon	'	:$('#icon_new').val(),
+			'item_color'	:$('#color_new').val(),
+			'sort'			:$('#item_count').val(),
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('#item_count').val(data.sort);
+			$('#item_sort').append(data.html);
+			$('.color_picker,.icon_picker').hide();
+
+			$('#price_new').val('0');
+			$('#name_new').val('');
+			$('#icon_new').val('0');
+			$('#color_new').val('0');
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
 	$('#itemset').on('click',function(){
 		for(i=0;i<Cnt;i++){
 			ItemName[i]=$('item_name_'+i).val();
 			ItemPrice[i]=$('item_price_'+i).val();
 			ItemIcon[i]=$('item_icon_hidden_'+i).val();
 			ItemColor[i]=$('item_color_hidden_'+i).val();
-
 		}
 
 		$.post({
@@ -1639,8 +1659,6 @@ console.log("VwBase:"+VwBase);
 			'item_color[]'	:ItemColor
 			},
 		}).done(function(data, textStatus, jqXHR){
-
-
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

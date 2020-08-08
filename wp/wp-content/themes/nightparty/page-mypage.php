@@ -962,7 +962,7 @@ LINE連携
 Twitter連携
 <br>
 <hr>
-
+<input type="hidden" id="item_count" value="<?=count($log_item)?>">
 <select id="" name="log_item">
 <?foreach($log_item as $a1){?>
 <option value="<?=$a1["sort"]?>" class="color_<?=$a1["item_color"]?>">	<span><?=$a1["item_icon"]?></span>　<?=$a1["item_name"]?>　￥<?=$a1["price"]?></div></option>
@@ -986,26 +986,24 @@ Twitter連携
 			<td class="log_td_order">
 				<?=$a1["sort"]?>
 			</td>
-
 			<td class="log_td_color">
-				<div id="item_color_<?=$a1["sort"]?>" class="item_color" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
-				<div id="color_picker_<?=$a1["sort"]?>" class="color_picker">
+				<div class="item_color" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
+				<div class="color_picker">
 					<?foreach($c_code as $b1 => $b2){?>
-						<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
+						<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
 					<?}?>
 				</div>
 				<input id="color_hidden_<?=$a1["sort"]?>" class="color_hidden" type="hidden" value="<?=$a1["item_color"]?>">
 			</td>
 
-			<td class="log_td_icon">	
-				<div id="item_icon_<?=$a1["sort"]?>" class="item_icon" style="color:<?=$c_code[$a1["item_color"]]?>"><?=$i_code[$a1["item_icon"]]?></div>
-				<div id="icon_picker_<?=$a1["sort"]?>" class="icon_picker">
+			<td class="log_td_icon" style="color:<?=$c_code[$a1["item_color"]]?>">
+				<div class="item_icon"><?=$i_code[$a1["item_icon"]]?></div>
+				<div class="icon_picker">
 					<?foreach($i_code as $b1 => $b2){?>
-						<span pm="<?=$a1["sort"]?>" cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
+						<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
 					<?}?>
 				</div>
 				<input id="item_icon_hidden_<?=$a1["sort"]?>" type="hidden" value="<?=$a1["item_icon"]?>">
-
 			</td>
 			<td class="log_td_name">
 				<input id="item_name_<?=$a1["sort"]?>" type="text" value="<?=$a1["item_name"]?>" class="item_name">
@@ -1020,23 +1018,23 @@ Twitter連携
 	<tr style="border-top:2px solid #202020;">
 		<td class="log_td_order_new">追</td>
 		<td class="log_td_color">
-			<div class="item_color" style="background:<?=$c_code[0]?>"></div>
+			<div class="item_color" style="background:<?=$c_code[10]?>"></div>
 			<div class="color_picker">
 				<?foreach($c_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
 				<?}?>
 			</div>
-			<input id="color_new" type="hidden" value="<?=$c_code[0]?>">
+			<input id="color_new" type="hidden" value="10">
 		</td>
 
 		<td class="log_td_icon">	
-			<div class="item_icon" style="color:<?=$c_code[10]?>"><?=$i_code[0]?></div>
+			<div class="item_icon" style="color:<?=$c_code[10]?>"><?=$i_code[10]?></div>
 			<div class="icon_picker">
 				<?foreach($i_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
 				<?}?>
 			</div>
-			<input id="icon_new" type="hidden" value="<?=$i_code[0]?>">
+			<input id="icon_new" type="hidden" value="10">
 		</td>
 
 		<td class="log_td_name">
@@ -1045,7 +1043,7 @@ Twitter連携
 		<td class="log_td_price">
 			<input id="price_new" type="text" value="0" class="item_price">
 		</td>
-		<td class="log_td_handle"></td>
+		<td class="log_td_handle"><span id="new_set"></span></td>
 	</tr>
 </table>
 

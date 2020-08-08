@@ -15,9 +15,6 @@ $edate		=$_POST["edate"];
 $stime		=$_POST["stime"];
 $etime		=$_POST["etime"];
 
-
-
-
 $sql_log ="INSERT INTO wp01_0cast_log(`date`,`sdate`,`stime`,`edate`,`etime`,`cast_id`,`customer_id`) VALUES ";
 $sql_log.=" ('{$now}','{$sdate}','{$edate}','{$stime}','{$edate}','{$c_id}','{$cast_id}')";
 $wpdb->query($sql_log);

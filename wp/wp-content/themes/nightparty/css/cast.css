@@ -3027,7 +3027,6 @@ input[type=range]::-moz-range-thumb{
 	font-size		:5.5vw;
 	line-height		:6vw;
 	text-align		:center;
-	color			:#303030;
 	font-family		:at_icon;
 }
 
