@@ -85,6 +85,9 @@ $reg_base_ag=date("Y")-1980;
 		$page_title="ブログ";
 
 	}elseif($cast_page == 5){
+		$page_title="アナリティクス";
+
+	}elseif($cast_page == 5){
 		$page_title="各種設定";
 
 	}else{
@@ -499,6 +502,8 @@ $reg_base_ag=date("Y")-1980;
 @font-face {
 	font-family: at_icon;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/font_1/fonts/icomoon.ttf) format('truetype');
+	font-family: at_icon2;
+	src: url(<?php echo get_template_directory_uri(); ?>/font/font_2/fonts/icomoon.ttf) format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -602,7 +607,8 @@ var C_Id_tmp=0;
 			<li id="m2" class="menu_1<?if($cast_page+0==2){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">顧客リスト</span></li>
 			<li id="m3" class="menu_1<?if($cast_page+0==3){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">メール</span></li>
 			<li id="m4" class="menu_1<?if($cast_page+0==4){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">ブログ</span></li>
-			<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">各種設定</span></li>
+			<li id="m5" class="menu_1<?if($cast_page+0==5){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">アナリティクス</span></li>
+			<li id="m6" class="menu_1<?if($cast_page+0==6){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">各種設定</span></li>
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
@@ -946,7 +952,8 @@ var C_Id_tmp=0;
 			<? } ?>
 		</div>
 	<?}elseif($cast_page==5){?>
-	<div class="main_sch">
+	<?}elseif($cast_page==6){?>
+	<div class="main">
 		<div class="config_menu">
 
 名前：
@@ -1018,7 +1025,7 @@ Twitter連携
 	<tr style="border-top:2px solid #202020;">
 		<td class="log_td_order_new">追</td>
 		<td class="log_td_color">
-			<div class="item_color" style="background:<?=$c_code[10]?>"></div>
+			<div id="new_color" class="item_color" style="background:<?=$c_code[10]?>"></div>
 			<div class="color_picker">
 				<?foreach($c_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
@@ -1027,8 +1034,8 @@ Twitter連携
 			<input id="color_new" type="hidden" value="10">
 		</td>
 
-		<td class="log_td_icon">	
-			<div class="item_icon" style="color:<?=$c_code[10]?>"><?=$i_code[10]?></div>
+		<td class="log_td_icon" style="color:<?=$c_code[10]?>">
+			<div id="new_icon" class="item_icon"><?=$i_code[10]?></div>
 			<div class="icon_picker">
 				<?foreach($i_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>

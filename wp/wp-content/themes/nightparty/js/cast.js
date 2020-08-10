@@ -1436,14 +1436,14 @@ console.log("VwBase:"+VwBase);
 		},
 	});
 
-	$('#item_sort').on('click','.item_color',function (){
+	$('.log_item_set').on('click','.item_color',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
 		if($(this).next().css('display')=='none'){
 			$(this).next().slideDown(100);
 		}
 	});
 
-	$('#item_sort').on('click','.color_picker_list',function (){
+	$('.log_item_set').on('click','.color_picker_list',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
 		Clr=$(this).css('background');
 		Cds=$(this).attr('cd');
@@ -1453,20 +1453,21 @@ console.log("VwBase:"+VwBase);
 	});
 
 
-	$('#item_sort').on('click','.item_icon',function (){
+	$('.log_item_set').on('click','.item_icon',function (){
 		$('.icon_picker,.color_picker').slideUp(100);
 		if($(this).next().css('display')=='none'){
 			$(this).next().slideDown(100);
 		}
 	});
 
-	$('#item_sort').on('click','.icon_picker_list',function (){
+	$('.log_item_set').on('click','.icon_picker_list',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
 		Clr=$(this).text();
 		Cds=$(this).attr('cd');
 		$(this).parent().prev().text(Clr);
 		$(this).parent().next().val(Cds);
 	});
+
 
 
 	$('.cal_days_memo').on('change',function (){
@@ -1617,7 +1618,7 @@ console.log("VwBase:"+VwBase);
 			'cast_id'		:CastId,
 			'price'			:$('#price_new').val(),
 			'item_name'		:$('#name_new').val(),
-			'item_icon	'	:$('#icon_new').val(),
+			'item_icon'		:$('#icon_new').val(),
 			'item_color'	:$('#color_new').val(),
 			'sort'			:$('#item_count').val(),
 			},
@@ -1628,6 +1629,10 @@ console.log("VwBase:"+VwBase);
 			$('#item_count').val(data.sort);
 			$('#item_sort').append(data.html);
 			$('.color_picker,.icon_picker').hide();
+			$('#new_color').css('background','#008080');
+			$('#new_icon').css('color','#008080');
+
+
 
 			$('#price_new').val('0');
 			$('#name_new').val('');

@@ -14,12 +14,13 @@ $item_color	=$_POST["item_color"];
 $price		=$_POST["price"];
 $sort		=$_POST["sort"];
 
+
 $sort++;
 
 $sql_log ="INSERT INTO wp01_0cast_log_table(`cast_id`,`item_name`,`item_icon`,`item_color`,`price`,`sort`) VALUES ";
 $sql_log.=" ('{$cast_id}','{$item_name}','{$item_icon}','{$item_color}','{$price}','{$sort}')";
 $wpdb->query($sql_log);
-$dat["sql"]=$sql_log;
+$dat["sql"]=$item_icon;
 $dat["sort"]=$sort;
 $dat["html"]="<tr id=\"i{$sort}\">";
 $dat["html"].="<td class=\"log_td_order\">{$sort}</td>";
