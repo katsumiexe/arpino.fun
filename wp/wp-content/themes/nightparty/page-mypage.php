@@ -502,6 +502,8 @@ $reg_base_ag=date("Y")-1980;
 @font-face {
 	font-family: at_icon;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/font_1/fonts/icomoon.ttf) format('truetype');
+}
+@font-face {
 	font-family: at_icon2;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/font_2/fonts/icomoon.ttf) format('truetype');
 }
@@ -1018,7 +1020,7 @@ Twitter連携
 			<td class="log_td_price">
 				<input id="item_price_<?=$a1["sort"]?>" type="text" value="<?=$a1["price"]?>" class="item_price">
 			</td>
-			<td class="log_td_handle"></td>
+			<td class="log_td_handle"></td>
 		</tr>
 	<?}?>
 </tbody>
