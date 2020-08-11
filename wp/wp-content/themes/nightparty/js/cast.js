@@ -1103,8 +1103,8 @@ console.log("VwBase:"+VwBase);
 				'log'		:Log,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$('.set_back').hide();
-			$('.set_back_in').animate({'top':'100vh'},200);
+			$('.set_back').fadeOut(200);
+			$('.customer_memo_in').animate({'top':'100vh'},200);
 			$('#tag_2_tbl').prepend(data);
 			$('.customer_memo_new_txt').val('');
 
@@ -1116,7 +1116,8 @@ console.log("VwBase:"+VwBase);
 	});
 
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
-		$('.set_back').show();
+		$('.set_back,.customer_memo_del_back_in').fadeIn(200);
+
 		Tmp=$(this).attr('id').replace("m_del","");
 		$('#del_id').val(Tmp);
 
@@ -1183,8 +1184,10 @@ console.log("VwBase:"+VwBase);
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.set_back').hide();
+			$('.set_back,.customer_memo_del_back_in').fadeOut(500);
 			$('#tag_2_tbl').html(data);
+
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

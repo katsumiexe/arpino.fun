@@ -528,10 +528,9 @@ const Now_Y	=<?=date("Y",$jst)+0?>;
 var C_Id=0;
 var C_Id_tmp=0;
 var ChgList=[<?=$log_list_cnt?>];
-
-
 </script>
 </head>
+
 <body class="body">
 <? if(!$_SESSION){ ?>
 	<div class="login_box">
@@ -869,7 +868,6 @@ var ChgList=[<?=$log_list_cnt?>];
 					<span class="blog_title_tag">投稿日</span><br>
 
 					<div class="blog_box">	
-
 						<select id="blog_yy" name="blog_yy" class="blog_4">
 							<?for($n=2018;$n<date("Y")+3;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
@@ -974,11 +972,6 @@ LINE連携
 Twitter連携
 <br>
 <hr>
-<input type="hidden" id="item_count" value="<?=count($log_item)?>">
-<select id="" name="log_item">
-<?foreach($log_item as $a1){?>
-<option value="<?=$a1["sort"]?>" class="color_<?=$a1["item_color"]?>">	<span><?=$a1["item_icon"]?></span>　<?=$a1["item_name"]?>　￥<?=$a1["price"]?></div></option>
-<?}?>
 </select>
 
 <table class="log_item_set">
@@ -1106,6 +1099,72 @@ Twitter連携
 <div class="customer_memo_set"></div>
 <div class="sch_set_done">スケジュールが登録されました</div>
 
+
+<!--■■■■■■■■■■■■■■■-->
+	<div class="customer_log_in">
+		<select id="logset_yy" class="blog_4">
+			<?for($n=2018;$n<date("Y")+3;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
+			<?}?>
+		</select>年
+		<select id="logset_mm" class="blog_2">
+			<?for($n=1;$n<13;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+			<?}?>
+		</select>月
+		<select id="logset_dd" class="blog_2">
+			<?for($n=1;$n<32;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+			<?}?>
+		</select>日　
+		始<select id="logset_hh_s" class="blog_2">
+			<?for($n=0;$n<24;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+			<?}?>
+		</select>：<select id="logset_ii_s" class="blog_2">
+			<?for($n=0;$n<60;$n++){?>
+			<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+			<?}?>
+		</select><br>
+　
+		了<select id="logset_hh_e" class="blog_2">
+			<?for($n=0;$n<24;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+			<?}?>
+		</select>：<select id="logset_ii_e" class="blog_2">
+			<?for($n=0;$n<60;$n++){?>
+			<?$n1=substr("00".$n,-2,2)?>
+				<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+			<?}?>
+		</select><br>
+
+		<div style="text-align:center;">
+		<div class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
+			<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>
+			<span class="sel_log_comm"><?=$log_item[0]["item_name"]?></span>
+			<span class="sel_log_price">￥<?=$log_item[0]["price"]?></span>
+		</div>
+		<div class="sel_log_box">
+		<?foreach($log_item as $a1){?>
+		<div id="ls<?=$a1["sort"]?>" class="sel_log_option" style="color:<?=$c_code[$a1["item_color"]]?>;border:1px solid <?=$c_code[$a1["item_color"]]?>">
+			<span class="sel_log_icon"><?=$i_code[$a1["item_icon"]]?></span>
+			<span class="sel_log_comm"><?=$a1["item_name"]?></span>
+			<span class="sel_log_price">￥<?=$a1["price"]?></span>
+		</div>
+		<?}?>
+		</div>
+		<textarea class="sel_log_area"></textarea>
+		</div>
+	</div>
+
+
+<!--■■■■■■■■■■■■■■■-->
 <div class="set_back">
 	<div class="cal_weeks">
 		<div class="cal_weeks_prev">前週</div>
@@ -1271,8 +1330,9 @@ Twitter連携
 			<div id="img_reset" class="btn btn_c3">リセット</div>
 		</div>
 	</div>
-</div>
 
+
+</div>
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">
