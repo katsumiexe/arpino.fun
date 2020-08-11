@@ -1564,11 +1564,11 @@ i,.days_icon{
 	background	:#0000ff;
 }
 .customer_log_left{
-	display		:inline-block;
-	text-align:center;
-	width		:58vw;
-	background	:#ff0000;
-	vertical-align:top;
+	position		:relative;
+	display			:inline-block;
+	text-align		:center;
+	width			:58vw;
+	vertical-align	:top;
 }
 
 .customer_log_right{
@@ -1603,9 +1603,13 @@ i,.days_icon{
 }
 
 .sel_log_box{
-	display:none;
-	width:56vw;
-	background:#fafafa;
+	position	:absolute;
+	display		:none;
+	width		:56vw;
+	top			:8vw;
+	left		:0.8vw;
+	background	:#fafafa;
+	z-index:15;
 }
 
 .sel_log_option{
@@ -1663,14 +1667,14 @@ i,.days_icon{
 }
 
 .sel_log_area{
-	margin			:1vw auto;
-	width			:68vw;
-	height			:20vw;
+	margin			:1vw;
+	width			:70vw;
+	height			:30vw;
 	resize			:none;
 	border			:0.5vw solid #303030;
 	transform		: scale(0.8,0.8);
-	transform-origin: top center;
-	font-size		:5vw;
+	transform-origin: top left;
+	font-size		:4.5vw;
 	padding			:1vw;
 }
 

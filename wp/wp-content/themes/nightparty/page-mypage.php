@@ -1145,14 +1145,14 @@ Twitter連携
 				<?}?>
 			</select>
 		</div>
-		
+
 		<div class="customer_log_left">
-			<div class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
+			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
 				<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>
 				<span class="sel_log_comm"><?=$log_item[0]["item_name"]?></span>
 				<span class="sel_log_price">￥<?=$log_item[0]["price"]?></span>
 			</div>
-			<div class="sel_log_box">
+			<div id="sel_log_box" class="sel_log_box">
 				<?foreach($log_item as $a1){?>
 				<div id="ls<?=$a1["sort"]?>" class="sel_log_option" style="color:<?=$c_code[$a1["item_color"]]?>;border:1px solid <?=$c_code[$a1["item_color"]]?>">
 					<span class="sel_log_icon"><?=$i_code[$a1["item_icon"]]?></span>

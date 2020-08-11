@@ -1575,7 +1575,6 @@ console.log("VwBase:"+VwBase);
 		}
 	})
 
-
 	$('#item_sort').sortable({
 		axis: 'y',
         handle: '.log_td_handle',
@@ -1651,4 +1650,14 @@ console.log("VwBase:"+VwBase);
 			console.log(errorThrown);
 		});
 	});
+
+	$('#sel_log_main').on('click',function(){
+		if($('#sel_log_box').css('display')=='none'){
+			$('#sel_log_box').slideDown(200);
+
+		}else{
+			$('#sel_log_box').slideUp(200);
+		}
+	});
+
 });
