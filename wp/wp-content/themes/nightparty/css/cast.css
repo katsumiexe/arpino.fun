@@ -1558,17 +1558,39 @@ i,.days_icon{
 	right			:6vw;
 }
 
+.customer_log_top{
+	display		:inline-block;
+	width		:96vw;
+	background	:#0000ff;
+}
+.customer_log_left{
+	display		:inline-block;
+	text-align:center;
+	width		:58vw;
+	background	:#ff0000;
+	vertical-align:top;
+}
+
+.customer_log_right{
+	display		:inline-block;
+	width		:38vw;
+	background	:#ff00ff;
+	font-size	:5vw;
+	vertical-align:top;
+}
+
 .customer_log_in{
 	position		:fixed;
 	top				:10vh;
 	left			:0;
 	right			:0;
 	margin			:auto;
-	width			:94vw;
+	width			:96vw;
 	background		:#dafaca;
 	text-align		:right;
 	border-radius	:1vw;
-	padding:2vw;
+	padding			:0vw;
+	font-size:0;
 }
 
 
@@ -1581,20 +1603,19 @@ i,.days_icon{
 }
 
 .sel_log_box{
-	
 	display:none;
-	width:61vw;
+	width:56vw;
 	background:#fafafa;
 }
 
 .sel_log_option{
-	position	:relative;
-	display		:inline-block;
-	width		:60vw;
-	height		:7vw;
-	line-height	:7vw;
-	margin		:1px;
-	background:#fafafa;
+	position		:relative;
+	display			:inline-block;
+	width			:56vw;
+	height			:7vw;
+	line-height		:7vw;
+	margin			:1px;
+	background		:#fafafa;
 }
 
 .sel_log_icon{
@@ -1620,7 +1641,7 @@ i,.days_icon{
 	bottom			:0; 
 	margin			:auto;
 	display			:inline-block;
-	width			:30vw;
+	width			:23vw;
 	height			:5vw;
 	line-height		:5vw;
 	font-size		:4vw;
@@ -1634,7 +1655,7 @@ i,.days_icon{
 	bottom			:0; 
 	margin			:auto;
 	display			:inline-block;
-	width			:20vw;
+	width			:18vw;
 	height			:5vw;
 	line-height		:5vw;
 	font-size		:4vw;
@@ -1642,12 +1663,15 @@ i,.days_icon{
 }
 
 .sel_log_area{
-	margin		:1vw auto;
-	width		:80vw;
-	height		:20vw;
-	resize		:none;
-	padding:1vw;
-	border:0.5vw solid #303030;
+	margin			:1vw auto;
+	width			:68vw;
+	height			:20vw;
+	resize			:none;
+	border			:0.5vw solid #303030;
+	transform		: scale(0.8,0.8);
+	transform-origin: top center;
+	font-size		:5vw;
+	padding			:1vw;
 }
 
 .main{
