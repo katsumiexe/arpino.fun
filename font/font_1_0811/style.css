@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?m4gn4o');
-  src:  url('fonts/icomoon.eot?m4gn4o#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?m4gn4o') format('truetype'),
-    url('fonts/icomoon.woff?m4gn4o') format('woff'),
-    url('fonts/icomoon.svg?m4gn4o#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?z44n49');
+  src:  url('fonts/icomoon.eot?z44n49#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?z44n49') format('truetype'),
+    url('fonts/icomoon.woff?z44n49') format('woff'),
+    url('fonts/icomoon.svg?z44n49#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: never;
+  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -2547,22 +2547,4 @@
 }
 .icon-IcoMoon:before {
   content: "\ec48";
-}
-.icon-icon-couple:before {
-  content: "\ec49";
-}
-.icon-icon-pockey:before {
-  content: "\ec4a";
-}
-.icon-icon-dish:before {
-  content: "\ec4b";
-}
-.icon-icon-seq:before {
-  content: "\ec4c";
-}
-.icon-icon-bottle:before {
-  content: "\ec4d";
-}
-.icon-icon-beer:before {
-  content: "\ec4e";
 }

@@ -501,11 +501,7 @@ $reg_base_ag=date("Y")-1980;
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url(<?php echo get_template_directory_uri(); ?>/font/font_1/fonts/icomoon.ttf) format('truetype');
-}
-@font-face {
-	font-family: at_icon2;
-	src: url(<?php echo get_template_directory_uri(); ?>/font/font_2/fonts/icomoon.ttf) format('truetype');
+	src: url(<?php echo get_template_directory_uri(); ?>/font/font_0/fonts/icomoon.ttf) format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -986,7 +982,8 @@ Twitter連携
 		<td class="log_td_top">絵</td>
 		<td class="log_td_top">名前</td>
 		<td class="log_td_top">金額</td>
-		<td class="log_td_top"></td>
+		<td class="log_td_top">削</td>
+		<td class="log_td_top">替</td>
 	</tr>
 </thead>
 <tbody id="item_sort">
@@ -1020,7 +1017,8 @@ Twitter連携
 			<td class="log_td_price">
 				<input id="item_price_<?=$a1["sort"]?>" type="text" value="<?=$a1["price"]?>" class="item_price">
 			</td>
-			<td class="log_td_handle"></td>
+			<td class="log_td_del"></td>
+			<td class="log_td_handle"></td>
 		</tr>
 	<?}?>
 </tbody>
@@ -1036,14 +1034,14 @@ Twitter連携
 			<input id="color_new" type="hidden" value="10">
 		</td>
 
-		<td class="log_td_icon" style="color:<?=$c_code[10]?>">
-			<div id="new_icon" class="item_icon"><?=$i_code[10]?></div>
+		<td class="log_td_icon" style="color:<?=$c_code[0]?>">
+			<div id="new_icon" class="item_icon"><?=$i_code[0]?></div>
 			<div class="icon_picker">
 				<?foreach($i_code as $b1 => $b2){?>
 					<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
 				<?}?>
 			</div>
-			<input id="icon_new" type="hidden" value="10">
+			<input id="icon_new" type="hidden" value="0">
 		</td>
 
 		<td class="log_td_name">
@@ -1052,7 +1050,7 @@ Twitter連携
 		<td class="log_td_price">
 			<input id="price_new" type="text" value="0" class="item_price">
 		</td>
-		<td class="log_td_handle"><span id="new_set"></span></td>
+		<td class="log_td_handle" colspan="2"><span id="new_set"></span></td>
 	</tr>
 </table>
 
