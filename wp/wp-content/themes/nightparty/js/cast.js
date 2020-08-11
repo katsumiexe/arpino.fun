@@ -10,8 +10,6 @@ $(function(){
 	var ItemPrice	=[];
 	var ItemIcon	=[];
 	var ItemColor	=[];
-
-
 	$('.color_picker,.icon_picker').hide();
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('on')){
@@ -1574,38 +1572,18 @@ console.log("VwBase:"+VwBase);
 		}
 	})
 
-	$('#item_sort').sortable({
 
+	$('#item_sort').sortable({
 		axis: 'y',
         handle: '.log_td_handle',
-
 		stop : function() {
 			$('.color_picker,.icon_picker').hide();
-			var ChgList=$(this).sortable("toArray");
+			ChgList=$(this).sortable("toArray");
 			var Cnt=ChgList.length;
 			console.log(ChgList);
 			var Tmp=1;
 	  		for(i=0;i<Cnt;i++){
 				$('#'+ChgList[i]).children('.log_td_order').text(Tmp);
-/*
-				$('#'+ChgList[i]).find('.item_color').attr('id','item_color_'+Tmp);
-				$('#'+ChgList[i]).find('.color_picker').attr('id','#color_picker_'+Tmp);
-				$('#'+ChgList[i]).find('span').attr('pm',Tmp);
-				$('#'+ChgList[i]).find('.color_hidden').attr('id','color_hidden_'+Tmp);
-
-				$('#'+ChgList[i]).find('.item_icon').attr('id','item_icon_'+Tmp);
-				$('#'+ChgList[i]).find('.icon_picker').attr('id','#icon_picker_'+Tmp);
-				$('#'+ChgList[i]).find('span').attr('pm',Tmp);
-				$('#'+ChgList[i]).find('.icon_hidden').attr('id','icon_hidden_'+Tmp);
-
-				$('#'+ChgList[i]).find('.item_name').attr('id','#item_name_'+Tmp);
-				$('#'+ChgList[i]).find('.item_price').attr('id','#item_price_'+Tmp);
-*/
-/*
-				$('#'+ChgList[i]).attr('id','i'+Tmp);
-				console.log('tmp'+Tmp);
-				console.log('chg'+ChgList[i]);
-*/
 				Tmp++;
 	  		}
         }
@@ -1632,8 +1610,6 @@ console.log("VwBase:"+VwBase);
 			$('#new_color').css('background','#008080');
 			$('#new_icon').css('color','#008080');
 
-
-
 			$('#price_new').val('0');
 			$('#name_new').val('');
 			$('#icon_new').val('0');
@@ -1645,12 +1621,13 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
-	$('#itemset').on('click',function(){
+	$('#item_set').on('click',function(){
+		var Cnt=10;
 		for(i=0;i<Cnt;i++){
-			ItemName[i]=$('item_name_'+i).val();
-			ItemPrice[i]=$('item_price_'+i).val();
-			ItemIcon[i]=$('item_icon_hidden_'+i).val();
-			ItemColor[i]=$('item_color_hidden_'+i).val();
+			ItemName[i]=$('#item_name_'+i).val();
+			ItemPrice[i]=$('#item_price_'+i).val();
+			ItemIcon[i]=$('#item_icon_hidden_'+i).val();
+			ItemColor[i]=$('#item_color_hidden_'+i).val();
 		}
 
 		$.post({
@@ -1661,9 +1638,10 @@ console.log("VwBase:"+VwBase);
 			'item_name[]'	:ItemName,
 			'item_price[]'	:ItemPrice,
 			'item_icon[]'	:ItemIcon,
-			'item_color[]'	:ItemColor
+			'item_color[]'	:ItemColor,
 			},
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

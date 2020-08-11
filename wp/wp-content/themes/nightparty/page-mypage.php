@@ -490,6 +490,11 @@ $reg_base_ag=date("Y")-1980;
 		$log_item[$a1["sort"]]=$a1;
 	}
 	ksort($log_item);
+
+	foreach($log_item as $a1 => $a2){
+		$log_list_cnt.='"i'.$a1.'",';
+	}
+	$log_list_cnt=substr($log_list_cnt,0,-1);
 }
 
 ?>
@@ -522,6 +527,8 @@ const Now_md=<?=date("md",$jst)+0?>;
 const Now_Y	=<?=date("Y",$jst)+0?>;
 var C_Id=0;
 var C_Id_tmp=0;
+var ChgList=[<?=$log_list_cnt?>];
+
 
 </script>
 </head>
@@ -999,7 +1006,7 @@ Twitter連携
 						<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
 					<?}?>
 				</div>
-				<input id="color_hidden_<?=$a1["sort"]?>" class="color_hidden" type="hidden" value="<?=$a1["item_color"]?>">
+				<input id="item_color_hidden_<?=$a1["sort"]?>" class="color_hidden" type="hidden" value="<?=$a1["item_color"]?>">
 			</td>
 
 			<td class="log_td_icon" style="color:<?=$c_code[$a1["item_color"]]?>">
