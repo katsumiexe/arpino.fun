@@ -131,7 +131,6 @@ $reg_base_ag=date("Y")-1980;
 	$sv="{".$s_url."}INBOX";
 	$m_list=imap_open ($sv,$_SESSION["castmail"],$_SESSION["castmail_pass"]);
 	$num = imap_num_msg($m_list);
-
 	$sql	 ="SELECT * FROM wp01_0castmail_receive ";
 	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receive.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
@@ -1097,82 +1096,10 @@ Twitter連携
 	<? } ?>
 </div>
 <div class="customer_memo_set"></div>
+<div class="customer_log_set"></div>
+
 <div class="sch_set_done">スケジュールが登録されました</div>
 
-
-<!--■■■■■■■■■■■■■■■-->
-	<div class="customer_log_in">
-		<div class="customer_log_top">
-			<select id="logset_yy" class="blog_4">
-				<?for($n=2018;$n<date("Y")+3;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
-				<?}?>
-			</select>年
-			<select id="logset_mm" class="blog_2">
-				<?for($n=1;$n<13;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select>月
-			<select id="logset_dd" class="blog_2">
-				<?for($n=1;$n<32;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select>日　
-			始<select id="logset_hh_s" class="blog_2">
-				<?for($n=0;$n<24;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select>：<select id="logset_ii_s" class="blog_2">
-				<?for($n=0;$n<60;$n++){?>
-				<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select><br>
-	　
-			了<select id="logset_hh_e" class="blog_2">
-				<?for($n=0;$n<24;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select>：<select id="logset_ii_e" class="blog_2">
-				<?for($n=0;$n<60;$n++){?>
-				<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select>
-		</div>
-
-		<div class="customer_log_left">
-			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
-				<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>
-				<span class="sel_log_comm"><?=$log_item[0]["item_name"]?></span>
-				<span class="sel_log_price">￥<?=$log_item[0]["price"]?></span>
-			</div>
-			<div id="sel_log_box" class="sel_log_box">
-				<?foreach($log_item as $a1){?>
-				<div id="ls<?=$a1["sort"]?>" class="sel_log_option" style="color:<?=$c_code[$a1["item_color"]]?>;border:1px solid <?=$c_code[$a1["item_color"]]?>">
-					<span class="sel_log_icon"><?=$i_code[$a1["item_icon"]]?></span>
-					<span class="sel_log_comm"><?=$a1["item_name"]?></span>
-					<span class="sel_log_price">￥<?=$a1["price"]?></span>
-				</div>
-				<?}?>
-			</div>
-			<textarea class="sel_log_area"></textarea>
-		</div>
-		<div class="customer_log_right">
-	　　
-	　　1
-
-
-		</div>
-	</div>
-
-
-<!--■■■■■■■■■■■■■■■-->
 <div class="set_back">
 	<div class="cal_weeks">
 		<div class="cal_weeks_prev">前週</div>
@@ -1339,8 +1266,73 @@ Twitter連携
 		</div>
 	</div>
 
+	<div class="customer_log_in">
+		<div class="customer_log_top">
+			<select id="logset_yy" class="blog_4">
+				<?for($n=2018;$n<date("Y")+3;$n++){?>
+					<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
+				<?}?>
+			</select><span class="customer_log_ymd">年</span>
+			<select id="logset_mm" class="blog_2">
+				<?for($n=1;$n<13;$n++){?>
+					<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+				<?}?>
+			</select><span class="customer_log_ymd">月</span>
+			<select id="logset_dd" class="blog_2">
+				<?for($n=1;$n<32;$n++){?>
+					<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+				<?}?>
+			</select><span class="customer_log_ymd">日</span>　
+			<span class="customer_log_st">開始</span><select id="logset_hh_s" class="blog_2">
+				<?for($n=0;$n<24;$n++){?>
+					<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+				<?}?>
+			</select><span class="customer_log_h">：</span><select id="logset_ii_s" class="blog_2">
+				<?for($n=0;$n<60;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+				<?}?>
+			</select><br>
+　			<span class="customer_log_ed">終了</span><select id="logset_hh_e" class="blog_2">
+				<?for($n=0;$n<24;$n++){?>
+					<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+				<?}?>
+			</select><span class="customer_log_h">：</span><select id="logset_ii_e" class="blog_2">
+				<?for($n=0;$n<60;$n++){?>
+				<?$n1=substr("00".$n,-2,2)?>
+					<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+				<?}?>
+			</select>
+		</div>
 
+		<div class="customer_log_left">
+			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
+				<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>
+				<span class="sel_log_comm"><?=$log_item[0]["item_name"]?></span>
+				<span class="sel_log_price">￥<?=$log_item[0]["price"]?></span>
+			</div>
+			<div id="sel_log_box" class="sel_log_box">
+				<?foreach($log_item as $a1){?>
+				<div id="ls<?=$a1["sort"]?>" class="sel_log_option" style="color:<?=$c_code[$a1["item_color"]]?>;border:1px solid <?=$c_code[$a1["item_color"]]?>">
+					<span class="sel_log_icon"><?=$i_code[$a1["item_icon"]]?></span>
+					<span class="sel_log_comm"><?=$a1["item_name"]?></span>
+					<span class="sel_log_price"><?=$a1["price"]?></span>
+				</div>
+				<?}?>
+			</div>
+			<textarea id="sel_log_area" class="sel_log_area" placeholder="メモ："></textarea>
+		</div>
+		<div class="customer_log_right">
+		</div>
+	<div id="sel_log_set" class="btn btn_c2">セット</div>
+	</div>
 </div>
+
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">

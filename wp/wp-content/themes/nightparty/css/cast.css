@@ -787,6 +787,30 @@ i,.days_icon{
 	display:none;
 }
 
+
+.sel_box_top{
+	font-size:3.5vw;
+	font-weight:600;
+}
+
+.sel_box_left{
+	display			:inline-block;
+	border			:0.5vw solid #303030;
+	padding			:1vw;
+	font-size		:3vw;
+	width			:52vw;
+	vertical-align	:top;
+}
+
+.sel_box_right{
+	display			:inline-block;
+	padding			:1vw;
+	width			:38vw;
+	vertical-align	:top;
+}
+
+
+
 .customer_memo_tag{
 	width			:30vw;
 	border-bottom	:2px solid #ffe0f0;
@@ -799,6 +823,36 @@ i,.days_icon{
 	padding-left	:1vw;
 	font-size		:4vw;
 	height			:10vw;
+}
+
+.customer_log_ymd{
+	display			:inline-block;
+	width			:6vw;
+	height			:7vw;
+	line-height		:8vw;
+	font-size		:4vw;
+	font-weight		:700;
+	text-align:left;	
+}
+
+.customer_log_h{
+	display			:inline-block;
+	width			:4vw;
+	height			:7vw;
+	line-height		:7vw;
+	font-size		:4vw;
+	font-weight		:700;
+	text-align:center;	
+}
+
+.customer_log_st,.customer_log_ed{
+	display			:inline-block;
+	width			:10vw;
+	height			:7vw;
+	line-height		:8vw;
+	font-size		:4vw;
+	font-weight		:700;
+	text-align:center;	
 }
 
 
@@ -1404,7 +1458,7 @@ i,.days_icon{
 	font-weight		:600;
 }
 
-.customer_memo_set{
+.customer_memo_set,.customer_log_set{
 	display			:none;
 	position		:fixed;
 	right			:5vw;
@@ -1419,7 +1473,7 @@ i,.days_icon{
 	background		:#008020;
 	font-family		:at_icon;
 	cursor			:pointer;
-	z-index			:22;
+	z-index			:121;
 }
 
 
@@ -1559,9 +1613,11 @@ i,.days_icon{
 }
 
 .customer_log_top{
-	display		:inline-block;
-	width		:96vw;
-	background	:#0000ff;
+	display			:inline-block;
+	width			:92vw;
+	text-align		:right;
+	padding			:1.5vw;
+	margin:0 auto;
 }
 .customer_log_left{
 	position		:relative;
@@ -1572,22 +1628,21 @@ i,.days_icon{
 }
 
 .customer_log_right{
-	display		:inline-block;
-	width		:38vw;
-	background	:#ff00ff;
-	font-size	:5vw;
-	vertical-align:top;
+	display			:inline-block;
+	width			:38vw;
+	text-align		:left;
+	vertical-align	:top;
 }
 
 .customer_log_in{
 	position		:fixed;
-	top				:10vh;
+	top				:100vh;
 	left			:0;
 	right			:0;
 	margin			:auto;
 	width			:96vw;
 	background		:#dafaca;
-	text-align		:right;
+	text-align		:center;
 	border-radius	:1vw;
 	padding			:0vw;
 	font-size:0;
@@ -1602,10 +1657,11 @@ i,.days_icon{
 	font-size:4vw;
 }
 
+
 .sel_log_box{
 	position	:absolute;
 	display		:none;
-	width		:56vw;
+	width		:58vw;
 	top			:8vw;
 	left		:0.8vw;
 	background	:#fafafa;
@@ -1618,7 +1674,7 @@ i,.days_icon{
 	width			:56vw;
 	height			:7vw;
 	line-height		:7vw;
-	margin			:1px;
+	margin			:0;
 	background		:#fafafa;
 }
 
@@ -1664,6 +1720,79 @@ i,.days_icon{
 	line-height		:5vw;
 	font-size		:4vw;
 	text-align		:right;
+}
+
+.sel_log_option_s{
+	position		:relative;
+	display			:inline-block;
+	width			:31vw;
+	height			:6vw;
+	line-height		:6vw;
+	margin			:0;
+	background		:#fafafa;
+}
+
+.sel_log_icon_s{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	bottom			:0; 
+	margin			:auto;
+	display			:inline-block;
+	width			:4vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3.5vw;
+	text-align		:center;
+	font-family		:at_icon;
+	text-align		:center;
+}
+
+.sel_log_comm_s{
+	position		:absolute;
+	top				:0;
+	left			:5vw;
+	bottom			:0; 
+	margin			:auto;
+	display			:inline-block;
+	width			:20vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3.5vw;
+	text-align		:left;
+	overflow:hidden;
+}
+
+.sel_log_price_s{
+	position		:absolute;
+	top				:0;
+	right			:0.5vw;
+	bottom			:0; 
+	margin			:auto;
+	display			:inline-block;
+	width			:15vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3.5vw;
+	text-align		:right;
+	overflow:hidden;
+}
+
+.sel_log_del_s{
+	position		:absolute;
+	top				:0;
+	right			:-5.5vw;
+	bottom			:0; 
+	margin			:auto;
+	display			:inline-block;
+	width			:3.8vw;
+	height			:3.8vw;
+	line-height		:3.8vw;
+	font-size		:3.5vw;
+	font-family		:at_icon;
+	color			:#c00000;
+	background:#fafafa;
+	border:1px solid #d00000;
 }
 
 .sel_log_area{
@@ -3424,3 +3553,4 @@ input[type=range]::-moz-range-thumb{
 .color_10{background:#ffd700;}
 .color_11{background:#ffc0cb;}
 .color_12{background:#b0e0e6;}
+© 2020 GitHub, Inc.

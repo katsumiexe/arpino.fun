@@ -36,11 +36,11 @@ foreach($dat0 AS $dat1){
 	$dat.="{$dat1["log"]}";
 	$dat.="</div>";
 	$dat.="<div class=\"customer_log_list\">";
-	foreach($dat2 AS $dat3){
-		$dat.="<div class=\"customer_log_item\" style=\"border:2px solid {$c_code[$dat3["item_color"]]}; color:{$c_code[$dat3["item_color"]]};\">";
-		$dat.="<span class=\"log_item_icon\">{$i_code[$dat3["item_icon"]]}</span>";
-		$dat.="<span class=\"log_item_name\">{$dat3["item_name"]}</span>";
-		$dat.="<span class=\"log_item_price\">{$dat3["price"]}</span>";
+	foreach($dat2 as $dat3){
+		$dat.="<div class=\"customer_log_item\" style=\"border:2px solid {$dat3["log_color"]}; color:{$dat3["log_color"]};\">";
+		$dat.="<span class=\"log_item_icon\">{$dat3["log_icon"]}</span>";
+		$dat.="<span class=\"log_item_name\">{$dat3["log_comm"]}</span>";
+		$dat.="<span class=\"log_item_price\">{$dat3["log_price"]}</span>";
 		$dat.="</div>";
 	}
 	$dat.="</div>";

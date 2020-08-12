@@ -54,7 +54,7 @@ get_header();
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<? foreach($sort as $b1=> $b2){?>
 			<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/<?PHP echo $b1?>" id="<?PHP echo $b1?>" class="main_b_1">
-				<img src="<?PHP ECHO $dat[$b1]["face"]?>" class="main_b_1_1">
+				<img src="<?PHP ECHO $dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
 				<span class="main_b_1_2">
 					<span class="main_b_1_2_name"><?PHP echo $dat[$b1]["genji"]?></span>
 					<span class="main_b_1_2_sch"></span>
