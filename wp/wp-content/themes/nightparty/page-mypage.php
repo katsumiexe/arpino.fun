@@ -790,7 +790,7 @@ var ChgList=[<?=$log_list_cnt?>];
 				<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
 			</div>
 		</div>
-		<input id="h_customer_id" type="hidden" name="cus_id" value="">
+		<input id="h_customer_id" type="hidden" name="cus_id" value="0">
 		<input id="h_customer_set" type="hidden" name="cus_set" value="1">
 		<input id="h_customer_page" type="hidden" name="cus_page" value="1">
 		<input id="h_customer_fav" type="hidden" name="cus_fav" value="0">
