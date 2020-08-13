@@ -41,10 +41,12 @@ if(!$chg_id){
 	$wpdb->query($sql_log);
 	$tmp_auto=$wpdb->insert_id;
 
-
+	$sdate=substr($sdate,0,4)."/".substr($sdate,4,2)."/".substr($sdate,6,2);
+	$stime=substr($stime,0,2).":".substr($stime,2,2);
+	$etime=substr($etime,0,2).":".substr($etime,2,2);
 
 	$dat.="<tr><td class=\"customer_log_td\">";
-	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span>{$sdate}　{$stime} - {$etime}</div>";
+	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span>{$sdate}　{$stime}－{$etime}</div>";
 	$dat.="<div class=\"customer_log_memo\">";
 	$dat.="{$log}";
 	$dat.="</div>";

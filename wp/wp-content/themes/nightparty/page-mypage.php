@@ -258,9 +258,7 @@ $reg_base_ag=date("Y")-1980;
 
 		}elseif(substr($birth,4,4) == substr($now_ymd_3,4,4)){
 			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
-
 		}
-
 	}
 
 	foreach($birth_hidden as $a1 => $a2){
@@ -446,6 +444,7 @@ $reg_base_ag=date("Y")-1980;
 			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 		}
 
+		$blog[$n]["id"]		=$tmp["ID"];
 		$blog[$n]["date"]	=$tmp["post_date"];
 		$blog[$n]["title"]	=$tmp["post_title"];
 		$blog[$n]["content"]=str_replace("\n","<br>",$tmp["post_content"]);
@@ -933,23 +932,29 @@ var ChgList=[<?=$log_list_cnt?>];
 				</div>
 			</div>
 			<?for($n=0;$n<count($blog);$n++){?>
-			<div class="blog_hist">
-			<div class="blog_hist_in">
-				<img src="<?=$blog[$n]["img"]?>" class="hist_img">
-				<span class="hist_date"><?=$blog[$n]["date"]?></span>
-				<span class="hist_title"><?=$blog[$n]["title"]?></span>
+			<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
+				<div class="blog_hist_in">
+					<img src="<?=$blog[$n]["img"]?>" class="hist_img">
+					<span class="hist_date"><?=$blog[$n]["date"]?></span>
+					<span class="hist_title"><?=$blog[$n]["title"]?></span>
+				</div>	
+				<div class="hist_log">
+					<?if($blog[$n]["img_on"]){?>
+					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+					<?}?>
+					<?=$blog[$n]["content"]?>
+				</div>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
 				<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
+				<span class="hist_fix"><span class="hist_i"></span></span>
 
-			</div>
 				<div class="hist_log">
-				<?if($blog[$n]["img_on"]){?>
-				<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
-				<?}?>
-				<?=$blog[$n]["content"]?>
+					<?if($blog[$n]["img_on"]){?>
+					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+					<?}?>
+					<?=$blog[$n]["content"]?>
 				</div>
-
 			</div>
 			<? } ?>
 		</div>
@@ -958,21 +963,26 @@ var ChgList=[<?=$log_list_cnt?>];
 	<div class="main">
 		<div class="config_menu">
 
+<br>
+<hr>
+<h2>基本情報</h2>
 名前：
 CAST_ID：
 LOGIN ID
 PASSWORD
 アドレス
-
-顧客グループ設定
-履歴アイテム設定
-画面ロック時間
 LINE連携
 Twitter連携
-<br>
-<hr>
-</select>
 
+
+<h2>切替時間設定</h2>
+一日の開始時間<br>
+週の開始曜日<br>
+月の開始日<br>
+
+
+<h2>顧客グループ設定</h2>
+<h2>履歴アイテム設定</h2>
 <table class="log_item_set">
 <thead>
 	<tr>
@@ -989,7 +999,7 @@ Twitter連携
 	<?foreach($log_item as $a1){?>
 		<tr id="i<?=$a1["sort"]?>">
 			<td class="log_td_order">
-				<?=$a1["sort"]?>
+				<?=$a1["sort"]?> 
 			</td>
 			<td class="log_td_color">
 				<div class="item_color" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
@@ -1332,7 +1342,6 @@ Twitter連携
 	<div id="sel_log_set" class="btn btn_c2">セット</div>
 	</div>
 </div>
-
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">

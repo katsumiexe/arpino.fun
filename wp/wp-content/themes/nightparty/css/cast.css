@@ -572,7 +572,7 @@ i,.days_icon{
 	margin			:auto;
 	left			:1vw;
 	height			:9vw;
-	width			:78vw;
+	width			:72vw;
 	text-align		:center;
 }
 
@@ -858,7 +858,6 @@ i,.days_icon{
 
 .customer_log_td{
 	border-bottom:0.5vw solid #303030;
-	margin-bottom:1vw;
 }
 
 .customer_log_icon{
@@ -869,17 +868,20 @@ i,.days_icon{
 }
 
 .customer_log_date{
-	font-size	:4vw;
-	font-weight	:600;
+	position	:relative;
+	display		:inline-block;
+	width		:90vw;
+	height		:4vw;
+	line-height	:4vw;
+	font-size	:3.5vw;
 	color		:#303030;
-	border-bottom:1px solif #9000c0;
-	margin-bottom:0.5vw;
+	margin:2vw auto 1vw 1vw;
 }
 
 .customer_log_list{
 	display			:inline-block;
 	position		:relative;
-	width			:40vw;
+	width			:41vw;
 	vertical-align	:top;
 }
 
@@ -893,7 +895,7 @@ i,.days_icon{
 	padding			:0.5vw;
 	min-height		:10vw;
 	vertical-align	:top;
-	margin			:0.5vw 1vw auto 0.5vw; 
+	margin-right	:1vw; 
 }
 
 .customer_log_item{
@@ -901,9 +903,9 @@ i,.days_icon{
 	font-size		:3.5vw;
 	height			:5vw;
 	line-height		:5vw;
-	width			:38vw;
+	width			:41vw;
 	background		:#fafaf0;
-	margin			:1px;
+	margin-bottom	:1px;
 }
 
 .log_item_icon{
@@ -1623,13 +1625,13 @@ i,.days_icon{
 	position		:relative;
 	display			:inline-block;
 	text-align		:center;
-	width			:58vw;
+	width			:52vw;
 	vertical-align	:top;
 }
 
 .customer_log_right{
 	display			:inline-block;
-	width			:38vw;
+	width			:42vw;
 	text-align		:left;
 	vertical-align	:top;
 }
@@ -1661,7 +1663,7 @@ i,.days_icon{
 .sel_log_box{
 	position	:absolute;
 	display		:none;
-	width		:58vw;
+	width		:50vw;
 	top			:8vw;
 	left		:0.8vw;
 	background	:#fafafa;
@@ -1671,7 +1673,7 @@ i,.days_icon{
 .sel_log_option{
 	position		:relative;
 	display			:inline-block;
-	width			:56vw;
+	width			:50vw;
 	height			:7vw;
 	line-height		:7vw;
 	margin			:0;
@@ -1701,7 +1703,7 @@ i,.days_icon{
 	bottom			:0; 
 	margin			:auto;
 	display			:inline-block;
-	width			:23vw;
+	width			:25vw;
 	height			:5vw;
 	line-height		:5vw;
 	font-size		:4vw;
@@ -1725,10 +1727,10 @@ i,.days_icon{
 .sel_log_option_s{
 	position		:relative;
 	display			:inline-block;
-	width			:31vw;
+	width			:41vw;
 	height			:6vw;
 	line-height		:6vw;
-	margin			:0;
+	margin			:5vw 0 0 0;
 	background		:#fafafa;
 }
 
@@ -1755,7 +1757,7 @@ i,.days_icon{
 	bottom			:0; 
 	margin			:auto;
 	display			:inline-block;
-	width			:20vw;
+	width			:23vw;
 	height			:4vw;
 	line-height		:4vw;
 	font-size		:3.5vw;
@@ -1780,9 +1782,8 @@ i,.days_icon{
 
 .sel_log_del_s{
 	position		:absolute;
-	top				:0;
-	right			:-5.5vw;
-	bottom			:0; 
+	left			:0;
+	bottom			:6vw; 
 	margin			:auto;
 	display			:inline-block;
 	width			:3.8vw;
@@ -1791,13 +1792,13 @@ i,.days_icon{
 	font-size		:3.5vw;
 	font-family		:at_icon;
 	color			:#c00000;
-	background:#fafafa;
-	border:1px solid #d00000;
+	background		:#fafafa;
+	border			:1px solid #d00000;
 }
 
 .sel_log_area{
 	margin			:1vw;
-	width			:70vw;
+	width			:62.5vw;
 	height			:30vw;
 	resize			:none;
 	border			:0.5vw solid #303030;
@@ -1814,7 +1815,7 @@ i,.days_icon{
 	background		:#f0f0f0;
 	width			:100vw;
 	max-width		:650px;
-	margin-top:14.5vw;
+	margin-top		:14.5vw;
 }
 
 .main_sch{
@@ -2105,14 +2106,14 @@ i,.days_icon{
 	margin			:1vw auto;
 	border			:0.5vw solid #0000d0;
 	background		:#fafafa;
+	text-align:left;
 }
 
 .blog_hist_in{
 	position		:relative;
 	display			:inline-block;
 	height			:16vw;
-	width			:96vw;
-	background		:#fafafa;
+	width			:75vw;
 }
 
 .hist_log{
@@ -2163,12 +2164,13 @@ i,.days_icon{
 .hist_status{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:1vw;
+	top				:9vw;
 	right			:1vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;
-	width:15vw;
+	width			:15vw;
+	text-align:center;
 }
 
 .hist_0{
@@ -2207,6 +2209,20 @@ i,.days_icon{
 	font-size		:4.5vw;
 	font-weight		:600;
 	color			:#303030;	
+}
+
+.hist_fix{
+	display			:inline-block;
+	position		:absolute;
+	top				:9vw;
+	right			:18vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	width			:6vw;
+	text-align		:center;
+	background:#0000d0;
+	color:#fafafa;
 }
 
 .hist_watch,.hist_comm{
