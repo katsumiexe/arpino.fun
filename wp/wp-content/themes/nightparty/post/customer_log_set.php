@@ -88,6 +88,9 @@ if(!$chg_id){
 		$wpdb->query($sql);
 	}
 }
-echo $dat;
+
+var_dump($_POST);
+$_POST="";
+//echo $dat;
 exit();
 ?>

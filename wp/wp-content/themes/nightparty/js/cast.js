@@ -1704,7 +1704,7 @@ console.log("VwBase:"+VwBase);
 			ItemPrice[N]	=$(this).children('.sel_log_price_s').text();
 			N++;
 		});
-
+console.log(N);
 		$.post({
 			url:Dir + "/post/customer_log_set.php",
 			data:{
@@ -1729,7 +1729,13 @@ console.log("VwBase:"+VwBase);
 
 			},
 		}).done(function(data, textStatus, jqXHR){
+			var ItemColor='';
+			var ItemIcon='';
+			var ItemName='';
+			var ItemPrice='';
+			console.log(ItemName);
 			console.log(data);
+
 			$('#tag_3_tbl').prepend(data);
 			$('.set_back').fadeOut(200);
 			$('.customer_memo_in').animate({'top':'100vh'},200);
