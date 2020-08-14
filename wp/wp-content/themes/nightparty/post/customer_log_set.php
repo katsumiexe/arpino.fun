@@ -52,27 +52,29 @@ if(!$chg_id){
 	$dat.="</div>";
 	$dat.="<div class=\"customer_log_list\">";
 
-	$sql_log ="INSERT INTO wp01_0cast_log_list(`master_id`,`log_color`,`log_icon`,`log_comm`,`log_price`) VALUES ";
-	foreach($item_name as $a1 => $a2){
-		$item_color[$a1]=str_replace("rgb(","",$item_color[$a1]);
-		$item_color[$a1]=str_replace(")","",$item_color[$a1]);
-		$tmp_color=explode(",",$item_color[$a1]);
+	if($item_name){
+		$sql_log ="INSERT INTO wp01_0cast_log_list(`master_id`,`log_color`,`log_icon`,`log_comm`,`log_price`) VALUES ";
+		foreach($item_name as $a1 => $a2){
+			$item_color[$a1]=str_replace("rgb(","",$item_color[$a1]);
+			$item_color[$a1]=str_replace(")","",$item_color[$a1]);
+			$tmp_color=explode(",",$item_color[$a1]);
 
-		$tmp_1=substr('00'.dechex($tmp_color[0]),-2,2);
-		$tmp_2=substr('00'.dechex($tmp_color[1]),-2,2);
-		$tmp_3=substr('00'.dechex($tmp_color[2]),-2,2);
-		$tmp="#".$tmp_1.$tmp_2.$tmp_3;
+			$tmp_1=substr('00'.dechex($tmp_color[0]),-2,2);
+			$tmp_2=substr('00'.dechex($tmp_color[1]),-2,2);
+			$tmp_3=substr('00'.dechex($tmp_color[2]),-2,2);
+			$tmp="#".$tmp_1.$tmp_2.$tmp_3;
 
-		$sql_log.=" ('{$tmp_auto}','{$tmp}','{$item_icon[$a1]}','{$item_name[$a1]}','{$item_price[$a1]}'),";
-		$app.="<div class=\"customer_log_item\" style=\"border:1px solid {$tmp}; color:{$tmp};\">";
-		$app.="<span class=\"log_item_icon\">{$item_icon[$a1]}</span>";
-		$app.="<span class=\"log_item_name\">{$item_name[$a1]}</span>";
-		$app.="<span class=\"log_item_price\">{$item_price[$a1]}</span>";
-		$app.="</div>";
+			$sql_log.=" ('{$tmp_auto}','{$tmp}','{$item_icon[$a1]}','{$item_name[$a1]}','{$item_price[$a1]}'),";
+			$app.="<div class=\"customer_log_item\" style=\"border:1px solid {$tmp}; color:{$tmp};\">";
+			$app.="<span class=\"log_item_icon\">{$item_icon[$a1]}</span>";
+			$app.="<span class=\"log_item_name\">{$item_name[$a1]}</span>";
+			$app.="<span class=\"log_item_price\">{$item_price[$a1]}</span>";
+			$app.="</div>";
+		}
+		$sql_log=substr($sql_log,0,-1);
+		$wpdb->query($sql_log);
+		$dat.=$app."</span></td></tr>";
 	}
-	$sql_log=substr($sql_log,0,-1);
-	$wpdb->query($sql_log);
-	$dat.=$app."</span></td></tr>";
 
 }else{
 	for($n=0;$n<count($chglist);$n++){

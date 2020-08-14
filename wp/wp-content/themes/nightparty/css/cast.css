@@ -136,6 +136,11 @@ input:focus{
 	font-weight	:600;
 }
 
+#regist_blog_fix{
+	background		:#9060c0;
+
+}
+
 .head_mymenu_arrow{
 	display		:inline-block;
 	position	:absolute;
@@ -2211,19 +2216,6 @@ i,.days_icon{
 	color			:#303030;	
 }
 
-.hist_fix{
-	display			:inline-block;
-	position		:absolute;
-	top				:9vw;
-	right			:18vw;
-	height			:6vw;
-	line-height		:6vw;
-	font-size		:4vw;
-	width			:6vw;
-	text-align		:center;
-	background:#0000d0;
-	color:#fafafa;
-}
 
 .hist_watch,.hist_comm{
 	display			:inline-block;
