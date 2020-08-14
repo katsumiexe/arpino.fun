@@ -423,7 +423,7 @@ $reg_base_ag=date("Y")-1980;
 	$sql ="SELECT * FROM wp01_posts";
 	$sql.=" WHERE post_password='{$_SESSION["id"]}'";
 	$sql.=" AND post_name='post'";
-	$sql.=" ORDER BY post_date_gmt DESC";
+	$sql.=" ORDER BY post_date DESC";
 	$sql.=" LIMIT 20";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
@@ -454,23 +454,23 @@ $reg_base_ag=date("Y")-1980;
 			$blog[$n]["status"]=1;
 
 		}elseif($tmp["post_status"] == "draft"){
-			$blog[$n]["status"]=3;
+			$blog[$n]["status"]=2;
 
 		}elseif($tmp["post_status"] == "pending"){
-			$blog[$n]["status"]=2;
+			$blog[$n]["status"]=3;
 
 		}elseif($tmp["post_status"] == "publish"){
 			$blog[$n]["status"]=0;
 	
 		}else{
-			$blog[$n]["status"]=2;
+			$blog[$n]["status"]=3;
 		}	
 		$n++;
 	}
 	$blog_status[0]="公開";
 	$blog_status[1]="予約";
-	$blog_status[2]="非公開";
-	$blog_status[3]="削除";
+	$blog_status[2]="削除";
+	$blog_status[3]="非公開";
 
 	$sql ="SELECT * FROM wp01_terms";
 	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_terms.term_id=wp01_term_taxonomy.term_id";
@@ -586,17 +586,17 @@ var ChgList=[<?=$log_list_cnt?>];
 		</div>
 
 	<?}elseif($cast_page==4){?>
-		<div id="regist_blog_fix" class="regist_btn">
-			<span class="regist_icon"></span>
-			<span class="regist_txt">修正</span>
+		<div id="regist_brog_set" class="regist_btn">
+			<span class="regist_icon"></span>
+			<span class="regist_txt">登録</span>
 		</div>
-		<div id="regist_blog" class="regist_btn">
+		<div id="regist_brog" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">投稿</span>
 		</div>
 
 	<?}elseif($cast_page==5){?>
-		<div id="regist_blog" class="regist_btn">
+		<div id="regist_brog" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">変更</span>
 		</div>
@@ -868,32 +868,33 @@ var ChgList=[<?=$log_list_cnt?>];
 					<div class="blog_box">	
 						<select id="blog_yy" name="blog_yy" class="blog_4">
 							<?for($n=2018;$n<date("Y")+3;$n++){?>
+								<?$n1=substr("00".$n,-2,2)?>
 								<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
 							<?}?>
 						</select>年
 						<select id="blog_mm" name="blog_mm" class="blog_2">
 							<?for($n=1;$n<13;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n1?>"<?if($n1 == date("m",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>月
 						<select id="blog_dd" name="blog_dd" class="blog_2">
 							<?for($n=1;$n<32;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n1?>"<?if($n1 == date("d",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>日　
 						<select id="blog_hh" name="blog_hh" class="blog_2">
 							<?for($n=0;$n<24;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n1?>"<?if($n1== date("H",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>
 						：
 						<select id="blog_ii" name="blog_ii" class="blog_2">
 							<?for($n=0;$n<60;$n++){?>
 							<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n1?>"<?if($n1 == date("i",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>
 						<br>
@@ -930,7 +931,6 @@ var ChgList=[<?=$log_list_cnt?>];
 					</table>
 				</div>
 			</div>
-
 			<?for($n=0;$n<count($blog);$n++){?>
 			<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
 				<div class="blog_hist_in">
@@ -942,11 +942,19 @@ var ChgList=[<?=$log_list_cnt?>];
 					<?if($blog[$n]["img_on"]){?>
 					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
 					<?}?>
-					<span class="blog_log"><?=$blog[$n]["content"]?></span>
+					<?=$blog[$n]["content"]?>
 				</div>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
 				<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
+				<span class="hist_fix"><span class="hist_i"></span></span>
+
+				<div class="hist_log">
+					<?if($blog[$n]["img_on"]){?>
+					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+					<?}?>
+					<?=$blog[$n]["content"]?>
+				</div>
 			</div>
 			<? } ?>
 		</div>
@@ -1341,19 +1349,6 @@ Twitter連携
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="img_url" type="hidden" name="img_url" value="">
 <input id="img_code" type="hidden" name="img_code" value="">
-
-<input type="hidden" id="h_blog_yy">
-<input type="hidden" id="h_blog_mm">
-<input type="hidden" id="h_blog_dd">
-<input type="hidden" id="h_blog_hh">
-<input type="hidden" id="h_blog_ii">
-
-<input type="hidden" id="h_blog_title">
-<input type="hidden" id="h_blog_log">
-<input type="hidden" id="h_blog_img">
-<input type="hidden" id="h_blog_tag_sel">
-<input type="hidden" id="h_blog_status">
-
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
