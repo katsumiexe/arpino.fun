@@ -1337,9 +1337,9 @@ Twitter連携
 			</div>
 			<textarea id="sel_log_area" class="sel_log_area" placeholder="メモ："></textarea>
 		</div>
-		<div class="customer_log_right">
-		</div>
+		<div class="customer_log_right"></div>
 	<div id="sel_log_set" class="btn btn_c2">セット</div>
+　　<div id="sel_log_reset" class="btn btn_c1">戻る</div>
 	</div>
 </div>
 <input id="img_top" type="hidden" name="img_top" value="10">

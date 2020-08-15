@@ -55,11 +55,11 @@
 	position	:absolute;
 	top			:5px;
 	left		:180px;
-	width		:300px;
+	width		:310px;
 	height		:25px;
 	line-height	:25px;
 	font-size	:15px;
-	padding		:5px;
+	padding		:5px 0;
 	border-bottom:5px double #c09000;
 }
 
@@ -69,7 +69,8 @@
 	top			:45px;
 	left		:180px;
 	width		:300px;
-	height		:25px;
+	height		:20px;
+	line-height	:20px;
 	padding		:5px;
 	font-size	:13px;
 }
@@ -77,10 +78,10 @@
 .ans_comm{
 	display			:inline-block;
 	position		:absolute;
-	top				:80px;
+	top				:75px;
 	left			:180px;
 	width			:300px;
-	height			:200px;
+	height			:205px;
 	padding			:5px;
 	background		:#fafafa;
 	border-top		:3px solid #909090;

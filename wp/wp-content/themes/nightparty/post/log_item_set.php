@@ -28,8 +28,6 @@ for($n=0;$n<count($chglist);$n++){
 	$sql.=" WHERE cast_id='{$cast_id}'";
 	$sql.=" AND sort='{$n}'";
 	$wpdb->query($sql);
-
-	echo $sql."\n";
 }
 
 exit();

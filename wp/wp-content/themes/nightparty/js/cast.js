@@ -6,10 +6,6 @@ $(function(){
 	var cvs_A		=0;
 	var Rote		=0;
 	var ImgZoom		=100;
-	var ItemName	=[];
-	var ItemPrice	=[];
-	var ItemIcon	=[];
-	var ItemColor	=[];
 
 
 	$('.color_picker,.icon_picker').hide();
@@ -1725,8 +1721,21 @@ console.log("VwBase:"+VwBase);
 		$(this).parent().remove()
 	});
 
+	$('#sel_log_reset').on('click',function(){
+		$('.set_back').fadeOut(200);
+		$('.customer_log_right').empty();
+		$('#sel_log_area').val('');
+		$('.customer_log_in').animate({'top':'100vh'},200);
+		$('.customer_log_in').animate({'top':'100vh'},200);
+	});
+
 	$('#sel_log_set').on('click',function(){
 		var N=0;
+		var ItemName	=[];
+		var ItemPrice	=[];
+		var ItemIcon	=[];
+		var ItemColor	=[];
+
 		 $('.sel_log_option_s').each(function() {
 			ItemColor[N]	=$(this).css('color');
 			ItemIcon[N]		=$(this).children('.sel_log_icon_s').text();
@@ -1734,7 +1743,7 @@ console.log("VwBase:"+VwBase);
 			ItemPrice[N]	=$(this).children('.sel_log_price_s').text();
 			N++;
 		});
-console.log(N);
+
 		$.post({
 			url:Dir + "/post/customer_log_set.php",
 			data:{
@@ -1759,18 +1768,11 @@ console.log(N);
 
 			},
 		}).done(function(data, textStatus, jqXHR){
-			var ItemColor='';
-			var ItemIcon='';
-			var ItemName='';
-			var ItemPrice='';
-			console.log(ItemName);
-			console.log(data);
-
 			$('#tag_3_tbl').prepend(data);
 			$('.set_back').fadeOut(200);
-			$('.customer_memo_in').animate({'top':'100vh'},200);
 			$('.customer_log_right').empty();
 			$('#sel_log_area').val('');
+			$('.customer_log_in').animate({'top':'100vh'},200);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

@@ -91,8 +91,6 @@ if(!$chg_id){
 	}
 }
 
-var_dump($_POST);
-$_POST="";
-//echo $dat;
+echo $dat;
 exit();
 ?>
