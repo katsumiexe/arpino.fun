@@ -586,17 +586,17 @@ var ChgList=[<?=$log_list_cnt?>];
 		</div>
 
 	<?}elseif($cast_page==4){?>
-		<div id="regist_brog_set" class="regist_btn">
+		<div id="regist_blog_fix" class="regist_btn">
 			<span class="regist_icon"></span>
-			<span class="regist_txt">登録</span>
+			<span class="regist_txt">修正</span>
 		</div>
-		<div id="regist_brog" class="regist_btn">
+		<div id="regist_blog" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">投稿</span>
 		</div>
 
 	<?}elseif($cast_page==5){?>
-		<div id="regist_brog" class="regist_btn">
+		<div id="regist_blog" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">変更</span>
 		</div>
@@ -799,7 +799,7 @@ var ChgList=[<?=$log_list_cnt?>];
 		<input id="h_customer_twitter" type="hidden" value="">
 		<input id="h_customer_facebook" type="hidden" value="">
 		<input id="h_customer_insta" type="hidden" value="">
-		<input id="h_customer_blog" type="hidden" value="">
+		<input id="h_customer_line" type="hidden" value="">
 		<input id="h_customer_web" type="hidden" value="">
 	</div>
 	<?}elseif($cast_page==3){?>
@@ -875,26 +875,26 @@ var ChgList=[<?=$log_list_cnt?>];
 						<select id="blog_mm" name="blog_mm" class="blog_2">
 							<?for($n=1;$n<13;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n1?>"<?if($n1 == date("m",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>月
 						<select id="blog_dd" name="blog_dd" class="blog_2">
 							<?for($n=1;$n<32;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n1?>"<?if($n1 == date("d",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>日　
 						<select id="blog_hh" name="blog_hh" class="blog_2">
 							<?for($n=0;$n<24;$n++){?>
 								<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n1?>"<?if($n1 == date("H",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>
 						：
 						<select id="blog_ii" name="blog_ii" class="blog_2">
 							<?for($n=0;$n<60;$n++){?>
 							<?$n1=substr("00".$n,-2,2)?>
-								<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+								<option value="<?=$n1?>"<?if($n1 == date("i",$jst)){?> selected="selected"<?}?>><?=$n1?></option>
 							<?}?>
 						</select>
 						<br>
@@ -942,22 +942,25 @@ var ChgList=[<?=$log_list_cnt?>];
 					<?if($blog[$n]["img_on"]){?>
 					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
 					<?}?>
-					<?=$blog[$n]["content"]?>
+					<span class="blog_log"><?=$blog[$n]["content"]?></span>
 				</div>
 				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
 				<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
-				<span class="hist_fix"><span class="hist_i"></span></span>
 
 				<div class="hist_log">
 					<?if($blog[$n]["img_on"]){?>
 					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
 					<?}?>
+				<span class="blog_log">
 					<?=$blog[$n]["content"]?>
+				</span>
 				</div>
 			</div>
 			<? } ?>
 		</div>
+
+
 	<?}elseif($cast_page==5){?>
 	<?}elseif($cast_page==6){?>
 	<div class="main">
@@ -1247,6 +1250,9 @@ Twitter連携
 			<div class="img_box_out7"></div>
 			<div class="img_box_out8"></div>
 		</div>
+
+
+
 <!--
 		<div class="img_box_in2">
 			<label for="upd" class="upload_icon"></label>
@@ -1349,6 +1355,18 @@ Twitter連携
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="img_url" type="hidden" name="img_url" value="">
 <input id="img_code" type="hidden" name="img_code" value="">
+
+<input id="h_blog_yy" type="hidden" value="">
+<input id="h_blog_mm" type="hidden" value="">
+<input id="h_blog_dd" type="hidden" value="">
+<input id="h_blog_hh" type="hidden" value="">
+<input id="h_blog_ii" type="hidden" value="">
+<input id="h_blog_title" type="hidden" value="">
+<input id="h_blog_log" type="hidden" value="">
+<input id="h_blog_tag_sel" type="hidden" value="">
+<input id="h_blog_img" type="hidden" value="">
+
+
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">

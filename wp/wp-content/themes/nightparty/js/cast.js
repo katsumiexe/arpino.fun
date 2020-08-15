@@ -139,6 +139,7 @@ $(function(){
 			$('#h_blog_img').val($(this).children('.hist_img').attr('src'));
 
 
+
 		}else{
 			$('.hist_log').slideUp(200);
 			$('.blog_hist').slideDown(200);
@@ -416,6 +417,7 @@ $(function(){
 			$('.blog_write').slideDown(100);
 
 			TmpLog=$('#h_blog_log').val().replace(/(<br>|<br \/>)/gi, '\n');
+
 			$('#blog_yy').val($('#h_blog_yy').val());
 			$('#blog_mm').val($('#h_blog_mm').val());
 			$('#blog_dd').val($('#h_blog_dd').val());
@@ -423,8 +425,16 @@ $(function(){
 			$('#blog_ii').val($('#h_blog_ii').val());
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
-			$('.blog_img').val($('#h_blog_img').val());
+			$('.blog_img').attr('src',$('#h_blog_img').val());
 			$('.blog_tag_sel').val($('#h_blog_tag_sel').val());
+
+			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
+
+			ChgImg.src=$('#h_blog_img').val();
+			ChgImg.onload = ()=>{
+			ctx.drawImage(ChgImg, 0, 0, 60*VwBase, 60*VwBase);
+			};
+
 
 		}else{
 			$('.blog_write').slideUp(50);
@@ -741,10 +751,6 @@ $(function(){
 			console.log(errorThrown);
 		});
 	});
-
-
-
-
 
 	$('#blog_set').on('click',function(){
 		$.post({
@@ -1333,6 +1339,7 @@ console.log("VwBase:"+VwBase);
 			},
 		});
 	});
+
 
 	$('.cal').on('click','.cal_next',function () {
 		$.post({
