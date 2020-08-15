@@ -40,10 +40,10 @@ foreach($dat0 AS $dat1){
 	$dat.="</div>";
 	$dat.="<div class=\"customer_log_list\">";
 	foreach($dat2 as $dat3){
-		$dat.="<div class=\"customer_log_item\" style=\"border:2px solid {$dat3["log_color"]}; color:{$dat3["log_color"]};\">";
-		$dat.="<span class=\"log_item_icon\">{$dat3["log_icon"]}</span>";
-		$dat.="<span class=\"log_item_name\">{$dat3["log_comm"]}</span>";
-		$dat.="<span class=\"log_item_price\">{$dat3["log_price"]}</span>";
+		$dat.="<div class=\"customer_log_item\" style=\"border:1px solid {$dat3["log_color"]}; color:{$dat3["log_color"]};\">";
+		$dat.="<span class=\"sel_log_icon_s\">{$dat3["log_icon"]}</span>";
+		$dat.="<span class=\"sel_log_comm_s\">{$dat3["log_comm"]}</span>";
+		$dat.="<span class=\"sel_log_price_s\">{$dat3["log_price"]}</span>";
 		$dat.="</div>";
 	}
 	$dat.="</div>";
@@ -52,3 +52,4 @@ foreach($dat0 AS $dat1){
 echo $dat;
 exit();
 ?>
+

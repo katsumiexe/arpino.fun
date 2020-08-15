@@ -1178,9 +1178,7 @@ console.log("VwBase:"+VwBase);
 			$('.customer_log_in').animate({'top':'20vh'},200);
 
 			TmpLog=$(this).parents().next('.customer_log_memo').html().replace(/(<br>|<br \/>)/gi, '\n');
-
 			TmpTag=$(this).parents().next().next('.customer_log_list').html();
-
 			console.log($(this).prev('.customer_log_date_detail').text());
 
 			$('#logset_yy').val($(this).prev('.customer_log_date_detail').text().substr(0,4));
@@ -1194,12 +1192,14 @@ console.log("VwBase:"+VwBase);
 
 			$('#sel_log_area').val(TmpLog);
 			$('.customer_log_right').html(TmpTag);
+			$('.customer_log_right div').removeClass('customer_log_item').addClass('sel_log_option_s').append('<span class=\"sel_log_del_s\"></span>');
 
 		}else{
 			$('.set_back').fadeOut(200);
 			$('.customer_log_in').animate({'top':'100vh'},200);
 		}
 	});
+
 
 
 	$('.customer_memo_new_set').on('click',function () {
