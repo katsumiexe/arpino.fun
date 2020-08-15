@@ -24,7 +24,7 @@ foreach($dat0 AS $dat1){
 	$dat1["log"]=str_replace("\n","<br>",$dat1["log"]);
 
 	$dat.="<tr><td class=\"customer_log_td\">";
-	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span>{$t_date}　{$s_time}－{$e_time}";
+	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span><span class=\"customer_log_date_detail\">{$t_date} {$s_time}-{$e_time}</span>";
 	$dat.="<div id=\"m_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
 	$dat.="</div>";
 

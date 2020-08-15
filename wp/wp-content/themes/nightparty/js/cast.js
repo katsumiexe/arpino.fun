@@ -1170,6 +1170,37 @@ console.log("VwBase:"+VwBase);
 		}
 	});
 
+	$('#tag_3_tbl').on('click','.customer_log_chg',function () {
+		if($('.set_back').css('display') ==='none'){
+			$('.set_back').next()
+
+			$('.set_back').fadeIn(200);
+			$('.customer_log_in').animate({'top':'20vh'},200);
+
+			TmpLog=$('.customer_log_memo').html().replace(/(<br>|<br \/>)/gi, '\n');
+			TmpTag=$('.customer_log_list').html();
+
+			console.log($(this).next('.customer_log_date_detail').text());
+
+			$('#logset_yy').val($(this).next('.customer_log_date_detail').text().substr(0,4));
+			$('#logset_mm').val($(this).next('.customer_log_date_detail').text().substr(5,2));
+			$('#logset_dd').val($(this).next('.customer_log_date_detail').text().substr(8,2));
+			$('#logset_hh_s').val($(this).next('.customer_log_date_detail').text().substr(11,2));
+			$('#logset_ii_s').val($(this).next('.customer_log_date_detail').text().substr(14,2));
+
+			$('#logset_hh_e').val($(this).next('.customer_log_date_detail').text().substr(17,2));
+			$('#logset_ii_e').val($(this).next('.customer_log_date_detail').text().substr(20,2));
+
+			$('#sel_log_area').val(TmpLog);
+			$('.customer_log_right').html(TmpTag);
+
+		}else{
+			$('.set_back').fadeOut(200);
+			$('.customer_log_in').animate({'top':'100vh'},200);
+		}
+	});
+
+
 	$('.customer_memo_new_set').on('click',function () {
 		Log=$('.customer_memo_new_txt').val();
 		$.post({
@@ -1734,7 +1765,6 @@ console.log("VwBase:"+VwBase);
 		$('.set_back').fadeOut(200);
 		$('.customer_log_right').empty();
 		$('#sel_log_area').val('');
-		$('.customer_log_in').animate({'top':'100vh'},200);
 		$('.customer_log_in').animate({'top':'100vh'},200);
 	});
 

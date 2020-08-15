@@ -881,7 +881,7 @@ i,.days_icon{
 	line-height	:6vw;
 	font-size	:3.5vw;
 	color		:#303030;
-	margin:2vw auto 1vw 1vw;
+	margin		:2vw auto 1vw 1vw;
 	vertical-align:bottom;
 }
 
@@ -894,7 +894,7 @@ i,.days_icon{
 
 	height			:6vw;
 	line-height		:6vw;
-	width			:6vw;
+	width			:10vw;
 	margin			:auto;
 	text-align		:center;
 	font-size		:4vw;
