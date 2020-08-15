@@ -55,9 +55,6 @@ if(!$chg_id){
 	$dat.="<div class=\"customer_log_list\">";
 
 	if($item_name){
-
-$('.customer_log_memo').parents().netx();
-
 		$sql_log ="INSERT INTO wp01_0cast_log_list(`master_id`,`log_color`,`log_icon`,`log_comm`,`log_price`) VALUES ";
 		foreach($item_name as $a1 => $a2){
 			$item_color[$a1]=str_replace("rgb(","",$item_color[$a1]);
