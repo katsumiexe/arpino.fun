@@ -467,6 +467,7 @@ $reg_base_ag=date("Y")-1980;
 		}	
 		$n++;
 	}
+
 	$blog_status[0]="公開";
 	$blog_status[1]="予約";
 	$blog_status[2]="削除";
@@ -937,6 +938,7 @@ var ChgList=[<?=$log_list_cnt?>];
 					<img src="<?=$blog[$n]["img"]?>" class="hist_img">
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
+					<span class="hist_tag"><?=$blog[$n]["title"]?></span>
 				</div>	
 				<div class="hist_log">
 					<?if($blog[$n]["img_on"]){?>
@@ -1250,9 +1252,6 @@ Twitter連携
 			<div class="img_box_out7"></div>
 			<div class="img_box_out8"></div>
 		</div>
-
-
-
 <!--
 		<div class="img_box_in2">
 			<label for="upd" class="upload_icon"></label>
@@ -1293,35 +1292,35 @@ Twitter連携
 			<select id="logset_mm" class="blog_2">
 				<?for($n=1;$n<13;$n++){?>
 					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+					<option value="<?=$n1?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select><span class="customer_log_ymd">月</span>
 			<select id="logset_dd" class="blog_2">
 				<?for($n=1;$n<32;$n++){?>
 					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+					<option value="<?=$n1?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select><span class="customer_log_ymd">日</span>　
 			<span class="customer_log_st">開始</span><select id="logset_hh_s" class="blog_2">
 				<?for($n=0;$n<24;$n++){?>
 					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+					<option value="<?=$n1?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select><span class="customer_log_h">：</span><select id="logset_ii_s" class="blog_2">
 				<?for($n=0;$n<60;$n++){?>
 				<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+					<option value="<?=$n1?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select><br>
 　			<span class="customer_log_ed">終了</span><select id="logset_hh_e" class="blog_2">
 				<?for($n=0;$n<24;$n++){?>
 					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+					<option value="<?=$n1?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select><span class="customer_log_h">：</span><select id="logset_ii_e" class="blog_2">
 				<?for($n=0;$n<60;$n++){?>
 				<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
+					<option value="<?=$n1?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select>
 		</div>

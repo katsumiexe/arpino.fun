@@ -138,6 +138,8 @@ $(function(){
 			$('#h_blog_log').val($(this).next('.hist_log').children('.blog_log').html());
 			$('#h_blog_img').val($(this).children('.hist_img').attr('src'));
 
+			$('#h_blog_tag_sel').val($('#h_blog_tag_sel').val());
+
 
 
 		}else{
@@ -430,12 +432,15 @@ $(function(){
 
 			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
 
+			var ChgImg = new Image();
+			var cvs = document.getElementById('cvs1');
+			var ctx = cvs.getContext('2d');
+
 			ChgImg.src=$('#h_blog_img').val();
 			ChgImg.onload = ()=>{
-			ctx.drawImage(ChgImg, 0, 0, 60*VwBase, 60*VwBase);
+	//			ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,60*VwBase, 60*VwBase);
+				ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,800, 800);
 			};
-
-
 		}else{
 			$('.blog_write').slideUp(50);
 		}
@@ -444,7 +449,6 @@ $(function(){
 	$('#upd').on('change', function(e){
 		var file = e.target.files[0];	
 		var reader = new FileReader();
-
 
 		if(file.type.indexOf("image") < 0){
 			alert("NO IMAGE FILES");
@@ -482,7 +486,6 @@ $(function(){
 						css_A=css_H;
 						css_B=10*VwBase-(css_A-60*VwBase)/2;
 
-
 					}else{
 						cvs_H=600;
 						cvs_W=img_W*(cvs_H/img_H);
@@ -513,7 +516,6 @@ $(function(){
 					var ImgZoom		=100;
 
 				}
-
 			};
 		})(file);
 		reader.readAsDataURL(file);
