@@ -106,7 +106,7 @@ $(function(){
 						'c_id':C_Id,
 					},
 				}).done(function(data, textStatus, jqXHR){
-					console.log(data);
+//					console.log(data);
 					if(data){
 						$('#tag_3_tbl').html(data);
 					}
@@ -1177,19 +1177,20 @@ console.log("VwBase:"+VwBase);
 			$('.set_back').fadeIn(200);
 			$('.customer_log_in').animate({'top':'20vh'},200);
 
-			TmpLog=$('.customer_log_memo').html().replace(/(<br>|<br \/>)/gi, '\n');
-			TmpTag=$('.customer_log_list').html();
+			TmpLog=$(this).parents().next('.customer_log_memo').html().replace(/(<br>|<br \/>)/gi, '\n');
 
-			console.log($(this).next('.customer_log_date_detail').text());
+			TmpTag=$(this).parents().next().next('.customer_log_list').html();
 
-			$('#logset_yy').val($(this).next('.customer_log_date_detail').text().substr(0,4));
-			$('#logset_mm').val($(this).next('.customer_log_date_detail').text().substr(5,2));
-			$('#logset_dd').val($(this).next('.customer_log_date_detail').text().substr(8,2));
-			$('#logset_hh_s').val($(this).next('.customer_log_date_detail').text().substr(11,2));
-			$('#logset_ii_s').val($(this).next('.customer_log_date_detail').text().substr(14,2));
+			console.log($(this).prev('.customer_log_date_detail').text());
 
-			$('#logset_hh_e').val($(this).next('.customer_log_date_detail').text().substr(17,2));
-			$('#logset_ii_e').val($(this).next('.customer_log_date_detail').text().substr(20,2));
+			$('#logset_yy').val($(this).prev('.customer_log_date_detail').text().substr(0,4));
+			$('#logset_mm').val($(this).prev('.customer_log_date_detail').text().substr(5,2));
+			$('#logset_dd').val($(this).prev('.customer_log_date_detail').text().substr(8,2));
+			$('#logset_hh_s').val($(this).prev('.customer_log_date_detail').text().substr(11,2));
+			$('#logset_ii_s').val($(this).prev('.customer_log_date_detail').text().substr(14,2));
+
+			$('#logset_hh_e').val($(this).prev('.customer_log_date_detail').text().substr(17,2));
+			$('#logset_ii_e').val($(this).prev('.customer_log_date_detail').text().substr(20,2));
 
 			$('#sel_log_area').val(TmpLog);
 			$('.customer_log_right').html(TmpTag);
