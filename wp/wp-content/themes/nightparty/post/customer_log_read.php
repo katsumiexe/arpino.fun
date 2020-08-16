@@ -18,16 +18,15 @@ $sql	.=" LIMIT 20";
 $dat0 = $wpdb->get_results($sql,ARRAY_A );
 foreach($dat0 AS $dat1){
 	$t_date=substr($dat1["sdate"],0,4)."/".substr($dat1["sdate"],4,2)."/".substr($dat1["sdate"],6,2);
-	$s_time=substr($dat1["etime"],0,2).":".substr($dat1["etime"],2,2);
+	$s_time=substr($dat1["stime"],0,2).":".substr($dat1["stime"],2,2);
 	$e_time=substr($dat1["etime"],0,2).":".substr($dat1["etime"],2,2);
 
 	$dat1["log"]=str_replace("\n","<br>",$dat1["log"]);
 
-	$dat.="<tr><td class=\"customer_log_td\">";
+	$dat.="<tr id=\"customer_log_td_{$dat1["id"]}\"><td class=\"customer_log_td\">";
 	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span><span class=\"customer_log_date_detail\">{$t_date} {$s_time}-{$e_time}</span>";
 	$dat.="<div id=\"m_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
 	$dat.="</div>";
-
 
 	$sql	 ="SELECT * FROM wp01_0cast_log_list";
 	$sql	.=" LEFT JOIN wp01_0cast_log_table ON wp01_0cast_log_list.action_id=wp01_0cast_log_table.id";
@@ -52,4 +51,3 @@ foreach($dat0 AS $dat1){
 echo $dat;
 exit();
 ?>
-

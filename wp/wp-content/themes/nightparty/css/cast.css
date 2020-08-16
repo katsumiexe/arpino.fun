@@ -1532,7 +1532,7 @@ i,.days_icon{
 	right:12vw;
 }
 
-.customer_memo_del_back_in{
+.customer_memo_del_back_in,.customer_log_del_back_in{
 	display:none;
 	border			:0.5vw solid #303030;
 	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
@@ -1548,6 +1548,7 @@ i,.days_icon{
 	margin			:2vw auto;	
 	width			:60vw;
 	height			:30vw;
+	z-index:200;
 }
 
 .customer_memo_del_back_in_btn{
@@ -1662,6 +1663,15 @@ i,.days_icon{
 	width			:42vw;
 	text-align		:left;
 	vertical-align	:top;
+}
+
+.customer_log_bottom{
+	display			:inline-block;
+	width			:92vw;
+	text-align		:center;
+	padding			:1.5vw;
+	margin:0 auto;
+	font-size:5vw;
 }
 
 .customer_log_in{

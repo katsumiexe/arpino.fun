@@ -421,8 +421,15 @@ $reg_base_ag=date("Y")-1980;
 
 //■Blog------------------
 	$sql ="SELECT * FROM wp01_posts";
-	$sql.=" WHERE post_password='{$_SESSION["id"]}'";
-	$sql.=" AND post_name='post'";
+
+	$sql.=" LEFT JOIN wp01_term_relationships ON wp01_posts.ID=wp01_term_relationships.object_id";
+	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_term_relationships.term_taxonomy_id=wp01_term_taxonomy.term_id";
+	$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
+
+//	$sql.=" WHERE post_password='{$_SESSION["id"]}'";
+	$sql.=" WHERE post_type='post'";
+	$sql.=" AND wp01_term_taxonomy.taxonomy='category'";
+	$sql.=" AND wp01_terms.slug='{$_SESSION["id"]}'";
 	$sql.=" ORDER BY post_date DESC";
 	$sql.=" LIMIT 20";
 
@@ -431,6 +438,16 @@ $reg_base_ag=date("Y")-1980;
 	foreach($dat as $tmp){
 		$img_tmp=$tmp["ID"]+2;
 		$updir = wp_upload_dir();
+
+	$sql ="SELECT * FROM wp01_term_relationships";
+	$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
+	$sql.=" WHERE object_id='{$tmp["ID"]}'";
+	$sql.=" AND slug LIKE 'tag%'";
+
+	$dat2 = $wpdb->get_results($sql,ARRAY_A );
+	foreach($dat2 as $tmp2){
+		$tag_name[$n][]		=$tmp2["name"];
+	}
 
 		$sql ="SELECT * FROM wp01_postmeta";
 		$sql.=" WHERE post_id='{$tmp["ID"]}'";
@@ -465,6 +482,7 @@ $reg_base_ag=date("Y")-1980;
 		}else{
 			$blog[$n]["status"]=3;
 		}	
+
 		$n++;
 	}
 
@@ -938,7 +956,9 @@ var ChgList=[<?=$log_list_cnt?>];
 					<img src="<?=$blog[$n]["img"]?>" class="hist_img">
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
-					<span class="hist_tag"><?=$blog[$n]["title"]?></span>
+					<span class="hist_tag">
+						<?foreach($tag_name[$n] as $a2){?><?=$a2?>/<?}?>
+					</span>
 				</div>	
 				<div class="hist_log">
 					<?if($blog[$n]["img_on"]){?>
@@ -1168,6 +1188,15 @@ Twitter連携
 		<input id="del_id" type="hidden">
 	</div>
 
+	<div class="customer_log_del_back_in">
+			削除します。よろしいですか
+		<div class="customer_memo_del_back_in_btn">
+			<div id="log_del_set" class="btn btn_c2">削除</div>　
+			<div id="log_del_back" class="btn btn_c1">戻る</div>
+		</div>
+		<input id="del_id" type="hidden">
+	</div>
+
 	<div class="customer_memo_in">
 		<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
 		<div class="customer_memo_new_set"></div>
@@ -1343,8 +1372,11 @@ Twitter連携
 			<textarea id="sel_log_area" class="sel_log_area" placeholder="メモ："></textarea>
 		</div>
 		<div class="customer_log_right"></div>
-	<div id="sel_log_set" class="btn btn_c2">セット</div>
-　　<div id="sel_log_reset" class="btn btn_c1">戻る</div>
+		<div class="customer_log_bottom">
+		<div id="sel_log_set" class="btn btn_c2">登録</div>
+		　<div id="sel_log_reset" class="btn btn_c1">戻る</div>
+		　<div id="sel_log_del" class="btn btn_c3">削除</div>
+		</div>
 	</div>
 </div>
 <input id="img_top" type="hidden" name="img_top" value="10">
@@ -1364,7 +1396,6 @@ Twitter連携
 <input id="h_blog_log" type="hidden" value="">
 <input id="h_blog_tag_sel" type="hidden" value="">
 <input id="h_blog_img" type="hidden" value="">
-
 
 
 <input id="upd" type="file" accept="image/*" style="display:none;">
