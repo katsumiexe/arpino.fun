@@ -1583,11 +1583,7 @@ i,.days_icon{
 }
 
 .customer_memo_new_txt{
-	position		:absolute;
-	top				:15vw;
-	left			:0vw;
-	right			:0vw;
-	margin			:auto;
+	margin			:1vw auto;
 	font-size		:4.5vw;
 	width			:80vw;
 	height			:50vw;
@@ -1602,7 +1598,6 @@ i,.days_icon{
 	right			:0;
 	margin			:auto;
 	width			:96vw;
-	height			:70vw;
 	background		:#dafaca;
 	text-align		:center;
 	border-radius	:1vw
@@ -1611,37 +1606,15 @@ i,.days_icon{
 
 .customer_memo_new_date{
 	display			:inline-block;
-	position		:absolute;
-	left			:7vw;
-	top				:8vw;
+	width			:80vw;
 	font-size		:4vw;
 	font-weight		:600;
+	text-align		:left;
+	height			:5vw;
+	line-height		:5vw;
+	margin:5vw auto 1vw auto;
 }
 
-.customer_memo_new_set,.customer_memo_new_del{
-	display			:inline-block;
-	position		:absolute;
-	top				:2vw;
-	height			:10vw;
-	line-height		:10vw;
-	width			:10vw;
-	margin			:auto;
-	text-align		:center;
-	font-size		:6vw;
-	background		:#606090;
-	color			:#fafafa;
-	border-radius	:1vw;
-	cursor			:pointer;
-	font-family		:at_icon;
-}
-
-.customer_memo_new_set{
-	right			:19vw;
-}
-
-.customer_memo_new_del{
-	right			:6vw;
-}
 
 .customer_log_top{
 	display			:inline-block;
@@ -1670,8 +1643,9 @@ i,.days_icon{
 	width			:92vw;
 	text-align		:center;
 	padding			:1.5vw;
-	margin:0 auto;
-	font-size:5vw;
+	margin			:0 auto;
+	font-size		:4vw;
+	height:10vw;
 }
 
 .customer_log_in{
@@ -2193,8 +2167,8 @@ i,.days_icon{
 	top				:0vw;
 	left			:17vw;
 	border-bottom	:1px solid #0000d0;
-	height			:5vw;
-	line-height		:5vw;
+	height			:3.5vw;
+	line-height		:4vw;
 	font-size		:3vw;
 	padding:0.5vw;
 }	
@@ -2256,7 +2230,7 @@ i,.days_icon{
 .hist_title{
 	display			:inline-block;
 	position		:absolute;
-	top				:7vw;
+	top				:6vw;
 	left			:17vw;
 	font-size		:4.5vw;
 	font-weight		:600;

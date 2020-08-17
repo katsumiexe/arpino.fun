@@ -1199,10 +1199,15 @@ Twitter連携
 
 	<div class="customer_memo_in">
 		<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
-		<div class="customer_memo_new_set"></div>
-		<div class="customer_memo_new_del"></div>
 		<textarea class="customer_memo_new_txt"></textarea>
+
+		<div class="customer_log_bottom">
+		<div id="memo_set" class="btn btn_c2">登録</div>
+		　<div id="memo_reset" class="btn btn_c1">戻る</div>
+		　<div id="memo_del" class="btn btn_c3">削除</div>
+		</div>
 	</div>
+
 
 	<div class="customer_regist">
 		<div class="customer_regist_ttl">新規顧客登録</div>

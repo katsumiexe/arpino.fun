@@ -1139,13 +1139,19 @@ console.log("VwBase:"+VwBase);
 		$('.cal_weeks_box_2').children().slice(7,14).children('.sch_time_in,.sch_time_out').val("");
 	});
 
-	$('.customer_memo_new_del').on('click',function () {
+	$('#memo_del').on('click',function () {
 		$('.customer_memo_new_txt').val("");
 	});
 
 	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
 		Tmp=$(this).attr('id').replace("m_txt","");
 		$('#'+Tmp).val("");
+	});
+
+	$('#memo_reset').on('click',function () {
+		$('.set_back').fadeOut(200);
+		$('.customer_memo_in').animate({'top':'100vh'},200);
+
 	});
 
 	$('.customer_memo_set').on('click',function () {
@@ -1203,7 +1209,7 @@ console.log("VwBase:"+VwBase);
 
 
 
-	$('.customer_memo_new_set').on('click',function () {
+	$('#memo_set').on('click',function () {
 		Log=$('.customer_memo_new_txt').val();
 		$.post({
 			url:Dir + "/post/customer_memo_set.php",
