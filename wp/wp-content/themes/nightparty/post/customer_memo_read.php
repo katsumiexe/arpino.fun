@@ -26,7 +26,7 @@ foreach($dat0 AS $dat1){
 	$dat.="<div class=\"customer_memo_date\">{$dat1["date"]}</div>";
 	$dat.="<div id=\"m_chg{$dat1["id"]}\" class=\"customer_memo_chg\"></div>";
 	$dat.="<div id=\"m_del{$dat1["id"]}\" class=\"customer_memo_del\"></div>";
-	$dat.="</td></tr><tr><td class=\"customer_memo_td2\">";
+	$dat.="</td></tr><tr><td id=\"m_log{$dat1["id"]}\" class=\"customer_memo_td2\">";
 	$dat.="{$dat1["log"]}";
 	$dat.="</td></tr>";
 }

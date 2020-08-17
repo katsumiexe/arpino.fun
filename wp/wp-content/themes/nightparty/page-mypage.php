@@ -1194,7 +1194,6 @@ Twitter連携
 			<div id="log_del_set" class="btn btn_c2">削除</div>　
 			<div id="log_del_back" class="btn btn_c1">戻る</div>
 		</div>
-		<input id="del_id" type="hidden">
 	</div>
 
 	<div class="customer_memo_in">
@@ -1401,6 +1400,7 @@ Twitter連携
 <input id="h_blog_log" type="hidden" value="">
 <input id="h_blog_tag_sel" type="hidden" value="">
 <input id="h_blog_img" type="hidden" value="">
+<input id="del_id" type="hidden">
 
 
 <input id="upd" type="file" accept="image/*" style="display:none;">

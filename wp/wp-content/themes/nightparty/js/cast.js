@@ -1231,12 +1231,25 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
+	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
+		$('.set_back').fadeIn(200);
+		$('.customer_memo_in').animate({'top':'20vh'},200);
+
+		Tmp=$(this).attr('id').replace("m_del","");
+		$('#del_id').val(Tmp);
+		$('.customer_memo_new_txt').val($('#m_log'+Tmp).html());
+		console.log($('#m_log'+Tmp).html());
+	});
+
+
+
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
 		$('.set_back,.customer_memo_del_back_in').fadeIn(200);
 
 		Tmp=$(this).attr('id').replace("m_del","");
 		$('#del_id').val(Tmp);
 	});
+
 
 	$('#memo_del_back').on('click',function () {
 		$('.set_back,.customer_memo_del_back_in').fadeOut(100);
