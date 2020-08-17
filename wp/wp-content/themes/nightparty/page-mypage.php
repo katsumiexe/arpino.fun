@@ -1014,8 +1014,8 @@ Twitter連携
 		<td class="log_td_top">順</td>
 		<td class="log_td_top">色</td>
 		<td class="log_td_top">絵</td>
-		<td class="log_td_top">名前</td>
-		<td class="log_td_top">金額</td>
+		<td class="log_td_top">名前(6文字)</td>
+		<td class="log_td_top">金額(6桁)</td>
 		<td class="log_td_top">削</td>
 		<td class="log_td_top">替</td>
 	</tr>

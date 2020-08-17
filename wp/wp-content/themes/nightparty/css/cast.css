@@ -3232,7 +3232,7 @@ input[type=range]::-moz-range-thumb{
 	height		:7vw;
 	line-height	:7vw;
 	background	:#fafafa;
-	width		:35vw;
+	width		:30vw;
 	border		:1px solid #303030;
 	vertical-align:middle;
 }
@@ -3300,7 +3300,7 @@ input[type=range]::-moz-range-thumb{
 	left			:1vw;
 	bottom			:0;
 	margin			:auto;
-	width			:40vw;
+	width			:34vw;
 	height			:7.5vw;
 	font-size		:5vw;
 	text-align		:left;	

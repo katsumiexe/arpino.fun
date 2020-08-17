@@ -75,6 +75,7 @@ $dat.="<tr id=\"customer_log_td_{$dat1["id"]}\"><td class=\"customer_log_td\">";
 
 $dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span><span class=\"customer_log_date_detail\">{$sdate} {$stime}-{$etime}</span>";
 $dat.="<div id=\"m_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
+$dat.="<div id=\"l_del{$dat1["id"]}\" class=\"customer_log_del\"></div>";
 $dat.="</div>";
 $dat.="<div class=\"customer_log_memo\">";
 $dat.="{$log}";
@@ -95,9 +96,9 @@ if($item_name){
 
 		$sql_log.=" ('{$tmp_auto}','{$tmp}','{$item_icon[$a1]}','{$item_name[$a1]}','{$item_price[$a1]}'),";
 		$app.="<div class=\"customer_log_item\" style=\"border:1px solid {$tmp}; color:{$tmp};\">";
-		$app.="<span class=\"log_item_icon\">{$item_icon[$a1]}</span>";
-		$app.="<span class=\"log_item_name\">{$item_name[$a1]}</span>";
-		$app.="<span class=\"log_item_price\">{$item_price[$a1]}</span>";
+		$app.="<span class=\"sel_log_icon_s\">{$item_icon[$a1]}</span>";
+		$app.="<span class=\"sel_log_comm_s\">{$item_name[$a1]}</span>";
+		$app.="<span class=\"sel_log_price_s\">{$item_price[$a1]}</span>";
 		$app.="</div>";
 	}
 	$sql_log=substr($sql_log,0,-1);
