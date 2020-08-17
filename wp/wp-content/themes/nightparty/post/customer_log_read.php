@@ -25,8 +25,11 @@ foreach($dat0 AS $dat1){
 
 	$dat.="<tr id=\"customer_log_td_{$dat1["id"]}\"><td class=\"customer_log_td\">";
 	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span><span class=\"customer_log_date_detail\">{$t_date} {$s_time}-{$e_time}</span>";
-	$dat.="<div id=\"m_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
+	$dat.="<div id=\"l_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
+	$dat.="<div id=\"l_del{$dat1["id"]}\" class=\"customer_log_del\"></div>";
 	$dat.="</div>";
+
+
 
 	$sql	 ="SELECT * FROM wp01_0cast_log_list";
 	$sql	.=" LEFT JOIN wp01_0cast_log_table ON wp01_0cast_log_list.action_id=wp01_0cast_log_table.id";

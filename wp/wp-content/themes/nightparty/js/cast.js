@@ -1178,7 +1178,7 @@ console.log("VwBase:"+VwBase);
 
 	$('#tag_3_tbl').on('click','.customer_log_chg',function () {
 		if($('.set_back').css('display') ==='none'){
-			Chg=$(this).attr('id').replace('m_chg','');
+			Chg=$(this).attr('id').replace('l_chg','');
 			$('.set_back').next()
 			$('.set_back').fadeIn(200);
 			$('.customer_log_in').animate({'top':'20vh'},200);
@@ -1232,13 +1232,14 @@ console.log("VwBase:"+VwBase);
 	});
 
 	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
+
+		Tmp=$(this).attr('id').replace("m_chg","");
+
 		$('.set_back').fadeIn(200);
 		$('.customer_memo_in').animate({'top':'20vh'},200);
-
-		Tmp=$(this).attr('id').replace("m_del","");
 		$('#del_id').val(Tmp);
-		$('.customer_memo_new_txt').val($('#m_log'+Tmp).html());
-		console.log($('#m_log'+Tmp).html());
+		TmpLog=$('#m_log'+Tmp).html().replace(/(<br>|<br \/>)/gi, '\n')
+		$('.customer_memo_new_txt').val(TmpLog);
 	});
 
 
