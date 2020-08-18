@@ -30,6 +30,7 @@ $dat["sql"]=$sql;
 $dat["odr"]=$odr;
 
 $dat["html"]="<tr id=\"i{$odr}\">";
+$dat["html"].="<td class=\"log_td_del\"><span class=\"log_td_del_in\"></span></td>";
 $dat["html"].="<td class=\"log_td_order\">{$odr}</td>";
 $dat["html"].="<td class=\"log_td_color\">";
 $dat["html"].="<div class=\"item_color\" style=\"background:{$c_code[$item_color]}\"></div>";
@@ -55,7 +56,6 @@ $dat["html"].="<input id=\"item_icon_hidden_{$odr}\" type=\"hidden\" value=\"{$i
 $dat["html"].="</td>";
 $dat["html"].="<td class=\"log_td_name\"><input id=\"item_name_{$odr}\" type=\"text\" value=\"{$item_name}\" class=\"item_name\"></td>";
 $dat["html"].="<td class=\"log_td_price\"><input id=\"item_price_{$odr}\" type=\"text\" value=\"{$price}\" class=\"item_price\"></td>";
-$dat["html"].="<td class=\"log_td_del\"></td>";
 $dat["html"].="<td class=\"log_td_handle\"></td></tr>";
 
 echo json_encode($dat);

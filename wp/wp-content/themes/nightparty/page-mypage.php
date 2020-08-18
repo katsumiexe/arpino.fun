@@ -991,14 +991,14 @@ var ChgList=[<?=$log_list_cnt?>];
 <br>
 <hr>
 <h2>基本情報</h2>
+
 名前：
 CAST_ID：
-LOGIN ID
-PASSWORD
-アドレス
-LINE連携
-Twitter連携
-
+LOGIN ID:
+PASSWORD:
+アドレス:
+LINE連携:
+Twitter連携:
 
 <h2>切替時間設定</h2>
 一日の開始時間<br>
@@ -1011,21 +1011,21 @@ Twitter連携
 <table class="log_item_set">
 <thead>
 	<tr>
+		<td></td>
 		<td class="log_td_top">順</td>
 		<td class="log_td_top">色</td>
 		<td class="log_td_top">絵</td>
 		<td class="log_td_top">名前(6文字)</td>
 		<td class="log_td_top">金額(6桁)</td>
-		<td class="log_td_top">削</td>
 		<td class="log_td_top">替</td>
 	</tr>
 </thead>
 <tbody id="item_sort">
 	<?foreach($log_item as $a1){?>
 		<tr id="i<?=$a1["sort"]?>">
-			<td class="log_td_order">
-				<?=$a1["sort"]?> 
-			</td>
+			<td class="log_td_del"><span class="log_td_del_in"></span></td>
+			<td class="log_td_order"><?=$a1["sort"]?></td>
+
 			<td class="log_td_color">
 				<div class="item_color" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
 				<div class="color_picker">
@@ -1051,13 +1051,14 @@ Twitter連携
 			<td class="log_td_price">
 				<input id="item_price_<?=$a1["sort"]?>" type="text" value="<?=$a1["price"]?>" class="item_price">
 			</td>
-			<td class="log_td_del"></td>
 			<td class="log_td_handle"></td>
 		</tr>
 	<?}?>
 </tbody>
-	<tr style="border-top:2px solid #202020;">
-		<td class="log_td_order_new">追</td>
+	<tr>
+		<td colspan="7" style="height:5px;"></td>
+	</tr><tr>
+		<td class="log_td_order_new" colspan="2">追加</td>
 		<td class="log_td_color">
 			<div id="new_color" class="item_color" style="background:<?=$c_code[10]?>"></div>
 			<div class="color_picker">
@@ -1084,7 +1085,7 @@ Twitter連携
 		<td class="log_td_price">
 			<input id="price_new" type="text" value="0" class="item_price">
 		</td>
-		<td class="log_td_handle" colspan="2"><span id="new_set"></span></td>
+		<td class="log_td_handle"><span id="new_set"></span></td>
 	</tr>
 </table>
 
@@ -1196,6 +1197,23 @@ Twitter連携
 		</div>
 	</div>
 
+	<div class="log_list_del">
+		<div class="log_list_del_item">
+			<span class="log_list_del_icon"></span>
+			<span class="log_list_del_name">恐ろしい安酒</span>
+			<span class="log_list_del_price">999999</span>
+		</div>
+		<div class="log_list_del_comm">
+			削除します。よろしいですか<br> 
+			※既に登録された履歴は削除されません。
+		</div>
+
+		<div class="log_list_del_btn">
+			<div id="log_list_del_set" class="btn btn_c2">削除</div>　
+			<div id="log_list_del_back" class="btn btn_c1">戻る</div>
+		</div>
+	</div>
+
 	<div class="customer_memo_in">
 		<div class="customer_memo_new_date"><?=date("Y-m-d H:i:s",$jst)?></div>
 		<textarea class="customer_memo_new_txt"></textarea>
@@ -1206,7 +1224,6 @@ Twitter連携
 		　<div id="memo_del" class="btn btn_c3">削除</div>
 		</div>
 	</div>
-
 
 	<div class="customer_regist">
 		<div class="customer_regist_ttl">新規顧客登録</div>

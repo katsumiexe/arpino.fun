@@ -1234,7 +1234,6 @@ console.log("VwBase:"+VwBase);
 	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
 
 		Tmp=$(this).attr('id').replace("m_chg","");
-
 		$('.set_back').fadeIn(200);
 		$('.customer_memo_in').animate({'top':'20vh'},200);
 		$('#del_id').val(Tmp);
@@ -1242,6 +1241,44 @@ console.log("VwBase:"+VwBase);
 		$('.customer_memo_new_txt').val(TmpLog);
 	});
 
+
+	$('#item_sort').on('click','.log_td_del',function () {
+		$('.set_back,.log_list_del').fadeIn(200);
+		Tmp_DelList=$(this).parents('tr').attr('id').replace("i","");
+
+		$('.log_list_del_icon').text($(this).next().next().next().children('.item_icon').text());
+		$('.log_list_del_name').text($(this).next().next().next().next().children('.item_name').val());
+		$('.log_list_del_price').text($(this).next().next().next().next().next().children('.item_price').val());
+		$('.log_list_del_item').css({'color':$(this).next().next().next().css('color'),'border-color':$(this).next().next().next().css('color')});
+
+		console.log($(this).next().next().next().next().children('.item_name').val());
+	});
+
+	$('#log_list_del_set').on('click',function () {
+		$.post({
+			url:Dir + "/post/log_list_del.php",
+			data:{
+				'cast_id'	:CastId,
+				'list_id'	:Tmp_DelList,
+			},
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.set_back,.customer_memo_del_back_in').fadeOut(500);
+			$("#i"+Tmp_DelList).remove();
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
+	$('#log_list_del_back').on('click',function () {
+		$('.set_back,.log_list_del').fadeOut(100);
+	});
+
+	$('#memo_del_back').on('click',function () {
+		$('.set_back,.customer_memo_del_back_in').fadeOut(100);
+	});
 
 
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {

@@ -1646,6 +1646,86 @@ i,.days_icon{
 }
 
 
+.log_list_del{
+	display:none;
+	border			:0.5vw solid #303030;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	background		:#fafafa;
+	color			:#303030;
+	font-size		:4vw;
+	text-align		:center;
+	padding			:1vw;
+	position		:absolute;
+	top				:50vw;
+	left			:0;
+	right			:0;
+	margin			:2vw auto;	
+	width			:60vw;
+	z-index:200;
+}
+
+.log_list_del_item{
+	border			:0.5vw solid #303030;
+	display			:inline-block;
+	margin			:1vw auto;
+	background		:#fafafa;
+	color			:#303030;
+	text-align		:left;
+	width			:55vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-size		:0;
+	vertical-align:middle;
+}
+
+.log_list_del_icon{
+	display			:inline-block;
+	text-align		:center;
+	width			:7vw;
+	height			:7vw;
+	line-height		:7vw;
+	font-size		:4.5vw;
+	font-family		:at_icon;
+	vertical-align:middle;
+}
+
+.log_list_del_name{
+	display			:inline-block;
+	text-align		:left;
+	width			:28vw;
+	height			:7vw;
+	line-height		:7vw;
+	font-size		:4.5vw;
+	vertical-align:middle;
+}
+
+.log_list_del_price{
+	display			:inline-block;
+	text-align		:right;
+	width			:19vw;
+	height			:7vw;
+	line-height		:7vw;
+	font-size		:4.5vw;
+	vertical-align:middle;
+}
+
+.log_list_del_comm{
+	display			:inline-block;
+	text-align		:left;
+	width			:55vw;
+	margin			:1vw auto;
+	font-size:4vw;
+}
+
+.log_list_del_btn{
+	display			:inline-block;
+	text-align		:center;
+	width			:60vw;
+	margin			:1vw auto;
+	font-size:4vw;
+}
+
+
 .sel_log{
 	display:inline-block;
 	width:60vw;
@@ -2201,7 +2281,7 @@ i,.days_icon{
 .hist_tag{
 	display			:inline-block;
 	position		:absolute;
-	top				:12vw;
+	top				:11.5vw;
 	left			:17vw;
 	font-size		:3vw;
 	font-weight		:600;
@@ -3204,17 +3284,17 @@ input[type=range]::-moz-range-thumb{
 }
 
 .log_td_order_new{
-	font-size	:5vw;
+	font-size	:4vw;
 	text-align	:center;
 	height		:7vw;
 	line-height	:7vw;
 	background	:#0000d0;
 	border		:1px solid #303030;
-	color	:#fafafa;
-	font-weight:900;
+	color		:#fafafa;
+	font-weight:800;
 }
 
-.log_td_color,.log_td_icon,.log_td_del,.log_td_handle{
+.log_td_color,.log_td_icon,.log_td_handle{
 	font-size	:5vw;
 	text-align	:center;
 	height		:7vw;
@@ -3226,6 +3306,27 @@ input[type=range]::-moz-range-thumb{
 	font-family:at_icon;
 }
 
+.log_td_del{
+	text-align	:center;
+	height		:7vw;
+	line-height	:7vw;
+	width		:6vw;
+	text-align	:left;
+}
+
+.log_td_del_in{
+	display		:inline-block;
+	height		:4.5vw;
+	line-height	:4.5vw;
+	font-size	:3.5vw;
+	width		:4.5vw;
+
+	text-align	:center;
+	cursor		:pointer;
+	font-family	:at_icon;
+	color		:#d00000;
+	border:1px dashed #dd0000;
+}
 
 .log_td_name{
 	position	:relative;
