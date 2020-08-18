@@ -1054,6 +1054,7 @@ Twitter連携:
 			<td class="log_td_handle"></td>
 		</tr>
 	<?}?>
+
 </tbody>
 	<tr>
 		<td colspan="7" style="height:5px;"></td>
@@ -1089,11 +1090,7 @@ Twitter連携:
 	</tr>
 </table>
 
-<div class="box">
-<div id="item_set" class="btn btn_c2">変更</div>
-　　
-<div id="item_reset" class="btn btn_c1">戻す</div>
-</div>
+
 
 		</div>
 	</div>

@@ -1747,13 +1747,75 @@ console.log("VwBase:"+VwBase);
 			ChgList=$(this).sortable("toArray");
 			var Cnt=ChgList.length;
 			console.log(ChgList);
-			var Tmp=1;
-	  		for(i=0;i<Cnt;i++){
-				$('#'+ChgList[i]).children('.log_td_order').text(Tmp);
-				Tmp++;
-	  		}
+
+			var Cnt=20;
+
+			var N=0;
+			var ItemName	=[];
+			var ItemPrice	=[];
+			var ItemIcon	=[];
+			var ItemColor	=[];
+
+
+			for(i=0;i<Cnt;i++){
+				ItemName[i]=$('#item_name_'+i).val();
+				ItemPrice[i]=$('#item_price_'+i).val();
+				ItemIcon[i]=$('#item_icon_hidden_'+i).val();
+				ItemColor[i]=$('#item_color_hidden_'+i).val();
+			}
+
+			$.post({
+				url:Dir + "/post/log_item_set.php",
+				data:{
+				'cast_id'		:CastId,
+				'chglist[]'		:ChgList,
+				'item_name[]'	:ItemName,
+				'item_price[]'	:ItemPrice,
+				'item_icon[]'	:ItemIcon,
+				'item_color[]'	:ItemColor,
+
+				},
+			}).done(function(data, textStatus, jqXHR){
+				$('#item_sort').html(data);
+				$('.icon_picker,.color_picker').hide();
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
+
         }
 	});
+
+/*
+	$('#item_set').on('click',function(){
+		var Cnt=10;
+		for(i=0;i<Cnt;i++){
+			ItemName[i]=$('#item_name_'+i).val();
+			ItemPrice[i]=$('#item_price_'+i).val();
+			ItemIcon[i]=$('#item_icon_hidden_'+i).val();
+			ItemColor[i]=$('#item_color_hidden_'+i).val();
+		}
+
+		$.post({
+			url:Dir + "/post/log_item_set.php",
+			data:{
+			'cast_id'		:CastId,
+			'chglist[]'		:ChgList,
+			'item_name[]'	:ItemName,
+			'item_price[]'	:ItemPrice,
+			'item_icon[]'	:ItemIcon,
+			'item_color[]'	:ItemColor,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+*/
 
 	$('#new_set').on('click',function(){
 		$.post({
@@ -1920,35 +1982,6 @@ console.log("VwBase:"+VwBase);
 			$('.set_back').fadeOut(100);
 		}
 
-	});
-
-
-	$('#item_set').on('click',function(){
-		var Cnt=10;
-		for(i=0;i<Cnt;i++){
-			ItemName[i]=$('#item_name_'+i).val();
-			ItemPrice[i]=$('#item_price_'+i).val();
-			ItemIcon[i]=$('#item_icon_hidden_'+i).val();
-			ItemColor[i]=$('#item_color_hidden_'+i).val();
-		}
-
-		$.post({
-			url:Dir + "/post/log_item_set.php",
-			data:{
-			'cast_id'		:CastId,
-			'chglist[]'		:ChgList,
-			'item_name[]'	:ItemName,
-			'item_price[]'	:ItemPrice,
-			'item_icon[]'	:ItemIcon,
-			'item_color[]'	:ItemColor,
-			},
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
 	});
 
 	$('#sel_log_main').on('click',function(){
