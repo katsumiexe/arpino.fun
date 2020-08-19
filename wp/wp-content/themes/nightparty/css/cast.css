@@ -568,7 +568,8 @@ i,.days_icon{
 }
 
 .dy1,.dy2,.dy3,.dy4,.dy5{
-	background		:#eeeeee;
+	background		:#e0e0e0;
+
 }
 
 .cal_title{
@@ -694,23 +695,28 @@ i,.days_icon{
 	height			:4vw;
 	line-height		:4vw;
 	text-align		:center;
-	font-size		:4vw;
+	font-size		:0vw;
 	color			:#dddddd;
+	color			:#fcfcfc;
 }
 
 .cal_i1{
 	left			:0.5vw;
 	bottom			:0.5vw;
+	color	:#d00000;
+
 }
 
 .cal_i2{
 	right			:0.5vw;
 	top				:0.5vw;
+	color	:#0000ff;
 }
 
 .cal_i3{
 	right			:0.5vw;
 	bottom			:0.5vw;
+	color	:#009000;
 }
 
 .cal_i4{
@@ -718,7 +724,10 @@ i,.days_icon{
 	right			:0;
 	bottom			:0.5vw;
 	margin			:auto;
+	color	:#600090;
 }
+
+
 
 .cal_set_btn{
 	position		:fixed;
@@ -2178,10 +2187,32 @@ i,.days_icon{
 	position		:relative;
 	display			:inline-block;
 	width			:96vw;
-	margin			:1vw auto;
+	margin			:0.5vw auto;
 	border			:0.5vw solid #0000d0;
 	background		:#fafafa;
 	text-align:left;
+}
+
+.blog_ad{
+	display			:inline-block;
+	width			:95vw;
+	margin			:1vw auto 0 auto;
+	border			:1vw solid #d00000;
+}
+
+.blog_next{
+	position		:relative;
+	display			:inline-block;
+	width			:96vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:1vw auto;
+	border			:0.5vw solid #c0c0c0;
+	background		:linear-gradient(#d8d8d8,#c0c0c0);
+	text-align		:center;
+	font-size		:4vw;
+	color			:#303030;
+	font-weight		:800;
 }
 
 .blog_hist_in{
@@ -2229,11 +2260,12 @@ i,.days_icon{
 	position		:absolute;
 	top				:0vw;
 	left			:17vw;
+	width			:40vw;
 	border-bottom	:1px solid #0000d0;
 	height			:3.5vw;
 	line-height		:4vw;
 	font-size		:3vw;
-	padding:0.5vw;
+	padding			:0.5vw;
 }	
 
 .hist_status{
@@ -2295,9 +2327,14 @@ i,.days_icon{
 	position		:absolute;
 	top				:6vw;
 	left			:17vw;
+	width			:58vw;
+	height			:6vw;
+	line-height		:6vw;
+	overflow		:hidden;
 	font-size		:4.5vw;
 	font-weight		:600;
 	color			:#303030;	
+
 }
 
 
@@ -3437,6 +3474,89 @@ input[type=range]::-moz-range-thumb{
 }
 
 
+.customer_sort_box{
+	position	:absolute;;
+	width		:100vw;
+	top			:15vw;
+	height		:12vw;
+	font-size	:4vw;
+	background	:#fafafa;
+	z-index		:1;
+	border-bottom:0.5vw solid #303030;
+}
+
+.customer_sort_sel{
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	margin		:auto;
+	height		:10vw;
+	width		:20vw;
+	font-size	:4.5vw;
+	padding		:1vw;
+}
+
+#customer_sort_sel{
+	left:2vw;
+}
+
+#customer_sort_fil{
+	right:2vw;
+}
+
+
+.sort_btn{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	left			:24vw;
+	height			:8vw;
+	width			:20vw;
+	border-radius	:1vw;
+	background		:linear-gradient(#f0f0e0,#e0e0d0);
+}
+
+.sort_btn_on1,.sort_btn_on2{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	height			:7vw;
+	line-height		:7vw;
+	width			:7vw;
+	text-align		:center;
+	font-size		:5vw;
+	border-radius	:1vw;
+	font-family		:at_icon;
+	color			:#b0b0a0;
+}
+
+.sort_btn_on1{
+	left			:0.5vw;
+	color			:#0000d0;
+}
+
+.sort_btn_on2{
+	right			:0.5vw;
+}
+
+
+.sort_circle{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	left			:0vw;
+	height			:7vw;
+	width			:7vw;
+	border-radius	:1vw;
+	border			:0.5vw solid #0000d0;
+	background		:rgba(0,0,120,0.3);
+}
+
+
+
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
 
@@ -3547,20 +3667,8 @@ input[type=range]::-moz-range-thumb{
 }
 
 /*-------------------------------------------------------------------*/
-.n1{
-	color	:#d00000;
-}
-
-.n2{
-	color	:#0000ff;
-}
-
-.n3{
-	color	:#009000;
-}
-
-.n4{
-	color	:#600090;
+.n1,.n2,.n3,.n4{
+	font-size:4vw;
 }
 
 
@@ -3610,11 +3718,11 @@ input[type=range]::-moz-range-thumb{
 }
 
 .nowmonth{
-	color:#303030;
+	color:#000000;
 }
 
 .outof{
-	color:#c0c0c0;
+	color:#aaaaaa;
 }
 
 .c_customer_line{

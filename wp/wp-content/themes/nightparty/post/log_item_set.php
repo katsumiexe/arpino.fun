@@ -40,7 +40,7 @@ for($n=0;$n<count($chglist);$n++){
 	$dat["html"].="<span cd=\"{$b1}\" class=\"color_picker_list\" style=\"background:{$b2};\"></span>";
 	}
 	$dat["html"].="</div>";
-	$dat["html"].="<input id=\"color_hidden_{$n}\" class=\"color_hidden\" type=\"hidden\" value=\"{$item_color[$tmp]}\">";
+	$dat["html"].="<input id=\"item_color_hidden_{$n}\" class=\"color_hidden\" type=\"hidden\" value=\"{$item_color[$tmp]}\">";
 	$dat["html"].="</td>";
 
 	$dat["html"].="<td class=\"log_td_icon\" style=\"color:{$c_code[$item_color[$tmp]]}\">";

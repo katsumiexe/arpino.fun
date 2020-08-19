@@ -40,7 +40,7 @@ foreach($c_code as $b1 => $b2){
 $dat["html"].="<span cd=\"{$b1}\" class=\"color_picker_list\" style=\"background:{$b2};\"></span>";
 }
 $dat["html"].="</div>";
-$dat["html"].="<input id=\"color_hidden_{$odr}\" class=\"color_hidden\" type=\"hidden\" value=\"{$item_color}\">";
+$dat["html"].="<input id=\"item_color_hidden_{$odr}\" class=\"color_hidden\" type=\"hidden\" value=\"{$item_color}\">";
 $dat["html"].="</td>";
 
 $dat["html"].="<td class=\"log_td_icon\" style=\"color:{$c_code[$item_color]}\">";

@@ -6,6 +6,8 @@ BlogSet
 require_once ("./post_inc.php");
 $date_gmt=date("Y-m-d H:i:s");
 
+$now=date("Y-m-d H:i:s",$jst);
+
 $yy=$_POST["yy"];
 $mm=$_POST["mm"];
 $dd=$_POST["dd"];
@@ -28,6 +30,8 @@ $img_height	=$_POST["img_height"];
 $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 
+$status		=$_POST["status"]+0;
+
 $sql ="SELECT term_id FROM wp01_terms";
 $sql.=" WHERE slug='{$cast_id}' OR slug='{$tag}'";
 $dat = $wpdb->get_results($sql,ARRAY_A );
@@ -35,10 +39,21 @@ foreach($dat as $a1){
 	$term[]=$a1["term_id"];
 }
 
+$blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
+$blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
+$blog_st[2]="<span class=\"hist_status hist_2\">削除</span>";
+$blog_st[3]="<span class=\"hist_status hist_3\">非公開</span>";
+
+if($status<=1 && $now < $date_jst){
+	$status=1;
+}
+
+
 $updir = wp_upload_dir();
 $blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png";
 
 if($chg){
+/*
 	$sql="INSERT INTO wp01_posts ";
 	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
@@ -46,7 +61,25 @@ if($chg){
 	$sql.=",'closed','closed','{$chg}-revision-v1','blog/{$cast_id}/{$chg}-revision-v1/','revision','{$chg}')";
 	$wpdb->query($sql);
 	$tmp_auto=$wpdb->insert_id;
+*/
+	$sql="UPDATE wp01_posts SET";
+	$sql.=" post_author='{$cast_id}',";
+	$sql.=" post_date='{$date_jst}',";
+	$sql.=" post_date_gmt='{$date_gmt}',";
+	$sql.=" post_content='{$log}',";
+	$sql.=" post_title='{$ttl}',";
+	$sql.=" post_status='{$status}',";
+	$sql.=" post_modified='{$date_jst}',";
+	$sql.=" post_modified_gmt='{$date_gmt}',";
+	$sql.=" WHERE ID='{$chg}'";
+	$wpdb->query($sql);
 
+	$sql="INSERT INTO wp01_posts ";
+	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
+	$sql.="VALUES";
+	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','inherit','{$date_jst}','{$date_gmt}'";
+	$sql.=",'closed','closed','{$chg}-revision-v1','blog/{$cast_id}/{$chg}-revision-v1/','revision','{$chg}')";
+	$wpdb->query($sql);
 
 
 }else{
@@ -116,8 +149,40 @@ if($chg){
 		$sql	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
 		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
 		$wpdb->query($sql);
-		echo $sql;
 	}
 }
+
+if($img_code){
+	$tmp_img="{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png";
+
+}else{
+	$tmp_img="{get_template_directory_uri()}/img/customer_no_img.jpg";
+}
+
+$log=str_replace("\n","<br>",$log);
+
+$html="<div id=\"blog_hist_{$tmp_auto}\" class=\"blog_hist\">";
+$html.="<div class=\"blog_hist_in\">";
+$html.="<img src=\"{$tmp_img}\" class=\"hist_img\">";
+$html.="<span class=\"hist_date\">{$date_jst}</span>";
+$html.="<span class=\"hist_title\">{$ttl}</span>";
+$html.="<span class=\"hist_tag\">";
+foreach((array)$tag_name as $a2){
+$html.="{$a2}/";
+}
+$html.="</span>";
+$html.="</div>";
+$html.="<div class=\"hist_log\">";
+if($img_code){
+$html.="<span class=\"hist_img_in\"><img src=\"{$tmp_img}\" class=\"hist_img_on\"></span>";
+}
+$html.="<span class=\"blog_log\">{$log}</span>";
+$html.="</div>";
+$html.="<span class=\"hist_watch\"><span class=\"hist_i\"></span><span class=\"hist_watch_c\">{$view_cnt}</span></span>";
+$html.="<span class=\"hist_comm\"><span class=\"hist_i\"></span><span class=\"hist_comm_c\">{$comm_cnt}</span></span>";
+$html.=$blog_st[$status];
+$html.="</div>";
+
+echo $html;
 exit();
 ?>

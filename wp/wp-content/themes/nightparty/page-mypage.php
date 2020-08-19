@@ -420,8 +420,8 @@ $reg_base_ag=date("Y")-1980;
 	}
 
 //■Blog------------------
-	$sql ="SELECT * FROM wp01_posts";
 
+	$sql ="SELECT * FROM wp01_posts";
 	$sql.=" LEFT JOIN wp01_term_relationships ON wp01_posts.ID=wp01_term_relationships.object_id";
 	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_term_relationships.term_taxonomy_id=wp01_term_taxonomy.term_id";
 	$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
@@ -431,23 +431,29 @@ $reg_base_ag=date("Y")-1980;
 	$sql.=" AND wp01_term_taxonomy.taxonomy='category'";
 	$sql.=" AND wp01_terms.slug='{$_SESSION["id"]}'";
 	$sql.=" ORDER BY post_date DESC";
-	$sql.=" LIMIT 20";
+	$sql.=" LIMIT 11";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+	$blog_max=count($dat);
+	if($blog_max>10){
+		$blog_max=10;
+	}
+
 	$n=0;
 	foreach($dat as $tmp){
 		$img_tmp=$tmp["ID"]+2;
 		$updir = wp_upload_dir();
 
-	$sql ="SELECT * FROM wp01_term_relationships";
-	$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
-	$sql.=" WHERE object_id='{$tmp["ID"]}'";
-	$sql.=" AND slug LIKE 'tag%'";
+		$sql ="SELECT * FROM wp01_term_relationships";
+		$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
+		$sql.=" WHERE object_id='{$tmp["ID"]}'";
+		$sql.=" AND slug LIKE 'tag%'";
 
-	$dat2 = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat2 as $tmp2){
-		$tag_name[$n][]		=$tmp2["name"];
-	}
+		$dat2 = $wpdb->get_results($sql,ARRAY_A );
+		foreach($dat2 as $tmp2){
+			$tag_name[$n][]		=$tmp2["name"];
+		}
 
 		$sql ="SELECT * FROM wp01_postmeta";
 		$sql.=" WHERE post_id='{$tmp["ID"]}'";
@@ -467,22 +473,18 @@ $reg_base_ag=date("Y")-1980;
 		$blog[$n]["content"]=str_replace("\n","<br>",$tmp["post_content"]);
 		$blog[$n]["count"]	=$tmp["comment_count"];
 
-		if($tmp["post_date"] > $now){
-			$blog[$n]["status"]=1;
-
-		}elseif($tmp["post_status"] == "draft"){
-			$blog[$n]["status"]=2;
+		if($tmp["post_status"] == "draft"){
+			$blog[$n]["status"]=3;
 
 		}elseif($tmp["post_status"] == "pending"){
-			$blog[$n]["status"]=3;
+			$blog[$n]["status"]=2;
+
+		}elseif($tmp["post_date"] > $now){
+			$blog[$n]["status"]=1;
 
 		}elseif($tmp["post_status"] == "publish"){
 			$blog[$n]["status"]=0;
-	
-		}else{
-			$blog[$n]["status"]=3;
 		}	
-
 		$n++;
 	}
 
@@ -564,7 +566,6 @@ var ChgList=[<?=$log_list_cnt?>];
 			<?=$err?>
 		</div>
 	<? }?>
-
 <?}else{?>
 	<div class="head">
 		<div class="head_mymenu">
@@ -572,7 +573,6 @@ var ChgList=[<?=$log_list_cnt?>];
 			<div class="mymenu_b"></div>
 			<div class="mymenu_c"></div>
 		</div>	
-
 		<div class="head_mymenu_comm">
 			<div class="head_mymenu_arrow"></div>
 			<span class="head_mymenu_ttl"><?=$page_title?></span>
@@ -633,7 +633,6 @@ var ChgList=[<?=$log_list_cnt?>];
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
-
 	<?if($cast_page==1){?>
 	<div class="main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
@@ -682,6 +681,33 @@ var ChgList=[<?=$log_list_cnt?>];
 	</div>
 	<?}elseif($cast_page==2){?>
 	<div class="main">
+		<div class="customer_sort_box">
+			<select id="customer_sort_sel" class="customer_sort_sel">
+				<option>登録順</option>
+				<option>更新順</option>
+				<option>好感順</option>
+				<option>名前順</option>
+				<option>呼名順</option>
+			</select>
+			<span id="sort_t" class="customer_sort_order"></span>
+			<span id="sort_f" class="customer_sort_order"></span>
+			<div class="sort_btn">
+				<div class="sort_btn_on1"></div>
+				<div class="sort_btn_on2"></div>
+				<div class="sort_circle"></div>
+			</div>
+			<span class="customer_sort_tag"></span>
+			<select id="customer_sort_fil" class="customer_sort_sel">
+			<option>全て</option>
+			<option>５以上</option>
+			<option>４以上</option>
+			<option>３以上</option>
+			<option>２以上</option>
+			<option>１以上</option>
+			</select>
+		</div>
+
+
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 				<?if($customer[$n]["face"]){?>
@@ -950,44 +976,40 @@ var ChgList=[<?=$log_list_cnt?>];
 					</table>
 				</div>
 			</div>
-			<?for($n=0;$n<count($blog);$n++){?>
-			<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
-				<div class="blog_hist_in">
-					<img src="<?=$blog[$n]["img"]?>" class="hist_img">
-					<span class="hist_date"><?=$blog[$n]["date"]?></span>
-					<span class="hist_title"><?=$blog[$n]["title"]?></span>
-					<span class="hist_tag">
-						<?foreach($tag_name[$n] as $a2){?><?=$a2?>/<?}?>
-					</span>
-				</div>	
-				<div class="hist_log">
-					<?if($blog[$n]["img_on"]){?>
-					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
-					<?}?>
-					<span class="blog_log"><?=$blog[$n]["content"]?></span>
-				</div>
-				<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-				<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
-				<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 
-				<div class="hist_log">
-					<?if($blog[$n]["img_on"]){?>
-					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
-					<?}?>
-				<span class="blog_log">
-					<?=$blog[$n]["content"]?>
-				</span>
+			<div class="blog_list">
+				<?for($n=0;$n<$blog_max;$n++){?>
+				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
+					<div class="blog_hist_in">
+						<img src="<?=$blog[$n]["img"]?>" class="hist_img">
+						<span class="hist_date"><?=$blog[$n]["date"]?></span>
+						<span class="hist_title"><?=$blog[$n]["title"]?></span>
+						<span class="hist_tag">
+							<?foreach($tag_name[$n] as $a2){?><?=$a2?>/<?}?>
+						</span>
+					</div>	
+					<div class="hist_log">
+						<?if($blog[$n]["img_on"]){?>
+						<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+						<?}?>
+						<span class="blog_log"><?=$blog[$n]["content"]?></span>
+					</div>
+					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+					<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
+					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
+				<? } ?>
+
+				<?if(count($tmp)>10){?>
+				<div class="blog_ad"><img src="<?=get_template_directory_uri()."/img/ad/bn.jpg?t=".time()?>" style="width:100%;"></div>
+				<div id="blog_next_<?=$blog[11]["id"]?>" class="blog_next">続きを読む</div>
+				<? } ?>
 			</div>
-			<? } ?>
 		</div>
-
-
 	<?}elseif($cast_page==5){?>
 	<?}elseif($cast_page==6){?>
 	<div class="main">
 		<div class="config_menu">
-
 <br>
 <hr>
 <h2>基本情報</h2>
@@ -1089,9 +1111,6 @@ Twitter連携:
 		<td class="log_td_handle"><span id="new_set"></span></td>
 	</tr>
 </table>
-
-
-
 		</div>
 	</div>
 	<?}else{?>

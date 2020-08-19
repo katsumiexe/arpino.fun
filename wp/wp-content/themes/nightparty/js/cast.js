@@ -122,7 +122,7 @@ $(function(){
 
 /*not(:this).css("background-color", "yellow");*/
 
-	$('.blog_hist_in').on('click',function () {
+	$('.blog_list').on('click','.blog_hist_in',function () {
 		if($(this).next('.hist_log').css('display')=='none'){
 			$('.blog_hist').slideUp(10);
 			$(this).next('.hist_log').slideDown(200);
@@ -148,6 +148,26 @@ $(function(){
 			$('.regist_blog').fadeIn(200);
 			$('#regist_blog').fadeIn(200);
 		}
+	});
+
+	$('.blog_list').on('click','.blog_next',function () {
+		$('.blog_ad,.blog_next').hide();
+		bId=$(this).attr('id').replace('blog_next_','');
+
+		$.post({
+			url:Dir + "/post/blog_reload.php",
+			data:{
+				'cast_id':CastId,
+				'blog_id':bId,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			if(data){
+				$('#tag_3_tbl').html(data);
+			}
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
 	});
 
 	$('.hist_log').on('click',function () {
@@ -784,6 +804,7 @@ $(function(){
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
 			$('.blog_write').slideUp(300);
+			$('.blog_list').prepend(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -1256,7 +1277,7 @@ console.log("VwBase:"+VwBase);
 
 	$('#log_list_del_set').on('click',function () {
 		$.post({
-			url:Dir + "/post/log_list_del.php",
+			url:Dir + "/post/log_item_del.php",
 			data:{
 				'cast_id'	:CastId,
 				'list_id'	:Tmp_DelList,
@@ -1748,8 +1769,6 @@ console.log("VwBase:"+VwBase);
 			var Cnt=ChgList.length;
 			console.log(ChgList);
 
-			var Cnt=20;
-
 			var N=0;
 			var ItemName	=[];
 			var ItemPrice	=[];
@@ -1763,7 +1782,7 @@ console.log("VwBase:"+VwBase);
 				ItemIcon[i]=$('#item_icon_hidden_'+i).val();
 				ItemColor[i]=$('#item_color_hidden_'+i).val();
 			}
-
+console.log(ItemColor);
 			$.post({
 				url:Dir + "/post/log_item_set.php",
 				data:{
