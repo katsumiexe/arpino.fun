@@ -13,7 +13,8 @@ $tm=time();
 $link=get_template_directory_uri();
 
 $tmp=explode("/",$_SERVER["REQUEST_URI"]);
-$val=$tmp[count($tmp)-2];
+//$val=$tmp[count($tmp)-2];
+$val=$_REQUEST["cast"];
 
 $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
 $res = $wpdb->get_results($sql,ARRAY_A);
@@ -43,7 +44,6 @@ foreach($res as $a1){
 		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/4.jpg")) {
 			$face_b.="<img id=\"i4\" src=\"{$link}/img/page/{$a1["id"]}/4.jpg?t={$tm}\" class=\"person_img_sub\">";
 		}
-
 	}else{
 		$a1["face"]="{$link}/img/cast/noimage.jpg";			
 		$face_a="<img src=\"{$link}/img/page/noimage.jpg\" class=\"person_img_main\">";
@@ -125,7 +125,10 @@ get_header();
 		<div class="footmark_box">
 			<span class="footmark_icon"></span>
 			<span class="footmark_text"><?=$a1["genji"]?></span>
+			□<?=$_SERVER["REQUEST_URI"]?>
 		</div>
+
+
 	</div>
 <div class="person_main">
 	<div class="person_left">
