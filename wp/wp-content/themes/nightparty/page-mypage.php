@@ -94,7 +94,6 @@ $reg_base_ag=date("Y")-1980;
 		$page_title="トップページ";
 	}
 
-
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
 
@@ -142,8 +141,12 @@ $reg_base_ag=date("Y")-1980;
 		$n++;
 	}
 	*/
-	/*--■スケジュール--*/
 
+	$sql ="SELECT * FROM wp01_0cast_config";
+	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$c_sort = $wpdb->get_results($sql,ARRAY_A );
+
+	/*--■スケジュール--*/
 	$tmp_today[$now_ymd]="cc8";
 
 	$sql ="SELECT * FROM wp01_0sch_table";
@@ -680,34 +683,32 @@ var ChgList=[<?=$log_list_cnt?>];
 		</div>
 	</div>
 	<?}elseif($cast_page==2){?>
-	<div class="main">
-		<div class="customer_sort_box">
-			<select id="customer_sort_sel" class="customer_sort_sel">
-				<option>登録順</option>
-				<option>更新順</option>
-				<option>好感順</option>
-				<option>名前順</option>
-				<option>呼名順</option>
-			</select>
-			<span id="sort_t" class="customer_sort_order"></span>
-			<span id="sort_f" class="customer_sort_order"></span>
-			<div class="sort_btn">
-				<div class="sort_btn_on1"></div>
-				<div class="sort_btn_on2"></div>
-				<div class="sort_circle"></div>
-			</div>
-			<span class="customer_sort_tag"></span>
-			<select id="customer_sort_fil" class="customer_sort_sel">
-			<option>全て</option>
-			<option>５以上</option>
-			<option>４以上</option>
-			<option>３以上</option>
-			<option>２以上</option>
-			<option>１以上</option>
-			</select>
+	<div class="customer_sort_box">
+		<select id="customer_sort_sel" class="customer_sort_sel">
+			<option value="0">登録順</option>
+			<option value="1" <?if($c_sort["c_sort_main"] == 1){?> selected="selected"<?}?>>更新順</option>
+			<option value="2" <?if($c_sort["c_sort_main"] == 2){?> selected="selected"<?}?>>好感順</option>
+			<option value="3" <?if($c_sort["c_sort_main"] == 3){?> selected="selected"<?}?>>名前順</option>
+			<option value="4" <?if($c_sort["c_sort_main"] == 4){?> selected="selected"<?}?>>呼名順</option>
+			<option value="5" <?if($c_sort["c_sort_main"] == 5){?> selected="selected"<?}?>>年齢順</option>
+		</select>
+		<div class="sort_btn">
+			<div class="sort_btn_on1"></div>
+			<div class="sort_btn_on2"></div>
+			<div class="sort_circle"></div>
+			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort["c_sort_arc"]?>">
 		</div>
+		<select id="customer_sort_fil" class="customer_sort_sel">
+		<option value="0">全て</option>
+		<?foreach($cus_group_sel as $a1=>$a2){?>
+		<option value="<?=$a1?>" <?if($c_sort["c_sort_group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
+		<?}?>
+		</select>
+		<span class="customer_sort_tag"></span>
+		<input id="customer_sort_ext" type="hidden" value="<?=$c_sort["cast_id"]?>">
 
-
+	</div>
+	<div class="main pg2">
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 				<?if($customer[$n]["face"]){?>

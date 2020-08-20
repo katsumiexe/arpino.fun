@@ -1716,8 +1716,6 @@ console.log("VwBase:"+VwBase);
 		console.log(Tmp);
 	});
 
-
-
 	$('.slide').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
@@ -2011,4 +2009,25 @@ console.log(ItemColor);
 			$('#sel_log_box').slideUp(200);
 		}
 	});
+
+	$('.customer_sort_sel').on('change',function(){
+		$.post({
+			url:Dir + "/post/customer_sort.php",
+			data:{
+			'sel'		:$('#customer_sort_sel').val(),
+			'fil'		:$('#customer_sort_fil').val(),
+			'asc'		:$('#customer_sort_asc').val(),
+			'ext'		:$('#customer_sort_ext').val(),
+			'cast_id'	:CastId,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+
+		});
+	});
+
+
+
+
+
 });
