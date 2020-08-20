@@ -2021,6 +2021,7 @@ console.log(ItemColor);
 			'cast_id'	:CastId,
 			},
 		}).done(function(data, textStatus, jqXHR){
+			$('.main').html(data);
 			console.log(data);
 
 		});
