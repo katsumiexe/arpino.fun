@@ -94,6 +94,8 @@ $sql	.=" GROUP BY wp01_0customer.id";
 $sql	.=" ORDER BY {$tmp} {$order}";
 $dat = $wpdb->get_results($sql,ARRAY_A );
 
+echo $sql;
+
 $s=0;
 foreach($dat as $tmp){
 	$customer[$s]=$tmp;

@@ -142,16 +142,19 @@ $reg_base_ag=date("Y")-1980;
 
 	$sql ="SELECT * FROM wp01_0cast_config";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
-	$c_sort = $wpdb->get_var($sql);
+	$c_sort = $wpdb->get_results($sql,ARRAY_A);
 
-var_dump($c_sort);
+	var_dump($c_sort);
 
+	print("■■".$c_sort);
+	
+	
 	/*--■スケジュール--*/
 	$tmp_today[$now_ymd]="cc8";
 
 	$sql ="SELECT * FROM wp01_0sch_table";
 	$sql.=" ORDER BY sort ASC";
-	$dat = $wpdb->get_results($sql,ARRAY_A );
+	$dat = $wpdb->get_results($sql,ARRAY_A);
 	foreach($dat as $tmp){
 		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
 		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
