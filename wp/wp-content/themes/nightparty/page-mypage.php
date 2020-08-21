@@ -42,8 +42,6 @@ $sql ="SELECT term_id FROM wp01_terms";
 $sql .=" WHERE slug='{$_SESSION["id"]}'"; 
 $cate_id = $wpdb->get_var($sql);
 
-
-
 $sql ="SELECT * FROM wp01_0encode"; 
 $enc0 = $wpdb->get_results($sql,ARRAY_A );
 foreach($enc0 as $row){

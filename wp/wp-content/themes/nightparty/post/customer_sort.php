@@ -10,6 +10,22 @@ $fil		=$_POST["fil"];
 $asc		=$_POST["asc"];
 $ext		=$_POST["ext"];
 
+$sql ="SELECT * FROM wp01_0encode"; 
+$enc0 = $wpdb->get_results($sql,ARRAY_A );
+foreach($enc0 as $row){
+	$enc[$row["key"]]				=$row["value"];
+	$dec[$row["gp"]][$row["value"]]	=$row["key"];
+}
+
+$id_8=substr("00000000".$_SESSION["id"],-8);
+$id_0	=$_SESSION["id"] % 20;
+
+for($n=0;$n<8;$n++){
+	$tmp_id=substr($id_8,$n,1);
+	$box_no.=$dec[$id_0][$tmp_id];
+}
+
+
 
 if($fil>0){
 $app=" AND c_group={$fil}";
@@ -42,28 +58,27 @@ if($asc ==0){
 }
 
 if($ext){
-	$sql="UPDATE wp01_config SET";
+	$sql="UPDATE wp01_0cast_config SET";
 	$sql.=" c_sort_main='{$sel}',";
 	$sql.=" c_sort_asc='{$asc}',";
 	$sql.=" c_sort_group='{$fil}'";
 	$sql.=" WHERE cast_id='{$cast_id}'";
 	$wpdb->query($sql);
 }else{
-	$sql="INSERT INTO wp01_config ";
+	$sql="INSERT INTO wp01_0cast_config ";
 	$sql.="(cast_id, c_sort_main, c_sort_asc, c_sort_group)";
 	$sql.="VALUES";
 	$sql.="('{$cast_id}','{$sel}','{$asc}','{$fil}'";
 	$wpdb->query($sql);
 }
 
-$sql	 ="SELECT *,{$select} FROM wp01_0customer";
+$sql	 ="SELECT *, wp01_0customer.id AS id, {$select} FROM wp01_0customer";
 $sql	.=" LEFT JOIN wp01_0cast_log USING(cast_id)";
 $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND wp01_0customer.del='0'";
 $sql	.=$app;
 $sql	.=" GROUP BY wp01_0customer.id";
 $sql	.=" ORDER BY {$tmp} {$order}";
-
 $dat = $wpdb->get_results($sql,ARRAY_A );
 
 $s=0;
@@ -82,28 +97,30 @@ foreach($dat as $tmp){
 		$customer[$s]["dd"]=substr($tmp["birth_day"],8,2);
 		$customer[$s]["ag"]= floor(($now_ymd-str_replace("-", "", $tmp["birth_day"]))/10000);
 	}
+
+echo($customer[$s]["id"]."/");
 	$s++;
 }
 
 for($n=0;$n<$s;$n++){
 	$html.="<div id=\"clist{$customer[$n]["id"]}\" class=\"customer_list\">";
 
-if($customer[$n]["face"]){
-	$html.="<img src=\"{get_template_directory_uri()}/img/cast/{$box_no}/c/{$customer[$n]["face"]}?t_{time()}\" class=\"mail_img\">";
-	$html.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$customer[$n]["face"]}\">";
-}else{
-	$html.="<img src=\"{get_template_directory_uri()}/img/customer_no_img.jpg?t_{time()}\" class=\"mail_img\">";
-}
-	$html.="<div class=\"customer_list_fav\">";
+	if($customer[$n]["face"]){
+		$html.="<img src=\"".get_template_directory_uri()."/img/cast/".$box_no."/c/".$customer[$n]["face"]."?t_".time()."\" class=\"mail_img\">";
+		$html.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$customer[$n]["face"]}\">";
+	}else{
+		$html.="<img src=\"".get_template_directory_uri()."/img/customer_no_img.jpg?t_".time()."\" class=\"mail_img\">";
+	}
+		$html.="<div class=\"customer_list_fav\">";
 
-for($s=1;$s<6;$s++){
-	$html.="<span id=\"fav_{$customer[$n]["id"]}_{$s}\" class=\"customer_list_fav_icon";
+	for($f=1;$f<6;$f++){
+		$html.="<span id=\"fav_{$customer[$n]["id"]}_{$f}\" class=\"customer_list_fav_icon";
 
-if($customer[$n]["fav"]>=$s){
-	$html.="fav_in";
-}
-	$html.="\"></span>";
-}
+	if($customer[$n]["fav"]>=$f){
+		$html.=" fav_in";
+	}
+		$html.="\"></span>";
+	}
 	$html.="</div>";
 	$html.="<div class=\"customer_list_name\">{$customer[$n]["name"]} 様</div>";
 	$html.="<div class=\"customer_list_nickname\">{$customer[$n]["nickname"]}</div>";
@@ -125,6 +142,7 @@ if($customer[$n]["fav"]>=$s){
 	$html.="</div>";
 }
 
+//echo $sql;
 echo $html;
 exit();
 ?>

@@ -2026,9 +2026,6 @@ console.log(ItemColor);
 
 		});
 	});
-
-
-
-
-
 });
+
+
