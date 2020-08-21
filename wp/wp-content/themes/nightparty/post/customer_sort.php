@@ -2,6 +2,9 @@
 /*
 BlogSet
 */
+require_once ("./post_inc.php");
+$date_gmt=date("Y-m-d H:i:s");
+$now_ymd	=date("Ymd",$jst);
 
 require_once ("./post_inc.php");
 $cast_id	=$_POST["cast_id"];
@@ -25,8 +28,6 @@ for($n=0;$n<8;$n++){
 	$box_no.=$dec[$id_0][$tmp_id];
 }
 
-
-
 if($fil>0){
 $app=" AND c_group={$fil}";
 }
@@ -49,12 +50,23 @@ if($sel==1){
 	$tmp="id";
 }
 
-if($asc ==0){
-	$order="DESC";
-	$select="MAX(`date`)";
+if($asc ==1){
+	if($sel==5){
+		$order="DESC";
+		$select="MAX(`date`)";
+	}else{
+		$order="ASC";
+		$select="MIN(`date`)";
+	}
+
 }else{
-	$order="ASC";
-	$select="MIN(`date`)";
+	if($sel==5){
+		$order="ASC";
+		$select="MIN(`date`)";
+	}else{
+		$order="DESC";
+		$select="MAX(`date`)";
+	}
 }
 
 if($ext){
@@ -64,13 +76,16 @@ if($ext){
 	$sql.=" c_sort_group='{$fil}'";
 	$sql.=" WHERE cast_id='{$cast_id}'";
 	$wpdb->query($sql);
+
 }else{
 	$sql="INSERT INTO wp01_0cast_config ";
 	$sql.="(cast_id, c_sort_main, c_sort_asc, c_sort_group)";
 	$sql.="VALUES";
-	$sql.="('{$cast_id}','{$sel}','{$asc}','{$fil}'";
+	$sql.="('{$cast_id}','{$sel}','{$asc}','{$fil}')";
 	$wpdb->query($sql);
 }
+
+echo $sql;
 
 $sql	 ="SELECT *, wp01_0customer.id AS id, {$select} FROM wp01_0customer";
 $sql	.=" LEFT JOIN wp01_0cast_log USING(cast_id)";

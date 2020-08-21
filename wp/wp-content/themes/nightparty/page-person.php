@@ -1,4 +1,7 @@
 <?php
+/*
+Template Name: person
+*/
 $week[0]="(日)";
 $week[1]="(月)";
 $week[2]="(火)";
@@ -49,6 +52,7 @@ foreach($res as $a1){
 		$face_a="<img src=\"{$link}/img/page/noimage.jpg\" class=\"person_img_main\">";
 	}
 }
+
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
 $res2 = $wpdb->get_results($sql,ARRAY_A);

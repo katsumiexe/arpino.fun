@@ -691,8 +691,8 @@ var ChgList=[<?=$log_list_cnt?>];
 			<option value="5" <?if($c_sort["c_sort_main"] == 5){?> selected="selected"<?}?>>年齢順</option>
 		</select>
 		<div class="sort_btn">
-			<div class="sort_btn_on1"></div>
-			<div class="sort_btn_on2"></div>
+			<div class="sort_btn_on1"></div>
+			<div class="sort_btn_on2"></div>
 			<div class="sort_circle"></div>
 			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort["c_sort_arc"]?>">
 		</div>

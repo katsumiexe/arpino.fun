@@ -1,5 +1,7 @@
 <?php
-get_header();
+/*
+Template Name: access
+*/get_header();
 ?>
 <div class="">
 <div class="footmark">

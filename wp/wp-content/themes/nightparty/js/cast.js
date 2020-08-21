@@ -647,7 +647,7 @@ $(function(){
 	});
 */
 
-	$('.customer_list').on('click',function(){
+	$('.main').on('click','.customer_list',function(){
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
 
@@ -2023,9 +2023,49 @@ console.log(ItemColor);
 		}).done(function(data, textStatus, jqXHR){
 			$('.main').html(data);
 			console.log(data);
+		});
+	});
 
+	$('.sort_btn_on1').on('click',function () {
+		$('.sort_circle').animate({'left':'0vw'},200);
+		$('.sort_btn_on1').animate({'color':'#0000d0'},200);
+		$('.sort_btn_on2').animate({'color':'#b0b0a0'},200);
+		$('#customer_sort_asc').val('0');
+
+		$.post({
+			url:Dir + "/post/customer_sort.php",
+			data:{
+			'sel'		:$('#customer_sort_sel').val(),
+			'fil'		:$('#customer_sort_fil').val(),
+			'asc'		:$('#customer_sort_asc').val(),
+			'ext'		:$('#customer_sort_ext').val(),
+			'cast_id'	:CastId,
+			},
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.main').html(data);
+			console.log(data);
+		});
+	});
+
+	$('.sort_btn_on2').on('click',function () {
+		$('.sort_circle').animate({'left':'12vw'},200);
+		$('.sort_btn_on2').animate({'color':'#0000d0'},200);
+		$('.sort_btn_on1').animate({'color':'#b0b0a0'},200);
+		$('#customer_sort_asc').val('1');
+
+		$.post({
+			url:Dir + "/post/customer_sort.php",
+			data:{
+			'sel'		:$('#customer_sort_sel').val(),
+			'fil'		:$('#customer_sort_fil').val(),
+			'asc'		:$('#customer_sort_asc').val(),
+			'ext'		:$('#customer_sort_ext').val(),
+			'cast_id'	:CastId,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			$('.main').html(data);
+			console.log(data);
 		});
 	});
 });
-
-
