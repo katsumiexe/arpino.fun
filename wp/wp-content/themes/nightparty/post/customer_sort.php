@@ -85,8 +85,6 @@ if($ext){
 	$wpdb->query($sql);
 }
 
-echo $sql;
-
 $sql	 ="SELECT *, wp01_0customer.id AS id, {$select} FROM wp01_0customer";
 $sql	.=" LEFT JOIN wp01_0cast_log USING(cast_id)";
 $sql	.=" WHERE cast_id='{$cast_id}'";
@@ -112,8 +110,6 @@ foreach($dat as $tmp){
 		$customer[$s]["dd"]=substr($tmp["birth_day"],8,2);
 		$customer[$s]["ag"]= floor(($now_ymd-str_replace("-", "", $tmp["birth_day"]))/10000);
 	}
-
-echo($customer[$s]["id"]."/");
 	$s++;
 }
 

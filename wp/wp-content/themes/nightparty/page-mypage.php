@@ -142,7 +142,9 @@ $reg_base_ag=date("Y")-1980;
 
 	$sql ="SELECT * FROM wp01_0cast_config";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
-	$c_sort = $wpdb->get_results($sql,ARRAY_A );
+	$c_sort = $wpdb->get_var($sql);
+
+var_dump($c_sort);
 
 	/*--■スケジュール--*/
 	$tmp_today[$now_ymd]="cc8";
