@@ -2022,12 +2022,18 @@ console.log(ItemColor);
 			},
 		}).done(function(data, textStatus, jqXHR){
 			$('.main').html(data);
-			console.log(data);
+			$('#customer_sort_ext').val(CastId);
+			console.log(CastId)
+			if($('#customer_sort_fil').val() > 0){
+				$('.sort_alert').show();
+			}else{
+				$('.sort_alert').hide();
+			}
 		});
 	});
 
 	$('.sort_btn_on1').on('click',function () {
-		$('.sort_circle').animate({'left':'0vw'},200);
+		$('.sort_circle').animate({'left':'0vw'},200).css('border-radius','10px 0 0 10px');
 		$('.sort_btn_on1').animate({'color':'#0000d0'},200);
 		$('.sort_btn_on2').animate({'color':'#b0b0a0'},200);
 		$('#customer_sort_asc').val('0');
@@ -2044,12 +2050,17 @@ console.log(ItemColor);
 
 		}).done(function(data, textStatus, jqXHR){
 			$('.main').html(data);
-			console.log(data);
+			$('#customer_sort_ext').val(CastId);
+			if($('#customer_sort_fil').val() > 0){
+				$('.sort_alert').show();
+			}else{
+				$('.sort_alert').hide();
+			}
 		});
 	});
 
 	$('.sort_btn_on2').on('click',function () {
-		$('.sort_circle').animate({'left':'12vw'},200);
+		$('.sort_circle').animate({'left':'12vw'},200).css('border-radius','0 10px 10px 0');
 		$('.sort_btn_on2').animate({'color':'#0000d0'},200);
 		$('.sort_btn_on1').animate({'color':'#b0b0a0'},200);
 		$('#customer_sort_asc').val('1');
@@ -2065,7 +2076,12 @@ console.log(ItemColor);
 			},
 		}).done(function(data, textStatus, jqXHR){
 			$('.main').html(data);
-			console.log(data);
+			$('#customer_sort_ext').val(CastId);
+			if($('#customer_sort_fil').val() > 0){
+				$('.sort_alert').show();
+			}else{
+				$('.sort_alert').hide();
+			}
 		});
 	});
 });

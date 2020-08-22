@@ -38,35 +38,26 @@ if($sel==1){
 	$tmp="fav";
 
 }elseif($sel==3){
-	$tmp="name";
+	$tmp="birth_day";
 
 }elseif($sel==4){
-	$tmp="nickname";
+	$tmp="name";
 
 }elseif($sel==5){
-	$tmp="birth_day";
+	$tmp="nickname";
+
 
 }else{
 	$tmp="id";
 }
 
 if($asc ==1){
-	if($sel==5){
-		$order="DESC";
-		$select="MAX(`date`)";
-	}else{
-		$order="ASC";
-		$select="MIN(`date`)";
-	}
+	$order="ASC";
+	$select="MIN(`date`)";
 
 }else{
-	if($sel==5){
-		$order="ASC";
-		$select="MIN(`date`)";
-	}else{
-		$order="DESC";
-		$select="MAX(`date`)";
-	}
+	$order="DESC";
+	$select="MAX(`date`)";
 }
 
 if($ext){
@@ -94,7 +85,6 @@ $sql	.=" GROUP BY wp01_0customer.id";
 $sql	.=" ORDER BY {$tmp} {$order}";
 $dat = $wpdb->get_results($sql,ARRAY_A );
 
-echo $sql;
 
 $s=0;
 foreach($dat as $tmp){
@@ -115,9 +105,11 @@ foreach($dat as $tmp){
 	$s++;
 }
 
+if($fil>0){
+	$html.="<div class=\"sort_alert\">非表示になっている顧客がいます</div>";
+}
 for($n=0;$n<$s;$n++){
 	$html.="<div id=\"clist{$customer[$n]["id"]}\" class=\"customer_list\">";
-
 	if($customer[$n]["face"]){
 		$html.="<img src=\"".get_template_directory_uri()."/img/cast/".$box_no."/c/".$customer[$n]["face"]."?t_".time()."\" class=\"mail_img\">";
 		$html.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$customer[$n]["face"]}\">";

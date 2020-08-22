@@ -12,7 +12,7 @@ $cast_id	=$_POST["cast_id"];
 $sql	 ="SELECT * FROM wp01_0cast_log";
 $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND customer_id='{$c_id}'";
-$sql	.=" ORDER BY log_id DESC";
+$sql	.=" ORDER BY id DESC";
 $sql	.=" LIMIT 20";
 
 $dat0 = $wpdb->get_results($sql,ARRAY_A );
@@ -23,10 +23,10 @@ foreach($dat0 AS $dat1){
 
 	$dat1["log"]=str_replace("\n","<br>",$dat1["log"]);
 
-	$dat.="<tr id=\"customer_log_td_{$dat1["log_id"]}\"><td class=\"customer_log_td\">";
+	$dat.="<tr id=\"customer_log_td_{$dat1["id"]}\"><td class=\"customer_log_td\">";
 	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span><span class=\"customer_log_date_detail\">{$t_date} {$s_time}-{$e_time}</span>";
-	$dat.="<div id=\"l_chg{$dat1["log_id"]}\" class=\"customer_log_chg\"></div>";
-	$dat.="<div id=\"l_del{$dat1["log_id"]}\" class=\"customer_log_del\"></div>";
+	$dat.="<div id=\"l_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
+	$dat.="<div id=\"l_del{$dat1["id"]}\" class=\"customer_log_del\"></div>";
 	$dat.="</div>";
 
 

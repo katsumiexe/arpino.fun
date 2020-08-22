@@ -36,7 +36,7 @@ $stime	=$hh_s.$ii_s;
 $etime	=$hh_e.$ii_e;
 
 if($del > 0){//■削除
-	$sql="DELETE FROM wp01_0cast_log WHERE log_id='{$del}'";
+	$sql="DELETE FROM wp01_0cast_log WHERE id='{$del}'";
 	$wpdb->query($sql);
 
 	$sql="DELETE FROM wp01_0cast_log_list WHERE master_id='{$del}'";
@@ -50,7 +50,7 @@ if($chg){//■変更
 	$sql.=" stime='{$stime}',";
 	$sql.=" etime='{$etime}',";
 	$sql.=" log='{$log}'";
-	$sql.=" WHERE log_id='{$chg}'";
+	$sql.=" WHERE id='{$chg}'";
 	$wpdb->query($sql);
 
 	$sql="DELETE FROM wp01_0cast_log_list WHERE master_id='{$chg}'";

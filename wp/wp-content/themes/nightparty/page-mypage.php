@@ -144,11 +144,39 @@ $reg_base_ag=date("Y")-1980;
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$c_sort = $wpdb->get_results($sql,ARRAY_A);
 
-	var_dump($c_sort);
 
-	print("■■".$c_sort);
-	
-	
+if($c_sort[0]["c_sort_group"]>0){
+	$app1	=" AND c_group='{$c_sort[0]["c_sort_group"]}'";
+}
+
+if($c_sort[0]["c_sort_main"]==1){
+	$app2	=" `date`, `stime`, `etime`";
+	$app4	=" LEFT JOIN wp01_0cast_log USING(cast_id)";
+
+	if($c_sort[0]["c_sort_ASC"]==1){
+		$app0 =",MIN(`date`)";
+
+	}else{
+		$app0=",MAX(`date`)";
+	}
+
+}elseif($c_sort[0]["c_sort_main"]==2){
+	$app2	=" `fav`";
+
+}elseif($c_sort[0]["c_sort_main"]==3){
+	$app2	=" `birth_day`";
+
+}else{
+	$app2	=" `id`";
+}
+
+if($c_sort[0]["c_sort_ASC"]==1){
+	$app3	.=" ASC";
+}else{
+	$app3	.=" DESC";
+}
+
+
 	/*--■スケジュール--*/
 	$tmp_today[$now_ymd]="cc8";
 
@@ -225,12 +253,16 @@ $reg_base_ag=date("Y")-1980;
 
 	$n=0;
 	$b_month=substr($c_month,4,4);
-	$sql	 ="SELECT * FROM wp01_0customer";
+	$sql	 ="SELECT * {$app0} FROM wp01_0customer";
+	$sql	.=$app4;
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND del='0'";
-	$sql	.=" ORDER BY id DESC";
-
+	$sql	.=$app1;
+	$sql	.=" ORDER BY";
+	$sql	.=$app2;
+	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
+
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
 
@@ -553,6 +585,11 @@ const Now_Y	=<?=date("Y",$jst)+0?>;
 var C_Id=0;
 var C_Id_tmp=0;
 var ChgList=[<?=$log_list_cnt?>];
+<?if($c_sort[0]["c_sort_group"] >0){?> 
+$(function(){ 
+	$('.sort_alert').show();
+});
+<?}?>
 </script>
 </head>
 
@@ -689,29 +726,29 @@ var ChgList=[<?=$log_list_cnt?>];
 	<div class="customer_sort_box">
 		<select id="customer_sort_sel" class="customer_sort_sel">
 			<option value="0">登録順</option>
-			<option value="1" <?if($c_sort["c_sort_main"] == 1){?> selected="selected"<?}?>>更新順</option>
-			<option value="2" <?if($c_sort["c_sort_main"] == 2){?> selected="selected"<?}?>>好感順</option>
-			<option value="3" <?if($c_sort["c_sort_main"] == 3){?> selected="selected"<?}?>>名前順</option>
-			<option value="4" <?if($c_sort["c_sort_main"] == 4){?> selected="selected"<?}?>>呼名順</option>
-			<option value="5" <?if($c_sort["c_sort_main"] == 5){?> selected="selected"<?}?>>年齢順</option>
+			<option value="1" <?if($c_sort[0]["c_sort_main"] == 1){?> selected="selected"<?}?>>更新順</option>
+			<option value="2" <?if($c_sort[0]["c_sort_main"] == 2){?> selected="selected"<?}?>>好感順</option>
+			<!--option value="3" <?if($c_sort[0]["c_sort_main"] == 4){?> selected="selected"<?}?>>名前順</option-->
+			<!--option value="4" <?if($c_sort[0]["c_sort_main"] == 5){?> selected="selected"<?}?>>呼名順</option-->
+			<option value="3" <?if($c_sort[0]["c_sort_main"] == 3){?> selected="selected"<?}?>>年齢順</option>
 		</select>
 		<div class="sort_btn">
-			<div class="sort_btn_on1"></div>
-			<div class="sort_btn_on2"></div>
+			<div class="sort_btn_on1"></div>
+			<div class="sort_btn_on2"></div>
 			<div class="sort_circle"></div>
-			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort["c_sort_arc"]?>">
+			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort[0]["c_sort_arc"]?>">
 		</div>
 		<select id="customer_sort_fil" class="customer_sort_sel">
 		<option value="0">全て</option>
 		<?foreach($cus_group_sel as $a1=>$a2){?>
-		<option value="<?=$a1?>" <?if($c_sort["c_sort_group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
+		<option value="<?=$a1?>" <?if($c_sort[0]["c_sort_group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
 		<?}?>
 		</select>
 		<span class="customer_sort_tag"></span>
-		<input id="customer_sort_ext" type="hidden" value="<?=$c_sort["cast_id"]?>">
-
+		<input id="customer_sort_ext" type="hidden" value="<?=$c_sort[0]["cast_id"]?>">
 	</div>
 	<div class="main pg2">
+		<div class="sort_alert">非表示になっている顧客がいます</div>
 		<?for($n=0;$n<count($customer);$n++){?>
 			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 				<?if($customer[$n]["face"]){?>
