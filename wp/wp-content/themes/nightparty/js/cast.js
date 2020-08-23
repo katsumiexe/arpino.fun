@@ -161,8 +161,9 @@ $(function(){
 				'blog_id':bId,
 			},
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			if(data){
-				$('#tag_3_tbl').html(data);
+				$('.blog_list').append(data);
 			}
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

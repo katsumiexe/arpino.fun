@@ -1043,7 +1043,7 @@ $(function(){
 
 				<?if(count($tmp)>10){?>
 				<div class="blog_ad"><img src="<?=get_template_directory_uri()."/img/ad/bn.jpg?t=".time()?>" style="width:100%;"></div>
-				<div id="blog_next_<?=$blog[11]["id"]?>" class="blog_next">続きを読む</div>
+				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
 				<? } ?>
 			</div>
 		</div>
