@@ -60,7 +60,6 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 </div>
 <div class="guard"></div>
 
-
 <div class="ans">
 	<img id="img-0" src="<?php echo get_template_directory_uri(); ?>/img/tarot/tarot_0.jpg" class="ans_img">
 	<div class="ans_ttl">【<span id="no-0" class="card_no">0</span>】<span id="name_j-0">愚者</span>/<span id="name_e-0">The Fool</span><span id="rev-0" class="face">正</span></div>
