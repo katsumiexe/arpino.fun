@@ -2029,7 +2029,7 @@ i,.days_icon{
 	background	:#f0f0f0;
 	margin		:1vw auto;
 	text-align	:left;
-	height		:115vw;
+	height		:135vw;
 	background:#fff0fa;
 	box-shadow:0 2px 2px rgba(30,30,30,0.6);
 
@@ -2136,6 +2136,43 @@ i,.days_icon{
 	font-size		:5vw;
 	text-align		:center;
 }
+
+.blog_open{
+	width		:60vw;
+	margin		:1vw auto;
+	font-size:0;
+}
+
+.blog_open_yes,.blog_open_no{
+	display		:inline-block;
+	width		:25vw;
+	height		:10vw;
+	line-height	:10vw;
+	margin		:1vw auto 2vw auto;
+	background	:linear-gradient(#e0e0e0, #c0c0c0, #e0e0e0);
+	font-weight	:800;
+	color		:#fafafa;
+	font-size	:5vw;
+	cursor		:pointer;
+}
+
+.blog_open_yes{
+	border-radius:2vw 0 0 2vw;
+}
+
+.blog_open_no{
+	border-radius:0 2vw 2vw 0;
+}
+
+.yes_on{
+	background	:linear-gradient(#0000b0, #000080, #0000b0);
+}
+
+.no_on{
+	background	:linear-gradient(#d00000, #a00000, #d00000);
+}
+
+
 
 .tag_icon{
 	font-family		:at_icon;
@@ -2293,25 +2330,19 @@ i,.days_icon{
 	background:#009000;
 	color:#fafafa;
 	font-weight:600;
-
 }
 
 .hist_2{
-	background:#aaaaaa;
-	color:#fafafa;
-	font-weight:600;
-
-}
-
-.hist_3{
 	background:#d00000;
 	color:#fafafa;
 	font-weight:600;
-
 }
 
-
-
+.hist_3{
+	background:#aaaaaa;
+	color:#fafafa;
+	font-weight:600;
+}
 
 .hist_tag{
 	display			:inline-block;

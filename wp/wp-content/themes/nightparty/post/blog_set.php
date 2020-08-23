@@ -5,7 +5,6 @@ BlogSet
 
 require_once ("./post_inc.php");
 $date_gmt=date("Y-m-d H:i:s");
-
 $now=date("Y-m-d H:i:s",$jst);
 
 $yy=$_POST["yy"];
@@ -20,6 +19,7 @@ $log		=$_POST["log"];
 $tag		=$_POST["tag"];
 $cast_id	=$_POST["cast_id"];
 $chg		=$_POST["chg"];
+$open		=$_POST["open"];
 
 $img_code	=$_POST["img_code"];
 $img_zoom	=$_POST["img_zoom"];
@@ -30,8 +30,6 @@ $img_height	=$_POST["img_height"];
 $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 
-$status		=$_POST["status"]+0;
-
 $sql ="SELECT term_id FROM wp01_terms";
 $sql.=" WHERE slug='{$cast_id}' OR slug='{$tag}'";
 $dat = $wpdb->get_results($sql,ARRAY_A );
@@ -41,13 +39,17 @@ foreach($dat as $a1){
 
 $blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
 $blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
-$blog_st[2]="<span class=\"hist_status hist_2\">削除</span>";
-$blog_st[3]="<span class=\"hist_status hist_3\">非公開</span>";
+$blog_st[3]="<span class=\"hist_status hist_3\">削除</span>";
+$blog_st[2]="<span class=\"hist_status hist_2\">非公開</span>";
 
-if($status<=1 && $now < $date_jst){
-	$status=1;
+if($open<=1 && $now < $date_jst){
+	$open=1;
 }
-
+if($open == 2){
+	$status="draft";
+}else{
+	$status="publish";
+}
 
 $updir = wp_upload_dir();
 $blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png";
@@ -70,9 +72,11 @@ if($chg){
 	$sql.=" post_title='{$ttl}',";
 	$sql.=" post_status='{$status}',";
 	$sql.=" post_modified='{$date_jst}',";
-	$sql.=" post_modified_gmt='{$date_gmt}',";
+	$sql.=" post_modified_gmt='{$date_gmt}'";
 	$sql.=" WHERE ID='{$chg}'";
 	$wpdb->query($sql);
+
+echo($sql);
 
 	$sql="INSERT INTO wp01_posts ";
 	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
@@ -80,7 +84,6 @@ if($chg){
 	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','inherit','{$date_jst}','{$date_gmt}'";
 	$sql.=",'closed','closed','{$chg}-revision-v1','blog/{$cast_id}/{$chg}-revision-v1/','revision','{$chg}')";
 	$wpdb->query($sql);
-
 
 }else{
 	$sql="INSERT INTO wp01_posts ";
@@ -180,7 +183,7 @@ $html.="<span class=\"blog_log\">{$log}</span>";
 $html.="</div>";
 $html.="<span class=\"hist_watch\"><span class=\"hist_i\"></span><span class=\"hist_watch_c\">{$view_cnt}</span></span>";
 $html.="<span class=\"hist_comm\"><span class=\"hist_i\"></span><span class=\"hist_comm_c\">{$comm_cnt}</span></span>";
-$html.=$blog_st[$status];
+$html.=$blog_st[$open];
 $html.="</div>";
 
 echo $html;

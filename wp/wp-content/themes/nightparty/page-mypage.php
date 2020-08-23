@@ -512,10 +512,10 @@ if($c_sort[0]["c_sort_ASC"]==1){
 		$blog[$n]["count"]	=$tmp["comment_count"];
 
 		if($tmp["post_status"] == "draft"){
-			$blog[$n]["status"]=3;
+			$blog[$n]["status"]=2;
 
 		}elseif($tmp["post_status"] == "pending"){
-			$blog[$n]["status"]=2;
+			$blog[$n]["status"]=3;
 
 		}elseif($tmp["post_date"] > $now){
 			$blog[$n]["status"]=1;
@@ -528,8 +528,8 @@ if($c_sort[0]["c_sort_ASC"]==1){
 
 	$blog_status[0]="公開";
 	$blog_status[1]="予約";
-	$blog_status[2]="削除";
-	$blog_status[3]="非公開";
+	$blog_status[2]="非公開";
+	$blog_status[3]="削除";
 
 	$sql ="SELECT * FROM wp01_terms";
 	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_terms.term_id=wp01_term_taxonomy.term_id";
@@ -950,7 +950,6 @@ $(function(){
 			<div class="blog_write">
 				<div class="blog_pack">
 					<span class="blog_title_tag">投稿日</span><br>
-
 					<div class="blog_box">	
 						<select id="blog_yy" name="blog_yy" class="blog_4">
 							<?for($n=2018;$n<date("Y")+3;$n++){?>
@@ -991,6 +990,15 @@ $(function(){
 					<span class="blog_title_tag">本文</span><br>
 					<textarea id="blog_log" type="text" name="blog_log" class="blog_log_box"></textarea><br>
 
+<div class="blog_open">
+<div class="blog_open_yes yes_on">公開</div>
+<div class="blog_open_no">非公開</div>
+<input type="hidden" id="blog_open" value="0">
+</div>
+
+
+
+
 					<table class="blog_table_set">
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
@@ -1016,6 +1024,7 @@ $(function(){
 						</tr>
 					</table>
 				</div>
+				<input id="blog_chg" type="hidden" value="" >
 			</div>
 
 			<div class="blog_list">
@@ -1028,6 +1037,7 @@ $(function(){
 						<span class="hist_tag">
 							<?foreach($tag_name[$n] as $a2){?><?=$a2?>/<?}?>
 						</span>
+						<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
 					</div>	
 					<div class="hist_log">
 						<?if($blog[$n]["img_on"]){?>
