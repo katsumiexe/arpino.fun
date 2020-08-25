@@ -71,8 +71,10 @@ get_header();
 				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
 				<span class="blog_list_castname">いなださん</span>
 
-				<span class="blog_list_frame">
+				<span class="blog_list_frame_a">
+				<span class="blog_list_frame_b">
 				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/101/1.jpg?t=1598275364" class="blog_list_castimg">
+				</span>
 				</span>
 				</span>
 			</a>
