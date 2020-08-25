@@ -402,19 +402,33 @@ a{
 	margin		:0 auto;
 	text-align	:left;
 	font-size	:15px;
-	background:#ff00ff;
+	background	:#ff00ff;
 }
 
 .blog_list_castimg{
-	position:absolute;
-	left:0;
-	top:0;
-	width:60px;
-	height:80px;
+	position	:absolute;
+	left		:0;
+	top			:0;
+	width		:60px;
+	height		:60px;
 }
 
+.blog_list_frame{
+	position	:absolute;
+	left		:0;
+	top			:0;
+	width		:44px;
+	height		:44px;
+	background	:#ffe0f0;
+	border		:3px solid #fafafa;
+	box-shadow	:5px 5px 0 #ffe0f0,-5px -5px 0 #ffe0f0;
+	overflow	:hidden;
+	border-radius:50%;
+}
+
+
 .blog_list_date{
-	position:absolute;
+	position	:absolute;
 	left		:65px;
 	top			:5px;
 	font-size	:14px;

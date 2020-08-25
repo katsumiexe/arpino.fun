@@ -55,8 +55,6 @@ get_header();
 <div class="main_top">
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
-
-
 		<?for($n=0;$n<count($blog);$n++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast=<?=$b1?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>?t=<?=time()?>" class="blog_list_img">
@@ -72,11 +70,12 @@ get_header();
 				<span class="blog_list_cast">
 				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
 				<span class="blog_list_castname">いなださん</span>
-				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/101/1.jpg?t=1598275364"
- class="blog_list_castimg">
+
+				<span class="blog_list_frame">
+				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/101/1.jpg?t=1598275364" class="blog_list_castimg">
+				</span>
 				</span>
 			</a>
-
 		<? } ?>
 	</div>
 	<div class="main_c">

@@ -34,16 +34,11 @@ foreach($res2 as $a2){
 	if($a2["stime"] && $a2["etime"]){
 		$dat[$a2["cast_id"]]["sch"]	="{$a2["stime"]} - {$a2["etime"]}";
 		$sort[$a2["cast_id"]]=$sch_table["in"][$a2["stime"]];
-
-print($a2["cast_id"]."■".$a2["stime"]."■".$a2["etime"]."■<br>\n");
-
 	}else{
 		$sch[$a2["cast_id"]]	="休み";
 		$sort[$a2["cast_id"]]=999999;
 	}
 }
-
-
 
 $week[0]="(日)";
 $week[1]="(月)";
