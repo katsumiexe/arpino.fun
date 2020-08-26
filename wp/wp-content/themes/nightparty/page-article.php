@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: castblog
+Template Name: article
 */
 
 $n=0;
@@ -28,7 +28,9 @@ $sql.=" AND T.slug='tag{$gp}'";
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 15";
 
+print($sql);
 $res = $wpdb->get_results($sql,ARRAY_A);
+
 foreach($res as $a2){
 	$blog[$n]=$a2;
 	$img_tmp=$a2["ID"]+2;
@@ -48,6 +50,7 @@ foreach($res as $a2){
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
 	$n++;
+print($a2["ID"]."<br>");
 }
 get_header();
 ?>
@@ -66,7 +69,7 @@ get_header();
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<?for($n=0;$n<count($blog);$n++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?cast=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+			<a href="<?=get_template_directory_uri(); ?>/article/?cast=<?=$blog[$n]["slug"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>?t=<?=time()?>" class="blog_list_img">
 				<span class="blog_list_comm">
 					<span class="blog_list_i"></span>
@@ -91,23 +94,8 @@ get_header();
 		<? } ?>
 	</div>
 	<div class="main_c">
-	<table class="blog_calender">
-		<tr>
-			<td class="blog_calender_td">日</td>
-			<td class="blog_calender_td">月</td>
-			<td class="blog_calender_td">火</td>
-			<td class="blog_calender_td">水</td>
-			<td class="blog_calender_td">木</td>
-			<td class="blog_calender_td">金</td>
-			<td class="blog_calender_td">土</td>
-		</tr>
-	</table>
+
+
 	</div>
 </div>
 <?php get_footer(); ?>
-
-.blog_calender{
-	width:310;
-
-}
-

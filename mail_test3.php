@@ -1,3 +1,6 @@
+
+
+
 <?
 $sv="{m15.coreserver.jp:110/pop3}INBOX";
 $sv="{m15.coreserver.jp:110}INBOX";
