@@ -76,8 +76,6 @@ if($chg){
 	$sql.=" WHERE ID='{$chg}'";
 	$wpdb->query($sql);
 
-echo($sql);
-
 	$sql="INSERT INTO wp01_posts ";
 	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
@@ -94,13 +92,6 @@ echo($sql);
 	$wpdb->query($sql);
 	$tmp_auto=$wpdb->insert_id;
 
-	$sql="INSERT INTO wp01_posts ";
-	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
-	$sql.="VALUES";
-	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','inherit','{$date_jst}','{$date_gmt}'";
-	$sql.=",'closed','closed','{$tmp_auto}-revision-v1','{$updir['baseurl']}/{$cast_id}/{$tmp_auto}-revision-v1/','revision','{$tmp_auto}')";
-	$wpdb->query($sql);
-
 	$sql="INSERT INTO wp01_term_relationships";
 	$sql.="(object_id,term_taxonomy_id)";
 	$sql.="VALUES";
@@ -109,9 +100,8 @@ echo($sql);
 	$wpdb->query($sql);
 
 	if($img_code){
-		$tmp_auto2=$tmp_auto+2;
-		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto2}.png";
 
+		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto}.png";
 		$img2 		= imagecreatetruecolor(600,600);
 		$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 		$tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
@@ -138,8 +128,9 @@ echo($sql);
 		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type,post_parent)";
 		$sql.="VALUES";
 		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto2}','inherit','{$date_jst}','{$date_gmt}'";
-		$sql.=",'open','closed','img_{$tmp_auto2}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png','attachment','image/png','{$tmp_auto2}')";
+		$sql.=",'open','closed','img_{$tmp_auto2}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png','attachment','image/png','{$tmp_auto}')";
 		$wpdb->query($sql);
+		$tmp_auto2=$wpdb->insert_id;
 
 		$img_origin			="img_{$tmp_auto2}.png";
 		$img_origin_cnt		=mb_strlen($img_origin);
@@ -153,6 +144,13 @@ echo($sql);
 		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
 		$wpdb->query($sql);
 	}
+
+	$sql="INSERT INTO wp01_posts ";
+	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
+	$sql.="VALUES";
+	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','inherit','{$date_jst}','{$date_gmt}'";
+	$sql.=",'closed','closed','{$tmp_auto}-revision-v1','{$updir['baseurl']}/{$cast_id}/{$tmp_auto}-revision-v1/','revision','{$tmp_auto}')";
+	$wpdb->query($sql);
 }
 
 if($img_code){

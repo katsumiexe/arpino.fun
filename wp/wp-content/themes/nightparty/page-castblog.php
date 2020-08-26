@@ -3,21 +3,31 @@
 Template Name: castblog
 */
 
-
-
 $n=0;
 $now=date("Y-m-d H:i:s",time()+23400);
 
-$sql ="SELECT * FROM wp01_posts";
-$sql.=" WHERE post_name='post'";
-$sql.=" AND post_password='{$a1["id"]}'";
-$sql.=" AND post_status='publish'";
-$sql.=" AND post_date<='{$now}'";
-$sql.=" ORDER BY post_date DESC";
-$sql.=" LIMIT 10";
+$sql ="SELECT";
 
+$sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
+$sql.=" FROM wp01_posts AS P";
+$sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
+$sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
+$sql.=" WHERE P.post_name='post'";
+$sql.=" AND P.post_status='publish'";
+$sql.=" AND P.post_date<='{$now}'";
 
+if($cast_id){
+$sql.=" AND T.slug='{$cast_id}'";
+}elseif($gp){
+$sql.=" AND T.slug='tag{$gp}'";
+}
+$sql.=" ORDER BY P.post_date DESC";
+$sql.=" LIMIT 15";
+
+print($sql);
 $res = $wpdb->get_results($sql,ARRAY_A);
+
 foreach($res as $a2){
 	$blog[$n]=$a2;
 	$img_tmp=$a2["ID"]+2;
@@ -28,7 +38,6 @@ foreach($res as $a2){
 	$sql.=" AND meta_key='_thumbnail_id'";
 
 	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
-
 	$thumb = $wpdb->get_var($sql);
 	if($thumb){
 		$blog[$n]["img"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
@@ -38,6 +47,7 @@ foreach($res as $a2){
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
 	$n++;
+print($a2["ID"]."<br>");
 }
 get_header();
 ?>
@@ -69,11 +79,11 @@ get_header();
 
 				<span class="blog_list_cast">
 				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
-				<span class="blog_list_castname">いなださん</span>
+				<span class="blog_list_castname"><?=$blog[$n]["name"]?></span>
 
 				<span class="blog_list_frame_a">
 				<span class="blog_list_frame_b">
-				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/101/1.jpg?t=1598275364" class="blog_list_castimg">
+				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["slug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
 				</span>
 				</span>
 				</span>

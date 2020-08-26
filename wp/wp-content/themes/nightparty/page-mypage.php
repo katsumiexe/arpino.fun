@@ -989,16 +989,11 @@ $(function(){
 
 					<span class="blog_title_tag">本文</span><br>
 					<textarea id="blog_log" type="text" name="blog_log" class="blog_log_box"></textarea><br>
-
-<div class="blog_open">
-<div class="blog_open_yes yes_on">公開</div>
-<div class="blog_open_no">非公開</div>
-<input type="hidden" id="blog_open" value="0">
-</div>
-
-
-
-
+					<div class="blog_open">
+						<div class="blog_open_yes yes_on">公開</div>
+						<div class="blog_open_no">非公開</div>
+						<input type="hidden" id="blog_open" value="0">
+					</div>
 					<table class="blog_table_set">
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
@@ -1019,14 +1014,13 @@ $(function(){
 						</tr>
 						<tr>
 							<td class="blog_tag_td">
-							<div id="blog_set" class="btn btn_l1">登録</div>　
+								<div id="blog_set" class="btn btn_l1">登録</div>　
 							</td>
 						</tr>
 					</table>
 				</div>
 				<input id="blog_chg" type="hidden" value="" >
 			</div>
-
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
@@ -1064,6 +1058,72 @@ $(function(){
 <br>
 <hr>
 <h2>基本情報</h2>
+<table class="config_img">
+	<tr>
+		<td class="config_img_a" rowspan="3"><img src="<?=$user_face?>?t=<?=time()?>" class="config_img_a1"></td>
+<!--
+		<td id="line_face1" class="config_img_b">
+			<img id="sumb1" src="<?=$prof_img[1]?>?t=<?=time()?>" class="config_img_b1">
+			<div id="s1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 1){?> img_sel<?}?>">
+				<span class="icon_img icon_5s img_btn_icon"></span>
+				<span class="img_btn_txt">選択</span>
+			</div>
+			<a href="line://nv/profile" class="config_img_line"><span class="icon_img icon_line"></span><span class="text_line">LINE</span></a>
+		</td>
+-->
+		<td id="line_face2" class="config_img_b">
+			<img id="sumb1" src="<?=$prof_img[1]?>?t=<?=time()?>" class="config_img_b1">
+			<div id="s1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 1){?> img_sel<?}?>">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">選択</span>
+			</div>
+			<div id="t1" class="img_btn1 btn_set">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">登録</span>
+			</div>
+			<div id="d1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_del<?}?>">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">削除</span>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="config_img_b">
+			<img id="sumb2" src="<?=$prof_img[2]?>?t=<?=time()?>" class="config_img_b1">
+			<div id="s2" class="img_btn1<?if(strpos($prof_img[2],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 2){?> img_sel<?}?>">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">選択</span>
+			</div>
+			<div id="t2" class="img_btn1 btn_set">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">登録</span>
+			</div>
+			<div id="d2" class="img_btn1<?if(strpos($prof_img[2],"noimage") === FALSE){?> btn_del<?}?>">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">削除</span>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="config_img_b">
+			<img id="sumb3" src="<?=$prof_img[3]?>?t=<?=time()?>" class="config_img_b1">
+			<div id="s3" class="img_btn1<?if(strpos($prof_img[3],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 3){?> img_sel<?}?>">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">選択</span>
+			</div>
+			<div id="t3" class="img_btn1 btn_set">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">登録</span>
+			</div>
+			<div id="d3" class="img_btn1<?if(strpos($prof_img[3],"noimage") === FALSE){?> btn_del<?}?>">
+				<span class="img_btn_icon"></span>
+				<span class="img_btn_txt">削除</span>
+			</div>
+		</td>
+	</tr>
+</table>
+
+
 
 名前：
 CAST_ID：
@@ -1356,6 +1416,7 @@ Twitter連携:
 		<div id="customer_regist_set" class="btn btn_l2">登録</div>
 		<input id="regist_fav" type="hidden" value="0">
 	</div>
+
 
 	<div class="img_box">
 		<div class="img_box_in">
