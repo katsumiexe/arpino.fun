@@ -483,5 +483,36 @@ a{
 	background:#fafafa;
 }
 
+.blog_calender{
+	width			:310px;
+	border-collapse	:collapse;
+	table-layout	:fixed;
+	background:#fafafa;
+}
+
+.blog_calender_m{
+	text-align		:center;
+	border			:1px solid #303030;
+	height			:25px;
+	line-height		:25px;
+	font-size		:16px;
+	
+}
+.blog_calender_w{
+	text-align		:center;
+	border			:1px solid #303030;
+	height			:25px;
+	line-height		:25px;
+	font-size		:16px;
+
+}
+
+.blog_calender_d{
+	text-align		:center;
+	border			:1px solid #303030;
+	height			:40px;
+	line-height		:40px;
+	font-size		:16px;
+}
 
 

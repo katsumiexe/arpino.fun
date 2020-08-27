@@ -49,6 +49,31 @@ foreach($res as $a2){
 	}
 	$n++;
 }
+
+$c_month=$_POST[$c_month];
+if(!$c_month) $c_month=substr($now,0,7);
+
+$month_w=date("w",strtotime($c_month."-01"))-1;
+$month_e=date("t",strtotime($c_month."-01"));
+
+
+$month_max=ceil(($month_w+$month_e)/7)*7;
+
+for($n=0;$n<$month_max ;$n++){
+	if($n % 7 == 0){
+		$c_inc.="</tr><tr>";
+	}
+	$tmp_days=$n-$month_w;
+	if($n>$month_w && $n<=$month_w+$month_e){
+//		$c_inc.="<td id=\"".$n-$month_w."\" class=\"blog_calender_d\">".$n-$month_w."</td>";
+		$c_inc.="<td class=\"blog_calender_d\">{$tmp_days}</td>";
+	}else{
+		$c_inc.="<td class=\"blog_calender_d\"></td>";
+	}
+
+}
+
+
 get_header();
 ?>
 <div class="footmark">
@@ -93,21 +118,22 @@ get_header();
 	<div class="main_c">
 	<table class="blog_calender">
 		<tr>
-			<td class="blog_calender_td">日</td>
-			<td class="blog_calender_td">月</td>
-			<td class="blog_calender_td">火</td>
-			<td class="blog_calender_td">水</td>
-			<td class="blog_calender_td">木</td>
-			<td class="blog_calender_td">金</td>
-			<td class="blog_calender_td">土</td>
+			<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
+		</tr>
+		<tr>
+			<td class="blog_calender_w">日</td>
+			<td class="blog_calender_w">月</td>
+			<td class="blog_calender_w">火</td>
+			<td class="blog_calender_w">水</td>
+			<td class="blog_calender_w">木</td>
+			<td class="blog_calender_w">金</td>
+			<td class="blog_calender_w">土</td>
+			<?=$c_inc?>
 		</tr>
 	</table>
 	</div>
 </div>
 <?php get_footer(); ?>
 
-.blog_calender{
-	width:310;
 
-}
 
