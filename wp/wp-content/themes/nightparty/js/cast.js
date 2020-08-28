@@ -982,7 +982,9 @@ $(function(){
 						'vw_base'	:VwBase,
 						'img_zoom'	:ImgZoom,
 						'img_rote'	:Rote,
+						'page'		:$('#page').val(),
 						'c_id'		:C_Id
+
 					},
 
 				}).done(function(data, textStatus, jqXHR){

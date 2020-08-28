@@ -17,6 +17,14 @@ $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 $c_id		=$_POST["c_id"]+0;
 $img_url	=$_POST["img_url"];
+$page		=$_POST["page"];
+
+if($page == 2){
+	$size=300;
+
+}else{
+	$size=600;
+}
 
 $sql ="SELECT * FROM wp01_0encode"; 
 $enc0 = $wpdb->get_results($sql,ARRAY_A );
@@ -53,7 +61,7 @@ if(!$img_url){
 $res=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$clist;
 $link="../img/cast/".$tmp_dir."/c/".$clist;
 
-$img2 		= imagecreatetruecolor(600,600);
+$img2 		= imagecreatetruecolor($size,$size);
 
 $tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 $tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
@@ -73,7 +81,7 @@ if($img_rote ==90){
 	$img = imagecreatefromstring(base64_decode($img_code));
 }
 
-ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 600, $tmp_width, $tmp_height);
+ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, $size, $size, $tmp_width, $tmp_height);
 imagepng($img2,$link);
 
 echo($res);
