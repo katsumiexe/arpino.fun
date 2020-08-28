@@ -56,9 +56,9 @@ foreach($res as $a1){
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res2 as $a2):
+foreach($res2 as $a2){
 	$sch[$a2["sche_date"]]=$a2;
-endforeach;
+}
 
 for($n=0;$n<7;$n++){
 	$t_sch=date("Ymd",time()+(86400*$n)+32400);
@@ -69,17 +69,17 @@ for($n=0;$n<7;$n++){
 	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
 	$list_week=date("w",strtotime($t_sch));
 
-	if($tmp_s && $tmp_e):
+	if($tmp_s && $tmp_e){
 		$tmp_date=$tmp_s."～".$tmp_e;
-	else:
+	}else{
 		$tmp_date="";
-	endif;
+	}
 
-	if($tmp_s && $tmp_e):
+	if($tmp_s && $tmp_e){
 		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\">".$tmp_s."～".$tmp_e."</td>";
-	else:
+	}else{
 		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\">休み</td>";
-	endif;
+	}
 }
 
 $sql="SELECT * FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
