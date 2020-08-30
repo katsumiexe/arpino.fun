@@ -124,6 +124,28 @@ get_header();
 			<?=$c_inc?>
 		</tr>
 	</table>
+
+<div class="blog_h1">
+<div class="blog_h2">
+お勧め記事
+</div>
+</div>
+
+<div class="blog_h1">
+<div class="blog_h2">
+カテゴリー
+</div>
+</div>
+
+<div class="blog_h1">
+<div class="blog_h2">
+執筆者
+</div>
+</div>
+
+
+
+
 	</div>
 </div>
 <?php get_footer(); ?>

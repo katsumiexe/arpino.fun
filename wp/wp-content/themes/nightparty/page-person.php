@@ -180,16 +180,18 @@ get_header();
 </table>
 </div>
 <div class="person_right">
-<div class="person_blog_ttl">Blog</div>
-<?for($s=0;$s<$blog_max;$s++){?>
-<div class="person_blog">
-	<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
-	<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-	<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
-	<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
-	<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
-</div>
-<?}?>
+	<div class="person_blog_ttl">Blog</div>
+	<?for($s=0;$s<$blog_max;$s++){?>
+		<a href="<?=get_template_directory_uri(); ?>/article/?blog=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+			<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+			<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+			<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+			<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
+			<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
+		</a>
+	<?}?>
+	<div class="person_blog_btm">一覧へ</div>
+
 </div>
 </div>
 <?php get_footer(); ?>
