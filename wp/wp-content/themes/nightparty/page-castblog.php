@@ -33,7 +33,7 @@ $updir = wp_upload_dir();
 foreach($res as $a2){
 	$blog[$n]=$a2;
 	$img_tmp=$a2["ID"]+2;
-	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
+	$blog[$n]["date"]	=date("m/d H:i",strtotime($a2["post_date"]));
 
 	$sql ="SELECT guid FROM wp01_postmeta";
 	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
@@ -71,10 +71,7 @@ for($n=0;$n<$month_max ;$n++){
 	}else{
 		$c_inc.="<td class=\"blog_calender_d\"></td>";
 	}
-
 }
-
-
 get_header();
 ?>
 <div class="footmark">
