@@ -27,31 +27,29 @@ $sql.=" AND T.slug='tag{$gp}'";
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 15";
 
-
-print($sql);
-
-
 $res = $wpdb->get_results($sql,ARRAY_A);
+$updir = wp_upload_dir();
+
 foreach($res as $a2){
 	$blog[$n]=$a2;
 	$img_tmp=$a2["ID"]+2;
-	$updir = wp_upload_dir();
+	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
 
-	$sql ="SELECT * FROM wp01_postmeta";
+	$sql ="SELECT guid FROM wp01_postmeta";
+	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 	$sql.=" WHERE post_id='{$a2["ID"]}'";
 	$sql.=" AND meta_key='_thumbnail_id'";
-
-	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
 	$thumb = $wpdb->get_var($sql);
-	if($thumb){
-		$blog[$n]["img"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
-		$blog[$n]["img_on"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
+var_dump($thumb);
 
+	if($thumb){
+		$blog[$n]["img"]=$thumb["guid"]."?t=".time();
 	}else{
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
 	$n++;
 }
+print($sql);
 
 $c_month=$_POST[$c_month];
 if(!$c_month) $c_month=substr($now,0,7);
@@ -95,7 +93,7 @@ get_header();
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<?for($n=0;$n<count($blog);$n++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
-				<img src="<?=$blog[$n]["img"]?>?t=<?=time()?>" class="blog_list_img">
+				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 				<span class="blog_list_comm">
 					<span class="blog_list_i"></span>
 					<span class="blog_list_c"><?=$blog[$n]["count"]+0?></span>
