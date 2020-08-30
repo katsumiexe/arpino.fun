@@ -13,20 +13,23 @@ $sql.=" FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
-$sql.=" WHERE P.post_name='post'";
+$sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
-
 $sql.=" AND X.taxonomy='category'";
 
 
-if($cast_id){
-$sql.=" AND T.slug='{$cast_id}'";
+if($cast){
+$sql.=" AND T.slug='{$cast}'";
 }elseif($gp){
 $sql.=" AND T.slug='tag{$gp}'";
 }
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 15";
+
+
+print($sql);
+
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a2){

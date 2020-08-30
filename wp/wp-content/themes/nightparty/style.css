@@ -263,20 +263,20 @@ a{
 
 .main_c{
 	display		:inline-block;
-	width		:312px;
+	width		:330px;
 	background	:#302520;
 	border		:2px solid #c8b880;
-	margin		:0 5px auto 5px;
-	padding		:0 5px;
+	margin		:0 5px auto 10px;
+	padding		:0;
 	text-align	:center;
 }
 
 .main_c_1{
 	display		:inline-block;
-	width		:300px;
+	width		:310px;
 	background	:#fafafa;
 	margin		:5px auto;
-	padding		:5px;
+	padding		:0;
 	border-bottom:2px solid #9060ff;
 	font-size	:14px;
 	text-align	:left;
@@ -484,7 +484,7 @@ a{
 }
 
 .blog_calender{
-	width			:310px;
+	width			:100%;
 	border-collapse	:collapse;
 	table-layout	:fixed;
 	background:#fafafa;

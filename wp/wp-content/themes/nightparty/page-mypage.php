@@ -1528,6 +1528,8 @@ Twitter連携:
 		</div>
 	</div>
 </div>
+<input id="page" type="hidden" val="<?=$cast_page?>">
+
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">
