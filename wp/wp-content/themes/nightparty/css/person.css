@@ -53,20 +53,23 @@
 	display			:inline-block;
 	position		:relative;
 	flex-basis		:240px;
-	min-height		:565px;	
+	min-height		:550px;	
+	border			:2px solid #c8b880;
+	margin-top:8px;
 }
 
 .person_blog_ttl{
 	display			:inline-block;
 	position		:relative;
 	width			:240px;
-	height			:30px;	
-	line-height		:30px;	
-	margin			:8px auto 2px auto;
+	height			:35px;	
+	line-height		:35px;	
+	margin			:0 auto 4px auto;;
 	background		:#C8B880;
 	border			:1px solid #C8B880;
 	color			:#fafafa;
-	font-size		:15px;
+	font-size		:20px;
+	font-weight:700;
 }
 .person_blog{
 	display			:inline-block;
@@ -74,8 +77,8 @@
 	width			:230px;
 	height			:75px;	
 	background		:#fafafa;
-	border:1px solid #C8B880;
-	margin:1px auto;
+	border			:1px solid #C8B880;
+	margin			:4px auto;
 	
 }
 

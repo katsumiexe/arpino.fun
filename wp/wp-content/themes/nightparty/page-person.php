@@ -88,30 +88,56 @@ foreach($res3 as $a3){
 	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr>";
 }
 
+
+
 $n=0;
-$sql="SELECT * FROM wp01_posts WHERE post_name='post' AND post_password='{$a1["id"]}' ORDER BY post_date DESC LIMIT 6;";
+$now=date("Y-m-d H:i:s",time()+23400);
+
+$sql ="SELECT";
+$sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
+$sql.=" FROM wp01_posts AS P";
+$sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
+$sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
+$sql.=" WHERE P.post_type='post'";
+$sql.=" AND P.post_status='publish'";
+$sql.=" AND P.post_date<='{$now}'";
+$sql.=" AND X.taxonomy='category'";
+$sql.=" AND T.slug='{$val}'";
+
+$sql.=" ORDER BY P.post_date DESC";
+$sql.=" LIMIT 7";
+
 $res = $wpdb->get_results($sql,ARRAY_A);
+$updir = wp_upload_dir();
+
 foreach($res as $a2){
 	$blog[$n]=$a2;
 	$img_tmp=$a2["ID"]+2;
-	$updir = wp_upload_dir();
+	$blog[$n]["date"]	=date("m/d H:i",strtotime($a2["post_date"]));
 
-	$sql ="SELECT * FROM wp01_postmeta";
+	$sql ="SELECT guid FROM wp01_postmeta";
+	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 	$sql.=" WHERE post_id='{$a2["ID"]}'";
 	$sql.=" AND meta_key='_thumbnail_id'";
-
-	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
-
 	$thumb = $wpdb->get_var($sql);
-	if($thumb){
-		$blog[$n]["img"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
-		$blog[$n]["img_on"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
 
+	if($thumb){
+		$blog[$n]["img"]=$thumb."?t=".time();
 	}else{
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
 	$n++;
 }
+
+if($n>6){
+	$blog_max=6;
+}else{
+	$blog_max=$n;
+}
+
+
+
 get_header();
 ?>
 <div class="main_top">
@@ -155,13 +181,13 @@ get_header();
 </div>
 <div class="person_right">
 <div class="person_blog_ttl">Blog</div>
-<?for($n=0;$n<count($blog);$n++){?>
+<?for($s=0;$s<$blog_max;$s++){?>
 <div class="person_blog">
-	<img src="<?=$blog[$n]["img"]?>" class="person_blog_img">
-	<span class="person_blog_date"><?=$blog[$n]["date"]?></span>
-	<span class="person_blog_title"><?=$blog[$n]["post_title"]?></span>
+	<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+	<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+	<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
 	<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
-	<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$n]["count"]+0?></span></span>
+	<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 </div>
 <?}?>
 </div>

@@ -7,7 +7,6 @@ $n=0;
 $now=date("Y-m-d H:i:s",time()+23400);
 
 $sql ="SELECT";
-
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
 $sql.=" FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
@@ -17,7 +16,6 @@ $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
-
 
 if($cast){
 $sql.=" AND T.slug='{$cast}'";
@@ -40,7 +38,6 @@ foreach($res as $a2){
 	$sql.=" WHERE post_id='{$a2["ID"]}'";
 	$sql.=" AND meta_key='_thumbnail_id'";
 	$thumb = $wpdb->get_var($sql);
-var_dump($thumb);
 
 	if($thumb){
 		$blog[$n]["img"]=$thumb."?t=".time();
@@ -49,7 +46,6 @@ var_dump($thumb);
 	}
 	$n++;
 }
-print($sql);
 
 $c_month=$_POST[$c_month];
 if(!$c_month) $c_month=substr($now,0,7);
