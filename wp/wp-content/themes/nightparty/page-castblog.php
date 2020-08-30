@@ -25,7 +25,7 @@ $sql.=" AND T.slug='{$cast}'";
 $sql.=" AND T.slug='tag{$gp}'";
 }
 $sql.=" ORDER BY P.post_date DESC";
-$sql.=" LIMIT 15";
+$sql.=" LIMIT 20";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
@@ -43,7 +43,7 @@ foreach($res as $a2){
 var_dump($thumb);
 
 	if($thumb){
-		$blog[$n]["img"]=$thumb["guid"]."?t=".time();
+		$blog[$n]["img"]=$thumb."?t=".time();
 	}else{
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
@@ -94,6 +94,7 @@ get_header();
 		<?for($n=0;$n<count($blog);$n++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
+
 				<span class="blog_list_comm">
 					<span class="blog_list_i"></span>
 					<span class="blog_list_c"><?=$blog[$n]["count"]+0?></span>
@@ -108,9 +109,7 @@ get_header();
 				<span class="blog_list_castname"><?=$blog[$n]["name"]?></span>
 
 				<span class="blog_list_frame_a">
-				<span class="blog_list_frame_b">
 				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["slug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
-				</span>
 				</span>
 				</span>
 			</a>
