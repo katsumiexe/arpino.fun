@@ -73,7 +73,7 @@ get_header();
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text"><?=$res0[name]?></span>
+		<span class="footmark_text"><?=$res0["name"]?></span>
 	</div>
 </div>
 <div class="main_top">
@@ -83,6 +83,10 @@ get_header();
 				<?=$res0["post_title"]?>
 			</div>
 		</div>
+		<div class="blog_log">
+			<?=$res0["post_content"]?>
+		</div>
+
 	</div>
 
 	<div class="main_c">
