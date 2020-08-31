@@ -85,7 +85,7 @@ get_header();
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<?for($n=0;$n<count($blog);$n++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?cast=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+			<a href="<?=get_template_directory_uri(); ?>/article/?b_id=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
 				<span class="blog_list_comm">

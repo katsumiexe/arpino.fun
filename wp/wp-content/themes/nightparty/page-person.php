@@ -106,7 +106,7 @@ $sql.=" AND X.taxonomy='category'";
 $sql.=" AND T.slug='{$val}'";
 
 $sql.=" ORDER BY P.post_date DESC";
-$sql.=" LIMIT 7";
+$sql.=" LIMIT 6";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
@@ -129,13 +129,6 @@ foreach($res as $a2){
 	}
 	$n++;
 }
-
-if($n>6){
-	$blog_max=6;
-}else{
-	$blog_max=$n;
-}
-
 
 
 get_header();
@@ -181,7 +174,7 @@ get_header();
 </div>
 <div class="person_right">
 	<div class="person_blog_ttl">Blog</div>
-	<?for($s=0;$s<$blog_max;$s++){?>
+	<?for($s=0;$s<count($blog);$s++){?>
 		<a href="<?=get_template_directory_uri(); ?>/article/?blog=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
 			<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
 			<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
