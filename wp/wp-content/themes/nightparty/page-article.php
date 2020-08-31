@@ -18,7 +18,18 @@ $sql.=" WHERE P.ID='{$b_id}'";
 $sql.=" AND X.taxonomy='category'";
 $sql.=" LIMIT 1";
 $res0 = $wpdb->get_row($sql,ARRAY_A);
+$res0["post_content"]=str_replace("\n","<br>",$res0["post_content"]);
 
+$sql ="SELECT guid FROM wp01_postmeta";
+$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
+$sql.=" WHERE post_id='{$res0["ID"]}'";
+$sql.=" AND meta_key='_thumbnail_id'";
+$thumb = $wpdb->get_var($sql);
+
+if($thumb){
+	$blog_img=$thumb."?t=".time();
+}
+print($sql);
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -83,6 +94,9 @@ get_header();
 				<?=$res0["post_title"]?>
 			</div>
 		</div>
+		<?if($blog_img){?>
+		<img src="<?=$blog_img?>" class="blog_img">
+		<?}?>
 		<div class="blog_log">
 			<?=$res0["post_content"]?>
 		</div>

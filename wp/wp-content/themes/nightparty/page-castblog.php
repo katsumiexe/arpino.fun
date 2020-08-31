@@ -30,7 +30,6 @@ $updir = wp_upload_dir();
 
 foreach($res as $a2){
 	$blog[$n]=$a2;
-	$img_tmp=$a2["ID"]+2;
 	$blog[$n]["date"]	=date("m/d H:i",strtotime($a2["post_date"]));
 
 	$sql ="SELECT guid FROM wp01_postmeta";

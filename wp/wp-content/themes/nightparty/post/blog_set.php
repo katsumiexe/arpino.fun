@@ -32,6 +32,7 @@ $img_rote	=$_POST["img_rote"]+0;
 
 $sql ="SELECT term_id FROM wp01_terms";
 $sql.=" WHERE slug='{$cast_id}' OR slug='{$tag}'";
+
 $dat = $wpdb->get_results($sql,ARRAY_A );
 foreach($dat as $a1){
 	$term[]=$a1["term_id"];
@@ -100,7 +101,6 @@ if($chg){
 	$wpdb->query($sql);
 
 	if($img_code){
-
 		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto}.png";
 		$img2 		= imagecreatetruecolor(600,600);
 		$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
@@ -183,7 +183,6 @@ $html.="<span class=\"hist_watch\"><span class=\"hist_i\"></span><span class=
 $html.="<span class=\"hist_comm\"><span class=\"hist_i\"></span><span class=\"hist_comm_c\">{$comm_cnt}</span></span>";
 $html.=$blog_st[$open];
 $html.="</div>";
-
 echo $html;
 exit();
 ?>
