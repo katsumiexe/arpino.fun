@@ -129,8 +129,6 @@ foreach($res as $a2){
 	}
 	$n++;
 }
-
-
 get_header();
 ?>
 <div class="main_top">

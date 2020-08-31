@@ -41,8 +41,9 @@ foreach($res as $a1){
 		$sort[$a1["id"]]=999999;
 	}
 
-	if($a1["face1"] > 0){
-		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/{$a1["face1"]}.jpg";			
+
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
+		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/1.jpg";		
 	}else{
 		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
 	}

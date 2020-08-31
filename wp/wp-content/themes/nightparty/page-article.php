@@ -5,7 +5,8 @@ Template Name: article
 
 $n=0;
 $now=date("Y-m-d H:i:s",time()+23400);
-$b_id=$_POST["b_id"];
+
+$b_id=$_REQUEST["b_id"];
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -14,9 +15,10 @@ $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
 $sql.=" WHERE P.ID='{$b_id}'";
+$sql.=" AND X.taxonomy='category'";
 $sql.=" LIMIT 1";
 $res0 = $wpdb->get_row($sql,ARRAY_A);
-print($sql);
+
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -76,44 +78,47 @@ get_header();
 </div>
 <div class="main_top">
 	<div class="main_b">
-
-	<div class="blog_ttl1">
-		<div class="blog_ttl2">
-			<?=$cast_name?>
+		<div class="blog_ttl1">
+			<div class="blog_ttl2">
+				<?=$res0["post_title"]?>
+			</div>
 		</div>
 	</div>
-		
 
-
-	</div>
 	<div class="main_c">
-	<div class="blog_h1">
-		<div class="blog_h2">
-			<?=$$res0[name]?>
+		<div class="blog_h1">
+			<div class="blog_h2">
+				<?=$res0["name"]?>
+			</div>
 		</div>
-	</div>
 
-	<table class="blog_calender">
-		<tr>
-			<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
-		</tr>
-		<tr>
-			<td class="blog_calender_w">日</td>
-			<td class="blog_calender_w">月</td>
-			<td class="blog_calender_w">火</td>
-			<td class="blog_calender_w">水</td>
-			<td class="blog_calender_w">木</td>
-			<td class="blog_calender_w">金</td>
-			<td class="blog_calender_w">土</td>
-			<?=$c_inc?>
-		</tr>
-	</table>
+		<table class="blog_calender">
+			<tr>
+				<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
+			</tr>
+			<tr>
+				<td class="blog_calender_w">日</td>
+				<td class="blog_calender_w">月</td>
+				<td class="blog_calender_w">火</td>
+				<td class="blog_calender_w">水</td>
+				<td class="blog_calender_w">木</td>
+				<td class="blog_calender_w">金</td>
+				<td class="blog_calender_w">土</td>
+				<?=$c_inc?>
+			</tr>
+		</table>
 
-	<div class="blog_h1">
-		<div class="blog_h2">
-		カテゴリー
+		<div class="blog_h1">
+			<div class="blog_h2">
+			新着
+			</div>
 		</div>
-	</div>
+
+		<div class="blog_h1">
+			<div class="blog_h2">
+			カテゴリー
+			</div>
+		</div>
 	</div>
 </div>
 <?php get_footer(); ?>
