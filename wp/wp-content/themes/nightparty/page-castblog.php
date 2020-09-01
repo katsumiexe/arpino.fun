@@ -49,6 +49,21 @@ foreach($res as $a2){
 	$n++;
 }
 
+$n=0;
+$sql ="SELECT count,name,slug FROM wp01_term_taxonomy";
+$sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
+$sql.=" WHERE taxonomy='post_tag'";
+$sql.=" ORDER BY count DESC";
+$res = $wpdb->get_results($sql,ARRAY_A);
+
+foreach($res as $res2){
+	$all_tag[$n]=$res2;
+
+echo $all_tag[$n]["name"];
+	$n++;
+}
+
+
 $c_month=$_POST[$c_month];
 if(!$c_month) $c_month=substr($now,0,7);
 
@@ -137,6 +152,7 @@ get_header();
 		<? } ?>
 	</div>
 	<div class="main_c">
+
 	<table class="blog_calender">
 		<tr>
 			<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
@@ -153,30 +169,33 @@ get_header();
 		</tr>
 	</table>
 
-<div class="blog_h1">
-<div class="blog_h2">
-お勧め記事
-</div>
-</div>
+	<div class="blog_h1">
+		<div class="blog_h2">
+		お勧め記事
+		</div>
+	</div>
 
-<div class="blog_h1">
-<div class="blog_h2">
-カテゴリー
-</div>
-</div>
+	<div class="blog_h1">
+		<div class="blog_h2">
+		カテゴリー
+		</div>
+	</div>
+	<div class="blog_h3">
+		<?for($s=0;$s<count($all_tag);$s++){?>
+			<a href="./?tag_list=<?=$all_tag[$s]["slug"]?>" class="all_tag">
+			<span class="all_tag_icon"></span>
+			<span class="all_tag_name"><?=$all_tag[$s]["name"]?></span>
+			<span class="all_tag_count"><?=$all_tag[$s]["count"]?></span>
+			</a>
+		<? } ?>
+	</div>
 
-<div class="blog_h1">
-<div class="blog_h2">
-執筆者
-</div>
-</div>
 
-
-
-
+	<div class="blog_h1">
+		<div class="blog_h2">
+		執筆者
+		</div>
+	</div>
 	</div>
 </div>
 <?php get_footer(); ?>
-
-
-

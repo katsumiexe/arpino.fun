@@ -509,6 +509,39 @@ a{
 	color		:#c8b880;
 }
 
+
+
+.all_tag{
+	display		:inline-block;
+	width		:310px;
+	height		:25px;
+	line-height	:25px;
+	font-size	:16px;
+	font-weight	:600;
+	border-bottom:2px solid #c8b880;
+	color		:#c8b880;
+}
+
+.all_tag_name{
+	display		:inline-block;
+	color		:#c8b880;
+	width		:250px;
+	height		:25px;
+	line-height	:25px;
+	font-size	:16px;
+	font-weight	:600;
+	text-aling:left;
+}
+
+.all_tag_icon{
+	display		:inline-block;
+	width		:250px;
+	height		:25px;
+	line-height	:25px;
+	font-size	:16px;
+	font-family:at_icon;	
+}
+
 .blog_ttl1{
 	display		:block;
 	position	:relative;
