@@ -3,8 +3,11 @@
 Template Name: castblog
 */
 
+$cast=$_REQUEST["cast"];
+$tag=$_REQUEST["tag"];
+
 $n=0;
-$now=date("Y-m-d H:i:s",time()+23400);
+$now=date("Y-m-d H:i:s",time()+32400);
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -19,8 +22,8 @@ $sql.=" AND X.taxonomy='category'";
 
 if($cast){
 $sql.=" AND T.slug='{$cast}'";
-}elseif($gp){
-$sql.=" AND T.slug='tag{$gp}'";
+}elseif($tag){
+$sql.=" AND T.slug='tag{$tag}'";
 }
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 20";
@@ -51,10 +54,7 @@ if(!$c_month) $c_month=substr($now,0,7);
 
 $month_w=date("w",strtotime($c_month."-01"))-1;
 $month_e=date("t",strtotime($c_month."-01"));
-
-
 $month_max=ceil(($month_w+$month_e)/7)*7;
-
 for($n=0;$n<$month_max ;$n++){
 	if($n % 7 == 0){
 		$c_inc.="</tr><tr>";
@@ -84,7 +84,7 @@ get_header();
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<?for($n=0;$n<count($blog);$n++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?b_id=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+			<a href="<?=get_template_directory_uri(); ?>/article/?article=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
 				<span class="blog_list_comm">

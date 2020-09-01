@@ -344,12 +344,12 @@ a{
 }
 
 .footmark_box{
-	display:inline-block;
-	height	:20px;
-	width	:80px;
-	margin	:0 3px;	
-	text-align:left;
-	cursor:pointer;
+	display			:inline-block;
+	height		:20px;
+	min-width	:80px;
+	margin		:0 3px;	
+	text-align	:left;
+	cursor		:pointer;
 }
 
 .box_a{
@@ -370,7 +370,6 @@ a{
 
 .footmark_text{
 	display		:inline-block;
-	width		:60px;
 	height		:20px;
 	line-height	:20px;
 	text-align	:left;
@@ -542,7 +541,7 @@ a{
 	display		:block;
 	width		:650px;
 	min-height	:500px;
-	font-size	:15px;
+	font-size	:16px;
 	color		:#fafafa;
 	text-align	:left;
 	margin		:0 auto;

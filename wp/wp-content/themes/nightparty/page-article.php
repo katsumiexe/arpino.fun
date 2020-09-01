@@ -6,7 +6,7 @@ Template Name: article
 $n=0;
 $now=date("Y-m-d H:i:s",time()+23400);
 
-$b_id=$_REQUEST["b_id"];
+$article=$_REQUEST["article"];
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -14,7 +14,7 @@ $sql.=" FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
-$sql.=" WHERE P.ID='{$b_id}'";
+$sql.=" WHERE P.ID='{$article}'";
 $sql.=" AND X.taxonomy='category'";
 $sql.=" LIMIT 1";
 $res0 = $wpdb->get_row($sql,ARRAY_A);
@@ -29,7 +29,6 @@ $thumb = $wpdb->get_var($sql);
 if($thumb){
 	$blog_img=$thumb."?t=".time();
 }
-print($sql);
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -41,7 +40,7 @@ $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
-$sql.=" AND T.slug='{$cast}'";
+$sql.=" AND T.slug='{$res0["slug"]}'";
 
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 15";
@@ -67,7 +66,6 @@ foreach($res as $a2){
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
 	$n++;
-print($a2["ID"]."<br>");
 }
 get_header();
 ?>
@@ -82,11 +80,17 @@ get_header();
 		<span class="footmark_text">BLOG</span>
 	</a>
 	<span class="footmark_icon"></span>
-	<div class="footmark_box">
-		<span class="footmark_icon"></span>
+	<a href="<?=home_url()?>/castblog/?cast_id=<?=$res0["slug"]?>" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$res0["name"]?></span>
+	</a>
+	<span class="footmark_icon"></span>
+	<div class="footmark_box">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">『<?=$res0["post_title"]?>』</span>
 	</div>
 </div>
+
 <div class="main_top">
 	<div class="main_b">
 		<div class="blog_ttl1">

@@ -2,7 +2,6 @@
 /*
 BlogSet
 */
-
 require_once ("./post_inc.php");
 $date_gmt=date("Y-m-d H:i:s");
 $now=date("Y-m-d H:i:s",$jst);
@@ -100,8 +99,29 @@ if($chg){
 	$sql.="('{$tmp_auto}','{$term[1]}')";
 	$wpdb->query($sql);
 
+	$tmp_auto_n=$tmp_auto+1;
 	if($img_code){
-		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto}.png";
+		$sql="INSERT INTO wp01_posts ";
+		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type,post_parent)";
+		$sql.="VALUES";
+		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto2}','inherit','{$date_jst}','{$date_gmt}'";
+		$sql.=",'open','closed','img_{$tmp_auto_n}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto_n}.png','attachment','image/png','{$tmp_auto}')";
+		$wpdb->query($sql);
+		$tmp_auto2=$wpdb->insert_id;
+
+		$img_origin			="img_{$tmp_auto2}.png";
+		$img_origin_cnt		=mb_strlen($img_origin);
+		$tmp_in="a:5:{s:5:\"width\";i:600;s:6:\"height\";i:600;s:4:\"file\";s:{$img_origin_cnt}:\"{$img_origin}\";s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}";
+
+		$sql	 ="INSERT INTO wp01_postmeta(post_id,meta_key,meta_value)";
+		$sql	.="VALUES('{$tmp_auto}','_thumbnail_id','{$tmp_auto2}'),";
+		$sql	.="('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
+		$sql	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
+		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
+		$wpdb->query($sql);
+
+
+		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto2}.png";
 		$img2 		= imagecreatetruecolor(600,600);
 		$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 		$tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
@@ -123,26 +143,6 @@ if($chg){
 
 		ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 600, $tmp_width, $tmp_height);
 		imagepng($img2,$link2);
-
-		$sql="INSERT INTO wp01_posts ";
-		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type,post_parent)";
-		$sql.="VALUES";
-		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto2}','inherit','{$date_jst}','{$date_gmt}'";
-		$sql.=",'open','closed','img_{$tmp_auto2}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png','attachment','image/png','{$tmp_auto}')";
-		$wpdb->query($sql);
-		$tmp_auto2=$wpdb->insert_id;
-
-		$img_origin			="img_{$tmp_auto2}.png";
-		$img_origin_cnt		=mb_strlen($img_origin);
-
-		$tmp_in="a:5:{s:5:\"width\";i:600;s:6:\"height\";i:600;s:4:\"file\";s:{$img_origin_cnt}:\"{$img_origin}\";s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}";
-
-		$sql	 ="INSERT INTO wp01_postmeta(post_id,meta_key,meta_value)";
-		$sql	.="VALUES('{$tmp_auto}','_thumbnail_id','{$tmp_auto2}'),";
-		$sql	.="('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
-		$sql	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
-		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
-		$wpdb->query($sql);
 	}
 
 	$sql="INSERT INTO wp01_posts ";
