@@ -107,10 +107,8 @@ get_header();
 		<span class="footmark_text">BLOG</span>
 	</div>
 <?}?>
-
-
-
 </div>
+
 <div class="main_top">
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
