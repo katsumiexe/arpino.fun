@@ -6,7 +6,20 @@ Template Name: article
 $n=0;
 $now=date("Y-m-d H:i:s",time()+23400);
 
-$article=$_REQUEST["article"];
+$cast_list	=$_REQUEST["cast_list"];
+$tag_list	=$_REQUEST["tag_list"];
+
+if($cast_list){
+	$article=$cast_list;
+	$category=1;
+
+}elseif($tag_list){
+	$article=$tag_list;
+	$category=2;
+
+}else{
+	$article="err";
+}
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -80,7 +93,7 @@ get_header();
 		<span class="footmark_text">BLOG</span>
 	</a>
 	<span class="footmark_icon"></span>
-	<a href="<?=home_url()?>/castblog/?cast_id=<?=$res0["slug"]?>" class="footmark_box box_a">
+	<a href="<?=home_url()?>/castblog/?cast_list=<?=$res0["slug"]?>" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$res0["name"]?></span>
 	</a>

@@ -483,27 +483,32 @@ input:focus{
 	font-size		:4.5vw;
 	color			:#303030;
 }
-
-i,.days_icon{
+.days_text{
 	display			:inline-block;
-	width			:4vw;
-	height			:4vw;
-	line-height		:4vw;	
+	height			:4.5vw;
+	line-height		:4.5vw;	
+	text-align		:left;
+	font-size		:3.5vw;
+}
+
+.days_icon{
+	display			:inline-block;
+	width			:4.5vw;
+	height			:4.5vw;
+	line-height		:4.5vw;	
 	text-align		:center;
 	font-family		:at_icon;
 	font-size		:3.5vw;
-	vertical-align:top;
 }
 
 .days_birth{
 	display			:inline-block;
 	width			:38vw;
-	height			:5vw;
-	line-height		:5vw;	
+	height			:4.5vw;
+	line-height		:4.5vw;	
 	text-align		:left;
 	font-size		:3.5vw;
 	overflow		:hidden;
-	vertical-align:top;
 }
 
 .days_day{

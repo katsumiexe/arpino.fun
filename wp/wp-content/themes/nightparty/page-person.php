@@ -173,7 +173,7 @@ get_header();
 <div class="person_right">
 	<div class="person_blog_ttl">Blog</div>
 	<?for($s=0;$s<count($blog);$s++){?>
-		<a href="<?=get_template_directory_uri(); ?>/article/?article=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+		<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
 			<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
 			<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
 			<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
@@ -182,7 +182,6 @@ get_header();
 		</a>
 	<?}?>
 	<div class="person_blog_btm">一覧へ</div>
-
 </div>
 </div>
 <?php get_footer(); ?>

@@ -286,16 +286,16 @@ if($c_sort[0]["c_sort_ASC"]==1){
 		$birth_d	=substr($birth,6,2);
 
 		$birth_dat[$birth_m.$birth_d]="n1";
-		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
+		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
 		if(substr($birth,4,4) == substr($now_ymd,4,4)){
-			$days_birth.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
+			$days_birth.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
 		}elseif(substr($birth,4,4) == substr($now_ymd_2,4,4)){
-			$days_birth_2.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
+			$days_birth_2.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
 		}elseif(substr($birth,4,4) == substr($now_ymd_3,4,4)){
-			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span>{$tmp["nickname"]}</span><br>";
+			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 		}
 	}
 

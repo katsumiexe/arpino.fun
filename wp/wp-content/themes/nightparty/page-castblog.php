@@ -3,8 +3,8 @@
 Template Name: castblog
 */
 
-$cast=$_REQUEST["cast"];
-$tag=$_REQUEST["tag"];
+$cast_list	=$_REQUEST["cast_list"];
+$tag_list	=$_REQUEST["tag_list"];
 
 $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);
@@ -20,10 +20,10 @@ $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
 
-if($cast){
-$sql.=" AND T.slug='{$cast}'";
-}elseif($tag){
-$sql.=" AND T.slug='tag{$tag}'";
+if($cast_list){
+$sql.=" AND T.slug='{$cast_list}'";
+}elseif($tag_list){
+$sql.=" AND T.slug='tag{$tag_list}'";
 }
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 20";
@@ -74,17 +74,48 @@ get_header();
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
+<?if($cast_list){?>
+	<span class="footmark_icon"></span>
+	<a href="<?=home_url()?>/castblog/" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">BLOG</span>
+	</a>
+	<span class="footmark_icon"></span>
+	<div class="footmark_box">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text"><?=$a2["name"]?></span>
+	</div>
+
+<?}elseif($tag_list){?>
+	<span class="footmark_icon"></span>
+	<a href="<?=home_url()?>/castblog/" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text"><?=$a2["name"]?></span>
+	</a>
+
+
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">BLOG</span>
 	</div>
+
+<?}else{?>
+	<span class="footmark_icon"></span>
+	<div class="footmark_box">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">BLOG</span>
+	</div>
+<?}?>
+
+
+
 </div>
 <div class="main_top">
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<?for($n=0;$n<count($blog);$n++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?article=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
 				<span class="blog_list_comm">
