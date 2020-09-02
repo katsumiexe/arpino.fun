@@ -3,6 +3,16 @@
 Template Name: castblog
 */
 
+$tag_icon[0]="";
+$tag_icon[1]="";
+$tag_icon[2]="";
+$tag_icon[3]="";
+$tag_icon[4]="";
+$tag_icon[5]="";
+$tag_icon[6]="";
+$tag_icon[7]="";
+
+
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
 
@@ -183,7 +193,7 @@ get_header();
 	<div class="blog_h3">
 		<?for($s=0;$s<count($all_tag);$s++){?>
 			<a href="./?tag_list=<?=$all_tag[$s]["slug"]?>" class="all_tag">
-			<span class="all_tag_icon"></span>
+			<span class="all_tag_icon"><?=$tag_icon[$s]?></span>
 			<span class="all_tag_name"><?=$all_tag[$s]["name"]?></span>
 			<span class="all_tag_count"><?=$all_tag[$s]["count"]?></span>
 			</a>

@@ -493,13 +493,21 @@ if($c_sort[0]["c_sort_ASC"]==1){
 			$tag_name[$n][]		=$tmp2["name"];
 		}
 
-		$sql ="SELECT * FROM wp01_postmeta";
+
+		$sql ="SELECT guid FROM wp01_postmeta";
+		$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 		$sql.=" WHERE post_id='{$tmp["ID"]}'";
 		$sql.=" AND meta_key='_thumbnail_id'";
 		$thumb = $wpdb->get_var($sql);
+
+
 		if($thumb){
+/*
 			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
 			$blog[$n]["img_on"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
+*/
+			$blog[$n]["img"]=$thumb."?t=".time();
+			$blog[$n]["img_on"]=$thumb."?t=".time();
 
 		}else{
 			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();

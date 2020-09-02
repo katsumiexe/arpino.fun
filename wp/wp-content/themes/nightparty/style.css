@@ -354,7 +354,7 @@ a{
 
 .box_a{
 	text-decoration:none;
-	border-bottom:2px solid #c8b880;
+	border-bottom:1px solid #c8b880;
 }
 
 .footmark_icon{
@@ -512,34 +512,53 @@ a{
 
 
 .all_tag{
-	display		:inline-block;
-	width		:310px;
-	height		:25px;
-	line-height	:25px;
-	font-size	:16px;
-	font-weight	:600;
-	border-bottom:2px solid #c8b880;
-	color		:#c8b880;
+	display			:inline-block;
+	width			:300px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:0;
+	border-bottom	:1px solid #c8b880;
+	color			:#c8b880;
+	text-align		:left;
 }
 
 .all_tag_name{
-	display		:inline-block;
-	color		:#c8b880;
-	width		:250px;
-	height		:25px;
-	line-height	:25px;
-	font-size	:16px;
-	font-weight	:600;
-	text-aling:left;
+	display			:inline-block;
+	color			:#c8b880;
+	width			:238px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:20px;
+	font-weight		:600;
+	text-align		:left;
+	vertical-align	:top;
 }
 
 .all_tag_icon{
-	display		:inline-block;
-	width		:250px;
-	height		:25px;
-	line-height	:25px;
-	font-size	:16px;
-	font-family:at_icon;	
+	display			:inline-block;
+	width			:30px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:20px;
+	font-family		:at_icon;	
+	text-align		:center;
+	vertical-align	:top;
+}
+
+.all_tag_count{
+	display			:inline-block;
+	width			:35px;
+	height			:30px;
+	line-height		:30px;
+	font-size		:15px;
+	font-weight		:600;
+	font-family		:at_icon;	
+	text-align		:center;
+	vertical-align	:top;
+	color			:#fafafa;
+	background		:#c8b880;
+	border-radius	:5px;
+	margin			:5px;
 }
 
 .blog_ttl1{

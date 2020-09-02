@@ -91,7 +91,7 @@ foreach($res3 as $a3){
 
 
 $n=0;
-$now=date("Y-m-d H:i:s",time()+23400);
+$now=date("Y-m-d H:i:s",time()+32400);
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -107,6 +107,8 @@ $sql.=" AND T.slug='{$val}'";
 
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 6";
+
+echo $sql;
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
