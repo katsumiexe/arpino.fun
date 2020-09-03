@@ -108,8 +108,6 @@ $sql.=" AND T.slug='{$val}'";
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 6";
 
-echo $sql;
-
 $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
 
@@ -148,9 +146,7 @@ get_header();
 		<div class="footmark_box">
 			<span class="footmark_icon"></span>
 			<span class="footmark_text"><?=$a1["genji"]?></span>
-			□<?=$_SERVER["REQUEST_URI"]?>
 		</div>
-
 
 	</div>
 <div class="person_main">

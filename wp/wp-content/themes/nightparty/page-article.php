@@ -33,6 +33,9 @@ $sql.=" LIMIT 1";
 $res0 = $wpdb->get_row($sql,ARRAY_A);
 $res0["post_content"]=str_replace("\n","<br>",$res0["post_content"]);
 
+$res0["date"]	=date("Y.m.d H:i",strtotime($res0["post_date"]));
+
+
 $sql ="SELECT guid FROM wp01_postmeta";
 $sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 $sql.=" WHERE post_id='{$res0["ID"]}'";
@@ -108,7 +111,10 @@ get_header();
 	<div class="main_b">
 		<div class="blog_ttl1">
 			<div class="blog_ttl2">
-				<?=$res0["post_title"]?>
+				<span class="blog_ttl2_in">
+					<?=$res0["post_title"]?>
+				</span>
+				<span class="blog_ttl2_date"><span class="icon"></span><?=$res0["date"]?></span>
 			</div>
 		</div>
 		<?if($blog_img){?>

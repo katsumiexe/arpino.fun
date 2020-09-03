@@ -38,14 +38,17 @@
 .person_left{
 	display		:inline-block;
 	position	:relative;
-	flex-basis	:332px;
+	width		:335px;
+	flex-basis	:335px;
 	min-height	:565px;	
+	text-align:left;
 }
 
 .person_middle{
 	display			:inline-block;
 	position		:relative;
-	flex-basis		:450px;
+///	flex-basis		:450px;
+	flex:1;
 	min-height		:565px;	
 }
 
@@ -161,7 +164,7 @@
 	display			:inline-flex;
 	top				:460px;
 	left			:0px;
-	width			:340px;
+	width			:330px;
 	height			:100px;
 	font-size:0;
 	text-align		:left;

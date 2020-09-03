@@ -43,7 +43,7 @@ $updir = wp_upload_dir();
 
 foreach($res as $a2){
 	$blog[$n]=$a2;
-	$blog[$n]["date"]	=date("m/d H:i",strtotime($a2["post_date"]));
+	$blog[$n]["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
 
 	$sql ="SELECT guid FROM wp01_postmeta";
 	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
@@ -59,6 +59,7 @@ foreach($res as $a2){
 	$n++;
 }
 
+//■カテゴリ--------------------
 $n=0;
 $sql ="SELECT count,name,slug FROM wp01_term_taxonomy";
 $sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
@@ -68,11 +69,37 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $res2){
 	$all_tag[$n]=$res2;
-
-echo $all_tag[$n]["name"];
 	$n++;
 }
 
+//■allcast--------------------
+$n=0;
+$sql ="SELECT count,name,slug, MAX(post_date) AS last FROM wp01_term_taxonomy";
+$sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
+$sql.=" LEFT JOIN `wp01_term_relationships` ON wp01_term_relationships.term_taxonomy_id=term_id";
+$sql.=" LEFT JOIN `wp01_posts` ON object_id=ID";
+$sql.=" WHERE taxonomy='category'";
+$sql.=" GROUP BY slug";
+$sql.=" ORDER BY last DESC";
+$res3 = $wpdb->get_results($sql,ARRAY_A);
+
+var_dump($res3);
+foreach($res3 as $res4){
+	$all_cast[$n]=$res4;
+
+
+	if (file_exists(get_template_directory()."/img/page/{$res4["slug"]}/1.jpg")) {
+		$all_cast[$n]["face"]=get_template_directory_uri()."/img/page/".$res4["slug"]."/1.jpg";			
+	}else{
+		$all_cast[$n]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
+	}
+	$all_cast[$n]["last"]=date("Y.m.d H:i",strtotime($all_cast[$n]["last"]));
+
+
+	$n++;
+}
+
+echo($sql);
 
 $c_month=$_POST[$c_month];
 if(!$c_month) $c_month=substr($now,0,7);
@@ -181,12 +208,6 @@ get_header();
 
 	<div class="blog_h1">
 		<div class="blog_h2">
-		お勧め記事
-		</div>
-	</div>
-
-	<div class="blog_h1">
-		<div class="blog_h2">
 		カテゴリー
 		</div>
 	</div>
@@ -199,13 +220,23 @@ get_header();
 			</a>
 		<? } ?>
 	</div>
-
-
 	<div class="blog_h1">
 		<div class="blog_h2">
-		執筆者
+		最新コメント
 		</div>
 	</div>
+
+	<?for($s=0;$s<count($all_cast);$s++){?>
+		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">
+			
+			<span class="all_cast_img"><img src="<?=$all_cast[$s]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
+			<span class="all_cast_name"><?=$all_cast[$s]["name"]?></span>
+			<span class="all_cast_icon"></span>
+			<span class="all_cast_last"><?=$all_cast[$s]["last"]?></span>
+			<span class="all_cast_count"><?=$all_cast[$s]["count"]?></span>
+
+		</a>
+	<?}?>
 	</div>
 </div>
 <?php get_footer(); ?>
