@@ -32,9 +32,7 @@ $sql.=" AND X.taxonomy='category'";
 $sql.=" LIMIT 1";
 $res0 = $wpdb->get_row($sql,ARRAY_A);
 $res0["post_content"]=str_replace("\n","<br>",$res0["post_content"]);
-
 $res0["date"]	=date("Y.m.d H:i",strtotime($res0["post_date"]));
-
 
 $sql ="SELECT guid FROM wp01_postmeta";
 $sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
@@ -46,6 +44,17 @@ if($thumb){
 	$blog_img=$thumb."?t=".time();
 }
 
+$sql ="SELECT name,slug FROM wp01_term_relationships";
+$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
+$sql.=" WHERE object_id='{$res0["ID"]}'";
+$sql.=" AND slug LIKE 'tag%'";
+$tag = $wpdb->get_var($sql);
+
+echo $sql;
+var_dump($tag);
+
+
+/*
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
 $sql.=" FROM wp01_posts AS P";
@@ -83,6 +92,8 @@ foreach($res as $a2){
 	}
 	$n++;
 }
+*/
+
 get_header();
 ?>
 <div class="footmark">
@@ -109,21 +120,21 @@ get_header();
 
 <div class="main_top">
 	<div class="main_b">
-		<div class="blog_ttl1">
-			<div class="blog_ttl2">
-				<span class="blog_ttl2_in">
-					<?=$res0["post_title"]?>
-				</span>
-				<span class="blog_ttl2_date"><span class="icon"></span><?=$res0["date"]?></span>
-			</div>
+		<h1 class="blog_ttl">
+			<?=$res0["post_title"]?>
+		</h1>
+		<div class="blog_ttl_btm">
+			<span class="blog_ttl_tag"><span class="icon"></span><?=$tag?></span>
+			<span class="blog_ttl_date"><span class="icon"></span><?=$res0["date"]?></span>
 		</div>
+		<div class="blog_ttl_border">　</div>
+
 		<?if($blog_img){?>
 		<img src="<?=$blog_img?>" class="blog_img">
 		<?}?>
 		<div class="blog_log">
 			<?=$res0["post_content"]?>
 		</div>
-
 	</div>
 
 	<div class="main_c">

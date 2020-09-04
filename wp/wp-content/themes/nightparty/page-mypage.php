@@ -483,16 +483,12 @@ if($c_sort[0]["c_sort_ASC"]==1){
 		$img_tmp=$tmp["ID"]+2;
 		$updir = wp_upload_dir();
 
-		$sql ="SELECT * FROM wp01_term_relationships";
+		$sql ="SELECT name,slug FROM wp01_term_relationships";
 		$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
 		$sql.=" WHERE object_id='{$tmp["ID"]}'";
 		$sql.=" AND slug LIKE 'tag%'";
 
-		$dat2 = $wpdb->get_results($sql,ARRAY_A );
-		foreach($dat2 as $tmp2){
-			$tag_name[$n][]		=$tmp2["name"];
-		}
-
+		$tag_name[$n] = $wpdb->get_row($sql,ARRAY_A );
 
 		$sql ="SELECT guid FROM wp01_postmeta";
 		$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
@@ -533,7 +529,7 @@ if($c_sort[0]["c_sort_ASC"]==1){
 		}	
 		$n++;
 	}
-
+	
 	$blog_status[0]="公開";
 	$blog_status[1]="予約";
 	$blog_status[2]="非公開";
@@ -870,7 +866,7 @@ $(function(){
 		</table>
 
 		<div class="customer_sns_box">
-		<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
+		<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 		</div>
 
 		<div class="customer_tag">
@@ -1012,7 +1008,7 @@ $(function(){
 							</td>
 							<td class="blog_tag_td">
 								<span class="tag_icon"></span>
-								<select id="blog_tag_sel" name="blog_tag" class="blog_tag_sel">
+								<select id="blog_tag" name="blog_tag" class="blog_tag_sel">
 								<?foreach($tag_list as $a1=> $a2){?>
 									<option value="<?=$a1?>"><?=$a2?></option>
 								<?}?>
@@ -1036,11 +1032,11 @@ $(function(){
 						<img src="<?=$blog[$n]["img"]?>" class="hist_img">
 						<span class="hist_date"><?=$blog[$n]["date"]?></span>
 						<span class="hist_title"><?=$blog[$n]["title"]?></span>
-						<span class="hist_tag">
-							<?foreach($tag_name[$n] as $a2){?><?=$a2?>/<?}?>
-						</span>
+						<span class="hist_tag"><?=$tag_name[$n]["name"]?></span>
 						<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
+						<input type="hidden" class="hidden_tag" value="<?=$tag_name[$n]["slug"]?>">
 					</div>	
+
 					<div class="hist_log">
 						<?if($blog[$n]["img_on"]){?>
 						<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
@@ -1553,7 +1549,7 @@ Twitter連携:
 <input id="h_blog_ii" type="hidden" value="">
 <input id="h_blog_title" type="hidden" value="">
 <input id="h_blog_log" type="hidden" value="">
-<input id="h_blog_tag_sel" type="hidden" value="">
+<input id="h_blog_tag" type="hidden" value="">
 <input id="h_blog_img" type="hidden" value="">
 <input id="del_id" type="hidden">
 

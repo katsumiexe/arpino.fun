@@ -138,7 +138,7 @@ $(function(){
 			$('#h_blog_log').val($(this).next('.hist_log').children('.blog_log').html());
 			$('#h_blog_img').val($(this).children('.hist_img').attr('src'));
 
-			$('#h_blog_tag_sel').val($('#h_blog_tag_sel').val());
+			$('#h_blog_tag').val($(this).children('.hidden_tag').val());
 			$('#blog_chg').val($(this).parents().attr('id').replace('blog_hist_',''));
 			$('#blog_open').val($(this).children('.hidden_status').val());
 			
@@ -475,7 +475,7 @@ $(function(){
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
 			$('.blog_img').attr('src',$('#h_blog_img').val());
-			$('.blog_tag_sel').val($('#h_blog_tag_sel').val());
+			$('#blog_tag').val($('#h_blog_tag').val());
 
 			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
 
@@ -613,7 +613,6 @@ $(function(){
 		$('.customer_detail').animate({'left':'100vw'},300);
 		$('.head_mymenu_ttl').html('顧客リスト');
 		$('.menu').css({'heigh':'auto'});
-
 
 		$('.customer_sns_box').hide();
 		$('.customer_sns_tr').hide();

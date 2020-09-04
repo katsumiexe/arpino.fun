@@ -83,10 +83,8 @@ $sql.=" GROUP BY slug";
 $sql.=" ORDER BY last DESC";
 $res3 = $wpdb->get_results($sql,ARRAY_A);
 
-var_dump($res3);
 foreach($res3 as $res4){
 	$all_cast[$n]=$res4;
-
 
 	if (file_exists(get_template_directory()."/img/page/{$res4["slug"]}/1.jpg")) {
 		$all_cast[$n]["face"]=get_template_directory_uri()."/img/page/".$res4["slug"]."/1.jpg";			
@@ -98,8 +96,6 @@ foreach($res3 as $res4){
 
 	$n++;
 }
-
-echo($sql);
 
 $c_month=$_POST[$c_month];
 if(!$c_month) $c_month=substr($now,0,7);
@@ -113,12 +109,13 @@ for($n=0;$n<$month_max ;$n++){
 	}
 	$tmp_days=$n-$month_w;
 	if($n>$month_w && $n<=$month_w+$month_e){
-//		$c_inc.="<td id=\"".$n-$month_w."\" class=\"blog_calender_d\">".$n-$month_w."</td>";
-		$c_inc.="<td class=\"blog_calender_d\">{$tmp_days}</td>";
+//		$c_inc.="<td id=\"".$n-$month_w."\" class=\"blog_calendar_d\">".$n-$month_w."</td>";
+		$c_inc.="<td class=\"blog_calendar_d\">{$tmp_days}</td>";
 	}else{
-		$c_inc.="<td class=\"blog_calender_d\"></td>";
+		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
 }
+
 get_header();
 ?>
 <div class="footmark">
@@ -190,18 +187,18 @@ get_header();
 	</div>
 	<div class="main_c">
 
-	<table class="blog_calender">
+	<table class="blog_calendar">
 		<tr>
-			<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
+			<td class="blog_calendar_m" colspan="7"><?=$c_month?></td>
 		</tr>
 		<tr>
-			<td class="blog_calender_w">日</td>
-			<td class="blog_calender_w">月</td>
-			<td class="blog_calender_w">火</td>
-			<td class="blog_calender_w">水</td>
-			<td class="blog_calender_w">木</td>
-			<td class="blog_calender_w">金</td>
-			<td class="blog_calender_w">土</td>
+			<td class="blog_calendar_w">日</td>
+			<td class="blog_calendar_w">月</td>
+			<td class="blog_calendar_w">火</td>
+			<td class="blog_calendar_w">水</td>
+			<td class="blog_calendar_w">木</td>
+			<td class="blog_calendar_w">金</td>
+			<td class="blog_calendar_w">土</td>
 			<?=$c_inc?>
 		</tr>
 	</table>
