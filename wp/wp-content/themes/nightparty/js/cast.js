@@ -2,6 +2,12 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 
+
+	var VwBase	=screen.availWidth/100;
+	var VhBase	=screen.availHeight/100;
+	console.log(VwBase);
+	console.log(VhBase);
+
 	var Fav			=0;
 	var cvs_A		=0;
 	var Rote		=0;
@@ -678,9 +684,13 @@ $(function(){
 		$('.head_mymenu_comm').addClass('arrow_customer');
 
 		$('.main').css('position','fixed');
-		var TmpHgt=VhBase*100-VwBase*115;
+		var TmpHgt=VhBase*100-VwBase*105;
+
+		$('.head_mymenu_ttl').html(VhBase);
+
 
 		$('.customer_body').css('height',TmpHgt);
+
 		C_Id=$(this).attr('id').replace('clist','');
 
 		Tmp=$(this).children('.mail_img').attr('src');

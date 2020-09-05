@@ -421,8 +421,10 @@ input:focus{
 	width			:96vw;
 	border			:1.5vw solid #C7BBA5;
 	background		:#f0eae5;
-	height			:38vw;
+	height			:calc(100vh - 120vw);
 }
+
+
 
 .cal_days_date{
 	position		:absolute;
@@ -464,8 +466,10 @@ input:focus{
 	color			:#303030;
 	text-align		:left;
 	height			:24vw;
+	height			:calc(100vh - 135vw);
 	overflow-x		:hidden;
 	overflow-y		:scroll;
+
 }
 
 .cal_days_memo{
@@ -478,6 +482,7 @@ input:focus{
 	transform-origin: top left;
 	width			:61.5vw;
 	height			:42vw;
+	height			:calc(100vh - 114vw);
 	resize			:none;
 	background		:#fafafa;
 	font-size		:4.5vw;
