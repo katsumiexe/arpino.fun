@@ -853,7 +853,6 @@ $(function(){
 				<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
 			</tr>
-
 			<tr class="customer_sns_tr">
 				<td class="customer_sns_2"><span id="a_customer_line" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
@@ -864,11 +863,9 @@ $(function(){
 				<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
 			</tr>
 		</table>
-
 		<div class="customer_sns_box">
 		<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 		</div>
-
 		<div class="customer_tag">
 			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
 			<div id="tag_2" class="tag_set">メモ</div>

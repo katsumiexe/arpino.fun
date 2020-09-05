@@ -12,7 +12,6 @@ $tag_icon[5]="";
 $tag_icon[6]="";
 $tag_icon[7]="";
 
-
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
 
@@ -92,8 +91,6 @@ foreach($res3 as $res4){
 		$all_cast[$n]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
 	$all_cast[$n]["last"]=date("Y.m.d H:i",strtotime($all_cast[$n]["last"]));
-
-
 	$n++;
 }
 
@@ -115,7 +112,6 @@ for($n=0;$n<$month_max ;$n++){
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
 }
-
 get_header();
 ?>
 <div class="footmark">

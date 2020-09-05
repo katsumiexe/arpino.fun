@@ -1,6 +1,6 @@
 $(function(){ 
-	var VwBase	=screen.width/100;
-	var VhBase	=screen.height/100;
+	var VwBase	=$(window).width()/100;
+	var VhBase	=$(window).height()/100;
 
 	var Fav			=0;
 	var cvs_A		=0;
@@ -853,17 +853,15 @@ $(function(){
 
 			if($('.sns_text').val()){
 				$('#customer_'+data).addClass('c_customer_'+data);		
-				$('.customer_sns_box').addClass('c_customer_'+data);		
+				$('.customer_sns_box').addClass('c1_customer_'+data);		
 				$('#a_customer_'+data).addClass('c_customer_'+data);
-				$('#customer_'+data).addClass('c_customer_'+data);
-				$('.sns_jump').addClass('jump_on');
+				$('.sns_jump').addClass('jump_on c2_customer_'+data);
 
 			}else{
 				$('#customer_'+data).removeClass('c_customer_'+data);		
-				$('.customer_sns_box').removeClass('c_customer_'+data);		
+				$('.customer_sns_box').removeClass('c1_customer_'+data);		
 				$('#a_customer_'+data).removeClass('c_customer_'+data);
-				$('#customer_'+data).removeClass('c_customer_'+data);
-				$('.sns_jump').removeClass('jump_on');
+				$('.sns_jump').removeClass('jump_on c2_customer_'+data);
 			}
 			$('#h_customer_'+data).val($('.sns_text').val());
 			$('#clist'+C_Id).children('.customer_hidden_'+data).val($('.sns_text').val());
@@ -875,13 +873,15 @@ $(function(){
 	});
 
 	$('.customer_sns_btn').on('click',function(){
+		console.log(Tmp);
 		if($('.customer_sns_box').css('display') !== 'none'){
 			$('.customer_sns_box').slideUp(100);
 			$('.customer_sns_tr').slideUp(100);
 			$('.sns_arrow_a').hide();
 			$('.sns_text').val('');
-			$('.customer_sns_box').removeClass('c_'+Tmp);
-			$('.sns_jump').removeClass('jump_on');
+
+			$('.customer_sns_box').removeClass('c1_'+Tmp);
+			$('.sns_jump').removeClass('jump_on c2_'+Tmp);
 		}
 
 		if(Tmp != $(this).attr('id')){
@@ -891,9 +891,10 @@ $(function(){
 			
 			if(TmpH){
 				$('.sns_text').val($('#h_'+Tmp).val());
+
 				$('#a_'+Tmp).addClass('c_'+Tmp);
-				$('.customer_sns_box').addClass('c_'+Tmp);
-				$('.sns_jump').addClass('jump_on');
+				$('.customer_sns_box').addClass('c1_'+Tmp);
+				$('.sns_jump').addClass('jump_on c2_'+Tmp);
 			}
 
 			$('.customer_sns_box').slideDown(200);
