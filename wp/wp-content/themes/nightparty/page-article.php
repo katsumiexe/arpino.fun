@@ -50,10 +50,6 @@ $sql.=" WHERE object_id='{$res0["ID"]}'";
 $sql.=" AND slug LIKE 'tag%'";
 $tag = $wpdb->get_var($sql);
 
-echo $sql;
-var_dump($tag);
-
-
 /*
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
@@ -130,7 +126,9 @@ get_header();
 		<div class="blog_ttl_border">　</div>
 
 		<?if($blog_img){?>
+		<div class="blog_top_img">
 		<img src="<?=$blog_img?>" class="blog_img">
+		</div>
 		<?}?>
 		<div class="blog_log">
 			<?=$res0["post_content"]?>
