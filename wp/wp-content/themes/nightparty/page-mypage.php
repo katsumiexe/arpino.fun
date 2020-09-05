@@ -363,7 +363,6 @@ if($c_sort[0]["c_sort_ASC"]==1){
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
 			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
 			$cal[$n].="<span class=\"cal_i4 {$app_n4}\"></span>";
-
 			$cal[$n].="</td>";
 		}
 	}

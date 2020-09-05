@@ -89,7 +89,7 @@ $sql	 ="SELECT * FROM wp01_0schedule";
 $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND sche_date>='{$sc_st}'";
 $sql	.=" AND sche_date<'{$sc_ed}'";
-/*$sql	.=" AND (`stime` IS NOT NULL AND `etime` IS NOT NULL)";*/
+
 
 $cal["sql"]=$sql;
 $dat = $wpdb->get_results($sql,ARRAY_A );
@@ -205,12 +205,16 @@ for($m=0; $m<$m_limit;$m++){
 	}else{
 		$day_tag=" nowmonth";
 	}
+
 	$cal["html"].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week}\">";
-	$cal["html"].="<span class=\"dy{$tmp_week}{$day_tag} cc{$tmp_week}\">{$tmp_day}</span>";
+	$cal["html"].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
+
+if($now_month==$tmp_month){
 	$cal["html"].="<span class=\"cal_i1 {$birth_dat[$tmp_md]}\"></span>";
 	$cal["html"].="<span class=\"cal_i2 {$sch_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="<span class=\"cal_i3 {$memo_dat[$tmp_ymd]}\"></span>";
 	$cal["html"].="<span class=\"cal_i4 {$blog_dat[$tmp_ymd]}\"></span>";
+}
 	$cal["html"].="</td>";
 }
 
