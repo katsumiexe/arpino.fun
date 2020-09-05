@@ -469,7 +469,6 @@ input:focus{
 	height			:calc(100vh - 135vw);
 	overflow-x		:hidden;
 	overflow-y		:scroll;
-
 }
 
 .cal_days_memo{

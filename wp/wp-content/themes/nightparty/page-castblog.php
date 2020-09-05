@@ -19,20 +19,30 @@ $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);
 
 $sql ="SELECT";
-$sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
+$sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
+$sql.=" T.slug AS castslug, T.name AS castname,";
+$sql.=" T2.slug AS tagslug, T2.name AS tagname";
+
 $sql.=" FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
+
+$sql.=" LEFT JOIN wp01_term_relationships AS R2 ON P.ID=R2.object_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X2 ON R2.term_taxonomy_id=X2.term_id";
+$sql.=" LEFT JOIN wp01_terms AS T2 ON R2.term_taxonomy_id=T2.term_id";
+
 $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
+$sql.=" AND X2.taxonomy='post_tag' ";
 
 if($cast_list){
 $sql.=" AND T.slug='{$cast_list}'";
+
 }elseif($tag_list){
-$sql.=" AND T.slug='tag{$tag_list}'";
+$sql.=" AND T2.slug='{$tag_list}'";
 }
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 20";
@@ -128,14 +138,14 @@ get_header();
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text"><?=$a2["name"]?></span>
+		<span class="footmark_text"><?=$a2["castname"]?></span>
 	</div>
 
 <?}elseif($tag_list){?>
 	<span class="footmark_icon"></span>
 	<a href="<?=home_url()?>/castblog/" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text"><?=$a2["name"]?></span>
+		<span class="footmark_text"><?=$a2["tagname"]?></span>
 	</a>
 
 
@@ -172,10 +182,10 @@ get_header();
 
 				<span class="blog_list_cast">
 				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
-				<span class="blog_list_castname"><?=$blog[$n]["name"]?></span>
+				<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
 
 				<span class="blog_list_frame_a">
-				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["slug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
+				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
 				</span>
 				</span>
 			</a>
@@ -221,7 +231,6 @@ get_header();
 
 	<?for($s=0;$s<count($all_cast);$s++){?>
 		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">
-			
 			<span class="all_cast_img"><img src="<?=$all_cast[$s]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 			<span class="all_cast_name"><?=$all_cast[$s]["name"]?></span>
 			<span class="all_cast_icon"></span>
