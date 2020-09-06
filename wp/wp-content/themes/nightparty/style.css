@@ -382,6 +382,45 @@ a{
 	margin			:5px auto;
 }
 
+.system_title{
+	font-size		:15px;
+	font-weight		:800;
+	margin			:10px auto 5px auto;
+	width			:780px;
+	text-align		:left;
+}
+
+.system_box{
+	font-size:13px;
+	margin:5px auto 15px auto;
+	width:780px;
+	text-align:left;
+	background:inear-gradient(90deg,green 0%, green 50%, orange 50%, orange 100%),linear-gradient(black 0%, black 50%);
+}
+
+.system_box_1{
+	display			:inline-block;
+	width			:200px;
+	height			:20px;
+	line-height		:20px;
+}
+
+.system_box_2{
+	display:inline-block;
+	width:80px;
+	height			:20px;
+	line-height		:20px;
+	text-align:right;
+}
+
+.system_box_3{
+	display:inline-block;
+	width:200px;
+	height			:20px;
+	line-height		:20px;
+	text-align:right;
+}
+
 .footmark{
 	height	:20px;
 	width	:1020px;
