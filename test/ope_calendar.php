@@ -362,13 +362,15 @@ for($n=0;$n<$month_max ;$n++){
 <script>
 $(function(){ 
 
-	$('.calendar_d').on('click', function(){
+
+	$('.day_0,.day_1,.day_2').on('click', function(){
        $('.back').fadeIn(200);
        $('.cal_detail').animate({'top':'10vh'},200);
-		Tmp_y=$('this').attr('id').substr(1,4);
-		Tmp_m=$('this').attr('id').substr(5,2);
-		Tmp_d=$('this').attr('id').substr(7,2);
-		Tmp_y=$('this').attr('week');
+		console.log($(this).attr('id'));
+		Tmp_y=$(this).attr('id').substr(1,4);
+		Tmp_m=$(this).attr('id').substr(5,2);
+		Tmp_d=$(this).attr('id').substr(7,2);
+		Tmp_w=$(this).attr('week');
 		Tmp_d=Tmp_y	+'年'+Tmp_m	+'月'+Tmp_d	+'日'+Tmp_w;
 
 		$('.cal_detail_ttl').text(Tmp_d);
