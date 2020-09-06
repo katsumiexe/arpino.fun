@@ -165,7 +165,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	<div class="page_00">
 		<div class="first_play">
 			<div class="first_play_ttl">
-				<span>アイギスカードゲーム(仮)</span>
+				<span>婚活戦争Aigis</span>
 			</div>
 
 			<div id="labo1" class="labo_item">
