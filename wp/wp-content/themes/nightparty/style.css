@@ -312,6 +312,7 @@ a{
 	height		:300px;
 	background	:#fafafa;
 	color		:#303030;
+	margin		:10px;
 }
 
 .access_map_in{
@@ -333,9 +334,52 @@ a{
 .access_sig{
 	display		:inline-block;
 	flex		:1;
-	height		:290px;
 	background	:#909090;
-	margin		:5px;
+	margin		:10px;
+	font-size	:0;
+	text-align	:center;
+	border-radius:10px;
+}
+
+
+.access_h1{
+	font-size	:24px;
+	font-weight	:800;
+	display		:block;
+	width		:250px;
+	height		:40px;
+	line-height	:40px;
+	padding		:0;
+	text-align	:left;
+	color		:#fafafa;
+	margin-block-start:0;
+	margin-block-end:0;
+	margin:5px auto 20px auto;
+	border-bottom: 3px dotted #fafafa;
+}
+
+.access_tag{
+	font-size	:14px;
+	font-weight	:800;
+	width		:250px;
+	height		:18px;
+	line-height	:18px;
+	padding		:0;
+	text-align	:left;
+	color		:#fafafa;
+	border-bottom: 1px solid #fafafa;
+	margin		:20px auto 5px auto;
+}
+
+.access_box{
+	font-size		:13px;
+	line-height		:18px;
+	width			:250px;
+	padding			:0;
+	text-align		:left;
+	color			:#fafafa;
+	margin-bottom	:10px;
+	margin			:5px auto;
 }
 
 .footmark{

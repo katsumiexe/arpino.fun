@@ -370,7 +370,6 @@ if($c_sort[0]["c_sort_ASC"]==1){
 	if($_POST["cus_set"]){
 		$cast_page=2;
 
-
 		$cus_id		=$_POST["cus_id"];
 		$cus_set	=$_POST["cus_set"];
 		$cus_page	=$_POST["cus_page"];
