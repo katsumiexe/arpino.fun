@@ -4,9 +4,6 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package WordPress
- * @subpackage Twenty_Nineteen
- * @since Twenty Nineteen 1.0
  */
 
 get_header();

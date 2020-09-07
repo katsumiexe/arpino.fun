@@ -151,7 +151,7 @@ if($c_sort[0]["c_sort_group"]>0){
 
 if($c_sort[0]["c_sort_main"]==1){
 	$app2	=" `date`, `stime`, `etime`";
-	$app4	=" LEFT JOIN wp01_0cast_log USING(cast_id)";
+	$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
 
 	if($c_sort[0]["c_sort_ASC"]==1){
 		$app0 =",MIN(`date`)";
@@ -262,7 +262,7 @@ if($c_sort[0]["c_sort_ASC"]==1){
 	$sql	.=$app2;
 	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
-
+print($sql);
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
 
