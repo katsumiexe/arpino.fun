@@ -126,18 +126,20 @@ for($n=0;$n<$month_max ;$n++){
 
 .calendar{
 	width:100vw;
-	border-collapse: collapse;
-	border:0.5vw solid #303030;
-	border-spacing:0;
+	border-collapse		:collapse;
+	border				:0.5vw solid #303030;
+	border-spacing		:0;
+	table-layout		:fixed;
 }
 
 .calendar_m{
-	height			:8vw;
-	line-height		:8vw;
+	height			:12vw;
+	line-height		:12vw;
 	text-align		:center;
-	border			:0.5vw solid #604020;
+	border			:none;
 	font-size		:0;
 	background		:#e8dBc5;
+	vertical-align	:bottom;
 }
 
 
@@ -218,7 +220,7 @@ for($n=0;$n<$month_max ;$n++){
 }
 
 .month_m{
-	font-size	:6vw;
+	font-size	:8vw;
 	font-weight	:800;
 	color		:#fafafa;
 	text-shadow	:1px 1px 0 #604020;
@@ -389,7 +391,11 @@ $(function(){
 <body class="body">
 	<table class="calendar">
 		<tr>
-			<td class="calendar_m" colspan="7"><span class="month_m"><?=$month_m?>月</span><span class="month_y"><?=$month_y?>年</span></td>
+			<td class="calendar_m"></td>
+			<td class="calendar_m"><span class="back">●</span></td>
+			<td class="calendar_m" colspan="3"><span class="month_m"><?=$month_m?>月</span><span class="month_y"><?=$month_y?>年</span></td>
+			<td class="calendar_m"><span class="next">●</span></td>
+			<td class="calendar_m"></td>
 		</tr>
 		<tr>
 			<td class="calendar_w ttl_1">日</td>
