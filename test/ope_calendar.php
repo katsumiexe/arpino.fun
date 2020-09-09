@@ -134,7 +134,6 @@ for($n=0;$n<$month_max ;$n++){
 
 .calendar_m{
 	height			:12vw;
-	line-height		:12vw;
 	text-align		:center;
 	border			:none;
 	font-size		:0;
@@ -232,6 +231,14 @@ for($n=0;$n<$month_max ;$n++){
 	color:#fafafa;
 	text-shadow	:1px 1px 0 #604020;
 }
+
+.month_next,.month_back{
+	font-size:4.5vw;
+	font-weight:800;
+	color:#fafafa;
+	text-shadow	:1px 1px 0 #604020;
+}
+
 
 .back{
 	display:none;
@@ -355,7 +362,13 @@ for($n=0;$n<$month_max ;$n++){
 	font-weight:700;
 }
 
+/*-------------------------------------------------------------------*/
+@media screen and (min-width: 560px) {
+
+
+}
 </style>
+
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -391,11 +404,9 @@ $(function(){
 <body class="body">
 	<table class="calendar">
 		<tr>
-			<td class="calendar_m"></td>
-			<td class="calendar_m"><span class="back">●</span></td>
+			<td class="calendar_m" colspan="2"><span class="month_back">＜8月</span></td>
 			<td class="calendar_m" colspan="3"><span class="month_m"><?=$month_m?>月</span><span class="month_y"><?=$month_y?>年</span></td>
-			<td class="calendar_m"><span class="next">●</span></td>
-			<td class="calendar_m"></td>
+			<td class="calendar_m" colspan="2"><span class="month_next">9月＞</span></td>
 		</tr>
 		<tr>
 			<td class="calendar_w ttl_1">日</td>
@@ -417,6 +428,7 @@ $(function(){
 		<div class="cal_detail_memo1">
 		メール鑑定　
 		</div>
+
 
 		<div class="cal_detail_memo2">
 			<textarea class="cal_detail_memo_txt"></textarea>

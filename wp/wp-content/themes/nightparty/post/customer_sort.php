@@ -51,7 +51,7 @@ if($sel==1){
 	$tmp="id";
 }
 
-if($asc ==1){
+if($asc == 1){
 	$order="ASC";
 	$select="MIN(`date`)";
 
