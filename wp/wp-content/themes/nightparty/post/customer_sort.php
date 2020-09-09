@@ -29,8 +29,9 @@ for($n=0;$n<8;$n++){
 }
 
 if($fil>0){
-$app=" AND c_group={$fil}";
+	$app=" AND c_group={$fil}";
 }
+
 if($sel==1){
 	$tmp="`date`, `stime`, `etime`";
 
@@ -52,12 +53,13 @@ if($sel==1){
 }
 
 if($asc == 1){
+	$order="DESC";
+	$select="MAX(`date`)";
+
+}else{
 	$order="ASC";
 	$select="MIN(`date`)";
 
-}else{
-	$order="DESC";
-	$select="MAX(`date`)";
 }
 
 if($ext){

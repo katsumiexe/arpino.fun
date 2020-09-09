@@ -3576,7 +3576,7 @@ input[type=range]::-moz-range-thumb{
 	background		:linear-gradient(#f0f0e0,#e0e0d0);
 }
 
-.sort_btn_on1,.sort_btn_on2{
+.sort_btn_on0,.sort_btn_on1{
 	position		:absolute;
 	bottom		:1vw;
 	margin			:auto;
@@ -3590,12 +3590,12 @@ input[type=range]::-moz-range-thumb{
 	color			:#b0b0a0;
 }
 
-.sort_btn_on1{
+.sort_btn_on0{
 	left			:0.5vw;
 	color			:#0000d0;
 }
 
-.sort_btn_on2{
+.sort_btn_on1{
 	right			:0.5vw;
 }
 

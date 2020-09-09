@@ -145,21 +145,15 @@ $reg_base_ag=date("Y")-1980;
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$c_sort = $wpdb->get_row($sql,ARRAY_A);
 
-
 if($c_sort["c_sort_group"]>0){
 	$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
 }
 
 if($c_sort["c_sort_main"]==1){
 	$app2	=" `date`, `stime`, `etime`";
+	$app2	=" `date`";
 	$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
-
-	if($c_sort["c_sort_asc"]==1){
-		$app0 =",MIN(`date`)";
-
-	}else{
-		$app0=",MAX(`date`)";
-	}
+//	$app4	=" LEFT JOIN wp01_0cast_log USING(cast_id)";
 
 }elseif($c_sort["c_sort_main"]==2){
 	$app2	=" `fav`";
@@ -254,11 +248,11 @@ if($c_sort["c_sort_asc"]==1){
 
 	$n=0;
 	$b_month=substr($c_month,4,4);
-	$sql	 ="SELECT * {$app0} FROM wp01_0customer";
+	$sql	 ="SELECT * ,MAX(`date`) AS log_date FROM wp01_0customer";
 	$sql	.=$app4;
-	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
-	$sql	.=" AND del='0'";
+	$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
 	$sql	.=$app1;
+	$sql	.=" GROUP BY wp01_0customer.id";
 	$sql	.=" ORDER BY";
 	$sql	.=$app2;
 	$sql	.=$app3;
@@ -597,12 +591,12 @@ $(function(){
 <?}?>
 
 <?if($c_sort["c_sort_asc"] ==1){?> 
-	$('.sort_alert').show();
+	$('.sort_circle').css({'left':'12vw','border-radius':'0 10px 10px 0'});
+	$('.sort_btn_on1').css({'color':'#0000d0'});
+	$('.sort_btn_on0').css({'color':'#b0b0a0'});
 <?}?>
+
 });
-
-
-
 </script>
 </head>
 
@@ -746,8 +740,8 @@ $(function(){
 			<option value="3" <?if($c_sort["c_sort_main"] == 3){?> selected="selected"<?}?>>年齢順</option>
 		</select>
 		<div class="sort_btn">
-			<div class="sort_btn_on1"></div>
-			<div class="sort_btn_on2"></div>
+			<div class="sort_btn_on0"></div>
+			<div class="sort_btn_on1"></div>
 			<div class="sort_circle"></div>
 			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort["c_sort_arc"]?>">
 		</div>

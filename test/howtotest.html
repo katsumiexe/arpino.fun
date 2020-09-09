@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>占いコンシェルジュ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script>
+var Tmp="";
+$(function(){ 
+	$('#send_1st').on('click',function(){ 
+		var Key="";
+		var Err="";
+		var Tmp="　"+$('#etc').val();
+
+		if(Tmp.indexOf('妊娠',0)>0 || Tmp.indexOf('子宝',0)>0 ){
+			Key+="『妊娠・子宝』"
+			Err+="妊娠の有無、子供の性別などのご相談をお受けすることは出来ません<br>";
+		}
+
+		if(Tmp.indexOf('病気',0)>0){
+			Key+="『病気』"
+			Err+="病気や持病、治療に関するご相談はお受け出来ません。<br>";
+		}
+
+		if(Tmp.indexOf('宝くじ',0)>0){
+			Key+="『宝くじ』"
+			Err+="宝くじやギャンブル等に関するご相談はお受け出来ません。<br>";
+		}else if(Tmp.indexOf('ギャンブル',0)>0){
+			Key+="『ギャンブル』"
+			Err+="宝くじやギャンブル等に関するご相談はお受け出来ません。<br>";
+		}
+
+		if(Tmp.indexOf('探し物',0)>0 || Tmp.indexOf('失せ物',0)>0 ){
+			Key+="『探し物・失せ物』"
+			Err+="失せ物・探し物に関するご相談はお受け出来ません。<br>";
+		}
+
+		if(Tmp.indexOf('試験',0)>0 || Tmp.indexOf('合否',0)>0 ){
+			Key+="『試験の合否』"
+			Err+="試験の合否に関するご相談はお受け出来ません。<br>";
+		}
+
+		if(Key){
+			$('.back').fadeIn(200); 
+			$('.alert').animate({'top':'40vw'},200); 
+
+			$('.alert_key').html(Key); 
+			$('.alert_err').html(Err); 
+		}else{
+//			$('#sendform').submit(); 
+		}
+	});
+
+	$('#send_2nd').on('click',function(){ 
+//		$('#sendform').submit(); 
+		$('.back').fadeOut(200); 
+		$('.alert').animate({'top':'120vw'},200); 
+	});
+	
+	$('#send_not').on('click',function(){ 
+		$('.back').fadeOut(200); 
+		$('.alert').animate({'top':'120vw'},200); 
+
+	});
+
+	$('.ck_c').on('change',function(){ 
+		Tmp=$(this).val();
+		$('.fbox2').hide();
+		$('.ck_d').prop('checked',false)
+		$('#b'+Tmp).css({'display':'inline-flex'});
+	});
+});
+</script>
+
+<style>
+.box_ttl{
+	display			:inline-block;
+	font-size		:4.5vw;
+	width			:20vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:#606060;
+	color			:#ffffff;
+	margin			:0vw auto 2vw 0;
+	text-align		:left;
+	border-radius	:2vw 0 0 2vw;
+	border			:1px solid #606060;
+	font-weight		:600;
+	padding-left	:2vw;
+}
+
+.box_ttl2{
+	position	:relative;
+	height		:10vw;
+	line-height	:10vw;
+	width		:90vw;
+	background	:#dbdbff;
+	margin-block-start:3vw;
+	margin-block-end:1vw;
+	padding-left:10vw;
+	overflow	:hidden;
+}
+
+.box_ttl_a1{
+	position:absolute;
+	bottom	:2vw;
+	left	:3vw;
+	height	:5vw;
+	width	:5vw;
+	background:#0000d0;
+}
+
+.box_ttl_a2{
+	position:absolute;
+	top		:2vw;
+	left	:2vw;
+	height	:4vw;
+	width	:4vw;
+	background:#a0a0ff;
+}
+
+.box_ttl_a3{
+	position:absolute;
+	bottom	:0;
+	right	:-5vw;
+	height	:10vw;
+	width	:30vw;
+	transform: skewX(-45deg);
+	background:#b7b7ff;
+}
+
+.box_ttl_a4{
+	position:relative;
+	color:#0000d0;
+	z-index:2;
+	font-size:5vw;
+	font-weight:800;
+}
+
+
+
+.sel_a{
+	display			:inline-block;
+	font-size		:4.5vw;
+	width			:35vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:linear-gradient(#e8e8e8,#cccccc,#e8e8e8);
+	background		:#c8c8c8;
+	color			:#ffffff;
+//	text-shadow		:2px 2px 0 #303030;
+	margin			:0vw 0 2vw auto;
+	text-align		:center;
+	border-radius: 2vw 0 0 2vw;
+	border:1px solid #606060;
+	font-weight:600;
+}
+
+.ck_a:checked+ label {
+	background		:linear-gradient(#0000e0,#0000c0,#0000e0);
+} 
+
+.sel_b{
+	display			:inline-block;
+	font-size		:4.5vw;
+	width			:35vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:linear-gradient(#e8e8e8,#cccccc,#e8e8e8);
+	background		:#c8c8c8;
+	color			:#ffffff;
+//	text-shadow		:2px 2px 0 #303030;
+	margin			:0vw auto 2vw 0;
+	text-align		:center;
+	border-radius:0 2vw 2vw 0;
+	border:1px solid #606060;
+	font-weight:600;
+}
+
+.ck_b:checked+ label {
+	background		:linear-gradient(#e00000,#c00000,#e00000);
+} 
+
+.sel_c{
+	display			:inline-block;
+	font-size		:4.5vw;
+	width			:88vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:#c8c8c8;
+	color			:#ffffff;
+	text-align:left;
+	margin			:1vw auto;
+	border-radius	:1vw;
+	padding-left	:3vw;
+	
+}
+
+.ck_c:checked+ label {
+	background		:#c090ff;
+} 
+
+.sel_d{
+	font-size		:4.5vw;
+	width			:41vw;
+	flex-basis		:41vw;
+	height			:8vw;
+	line-height		:8vw;
+	border-radius	:1vw;
+	background		:#c8c8c8;
+	color			:#ffffff;
+	text-align		:center;
+	margin			:1vw;
+	font-weight		:600;
+}
+
+.ck_d:checked+ label {
+	background		:#f17766;
+} 
+
+.sel_e{
+	display			:inline-block;
+	font-size		:4.5vw;
+	width			:24vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:#c8c8c8;
+	color			:#ffffff;
+	margin			:0vw 0 2vw auto;
+	text-align		:center;
+	border:1px solid #606060;
+	font-weight:600;
+}
+
+.ck_e:checked+ label {
+	background		:linear-gradient(#0000e0,#0000c0,#0000e0);
+} 
+
+.sel_f{
+	display			:inline-block;
+	font-size		:4.5vw;
+	width			:24vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:#c8c8c8;
+	color			:#ffffff;
+	margin			:0vw auto 2vw 0;
+	text-align		:center;
+	border-radius:0 2vw 2vw 0;
+	border:1px solid #606060;
+	font-weight:600;
+}
+
+.ck_f:checked+ label {
+	background		:linear-gradient(#e00000,#c00000,#e00000);
+} 
+
+
+
+input[type="checkbox"], input[type="radio"]{
+	display:none;
+} 
+
+#b2,#b3{
+	display:none;
+}
+
+.fbox1{
+	font-size	:0;
+	margin		:1vw auto;
+	text-align	:center;
+	width:100vw;
+}
+
+.fbox2{
+	display		:inline-flex;
+	flex-wrap	:wrap;
+	justify-content: center;
+	width		:90vw;
+	border		:0.5vw solid #deb887;
+	background	:#f5f5dc;
+	text-align	:center;
+}
+
+.fbox3{
+	width		:90vw;
+	height		:20vw;
+	resize		:none;
+	font-size	:4.5vw;
+	border:1px solid #303030;
+}
+
+.btn_send{
+	width			:40vw;
+	height			:10vw;
+	font-size		:4.5vw;
+	color			:#fafafa;
+	background		:linear-gradient(#00c000,#008000,#00c000);
+	font-weight		:600;
+	margin			:0 auto;
+}
+
+.btn_reset{
+	width			:40vw;
+	height			:10vw;
+	font-size		:4.5vw;
+	color			:#fafafa;
+	background		:linear-gradient(#e00000,#c00000,#e00000);
+	margin			:0 auto;
+	font-weight		:600;
+}
+
+
+.comm{
+	display		:inline-block;
+	width		:68vw;
+	border		:1px solid #202020;
+	background	:#fafafa;
+	text-align	:left;
+	margin		:2vw auto;
+	font-size	:2.5vw;
+	padding		:1vw;
+}
+
+
+.back{
+	display		:none;
+	position	:fixed;
+	top			:-5vh;
+	left		:-5vw;
+	margin		:auto;
+	width		:110vw;
+	height		:150vh;
+	z-index:3;
+	background:rgba(200,200,200,0.8);
+}
+
+
+.alert{
+	position:absolute;;
+	top:120vh;
+	right:0;
+	left:0;
+	margin:auto;
+	width			:85vw;
+	text-align		:center;
+	background		:#e8f7ff;
+	border-radius	:3vw;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	padding			:3vw;
+}
+
+.alert_ttl{
+	width		:80vw;
+	height		:6vw;
+	line-height	:6vw;
+	border-bottom:1vw solid #000080;
+	text-align:center;
+	margin:2vw auto 3vw auto;	
+	font-size:4vw;
+	font-weight:600;
+	color:#000080
+}
+
+.alert_comm{
+	width		:70vw;
+	font-size	:3vw;
+	line-height	:4.5vw;
+	background	:#fafafa;
+	text-align	:left;
+	margin		:3vw auto;
+	padding		:2vw;
+	color:#303030;
+}
+
+.alert_key{
+	width		:68vw;
+	font-size	:4vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	text-align	:left;
+	margin		:3vw auto 0 auto;
+	padding		:1vw;
+	color		:#d00000;
+	font-weight:600;
+	border:1vw solid #d00000;
+	
+}
+
+.alert_err{
+	width		:69vw;
+	font-size	:3vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	text-align	:left;
+	margin		: 0vw auto 3vw auto;
+	padding		:1vw;
+	color		:#101010;
+	border		:0.5vw solid #d00000;
+	
+}
+
+</style>
+<body>
+<form id="sendform" action="./howto.php" method="post">
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">占い師のスタイル</span></div></h2>
+<div class="fbox1">
+<input id="f1" type="radio" class="ck_a" name="q[1]"><label for="f1" class="sel_a">霊感霊視</label><input id="f2" type="radio" class="ck_b" name="q[1]"><label for="f2" class="sel_b">霊感タロット</label><br>
+<input id="f3" type="radio" class="ck_a" name="q[2]"><label for="f3" class="sel_a">優しく話す</label><input id="f4" type="radio" class="ck_b" name="q[2]"><label for="f4" class="sel_b">はっきり話す</label><br>
+<input id="f5" type="radio" class="ck_a" name="q[3]"><label for="f5" class="sel_a">早い鑑定</label><input id="f6" type="radio" class="ck_b" name="q[3]"><label for="f6" class="sel_b">じっくり鑑定</label><br>
+<input id="f7" type="radio" class="ck_a" name="q[4]"><label for="f7" class="sel_a">電話鑑定</label><input id="f8" type="radio" class="ck_b" name="q[4]"><label for="f8" class="sel_b">メール鑑定</label><br>
+<div class="comm">
+占い師のタイプ、占い方法で近いと思われるものをお選びください。
+</div>
+</div>
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">お相手情報<span style="font-size:4vw;">　※恋愛相談の方</span></span></div></h2>
+<div class="fbox1">
+	<span class="box_ttl">名前</span>
+	<input id="f9" type="radio" class="ck_a" name="q[5]"><label for="f9" class="sel_e">わかる</label>
+	<input id="f10" type="radio" class="ck_b" name="q[5]"><label for="f10" class="sel_f">不明</label><br>
+
+	<span class="box_ttl">生年月日</span>
+	<input id="f11" type="radio" class="ck_a" name="q[6]"><label for="f11" class="sel_e">わかる</label>
+	<input id="f12" type="radio" class="ck_b" name="q[6]"><label for="f12" class="sel_f">不明</label><br>
+
+<div class="comm">
+恋愛相談の方はお相手のお名前、生年月日がわかるかどうかをお選び下さい。<br>
+恋愛相談出ない場合は不要です。
+</div>
+</div>
+
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">相談内容詳細</span></div></h2>
+<div class="fbox1">
+	<input id="f13" type="radio" class="ck_c" name="q[7]" value="1" checked="checked"><label for="f13" class="sel_c">恋愛関係のご相談</label><br>
+	<input id="f14" type="radio" class="ck_c" name="q[7]" value="2"><label for="f14" class="sel_c">人間関係・生活のご相談</label><br>
+	<input id="f15" type="radio" class="ck_c" name="q[7]" value="3"><label for="f15" class="sel_c">その他</label><br>
+
+	<div id="b1" class="fbox2">
+		<input id="f20" type="checkbox" class="ck_d" name="a[1]"><label for="f20" class="sel_d">相手の気持ち</label>
+		<input id="f21" type="checkbox" class="ck_d" name="a[2]"><label for="f21" class="sel_d">相性</label>
+
+		<input id="f22" type="checkbox" class="ck_d" name="a[3]"><label for="f22" class="sel_d">縁結び</label>
+		<input id="f23" type="checkbox" class="ck_d" name="a[4]"><label for="f23" class="sel_d">復縁</label>
+
+		<input id="f24" type="checkbox" class="ck_d" name="a[5]"><label for="f24" class="sel_d">離婚</label>
+		<input id="f25" type="checkbox" class="ck_d" name="a[6]"><label for="f25" class="sel_d">不倫</label>
+
+		<input id="f26" type="checkbox" class="ck_d" name="a[7]"><label for="f26" class="sel_d">同性愛</label>
+		<input id="f27" type="checkbox" class="ck_d" name="a[8]"><label for="f27" class="sel_d">略奪愛</label>
+	</div>
+
+	<div id="b2" class="fbox2">
+		<input id="f30" type="checkbox" class="ck_d" name="b[1]"><label for="f30" class="sel_d">開運方法</label>
+		<input id="f31" type="checkbox" class="ck_d" name="b[2]"><label for="f31" class="sel_d">金運</label>
+
+		<input id="f32" type="checkbox" class="ck_d" name="b[3]"><label for="f32" class="sel_d">家庭問題</label>
+		<input id="f33" type="checkbox" class="ck_d" name="b[4]"><label for="f33" class="sel_d">対人関係</label>
+
+		<input id="f34" type="checkbox" class="ck_d" name="b[5]"><label for="f34" class="sel_d">仕事</label>
+		<input id="f35" type="checkbox" class="ck_d" name="b[6]"><label for="f35" class="sel_d">子育て</label>
+
+		<input id="f36" type="checkbox" class="ck_d" name="b[7]"><label for="f36" class="sel_d">姓名判断</label>
+		<input id="f37" type="checkbox" class="ck_d" name="b[8]"><label for="f37" class="sel_d">セックスレス</label>
+	</div>
+
+	<div id="b3" class="fbox2">
+		<input id="f40" type="checkbox" class="ck_d" name="c[1]"><label for="f40" class="sel_d">前世</label>
+		<input id="f41" type="checkbox" class="ck_d" name="c[2]"><label for="f41" class="sel_d">ツインソウル</label>
+
+		<input id="f42" type="checkbox" class="ck_d" name="c[3]"><label for="f42" class="sel_d">四柱推命</label>
+		<input id="f43" type="checkbox" class="ck_d" name="c[4]"><label for="f43" class="sel_d">守護霊対話</label>
+
+		<input id="f44" type="checkbox" class="ck_d" name="c[5]"><label for="f44" class="sel_d">波動修正</label>
+		<input id="f45" type="checkbox" class="ck_d" name="c[6]"><label for="f45" class="sel_d">送念</label>
+
+		<input id="f46" type="checkbox" class="ck_d" name="c[7]"><label for="f46" class="sel_d">パワーストーン</label>
+		<input id="f47" type="checkbox" class="ck_d" name="c[8]"><label for="f47" class="sel_d">ペットの気持ち</label>
+	</div>
+
+	<div class="comm">
+	ご希望される相談内容をお選び下さい。<br>
+	複数選択可
+	</div>
+</div>
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">備考</span></div></h2>
+<div class="fbox1">
+	<textarea id="etc" name="log" class="fbox3"></textarea>
+<div class="comm">
+より詳しい詳細を希望される方はこちらにご記載下さい。
+</div>
+</div>
+
+
+
+</form>
+
+<div class="fbox1">
+	<button id="send_1st" type="button" class="btn_send">送信</button>
+</div>
+<br><br>
+<div class="back">
+<div class="alert">
+	<div class="alert_ttl">相談できない内容が含まれていませんか？</div>
+	<div class="alert_key"></div>
+	<div class="alert_err">
+	</div>
+	<div class="alert_comm">
+		占い師をご案内出来ない場合もございます。<br>
+		詳しくは<a href="">ご利用規約</a>をご確認下さい。
+	</div>
+	<button id="send_2nd" type="button" class="btn_send">このまま送信</button>　
+	<button id="send_not" type="button" class="btn_reset">修正する</button>
+</div>
+</div>
+
+
+
+</body>
+</html>

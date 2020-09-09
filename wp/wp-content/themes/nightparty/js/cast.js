@@ -2073,10 +2073,10 @@ console.log(ItemColor);
 		});
 	});
 
-	$('.sort_btn_on1').on('click',function () {
+	$('.sort_btn_on0').on('click',function () {
 		$('.sort_circle').animate({'left':'0vw'},200).css('border-radius','10px 0 0 10px');
-		$('.sort_btn_on1').animate({'color':'#0000d0'},200);
-		$('.sort_btn_on2').animate({'color':'#b0b0a0'},200);
+		$('.sort_btn_on0').animate({'color':'#0000d0'},200);
+		$('.sort_btn_on1').animate({'color':'#b0b0a0'},200);
 		$('#customer_sort_asc').val('0');
 
 		$.post({
@@ -2100,10 +2100,10 @@ console.log(ItemColor);
 		});
 	});
 
-	$('.sort_btn_on2').on('click',function () {
+	$('.sort_btn_on1').on('click',function () {
 		$('.sort_circle').animate({'left':'12vw'},200).css('border-radius','0 10px 10px 0');
-		$('.sort_btn_on2').animate({'color':'#0000d0'},200);
-		$('.sort_btn_on1').animate({'color':'#b0b0a0'},200);
+		$('.sort_btn_on1').animate({'color':'#0000d0'},200);
+		$('.sort_btn_on0').animate({'color':'#b0b0a0'},200);
 		$('#customer_sort_asc').val('1');
 
 		$.post({
