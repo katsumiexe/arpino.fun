@@ -1205,15 +1205,10 @@ console.log("VwBase:"+VwBase);
 		$('.customer_memo_new_txt').val("");
 	});
 
-	$('#tag_2_tbl').on('click','.customer_memo_chg',function () {
-		Tmp=$(this).attr('id').replace("m_txt","");
-		$('#'+Tmp).val("");
-	});
-
 	$('#memo_reset').on('click',function () {
 		$('.set_back').fadeOut(200);
 		$('.customer_memo_in').animate({'top':'100vh'},200);
-
+		$('#memo_chg_id').val('');
 	});
 
 	$('.customer_memo_set').on('click',function () {
@@ -1279,8 +1274,11 @@ console.log("VwBase:"+VwBase);
 				'cast_id'	:CastId,
 				'c_id'		:C_Id,
 				'log'		:Log,
+				'memo_id'	:$('#memo_chg_id').val(),
+
 			},
 		}).done(function(data, textStatus, jqXHR){
+			$('#memo_chg_id').val('');
 			$('.set_back').fadeOut(200);
 			$('.customer_memo_in').animate({'top':'100vh'},200);
 			$('#tag_2_tbl').prepend(data);
@@ -1298,7 +1296,7 @@ console.log("VwBase:"+VwBase);
 		Tmp=$(this).attr('id').replace("m_chg","");
 		$('.set_back').fadeIn(200);
 		$('.customer_memo_in').animate({'top':'20vh'},200);
-		$('#del_id').val(Tmp);
+		$('#memo_chg_id').val(Tmp);
 		TmpLog=$('#m_log'+Tmp).html().replace(/(<br>|<br \/>)/gi, '\n')
 		$('.customer_memo_new_txt').val(TmpLog);
 	});
@@ -1347,7 +1345,7 @@ console.log("VwBase:"+VwBase);
 		$('.set_back,.customer_memo_del_back_in').fadeIn(200);
 
 		Tmp=$(this).attr('id').replace("m_del","");
-		$('#del_id').val(Tmp);
+		$('#memo_chg_id').val(Tmp);
 	});
 
 
@@ -1409,12 +1407,13 @@ console.log("VwBase:"+VwBase);
 			data:{
 				'cast_id'	:CastId,
 				'c_id'		:C_Id,
-				'memo_id'	:$('#del_id').val(),
+				'memo_id'	:$('#memo_chg_id').val(),
 			},
 
 		}).done(function(data, textStatus, jqXHR){
 			$('.set_back,.customer_memo_del_back_in').fadeOut(500);
 			$('#tag_2_tbl').html(data);
+			$('#memo_chg_id').val('');
 
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
@@ -1708,6 +1707,7 @@ console.log("VwBase:"+VwBase);
 			'set_date'	:$('#set_date').val(),
 			'cast_id'	:CastId,
 			'log'		:TmpLog,
+
 			},
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);

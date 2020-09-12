@@ -266,7 +266,6 @@ $reg_base_ag=date("Y")-1980;
 	}
 
 	$n=0;
-	$b_month=substr($c_month,4,4);
 	$sql	 ="SELECT *{$app5} FROM wp01_0customer";
 	$sql	.=$app4;
 	$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
@@ -1568,7 +1567,7 @@ Twitter連携:
 <input id="h_blog_log" type="hidden" value="">
 <input id="h_blog_tag" type="hidden" value="">
 <input id="h_blog_img" type="hidden" value="">
-<input id="del_id" type="hidden">
+<input id="memo_chg_id" type="hidden">
 
 
 <input id="upd" type="file" accept="image/*" style="display:none;">

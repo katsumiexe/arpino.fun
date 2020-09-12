@@ -32,25 +32,49 @@ if($fil>0){
 	$app=" AND c_group={$fil}";
 }
 
-if($sel==1){
-	$tmp="`date`, `stime`, `etime`";
+	if($c_sort["c_sort_group"]>0){
+		$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
+	}
 
-}elseif($sel==2){
-	$tmp="fav";
+	if($sel==1){
+		$app2	=" `date`";
+		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
+		$app5	=" ,MAX(`date`) AS log_date"; 
 
-}elseif($sel==3){
-	$tmp="birth_day";
+		if($asc==1){
+			$app3	.=" DESC";
+		}else{
+			$app3	.=" ASC";
+		}
 
-}elseif($sel==4){
-	$tmp="name";
+	}elseif($sel==2){
+		$app2	=" `fav`";
 
-}elseif($sel==5){
-	$tmp="nickname";
+		if($asc==1){
+			$app3	.=" DESC";
+		}else{
+			$app3	.=" ASC";
+		}
 
+	}elseif($sel==3){
+		$app2	=" `birth_day`";
 
-}else{
-	$tmp="id";
-}
+		if($asc==1){
+			$app3	.=" ASC";
+		}else{
+			$app3	.=" DESC";
+		}
+
+	}else{
+		$app2	=" `id`";
+
+		if($asc==1){
+			$app3	.=" ASC";
+		}else{
+			$app3	.=" DESC";
+		}
+	}
+
 
 if($asc == 1){
 	$order="DESC";
@@ -78,15 +102,15 @@ if($ext){
 	$wpdb->query($sql);
 }
 
-$sql	 ="SELECT *, wp01_0customer.id AS id, {$select} FROM wp01_0customer";
-$sql	.=" LEFT JOIN wp01_0cast_log USING(cast_id)";
-$sql	.=" WHERE cast_id='{$cast_id}'";
-$sql	.=" AND wp01_0customer.del='0'";
-$sql	.=$app;
+$sql	 ="SELECT *{$app5} FROM wp01_0customer";
+$sql	.=$app4;
+$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
+$sql	.=$app1;
 $sql	.=" GROUP BY wp01_0customer.id";
-$sql	.=" ORDER BY {$tmp} {$order}";
+$sql	.=" ORDER BY";
+$sql	.=$app2;
+$sql	.=$app3;
 $dat = $wpdb->get_results($sql,ARRAY_A );
-
 
 $s=0;
 foreach($dat as $tmp){
