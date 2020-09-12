@@ -105,9 +105,9 @@ arsort($rank_charm);
 <?for($s=0;$s<3;$s++){ ?>
 	<tr>
 		<td class="rank_t"><?=$tag[$s]?></td>
-		<td class="rank_p"><?=$rank_all[$s]?></td>
+		<td class="rank_p"><?=$rank_all[$s]+0?></td>
 	<?for($n=1;$n<7;$n++){ ?>
-		<td class="rank_p"><?=$rank[$s][$n]?></td>
+		<td class="rank_p"><?=$rank[$s][$n]+0?></td>
 	<? } ?>
 	</tr>
 <? } ?>
@@ -127,7 +127,7 @@ arsort($rank_charm);
 <td class="rank_u1"><?=$cnt?></td>
 <td class="rank_u2"><img src="./img/unit/unit_<?=$a3?>.png" class="rank_u2i"></td>
 <td class="rank_u3"><?=$unit[$a3]["name"]?></td>
-<td class="rank_u4"><?=$a4?></td>
+<td class="rank_u4"><?=$a4+0?></td>
 </tr>
 <?}?>
 </table>
@@ -160,10 +160,13 @@ arsort($rank_charm);
 <td class="rank_ttl">日</td>
 <td class="rank_ttl">件数</td>
 </tr>
-<?foreach($dat["p_day"] as $a1 => $a2){ ?>
+
+<?for($n=1;$n<date("t")+1;$n++){ ?>
+<?$tmp_date=substr("0".$n,-2,2)?>
+
 <tr>
-<td class="rank_d1"><?=$a1?></td>
-<td class="rank_d2"><?=$a2?></td>
+<td class="rank_d1"><?=$tmp_date?></td>
+<td class="rank_d2"><?=$dat["p_day"][$tmp_date]+0?></td>
 </tr>
 <?}?>
 </table>
@@ -176,10 +179,11 @@ arsort($rank_charm);
 <td class="rank_ttl">時間</td>
 <td class="rank_ttl">件数</td>
 </tr>
-<?foreach($dat["p_hour"] as $a1 => $a2){ ?>
+<?for($n=0;$n<24;$n++){ ?>
+<?$tmp_time=substr("0".$n,-2,2)?>
 <tr>
-<td class="rank_h1"><?=$a1?></td>
-<td class="rank_h2"><?=$a2?></td>
+<td class="rank_h1"><?=$tmp_time?></td>
+<td class="rank_h2"><?=$dat["p_hour"][$tmp_time]+0?></td>
 </tr>
 <?}?>
 </table>
