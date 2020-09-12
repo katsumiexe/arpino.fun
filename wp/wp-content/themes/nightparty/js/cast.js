@@ -1217,6 +1217,7 @@ console.log("VwBase:"+VwBase);
 			$('.customer_memo_in').animate({'top':'20vh'},200);
 		
 		}else{
+			$('#memo_chg_id').val('');
 			$('.set_back').fadeOut(200);
 			$('.customer_memo_in').animate({'top':'100vh'},200);
 		}
@@ -1268,6 +1269,7 @@ console.log("VwBase:"+VwBase);
 
 	$('#memo_set').on('click',function () {
 		Log=$('.customer_memo_new_txt').val();
+		console.log($('#memo_chg_id').val())
 		$.post({
 			url:Dir + "/post/customer_memo_set.php",
 			data:{
@@ -1278,6 +1280,7 @@ console.log("VwBase:"+VwBase);
 
 			},
 		}).done(function(data, textStatus, jqXHR){
+
 			$('#memo_chg_id').val('');
 			$('.set_back').fadeOut(200);
 			$('.customer_memo_in').animate({'top':'100vh'},200);
@@ -1325,6 +1328,7 @@ console.log("VwBase:"+VwBase);
 		}).done(function(data, textStatus, jqXHR){
 			$('.set_back,.customer_memo_del_back_in').fadeOut(500);
 			$("#i"+Tmp_DelList).remove();
+			$('#memo_chg_id').val('');
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -1338,6 +1342,7 @@ console.log("VwBase:"+VwBase);
 
 	$('#memo_del_back').on('click',function () {
 		$('.set_back,.customer_memo_del_back_in').fadeOut(100);
+		$('#memo_chg_id').val('');
 	});
 
 
