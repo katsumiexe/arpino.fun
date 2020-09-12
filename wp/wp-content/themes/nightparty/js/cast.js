@@ -1269,19 +1269,24 @@ console.log("VwBase:"+VwBase);
 
 	$('#memo_set').on('click',function () {
 		Log=$('.customer_memo_new_txt').val();
-		console.log($('#memo_chg_id').val())
+		var TmpMemoId=$('#memo_chg_id').val()
 		$.post({
 			url:Dir + "/post/customer_memo_set.php",
 			data:{
 				'cast_id'	:CastId,
 				'c_id'		:C_Id,
 				'log'		:Log,
-				'memo_id'	:$('#memo_chg_id').val(),
+				'memo_id'	:TmpMemoId,
 
 			},
 		}).done(function(data, textStatus, jqXHR){
 
-			$('#memo_chg_id').val('');
+			if($('#memo_chg_id').val('')){
+				$('#tr_memo_detail'+TmpMemoId).remove();
+				$('#tr_memo_log'+TmpMemoId).remove();
+				$('#memo_chg_id').val('');
+			}
+
 			$('.set_back').fadeOut(200);
 			$('.customer_memo_in').animate({'top':'100vh'},200);
 			$('#tag_2_tbl').prepend(data);

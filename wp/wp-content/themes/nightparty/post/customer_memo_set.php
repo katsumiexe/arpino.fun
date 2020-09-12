@@ -29,11 +29,11 @@ if($memo_id){
 }
 
 	$log=str_replace("\n","<br>",$log);
-	$dat ="<tr><td class=\"customer_memo_td1\">";
+	$dat ="<tr id=\"tr_memo_detail{$tmp_auto}\"><td class=\"customer_memo_td1\">";
 	$dat.="<div class=\"customer_memo_date\">{$now}</div>";
 	$dat.="<div id=\"m_chg{$tmp_auto}\" class=\"customer_memo_chg\"></div>";
 	$dat.="<div id=\"m_del{$tmp_auto}\" class=\"customer_memo_del\"></div>";
-	$dat.="</td></tr><tr><td class=\"customer_memo_td2\">";
+	$dat.="</td></tr><tr id=\"tr_memo_log{$tmp_auto}\"><td class=\"customer_memo_td2\">";
 	$dat.="{$log}";
 	$dat.="</td></tr>";
 
