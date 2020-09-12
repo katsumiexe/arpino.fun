@@ -145,31 +145,50 @@ $reg_base_ag=date("Y")-1980;
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$c_sort = $wpdb->get_row($sql,ARRAY_A);
 
-if($c_sort["c_sort_group"]>0){
-	$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
-}
+	if($c_sort["c_sort_group"]>0){
+		$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
+	}
 
-if($c_sort["c_sort_main"]==1){
-	$app2	=" `date`, `stime`, `etime`";
-	$app2	=" `date`";
-	$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
-//	$app4	=" LEFT JOIN wp01_0cast_log USING(cast_id)";
+	if($c_sort["c_sort_main"]==1){
+		$app2	=" `date`, `stime`, `etime`";
+		$app2	=" `date`";
+		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
+		$app5	=" ,MAX(`date`) AS log_date"; 
 
-}elseif($c_sort["c_sort_main"]==2){
-	$app2	=" `fav`";
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" DESC";
+		}else{
+			$app3	.=" ASC";
+		}
 
-}elseif($c_sort["c_sort_main"]==3){
-	$app2	=" `birth_day`";
+	}elseif($c_sort["c_sort_main"]==2){
+		$app2	=" `fav`";
 
-}else{
-	$app2	=" `id`";
-}
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" DESC";
+		}else{
+			$app3	.=" ASC";
+		}
 
-if($c_sort["c_sort_asc"]==1){
-	$app3	.=" DESC";
-}else{
-	$app3	.=" ASC";
-}
+	}elseif($c_sort["c_sort_main"]==3){
+		$app2	=" `birth_day`";
+
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" ASC";
+		}else{
+			$app3	.=" DESC";
+		}
+
+	}else{
+		$app2	=" `id`";
+
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" ASC";
+		}else{
+			$app3	.=" DESC";
+		}
+	}
+
 
 
 	/*--■スケジュール--*/
@@ -248,7 +267,7 @@ if($c_sort["c_sort_asc"]==1){
 
 	$n=0;
 	$b_month=substr($c_month,4,4);
-	$sql	 ="SELECT * ,MAX(`date`) AS log_date FROM wp01_0customer";
+	$sql	 ="SELECT *{$app5} FROM wp01_0customer";
 	$sql	.=$app4;
 	$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
 	$sql	.=$app1;
@@ -257,8 +276,6 @@ if($c_sort["c_sort_asc"]==1){
 	$sql	.=$app2;
 	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
-
-print($sql);
 
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
@@ -733,7 +750,7 @@ $(function(){
 	<div class="customer_sort_box">
 		<select id="customer_sort_sel" class="customer_sort_sel">
 			<option value="0">登録順</option>
-			<option value="1" <?if($c_sort["c_sort_main"] == 1){?> selected="selected"<?}?>>更新順</option>
+			<option value="1" <?if($c_sort["c_sort_main"] == 1){?> selected="selected"<?}?>>履歴順</option>
 			<option value="2" <?if($c_sort["c_sort_main"] == 2){?> selected="selected"<?}?>>好感順</option>
 			<!--option value="3" <?if($c_sort["c_sort_main"] == 4){?> selected="selected"<?}?>>名前順</option-->
 			<!--option value="4" <?if($c_sort["c_sort_main"] == 5){?> selected="selected"<?}?>>呼名順</option-->
@@ -743,7 +760,7 @@ $(function(){
 			<div class="sort_btn_on0"></div>
 			<div class="sort_btn_on1"></div>
 			<div class="sort_circle"></div>
-			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort["c_sort_arc"]?>">
+			<input id="customer_sort_asc" type="hidden" value="<?=$c_sort["c_sort_asc"]?>">
 		</div>
 		<select id="customer_sort_fil" class="customer_sort_sel">
 		<option value="0">全て</option>
