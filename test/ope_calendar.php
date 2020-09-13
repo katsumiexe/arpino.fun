@@ -128,7 +128,19 @@ for($n=0;$n<$month_max ;$n++){
 		$c_inc.="<span class=\"day_ttl ttl_{$week_title}\">{$tmp_days}</span>";
 		$c_inc.=$dd;
 		$c_inc.=$s_cnt;
+
+	$c_inc.="<span class=\"sch_empty\"></span>";
+	$c_inc.="<span class=\"sch_tag\">祈願祈祷</span>";
+	$c_inc.="<span class=\"sch_tag\">祈願祈祷</span>";
+	$c_inc.="<span class=\"sch_tag\">祈願祈祷</span>";
+
+
 		$c_inc.="</td>";
+
+
+
+
+
 
 	}else{
 		$c_inc.="<td class=\"calendar_d\"></td>";
@@ -200,7 +212,7 @@ for($n=0;$n<$month_max ;$n++){
 .calendar_d{
 	position		:relative;
 	height			:12vw;
-	text-align		:left;
+	text-align		:center;
 	border			:0.5vw solid #604020;
 	vertical-align	:top;
 	background:#fafafa;
@@ -535,7 +547,7 @@ for($n=0;$n<$month_max ;$n++){
 .main_box{
 	position	:relative;
 	width		:100%;
-	max-width	:800px;
+	max-width	:1000px;
 	height		:100vh;
 }
 
@@ -812,8 +824,35 @@ for($n=0;$n<$month_max ;$n++){
 	background:rgba(200,200,200,0.8);
 }
 
+.sch_empty{
+	display			:inline-block;
+	height			:25px;
+	width			:50%;
+}
 
+.sch_tag{
+	display			:inline-block;
+	width			:90%; 
+	margin			:1px auto;
+	text-align		:left;
+	font-size		:10;
+	background		:#d0d0d0;
+	padding			:2px 3px;
+}
 
+.sch_time{
+	display			:inline-block;
+	font-weight		:600;
+	color			:#0000a0;
+	font-size		:13px;
+}
+
+.sch_comm{
+	display			:inline-block;
+	font-size		:13px;
+	color			:#0000c0;
+	overflow		:hidden;
+}
 
 }
 </style>
