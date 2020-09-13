@@ -55,13 +55,14 @@ a{
 	position	:fixed;
 	top			:0;
 	left		:0;
+	right		:0;
 	display		:flex;
-	width		:100vw;
+	width		:1050px;
 	height		:70px;
-	margin		:0 auto;
+	margin		:auto;
 	background	:#101213;
 	text-align	:center;
-	box-shadow	:5px 5px 5px rgba(100,50,0,0.6);
+//	box-shadow	:5px 5px 5px rgba(100,50,0,0.6);
 	z-index		:10;
 	padding:0;
 }
@@ -749,10 +750,10 @@ a{
 	line-height	:34px;
 	font-size	:24px;
 	font-weight	:500;
-	color		:#c8b880;
+	color		:#c8c0b0;
 	overflow	:hidden;
 	width		:650px;
-	margin:0 10px 40px 10px;
+	margin		:0 10px 40px 10px;
 	margin-block-start:0;
 	margin-block-end:0;
 }
@@ -771,10 +772,10 @@ a{
 	bottom		:3px;
 	left		:0;
 	font-size	:13px;
-	background	:#c8b880;
+	background	:#c8c0b0;
 	text-align	:right;
 	padding		:3px 10px;
-	color		:#fafafa;
+	color		:#302520;
 	font-weight	:500;
 	border-radius:5px;
 }
@@ -788,7 +789,7 @@ a{
 	height		:25px;
 	line-height	:25px;
 	font-size	:14px;
-	color		:#c8b880;
+	color		:#c8c0b0;
 	text-align:right;
 }
 
@@ -801,7 +802,7 @@ a{
 	width		:650px;
 	min-height	:500px;
 	font-size	:16px;
-	color		:#fafafa;
+	color		:#c8c0b0;
 	text-align	:left;
 	margin		:0 auto;
 	line-height	:25px;
