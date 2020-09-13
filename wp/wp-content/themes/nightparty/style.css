@@ -452,6 +452,7 @@ a{
 	font-size	:15px;
 	font-family	:at_icon;
 	color		:#c8b880;
+	vertical-align:middle;
 }
 
 .footmark_text{
@@ -461,8 +462,9 @@ a{
 	text-align	:left;
 	font-size	:15px;
 	color		:#c8b880;
-	max-width:500px;
-	overflow:hidden;
+	max-width	:500px;
+	overflow	:hidden;
+	vertical-align:middle;
 }
 
 .blog_list{
@@ -733,12 +735,10 @@ a{
 
 .blog_ttl_border{
 	display		:block;
-	width		:670px;
+	width		:660px;
 	height		:3px;
-	background	:linear-gradient(90deg,#c8b880,#887840,#c8b880);
-	background	:linear-gradient(90deg,#fff0b8,#c8b880,#fff0c0);
 	background	:linear-gradient(90deg,#ffffe0,#c8b880,#ffffe0);
-	margin-bottom:20px;
+	margin		:5px 10px 20px 10px;
 }
 
 
@@ -760,8 +760,9 @@ a{
 .blog_ttl_btm{
 	display		:inline-block;
 	position	:relative;
-	width		:650px;
+	width		:660px;
 	height		:30px;
+	margin-left	:10px;
 }
 
 .blog_ttl_tag{
