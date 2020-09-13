@@ -147,19 +147,17 @@ get_header();
 		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$a2["tagname"]?></span>
 	</a>
-
-
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text">BLOG</span>
+		<span class="footmark_text">blog</span>
 	</div>
 
 <?}else{?>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text">BLOG</span>
+		<span class="footmark_text">blog</span>
 	</div>
 <?}?>
 </div>
@@ -192,7 +190,6 @@ get_header();
 		<? } ?>
 	</div>
 	<div class="main_c">
-
 	<table class="blog_calendar">
 		<tr>
 			<td class="blog_calendar_m" colspan="7"><?=$c_month?></td>

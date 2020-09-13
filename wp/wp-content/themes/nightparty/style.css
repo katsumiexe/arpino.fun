@@ -814,37 +814,41 @@ a{
 	text-shadow:2px 2px 2px rgba(0,0,0,0.5);
 }
 
-
 .blog_calendar{
-	width			:100%;
+	width			:300px;
 	border-collapse	:collapse;
 	table-layout	:fixed;
-	background:#fafafa;
+	background		:#fafafa;
+	background		:#302520;
+	margin			:15px;
 }
 
 .blog_calendar_m{
 	text-align		:center;
-	border			:1px solid #303030;
+	border			:1px solid #c8b880;
 	height			:25px;
 	line-height		:25px;
 	font-size		:16px;
-	
+	background		:#c8b880;
+	color			:#302520;
+	font-weight		:800;
 }
+
 .blog_calendar_w{
 	text-align		:center;
-	border			:1px solid #303030;
+	border			:1px solid #c8b880;
 	height			:25px;
 	line-height		:25px;
 	font-size		:16px;
-
+	color			:#c8b880;
 }
 
 .blog_calendar_d{
 	text-align		:center;
-	border			:1px solid #303030;
-	height			:40px;
-	line-height		:40px;
+	border			:1px solid #c8b880;
+	height			:35px;
+	line-height		:35px;
 	font-size		:16px;
+	color			:#c8b880;
 }
-
 
