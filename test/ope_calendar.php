@@ -535,17 +535,18 @@ for($n=0;$n<$month_max ;$n++){
 .main_box{
 	position	:relative;
 	width		:100%;
-	max-width	:600px;
+	max-width	:800px;
 	height		:100vh;
 }
 
 .calendar{
-	width:100%;
-	border				:1px solid #303030;
+	height			:95vh;
+	width			:100%;
+	border			:1px solid #303030;
 }
 
 .calendar_m{
-	height			:50px;
+	height			:40px;
 }
 
 
