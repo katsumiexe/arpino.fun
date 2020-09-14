@@ -213,15 +213,15 @@ for($n=0;$n<$month_max ;$n++){
 }
 
 .day_1{
-	background:#ffe8f0;
+	background:#ffe0d8;
 }
 
 .day_2{
-	background:#f0f8ff;
+	background:#e0f0ff;
 }
 
 .day_0{
-	background:#fffaf0;
+	background:#fff0e8;
 }
 
 .holiday{
@@ -233,10 +233,10 @@ for($n=0;$n<$month_max ;$n++){
 	top				:0;
 	left			:0;	
 	display			:inline-block;
-	height			:5vw;
-	line-height		:4vw;	
-	width			:5.5vw;
-	font-size		:3vw;
+	height			:5.5vw;
+	line-height		:4.5vw;	
+	width			:7vw;
+	font-size		:3.5vw;
 	border-radius:	0 0 3vw 0;
 	text-align		:center;
 	font-weight		:600;
@@ -244,23 +244,32 @@ for($n=0;$n<$month_max ;$n++){
 
 .ttl_1{
 	color			:#fafafa;
+	color			:#d00000;
 	background		:#ffc0c0;
+/*
 	text-shadow		:1px 1px 0 #800000;
 	box-shadow		:1px 1px 0 #800000;
+*/
 }
 
 .ttl_2{
 	color			:#fafafa;
+	color			:#000080;
 	background		:#80d0ff;
+/*
 	text-shadow		:1px 1px 0 #000080;
 	box-shadow		:1px 1px 0 #000080;
+*/
 }
 
 .ttl_0{
 	color			:#fafafa;
+	color			:#604020;
 	background		:#C7BBA5;
+/*
 	text-shadow		:1px 1px 0 #604020;
 	box-shadow		:1px 1px 0 #604020;
+*/
 }
 
 .dead{
@@ -1017,8 +1026,6 @@ $(function(){
 			<div class="cal_detail_item"><span class="cal_write">■</span></div>
 			<div class="cal_detail_ttl">2020年09月06日（日）</div>
 			<div class="cal_del">○</div>
-
-
 		</div>
 
 		<div class="cal_detail_mid">
