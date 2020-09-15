@@ -1077,7 +1077,7 @@ $(function(){
 		<div class="config_menu">
 <br>
 <hr>
-<h2>基本情報</h2>
+<h2 class="config_h2">基本情報</h2>
 <table class="config_img">
 	<tr>
 		<td class="config_img_a" rowspan="3"><img src="<?=$user_face?>?t=<?=time()?>" class="config_img_a1"></td>
@@ -1143,15 +1143,19 @@ $(function(){
 	</tr>
 </table>
 
+<div class="config_box">
+<span class="config_tag1">名前：</span>
+<span class="config_tag1">USER_ID：</span>
+
+<span class="config_tag2">PASSWORD:</span>
+<span class="config_tag2">アドレス:</span>
+
+<span class="config_tag2">LINE連携:</span>
+<span class="config_tag2">Twitter連携:</span>
 
 
-名前：
-CAST_ID：
-LOGIN ID:
-PASSWORD:
-アドレス:
-LINE連携:
-Twitter連携:
+
+
 
 <h2>切替時間設定</h2>
 一日の開始時間<br>
@@ -1159,8 +1163,8 @@ Twitter連携:
 月の開始日<br>
 
 
-<h2>顧客グループ設定</h2>
-<h2>履歴アイテム設定</h2>
+<h2 class="config_h2">顧客グループ設定</h2>
+<h2 class="config_h2">履歴アイテム設定</h2>
 <table class="log_item_set">
 <thead>
 	<tr>
@@ -1207,8 +1211,8 @@ Twitter連携:
 			<td class="log_td_handle"></td>
 		</tr>
 	<?}?>
-
 </tbody>
+
 	<tr>
 		<td colspan="7" style="height:5px;"></td>
 	</tr><tr>
@@ -1242,8 +1246,9 @@ Twitter連携:
 		<td class="log_td_handle"><span id="new_set"></span></td>
 	</tr>
 </table>
-		</div>
-	</div>
+</div>
+</div>
+
 	<?}else{?>
 	<div class="main">
 		<div class="notice_ttl">
