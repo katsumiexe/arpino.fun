@@ -1156,8 +1156,18 @@ input:focus{
 	width			:95vw;
 	height			:12vw;
 	background		:#c0c0c0;
-	margin			:0 auto 3vw auto;
+	margin			:0 auto 5vw auto;
 	z-index			:11;
+}
+
+.customer_sns_ttl{
+	display			:inline-block;
+	position		:absolute;
+	width			:45vw;
+	right			:1vw;
+	bottom			:-8vw;
+	font-size		:3.5vw;
+	text-align		:right;
 }
 
 .customer_sns_tr{
@@ -1204,8 +1214,9 @@ input:focus{
 	font-size		:4.5vw;
 	margin			:auto;
 	background		:#fafafa;
-	border			:0.5vw solid #303030;
+	border			:0.5vw solid #909090;
 	padding-left	:1vw;
+	color:#303030
 }
 
 
@@ -3769,10 +3780,15 @@ input[type=range]::-moz-range-thumb{
 	width			:8vw;
 }
 
-
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
 
+
+
+
+}
+/*-------------------------------------------------------------------*/
+@media screen and (min-width: 960px) {
 .head_mymenu{
 	display:none;
 }
