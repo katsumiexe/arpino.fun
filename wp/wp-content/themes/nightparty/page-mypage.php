@@ -884,7 +884,7 @@ $(function(){
 		</table>
 		<div class="customer_sns_box">
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
-			<div class="customer_sns_ttl"></div>
+			<div class="customer_sns_ttl">inada_inaina</div>
 		</div>
 		<div class="customer_tag">
 			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
@@ -909,14 +909,13 @@ $(function(){
 		<input id="h_customer_line" type="hidden" value="">
 		<input id="h_customer_web" type="hidden" value="">
 
-		<input id="h_name_tel" type="hidden" value="">
-		<input id="h_name_mail" type="hidden" value="">
-		<input id="h_name_twitter" type="hidden" value="">
-		<input id="h_name_facebook" type="hidden" value="">
-		<input id="h_name_insta" type="hidden" value="">
-		<input id="h_name_line" type="hidden" value="">
-		<input id="h_name_web" type="hidden" value="">
-
+		<input id="n_customer_tel" type="hidden" value="">
+		<input id="n_customer_mail" type="hidden" value="">
+		<input id="n_customer_twitter" type="hidden" value="">
+		<input id="n_customer_facebook" type="hidden" value="">
+		<input id="n_customer_insta" type="hidden" value="">
+		<input id="n_customer_line" type="hidden" value="">
+		<input id="n_customer_web" type="hidden" value="">
 	</div>
 	<?}elseif($cast_page==3){?>
 	<div class="main">

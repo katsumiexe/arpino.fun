@@ -883,7 +883,6 @@ $(function(){
 	});
 
 	$('.customer_sns_btn').on('click',function(){
-		console.log(Tmp);
 		if($('.customer_sns_box').css('display') !== 'none'){
 			$('.customer_sns_box').slideUp(100);
 			$('.customer_sns_tr').slideUp(100);
@@ -898,13 +897,18 @@ $(function(){
 			Tmp=$(this).attr('id');
 			$('#a_'+Tmp).show();
 			TmpH=$('#h_'+Tmp).val();
-			
-			if(TmpH){
-				$('.sns_text').val($('#h_'+Tmp).val());
 
+			if(TmpH){
+				SnsColor=$(this).css('background');
+				
+				$('.sns_text').val($('#h_'+Tmp).val());
 				$('#a_'+Tmp).addClass('c_'+Tmp);
 				$('.customer_sns_box').addClass('c1_'+Tmp);
 				$('.sns_jump').addClass('jump_on c2_'+Tmp);
+
+				$('.customer_sns_ttl').css('color',SnsColor).text($('#n_'+Tmp).val());
+
+
 			}
 
 			$('.customer_sns_box').slideDown(200);
