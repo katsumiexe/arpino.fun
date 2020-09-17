@@ -3580,9 +3580,9 @@ input[type=range]::-moz-range-thumb{
 	position		:absolute;
 	bottom			:1vw;
 	margin			:auto;
-	left			:25.5vw;
+	left			:26vw;
 	height			:10vw;
-	width			:21vw;
+	width			:20vw;
 	border-radius	:10px;
 	background		:linear-gradient(#f0f0e0,#e0e0d0);
 }
@@ -3631,6 +3631,54 @@ input[type=range]::-moz-range-thumb{
 	color			:#d00000;
 	font-weight		:600;
 	padding-left	:2vw;
+}
+
+.h2_config{
+	position	:relative;
+	height		:10vw;
+	line-height	:10vw;
+	background	:#dbdbff;
+	margin-block-start:0;
+	margin-block-end:1vw;
+	padding-left:10vw;
+	overflow	:hidden;
+	text-align:left;
+}
+
+.h2_config_1{
+	position:absolute;
+	bottom	:2vw;
+	left	:3vw;
+	height	:5vw;
+	width	:5vw;
+	background:#0000d0;
+}
+
+.h2_config_2{
+	position:absolute;
+	top		:2vw;
+	left	:2vw;
+	height	:4vw;
+	width	:4vw;
+	background:#a0a0ff;
+}
+
+.h2_config_3{
+	position:absolute;
+	bottom	:0;
+	right	:-5vw;
+	height	:10vw;
+	width	:30vw;
+	transform: skewX(-45deg);
+	background:#b7b7ff;
+}
+
+.h2_config_4{
+	position:relative;
+	color:#0000d0;
+	z-index:2;
+	font-size:5vw;
+	font-weight:800;
 }
 
 

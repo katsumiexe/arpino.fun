@@ -607,7 +607,7 @@ $(function(){
 <?}?>
 
 <?if($c_sort["c_sort_asc"] ==1){?> 
-	$('.sort_circle').css({'left':'12vw','border-radius':'0 10px 10px 0'});
+	$('.sort_circle').css({'left':'10vw','border-radius':'0 10px 10px 0'});
 	$('.sort_btn_on1').css({'color':'#0000d0'});
 	$('.sort_btn_on0').css({'color':'#b0b0a0'});
 <?}?>
@@ -884,7 +884,7 @@ $(function(){
 		</table>
 		<div class="customer_sns_box">
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
-			<div class="customer_sns_ttl">inada_inaina</div>
+			<div class="customer_sns_ttl"></div>
 		</div>
 		<div class="customer_tag">
 			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
@@ -1082,11 +1082,8 @@ $(function(){
 		</div>
 	<?}elseif($cast_page==5){?>
 	<?}elseif($cast_page==6){?>
-	<div class="main">
-		<div class="config_menu">
-<br>
-<hr>
-<h2 class="config_h2">基本情報</h2>
+<div class="main">
+<h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">基本情報</span></div></h2>
 <table class="config_img">
 	<tr>
 		<td class="config_img_a" rowspan="3"><img src="<?=$user_face?>?t=<?=time()?>" class="config_img_a1"></td>
@@ -1151,29 +1148,23 @@ $(function(){
 		</td>
 	</tr>
 </table>
-
 <div class="config_box">
-<span class="config_tag1">名前：</span>
-<span class="config_tag1">USER_ID：</span>
+	<span class="config_tag1">名前：</span>
+	<span class="config_tag1">USER_ID：</span>
 
-<span class="config_tag2">PASSWORD:</span>
-<span class="config_tag2">アドレス:</span>
+	<span class="config_tag2">PASSWORD:</span>
+	<span class="config_tag2">アドレス:</span>
 
-<span class="config_tag2">LINE連携:</span>
-<span class="config_tag2">Twitter連携:</span>
-
-
-
-
-
-<h2>切替時間設定</h2>
+	<span class="config_tag2">LINE連携:</span>
+	<span class="config_tag2">Twitter連携:</span>
+</div>
+<h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">切替時間設定</span></div></h2>
 一日の開始時間<br>
 週の開始曜日<br>
-月の開始日<br>
 
+<h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">顧客グループ設定</span></div></h2>
 
-<h2 class="config_h2">顧客グループ設定</h2>
-<h2 class="config_h2">履歴アイテム設定</h2>
+<h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
 <table class="log_item_set">
 <thead>
 	<tr>
@@ -1221,7 +1212,6 @@ $(function(){
 		</tr>
 	<?}?>
 </tbody>
-
 	<tr>
 		<td colspan="7" style="height:5px;"></td>
 	</tr><tr>
@@ -1255,9 +1245,14 @@ $(function(){
 		<td class="log_td_handle"><span id="new_set"></span></td>
 	</tr>
 </table>
+<h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">お問合せ</span></div></h2>
+<div>
+問合せ<br>
+退会<br>
+プライバシーポリシー<br>
+ご利用規約<br>
 </div>
 </div>
-
 	<?}else{?>
 	<div class="main">
 		<div class="notice_ttl">
@@ -1294,9 +1289,7 @@ $(function(){
 </div>
 <div class="customer_memo_set"></div>
 <div class="customer_log_set"></div>
-
 <div class="sch_set_done">スケジュールが登録されました</div>
-
 <div class="set_back">
 	<div class="cal_weeks">
 		<div class="cal_weeks_prev">前週</div>
@@ -1536,7 +1529,6 @@ $(function(){
 				<?}?>
 			</select>
 		</div>
-
 		<div class="customer_log_left">
 			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
 				<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>
@@ -1563,7 +1555,6 @@ $(function(){
 	</div>
 </div>
 <input id="page" type="hidden" val="<?=$cast_page?>">
-
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">
@@ -1583,15 +1574,12 @@ $(function(){
 <input id="h_blog_img" type="hidden" value="">
 <input id="memo_chg_id" type="hidden">
 
-
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
-
 <form id="logout" action="<?php the_permalink();?>" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>
-
 <form id="menu_sel" action="<?php the_permalink();?>" method="post">
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
