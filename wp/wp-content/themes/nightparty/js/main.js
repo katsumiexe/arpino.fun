@@ -38,5 +38,20 @@ $('.main').fadeIn(1500);
 		};
 	});
 
+	$('.cal1').on('click',function(){
+		Tmp=$(this).text();
+		$.post({
+			url:Dir + "/post/blog_calendar.php",
+			data:{
+				't_tag':Tag,
+				't_month':Tmp,
+				't_day':Tmp,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			$('.main_d').html(data);		
+		});
+
+	});
+
 });
 

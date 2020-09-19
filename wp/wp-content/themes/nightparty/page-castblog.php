@@ -3,14 +3,15 @@
 Template Name: castblog
 */
 
-$tag_icon[0]="";
-$tag_icon[1]="";
-$tag_icon[2]="";
-$tag_icon[3]="";
-$tag_icon[4]="";
-$tag_icon[5]="";
-$tag_icon[6]="";
-$tag_icon[7]="";
+$tag_icon[0]="";
+$tag_icon[1]="";
+$tag_icon[2]="";
+$tag_icon[3]="";
+$tag_icon[4]="";
+$tag_icon[5]="";
+$tag_icon[6]="";
+$tag_icon[7]="";
+$tag_icon[8]="";
 
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
@@ -71,7 +72,7 @@ foreach($res as $a2){
 }
 
 //■カテゴリ--------------------
-$n=0;
+$n=1;
 $sql ="SELECT count,name,slug FROM wp01_term_taxonomy";
 $sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
 $sql.=" WHERE taxonomy='post_tag'";
@@ -110,6 +111,8 @@ foreach($res3 as $res4){
 $c_month=$_POST[$c_month];
 if(!$c_month) $c_month=substr($now,0,7);
 
+$v_month=date("Y年m月",strtotime($c_month."-01"));
+
 $month_w=date("w",strtotime($c_month."-01"))-1;
 $month_e=date("t",strtotime($c_month."-01"));
 $month_max=ceil(($month_w+$month_e)/7)*7;
@@ -136,7 +139,7 @@ get_header();
 	<span class="footmark_icon"></span>
 	<a href="<?=home_url()?>/castblog/" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text">BLOG</span>
+		<span class="footmark_text">blog</span>
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
@@ -148,12 +151,12 @@ get_header();
 	<span class="footmark_icon"></span>
 	<a href="<?=home_url()?>/castblog/" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
-		<span class="footmark_text"><?=$a2["tagname"]?></span>
+		<span class="footmark_text">blog</span>
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"></span>
-		<span class="footmark_text">blog</span>
+		<span class="footmark_icon"><?=$tag_icon[str_replace("tag","",$tag_list)]?></span>
+		<span class="footmark_text"><?=$a2["tagname"]?></span>
 	</div>
 
 <?}else{?>
@@ -184,18 +187,27 @@ get_header();
 				<span class="blog_list_cast">
 				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
 				<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
-
 				<span class="blog_list_frame_a">
 				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
 				</span>
 				</span>
 			</a>
 		<? } ?>
+		<ul class="page_box">
+		<li class="page_n pg_f">«</li>
+		<li class="page_n">1</li>
+		<li class="page_n pg_n">2</li>
+		<li class="page_n">3</li>
+		<li class="page_n pg_b">»</li>
+		</ul>
 	</div>
+
 	<div class="main_c">
-	<table class="blog_calendar">
+	<table id="c" class="blog_calendar">
 		<tr>
-			<td class="blog_calendar_m" colspan="7"><?=$c_month?></td>
+			<td id="c_prev"class="blog_calendar_n"></td>
+			<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
+			<td id="c_next" class="blog_calendar_n"></td>
 		</tr>
 		<tr>
 			<td class="blog_calendar_w">日</td>
@@ -208,23 +220,22 @@ get_header();
 			<?=$c_inc?>
 		</tr>
 	</table>
-
 	<div class="blog_h1">
 		<div class="blog_h2">
 		カテゴリー
 		</div>
 	</div>
 	<div class="blog_h3">
-			<a href="./" class="all_tag">
-			<span class="all_tag_icon"></span>
+			<a href="<?=get_template_directory_uri(); ?>/castblog/" class="all_tag">
+			<span class="all_tag_icon"><?=$tag_icon[0]?></span>
 			<span class="all_tag_name">全て</span>
 			<span class="all_tag_count"><?=$all_tag_all?></span>
 			</a>
-		<?for($s=0;$s<count($all_tag);$s++){?>
-			<a href="./?tag_list=<?=$all_tag[$s]["slug"]?>" class="all_tag">
-			<span class="all_tag_icon"><?=$tag_icon[$s]?></span>
-			<span class="all_tag_name"><?=$all_tag[$s]["name"]?></span>
-			<span class="all_tag_count"><?=$all_tag[$s]["count"]?></span>
+		<?foreach($all_tag as $a1 => $a2){?>
+			<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
+			<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
+			<span class="all_tag_name"><?=$all_tag[$a1]["name"]?></span>
+			<span class="all_tag_count"><?=$all_tag[$a1]["count"]?></span>
 			</a>
 		<? } ?>
 	</div>
@@ -241,7 +252,6 @@ get_header();
 			<span class="all_cast_icon"></span>
 			<span class="all_cast_last"><?=$all_cast[$s]["last"]?></span>
 			<span class="all_cast_count"><?=$all_cast[$s]["count"]?></span>
-
 		</a>
 	<?}?>
 	</div>
