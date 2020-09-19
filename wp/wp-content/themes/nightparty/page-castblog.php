@@ -51,8 +51,10 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
 
 foreach($res as $a2){
+
 	$blog[$n]=$a2;
 	$blog[$n]["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
+	$cal[date("d",strtotime($a2["post_date"]))+0]	=1;
 
 	$sql ="SELECT guid FROM wp01_postmeta";
 	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
@@ -78,6 +80,7 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $res2){
 	$all_tag[$n]=$res2;
+	$all_tag_all+=$res2["count"];
 	$n++;
 }
 
@@ -117,7 +120,7 @@ for($n=0;$n<$month_max ;$n++){
 	$tmp_days=$n-$month_w;
 	if($n>$month_w && $n<=$month_w+$month_e){
 //		$c_inc.="<td id=\"".$n-$month_w."\" class=\"blog_calendar_d\">".$n-$month_w."</td>";
-		$c_inc.="<td class=\"blog_calendar_d\">{$tmp_days}</td>";
+		$c_inc.="<td class=\"blog_calendar_d\"><span class=\"cal{$cal[$tmp_days]}\">{$tmp_days}</span></td>";
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
@@ -212,6 +215,11 @@ get_header();
 		</div>
 	</div>
 	<div class="blog_h3">
+			<a href="./" class="all_tag">
+			<span class="all_tag_icon"></span>
+			<span class="all_tag_name">全て</span>
+			<span class="all_tag_count"><?=$all_tag_all?></span>
+			</a>
 		<?for($s=0;$s<count($all_tag);$s++){?>
 			<a href="./?tag_list=<?=$all_tag[$s]["slug"]?>" class="all_tag">
 			<span class="all_tag_icon"><?=$tag_icon[$s]?></span>
