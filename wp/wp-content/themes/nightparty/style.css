@@ -892,13 +892,32 @@ ul {
 }
 
 .page_box{
-	display		:block;
+	display		:inline-block;
+	width		:680px;
 	text-align	:center;
 	height		:32px;
-	margin		:10px auto;
+	margin		:10px auto 10px 0;;
 	color		:#c8b880;
 	overflow	:hidden;
 	font-size	:0;
+}
+
+.page_n{
+	display		:inline-block;
+	text-align	:center;
+	width		:30px;
+	height		:30px;
+	line-height	:30px;
+	text-align	:center;
+	margin		:0;
+	border		:1px solid #e8d8a0;
+	background	:#302520;
+	font-size	:15px;
+	cursor		:pointer;
+}
+
+.page_n:hover{
+	background	:#807570;
 }
 
 .pg_f{
@@ -914,28 +933,11 @@ ul {
 	color		:#302520;
 }
 
-.page_n{
-	display:inline-block;
-	text-align:center;
-	width		:30px;
-	height		:30px;
-	line-height	:30px;
-	text-align	:center;
-	margin		:0;
-	border		:1px solid #e8d8a0;
-	font-size	:15px;
-	cursor:pointer;
-}
+@media screen and (max-width: 1024px) {
 
-.page_n:hover{
-	background	:#807570;
 }
-
 
 @media screen and (max-width: 559px) {
-
-}
-@media screen and (max-width: 959px) {
 
 }
 

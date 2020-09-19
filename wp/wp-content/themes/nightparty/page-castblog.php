@@ -193,13 +193,6 @@ get_header();
 				</span>
 			</a>
 		<? } ?>
-		<ul class="page_box">
-		<li class="page_n pg_f">«</li>
-		<li class="page_n">1</li>
-		<li class="page_n pg_n">2</li>
-		<li class="page_n">3</li>
-		<li class="page_n pg_b">»</li>
-		</ul>
 	</div>
 
 	<div class="main_c">
@@ -254,6 +247,15 @@ get_header();
 			<span class="all_cast_count"><?=$all_cast[$s]["count"]?></span>
 		</a>
 	<?}?>
-	</div>
+</div>
+	<ul class="page_box">
+		<li class="page_n pg_f">«</li>
+		<li class="page_n">1</li>
+		<li class="page_n pg_n">2</li>
+		<li class="page_n">3</li>
+		<li class="page_n pg_b">»</li>
+	</ul>
+
+
 </div>
 <?php get_footer(); ?>
