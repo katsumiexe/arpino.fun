@@ -1,6 +1,5 @@
 <?php
 include_once("./library/session.php");
-
 $item[11]="";
 $item[10]="";
 $item[9]="";
@@ -19,7 +18,6 @@ $item[0]="";
 
 $check[1]="";
 $check[2]="";
-
 $card[1]="";
 
 $pts["1"]=2;

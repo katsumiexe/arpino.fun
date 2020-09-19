@@ -32,7 +32,7 @@ for($n=0;$n<4;$n++){
 }
 
 $unit[4]=$unit_select;
-$card=array(0,1,2,3,4,5,6,7,8,9,10,11);
+$card=array(0,1,2,3,4);
 shuffle($card);
 
 $cd_1[0]=11;
