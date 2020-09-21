@@ -2041,9 +2041,26 @@ body {
 	left		:0;
 	right		:0;
 	top			:200px;
+	width		:400px;;
 	margin		:auto;
+	background:#90f0a0;
 }
 
+.kakumei_ttl{
+	font-size:30px;
+	font-weight:800;
+}
+
+.kakumei_txt{
+	font-size:14px;
+	text-align:left;
+	line-height:20px;
+}
+
+.kakumei_icon{
+	font-size	:18px;
+	font-family:at_icon;
+}
 
 
 /*-------------------------------------------------------------------*/

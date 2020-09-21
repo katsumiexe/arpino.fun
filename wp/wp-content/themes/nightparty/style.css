@@ -2,7 +2,13 @@ a{
 	text-decoration:none;
 	color: initial;
 }
-
+ul {
+	margin-block-start:0;
+	margin-block-end:0;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start:0;
+}
 .body{
 	background	:#101513;
 	text-align	:center;
@@ -712,7 +718,7 @@ a{
 	width			:30px;
 	height			:30px;
 	line-height		:30px;
-	font-size		:14px;
+	font-size		:20px;
 	font-family		:at_icon;	
 	text-align		:center;
 	vertical-align	:top;
@@ -826,13 +832,23 @@ a{
 
 .blog_calendar_m{
 	text-align		:center;
-	border			:1px solid #c8b880;
 	height			:25px;
 	line-height		:25px;
 	font-size		:16px;
 	background		:#c8b880;
 	color			:#302520;
 	font-weight		:800;
+}
+
+.blog_calendar_n{
+	text-align		:center;
+	height			:25px;
+	line-height		:25px;
+	font-size		:20px;
+	background		:#c8b880;
+	color			:#302520;
+	font-family		:at_icon;
+	cursor:pointer;
 }
 
 .blog_calendar_w{
@@ -875,11 +891,53 @@ a{
 	cursor:pointer;
 }
 
+.page_box{
+	display		:inline-block;
+	width		:680px;
+	text-align	:center;
+	height		:32px;
+	margin		:10px auto 10px 0;;
+	color		:#c8b880;
+	overflow	:hidden;
+	font-size	:0;
+}
 
-@media screen and (max-width: 559px) {
+.page_n{
+	display		:inline-block;
+	text-align	:center;
+	width		:30px;
+	height		:30px;
+	line-height	:30px;
+	text-align	:center;
+	margin		:0;
+	border		:1px solid #e8d8a0;
+	background	:#302520;
+	font-size	:15px;
+	cursor		:pointer;
+}
+
+.page_n:hover{
+	background	:#807570;
+}
+
+.pg_f{
+	border-radius:5px 0 0 5px ;
+}
+
+.pg_b{
+	border-radius:0 5px 5px 0;
+}
+
+.pg_n{
+	background	:#e8d8a0;
+	color		:#302520;
+}
+
+@media screen and (max-width: 1024px) {
 
 }
-@media screen and (max-width: 959px) {
+
+@media screen and (max-width: 559px) {
 
 }
 

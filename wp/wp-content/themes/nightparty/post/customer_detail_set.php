@@ -1,6 +1,6 @@
 <?
 /*
-顧客情報変更
+顧客情報読み込み
 */
 ini_set('display_errors',1);
 

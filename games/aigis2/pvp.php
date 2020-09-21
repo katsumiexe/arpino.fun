@@ -288,6 +288,20 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	</div>
 </div>
 
+<div class="talk_box">
+<div id="talk0" class="talk_detail">こんにちは</div>
+<div id="talk1" class="talk_detail">よろしく！</div>
+<div id="talk2" class="talk_detail">ナイス！</div>
+<div id="talk3" class="talk_detail">泣...</div>
+<div id="talk4" class="talk_detail">おりゅ？</div>
+<div id="talk5" class="talk_detail">m(_ _)m</div>
+<div id="talk6" class="talk_detail">(*ﾟ▽ﾟ)ﾉ</div>
+<div id="talk7" class="talk_detail">>ლ(ಠ益ಠ)ლ</div>
+<div id="talk8" class="talk_detail"></div>
+<div id="talk9" class="talk_detail">ヽ(`Д´)ﾉ</div>
+<div id="talk10" class="talk_detail">(;ﾟДﾟ)!</div>
+<div id="talk11" class="talk_detail">( >д<).;</div>
+
 
 <form id="reset_top" action="./index.php" method="post">
 </form>

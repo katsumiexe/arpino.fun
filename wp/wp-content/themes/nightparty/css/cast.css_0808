@@ -1,0 +1,3232 @@
+*{
+-webkit-appearance: none;
+-webkit-text-size-adjust: 100%;
+}
+
+input:focus{
+	border-color:#fafafa;
+	background:#f0f0ff;
+}
+
+.body{
+	background	:#f0f0f0;
+	margin		:0;
+	padding		:0;
+	line-height	:1.2;
+	color		:#333;
+	font-size	:3.5vw;
+	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	text-align	:center;
+	width		:100vw;
+}
+
+.err{
+	width			:60vw;
+	height			:15vw;
+	color			:#d00000;
+	font-size		:3.5vw;
+	border			:1vw solid #d00000;
+	background		:#ffe0f0;
+	margin			:0 auto;
+	text-align		:center;
+	line-height		:15vw;
+}
+
+.head{
+	position	:fixed;
+	top			:0;
+	left		:0;
+	height		:14vw;
+	width		:100vw;
+	background	:#ffe0f0;
+	z-index		:101;
+	text-align	:left;
+	box-shadow	:0.5vw 0.5vw 0.5vw rgba(60,60,60,0.4);
+}
+
+.slide{
+	position	:fixed;
+	left		:-70vw;		
+	top			:0;
+	padding-top	:10vw;
+	height		:120vh;
+	width		:70vw;
+	background	:#606060;
+	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	z-index		:100;
+}
+
+.menu{
+	position	:absolute;
+	top			:16vw;
+	left		:0;
+	width		:70vw;
+	padding		:0;
+}
+
+
+.head_mymenu_ttl{
+	display		:inline-block;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	left		:9vw;
+	height		:10vw;
+	line-height	:10vw;
+	margin		:auto;	
+	font-weight	:700;
+	color		:#303030;
+	font-size	:5vw;
+}
+
+.head_mymenu_comm{
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	left		:0;
+	right		:0;
+	margin		:auto;	
+	display		:inline-block;
+	height		:10vw;
+	width		:65vw;
+	background	:#fafafa;
+	border-radius:5vw;
+	box-shadow:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.6) inset;
+}
+
+.regist_btn{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:2vw;
+	margin			:auto;	
+	height			:10vw;
+	width			:10vw;
+	background		:#f17766;
+	border-radius	:1vw;
+	color			:#fafafa;
+	cursor			:pointer;
+}
+
+.regist_icon{
+	display		:inline-block;
+	position	:absolute;
+	top			:0.7vw;
+	left		:0.5vw;
+	right		:0.5vw;
+	text-align	:center;
+	margin		:auto;	
+	font-size	:4vw;
+	font-family	:at_icon;
+}
+
+.regist_txt{
+	display		:inline-block;
+	position	:absolute;
+	bottom		:0.3vw;
+	left		:1vw;
+	right		:1vw;
+	margin		:auto;	
+	text-align	:center;
+	font-size	:2.8vw;
+	font-weight	:600;
+}
+
+.head_mymenu_arrow{
+	display		:inline-block;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	left		:4vw;
+	margin		:auto;	
+	height		:3.5vw;
+	width		:3.5vw;
+	border-top	:1.5vw solid #303030;
+	border-left	:1.5vw solid #303030;
+	transform	:rotate(-45deg);
+}
+
+.notice_ttl{
+	display			:flex;
+	margin			:1vw auto 0 auto;
+	width			:86vw;
+	height			:6.5vw;
+	text-align		:left;
+	font-size		:0;
+}
+
+.notice_ttl_in{
+	display			:inline-block;
+	height			:6vw;
+	line-height		:6vw;
+	width			:14vw;
+	flex-basis		:14vw;
+	font-size		:3.5vw;
+	font-weight		:700;
+	border-top		:0.5vw solid #f17766;
+	border-left		:0.5vw solid #f17766;
+	border-right	:0.5vw solid #f17766;
+	color			:#f17766;
+	background		:#fafafa;
+	text-align		:center;
+	cursor:pointer;
+}
+
+.notice_sel{
+	background		:#f17766;
+	color			:#fafafa;
+}
+
+
+.notice_ttl_day{
+	display			:inline-block;
+	height			:6vw;
+	line-height		:6vw;
+	width			:38vw;
+	text-align		:center;
+	font-size		:4vw;
+	font-weight		:700;
+	flex:1;
+}
+
+.notice_box{
+	display			:none;
+	margin			:0 auto 3vw auto;
+	width			:85vw;
+	font-size		:4vw;
+	text-align		:left;
+	border			:0.5vw solid #f17766;
+	background		:#fafafa;
+	min-height:15vw;
+}
+
+#notice_box_1{display:block;}
+
+.notice_list{
+	display			:flex;
+	flex-direction: column;
+	margin			:0 auto;
+	width			:85vw;
+	font-size		:4vw;
+	text-align		:left;
+	border			:0.5vw solid #f17766;
+	background		:#fafafa;
+}
+
+
+.notice_box_sche{
+	display			:inline-block;
+	position		:relative;
+	height			:7vw;
+	line-height		:7vw;
+	width			:35vw;
+	font-size		:4vw;
+	text-align		:left;
+	color			:#fafafa;
+	margin			:1vw;
+	background		:#0000d0;	
+	border-radius	:1vw;
+	overflow		:hidden;
+}
+
+.notice_box_mail{
+	display			:inline-block;
+	position		:relative;
+	height			:5vw;
+	line-height		:5vw;
+	width			:82vw;
+	font-size		:4vw;
+	padding-left	:1vw;
+	border-bottom	:dashed 0.5vw #303030;
+	color			:#303030;
+	margin			:1vw;
+}
+
+
+
+.notice_box_birth{
+	display			:inline-block;
+	position		:relative;
+	line-height		:5vw;
+	width			:80vw;
+	font-size		:4vw;
+	color			:#303030;
+	margin			:0.5vw;
+}
+
+.notice_box_item2,.notice_box_item1{
+	display			:inline-block;
+	position		:relative;
+	height			:7vw;
+	line-height		:7vw;
+	flex			:1;
+	font-size		:4vw;
+	padding-left	:1vw;
+	margin			:0;
+	text-align		:left;
+	background		:#fafafa;
+	color			:#303030;
+}
+
+.notice_box_item1{
+	color:#000000;
+	text-shadow:1px 1px #000000;
+	background		:#e0ffff;
+}
+
+.notice_box_sel{
+	background:#fff0f8;
+	color:#000000;
+}
+
+
+.notice_list_in{
+	display			:inline-block;
+	height			:5.5vw;
+	line-height		:5.5vw;
+	width			:20vw;
+	font-size		:3.5vw;
+	font-weight		:700;
+	border			:0.5vw solid #f17766;
+	color			:#fafafa;
+	background		:#f17766;
+	text-align		:center;
+}
+
+
+.notice_box_log{
+	display			:inline-block;
+	margin			:0 auto 3vw auto;
+	width			:83vw;
+	font-size		:4vw;
+	background		:#fafafa;
+	text-align		:left;
+	padding			:1vw;
+	color			:#303030;
+	min-height		:30vw;
+	border			:0.5vw solid #f17766;
+}
+
+.notice_icon{
+	font-family		:at_icon;
+	display			:inline-block;
+	width			:5vw;
+	text-align		:center;
+}
+
+.notice_yet2{
+	display:none;
+}
+
+.notice_yet1{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:1vw;
+	margin			:auto;
+	display			:inline-block;
+	height			:5vw;
+	line-height		:5vw;
+	width			:5vw;
+	font-size		:5vw;
+	
+	font-family		:at_icon;
+	color			:#d00000;
+}
+
+
+.cal_box{
+	display			:inline-block;
+	height			:50vw;
+}
+
+.cal_table{
+	border-collapse: separate;
+	width			:99vw;
+	border			:none;
+	margin			:1vw auto;
+	table-layout	:fixed;
+	border-spacing	: 0.5vw;
+	background:#303030;
+}
+
+.cal_next,.cal_prev{
+	display			:inline-block;
+	font-family		:at_icon;
+	width			:8vw;
+	height			:10vw;
+	line-height		:10vw;
+	font-size		:6vw;
+	cursor			:pointer;
+	color:#fafafa;
+}
+
+.cal_table_ym{
+	position		:relative;
+	display			:inline-block;
+	width			:40vw;
+	vertical-align	:bottom;
+	text-align		:center;
+	height			:10vw;
+	line-height		:10vw;
+}
+
+.cal_top{
+	position		:relative;
+	height			:10vw;
+	vertical-align	:bottom;
+	text-align		:left;
+	background		:#ffc090;
+}
+
+.v_month{
+	display			:inline-block;
+	height			:10vw;
+	vertical-align	:bottom;
+	text-align		:center;
+	color			:#fafafa;
+	font-size		:8vw;
+	font-weight		:700;
+}
+
+.v_year{
+	display			:inline-block;
+	height			:10vw;
+	line-height		:14vw;
+	vertical-align	:bottom;
+	text-align		:center;
+	color			:#fafafa;
+	font-size		:4vw;
+	font-weight		:700;
+}
+
+
+.cal_days{
+	position		:absolute;
+	top				:83vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	display			:inline-block;
+	width			:96vw;
+	border			:1.5vw solid #C7BBA5;
+	background		:#f0eae5;
+	height			:38vw;
+}
+
+.cal_days_date{
+	position		:absolute;
+	display			:inline-block;
+	top				:0.5vw;
+	left			:1vw;
+	width			:34vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:3.5vw;
+	font-weight		:700;
+	border-bottom	:0.5vw solid #C7a090;
+	color			:303030;
+	text-align		:left;
+	padding			:0.5vw 1vw;
+}
+
+.cal_days_sche{
+	position		:absolute;
+	display			:inline-block;
+	top				:9vw;
+	left			:1vw;
+	width			:38vw;
+	height			:5vw;
+	line-height		:5vw;
+	color			:#0000d0;
+	text-align		:left;
+	font-size:0;
+}
+
+.cal_days_birth{
+	position		:absolute;
+	display			:inline-block;
+	top				:14vw;
+	left			:1vw;
+	width			:38vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	color			:#303030;
+	text-align		:left;
+	height			:24vw;
+	overflow-x		:hidden;
+	overflow-y		:scroll;
+}
+
+.cal_days_memo{
+	position		:absolute;
+	display			:inline-block;
+	top				:1vw;
+	left			:43vw;
+	border			:1px solid #303030;
+	transform		: scale(0.85,0.85);
+	transform-origin: top left;
+	width			:61.5vw;
+	height			:42vw;
+	resize			:none;
+	background		:#fafafa;
+	font-size		:4.5vw;
+	color			:303030;
+}
+
+i,.days_icon{
+	display			:inline-block;
+	width			:4vw;
+	height			:4vw;
+	line-height		:4vw;	
+	text-align		:center;
+	font-family		:at_icon;
+	font-size		:3.5vw;
+	vertical-align:top;
+}
+
+.days_birth{
+	display			:inline-block;
+	width			:38vw;
+	height			:5vw;
+	line-height		:5vw;	
+	text-align		:left;
+	font-size		:3.5vw;
+	overflow		:hidden;
+	vertical-align:top;
+}
+
+.days_day{
+	display			:inline-block;
+	width			:33vw;
+	height			:4vw;
+	line-height		:4vw;	
+	text-align		:left;
+	font-size		:3.5vw;
+	overflow		:hidden;
+	vertical-align:top;
+}
+
+.cal_td,.cal_th{
+	position		:relative;
+	height			:10vw;
+	text-align		:center;
+	font-size		:0;
+	background		:linear-gradient(#fcfcfc,#f8f8f8);
+	cursor			:pointer;
+}
+
+.cal_log{
+	position:absolute;
+	bottom:0;
+	left:0;
+	height:0;
+	width:13.5vw;
+}
+
+.c1,.c2,.c3{
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:4vw;
+	font-weight	:600;
+}
+
+
+.dy0,.dy1,.dy2,.dy3,.dy4,.dy5,.dy6,.dy7{
+	display		:inline-block;
+	position	:absolute;
+	top			:0;
+	left		:0;
+	font-size	:3vw;
+	font-weight	:600;
+	height		:5vw;
+	line-height	:5vw;
+	width		:6vw;
+	text-align	:center;
+}
+
+.dy0{
+	background	:#ffc0c0;
+}
+
+.dy6{
+	background	:#d0d0ff;
+}
+
+.dy7{
+	background	:#dddd30;
+}
+
+.dy1,.dy2,.dy3,.dy4,.dy5{
+	background		:#eeeeee;
+}
+
+.cal_title{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	left			:1vw;
+	height			:9vw;
+	width			:78vw;
+	text-align		:center;
+}
+
+.cal_btn{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	right			:1vw;
+	height			:8vw;
+	width			:20vw;
+	border-radius	:4vw;
+	background		:linear-gradient(#f0f0e0,#e0e0d0);
+}
+
+.cal_btn_on1,.cal_btn_on2{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	height			:7vw;
+	line-height		:7vw;
+	width			:7vw;
+	text-align		:center;
+	font-size		:5vw;
+	border-radius	:4vw;
+	font-family		:at_icon;
+	color			:#b0b0a0;
+}
+
+.cal_btn_on1{
+	left			:0.5vw;
+	color:#f17766;
+}
+
+.cal_btn_on2{
+	right			:0.5vw;
+}
+
+
+.cal_circle{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	left			:0vw;
+	height			:7vw;
+	width			:7vw;
+	border-radius	:4vw;
+	border			:0.5vw solid #f17766;
+	background		:rgba(255,0,200,0.2);
+}
+
+
+
+.menu_sel{
+	background		:#d03030 !important;
+}
+
+.menu_out{
+	background		:#008000 !important;
+}
+
+.menu_1{
+	display			:block;
+	position		:relative;
+	margin			:0 auto;
+	width			:70vw;
+	height			:10vw;
+	text-align		:left;
+	font-size		:0;
+	cursor			:pointer;
+	border-bottom	:0.5vw solid #fafafa;
+}
+
+.menu_i{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:0.5vw;
+	bottom			:0;
+	margin			:auto;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	font-size		:6vw;
+	color			:#fafafa;
+}
+
+.menu_s{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0;
+	left			:10vw;
+	top				:0;
+	margin			:auto;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	font-size		:4vw;
+	color			:#fafafa;
+	font-weight		:600;
+}
+
+.cal_i1,.cal_i2,.cal_i3,.cal_i4{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0.5vw;
+	width			:4vw;
+	height			:4vw;
+	line-height		:4vw;
+	text-align		:center;
+	font-size		:4vw;
+	color			:#dddddd;
+}
+
+.cal_i1{
+	left			:0.5vw;
+	bottom			:0.5vw;
+}
+
+.cal_i2{
+	right			:0.5vw;
+	top				:0.5vw;
+}
+
+.cal_i3{
+	right			:0.5vw;
+	bottom			:0.5vw;
+}
+
+.cal_i4{
+	left			:0;
+	right			:0;
+	bottom			:0.5vw;
+	margin			:auto;
+}
+
+.cal_set_btn{
+	position		:fixed;
+	left			:0;
+	bottom			:4vw;
+	background		:#fad0e0;
+	font-size		:4vw;
+}
+
+.customer_tag{
+	position		:relative;
+	width			:95vw;
+	margin			:0 auto;
+}
+
+.tag_btn{
+	position		:absolute;
+	right			:0vw;
+	top				:1.5vw;
+	border-radius	:1vw;
+	height			:7vw;
+	width			:13.5vw;
+	font-size		:3.2vw;
+	background		:linear-gradient(#f0f0f0,#dddddd);
+}
+
+.tag_set{
+	position		:absolute;
+	top				:3vw;
+	width			:18vw;
+	height			:5.5vw;
+	line-height		:5.5vw;
+	font-size		:4vw;
+	border-top		:1.5vw solid #ffa0c0;
+	border-left		:1.5vw solid #ffa0c0;
+	border-right	:1.5vw solid #ffa0c0;
+	border-radius	:5vw 5vw 0 0;
+	background		:#fafafa;
+	cursor			:pointer;
+	font-weight		:700;
+	z-index			:17;
+	color			:#ffa0c0;
+}
+
+.tag_set_ck{
+	color			:#f17766;
+	border-color	:#f17766;
+	background		:#fff0f5;
+	height			:8vw;
+	line-height		:7vw;
+	z-index			:18;
+}
+
+
+#tag_1{
+	left:0vw;
+}
+
+#tag_2{
+	left:19.5vw;
+}
+
+#tag_3{
+	left:39vw;
+}
+
+#tag_4{
+	left:58.5vw;
+}
+
+#tag_2_tbl,#tag_3_tbl{
+	display:none;
+}
+
+.customer_memo_tag{
+	width			:30vw;
+	border-bottom	:2px solid #ffe0f0;
+	padding-left	:1vw;
+	font-size		:4.5vw;
+}
+
+.customer_memo_item{
+	border-bottom	:2px solid #ffe0f0;
+	padding-left	:1vw;
+	font-size		:4vw;
+	height			:10vw;
+
+}
+
+.customer_log_item{
+	position		:relative;
+	font-size		:3.5vw;
+	height			:6vw;
+	line-height		:6vw;
+	width			:32vw;
+	background		:#fafaf0;
+	margin			:0.5vw;
+}
+
+.log_item_name{
+	position		:absolute;
+	left			:0.5vw;
+	top				:0;
+	bottom			:0;
+	font-weight		:600;
+}
+
+.log_item_price{
+	position		:absolute;
+	right			:0.5vw;
+	top				:0;
+	bottom			:0;
+	font-weight		:600;
+}
+
+
+.item_textbox{
+	height			:9vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:58vw;
+	border-color	:#f17766;
+}
+
+.item_group{
+	height			:7vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:43vw;
+	background		:#fafafa;
+}
+
+.item_basebox{
+	height			:8vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:50vw;
+	border-color	:#f17766;
+	padding:0 0.5vw;
+}
+
+.item_basebox_yy{
+	text-align		:right;
+	height			:7vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:11.5vw;
+	background		:#fafafa;
+	padding			:0;
+}
+
+
+.item_basebox_mm{
+	text-align		:right;
+	height			:7vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:6.5vw;
+	background		:#fafafa;
+	padding			:0;
+	padding			:0 0.5vw;
+}
+
+.item_basebox_ag{
+	text-align:-webkit-right;
+	text-align		:right;
+	height			:7vw;
+	margin			:0;
+	border			:none;
+	font-size		:4.5vw;
+	width			:8vw;
+	background		:none;
+	color			:#008000;
+	font-weight		:700;
+	padding			:0 1vw;
+}
+
+
+
+.customer_regist{
+	position		:absolute;
+	top				:120vh;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:96vw;
+	height			:58vw;
+	text-align		:center;
+	background		:#ffe0f0;
+	padding			:1vw;
+}
+
+.customer_regist_no{
+	display		:inline-block;
+	position		:absolute;
+	top				:2vw;
+	right			:1.5vw;
+	margin			:auto;
+	width			:6vw;
+	height			:6vw;
+	line-height		:6vw;
+	text-align		:center;
+	background		:#fafafa;
+	color			:#f010a0;
+	font-weight		:800;
+	cursor:pointer;
+}
+
+.customer_regist_ttl{
+	display		:block;
+	margin 		:0 auto;
+	text-align	:center;
+	font-size	:5vw;
+	height		:8vw;
+	line-height	:8vw;
+	color		:#f17766;
+	font-weight:700;
+}
+
+.customer_regist_tbl{
+	border			:0.5vw solid #303030;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	width			:70vw;
+	height			:60vw;
+	background		:#fafafa;
+}
+
+.customer_regist_tag{
+	width		:30vw;
+	height		:10vw;
+	padding		:1vw;
+	font-size	:5vw;
+}
+
+.customer_regist_set{
+	display		:inline-block;
+	width		:96vw;
+	height		:8vw;
+	line-height	:8vw;
+	font-size	:5vw;
+	background	:linear-gradient(#e0e0f0,#f17766);
+	color		:#fafafa;
+	font-weight	:700;
+	text-shadow	:1px 1px 0 rgba(30,30,30,0.5);
+	text-align	:center;
+	cursor:pointer;
+}
+
+
+
+
+.rd{
+	display:none;
+}
+
+.rd:checked+ label {
+	background		:#f17766;
+	color			:#fafafa;	
+} 
+
+
+.customer_sns{
+	width			:95vw;
+	height			:11vw;
+	line-height		:11vw;	
+	margin			:0 auto;
+	text-align		:center;
+	border			:none;
+	border-collapse	:collapse;
+}
+
+.customer_sns_1{
+	height			:11vw;
+	text-align		:center;
+}
+
+.customer_sns_2{
+	position		:relative;
+	height			:3vw;
+	text-align		:center;
+}
+
+.customer_sns_box{
+	display			:none;
+	position		:relative;
+	width			:95vw;
+	height			:12vw;
+	background		:#c0c0c0;
+	margin			:0 auto 3vw auto;
+	z-index			:11;
+}
+
+.customer_sns_tr{
+	display:none;
+}
+
+.sns_jump{
+	position		:absolute;
+	top				:1.5vw;
+	left			:1.5vw;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	background		:#c0c0c0;
+	border			:0.5vw solid #c0c0c0;
+	color			:#fafafa;
+	font-size		:6vw;
+	font-family		:at_icon;
+}
+
+.sns_btn{
+	position		:absolute;
+	top				:1.5vw;
+	left			:84vw;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	text-align		:center;
+	background		:linear-gradient(#ff9080,#f17766);
+	border			:0.5vw solid #f17766;
+	color			:#fafafa;
+	font-size		:5vw;
+	font-family		:at_icon;
+}
+
+.sns_text{
+	position		:absolute;
+	top				:1.5vw;
+	left			:12.5vw;
+	width			:70vw;
+	height			:9vw;
+	line-height		:9vw;
+	font-size		:4.5vw;
+	margin			:auto;
+	background		:#fafafa;
+	border			:0.5vw solid #303030;
+}
+
+
+.sns_arrow_a{
+	display			:none;
+	position		:absolute;
+	top				:0.5vw;
+	left			:0;
+	right			:0;
+	width			:5vw;
+	height			:5vw;
+	margin			:auto;
+	transform		:rotate(45deg);
+	background		:#c0c0c0;
+}
+
+
+.customer_sns_btn{
+	display			:inline-block;
+	width			:9vw;
+	height			:9vw;
+	border-radius	:50%;
+	line-height		:9vw;
+	text-align		:center;
+	color			:#fafafa;
+	background		:#c0c0c0;
+	font-family		:at_icon;
+	margin			:1vw;
+	font-size		:4.5vw;
+	cursor			:pointer;
+}
+
+
+
+.cousomer_marrige{
+	display			:inline-block;
+	width			:14vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#fafafa;
+	text-align		:center;
+	border			:0.5vw solid #f17766;
+	border-radius	:1vw;
+	font-size		:4vw;
+	color			:#f17766;	
+	font-weight		:700;
+	margin			:0 0.5vw;
+}
+
+
+.cousomer_blood{
+	display			:inline-block;
+	width			:10vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#fafafa;
+	text-align		:center;
+	border			:0.5vw solid #f17766;
+	border-radius	:1vw;
+	font-size		:4vw;
+	color			:#f17766;	
+	font-weight		:700;
+	margin			:0 0.5vw;
+}
+
+.customer_detail{
+	position		:fixed;
+	top				:0;
+	left			:100vw;
+	width			:100vw;
+	height			:100vh;
+	background		:linear-gradient(#ffe0f0,#ffe8f8);
+	z-index			:12;
+}
+
+
+.detail_age{
+	position		:absolute;
+	right			:0.5vw;
+	top				:0vw;
+	bottom			:0;
+	margin			:auto;
+	height			:8vw;
+	line-height		:8vw;
+	border-radius	:1vw;
+	background		:#d0ffe0;
+	font-size		:3vw;
+	font-weight		:600;
+	color			:#008000;
+	text-align		:center;
+	padding			:0 1vw; 
+}
+
+.customer_body{
+	position		:absolute;
+	top				:10vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:96vw;
+	overflow-y		:scroll;
+	overflow-x		:hidden;
+	background		:#fafafa;
+	z-index			:19;
+	border-top		:1vw solid #f17766;
+	border-bottom	:1vw solid #f17766;
+}
+
+.customer_memo{
+	width			:95vw;
+	margin			:1vw auto;
+	border-collapse	:separate;
+	border-spacing	:2vw 0;
+}
+
+.customer_base,.customer_regist_base{
+	width			:98vw;
+	border-collapse	:separate;
+	border-spacing	:1vw 0;
+	margin			:15.5vw auto 2vw auto;
+	background		:#fafafa;
+}
+
+.customer_regist_base{
+	width			:96vw;
+	margin			:0 auto 2vw auto;
+}
+
+.customer_base_img{
+	position		:relative;
+	width			:28vw;
+}
+
+.customer_detail_img{
+	position		:absolute;
+	top				:0vw;
+	left			:0vw;
+	bottom			:0vw;
+	right			:0vw;
+	width			:25vw;
+	height			:25vw;
+	margin			:auto;
+}
+
+.regist_img_pack{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:0vw;
+	bottom			:0vw;
+	right			:0vw;
+	width			:25vw;
+	height			:25vw;
+	margin			:auto;
+	overflow		:hidden;
+}
+
+
+.regist_img{
+	position		:absolute;
+	width			:25vw;
+	height			:25vw;
+}
+
+
+.customer_camera{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1.5vw;
+	right			:1.5vw;
+	width			:7vw;
+	height			:7vw;
+	line-height		:7vw;
+	text-align		:center;
+	font-size		:4vw;
+	background		:#303030;
+	color			:#fafafa;
+	opacity			:0.5;
+	border-radius	:50%;
+	font-family		:at_icon;
+}
+
+
+.customer_base_tag{
+	width			:14vw;
+	border-bottom	:0.5vw solid #f0d0e0;
+	padding-left	:1vw;
+	font-size		:4vw;
+}
+
+.customer_base_item{
+	position		:relative;
+	border-bottom	:0.5vw solid #f0d0e0;
+	padding-left	:1vw;
+	font-size		:4vw;
+	height			:9vw;
+}
+
+.customer_base_fav,.regist_fav{
+	border			:0.5vw solid #f0d0e0;
+	text-align		:center;
+	font-size		:0;
+}
+
+.customer_fav,.reg_fav{
+	display			:inline-block;
+	height			:8vw;
+	line-height		:8vw;
+	width			:5vw;
+	font-size		:4vw;
+	text-align		:center;
+	color			:#cccccc;
+	font-family		:at_icon;
+	cursor			:pointer;
+}
+
+.customer_list_fav{
+	position		:absolute;
+	top				:0.5vw;
+	right			:11vw;
+	width			:28vw;
+	height			:5vw;
+	text-align		:right;
+	font-size		:0;
+}		
+
+.customer_list_fav_icon{
+	display			:inline-block;
+	width			:5vw;
+	height			:5vw;
+	line-height		:5vw;
+	text-align		:center;	
+	color			:#c0c0c0;
+	font-size		:4vw;
+	font-family		:at_icon;
+}
+
+.fav_in{
+	color			:#ff3030;
+}
+
+
+.customer_list_group{
+	position		:absolute;
+	top				:0.5vw;
+	left			:60vw;
+	width			:20vw;
+	height			:8vw;
+}		
+
+.customer_list_name{
+	position	:absolute;
+	top			:5vw;
+	left		:19vw;
+	width		:60vw;
+	height		:5vw;
+	font-size	:4vw;
+	font-weight	:700;
+	color		:#9090ff;
+	text-align	:left;
+}		
+
+.customer_list_nickname{
+	position	:absolute;
+	bottom		:1vw;
+	left		:19vw;
+	width		:60vw;
+	height		:6vw;
+	font-size	:5vw;
+	font-weight	:800;
+	color		:#0000d0;
+	text-align	:left;
+}		
+
+.customer_list_img{
+	position	:absolute;
+	top			:0.5vw;
+	left		:0.5vw;
+	width		:17vw;
+	height		:17vw;
+}		
+
+.customer_list{
+	position	:relative;
+	width		:95vw;
+	height		:18vw;
+	display		:inline-block;
+	font-size	:0;
+	margin		:1vw;
+	border		:1px solid #303030;
+	background:#fafafa;
+}
+
+.customer_memo_td1{
+	position:relative;
+	width:90vw;
+	height:8vw;
+}
+
+.customer_memo_date{
+	display			:inline-block;
+	position		:absolute;
+	left			:1vw;
+	bottom			:1vw;
+	font-size		:3.5vw;
+	font-weight		:600;
+}
+
+.customer_memo_set{
+	display			:none;
+	position		:fixed;
+	right			:5vw;
+	bottom			:5vw;
+	width			:15vw;
+	height			:15vw;
+	line-height		:15vw;
+	font-size		:6vw;
+	border-radius	:50%;
+	color			:#fafafa;
+	opacity			:0.9;
+	background		:#008020;
+	font-family		:at_icon;
+	cursor			:pointer;
+	z-index			:22;
+}
+
+
+.customer_memo_del,.customer_memo_chg{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:8vw;
+	margin			:auto;
+	text-align		:center;
+	font-size		:4vw;
+	background		:#606090;
+	color			:#fafafa;
+	font-weight		:600;
+	border-radius	:1vw;
+	cursor			:pointer;
+	font-family		:at_icon;
+}
+
+.customer_memo_del{
+	right:2vw;
+}
+.customer_memo_chg{
+	right:12vw;
+}
+
+.customer_memo_del_back_in{
+	display:none;
+	border			:0.5vw solid #303030;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+	background		:#fafafa;
+	color			:#303030;
+	font-size		:4vw;
+	text-align		:center;
+	padding			:1vw;
+	position		:absolute;
+	top				:50vw;
+	left			:0;
+	right			:0;
+	margin			:2vw auto;	
+	width			:60vw;
+	height			:30vw;
+}
+
+.customer_memo_del_back_in_btn{
+	position		:absolute;
+	bottom			:3vw;
+	left			:0;
+	right			:0;
+	margin			:auto;	
+	text-align		:center;
+	width			:58vw;
+}
+
+.customer_memo_td2{
+	padding			:1vw;
+	font-size		:3.5vw;
+	line-height		:5vw;
+	background		:#fafafa;
+	min-height		:20vw;
+	border-top		:1px solid #906000;
+	border-bottom	:3px solid #906000;
+}
+
+.customer_memo_txt_new{
+	width			:90vw;
+	border			:0.5vw solid #aaaaaa;
+	padding			:1vw;
+	font-size		:4.5vw;
+	background		:#fafafa;
+	margin			:1vw auto 3vw auto;
+	min-height		:20vw;
+	resize			:none;
+}
+
+.customer_memo_new_txt{
+	position		:absolute;
+	top				:15vw;
+	left			:0vw;
+	right			:0vw;
+	margin			:auto;
+	font-size		:4.5vw;
+	width			:80vw;
+	height			:50vw;
+	resize			:none;
+	padding			:1vw;
+}
+
+.customer_memo_in{
+	position		:fixed;
+	top				:100vh;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:90vw;
+	height			:70vw;
+	background		:#dafaca;
+	text-align		:center;
+	border-radius	:1vw
+}
+
+.customer_memo_new_date{
+	display			:inline-block;
+	position		:absolute;
+	left			:7vw;
+	top				:8vw;
+	font-size		:4vw;
+	font-weight		:600;
+}
+
+.customer_memo_new_set,.customer_memo_new_del{
+	display			:inline-block;
+	position		:absolute;
+	top				:2vw;
+	height			:10vw;
+	line-height		:10vw;
+	width			:10vw;
+	margin			:auto;
+	text-align		:center;
+	font-size		:6vw;
+	background		:#606090;
+	color			:#fafafa;
+	border-radius	:1vw;
+	cursor			:pointer;
+	font-family		:at_icon;
+}
+
+.customer_memo_new_set{
+	right			:19vw;
+}
+
+.customer_memo_new_del{
+	right			:6vw;
+}
+
+
+.main{
+	left			:0;
+	top				:14vw;
+	display			:inline-block;
+	background		:#f0f0f0;
+	width			:100vw;
+	max-width		:650px;
+	margin-top:14.5vw;
+}
+
+.main_sch{
+	position		:fixed;
+	left			:0;
+	top				:14vw;
+	display			:inline-block;
+	background		:#fafafa;
+	width			:100vw;
+	min-height		:100vh;
+	max-width		:650px;
+	overflow		:hidden;
+}
+
+
+
+.login_box{
+	display			:inline-block;
+	margin			:3vh auto;
+	width			:70vw;
+	border			:1vw solid #ffd0d0;
+	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.6);
+	border-radius	:2vw;
+	padding			:1vw;
+	background		:linear-gradient(#fff5f8,#fff0f4);
+}
+
+.login_name{
+	display			:inline-block;
+	width			:60vw;
+	font-size		:3.5vw;
+	font-weight		:600;
+	margin			:2vw auto 0.5vw auto ;
+	text-align		:left;
+}
+
+.login{
+	width			:60vw;
+	font-size		:5vw;
+	font-weight		:600;
+	margin			:0 auto 2vw auto;;
+	height			:10vw;
+	padding-left	:1vw;
+}
+
+.login_btn{
+	width			:60vw;
+	font-size		:4vw;
+	font-weight		:800;
+	margin			:5vw auto 1vw auto;
+	height			:10vw;
+	background		:linear-gradient(#ffe8f8,#ffe0f0);
+	color			:#303030;
+}
+
+.on{
+	background:#d00000 !important;
+}
+
+.head_mymenu{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:2vw;
+	bottom			:0; 
+	margin			:auto;
+
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
+
+	text-align		:center;
+	background		:#f17766;
+	color			:#ffffff;
+	border-radius	:1vw;
+	cursor			:pointer;
+}
+
+.mymenu_a{
+	position		:absolute;
+	top				:2vw;
+	left			:1vw;
+	height			:1vw;
+	width			:8vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+	transform-origin:right;
+}
+
+.mymenu_b{
+	position		:absolute;
+	top				:4.5vw;
+	left			:1vw;
+	height			:1vw;
+	width			:8vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+}
+
+.mymenu_c{
+	position		:absolute;
+	top				:7vw;
+	left			:1vw;
+	height			:1vw;
+	width			:8vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+	transform-origin:right;
+}
+
+.blog_set{
+	width			:60vw;
+	height			:10vw;
+	font-size		:6vw;	
+	font-weight		:600;
+	color			:#f0f0f0;
+	text-shadow		:1px 1px 0 rgba(30,30,30,0.8);
+	background		:linear-gradient(#00a000,#008000);
+}
+
+.blog_write{
+	display		:none;
+	width		:97vw;
+	background	:#f0f0f0;
+	margin		:1vw auto;
+	text-align	:left;
+	height		:115vw;
+	background:#fff0fa;
+	box-shadow:0 2px 2px rgba(30,30,30,0.6);
+
+}
+
+.blog_box{
+	display:inline-block;
+	width:94vw;
+	text-align:left;
+	margin-bottom:3vw;
+}
+
+.blog_pack{
+	position	:relative;
+	display		:inline-block;
+	width		:95vw;
+	margin		:1vw auto;
+	font-size	:4vw;
+	text-align	:center;
+}
+
+.blog_title_tag{
+	display		:inline-block;
+	width		:91vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
+	text-align	:left;
+	font-weight	:600;
+}
+
+.blog_title_box{
+	width			:94vw;
+	height			:8vw;
+	font-size		:5vw;
+	margin-bottom	:3vw;
+}
+
+.blog_log_box{
+	width			:94vw;
+	height			:50vw;
+	font-size		:5vw;
+	overflow-y		:scroll;
+	resize			:none;
+	margin-bottom	:3vw;
+}
+
+.blog_4{
+	width			:18vw;
+	height			:7vw;
+	font-size		:5vw;
+	padding			:0 2vw;
+	background		:#fafafa;
+}
+
+.blog_2{
+	width			:10vw;
+	height			:7vw;
+	font-size		:5vw;
+	padding			:0 2vw;
+	background		:#fafafa;
+}
+
+.blog_table_set{
+	width			:92vw;
+	height			:20vw;
+	font-size		:0;
+}
+
+.blog_td_img{
+	position		:relative;
+	width			:22vw;
+	height			:22vw;
+	background:#909090;
+}
+
+.blog_img_pack{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:0vw;
+	bottom			:0vw;
+	right			:0vw;
+	width			:20vw;
+	height			:20vw;
+	margin			:auto;
+	overflow		:hidden;
+}
+
+.blog_img{
+	position		:absolute;
+	width			:20vw;
+	height			:20vw;
+}
+
+.blog_tag_td{
+	position:relative;
+	height:9vw;
+}
+
+.blog_set{
+	height			:10vw;
+	line-height		:10vw;
+	font-size		:5vw;
+	text-align		:center;
+}
+
+.tag_icon{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:0.5vw;
+	margin			:auto;
+	line-height		:8vw;
+	height			:8vw;
+	width			:6vw;
+	text-align		:center;
+	font-size		:5vw;
+	background		:#008000;
+	color:#fafafa;
+
+
+
+}
+.tag_ttl{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:6.5vw;
+	margin			:auto;
+	line-height		:8vw;
+	height			:8vw;
+	width			:12.5vw;
+	text-align		:center;
+	font-size		:5vw;
+	background		:#008000;
+	color:#fafafa;
+	font-weigh:700;
+}
+
+.blog_tag_sel{
+	height			:8vw;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:18.5vw;
+	margin			:auto;
+	font-size		:4.5vw;
+	width			:40vw;
+	background		:#fafafa;
+	padding-left	:1vw;
+}
+
+.blog_hist{
+	position		:relative;
+	display			:inline-block;
+	width			:96vw;
+	margin			:1vw auto;
+	border			:0.5vw solid #0000d0;
+	background		:#fafafa;
+}
+
+.blog_hist_in{
+	position		:relative;
+	display			:inline-block;
+	height			:16vw;
+	width			:96vw;
+	background		:#fafafa;
+}
+
+.hist_log{
+	display			:none;
+	margin			:1vw auto 0 auto;
+	width			:91vw;
+	border-top		:1px solid #303030;
+	padding			:1vw;
+	text-align		:left;
+	font-size		:3.5vw;
+	line-height		:6vw
+}
+
+.hist_img_in{
+	display			:inline-block;
+	height			:50vw;
+	width			:90vw;
+	margin			:1vw auto;
+	text-align:center;
+}
+
+.hist_img_on{
+	height			:50vw;
+	width			:50vw;
+	margin			:0vw auto;
+}
+
+.hist_img{
+	position		:absolute;
+	top				:0.5vw;
+	left			:0.5vw;
+	height			:15vw;
+	width			:15vw;
+}
+
+.hist_date{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:17vw;
+	border-bottom	:1px solid #0000d0;
+	height			:5vw;
+	line-height		:5vw;
+	font-size		:3vw;
+	padding:0.5vw;
+}	
+
+.hist_status{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:1vw;
+	right			:1vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	width:15vw;
+}
+
+.hist_0{
+	background:#0000d0;
+	color:#fafafa;
+	font-weight:600;
+}
+
+.hist_1{
+	background:#009000;
+	color:#fafafa;
+	font-weight:600;
+
+}
+
+.hist_2{
+	background:#aaaaaa;
+	color:#fafafa;
+	font-weight:600;
+
+}
+
+.hist_3{
+	background:#d00000;
+	color:#fafafa;
+	font-weight:600;
+
+}
+
+
+.hist_title{
+	display			:inline-block;
+	position		:absolute;
+	top				:7vw;
+	left			:17vw;
+	font-size		:4.5vw;
+	font-weight		:600;
+	color			:#303030;	
+}
+
+.hist_watch,.hist_comm{
+	display			:inline-block;
+	position		:absolute;
+	top				:0.5vw;
+	right			:1vw;
+	border			:1px solid #0000d0;
+	border-radius	:1vw;
+	height			:5vw;
+	width			:15vw;
+}
+
+.hist_i{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:0.5vw;
+	margin			:auto;
+	
+	color			:#0000d0;
+	font-size		:3.5vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:5vw;
+	text-align		:center	
+}
+
+.hist_watch_c,.hist_comm_c{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:0.5vw;
+	margin			:auto;
+	font-weight		:600;
+	color			:#0000d0;
+	font-size		:3.5vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:10vw;
+	text-align		:right;	
+}
+
+.hist_watch{
+	right			:18vw;
+}
+
+.hist_comm{
+	right			:1vw;
+}
+
+.set_back{
+	display			:none;
+	position		:fixed;
+	top				:-10vh;
+	left			:-10vw;
+	width			:120vw;
+	height			:120vh;
+	background		:rgba(30,30,30,0.7);
+	z-index			:120;
+}
+
+.img_open{
+	display			:inline-block;
+	position		:relative;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:2vw;
+	border-radius	:1.5vw;
+	border			:1px solid #cccccc;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	text-align		:center;
+	cursor			:pointer;
+}
+
+.img_box{
+	position		:fixed;
+	top				:100vh;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:90vw;
+	height			:125vw;
+	background		:#ffffff;
+	text-align		:center;
+	border-radius	:1vw
+}
+
+.img_box_in{
+	display			:inline-block;
+	position		:relative;
+	width			:80vw;
+	height			:80vw;
+	border			:0.5vw solid #606060;
+	overflow		:hidden;
+	text-align		:center;
+	background		:#f0f0f0;
+	margin			:5vw auto 0 auto;;
+}
+
+.img_box_in2{
+	display			:flex;
+	justify-content	:center;
+	width			:80vw;
+	height			:8vw;
+	text-align		:center;
+	margin			:3vw auto;
+}
+
+.img_box_in3{
+	display			:flex;
+	flex-wrap		:nowrap;
+	width			:80vw;
+	height			:10vw;
+	margin			:3vw auto;
+}
+
+.img_box_in4{
+	display			:block;
+	width			:80vw;
+	height			:10vw;
+	margin			:3vw auto;
+}
+
+.img_box_out1{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	left		:0;
+	width		:10vw;
+	height		:10vw;
+	z-index		:27;
+}
+
+.img_box_out2{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	left		:10vw;
+	width		:60vw;
+	height		:10vw;
+	border-bottom:1px solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out3{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0vw;
+	right		:0vw;
+	width		:10vw;
+	height		:10vw;
+	z-index		:27;
+}
+
+.img_box_out4{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:10vw;
+	left		:0;
+	width		:10vw;
+	height		:60vw;
+	border-right:1px solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out5{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:10vw;
+	right		:0;
+	width		:10vw;
+	height		:60vw;
+	border-left	:1px solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out6{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	left		:0;
+	width		:10vw;
+	height		:10vw;
+	z-index		:27;
+}
+
+.img_box_out7{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0vw;
+	left		:10vw;
+	width		:60vw;
+	height		:10vw;
+	border-top	:0.2vw solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out8{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0vw;
+	right		:0;
+	width		:10vw;
+	height		:10vw;
+	z-index		:27;
+}
+
+#cvs1{
+	position	:absolute;
+	background	:#f0f0f0;
+}
+
+.set_img{
+	position	:absolute;
+	top			:10vw;
+	left		:10vw;
+	overflow	:hidden;
+}
+
+input[type=range] {
+	-webkit-appearance:none;
+	background		:#ffffff;
+	height			:4vw;
+	width			:100%;
+	display			:inline-block;
+	border			:none;
+	margin			:2vw 0;
+	border-radius	:0;
+}
+
+input[type=range]::-webkit-slider-thumb{
+	-webkit-appearance:none;
+	background:#f17766;
+	height:7vw;
+	width:7vw;
+	border-radius:50%;
+	border:0.5vw solid #ffffff;
+}
+
+input[type=range]::-ms-tooltip{
+	display:none;
+}
+
+input[type=range]::-moz-range-track{
+	height:0;
+}
+
+input[type=range]::-moz-range-thumb{
+	background		:#f17766;
+	height			:7vw;
+	width			:7vw;
+	border-radius	:50%;
+	border			:0.5vw solid #ffffff;
+}
+
+.zoom_mi{
+	display				:inline-block;
+	height				:8vw;
+	flex-basis			:6vw;
+	border				:0.5vw solid #f17766;
+	border-radius		:3vw 0 0 3vw;
+	line-height			:8vw;
+	text-align			:center;
+	cursor				:pointer;
+	background			:#ffe0f0;
+	color				:#f17766;
+	font-size			:4vw;
+	font-weight			:600;
+}		
+
+.zoom_pu{
+	display				:inline-block;
+	height				:8vw;
+	flex-basis			:6vw;
+	border				:0.5vw solid #f17766;
+	border-radius		:0 3vw 3vw 0;
+	line-height			:8vw;
+	text-align			:center;
+	cursor				:pointer;
+	background			:#ffe0f0;
+	color				:#f17766;
+	font-size			:4vw;
+	font-weight			:600;
+}
+
+.zoom_rg{
+	display				:inline-block;
+	height				:8vw;
+	line-height			:8vw;
+	flex				:1;
+	border				:0.5vw solid #f17766;
+	background			:#ffe0f0
+}
+
+.zoom_box{
+	border				:0.5vw solid #f17766;
+	color				:#f17766;
+	display				:inline-block;
+	height				:8vw;
+	flex-basis			:13vw;
+	line-height			:8vw;
+	text-align			:center;
+	margin-left			:2vw;
+	background			:#ffffff;
+	font-weight			:600;
+	font-size			:4vw;
+}
+
+.upload_btn{
+	display			:inline-block;
+	position		:relative;
+	width			:33vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:0 2vw;
+	border-radius	:1.5vw;
+	border			:1px solid #cccccc;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	text-align		:left;
+	cursor			:pointer;
+	padding			:0 1.5vw;
+}
+
+.upload_icon_p{
+	display			:inline-block;
+	position		:relative;
+	width			:8vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-family		:at_icon;
+	font-size		:6vw;
+}
+
+.upload_icon{
+	display			:inline-block;
+	position		:relative;
+	width			:9vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-family		:at_icon;
+	font-size		:6vw;
+	margin			:0 1vw;
+	border-radius	:1.5vw;
+	border			:1px solid #cccccc;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	text-align		:center;
+	cursor			:pointer;
+}
+
+.upload_txt{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:10vw;
+	height			:8vw;
+	line-height		:8vw;
+	font-size		:4.5vw;
+}
+
+.img_rote{
+	display			:inline-block;
+	width			:7vw;
+	height			:7vw;
+	margin			:2vw 1vw;
+	font-size		:5vw;
+	border-radius	:1.5vw;
+	background		:linear-gradient(#f0f0f0,#d0d0d0);
+	line-height		:7vw;
+	text-align		:center;
+	cursor			:pointer;
+}
+
+.img_reset{
+	display			:inline-block;
+	width			:7vw;
+	height			:7vw;
+	line-height		:7vw;
+	margin			:2vw;
+	font-size		:5vw;
+	border-radius	:1.5vw;
+	border			:1px solid #ff3030;
+	background		:linear-gradient(#f09090,#ff3030);
+	color			:#fafafa;
+	text-align		:center;
+	cursor			:pointer;
+}
+
+.btn {
+	display			: inline-block;
+	position		: relative;
+	text-decoration	: none;
+	border-radius	: 1vw;
+	text-align		: center;
+	overflow		: hidden;
+	font-size		: 4vw;
+	font-weight		: 700;
+	height			: 8vw;
+	line-height		: 8vw;
+	border			: 1vw solid #ffffff;
+	cursor			: pointer;
+	padding:0;
+}
+
+.btn:active {
+	-webkit-transform: translateY(2px);
+	transform: translateY(2px);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+	background-image: linear-gradient(#eeeeee 0%, #dddddd 100%);
+}
+
+.btn_c1{
+	background: linear-gradient(#ff90a0 0%, #ffa0a0 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #d00000;
+	width: 20vw;
+}
+
+.btn_c2{
+	background: linear-gradient(#ddddff 0%, #ccccff 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #3030ff;
+	width: 20vw;
+}
+
+.btn_c3{
+	background: linear-gradient(#ffd090 0%, #ffc060 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #909030;
+	width: 20vw;
+}
+
+.btn_l1{
+	background: linear-gradient(#ff90a0, #ffa0a0);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #d00000;
+	width: 56vw;
+}
+
+.btn_l2{
+	background: linear-gradient(#ddddff 0%, #ccccff 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255, 0.66);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.28);
+	color: #3030ff;
+	width: 94vw;
+}
+
+.mail_hist{
+	position		:relative;
+	display			:inline-block;
+	height			:18vw;
+	width			:96vw;
+	margin			:1vw auto;
+	border			:0.5vw solid #cccccc;
+}
+
+.mail_detail{
+	display			:inline-block;
+	position		:fixed;
+	top				:0;
+	right			:-100vw;
+	width			:100vw;
+	height			:100vh;
+	background		:#f0f0f0;
+	text-align		:center;
+	font-size		:0;
+}
+
+
+.mail_detail_from{
+	position		:relative;
+	display			:inline-block;
+	width			:100vw;
+	height			:12vw;
+	margin			:0;
+	background		:#f0e0ff;
+	text-align		:left;
+}
+
+.mail_detail_img{
+	position		:absolute;
+	bottom			:1vw;
+	right			:1vw;
+	width			:10vw;
+	height			:10vw;
+}
+
+.mail_detail_name{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:4.5vw;
+	left			:9.5vw;
+	font-size		:4.5vw;;
+	font-weight		:600;
+	color			:#303030;
+}
+
+.mail_detail_address{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0.5vw;
+	left			:9.5vw;
+	font-size		:3.5vw;;
+	color			:#909090;
+}
+
+
+.mail_detail_back{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:0;
+	height			:12vw;
+	line-height		:12vw;
+	width			:8vw;
+	text-align		:center;
+	font-size		:5vw;
+	font-family		:at_icon;
+	background		:#f0e0ff;
+}
+
+.mail_detail_body{
+	display			:inline-block;
+	background		:#f0e0ff;
+	width			:95vw;
+	margin			:1.5vw auto;
+	border-radius	:0 0 2vw 2vw;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
+}
+
+.mail_detail_head{
+	position		:relative;
+	display			:inline-block;
+	width			:93vw;
+	height			:12vw;
+	margin			:1vw auto 0 auto;
+	text-align		:left;
+	background		:#f0e0ff;
+
+}
+
+.mail_detail_log{
+	background		:#fafafa;
+	display			:inline-block;
+	width			:89vw;
+	margin			:0 auto;
+	padding			:2vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	text-align		:left;
+
+}
+
+.mail_detail_date{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:2vw;
+	border-bottom	:1px solid #0000d0;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+	padding			:0.5vw;
+}	
+
+.mail_detail_icon{
+	display			:inline-block;
+	position		:absolute;
+	top				:0.5vw;
+	right			:1vw;
+	font-size		:0;
+}
+
+.mail_detail_title{
+	display			:inline-block;
+	position		:absolute;
+	top				:6vw;
+	left			:1.5vw;
+	font-size		:4.5vw;
+	font-weight		:600;
+	color			:#303030;	
+}
+
+.mail_detail_img_box{
+	position		:relative;
+	display			:inline-block;
+	width			:93vw;
+	height			:20vw;
+	margin			:0vw auto 1vw auto;
+	text-align		:center;
+	background		:#fafafa;
+}
+
+.mail_detail_tmp{
+	display			:inline-block;
+	height			:16vw;
+	width			:16vw;
+	background-size	:cover;
+	margin			:2vw 1vw;
+}
+
+.detail_modal{
+	position		:fixed;
+	top				:105vh;
+	left			:-5vw;
+	margin			:auto;
+	display			:inline-block;
+	width			:110vw;
+	height			:110vh;
+	background		:#303030;
+}
+
+.detail_modal_box{
+	position		:absolute;
+	top				:10vh;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	display			:inline-block;
+	width			:90vw;
+	height			:90vw;
+	background		:#606090;
+}
+
+.detail_modal_out{
+	position		:absolute;
+	top				:-3vw;
+	right			:-3vw;
+	display			:inline-block;
+	width			:10vw;
+	height			:10vw;
+	background		:#c0c0c0;
+	border			:1vw solid #303030;
+	font-weight		:800;
+	color			:#303030;
+	text-align		:center;	
+	line-height		:9vw;
+	font-size		:6vw;
+	border-radius	:50%;
+}
+
+.detail_modal_img{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	max-width		:80vw;
+	max-height		:80vw;
+	height			:auto;
+	width			:auto;	
+}
+
+.detail_modal_link{
+	display			:flex;
+	justify-content	: space-around;
+	position		:absolute;
+	bottom			:-15vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:40vw;
+	height			:10vw;
+	line-height		:10vw;
+	background		:#c0c0c0;
+	border-radius	:2vw;
+}
+
+.modal_link_point{
+	display			:inline-block;
+	margin			:auto 3vw;
+	width			:4vw;
+	height			:4vw;
+	border			:0.5vw solid #d5d5d5;
+	background		:linear-gradient(#e0e0e0,#d5d5d5);
+	border-radius	:50%;
+}
+
+.link_point_on{
+	background		:#fff000;
+	border			:0.5vw solid #fafa90;
+}
+
+.mail_yet{
+	background		:#ffffd0;
+}
+
+
+.mail_img{
+	position		:absolute;
+	top				:0.5vw;
+	left			:0.5vw;
+	height			:16vw;
+	width			:16vw;
+	border-radius	:50%;
+	border			:0.5vw solid #303030;
+
+}
+
+.mail_date{
+	display			:inline-block;
+	position		:absolute;
+	top				:0vw;
+	left			:19vw;
+	border-bottom	:1px solid #0000d0;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+	padding			:0.5vw;
+}
+
+
+.mail_title{
+	display			:inline-block;
+	position		:absolute;
+	top				:7vw;
+	left			:19vw;
+	font-size		:4.5vw;
+	font-weight		:600;
+	color			:#303030;	
+}
+
+.mail_name{
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0.5vw;
+	left			:25vw;
+	height			:5vw;
+	font-size		:4vw;
+	color			:#303030;	
+}
+
+.mail_al{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	bottom			:0;
+	right			:0;
+	height			:18vw;
+	line-height		:18vw;
+	width			:10vw;
+	font-size		:6vw;
+	background		:#e0e0e0;
+	color			:#a0a0a0;	
+	text-align		:center;
+}
+
+.mail_ck{
+	color			:#0000ff;
+}
+
+.mail_icon{
+	display			:inline-block;
+	position		:absolute;
+	top				:0.5vw;
+	right			:11vw;
+	font-size		:0;
+}
+
+.mail_res,.mail_tmp,.mail_star,.mail_gp{
+	font-family		:at_icon;
+	display			:inline-block;
+	color			:#bbbbbb;
+	font-size		:5vw;
+	height			:6vw;
+	line-height		:6vw;
+	width			:6vw;
+	text-align		:center;
+}
+
+.mail_gp{
+	position		:absolute;
+	bottom			:0.5vw;
+	left			:19vw;
+}
+
+.cal{
+	display			:flex;
+	position		:absolute;
+	top				:0;
+	left			:-100vw;
+	width			:300vw;
+}
+
+.sch_set,.sch_set_btn{
+	position		:relative;
+	display			:inline-block;
+	height			:10vw;
+	line-height		:10vw;
+	width			:30vw;
+	background		:linear-gradient(#ff9090,#d03030);
+	color			:#fafafa;
+	font-size		:6vw;
+	font-weight		:800;
+	text-align		:center;	
+	cursor			:pointer;
+	margin			:2vw 0.5vw;
+	vertical-align	:bottom;
+}
+
+.sch_set_btn{
+	width			:10vw;
+	font-family		:at_icon;
+	font-weight		:400;
+}
+
+.sch_set_arrow{
+	position		:absolute;
+	top				:2vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	display			:inline-block;
+	height			:3vw;
+	line-height		:3vw;
+	width			:3vw;
+	border-left		:1vw solid #fafafa;
+	border-bottom	:1vw solid #fafafa;
+	transform		:rotate(-45deg);
+}
+
+
+.cal_weeks{
+	position		:fixed; 
+	top				:100vh;
+	left			:0;
+	right			:0;
+	font-size		:0;
+	width			:87vw;
+	border			:1vw solid #ffc0e0;
+	box-shadow		:1vw 1vw 1vw rgba(30,30,30,0.5);
+	background		:#ffe0f0;
+	margin			:auto;
+}
+
+.cal_weeks_prev,.cal_weeks_next{
+	position		:relative;
+	width			:85vw;
+	margin			:1vw auto;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#ff50a0;
+	color			:#fafafa;
+	font-weight		:800;
+	text-shadow		:1px 1px 0 #d00000;
+	text-align		:center;
+	font-size		:4vw;
+}
+
+.cal_weeks_box_2{
+	position		:absolute;
+	top				:-73.5vw;
+	width			:84vw;
+	margin			:0 auto;
+	font-size:0;
+}
+
+.cal_weeks_box{
+	display			:inline-block;
+	position		:relative;
+	height			:74vw;
+	width			:85vw;
+	margin			:0 auto;
+	background		:#fafafa;
+	overflow		:hidden;
+}
+
+.cal_list{
+	position		:relative;
+	width			:84vw;
+	height			:10vw;
+	background		:#fafafa;
+	border-bottom	:0.5vw dashed #ffd0f0;
+}
+
+.cal_day{
+	position		:absolute;
+	bottom			:1vw;
+	left			:1vw;
+	width			:30vw;
+	height			:7vw;
+	line-height		:7vw;
+	background		:#fafafa;
+	font-size		:4vw;
+	font-weight		:600;
+	text-align		:left;
+	padding-left	:1vw;
+	color			:#909090;
+}
+
+.sch_time_in,.sch_time_out{
+	position	:absolute;
+	bottom		:1vw;
+	border		:0.5vw solid #909090;
+	width		:24vw;
+	height		:8vw;
+	line-height	:8vw;
+	background	:#fafafa;
+	font-size	:5vw;
+	font-weight	:600;
+	color		:#909090;
+	padding-left:1vw;
+	border-radius:0;
+}
+
+.d_sch_time_in,.d_sch_time_out{
+	position	:absolute;
+	bottom		:1vw;
+	border		:0.5vw solid #909090;
+	width		:22vw;
+	height		:8vw;
+	line-height	:8vw;
+	background	:#fff0fa;
+	font-size	:5vw;
+	font-weight	:600;
+	color		:#909090;
+	text-align	:left;
+	padding-left:1vw;
+}
+
+.sch_time_in,.d_sch_time_in{
+	left		:32vw;
+}
+
+.sch_time_out,.d_sch_time_out{
+	left		:58vw;
+}
+
+.sch_set_done{
+	display		:none;
+	position	:absolute;
+	top			:0;
+	left		:0;
+	right		:0;
+	bottom		:0;
+	width		:70vw;
+	height		:10vw;
+	line-height	:10vw;
+	text-align	:center;
+	margin		:auto;
+	border		:0.5vw solid #906000;
+	background	:#faf0e5;
+	color		:#0000d0;
+	padding		:1.5vw;
+	font-size	:4vw;
+	z-index		:40;
+	box-shadow	:0 0 2vw 2vw rgba(5255,255,255,0.5);
+}
+
+.log_item_set{
+	margin:0 auto;
+	border-collapse: collapse;
+}
+
+.log_td_top{
+	color		:#fafafa;
+	background	:#f17766;
+	position	:relative;
+	border		:1px solid #303030;
+	text-align	:center;
+	font-weight	:700;
+	font-size:4vw;
+}
+
+.log_td_order{
+	font-size	:5vw;
+	text-align	:right;
+	height		:5vw;
+	line-height	:5vw;
+	width		:8vw;
+	background	:#fafafa;
+	border		:1px solid #303030;
+}
+
+.log_td_color,.log_td_icon,.log_td_handle{
+	font-size	:3.5vw;
+	text-align	:center;
+	height		:5vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	width		:8vw;
+	border		:1px solid #303030;
+	cursor:pointer;
+}
+
+
+.log_td_name{
+	height		:5vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	width:36vw;
+	border		:1px solid #303030;
+}
+
+.log_td_price{
+	height		:5vw;
+	line-height	:5vw;
+	background	:#fafafa;
+	width		:21vw;
+	border		:1px solid #303030;
+}
+
+.color_picker{
+	position	:absolute;
+	display		:flex;
+	flex-wrap	:wrap;
+	width		:72vw;
+	height		:36vw;
+	font-size	:0;
+	background	:#fafafa;
+	border		:1vw solid #fafafa;
+	z-index		:20;	
+	box-shadow	:1px 1px 2px rgba(30,30,30,0.6);
+}
+
+.icon_picker{
+	position	:absolute;
+	display		:flex;
+	flex-wrap	:wrap;
+	width		:70vw;
+	height		:40vw;
+	font-size	:0;
+	background	:#fafafa;
+	border		:1vw solid #fafafa;
+	z-index		:20;	
+	box-shadow	:1px 1px 2px rgba(30,30,30,0.6);
+}
+
+.color_picker_list{
+	display		:inline-block;
+	flex-basis	:4vw;
+	height		:4vw;
+	margin		:1vw;
+	cursor:pointer;
+}
+
+.icon_picker_list{
+	display		:inline-block;
+	flex-basis	:6vw;
+	height		:6vw;
+	margin		:0.5vw;
+	cursor:pointer;
+
+	font-size		:5.5vw;
+	line-height		:6vw;
+	text-align		:center;
+	color			:#303030;
+	font-family		:at_icon;
+}
+
+.item_name{
+	width		:35vw;
+	height		:8vw;
+	font-size	:5vw;
+	text-align	:left;	
+	border		:0.5vw solid #fafafa;
+	padding:0;
+}
+
+.item_price{
+	width:20vw;
+	height:8vw;
+	font-size:5vw;
+	text-align:right;	
+	border:0.5vw solid #fafafa;
+	padding:0;
+}
+
+.item_color,.item_icon{
+	width		:8vw;
+	height		:8vw;
+	font-family	:at_icon;
+	font-size	:6vw;
+	line-height:8vw;
+	text-align:center;
+}
+
+
+/*-------------------------------------------------------------------*/
+@media screen and (min-width: 560px) {
+
+.head_mymenu{
+	display:none;
+}
+
+.menu{
+	width			:300px;
+	height			:400px;
+	padding			:20px;
+	border-radius	:20px;
+}
+
+.login{
+	border			:5px solid #ffd0d0;
+	box-shadow		:5px 5px 5px rgba(30,30,30,0.6);
+	border-radius	:10px;
+	margin			:50px auto;
+	padding			:5px;
+}
+
+.login_name{
+	font-size		:16px;
+	margin			:10px auto 5px 10px;
+}
+
+.login{
+	font-size		:18px;
+	margin			:0 auto 5px 15px;
+	height			:30px;
+}
+
+.login_btn{
+	width			:80%;
+	font-size		:20px;
+	margin			:15px auto;
+	height			:40px;
+}
+
+.menu_1{
+	width			:260px;
+	height			:50px;
+	line-height		:50px;
+	font-size		:16px;
+	border			:2px solid #fafafa;
+	padding-left	:10px;
+}
+
+
+}
+/*-------------------------------------------------------------------*/
+@media screen and (min-width: 960px) {
+
+.main{
+	left			:0;
+	right			:0;
+	top				:0;
+	display			:inline-block;
+	background		:#fafafa;
+	margin			:auto;
+}
+
+.menu{
+	width			:300px;
+	height			:400px;
+	padding			:20px;
+	border-radius	:20px;
+}
+
+.login_box{
+	border			:5px solid #ffd0d0;
+	box-shadow		:5px 5px 5px rgba(30,30,30,0.6);
+	border-radius	:10px;
+	margin			:50px auto;
+	padding			:5px;
+	width			:500px;
+}
+
+.login_name{
+	width			:400px;
+	font-size		:20px;
+	margin			:10px auto 5px 10px;
+}
+
+.login{
+	width			:400px;
+	font-size		:20px;
+	margin			:0 auto;
+	height			:40px;
+}
+
+.login_btn{
+	width			:400px;
+	font-size		:20px;
+	margin			:15px auto;
+	height			:40px;
+}
+
+.menu_1{
+	width			:260px;
+	height			:50px;
+	line-height		:50px;
+	font-size		:16px;
+	border			:2px solid #fafafa;
+	padding-left	:10px;
+}
+}
+
+/*-------------------------------------------------------------------*/
+.n1{
+	color	:#d00000;
+}
+
+.n2{
+	color	:#0000ff;
+}
+
+.n3{
+	color	:#009000;
+}
+
+.n4{
+	color	:#600090;
+}
+
+
+.ca1{
+	color		:#ff6060;
+}
+.ca3{
+	color		:#6060ff;
+}
+
+
+.c1{
+	background	:#ff6060;
+	color		:#fafafa;
+}
+.c2{
+	background	:#C7BBA5;
+	color		:#fafafa;
+}
+.c3{
+	background	:#90a0ff;
+	color		:#fafafa;
+}
+
+.cc1,.cc2,.cc3,.cc4,.cc5{
+	background		:linear-gradient(#fcfcfc,#f8f8f8);
+}
+
+
+.cc0{
+	background	:#fff0f0;
+	background	:linear-gradient(#fff0f0,#ffe0e0);
+}
+
+.cc6{
+	background	:#f0f0ff;
+	background	:linear-gradient(#f0f0ff,#e0e0ff);
+}
+
+.cc7{
+	background	:linear-gradient(#eeeed0,#ddddc0);
+	background	:#f0f000;
+}
+
+.cc8{
+	box-shadow:2px 2px 0 #ff0000, 2px -2px 0 #ff0000,-2px 2px 0 #ff0000, -2px -2px 0 #ff0000;
+}
+
+.nowmonth{
+	color:#303030;
+}
+
+.outof{
+	color:#c0c0c0;
+}
+
+.c_customer_line{
+	background:#00B900;
+}
+
+.c_customer_twitter{
+	background:#00acee;
+}
+
+.c_customer_facebook{
+	background:#3d5a99;
+}
+
+.c_customer_insta{
+	background:#ff7f50;
+}
+
+.c_customer_web{
+	background:#DD5144;
+}
+
+.c_customer_blog{
+	background:#804818;
+}
+
+.c_customer_tel{
+	background:#c0a0ff;
+}
+
+.c_customer_mail{
+	background:#ff80c0;
+}
+
+.jump_on{
+	background:linear-gradient(#ff9080,#f17766);
+	color:#fafafa;
+}
+
+.color_1{background:#303030;}
+.color_2{background:#000080;}
+.color_3{background:#008000;}
+.color_4{background:#9acd32;}
+.color_5{background:#800000;}
+.color_6{background:#500080;}
+.color_7{background:#b22222;}
+.color_8{background:#d2b48c;}
+.color_9{background:#c0c0c0;}
+.color_10{background:#ffd700;}
+.color_11{background:ffc0cb;}
+.color_12{background:#b0e0e6;}

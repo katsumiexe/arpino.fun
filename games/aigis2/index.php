@@ -147,8 +147,14 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <script src="./js/jquery.easing.1.3.js"></script>
 <script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
-var kt_t="<span class=\"kakumei_pow\">強</span><span class=\"kakumei_icon\"><?=$item[11]?></span><span class=\"kakumei_icon\"></span><span class=\"kakumei_icon\"><?=$item[0]?></span><span class=\"kakumei_low\">弱</span>"
-var kt_f="<span class=\"kakumei_pow\">強</span><span class=\"kakumei_icon\"><?=$item[0]?></span><span class=\"kakumei_icon\"></span><span class=\"kakumei_icon\"><?=$item[11]?></span><span class=\"kakumei_low\">弱</span>"
+$(function(){ 
+var Kt_t="<span class=\"kakumei_pow\">強</span><span class=\"howto_item\"></span><span class=\"kakumei_icon\"></span><span class=\"howto_item\"></span><span class=\"kakumei_low\">弱</span>"
+var Kt_f="<span class=\"kakumei_pow\">強</span><span class=\"howto_item\"></span><span class=\"kakumei_icon\"></span><span class=\"howto_item\"></span></span><span class=\"kakumei_low\">弱</span>"
+
+$('.kakumei_item1').html(Kt_t);
+$('.kakumei_item2').html(Kt_f);
+
+});
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -389,12 +395,12 @@ var kt_f="<span class=\"kakumei_pow\">強</span><span class=\"kakumei_icon\"><?=
 </div>
 
 	<div class="kakumei">
-		<span class="kakumei_ttl">革命!</span>
-		<span class="kakumei_txt">好感度アイテムの価値が逆転します</span>
-		<span class="kakumei_item1"></span>
-		<span class="kakumei_icon"></span>
-		<span class="kakumei_item2"></span>
-		<span class="kakumei_btn">閉じる</span>
+		<span class="kakumei_ttl">革命!</span><br>
+		<span class="kakumei_txt">好感度アイテムの価値が逆転しました</span><br>
+		<span class="kakumei_item1"></span><br>
+		<span class="kakumei_icon"></span><br>
+		<span class="kakumei_item2"></span><br>
+		<span class="kakumei_btn">閉じる</span><br>
 	</div>
 
 
