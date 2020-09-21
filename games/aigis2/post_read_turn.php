@@ -67,40 +67,62 @@ $unit["p"]	=$_POST["unit_p"];
 
 $card		=$_POST["data_e"];
 $log_id		=$_POST["log_id"];
+$kakumei	=$_POST["kakumei"]+0;
 
 $p=0;
 arsort($sort);
-
 foreach($sort as $a1 => $a2){
     $check[$p]	=$a2;
     $name[$p]	=$a1;
     $p++;
 } 
 
-if($check[0] >$check[1]){
-    $win=$name[0];
+if($kakumei==1){
+	if($check[0] <$check[1]){
+	    $win=$name[0];
 
-}elseif($check[1] >$check[2] && $check[2] >$check[3]){
-    $win=$name[2];
+	}elseif($check[1] <$check[2] && $check[2] <$check[3]){
+	    $win=$name[2];
 
-}elseif($check[1] == $check[2] && $check[2] >$check[3] && $check[3] >$check[4]){
-    $win=$name[3];
+	}elseif($check[1] == $check[2] && $check[2] <$check[3] && $check[3] <$check[4]){
+	    $win=$name[3];
 
-}elseif($check[1] == $check[2] && $check[2] == $check[3] && $check[3] > $check[4]){
-    $win=$name[4];
+	}elseif($check[1] == $check[2] && $check[2] == $check[3] && $check[3] < $check[4]){
+	    $win=$name[4];
 
-}elseif($check[2] == $check[3] && $check[3] > $check[4]){
-    $win=$name[4];
+	}elseif($check[2] == $check[3] && $check[3] < $check[4]){
+	    $win=$name[4];
+
+	}else{
+	    $win="l";
+		$sort["pts"]=0;
+		$sort["kakumei"]=0;
+	}
 
 }else{
-    $win="l";
-	$sort["z"]=$win;
-	$sort["pts"]=0;
+	if($check[0] >$check[1]){
+	    $win=$name[0];
+
+	}elseif($check[1] >$check[2] && $check[2] >$check[3]){
+	    $win=$name[2];
+
+	}elseif($check[1] == $check[2] && $check[2] >$check[3] && $check[3] >$check[4]){
+	    $win=$name[3];
+
+	}elseif($check[1] == $check[2] && $check[2] == $check[3] && $check[3] > $check[4]){
+	    $win=$name[4];
+
+	}elseif($check[2] == $check[3] && $check[3] > $check[4]){
+	    $win=$name[4];
+
+	}else{
+	    $win="l";
+		$sort["pts"]=0;
+		$sort["kakumei"]=1;
+	}
 }
 
-if($win!="l"){	
-	$sort["z"]=$win;
-}
+$sort["z"]=$win;
 
 if($unit_data[$unit[$win]][0] == $card || $unit_data[$unit[$win]][1] == $card){
 	$sort["pts"]=3;
@@ -123,12 +145,14 @@ if($unit_data[$unit[$win]][0] == $card || $unit_data[$unit[$win]][1] == $card){
 	$sort["pts"]=2;
 }
 
+$k_pt+=pow(2,$turn)*$kakumei;
+
 $sql=" UPDATE log_data SET";
-$sql.=" turn_{$turn}='{$win}'";
+$sql.=" turn_{$turn}='{$win}',";
+$sql.=" kakumei='{$k_pt}'";
 $sql.=" WHERE id='{$log_id}'";
 mysqli_query($mysqli,$sql);
-
-	$sort["sql"]=$sql;
+$sort["sql"]=$sql;
 
 echo json_encode($sort);
 ?>

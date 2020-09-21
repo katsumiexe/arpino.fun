@@ -1,6 +1,5 @@
 <?php
 include_once("./library/session.php");
-
 $item[11]="";
 $item[10]="";
 $item[9]="";
@@ -19,7 +18,6 @@ $item[0]="";
 
 $check[1]="";
 $check[2]="";
-
 $card[1]="";
 
 $pts["1"]=2;
@@ -136,9 +134,12 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Card_Game_Aigis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="カードゲームオンライン">
+
+
+<meta charset="UTF-8">
 <link rel="stylesheet" href="./css/main.css?_<?=date("YmdHi")?>">
 <style>
 </style>
@@ -146,6 +147,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <script src="./js/jquery.easing.1.3.js"></script>
 <script src="./js/main.js?_<?=date("YmdHi")?>"></script>
 <script>
+var kt_t="<span class=\"kakumei_pow\">強</span><span class=\"kakumei_icon\"><?=$item[11]?></span><span class=\"kakumei_icon\"></span><span class=\"kakumei_icon\"><?=$item[0]?></span><span class=\"kakumei_low\">弱</span>"
+var kt_f="<span class=\"kakumei_pow\">強</span><span class=\"kakumei_icon\"><?=$item[0]?></span><span class=\"kakumei_icon\"></span><span class=\"kakumei_icon\"><?=$item[11]?></span><span class=\"kakumei_low\">弱</span>"
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -162,7 +165,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	<div class="page_00">
 		<div class="first_play">
 			<div class="first_play_ttl">
-				<span>アイギスカードゲーム(仮)</span>
+				<span>婚活戦争Aigis</span>
 			</div>
 
 			<div id="labo1" class="labo_item">
@@ -171,12 +174,12 @@ if($res0 = mysqli_query($mysqli,$sql)){
 				<span class="labo_comm">-Log-</span>
 			</div>
 			<div class="labo_box">
-			<span class="labo_box_line">▼2020/07/04　メニューの追加</span><br>
-			<span class="labo_box_detail">
+			<span id="l20200704" class="labo_box_line">▼2020/07/04　メニューの追加</span>
+			<span id="b20200704" class="labo_box_detail">
 			・解析を追加しました。<br>
 			</span>	
-			<span class="labo_box_line">▼2020/07/03　表示の修正</span><br>	
-			<span class="labo_box_detail">
+			<span id="l20200703" class="labo_box_line">▼2020/07/03　表示の修正</span>
+			<span id="b20200703" class="labo_box_detail">
 			・他プレイヤーのアイテム表示がカードの下になってしまう個所を修正しました。<br>
 			・最終結果の表示に、挑戦した難易度も表示しました。<br>
 			</span>	
@@ -384,6 +387,17 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	</table>
 </div>
 </div>
+
+	<div class="kakumei">
+		<span class="kakumei_ttl">革命!</span>
+		<span class="kakumei_txt">好感度アイテムの価値が逆転します</span>
+		<span class="kakumei_item1"></span>
+		<span class="kakumei_icon"></span>
+		<span class="kakumei_item2"></span>
+		<span class="kakumei_btn">閉じる</span>
+	</div>
+
+
 <div class="pop_back">
 	<div class="pop_a">
 		<img src="" class="pop_a_1">

@@ -108,6 +108,7 @@ $sql.=" AND T.slug='{$val}'";
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 6";
 
+
 $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
 

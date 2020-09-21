@@ -108,7 +108,10 @@ $(function(){
 	    $('.score').fadeOut(500);
     });
 
-    $('#labo1,#labo5,.labo_box').on('click',function(){
+    $('#labo1,#labo5').on('click',function(){
+
+console.log($('+.labo_box',this).css('display'));
+
 		if($('+.labo_box',this).css('display')=='none'){
 		    $('.labo_box').slideUp(200);
 		    $('+.labo_box',this).slideDown(200);
@@ -118,7 +121,14 @@ $(function(){
 		}
 	});
 
+    $('.labo_box_line').on('click',function(){
+		Tag=$(this).attr('id').replace('l','b');
+	    $('.labo_box_detail').hide();
 
+		if($('#'+Tag).css('display')=='none'){
+		    $('#'+Tag).slideDown(200);
+		}
+	});
 
     $('.score_lv').on('click',function(){
 		Tag=$(this).attr('id').replace('s_','');
@@ -259,8 +269,6 @@ $(function(){
 		}else{
 			$('#'+Tmp_Id).slideUp(150);		
 		}
-
-
     });
 
     $('.td_b2').on('click','.p_pts_on',function(){
@@ -301,7 +309,6 @@ $(function(){
 			$('#set_d').delay(350).slideDown(500).text(Items[Up['d'][Turn]]);
 
 			GetN[Turn]=parseInt(data2.pts);
-
 			if(data2.z=='p'){
 				GetP[Turn]=data2.z;
 				$.when(
@@ -400,7 +407,9 @@ $(function(){
 				$('.main_card').delay(2000)
 				.animate({'right':W700},800).fadeOut(0)
 				.animate({'top':Size_t,'right':Size_r,'height':Size_h,'width':Size_w,'border-width':'10px','border-radius':'20px'},0);
+				$('.kakumei').delay(3000).animate({'top':'200px'},200,'easeOutBounce')
 			}
+
 
 			if(Turn<11){
 				$('.guard3').delay(2000).fadeOut(1000);

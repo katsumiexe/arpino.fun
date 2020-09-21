@@ -1,0 +1,518 @@
+a{
+	text-decoration:none;
+	color: initial;
+}
+
+.body{
+	background	:#101513;
+	text-align	:center;
+	margin		:0;
+	padding		:0;
+	line-height	:1.2;
+	color		:#333;
+	font-size	:0;
+	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	text-align	:center;
+	width		:99vw;
+}
+
+
+.menu{
+	display		:block;
+	text-align	:center;
+	width		:1050px;
+	margin		:0 auto;
+	font-size	:0;
+	padding:0;
+}
+
+.main{
+	display		:none;
+	background	:#051010;
+	text-align	:center;
+	width		:1050px;
+	min-height	:90vh;
+	margin		:0 auto;
+	padding-top	:80px;
+	font-size	:0;
+	vertical-align:top;
+}
+
+.main_top{
+	display		:inline-block;
+	text-align	:center;
+	width		:1050px;
+	min-height	:80vh;
+	margin		:0 auto;
+	font-size	:0;
+	vertical-align:top;
+}
+
+.head{
+	position	:fixed;
+	top			:0;
+	left		:0;
+	display		:flex;
+	width		:100vw;
+	height		:70px;
+	margin		:0 auto;
+	background	:#101213;
+	text-align	:center;
+	box-shadow	:5px 5px 5px rgba(100,50,0,0.6);
+	z-index		:10;
+	padding:0;
+}
+
+.menu-item{
+	display		:inline-block;
+	height		:50px;
+	width		:150px;
+	flex-basis	:150px;
+	line-height	:50px;
+	background	:#252018;
+	border		:2px solid #c8b880;
+	margin		:10px 5px;
+	text-align	:center;
+	overflow	:hidden;
+	cursor		:pointer;
+}
+
+.menu-item a{
+	color		:#c8b880;
+	font-size	:18px;
+	font-weight	:600;
+	display		:inline-block;
+	width		:100%;
+	height		:50px;
+	line-height	:50px;
+	text-align	:center;
+}
+
+.menu-item a:hover{
+	background	:linear-gradient(#e0d098,#c8b880);
+	color		:#fafafa;
+}
+
+
+.slide{
+	display		:inline-block;
+	position	:relative;
+	width		:1020px;
+	flex-basis	:1020px;
+	height		:380px;
+	margin		:10px auto;
+}
+
+.slide_img{
+	position	:absolute;
+	display		:inline-block;
+	top			:10px;
+	left		:0;
+	right		:0;
+	width		:800px;
+	height		:300px;
+	background	:#fafafa;
+	margin		:auto;
+}
+
+.slide_point{
+	position		:absolute;
+	display			:inline-block;
+	bottom			:15px;
+	left			:0;
+	right			:0;
+	width			:290px;
+	height			:40px;
+	background		:#303538;
+	margin			:auto;
+	border-radius	:10px;
+	text-align		:center;
+	border			:2px solid #c8b880;
+}
+
+.slide_dot{
+	display			:inline-block;
+	width			:16px;
+	height			:16px;
+	background		:#faf0a0;
+	margin			:12px;
+	border-radius	:8px;
+}
+
+.cast_tag{
+	display		:inline-flex;
+	width		:1024px;
+	text-align	:left;
+	height		:30px;
+	overflow	:hidden;
+}
+
+.cast_tag_box{
+	display			:inline-block;
+	position		:relative;
+	width			:121px;
+	flex-basis		:121px;
+	height			:30px;
+	line-height		:30px;
+	margin			:0;
+	background		:#302520;
+	text-align		:left;
+	font-size		:14px;
+	border-radius	:0 25px 0 0;
+	font-weight		:700;
+	color			:#c8b880;
+	border			:2px solid #c8b880;
+	padding-left	:5px;
+	cursor:pointer;
+}
+
+.cast_tag_box_sel{
+	background	:#c8b880;
+	color:#fafafa;
+}
+
+.main_b{
+	display		:inline-block;
+	border		:2px solid #c8b880;
+	width		:680px;
+	background	:#302520;
+	text-align	:left;
+	margin:0;
+	vertical-align:top;
+}
+
+.main_b_all{
+	display		:inline-block;
+	width		:1020px;
+	background	:#302520;
+	text-align	:left;
+	min-height:90vh;
+	border:2px solid #
+}
+
+.main_b_title{
+	display		:inline-block;
+	width		:666px;
+	height		:40px;
+	line-height	:40px;
+	color		:#fafafa;
+	background	:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	margin		:5px;
+	font-size	:18px;
+	font-weight	:600;
+	padding-left:5px;
+}
+
+.main_b_1{
+	position	:relative;
+	display		:inline-block;
+	width		:150px;
+	height		:200px;
+	background	:#000000;
+	margin		:5px;
+	border		:5px solid #fafafa;
+}
+
+.main_b_1_1{
+	display		:inline-block;
+	width		:150px;
+	height		:200px;
+}
+
+.main_b_1_2{
+	position	:absolute;
+	display		:inline-block;
+	bottom		:5px;
+	left		:5px;
+	width		:130px;
+	height		:50px;
+	background	:rgba(245,245,245,0.9);
+	padding		:5px;
+}
+
+.main_b_1_2_name{
+	display		:inline-block;
+	width		:130px;
+	height		:25px;
+	line-height	:25px;
+	color		:#606040;
+	font-size	:16px;
+	font-weight	:600;	
+}
+
+.main_b_1_2_sch{
+	display		:inline-block;
+	width		:130px;
+	height		:25px;
+	line-height	:25px;
+	color		:#3030c0;
+	font-size	:16px;
+	font-weight	:600;	
+}
+
+.main_b_1_3{
+	position	:absolute;
+	display		:none;
+	bottom		:5px;
+	left		:5px;
+	width		:136px;
+	height		:186px;
+	border		:2px solid #906000;
+	z-index		:11;	
+}	
+
+.main_c{
+	display		:inline-block;
+	width		:330px;
+	background	:#302520;
+	border		:2px solid #c8b880;
+	margin		:0 5px auto 10px;
+	padding		:0;
+	text-align	:center;
+}
+
+.main_c_1{
+	display		:inline-block;
+	width		:310px;
+	background	:#fafafa;
+	margin		:5px auto;
+	padding		:0;
+	border-bottom:2px solid #9060ff;
+	font-size	:14px;
+	text-align	:left;
+	box-shadow	:5px 5px 10px 10px rgba(200,200,200,0.4) inset,-5px -5px 10px 10px rgba(200,200,200,0.4) inset;
+	color		:#606060;
+}
+
+.main_d{
+	display		:inline-block;
+	width		:1020px;
+	background	:#302520;
+	text-align	:left;
+	min-height	:75vh;
+	border		:2px solid #c8b880;
+}
+
+
+.foot{
+	display		:inline-block;
+	width		:1020px;
+	height		:100px;
+	background	:#101213;
+	margin		:10px auto;
+	border		:2px solid #c8b880;
+	background	:#302520;
+}
+
+.access_map{
+	flex-basis	:650px;
+	height		:300px;
+	background	:#fafafa;
+	color		:#303030;
+}
+
+.access_map_in{
+	width:650px;
+	height:300px;
+}
+
+
+.access_table{
+	border		:2px solid #c8b880;
+	display		:flex;
+	width		:1020px;
+	margin		:5px auto;
+	height		:300px
+	position	:relative;
+	background	:#302520;
+}
+
+.access_sig{
+	display		:inline-block;
+	flex		:1;
+	height		:290px;
+	background	:#909090;
+	margin		:5px;
+}
+
+.footmark{
+	height	:20px;
+	width	:1020px;
+	margin	:0 auto 10px auto;
+	text-align:left;
+
+}
+
+.footmark_box{
+	display:inline-block;
+	height	:20px;
+	width	:80px;
+	margin	:0 3px;	
+	text-align:left;
+	cursor:pointer;
+}
+
+.box_a{
+	text-decoration:none;
+	border-bottom:1px solid #fafafa;
+}
+
+.footmark_icon{
+	display		:inline-block;
+	width		:18px;
+	height		:20px;
+	line-height	:20px;
+	text-align	:center;
+	font-size	:15px;
+	font-family	:at_icon;
+	color:#fafafa;
+}
+
+.footmark_text{
+	display		:inline-block;
+	width		:60px;
+	height		:20px;
+	line-height	:20px;
+	text-align	:left;
+	font-size	:15px;
+	color:#fafafa;
+}
+
+
+.blog_list_comm{
+	position:absolute;
+}
+
+.blog_list_title{
+	display		:inline-block;
+	width		:190px;
+	height		:26px;
+	line-height	:26px;
+	margin		:0 auto;
+	text-align	:left;
+	font-size	:20px;
+	font-weight:700;
+
+}
+.blog_list_tag{
+	display		:inline-block;
+	width		:190px;
+	height		:18px;
+	line-height	:18px;
+	margin		:0 auto;
+	text-align	:left;
+	font-size	:15px;
+}
+
+.blog_list_castimg{
+	position	:absolute;
+	left		:0;
+	top			:0;
+	right		:0;
+	margin		:auto;
+	width		:60px;
+}
+
+.blog_list_frame_b{
+	position	:absolute;
+	left		:0;
+	top			:0;
+	bottom		:0;
+	right		:0;
+	margin		:auto;
+	width		:50px;
+	height		:50px;
+	background	:#ffe0f0;
+	border		:3px solid #fafafa;
+	overflow	:hidden;
+	border-radius:50%;
+}
+
+.blog_list_frame_a{
+	position	:absolute;
+	left		:0;
+	top			:0;
+	width		:60px;
+	height		:60px;
+	overflow	:hidden;
+	border-radius:50%;
+	background:#ff80a0;
+}
+
+
+.blog_list_date{
+	position	:absolute;
+	left		:65px;
+	top			:5px;
+	font-size	:14px;
+}
+
+.blog_list_castname{
+	position	:absolute;
+	left		:65px;
+	bottom		:5px;
+	font-size	:16px;
+	font-weight	:600;
+}
+
+
+.blog_list_cast{
+	position	:relative;
+	display		:inline-block;
+	width		:190px;
+	height		:60px;
+	margin		:0 auto;
+	text-align	:left;
+	font-size	:0;
+}
+
+.blog_list_img{
+	width		:190px;
+	height		:190px;
+	margin		:10px 10px 2px 10px;
+}
+
+.blog_list{
+	display		:inline-block;
+	position	:relative;
+	width		:210px;
+	height		:315px;
+	margin		:8px;
+	text-align:center;
+	text-decoration:none;
+	background:#fafafa;
+}
+
+.blog_calender{
+	width			:100%;
+	border-collapse	:collapse;
+	table-layout	:fixed;
+	background:#fafafa;
+}
+
+.blog_calender_m{
+	text-align		:center;
+	border			:1px solid #303030;
+	height			:25px;
+	line-height		:25px;
+	font-size		:16px;
+	
+}
+.blog_calender_w{
+	text-align		:center;
+	border			:1px solid #303030;
+	height			:25px;
+	line-height		:25px;
+	font-size		:16px;
+
+}
+
+.blog_calender_d{
+	text-align		:center;
+	border			:1px solid #303030;
+	height			:40px;
+	line-height		:40px;
+	font-size		:16px;
+}
+
+
