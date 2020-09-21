@@ -13,6 +13,12 @@ $tag_icon[6]="";
 $tag_icon[7]="";
 $tag_icon[8]="";
 
+$pg=$_REQUEST["pg"];
+if($pg+0<1) $pg=1;
+
+$pg_st=($pg-1)*20;
+$pg_ed=($pg-1)*20+20;
+
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
 
@@ -46,13 +52,23 @@ $sql.=" AND T.slug='{$cast_list}'";
 $sql.=" AND T2.slug='{$tag_list}'";
 }
 $sql.=" ORDER BY P.post_date DESC";
-$sql.=" LIMIT 20";
+//$sql.=" LIMIT {$pg_st},21";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
+
+if($pg_ed>count($res)){
+	$pg_ed=count($res);
+
+}elseif($pg_ed<count($res)){
+	$pg_next=1;
+}
+
+$pg_max=ceil(count($res)/20);
+
+
 $updir = wp_upload_dir();
 
 foreach($res as $a2){
-
 	$blog[$n]=$a2;
 	$blog[$n]["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
 	$cal[date("d",strtotime($a2["post_date"]))+0]	=1;
@@ -238,7 +254,7 @@ get_header();
 		</div>
 	</div>
 
-	<?for($s=0;$s<count($all_cast);$s++){?>
+	<?for($s=$pg_st;$s<$pg_ed;$s++){?>
 		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">
 			<span class="all_cast_img"><img src="<?=$all_cast[$s]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 			<span class="all_cast_name"><?=$all_cast[$s]["name"]?></span>
@@ -250,9 +266,9 @@ get_header();
 </div>
 	<ul class="page_box">
 		<li class="page_n pg_f">«</li>
-		<li class="page_n">1</li>
-		<li class="page_n pg_n">2</li>
-		<li class="page_n">3</li>
+<?for($pp=1;$pp<$pg_max+1;$pp++){?>
+		<li class="page_n <?if($pp==$pg){?>pg_n<?}?>"><?=$pp?></li>
+<?}?>
 		<li class="page_n pg_b">»</li>
 	</ul>
 
