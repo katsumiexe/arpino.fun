@@ -38,5 +38,9 @@ $('.main').fadeIn(1500);
 		};
 	});
 
+	$('.cal1').on('click',function(){
+		Tmp=$(this).text();
+	});
+
 });
 
