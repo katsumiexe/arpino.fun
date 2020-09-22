@@ -137,7 +137,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<title>Card_Game_Aigis</title>
+<title>婚活戦争Aigis PVP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="カードゲームオンライン">
 
