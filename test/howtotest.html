@@ -4,11 +4,12 @@
 <title>占いコンシェルジュ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
 <script>
 var Tmp="";
+var Q=[];
+var A=[];
+
 $(function(){ 
 	$('#send_1st').on('click',function(){ 
 		var Key="";
@@ -50,8 +51,64 @@ $(function(){
 			$('.alert_key').html(Key); 
 			$('.alert_err').html(Err); 
 		}else{
-//			$('#sendform').submit(); 
+
+			Q[1]=$('input[name="q1"]:checked').val();
+			Q[2]=$('input[name="q2"]:checked').val();
+			Q[3]=$('input[name="q3"]:checked').val();
+			Q[4]=$('input[name="q4"]:checked').val();
+			Q[5]=$('input[name="q5"]:checked').val();
+			Q[6]=$('input[name="q6"]:checked').val();
+			Q[7]=$('input[name="q7"]:checked').val();
+
+			if($('input[name="q7"]:checked').val() ==1){
+				A[1]=$('input[name="a1"]:checked').val();
+				A[2]=$('input[name="a2"]:checked').val();
+				A[3]=$('input[name="a3"]:checked').val();
+				A[4]=$('input[name="a4"]:checked').val();
+				A[5]=$('input[name="a5"]:checked').val();
+				A[6]=$('input[name="a6"]:checked').val();
+				A[7]=$('input[name="a7"]:checked').val();
+				A[8]=$('input[name="a8"]:checked').val();
+			
+			}else if($('input[name="q7"]:checked').val() ==2){
+				A[1]=$('input[name="b1"]:checked').val();
+				A[2]=$('input[name="b2"]:checked').val();
+				A[3]=$('input[name="b3"]:checked').val();
+				A[4]=$('input[name="b4"]:checked').val();
+				A[5]=$('input[name="b5"]:checked').val();
+				A[6]=$('input[name="b6"]:checked').val();
+				A[7]=$('input[name="b7"]:checked').val();
+				A[8]=$('input[name="b8"]:checked').val();
+			
+			}else if($('input[name="q7"]:checked').val() ==3){
+				A[1]=$('input[name="c1"]:checked').val();
+				A[2]=$('input[name="c2"]:checked').val();
+				A[3]=$('input[name="c3"]:checked').val();
+				A[4]=$('input[name="c4"]:checked').val();
+				A[5]=$('input[name="c5"]:checked').val();
+				A[6]=$('input[name="c6"]:checked').val();
+				A[7]=$('input[name="c7"]:checked').val();
+				A[8]=$('input[name="c8"]:checked').val();
+			}
+				
+			$.post({
+				url:"post_howto_send.php",
+				data:{
+				'idcode'	:'<?=$idcode?>',
+				'q[]'		:Q,
+				'a[]'		:A,
+				},
+			}).done(function(data, textStatus, jqXHR){
+				$('.main_box').hide();
+				$('.send_box').fadeIn(500);
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
+
+
 		}
+	
 	});
 
 	$('#send_2nd').on('click',function(){ 
@@ -73,9 +130,31 @@ $(function(){
 		$('#b'+Tmp).css({'display':'inline-flex'});
 	});
 });
-</script>
 
+</script>
 <style>
+.main_box{
+}
+
+.resule_box,.yet_box,.send_box{
+	display		:none;
+	width		:100vw;
+	text-align	:center;
+}
+
+.box{
+	display			:inline-block;
+	font-size		:3.5vw;
+	width			:70vw;
+	line-height		:5vw;
+	background		:#fafafa;
+	color			:#303030;
+	margin			:5vw auto;
+	text-align		:left;
+	border			:1px solid #606060;
+	padding			:1vw;
+}
+
 .box_ttl{
 	display			:inline-block;
 	font-size		:4.5vw;
@@ -139,8 +218,6 @@ $(function(){
 	font-size:5vw;
 	font-weight:800;
 }
-
-
 
 .sel_a{
 	display			:inline-block;
@@ -400,31 +477,32 @@ input[type="checkbox"], input[type="radio"]{
 	padding		:1vw;
 	color		:#101010;
 	border		:0.5vw solid #d00000;
-	
 }
 
 </style>
 <body>
-<form id="sendform" action="./howto.php" method="post">
-<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">占い師のスタイル</span></div></h2>
+<div class="main_box">
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">占い師のスタイル</span></h2>
+
 <div class="fbox1">
-<input id="f1" type="radio" class="ck_a" name="q[1]"><label for="f1" class="sel_a">霊感霊視</label><input id="f2" type="radio" class="ck_b" name="q[1]"><label for="f2" class="sel_b">霊感タロット</label><br>
-<input id="f3" type="radio" class="ck_a" name="q[2]"><label for="f3" class="sel_a">優しく話す</label><input id="f4" type="radio" class="ck_b" name="q[2]"><label for="f4" class="sel_b">はっきり話す</label><br>
-<input id="f5" type="radio" class="ck_a" name="q[3]"><label for="f5" class="sel_a">早い鑑定</label><input id="f6" type="radio" class="ck_b" name="q[3]"><label for="f6" class="sel_b">じっくり鑑定</label><br>
-<input id="f7" type="radio" class="ck_a" name="q[4]"><label for="f7" class="sel_a">電話鑑定</label><input id="f8" type="radio" class="ck_b" name="q[4]"><label for="f8" class="sel_b">メール鑑定</label><br>
+<input id="f1" type="radio" class="ck_a" name="q1" value="1"><label for="f1" class="sel_a">霊感霊視</label><input id="f2" type="radio" class="ck_b" name="q1" value="2"><label for="f2" class="sel_b">霊感タロット</label><br>
+<input id="f3" type="radio" class="ck_a" name="q2" value="1"><label for="f3" class="sel_a">優しく話す</label><input id="f4" type="radio" class="ck_b" name="q2" value="2"><label for="f4" class="sel_b">はっきり話す</label><br>
+<input id="f5" type="radio" class="ck_a" name="q3" value="1"><label for="f5" class="sel_a">早い鑑定</label><input id="f6" type="radio" class="ck_b" name="q3" value="2"><label for="f6" class="sel_b">じっくり鑑定</label><br>
+<input id="f7" type="radio" class="ck_a" name="q4" value="1"><label for="f7" class="sel_a">電話鑑定</label><input id="f8" type="radio" class="ck_b" name="q4" value="2"><label for="f8" class="sel_b">メール鑑定</label><br>
 <div class="comm">
 占い師のタイプ、占い方法で近いと思われるものをお選びください。
 </div>
 </div>
-<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">お相手情報<span style="font-size:4vw;">　※恋愛相談の方</span></span></div></h2>
+
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">お相手情報<span style="font-size:4vw;">　※恋愛相談の方</span></span></h2>
 <div class="fbox1">
 	<span class="box_ttl">名前</span>
-	<input id="f9" type="radio" class="ck_a" name="q[5]"><label for="f9" class="sel_e">わかる</label>
-	<input id="f10" type="radio" class="ck_b" name="q[5]"><label for="f10" class="sel_f">不明</label><br>
+	<input id="f9" type="radio" class="ck_a" name="q5"><label for="f9" class="sel_e">わかる</label>
+	<input id="f10" type="radio" class="ck_b" name="q5"><label for="f10" class="sel_f">不明</label><br>
 
 	<span class="box_ttl">生年月日</span>
-	<input id="f11" type="radio" class="ck_a" name="q[6]"><label for="f11" class="sel_e">わかる</label>
-	<input id="f12" type="radio" class="ck_b" name="q[6]"><label for="f12" class="sel_f">不明</label><br>
+	<input id="f11" type="radio" class="ck_a" name="q6"><label for="f11" class="sel_e">わかる</label>
+	<input id="f12" type="radio" class="ck_b" name="q6"><label for="f12" class="sel_f">不明</label><br>
 
 <div class="comm">
 恋愛相談の方はお相手のお名前、生年月日がわかるかどうかをお選び下さい。<br>
@@ -432,91 +510,99 @@ input[type="checkbox"], input[type="radio"]{
 </div>
 </div>
 
-<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">相談内容詳細</span></div></h2>
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">相談内容詳細</span></h2>
 <div class="fbox1">
-	<input id="f13" type="radio" class="ck_c" name="q[7]" value="1" checked="checked"><label for="f13" class="sel_c">恋愛関係のご相談</label><br>
-	<input id="f14" type="radio" class="ck_c" name="q[7]" value="2"><label for="f14" class="sel_c">人間関係・生活のご相談</label><br>
-	<input id="f15" type="radio" class="ck_c" name="q[7]" value="3"><label for="f15" class="sel_c">その他</label><br>
+	<input id="f13" type="radio" class="ck_c" name="q7" value="1" checked="checked"><label for="f13" class="sel_c">恋愛関係のご相談</label><br>
+	<input id="f14" type="radio" class="ck_c" name="q7" value="2"><label for="f14" class="sel_c">人間関係・生活のご相談</label><br>
+	<input id="f15" type="radio" class="ck_c" name="q7" value="3"><label for="f15" class="sel_c">その他</label><br>
 
 	<div id="b1" class="fbox2">
-		<input id="f20" type="checkbox" class="ck_d" name="a[1]"><label for="f20" class="sel_d">相手の気持ち</label>
-		<input id="f21" type="checkbox" class="ck_d" name="a[2]"><label for="f21" class="sel_d">相性</label>
+		<input id="f20" type="checkbox" class="ck_d" name="a1" value="1"><label for="f20" class="sel_d">相手の気持ち</label>
+		<input id="f21" type="checkbox" class="ck_d" name="a2" value="1"><label for="f21" class="sel_d">相性</label>
 
-		<input id="f22" type="checkbox" class="ck_d" name="a[3]"><label for="f22" class="sel_d">縁結び</label>
-		<input id="f23" type="checkbox" class="ck_d" name="a[4]"><label for="f23" class="sel_d">復縁</label>
+		<input id="f22" type="checkbox" class="ck_d" name="a3" value="1"><label for="f22" class="sel_d">縁結び</label>
+		<input id="f23" type="checkbox" class="ck_d" name="a4" value="1"><label for="f23" class="sel_d">復縁</label>
 
-		<input id="f24" type="checkbox" class="ck_d" name="a[5]"><label for="f24" class="sel_d">離婚</label>
-		<input id="f25" type="checkbox" class="ck_d" name="a[6]"><label for="f25" class="sel_d">不倫</label>
+		<input id="f24" type="checkbox" class="ck_d" name="a5" value="1"><label for="f24" class="sel_d">離婚</label>
+		<input id="f25" type="checkbox" class="ck_d" name="a6" value="1"><label for="f25" class="sel_d">不倫</label>
 
-		<input id="f26" type="checkbox" class="ck_d" name="a[7]"><label for="f26" class="sel_d">同性愛</label>
-		<input id="f27" type="checkbox" class="ck_d" name="a[8]"><label for="f27" class="sel_d">略奪愛</label>
+		<input id="f26" type="checkbox" class="ck_d" name="a7" value="1"><label for="f26" class="sel_d">同性愛</label>
+		<input id="f27" type="checkbox" class="ck_d" name="a8" value="1"><label for="f27" class="sel_d">略奪愛</label>
 	</div>
 
 	<div id="b2" class="fbox2">
-		<input id="f30" type="checkbox" class="ck_d" name="b[1]"><label for="f30" class="sel_d">開運方法</label>
-		<input id="f31" type="checkbox" class="ck_d" name="b[2]"><label for="f31" class="sel_d">金運</label>
+		<input id="f30" type="checkbox" class="ck_d" name="b1" value="1"><label for="f30" class="sel_d">開運方法</label>
+		<input id="f31" type="checkbox" class="ck_d" name="b2" value="1"><label for="f31" class="sel_d">金運</label>
 
-		<input id="f32" type="checkbox" class="ck_d" name="b[3]"><label for="f32" class="sel_d">家庭問題</label>
-		<input id="f33" type="checkbox" class="ck_d" name="b[4]"><label for="f33" class="sel_d">対人関係</label>
+		<input id="f32" type="checkbox" class="ck_d" name="b3" value="1"><label for="f32" class="sel_d">家庭問題</label>
+		<input id="f33" type="checkbox" class="ck_d" name="b4" value="1"><label for="f33" class="sel_d">対人関係</label>
 
-		<input id="f34" type="checkbox" class="ck_d" name="b[5]"><label for="f34" class="sel_d">仕事</label>
-		<input id="f35" type="checkbox" class="ck_d" name="b[6]"><label for="f35" class="sel_d">子育て</label>
+		<input id="f34" type="checkbox" class="ck_d" name="b5" value="1"><label for="f34" class="sel_d">仕事</label>
+		<input id="f35" type="checkbox" class="ck_d" name="b6" value="1"><label for="f35" class="sel_d">子育て</label>
 
-		<input id="f36" type="checkbox" class="ck_d" name="b[7]"><label for="f36" class="sel_d">姓名判断</label>
-		<input id="f37" type="checkbox" class="ck_d" name="b[8]"><label for="f37" class="sel_d">セックスレス</label>
+		<input id="f36" type="checkbox" class="ck_d" name="b7" value="1"><label for="f36" class="sel_d">姓名判断</label>
+		<input id="f37" type="checkbox" class="ck_d" name="b8" value="1"><label for="f37" class="sel_d">セックスレス</label>
 	</div>
-
 	<div id="b3" class="fbox2">
-		<input id="f40" type="checkbox" class="ck_d" name="c[1]"><label for="f40" class="sel_d">前世</label>
-		<input id="f41" type="checkbox" class="ck_d" name="c[2]"><label for="f41" class="sel_d">ツインソウル</label>
+		<input id="f40" type="checkbox" class="ck_d" name="c1" value="1"><label for="f40" class="sel_d">前世</label>
+		<input id="f41" type="checkbox" class="ck_d" name="c2" value="1"><label for="f41" class="sel_d">ツインソウル</label>
 
-		<input id="f42" type="checkbox" class="ck_d" name="c[3]"><label for="f42" class="sel_d">四柱推命</label>
-		<input id="f43" type="checkbox" class="ck_d" name="c[4]"><label for="f43" class="sel_d">守護霊対話</label>
+		<input id="f42" type="checkbox" class="ck_d" name="c3" value="1"><label for="f42" class="sel_d">四柱推命</label>
+		<input id="f43" type="checkbox" class="ck_d" name="c4" value="1"><label for="f43" class="sel_d">守護霊対話</label>
 
-		<input id="f44" type="checkbox" class="ck_d" name="c[5]"><label for="f44" class="sel_d">波動修正</label>
-		<input id="f45" type="checkbox" class="ck_d" name="c[6]"><label for="f45" class="sel_d">送念</label>
+		<input id="f44" type="checkbox" class="ck_d" name="c5" value="1"><label for="f44" class="sel_d">波動修正</label>
+		<input id="f45" type="checkbox" class="ck_d" name="c6" value="1"><label for="f45" class="sel_d">送念</label>
 
-		<input id="f46" type="checkbox" class="ck_d" name="c[7]"><label for="f46" class="sel_d">パワーストーン</label>
-		<input id="f47" type="checkbox" class="ck_d" name="c[8]"><label for="f47" class="sel_d">ペットの気持ち</label>
+		<input id="f46" type="checkbox" class="ck_d" name="c7" value="1"><label for="f46" class="sel_d">パワーストーン</label>
+		<input id="f47" type="checkbox" class="ck_d" name="c8" value="1"><label for="f47" class="sel_d">ペットの気持ち</label>
 	</div>
-
 	<div class="comm">
 	ご希望される相談内容をお選び下さい。<br>
 	複数選択可
 	</div>
 </div>
-<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">備考</span></div></h2>
+<h2 class="box_ttl2"><div class="box_ttl_a1"></div><div class="box_ttl_a2"></div><div class="box_ttl_a3"></div><span class="box_ttl_a4">備考</span></h2>
 <div class="fbox1">
 	<textarea id="etc" name="log" class="fbox3"></textarea>
 <div class="comm">
-より詳しい詳細を希望される方はこちらにご記載下さい。
+詳しく詳細を希望される方はこちらにご記載下さい。
 </div>
 </div>
-
-
-
 </form>
-
 <div class="fbox1">
 	<button id="send_1st" type="button" class="btn_send">送信</button>
 </div>
 <br><br>
 <div class="back">
-<div class="alert">
-	<div class="alert_ttl">相談できない内容が含まれていませんか？</div>
-	<div class="alert_key"></div>
-	<div class="alert_err">
+	<div class="alert">
+		<div class="alert_ttl">相談できない内容が含まれていませんか？</div>
+		<div class="alert_key"></div>
+		<div class="alert_err"></div>
+		<div class="alert_comm">
+			占い師をご案内出来ない場合もございます。<br>
+			詳しくは<a href="">ご利用規約</a>をご確認下さい。
+		</div>
+		<button id="send_2nd" type="button" class="btn_send">このまま送信</button>　
+		<button id="send_not" type="button" class="btn_reset">修正する</button>
 	</div>
-	<div class="alert_comm">
-		占い師をご案内出来ない場合もございます。<br>
-		詳しくは<a href="">ご利用規約</a>をご確認下さい。
-	</div>
-	<button id="send_2nd" type="button" class="btn_send">このまま送信</button>　
-	<button id="send_not" type="button" class="btn_reset">修正する</button>
 </div>
 </div>
 
+<div class="send_box">
+	<div class="box">
+		ご利用ありがとうございます。<br>
+		選考までもう少々お待ちくださいませ。<br>
+	</div>
+</div>
+<?}?>
 
-
+<div class="result_box">
+</div>
+<div class="yet_box">
+	<div class="box">
+	ただ今お客様のご要望に沿った占い師を選考中です。<br>
+	お待たせして恐縮ですが、もう少々お待ちくださいませ。<br>
+	</div>
+</div>
 </body>
 </html>
