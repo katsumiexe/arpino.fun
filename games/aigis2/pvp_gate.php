@@ -60,29 +60,47 @@ if($res0 = mysqli_query($mysqli,$sql)){
 </script>
 </head>
 <body style="text-align:center;background:#888888">
-<div class="page_02">
+<div class="main">
+	<div class="page_00">
+		<div class="first_play">
+			<div class="first_play_ttl">
+				<span>婚活戦争Aigis</span>
+			</div>
 
-<input type="text" value="" name="pvp_name"><button type="button" value="">●</button>
-<table class="pvp_table">
-<tr>
-<td class="pvp_td_face"></td>
-<td class="pvp_td_main"></td>
-</tr>
-</table>
+			<table class="sel_table">
+			<tr>
+			<td colspan="2" class="pvp_box">
+				<span class="pvp_tag">Handle</span>
+				<input type="text" value="名無し王子" name="pvp_name" class="pvp_name">
+				<button type="button" value="" class="pvp_btn">●</button><br>
+			</td>
+			<?for($e=1;$e<11;$e++){?>
+			<?if($e % 2 == 1){?>
+			</tr><tr>
+			<? } ?>
+			<td id="s<?=$e?>" class="sel_td">				
+				<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
+				<div class="sel_td_b">
+				<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
+				<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
+				<span class="sel_b_1 <?if($unit[$e]["status_3"]==1){?>sel_on<?}?>"><?=$status[3]["name"]?></span>
+				<span class="sel_b_1 <?if($unit[$e]["status_4"]==1){?>sel_on<?}?>"><?=$status[4]["name"]?></span>
+				<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
+				</div>
+				<span class="sel_td_c"><?=$unit[$e]["name"]?></span>
+				</div>
+			<?}?>
+			</tr>
+			<tr>
+				<td class="page_01_guide" colspan="2">
+					お好きなユニットを一つ選んでください。
+				</td>
+			</tr>
+		</table>
 
-<button type="button" value="">落ち</button>
-<div class="pvp_gate_msg">5人揃い次第自動スタートします</div>
-
-</div>
-<div class="pop_back">
-	<div class="pop_a">
-		<img src="" class="pop_a_1">
-		<div class="pop_a_2">みりあ</div>
-		<span class="pop_a_3"></span>
-		<div id="reset" class="btn c1">取消</div> 
-		<div id="start" class="btn c2">選択</div>
 	</div>
 </div>
+
 
 <div class="talk_box">
 <div id="talk0" class="talk_detail">こんにちは</div>
