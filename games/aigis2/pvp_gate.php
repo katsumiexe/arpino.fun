@@ -1,46 +1,17 @@
 <?php
 include_once("./library/session.php");
 
-$sql	 ="SELECT * FROM score_data";
-$sql	.=" WHERE date>='{$base_date}'";
-$sql	.=" AND level='1'";
-$sql	.=" ORDER BY score DESC";
-$sql	.=" LIMIT 10";
+$sql	 ="SELECT id, `date`, sort,	name,face,turn FROM pvp_data";
+$sql	.=" WHERE turn='0'";
+$sql	.=" ORDER BY sort ASC";
+$sql	.=" LIMIT 5";
 
 if($res0 = mysqli_query($mysqli,$sql)){
 	while($row0 = mysqli_fetch_assoc($res0)){
-		if($row0["name"]){
-			$rank1[$n]["name"]=$row0["name"];
-		}else{
-			$rank1[$n]["name"]="名無し王子";
-		}
-		$rank1[$n]["date"]	=$row0["date"];
-		$rank1[$n]["score"]	=$row0["score"];
-		$rank1[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
-		$n++;	
+		$dat[]=$row0;
 	}
 }
-
-$n=1;
-$sql	 ="SELECT * FROM score_data";
-$sql	.=" WHERE date>='{$base_date}'";
-$sql	.=" AND level='2'";
-$sql	.=" ORDER BY score DESC";
-$sql	.=" LIMIT 10";
-if($res0 = mysqli_query($mysqli,$sql)){
-	while($row0 = mysqli_fetch_assoc($res0)){
-		if($row0["name"]){
-			$rank2[$n]["name"]=$row0["name"];
-		}else{
-			$rank2[$n]["name"]="名無し王子";
-		}
-		$rank2[$n]["date"]	=$row0["date"];
-		$rank2[$n]["score"]	=$row0["score"];
-		$rank2[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
-		$n++;	
-	}
-}
-
+$host=$dat[0]["id"]+0;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -54,54 +25,84 @@ if($res0 = mysqli_query($mysqli,$sql)){
 </style>
 <script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/jquery.easing.1.3.js"></script>
-<script src="./js/main.js?_<?=date("YmdHi")?>"></script>
-<script src="./js/pvp.js?_<?=date("YmdHi")?>"></script>
 <script>
+$(function(){ 
+	$('.pvp_btn').on('click',function(){
+		$('.sel_td,.page_01_guide').show();
+	});
+	$('.sel_td').on('click',function(){
+		$.post({
+			url:'post_pvp_start.php',
+			dataType: 'json',
+			data:{
+				'host':$('#host').val(),
+				'sort':$('#cnt').val(),
+				'unit':$(this).attr('id'),
+				'name':$('.pvp_name').val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('#pvp_'+data.sort).addClass('pvp_member_in0');
+			$('#pvp_'+data.sort).children('img').attr('src','./img/chr/chr'+data.face+'.png');
+			$('#pvp_'+data.sort).children('.pvp_member_name').text(data.name);
+			$('#cnt').val(data.face);
+			$('#myid').val(data.tmp_auto);
+			$('.sel_table').fadeOut(300);
+
+		});
+	});
+});
 </script>
 </head>
+
 <body style="text-align:center;background:#888888">
 <div class="main">
-	<div class="page_00">
-		<div class="first_play">
-			<div class="first_play_ttl">
-				<span>婚活戦争Aigis</span>
-			</div>
-
-			<table class="sel_table">
-			<tr>
-			<td colspan="2" class="pvp_box">
-				<span class="pvp_tag">Handle</span>
-				<input type="text" value="名無し王子" name="pvp_name" class="pvp_name">
-				<button type="button" value="" class="pvp_btn">●</button><br>
-			</td>
-			<?for($e=1;$e<11;$e++){?>
-			<?if($e % 2 == 1){?>
-			</tr><tr>
-			<? } ?>
-			<td id="s<?=$e?>" class="sel_td">				
-				<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
-				<div class="sel_td_b">
-				<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
-				<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
-				<span class="sel_b_1 <?if($unit[$e]["status_3"]==1){?>sel_on<?}?>"><?=$status[3]["name"]?></span>
-				<span class="sel_b_1 <?if($unit[$e]["status_4"]==1){?>sel_on<?}?>"><?=$status[4]["name"]?></span>
-				<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
-				</div>
-				<span class="sel_td_c"><?=$unit[$e]["name"]?></span>
-				</div>
-			<?}?>
-			</tr>
-			<tr>
-				<td class="page_01_guide" colspan="2">
-					お好きなユニットを一つ選んでください。
-				</td>
-			</tr>
-		</table>
-
+	<input id="cnt" type="hidden" value="<?=count($dat)?>">
+	<input id="host" type="hidden" value="<?=$host?>">
+	<input id="myid" type="hidden" value="">
+	<div class="pvp_ttl">
+		<span>婚活戦争Aigis</span>
 	</div>
+	<ul class="pvp_member">
+		<?for($n=0;$n<5;$n++){?>
+		<li id="pvp_<?=$n?>" class="pvp_member_in<?=$dat[$n]["turn"]?>">
+			<img src="./img/chr/chr<?=$dat[$n]["face"]?>.png" class="pvp_member_img">
+			<span class="pvp_member_name"><?=$dat[$n]["name"]?></span>
+			<span class="pvp_member_comm"><?=$dat[$n]["comm"]?></span>
+		</li>
+		<? } ?>
+	</ul>
+	<table class="sel_table">
+	<tr>
+		<td colspan="2" class="pvp_box">
+			<span class="pvp_tag">Handle</span>
+			<input type="text" value="名無し王子" name="pvp_name" class="pvp_name">
+			<button type="button" value="" class="pvp_btn">●</button><br>
+		</td>
+		<?for($e=1;$e<11;$e++){?>
+		<?if($e % 2 == 1){?>
+		</tr><tr>
+		<? } ?>
+		<td id="s<?=$e?>" class="sel_td">				
+			<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
+			<div class="sel_b">
+			<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_3"]==1){?>sel_on<?}?>"><?=$status[3]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_4"]==1){?>sel_on<?}?>"><?=$status[4]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
+			</div>
+			<span class="sel_c"><?=$unit[$e]["name"]?></span>
+			</div>
+		<?}?>
+		</tr>
+		<tr>
+			<td class="page_01_guide" colspan="2">
+				お好きなユニットを一つ選んでください。
+			</td>
+		</tr>
+	</table>
 </div>
-
-
 <div class="talk_box">
 <div id="talk0" class="talk_detail">こんにちは</div>
 <div id="talk1" class="talk_detail">よろしく！</div>
@@ -115,8 +116,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <div id="talk9" class="talk_detail">ヽ(`Д´)ﾉ</div>
 <div id="talk10" class="talk_detail">(;ﾟДﾟ)!</div>
 <div id="talk11" class="talk_detail">( >д<).;</div>
-
-
 <form id="reset_top" action="./index.php" method="post">
 </form>
 
