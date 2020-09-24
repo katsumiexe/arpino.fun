@@ -3258,6 +3258,7 @@ body {
 	height:12vw;
 	background:#eeeeee;
 	border:1px solid #909090;
+	margin:0.5vw auto;
 }
 
 .pvp_member_in0{
@@ -3300,5 +3301,9 @@ body {
 	padding-left	:1vw;
 }
 
+.pvp_remove{
+
+
+}
 
 }

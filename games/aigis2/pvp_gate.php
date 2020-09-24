@@ -26,10 +26,12 @@ $host=$dat[0]["id"]+0;
 <script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/jquery.easing.1.3.js"></script>
 <script>
+var Id=0;
 $(function(){ 
 	$('.pvp_btn').on('click',function(){
 		$('.sel_td,.page_01_guide').show();
 	});
+
 	$('.sel_td').on('click',function(){
 		$.post({
 			url:'post_pvp_start.php',
@@ -43,14 +45,75 @@ $(function(){
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
 			$('#pvp_'+data.sort).addClass('pvp_member_in0');
-			$('#pvp_'+data.sort).children('img').attr('src','./img/chr/chr'+data.face+'.png');
+			$('#pvp_'+data.sort).children('img').attr('src','./img/unit/unit_'+data.unit+'.png');
 			$('#pvp_'+data.sort).children('.pvp_member_name').text(data.name);
 			$('#cnt').val(data.face);
 			$('#myid').val(data.tmp_auto);
-			$('.sel_table').fadeOut(300);
-
+			$('.sel_table,.sel_td').fadeOut(300);
 		});
 	});
+
+
+
+	$('.pvp_remove').on('click',function(){
+		$.post({
+			url:'post_pvp_remove.php',
+			dataType: 'json',
+			data:{
+				'myid':$('#myid').val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('#host').val(data[0].id);
+			$('#cnt').val(data.length+1);
+			$('#myid').val('');
+			$('.sel_table').show();
+
+			for(i=0;i<5;i++){
+				if(data.length>i){
+					$('#pvp_'+i).addClass('pvp_member_in0');
+					$('#pvp_'+i).children('img').attr('src',data[i].img);
+					$('#pvp_'+i).children('.pvp_member_name').text(data[i].name);
+				}else{
+					$('#pvp_'+i).removeClass('pvp_member_in0');
+					$('#pvp_'+i).children('img').attr('src','./img/chr/chr0.png');
+					$('#pvp_'+i).children('.pvp_member_name').text('');
+				}
+			}
+		});
+	});
+
+/*
+    setInterval(function(){
+		$.post({
+			url:'post_pvp_auto.php',
+			data:{
+				'myid':$('#myid').val(),
+			},
+			dataType: 'json',
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+
+			for(i=0;i<5;i++){
+				if(data.length>i){
+					$('#pvp_'+i).addClass('pvp_member_in0');
+					$('#pvp_'+i).children('img').attr('src',data[i].img);
+					$('#pvp_'+i).children('.pvp_member_name').text(data[i].name);
+					$('#cnt').val(i+1);
+				}else{
+					$('#pvp_'+i).removeClass('pvp_member_in0');
+					$('#pvp_'+i).children('img').attr('src','./img/chr/chr0.png');
+					$('#pvp_'+i).children('.pvp_member_name').text('');
+				}
+			}
+		});
+
+		Id +=1;
+		if(Id>9) Id=0; 
+		$('#count').text(Id);
+    },10000);
+*/
+
 });
 </script>
 </head>
@@ -61,17 +124,8 @@ $(function(){
 	<input id="host" type="hidden" value="<?=$host?>">
 	<input id="myid" type="hidden" value="">
 	<div class="pvp_ttl">
-		<span>婚活戦争Aigis</span>
+		<span>婚活戦争Aigis</span><span id="count"></span><span class="pvp_remove">■</span>
 	</div>
-	<ul class="pvp_member">
-		<?for($n=0;$n<5;$n++){?>
-		<li id="pvp_<?=$n?>" class="pvp_member_in<?=$dat[$n]["turn"]?>">
-			<img src="./img/chr/chr<?=$dat[$n]["face"]?>.png" class="pvp_member_img">
-			<span class="pvp_member_name"><?=$dat[$n]["name"]?></span>
-			<span class="pvp_member_comm"><?=$dat[$n]["comm"]?></span>
-		</li>
-		<? } ?>
-	</ul>
 	<table class="sel_table">
 	<tr>
 		<td colspan="2" class="pvp_box">
@@ -102,6 +156,15 @@ $(function(){
 			</td>
 		</tr>
 	</table>
+	<ul class="pvp_member">
+		<?for($n=0;$n<5;$n++){?>
+		<li id="pvp_<?=$n?>" class="pvp_member_in pvp_member_in<?=$dat[$n]["turn"]?>">
+			<img src="./img/chr/chr<?=$dat[$n]["face"]?>.png" class="pvp_member_img">
+			<span class="pvp_member_name"><?=$dat[$n]["name"]?></span>
+			<span class="pvp_member_comm"><?=$dat[$n]["comm"]?></span>
+		</li>
+		<? } ?>
+	</ul>
 </div>
 <div class="talk_box">
 <div id="talk0" class="talk_detail">こんにちは</div>
