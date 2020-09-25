@@ -151,11 +151,15 @@ $(function(){
 var Kt_t="<span class=\"kakumei_pow\">強</span><span class=\"howto_item\"></span><span class=\"kakumei_icon\"></span><span class=\"howto_item\"></span><span class=\"kakumei_low\">弱</span>"
 var Kt_f="<span class=\"kakumei_pow\">強</span><span class=\"howto_item\"></span><span class=\"kakumei_icon\"></span><span class=\"howto_item\"></span></span><span class=\"kakumei_low\">弱</span>"
 
+var Kt_t="<span class=\"kakumei_box1\"><span class=\"kakumei_pow\">強</span><span class=\"p_pts p_pts_on\"></span></span><span class=\"kakumei_ar\"><span class=\"kakumei_ar1\"></span></span><span class=\"kakumei_box2\"><span class=\"p_pts p_pts_on\"></span><span class=\"kakumei_low\">弱</span></span>"
+var Kt_f="<span class=\"kakumei_box1\"><span class=\"kakumei_pow\">強</span><span class=\"p_pts p_pts_on\"></span></span><span class=\"kakumei_ar\"><span class=\"kakumei_ar1\"></span></span><span class=\"kakumei_box2\"><span class=\"p_pts p_pts_on\"></span></span><span class=\"kakumei_low\">弱</span></span>"
+
 $('.kakumei_item1').html(Kt_t);
 $('.kakumei_item2').html(Kt_f);
 
 });
 </script>
+
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171407668-1"></script>

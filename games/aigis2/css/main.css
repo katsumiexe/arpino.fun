@@ -2062,6 +2062,64 @@ body {
 	font-family:at_icon;
 }
 
+.kakumei_item1,.kakumei_item2{
+	display				:inline-flex;
+	width				:300px;
+	height				:50px;
+	line-height			:50px;
+
+	background			:#009000;
+	border-radius		:5px;
+	vertical-align		:middle;
+}
+
+.kakumei_box1,.kakumei_box2{
+	display			:inline-block;
+	height			:50px;
+	width			:140px;
+	flex-basis		:140px;
+	
+}
+.kakumei_pow,.kakumei_low{
+	display			:inline-block;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
+	text-align		:center;
+	color			:#fafafa;
+	font-weight		:800;
+	font-size		:16px;
+	border-radius	:20px;
+	margin:5px;
+	vertical-align:middle;
+}
+
+.kakumei_low{
+	background:#0000d0;
+}
+
+.kakumei_pow{
+	background:#d00000;
+
+}
+
+.kakumei_ar{
+	display		:inline-block;
+	height		:50px;
+	flex-basis	:20px;
+	position	:relative;
+	vertical-align:middle;
+}
+.kakumei_ar1{
+	display			:inline-block;
+	width			:0;
+	height			:0;
+	border			:25px solid transparent;
+	border-left		:20px solid #81C7D4;
+}
+
+
+
 
 /*-------------------------------------------------------------------*/
 @media (max-width: 619px) {
