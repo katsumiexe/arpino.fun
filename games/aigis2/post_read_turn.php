@@ -69,6 +69,7 @@ $card		=$_POST["data_e"];
 $log_id		=$_POST["log_id"];
 $kakumei	=$_POST["kakumei"]+0;
 
+
 $p=0;
 arsort($sort);
 foreach($sort as $a1 => $a2){

@@ -2041,20 +2041,29 @@ body {
 	left		:0;
 	right		:0;
 	top			:200px;
-	width		:400px;;
+	width		:350px;;
 	margin		:auto;
 	background:#90f0a0;
 }
 
 .kakumei_ttl{
-	font-size:30px;
-	font-weight:800;
+	display			:inline-block;
+	height			:40px;
+	line-height		:40px;
+	width			:150px;
+	font-size		:30px;
+	font-weight		:800;
+	margin:10px;
+	border-bottom:5px solid #9090ff; 
 }
 
 .kakumei_txt{
-	font-size:14px;
-	text-align:left;
-	line-height:20px;
+	display			:inline-block;
+	height			:40px;
+	line-height		:40px;
+	font-size		:14px;
+	text-align		:left;
+	line-height		:20px;
 }
 
 .kakumei_icon{
@@ -2063,24 +2072,39 @@ body {
 }
 
 .kakumei_item1,.kakumei_item2{
-	display				:inline-flex;
+	position			:relative;
+	display				:inline-block;
 	width				:300px;
 	height				:50px;
 	line-height			:50px;
-
+	font-size	:0;
 	background			:#009000;
 	border-radius		:5px;
 	vertical-align		:middle;
+	overflow:hidden;
 }
 
 .kakumei_box1,.kakumei_box2{
+	position		:relative;
 	display			:inline-block;
 	height			:50px;
+	line-height		:50px;
 	width			:140px;
-	flex-basis		:140px;
-	
+	vertical-align	:middle;
 }
+
+.kakumei_box1{
+	background		:#ff9090;
+}
+.kakumei_box2{
+	background		:#9090ff;
+
+}
+
 .kakumei_pow,.kakumei_low{
+	position		:absolute;
+	top:0;
+	bottom:0;
 	display			:inline-block;
 	width			:30px;
 	height			:30px;
@@ -2090,35 +2114,50 @@ body {
 	font-weight		:800;
 	font-size		:16px;
 	border-radius	:20px;
-	margin:5px;
-	vertical-align:middle;
+	margin:auto;
 }
 
 .kakumei_low{
 	background:#0000d0;
+	right:5px;
 }
 
 .kakumei_pow{
 	background:#d00000;
-
+	left:5px;
 }
 
 .kakumei_ar{
-	display		:inline-block;
-	height		:50px;
-	flex-basis	:20px;
-	position	:relative;
-	vertical-align:middle;
+	display			:inline-block;
+	height			:50px;
+	width			:20px;
+	position		:relative;
+	vertical-align	:middle;
+	background		:#9090ff;
 }
 .kakumei_ar1{
 	display			:inline-block;
 	width			:0;
 	height			:0;
 	border			:25px solid transparent;
-	border-left		:20px solid #81C7D4;
+	border-left		:20px solid #ff9090;
 }
 
+.kakumei_b1{
+	position		:absolute;
+	margin:auto;
+	top				:0;
+	bottom			:0;
+	left			:50px;
+}
 
+.kakumei_b2{
+	position		:absolute;
+	margin:auto;
+	top				:0;
+	bottom			:0;
+	right			:50px;
+}
 
 
 /*-------------------------------------------------------------------*/
