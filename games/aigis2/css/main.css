@@ -340,19 +340,9 @@ body {
 	position			:absolute;
 	top					:0;
 	left				:0;
-	width				:100%;
-	height				:100%;
-}
-
-.first_play{
-	position			:absolute;
-	top					:0;
-	left				:0;
-	margin				:auto;
 	display				:flex;
 	flex-wrap			:wrap;
 	width				:200px;
-	z-index				:80;
 	text-align			:left;
 	background			:#fafafa;
 	box-shadow			:2px 2px 5px rgba(30,30,30,0.6);
@@ -373,6 +363,101 @@ body {
 .first_play_level:hover{
 	background			:#fff0f8;
 }
+
+.labo_item{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:200px;
+	border				:2px solid #d0a090;
+	width				:200px;	
+	height				:20px;
+	font-size			:0;
+	text-decoration		:none;
+	background			:#b08020;
+	color				:#fafafa;
+}
+
+
+.labo_icon{
+	font-family			:at_icon;
+	display				:inline-block;
+	height				:20px;
+	line-height			:20px;
+	width				:30px;	
+	text-align			:center;
+	font-size			:16px;
+}
+
+.labo_comm{
+	display				:inline-block;
+	height				:20px;
+	line-height			:20px;
+	text-align			:left;
+	font-size			:15px;
+	width				:80px;
+}
+
+.labo_box{
+	display				:none;
+	text-align			:left;
+	border				:2px solid #d0a090;
+	width				:150px;
+}
+
+.labo_box_line{
+	display				:inline-block;
+	text-align			:left;
+	width				:136px;
+	height				:18px;
+	line-height			:18px;
+	font-size			:14px;
+	color				:#906000;
+	border-top			:solid 1px #906000;
+	border-bottom		:dashed 1px #906000;
+	padding				:5px;
+}
+	
+.labo_box_detail{
+	padding				:5px;
+	display				:none;
+	text-align			:left;
+	width				:136px;
+	font-size			:14px;
+	color				:#906000;
+}
+
+
+.first_play_ttl{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:200px;
+	border				:2px solid #d0a090;
+	background			:#d0a090;
+	width				:200px;	
+	height				:50px;
+	line-height			:50px;
+	font-size			:16px;
+	font-weight			:800;
+	text-shadow			:1px 1px 0px #906000;
+	text-align			:center;
+	color				:#fafafa;
+}
+
+.first_play_btm{
+	display				:inline-block;
+	position			:relative;
+	flex-basis			:200px;
+	border				:2px solid #d0a090;
+	background			:#d0a090;
+	width				:200px;	
+	height				:40px;
+	line-height			:40px;
+	font-size			:16px;
+	font-weight			:700;
+	text-align			:center;
+	color				:#fafafa;
+}
+
 
 .labo_item:hover{
 	background			:#d0a040;
@@ -663,11 +748,13 @@ body {
 }
 
 .page_02{
-	position	:absolute;
+	left		:0;
+	right		:0;
 	height		:100vh;
 	display		:none;
 	overflow	:hidden;
 }
+
 
 
 .myimg{
@@ -2161,11 +2248,36 @@ body {
 }
 
 
+.sel_table{
+	width			:620px;
+	table-layout	:fixed;
+	border-collapse	:separate;
+	border-spacing	:5px;
+	margin			:0 auto;
+}
+
+.sel_td{
+	position	:relative;
+	height		:80px;
+	border		:2px solid #303030;
+
+}
+.sel_td:hover{
+	border-color:	#d00000;
+
+}
+
+
+
 /*-------------------------------------------------------------------*/
 @media (max-width: 619px) {
 
 .main{
 	width:100vw;
+}
+
+.page_00{
+	width				:100vw;
 }
 
 .box_01{
@@ -3322,11 +3434,11 @@ body {
 }
 
 .sel_table{
-	width:99vw;
+	width			:99vw;
 	table-layout	:fixed;
 	border-collapse	:separate;
 	border-spacing	:2px;
-	margin:0 auto;
+	margin			:0 auto;
 }
 
 .sel_td{
@@ -3400,8 +3512,160 @@ body {
 }
 
 .pvp_remove{
-
-
 }
+
+
+
+
+
+.first_play_level{
+	flex-basis			:100vw;
+}
+
+.labo_item{
+	flex-basis			:100vw;
+	height				:8vw;
+}
+
+.labo_icon{
+	height				:8vw;
+	line-height			:8vw;
+	width				:8vw;	
+	font-size			:5vw;
+}
+
+.labo_comm{
+	height				:8vw;
+	line-height			:8vw;
+	font-size			:5vw;
+	width				:45vw;
+}
+
+.labo_box{
+	width				:100vw;
+}
+
+.labo_box_line{
+	width				:90vw;
+	height				:5vw;
+	line-height			:5vw;
+	font-size			:3.5vw;
+	padding				:1vw;
+}
+	
+.labo_box_detail{
+	padding				:1vw;
+	width				:90vw;
+	font-size			:3.5vw;
+}
+
+
+.first_play_ttl{
+	flex-basis			:100vw;
+	height				:12vw;
+	line-height			:12vw;
+	font-size			:4.5vw;
+}
+
+.first_play_btm{
+	flex-basis			:100vw;
+	width				:100vw;	
+	height				:10vw;
+	line-height			:10vw;
+	font-size			:4.5vw;
+}
+
+
+
+
+.kakumei{
+	position	:absolute;
+	left		:0;
+	right		:0;
+	top			:200px;
+	width		:350px;;
+	margin		:auto;
+	background:#90f0a0;
+}
+
+.kakumei_ttl{
+	display			:inline-block;
+	height			:40px;
+	line-height		:40px;
+	width			:150px;
+	font-size		:30px;
+	font-weight		:800;
+	margin:10px;
+	border-bottom:5px solid #9090ff; 
+}
+
+.kakumei_txt{
+	display			:inline-block;
+	height			:40px;
+	line-height		:40px;
+	font-size		:14px;
+	text-align		:left;
+	line-height		:20px;
+}
+
+.kakumei_icon{
+	font-size	:5vw;
+}
+
+.kakumei_item1,.kakumei_item2{
+	width				:80vw;
+	height				:10vw;
+	line-height			:50vw;
+	border-radius		:5px;
+}
+
+.kakumei_box1,.kakumei_box2{
+	height			:10vw;
+	line-height		:10vw;
+	width			:40vw;
+}
+
+
+.kakumei_pow,.kakumei_low{
+	width			:6vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	border-radius	:3vw;
+}
+
+.kakumei_low{
+	right1vw;
+}
+
+.kakumei_pow{
+	left:1vw;
+}
+
+.kakumei_ar{
+	height			:10vw;
+	width			:10vw;
+}
+.kakumei_ar1{
+	border			:50vw solid transparent;
+	border-left		:50vw solid #ff9090;
+}
+
+.kakumei_b1{
+	position		:absolute;
+	margin			:auto;
+	top				:0;
+	bottom			:0;
+	left			:50px;
+}
+
+.kakumei_b2{
+	position		:absolute;
+	margin			:auto;
+	top				:0;
+	bottom			:0;
+	right			:50px;
+}
+
 
 }

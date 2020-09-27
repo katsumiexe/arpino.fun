@@ -173,7 +173,6 @@ $('.kakumei_item2').html(Kt_f);
 <body style="text-align:center;background:#e0e0d0">
 <div class="main">
 	<div class="page_00">
-		<div class="first_play">
 			<div class="first_play_ttl">
 				<span>婚活戦争Aigis</span>
 			</div>
@@ -255,26 +254,37 @@ $('.kakumei_item2').html(Kt_f);
 				<a href="https://github.com/katsumiexe" class="icon_github"></a>
 				</span>
 			</div>
-		</div>
 	</div>
 
 <div class="page_01">
-<?for($e=1;$e<11;$e++){?>
-	<div id="s<?=$e?>" class="sel">
-	<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
-	<span class="sel_b">
-	<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_3"]==1){?>sel_on<?}?>"><?=$status[3]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_4"]==1){?>sel_on<?}?>"><?=$status[4]["name"]?></span>
-	<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
-	</span>
-	<span class="sel_c"><?=$unit[$e]["name"]?></span>
-	</div>
-<?}?>
-<div class="page_01_guide">
-お好きなユニットを一つ選んでください。<Br>
-</div>
+	<table class="sel_table">
+	<tr>
+		<td colspan="2" class="pvp_box">
+	婚活戦争アイギス
+		</td>
+		<?for($e=1;$e<11;$e++){?>
+		<?if($e % 2 == 1){?>
+		</tr><tr>
+		<? } ?>
+		<td id="s<?=$e?>" class="sel_td">				
+			<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
+			<div class="sel_b">
+			<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_3"]==1){?>sel_on<?}?>"><?=$status[3]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_4"]==1){?>sel_on<?}?>"><?=$status[4]["name"]?></span>
+			<span class="sel_b_1 <?if($unit[$e]["status_5"]==1){?>sel_on<?}?>"><?=$status[5]["name"]?></span>
+			</div>
+			<span class="sel_c"><?=$unit[$e]["name"]?></span>
+			</div>
+		<?}?>
+		</tr>
+		<tr>
+			<td class="page_01_guide" colspan="2">
+				お好きなユニットを一つ選んでください。
+			</td>
+		</tr>
+	</table>
 </div>
 
 <div class="page_02">
