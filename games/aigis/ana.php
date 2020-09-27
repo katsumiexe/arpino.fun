@@ -125,7 +125,7 @@ arsort($rank_charm);
 <?$cnt++;?>
 <tr>
 <td class="rank_u1"><?=$cnt?></td>
-<td class="rank_u2"><img src="./img/unit/unit_<?=$a3?>.png" class="rank_u2i"></td>
+<td class="rank_u2"><img src="./img/unit/unit_<?=$a3?>.png?t=<?=time()?>" class="rank_u2i"></td>
 <td class="rank_u3"><?=$unit[$a3]["name"]?></td>
 <td class="rank_u4"><?=$a4+0?></td>
 </tr>

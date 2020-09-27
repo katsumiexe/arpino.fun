@@ -320,7 +320,7 @@ body {
 .main{
 	position		:relative;;
     width			:100%;
-    max-width		:600px;
+    max-width		:850px;
     background		:#f0f0f0;
     margin			:0 auto;    
 	min-height		:100vh;
@@ -342,19 +342,16 @@ body {
 	left				:0;
 	width				:100%;
 	height				:100%;
-	background			:#102030;
-	z-index				:77;
 }
 
 .first_play{
 	position			:absolute;
-	top					:0.5vw;
+	top					:0;
 	left				:0;
-	right				:0;
 	margin				:auto;
 	display				:flex;
 	flex-wrap			:wrap;
-	width				:350px;
+	width				:200px;
 	z-index				:80;
 	text-align			:left;
 	background			:#fafafa;
@@ -365,10 +362,10 @@ body {
 .first_play_level{
 	display				:inline-block;
 	position			:relative;
-	flex-basis			:350px;
+	flex-basis			:200px;
 	border				:2px solid #d0a090;
-	width				:350px;	
-	height				:50px;
+	width				:200px;	
+	height				:25px;
 	font-size			:0;
 	text-decoration		:none;
 }
@@ -384,10 +381,10 @@ body {
 .labo_item{
 	display				:inline-block;
 	position			:relative;
-	flex-basis			:350px;
+	flex-basis			:200px;
 	border				:2px solid #d0a090;
-	width				:350px;	
-	height				:30px;
+	width				:200px;	
+	height				:20px;
 	font-size			:0;
 	text-decoration		:none;
 	background			:#b08020;
@@ -398,33 +395,33 @@ body {
 .labo_icon{
 	font-family			:at_icon;
 	display				:inline-block;
-	height				:30px;
-	line-height			:30px;
-	width				:50px;	
+	height				:20px;
+	line-height			:20px;
+	width				:30px;	
 	text-align			:center;
-	font-size			:25px;
+	font-size			:16px;
 }
 
 .labo_comm{
 	display				:inline-block;
-	height				:30px;
-	line-height			:30px;
+	height				:20px;
+	line-height			:20px;
 	text-align			:left;
-	font-size			:25px;
-	width				:140px;
+	font-size			:15px;
+	width				:80px;
 }
 
 .labo_box{
 	display				:none;
 	text-align			:left;
 	border				:2px solid #d0a090;
-	width				:350px;
+	width				:150px;
 }
 
 .labo_box_line{
 	display				:inline-block;
 	text-align			:left;
-	width				:336px;
+	width				:136px;
 	height				:18px;
 	line-height			:18px;
 	font-size			:14px;
@@ -438,7 +435,7 @@ body {
 	padding				:5px;
 	display				:none;
 	text-align			:left;
-	width				:336px;
+	width				:136px;
 	font-size			:14px;
 	color				:#906000;
 }
@@ -447,13 +444,13 @@ body {
 .first_play_ttl{
 	display				:inline-block;
 	position			:relative;
-	flex-basis			:350px;
+	flex-basis			:200px;
 	border				:2px solid #d0a090;
 	background			:#d0a090;
-	width				:350px;	
+	width				:200px;	
 	height				:50px;
 	line-height			:50px;
-	font-size			:26px;
+	font-size			:16px;
 	font-weight			:800;
 	text-shadow			:1px 1px 0px #906000;
 	text-align			:center;
@@ -463,10 +460,10 @@ body {
 .first_play_btm{
 	display				:inline-block;
 	position			:relative;
-	flex-basis			:350px;
+	flex-basis			:200px;
 	border				:2px solid #d0a090;
 	background			:#d0a090;
-	width				:350px;	
+	width				:200px;	
 	height				:40px;
 	line-height			:40px;
 	font-size			:16px;
@@ -485,22 +482,22 @@ body {
 .first_icon{
 	font-family			:at_icon;
 	display				:inline-block;
-	height				:50px;
-	line-height			:50px;
-	width				:50px;	
+	height				:25px;
+	line-height			:25px;
+	width				:30px;	
 	text-align			:center;
-	font-size			:28px;
+	font-size			:20px;
 	color				:#906000;
 }
 
 .first_comm{
 	display				:inline-block;
-	height				:50px;
-	line-height			:50px;
+	height				:20px;
+	line-height			:20px;
 	text-align			:left;
-	font-size			:28px;
+	font-size			:14px;
 	color				:#906000;
-	width				:140px;
+	width				:80px;
 }
 
 
@@ -542,7 +539,11 @@ body {
 
 
 .page_01{
-	position:absolute;
+	position	:absolute;
+	display		:inline-block;
+	width		:600px;
+	top			:0;
+	left		:210px;
 }
 
 
@@ -827,7 +828,7 @@ body {
 	width			:286px;
 	height			:80px;
 	margin			:2px;
-	border			:2px solid #fafafa;
+	border			:2px solid #303030;
 	background		:linear-gradient(135deg,#fafafa,#ffc0e0);
 	cursor			:pointer;
 }

@@ -170,7 +170,7 @@ $('.kakumei_item2').html(Kt_f);
   gtag('config', 'UA-171407668-1');
 </script>
 </head>
-<body style="text-align:center;background:#888888">
+<body style="text-align:center;background:#e0e0d0">
 <div class="main">
 	<div class="page_00">
 		<div class="first_play">
@@ -257,6 +257,7 @@ $('.kakumei_item2').html(Kt_f);
 			</div>
 		</div>
 	</div>
+
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
