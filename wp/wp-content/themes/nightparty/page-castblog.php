@@ -271,7 +271,5 @@ get_header();
 <?}?>
 		<li class="page_n pg_b">»</li>
 	</ul>
-
-
 </div>
 <?php get_footer(); ?>
