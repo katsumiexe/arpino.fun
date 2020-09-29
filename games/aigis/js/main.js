@@ -197,10 +197,10 @@ console.log($('+.labo_box',this).css('display'));
 			Persona["d"]=data['p4'];
 
 			$('#myicon').attr('src','./img/unit/unit_'+ Unit_Select +'.png');
-			$('#p1').attr('src','./img/chr/chr'+ Persona['a'] +'.jpg');
-			$('#p2').attr('src','./img/chr/chr'+ Persona['b'] +'.jpg');
-			$('#p3').attr('src','./img/chr/chr'+ Persona['c'] +'.jpg');
-			$('#p4').attr('src','./img/chr/chr'+ Persona['d'] +'.jpg');
+			$('#p1').attr('src','./img/chr/chr_'+ Persona['a'] +'.png');
+			$('#p2').attr('src','./img/chr/chr_'+ Persona['b'] +'.png');
+			$('#p3').attr('src','./img/chr/chr_'+ Persona['c'] +'.png');
+			$('#p4').attr('src','./img/chr/chr_'+ Persona['d'] +'.png');
 
 
 			$('#myname').text(data.name);

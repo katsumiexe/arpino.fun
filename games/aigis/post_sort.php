@@ -65,7 +65,7 @@ foreach($pts as $a1 => $a2){
 		$app.="<tr><td class=\"td_res\">";
 		$app.="<div class=\"res_a{$order}\">{$order}</div>";
 
-		$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
+		$app.="<img src=\"./img/chr/chr_{$persona[$a1]}.png\" class=\"res_b\">";
 		$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
 		$app.="<div class=\"res_d\">{$unit[$doll[$a1]]["name"]}</div>";
 
