@@ -70,16 +70,19 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	background:#ff0000;
 }
 
+
+
 .cd1,.cd2,.cd3,.cd4{
 	position	:absolute;
 	width		:80px;
 	height		:120px;
 	bottom		:10px;
+	border:1px solid #303030;
+	border-radius:5px;
 }
 
 .cd1{
 	left:10px;
-	background:#0000ff;
 }
 
 .cd2{
@@ -96,6 +99,60 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	left:280px;
 	background:#0000ff;
 }
+
+
+.cd_name{
+	position	:absolute;
+	top			:0;
+	left		:5px;
+	width		:70px;
+	height		:20px;
+	line-height	:20px;	
+	font-size	:10px;
+	background:#fafafa
+}
+
+.cd_img{
+	position	:absolute;
+	top			:40px;
+	left		:0px;
+	width		:80px;
+	height		:80px;
+}
+
+.cd_st1,.cd_st2,.cd_st3,.cd_st4{
+	position	:absolute;
+	top			:20px;
+	width		:15px;
+	height		:15px;
+	line-height	:15px;
+	text-align	:center;
+	background:#900090;
+}
+
+.cd_st1{
+	left:4px;
+}
+
+.cd_st2{
+	left:23px;
+}
+.cd_st3{
+	left:42px;
+}
+
+.cd_st4{
+	left:61px;
+}
+
+<span class="cd_img"></span>
+<span class="cd_name"></span>
+<span class="cd_st1"></span>
+<span class="cd_st2"></span>
+<span class="cd_st3"></span>
+<span class="cd_st4"></span>
+
+
 
 .set1,.set2,.set3{
 	position	:absolute;
@@ -166,7 +223,15 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <div class="stage2"></div>
 <div class="stage3"></div>
 
-<div class="cd1"></div>
+<div class="cd1">
+<span class="cd_img"></span>
+<span class="cd_name">いなぞうぱん</span>
+<span class="cd_st1"></span>
+<span class="cd_st2"></span>
+<span class="cd_st3"></span>
+<span class="cd_st4"></span>
+</div>
+
 <div class="cd2"></div>
 <div class="cd3"></div>
 <div class="cd4"></div>
