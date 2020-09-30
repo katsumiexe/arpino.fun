@@ -17,16 +17,17 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <title>Card_Game_Aigis</title>
 <style>
 .main{
-	width		:414px;
-	height		:736px;
-	max-width	:650px;
+	width		:600px;
+	height		:600px;
+	max-width	:600px;
 	position	:relative;
 	background	:#fafafa;
 }
+
 .pc1,.pc2,.pc3{
 	position	:absolute;
-	width		:100px;
-	height		:100px;
+	width		:160px;
+	height		:160px;
 	top			:10px;
 }
 .pc1{
@@ -35,13 +36,38 @@ if($res0 = mysqli_query($mysqli,$sql)){
 }
 
 .pc2{
-	left:120px;
+	left:180px;
 	background:#009000;
 }
 
 .pc3{
-	left:230px;
+	left:350px;
 	background:#0000ff;
+}
+
+.fa1{
+	position	:absolute;
+	width		:100px;
+	height		:100px;
+	top			:0;
+	left		:0;
+	background	:#d0d0d0;
+}
+
+.score{
+	position	:absolute;
+	display		:flex;
+	width		:60px;
+	min-height	:160px;
+	top			:0;
+	left		:100px;
+	background	:#9090a0;
+}
+
+
+.pc1{
+	left:10px;
+	background:#ff0000;
 }
 
 .cd1,.cd2,.cd3,.cd4{
@@ -103,9 +129,38 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <body style="text-align:center;background:#888888">
 <div class="main">
 
-<div class="pc1"></div>
-<div class="pc2"></div>
-<div class="pc3"></div>
+<div class="pc1">
+	<div class="fa1"></div>
+	<div class="score">
+		<span class="sc1"></span>
+		<span class="sc2"></span>
+		<span class="sc3"></span>
+		<span class="sc_ttl"></span>
+	</div>
+</div>
+
+<div class="pc2">
+	<div class="fa1"></div>
+	<div class="score">
+		<span class="sc1"></span>
+		<span class="sc2"></span>
+		<span class="sc3"></span>
+		<span class="sc_ttl"></span>
+	</div>
+</div>
+
+<div class="pc3">
+	<div class="fa1"></div>
+	<div class="score">
+		<span class="sc1"></span>
+		<span class="sc2"></span>
+		<span class="sc3"></span>
+		<span class="sc_ttl"></span>
+	</div>
+</div>
+
+
+
 
 <div class="stage1"></div>
 <div class="stage2"></div>
