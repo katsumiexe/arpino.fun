@@ -122,7 +122,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 
 .cd_st1,.cd_st2,.cd_st3,.cd_st4{
 	position	:absolute;
-	top			:20px;
+	bottom		:5px;
 	width		:15px;
 	height		:15px;
 	line-height	:15px;
@@ -140,19 +140,68 @@ if($res0 = mysqli_query($mysqli,$sql)){
 .cd_st3{
 	left:42px;
 }
-
 .cd_st4{
 	left:61px;
 }
 
-<span class="cd_img"></span>
-<span class="cd_name"></span>
-<span class="cd_st1"></span>
-<span class="cd_st2"></span>
-<span class="cd_st3"></span>
-<span class="cd_st4"></span>
+.big_card{
+	position	:absolute;
+	width		:300px;
+	height		:450px;
+	bottom		:100px;
+	left		:100px;
+	border		:1px solid #303030;
+	background	:#ff90e0;
+	border-radius:10px;
+}
 
+.big_name{
+	position	:absolute;
+	top			:5px;
+	left		:5px;
+	width		:290px;
+	height		:30px;
+	line-height	:30px;	
+	font-size	:20px;
+	background	:#fafafa
+}
 
+.big_img{
+	position	:absolute;
+	top			:150px;
+	left		:0px;
+	width		:300px;
+	height		:300px;
+}
+
+.big_st1,.big_st2,.big_st3,.big_st4{
+	position	:absolute;
+	bottom		:10px;
+	width		:65px;
+	height		:20px;
+	line-height	:20px;
+	text-align	:center;
+	background	:#fafafa;
+	font-size	:12px;
+	color		:#c0c0c0;
+	font-weight	:600;
+}
+
+.big_st1{
+	left:11px;
+}
+
+.big_st2{
+	left:82px;
+}
+
+.big_st3{
+	left:153px;
+}
+
+.big_st4{
+	left:224px;
+}
 
 .set1,.set2,.set3{
 	position	:absolute;
@@ -217,11 +266,10 @@ if($res0 = mysqli_query($mysqli,$sql)){
 </div>
 
 
-
-
 <div class="stage1"></div>
 <div class="stage2"></div>
 <div class="stage3"></div>
+
 
 <div class="cd1">
 <span class="cd_img"></span>
@@ -242,6 +290,15 @@ if($res0 = mysqli_query($mysqli,$sql)){
 
 <div class="yama1"></div>
 <div class="yama2"></div>
+</div>
+
+<div class="big_card">
+<span class="big_img"></span>
+<span class="big_name">いなぞうぱん</span>
+<span class="big_st1">■麻痺無効</span>
+<span class="big_st2">■荒天耐性</span>
+<span class="big_st3">■海岸順応</span>
+<span class="big_st4">■魔界適応</span>
 </div>
 </body>
 </html>
