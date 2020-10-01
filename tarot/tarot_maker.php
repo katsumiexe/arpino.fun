@@ -146,7 +146,31 @@ td{
 <?}?>
 </table>
 </div>
+
 <div class="right">
+
+<div class="w480">
+<?=$tarot[$n]["name_j"]?>
+</div>
+
+<table>
+<?for($n=0;$n<count($ttl);$n++){?>
+<tr>
+<td class="w480"><?=$ttl[$n]["type_id"]?></td>
+</tr>
+<tr>
+<td class="w480">
+<div class="area_ttl">正位置</div>
+<textarea class="area"></textarea>
+<div class="area_ttl">逆位置</div>
+<textarea class="area"></textarea>
+</td>
+</tr>
+<?}?>
+</table>
+
+
+
 </div>
 </div>
 </body>
