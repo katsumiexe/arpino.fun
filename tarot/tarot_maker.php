@@ -7,6 +7,29 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		$dat[]=$row0;
 	}
 }
+
+$sql	  ="SELECT * FROM tarot_maker_t";
+$sql	  .=" WHERE main_id={$dat[0]["id"]}";
+$sql	  .=" ORDER BY type_id ASC";
+
+if($res1 = mysqli_query($mysqli,$sql)){
+	while($row1 = mysqli_fetch_assoc($res1)){
+		$ttl[]=$row1;
+	}
+}
+
+
+$sql	  ="SELECT no_r, name_j FROM tarot_base";
+$sql	  .=" ORDER BY id ASC";
+
+if($res2 = mysqli_query($mysqli,$sql)){
+	while($row2 = mysqli_fetch_assoc($res2)){
+		$tarot[]=$row2;
+	}
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -23,6 +46,7 @@ table{
 	border:1px solid #303030;
 	border-collapse: collapse;
 	background:#fafafa;
+	margin:5px;
 }
 
 td{
@@ -44,6 +68,10 @@ td{
 	text-align:right;
 }
 
+.w60{
+	width:60px;
+}
+
 .w120{
 	width:120px;
 }
@@ -63,13 +91,13 @@ td{
 
 </style>
 </head>
-<body style="text-align:center;background:#888888">
+<body style="text-align:center;background:#fafafa">
 <div class="main">
 <div class="left">
 <table>
 <tr>
 <td class="top w160">日</td>
-<td class="top w240">占い名</td>
+<td class="top w160">占い名</td>
 <td class="top w40">占数</td>
 <td class="top w40">工数</td>
 <td class="top w40">進捗</td>
@@ -89,12 +117,37 @@ td{
 <?}?>
 </table>
 
+<table>
+<?for($n=0;$n<count($ttl);$n++){?>
+<tr>
+<td class="w40"><?=$ttl[$n]["type_id"]?></td>
+<td class="w160"><?=$ttl[$n]["type_name"]?></td>
+</tr>
+<?}?>
+</table>
+
+<table>
+<tr>
+<td class="top w40">番号</td>
+<td class="top w120">カード名</td>
+<?for($n=0;$n<count($ttl);$n++){?>
+<td class="top" colspan="2"><?=$ttl[$n]["type_id"]?></td>
+<?}?>
+</tr>
+<?for($n=0;$n<22;$n++){?>
+<tr>
+<td class="right w40"><?=$n?></td>
+<td><?=$tarot[$n]["name_j"]?></td>
+<?for($s=0;$s<count($ttl);$s++){?>
+<td class="w40"><button type="button">正</button></td>
+<td class="w40"><button type="button">逆</button></td>
+<?}?>
+</tr>
+<?}?>
+</table>
 </div>
 <div class="right">
-
 </div>
-
-
 </div>
 </body>
 </html>
