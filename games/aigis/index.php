@@ -31,8 +31,8 @@ foreach($pts as $a1 => $a2){
 	$app.="<tr><td class=\"td_res\">";
 	$app.="<div class=\"res_a{$order}\">{$order}</div>";
 
-	$app.="<img src=\"./img/chr/chr_{$persona[$a1]}.png\" class=\"res_b\">";
-	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
+	$app.="<img src=\"./img/chr/chr_{$persona[$a1]}.png?t=<?=time()?>\" class=\"res_b\">";
+	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png?t=<?=time()?>\" class=\"res_c\">";
 	$app.="<div class=\"res_d\">{$unit[$a1]}</div>";
 
 	$app.="<table class=\"res_e\">";
@@ -85,7 +85,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		}
 		$rank0[$n]["date"]	=$row0["date"];
 		$rank0[$n]["score"]	=$row0["score"];
-		$rank0[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
+		$rank0[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png?t=<?=time()?>\" class=\"score_img\">";
 		$n++;	
 	}
 }
@@ -106,7 +106,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		}
 		$rank1[$n]["date"]	=$row0["date"];
 		$rank1[$n]["score"]	=$row0["score"];
-		$rank1[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
+		$rank1[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png?t=<?=time()?>\" class=\"score_img\">";
 		$n++;	
 	}
 }
@@ -126,7 +126,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		}
 		$rank2[$n]["date"]	=$row0["date"];
 		$rank2[$n]["score"]	=$row0["score"];
-		$rank2[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png\" class=\"score_img\">";
+		$rank2[$n]["img"]	="<img src=\"./img/unit/unit_{$row0["unit"]}.png?t=<?=time()?>\" class=\"score_img\">";
 		$n++;	
 	}
 }
@@ -248,7 +248,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 <div class="page_01">
 <?for($e=1;$e<11;$e++){?>
 	<div id="s<?=$e?>" class="sel">
-	<img src="./img/unit/unit_<?=$e?>.png" class="sel_a">
+	<img src="./img/unit/unit_<?=$e?>.png?t=<?=time()?>" class="sel_a">
 	<span class="sel_b">
 	<span class="sel_b_1 <?if($unit[$e]["status_1"]==1){?>sel_on<?}?>"><?=$status[1]["name"]?></span>
 	<span class="sel_b_1 <?if($unit[$e]["status_2"]==1){?>sel_on<?}?>"><?=$status[2]["name"]?></span>
