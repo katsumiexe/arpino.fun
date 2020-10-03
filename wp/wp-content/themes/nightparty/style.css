@@ -932,6 +932,12 @@ ul {
 	color		:#302520;
 }
 
+.blog_cast_img{
+	width		:260px;
+	margin		:20px;
+	border		:1px solid #e8d8a0;
+}
+
 @media screen and (max-width: 1024px) {
 
 }

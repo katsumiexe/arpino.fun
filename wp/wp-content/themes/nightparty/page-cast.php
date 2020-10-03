@@ -70,12 +70,12 @@ for($e=0;$e<7;$e++){
 </div>
 <div class="cast_tag">
 <!--div id="d0" class="cast_tag_box cast_tag_box_sel">ALL</div-->
-<? for($e=0;$e<7;$e++){?><div id="d<?PHP echo $cast_id[$e]?>" class="cast_tag_box <?PHP echo $cl[$e]?><?if($e == 0){?> cast_tag_box_sel<?}?>"><?PHP echo $cast_tag[$e]?></div><?}?>
+<? for($e=0;$e<7;$e++){?><div id="d<?=$cast_id[$e]?>" class="cast_tag_box <?=$cl[$e]?><?if($e == 0){?> cast_tag_box_sel<?}?>"><?=$cast_tag[$e]?></div><?}?>
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="<?PHP ECHO get_template_directory_uri(); ?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
-		<img src="<?PHP ECHO $dat[$b1]["face"]?>" class="main_b_1_1">
+	<a href="<?=get_template_directory_uri(); ?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+		<img src="<?=$dat[$b1]["face"]?>" class="main_b_1_1">
 		<span class="main_b_1_2">
 			<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
 			<span class="main_b_1_2_sch"><?=$dat[$b1]["sch"]?></span>

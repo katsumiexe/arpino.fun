@@ -34,12 +34,12 @@ $res0 = $wpdb->get_row($sql,ARRAY_A);
 $res0["post_content"]=str_replace("\n","<br>",$res0["post_content"]);
 $res0["date"]	=date("Y.m.d H:i",strtotime($res0["post_date"]));
 
+//■image---------------------------------
 $sql ="SELECT guid FROM wp01_postmeta";
 $sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 $sql.=" WHERE post_id='{$res0["ID"]}'";
 $sql.=" AND meta_key='_thumbnail_id'";
 $thumb = $wpdb->get_var($sql);
-
 if($thumb){
 	$blog_img=$thumb."?t=".time();
 }
@@ -50,7 +50,14 @@ $sql.=" WHERE object_id='{$res0["ID"]}'";
 $sql.=" AND slug LIKE 'tag%'";
 $tag = $wpdb->get_var($sql);
 
-/*
+if($category == 1){
+	if (file_exists(get_template_directory()."/img/page/{$res0["slug"]}/1.jpg")) {
+		$cast_face=get_template_directory_uri()."/img/page/{$res0["slug"]}/1.jpg";			
+	}else{
+		$cast_face=get_template_directory_uri()."/img/page/noimage.jpg";			
+	}
+}
+
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
 $sql.=" FROM wp01_posts AS P";
@@ -64,31 +71,26 @@ $sql.=" AND X.taxonomy='category'";
 $sql.=" AND T.slug='{$res0["slug"]}'";
 
 $sql.=" ORDER BY P.post_date DESC";
-$sql.=" LIMIT 15";
+$sql.=" LIMIT 5";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $a2){
 	$blog[$n]=$a2;
-	$img_tmp=$a2["ID"]+2;
-	$updir = wp_upload_dir();
+	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
 
-	$sql ="SELECT * FROM wp01_postmeta";
+	$sql ="SELECT guid FROM wp01_postmeta";
+	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 	$sql.=" WHERE post_id='{$a2["ID"]}'";
 	$sql.=" AND meta_key='_thumbnail_id'";
-
-	$blog[$n]["date"]	=date("m月d日 H:i",strtotime($a2["post_date"]));
 	$thumb = $wpdb->get_var($sql);
 	if($thumb){
-		$blog[$n]["img"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
-		$blog[$n]["img_on"]="{$updir['baseurl']}/np{$a1["id"]}/img_{$img_tmp}.png?t=".time();
-
+		$blog[$n]["img"]	=$thumb;
 	}else{
-		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
+		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg";
 	}
 	$n++;
 }
-*/
 
 get_header();
 ?>
@@ -141,8 +143,10 @@ get_header();
 				<?=$res0["name"]?>
 			</div>
 		</div>
+		<img src="<?=$cast_face?>" class="blog_cast_img">
 
-		<table class="blog_calender">
+
+		<!--table class="blog_calender">
 			<tr>
 				<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
 			</tr>
@@ -156,13 +160,24 @@ get_header();
 				<td class="blog_calender_w">土</td>
 				<?=$c_inc?>
 			</tr>
-		</table>
+		</table-->
 
 		<div class="blog_h1">
 			<div class="blog_h2">
 			新着
 			</div>
 		</div>
+
+		<?for($s=0;$s<count($blog);$s++){?>
+			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+				<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+				<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+				<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
+				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
+			</a>
+		<?}?>
+
 
 		<div class="blog_h1">
 			<div class="blog_h2">
