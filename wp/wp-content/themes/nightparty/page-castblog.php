@@ -16,14 +16,18 @@ $tag_icon[8]="";
 $pg=$_REQUEST["pg"];
 if($pg+0<1) $pg=1;
 
-$pg_st=($pg-1)*20;
-$pg_ed=($pg-1)*20+20;
+$pg_st=($pg-1)*10;
+$pg_ed=($pg-1)*10+10;
 
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
+$month		=$_REQUEST["month"];
 
 $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);
+if(!$month) $month=substr($now,0,4).substr($now,5,2);
+
+
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
@@ -41,6 +45,7 @@ $sql.=" LEFT JOIN wp01_terms AS T2 ON R2.term_taxonomy_id=T2.term_id";
 
 $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
+$sql.=" AND P.post_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
 $sql.=" AND P.post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
 $sql.=" AND X2.taxonomy='post_tag' ";
@@ -55,7 +60,6 @@ $sql.=" ORDER BY P.post_date DESC";
 //$sql.=" LIMIT {$pg_st},21";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
-
 if($pg_ed>count($res)){
 	$pg_ed=count($res);
 
@@ -64,7 +68,6 @@ if($pg_ed>count($res)){
 }
 
 $pg_max=ceil(count($res)/20);
-
 
 $updir = wp_upload_dir();
 
@@ -107,14 +110,13 @@ $sql ="SELECT count,name,slug, MAX(post_date) AS last FROM wp01_term_taxonomy";
 $sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
 $sql.=" LEFT JOIN `wp01_term_relationships` ON wp01_term_relationships.term_taxonomy_id=term_id";
 $sql.=" LEFT JOIN `wp01_posts` ON object_id=ID";
-$sql.=" WHERE taxonomy='category'";
+$sql.=" WHERE wp01_term_taxonomy.taxonomy='category'";
 $sql.=" GROUP BY slug";
 $sql.=" ORDER BY last DESC";
 $res3 = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res3 as $res4){
 	$all_cast[$n]=$res4;
-
 	if (file_exists(get_template_directory()."/img/page/{$res4["slug"]}/1.jpg")) {
 		$all_cast[$n]["face"]=get_template_directory_uri()."/img/page/".$res4["slug"]."/1.jpg";			
 	}else{
@@ -124,16 +126,14 @@ foreach($res3 as $res4){
 	$n++;
 }
 
-$month=$_POST[$month];
-if(!$month) $month=substr($now,0,7);
-$v_month=date("Y年m月",strtotime($month."-01"));
 
-$p_month=date("Y-m",strtotime($month."-01")-86400);
-$n_month=date("Y-m",strtotime($month."-01")+3456000);
-
-$month_w=date("w",strtotime($month."-01"))-1;
-$month_e=date("t",strtotime($month."-01"));
+$v_month=date("Y年m月",strtotime($month."01"));
+$p_month=date("Ym",strtotime($month."01")-86400);
+$n_month=date("Ym",strtotime($month."01")+3456000);
+$month_w=date("w",strtotime($month."01"))-1;
+$month_e=date("t",strtotime($month."01"));
 $month_max=ceil(($month_w+$month_e)/7)*7;
+
 for($n=0;$n<$month_max ;$n++){
 	if($n % 7 == 0){
 		$c_inc.="</tr><tr>";
@@ -189,7 +189,7 @@ get_header();
 <div class="main_top">
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
-		<?for($n=0;$n<count($blog);$n++){?>
+		<?for($n=$pg_st;$n<$pg_ed;$n++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
@@ -216,9 +216,9 @@ get_header();
 	<div class="main_c">
 	<table id="c" class="blog_calendar">
 		<tr>
-			<td id="c_prev"class="blog_calendar_n"><a href=",/castblog/?month=<?=$prev_month?>" class="carendar_pn"></a></td>
+			<td id="c_prev"class="blog_calendar_n"><a href=",/castblog/?month=<?=$p_month?>" class="carendar_pn"></a></td>
 			<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
-			<td id="c_next" class="blog_calendar_n"><a href=",/castblog/?month=<?=$next_month?>" class="carendar_pn"></a></td>
+			<td id="c_next" class="blog_calendar_n"><a href=",/castblog/?month=<?=$n_month?>" class="carendar_pn"></a></td>
 		</tr>
 		<tr>
 			<td class="blog_calendar_w">日</td>
@@ -256,7 +256,7 @@ get_header();
 		</div>
 	</div>
 
-	<?for($s=$pg_st;$s<$pg_ed;$s++){?>
+	<?for($s=0;$s<count($all_cast);$s++){?>
 		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">
 			<span class="all_cast_img"><img src="<?=$all_cast[$s]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 			<span class="all_cast_name"><?=$all_cast[$s]["name"]?></span>
