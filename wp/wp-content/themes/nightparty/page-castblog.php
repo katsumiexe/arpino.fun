@@ -124,13 +124,15 @@ foreach($res3 as $res4){
 	$n++;
 }
 
-$c_month=$_POST[$c_month];
-if(!$c_month) $c_month=substr($now,0,7);
+$month=$_POST[$month];
+if(!$month) $month=substr($now,0,7);
+$v_month=date("Y年m月",strtotime($month."-01"));
 
-$v_month=date("Y年m月",strtotime($c_month."-01"));
+$p_month=date("Y-m",strtotime($month."-01")-86400);
+$n_month=date("Y-m",strtotime($month."-01")+3456000);
 
-$month_w=date("w",strtotime($c_month."-01"))-1;
-$month_e=date("t",strtotime($c_month."-01"));
+$month_w=date("w",strtotime($month."-01"))-1;
+$month_e=date("t",strtotime($month."-01"));
 $month_max=ceil(($month_w+$month_e)/7)*7;
 for($n=0;$n<$month_max ;$n++){
 	if($n % 7 == 0){
@@ -214,9 +216,9 @@ get_header();
 	<div class="main_c">
 	<table id="c" class="blog_calendar">
 		<tr>
-			<td id="c_prev"class="blog_calendar_n"></td>
+			<td id="c_prev"class="blog_calendar_n"><a href=",/castblog/?month=<?=$prev_month?>" class="carendar_pn"></a></td>
 			<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
-			<td id="c_next" class="blog_calendar_n"></td>
+			<td id="c_next" class="blog_calendar_n"><a href=",/castblog/?month=<?=$next_month?>" class="carendar_pn"></a></td>
 		</tr>
 		<tr>
 			<td class="blog_calendar_w">日</td>

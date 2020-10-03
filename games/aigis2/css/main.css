@@ -1819,6 +1819,7 @@ body {
 	font-weight		:900;
 	color			:#303030;
 	border			:5px solid #c0a090;	
+	cursor			:pointer;
 }	
 
 .howto_page_ttl{

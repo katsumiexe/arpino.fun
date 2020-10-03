@@ -31,7 +31,7 @@ foreach($pts as $a1 => $a2){
 	$app.="<tr><td class=\"td_res\">";
 	$app.="<div class=\"res_a{$order}\">{$order}</div>";
 
-	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.jpg\" class=\"res_b\">";
+	$app.="<img src=\"./img/chr/chr{$persona[$a1]}.png\" class=\"res_b\">";
 	$app.="<img src=\"./img/unit/unit_{$doll[$a1]}.png\" class=\"res_c\">";
 	$app.="<div class=\"res_d\">{$unit[$a1]}</div>";
 
@@ -517,7 +517,7 @@ $('.kakumei_item2').html(Kt_f);
 			各プレイヤーはそれぞれ<span style="color:#a04030">『アイテムカード』</span>を一枚捧げます。<br>
 			このときに、最も価値の高いものを出した人が<span style="color:#a04030">『魅力カード』</span>を獲得できます。<br>
 			ただし、同じ<span style="color:#a04030">『アイテムカード』</span>を出した人がいた場合はブッキングとなり、対象は次に高い人になります。<br>
-			全員がブッキングした場合、その魅力はだれも受け取ることが出来ません。<br>
+			全員がブッキングした場合、その魅力はだれも受け取ることが出来ず、後述の「革命」が発生します。<br>
 			一度使った<span style="color:#a04030">『アイテムカード』</span>は再度使うことはできません。<br>
 			これを12ターン行い、【魅力ポイント】が最も高いプレイヤーの勝利です。<br>
 			<br>
@@ -525,7 +525,12 @@ $('.kakumei_item2').html(Kt_f);
 			▼「副官任命」を持っているユニット<br>
 			▼「リング」を持っているユニット<br>
 			の順に順位がつけられます。<br>
-			それでも同じ場合は、同点となります。
+			それでも同じ場合は、同点となります。<br>
+			<br>
+			<span style="font-weight">◆革命</span><br>
+			全員がブッキングし、魅力カードが流れると「革命」がおきます。<br>
+			「革命」が起きると、魅力カードの価値が逆転します。以後、<span class="howto_item"></span>最強がとなり、<span class="howto_item"></span>最弱がとなります。<br>
+			「革命」中に「革命」が起きると、さらに魅力カードの価値が逆転します。<br>
 		</div>
 
 		<div id="box2" class="howto_in">
@@ -555,7 +560,6 @@ $('.kakumei_item2').html(Kt_f);
 			<span class="howto_item"></span>花束1<br>
 			の順となります。<br>
 		</div>
-
 
 		<div id="box4" class="howto_in">
 			<div class="howto_title">魅力カード（12種類）</div>
