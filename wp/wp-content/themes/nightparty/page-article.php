@@ -109,11 +109,13 @@ get_header();
 		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$res0["name"]?></span>
 	</a>
+
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">『<?=$res0["post_title"]?>』</span>
 	</div>
+
 </div>
 
 <div class="main_top">

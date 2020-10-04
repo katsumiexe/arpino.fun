@@ -19,6 +19,7 @@ if($pg+0<1) $pg=1;
 $pg_st=($pg-1)*10;
 $pg_ed=($pg-1)*10+10;
 
+$blog_day	=$_REQUEST["blog_day"];
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
 $month		=$_REQUEST["month"];
@@ -26,8 +27,6 @@ $month		=$_REQUEST["month"];
 $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);
 if(!$month) $month=substr($now,0,4).substr($now,5,2);
-
-
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
@@ -51,11 +50,14 @@ $sql.=" AND X.taxonomy='category'";
 $sql.=" AND X2.taxonomy='post_tag' ";
 
 if($cast_list){
-$sql.=" AND T.slug='{$cast_list}'";
-
-}elseif($tag_list){
-$sql.=" AND T2.slug='{$tag_list}'";
+	$sql.=" AND T.slug='{$cast_list}'";
+	$c_para="&cast_list={$cast_list}";
 }
+if($tag_list){
+	$sql.=" AND T2.slug='{$tag_list}'";
+	$t_para="&tag_list={$tag_list}";
+}
+
 $sql.=" ORDER BY P.post_date DESC";
 //$sql.=" LIMIT {$pg_st},21";
 
@@ -67,8 +69,8 @@ if($pg_ed>count($res)){
 	$pg_next=1;
 }
 
+print($sql);
 $pg_max=ceil(count($res)/20);
-
 $updir = wp_upload_dir();
 
 foreach($res as $a2){
@@ -89,6 +91,23 @@ foreach($res as $a2){
 	}
 	$n++;
 }
+
+
+if(!$a2 && $cast_list){
+	$sql	 ="SELECT `name` FROM wp01_terms";
+	$sql	.=" WHERE slug='{$cast_list}'";
+	$res = $wpdb->get_results($sql,ARRAY_A);
+	$a2["castname"]=$res[0]["name"];
+}
+
+if(!$a2 && $tag_list){
+	$sql	 ="SELECT `name` FROM wp01_terms";
+	$sql	.=" WHERE slug='{$tag_list}'";
+	$res = $wpdb->get_results($sql,ARRAY_A);
+	$a2["tagname"]=$res[0]["name"];
+}
+
+
 
 //■カテゴリ--------------------
 $n=1;
@@ -140,12 +159,17 @@ for($n=0;$n<$month_max ;$n++){
 	}
 	$tmp_days=$n-$month_w;
 	if($n>$month_w && $n<=$month_w+$month_e){
-//		$c_inc.="<td id=\"".$n-$month_w."\" class=\"blog_calendar_d\">".$n-$month_w."</td>";
-		$c_inc.="<td class=\"blog_calendar_d\"><span class=\"cal{$cal[$tmp_days]}\">{$tmp_days}</span></td>";
+
+		$ky=$month."00"+$tmp_days;
+
+
+		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"".get_template_directory_uri()."/castblog/?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$cal[$tmp_days]}\">{$tmp_days}</a></td>";
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
 }
+
+
 get_header();
 ?>
 <div class="footmark">
@@ -161,14 +185,14 @@ get_header();
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"></span>
+		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$a2["castname"]?></span>
 	</div>
 
 <?}elseif($tag_list){?>
 	<span class="footmark_icon"></span>
 	<a href="<?=home_url()?>/castblog/" class="footmark_box box_a">
-		<span class="footmark_icon"></span>
+		<span class="footmark_icon"></span>
 		<span class="footmark_text">blog</span>
 	</a>
 	<span class="footmark_icon"></span>
@@ -201,7 +225,6 @@ get_header();
 				<span class="blog_list_title"><?=$blog[$n]["post_title"]?></span>
 				<span class="blog_list_tag"></span>
 
-
 				<span class="blog_list_cast">
 				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
 				<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
@@ -216,9 +239,9 @@ get_header();
 	<div class="main_c">
 	<table id="c" class="blog_calendar">
 		<tr>
-			<td id="c_prev"class="blog_calendar_n"><a href=",/castblog/?month=<?=$p_month?>" class="carendar_pn"></a></td>
+			<td id="c_prev"class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
 			<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
-			<td id="c_next" class="blog_calendar_n"><a href=",/castblog/?month=<?=$n_month?>" class="carendar_pn"></a></td>
+			<td id="c_next" class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
 		</tr>
 		<tr>
 			<td class="blog_calendar_w">日</td>

@@ -3396,6 +3396,7 @@ input[type=range]::-moz-range-thumb{
 	border		:1px solid #303030;
 	cursor		:pointer;
 	font-family:at_icon;
+	position:relative
 }
 
 .log_td_del{
@@ -3442,6 +3443,8 @@ input[type=range]::-moz-range-thumb{
 
 .color_picker{
 	position	:absolute;
+	top			:8vw;
+	left		:-2vw;
 	display		:flex;
 	flex-wrap	:wrap;
 	width		:72vw;
@@ -3463,6 +3466,8 @@ input[type=range]::-moz-range-thumb{
 
 .icon_picker{
 	position	:absolute;
+	top			:8vw;
+	left		:-2vw;
 	display		:flex;
 	flex-wrap	:wrap;
 	width		:70vw;

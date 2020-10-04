@@ -1187,7 +1187,7 @@ $(function(){
 
 			<td class="log_td_color">
 				<div class="item_color" style="background:<?=$c_code[$a1["item_color"]]?>"></div>
-				<div class="color_picker">
+				<div id="c_div<?=$a1["sort"]?>" class="color_picker">
 					<?foreach($c_code as $b1 => $b2){?>
 						<span cd="<?=$b1?>" class="color_picker_list" style="background:<?=$b2?>;"></span>
 					<?}?>
@@ -1197,11 +1197,12 @@ $(function(){
 
 			<td class="log_td_icon" style="color:<?=$c_code[$a1["item_color"]]?>">
 				<div class="item_icon"><?=$i_code[$a1["item_icon"]]?></div>
-				<div class="icon_picker">
+				<div id="i_div<?=$a1["sort"]?>" class="icon_picker">
 					<?foreach($i_code as $b1 => $b2){?>
 						<span cd="<?=$b1?>" class="icon_picker_list"><?=$b2?></span>
 					<?}?>
 				</div>
+
 				<input id="item_icon_hidden_<?=$a1["sort"]?>" type="hidden" value="<?=$a1["item_icon"]?>">
 			</td>
 			<td class="log_td_name">

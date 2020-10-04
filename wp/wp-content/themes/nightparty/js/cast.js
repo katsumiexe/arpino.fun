@@ -1688,13 +1688,25 @@ console.log("VwBase:"+VwBase);
 
 	$('.log_item_set').on('click','.color_picker_list',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
+		Tmp=$(this).parent().attr('id');
 		Clr=$(this).css('background');
 		Cds=$(this).attr('cd');
 		$(this).parent().prev().css('background',Clr);
 		$(this).parent().next().val(Cds);
 		$(this).parent().parent().next().css('color',Clr);
-	});
 
+		$.post({
+			url:Dir + "/post/log_item_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'clr'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Tmp)
+			console.log(data)
+		});
+	});
 
 	$('.log_item_set').on('click','.item_icon',function (){
 		$('.icon_picker,.color_picker').slideUp(100);
@@ -1704,12 +1716,58 @@ console.log("VwBase:"+VwBase);
 	});
 
 	$('.log_item_set').on('click','.icon_picker_list',function (){
-		$('.color_picker,.icon_picker').slideUp(100);
-		Clr=$(this).text();
+		Tmp=$(this).parent().attr('id');
 		Cds=$(this).attr('cd');
+		Clr=$(this).text();
 		$(this).parent().prev().text(Clr);
 		$(this).parent().next().val(Cds);
+		$('.color_picker,.icon_picker').slideUp(100);
+
+		$.post({
+			url:Dir + "/post/log_item_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'cds'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Tmp)
+			console.log(data)
+		});
 	});
+
+	$('.log_item_set').on('change','.item_name',function (){
+		Tmp=$(this).attr('id').replace('item_name_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/log_item_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
+		});
+	});
+
+	$('.log_item_set').on('change','.item_price',function (){
+		Tmp=$(this).attr('id').replace('item_price_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/log_item_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'price'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
+		});
+	});
+
+
+
 
 	$('.cal_days_memo').on('change',function (){
 		TmpLog=$('.cal_days_memo').val();

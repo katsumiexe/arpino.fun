@@ -57,8 +57,9 @@
 	position		:relative;
 	flex-basis		:240px;
 	min-height		:550px;	
-	border			:2px solid #c8b880;
+	border			:1px solid #c8b880;
 	margin-top:8px;
+	text-align:center;
 }
 
 .person_blog_ttl{
@@ -69,7 +70,6 @@
 	line-height		:35px;	
 	margin			:0 auto 4px auto;;
 	background		:#C8B880;
-	border			:1px solid #C8B880;
 	color			:#fafafa;
 	font-size		:20px;
 	font-weight:700;
