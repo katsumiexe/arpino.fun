@@ -128,7 +128,6 @@ $reg_base_ag=date("Y")-1980;
 	$sv="{".$s_url."}INBOX";
 	$m_list=imap_open ($sv,$_SESSION["castmail"],$_SESSION["castmail_pass"]);
 	$num = imap_num_msg($m_list);
-*/
 	$sql	 ="SELECT * FROM wp01_0castmail_receive ";
 	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receive.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
@@ -139,8 +138,18 @@ $reg_base_ag=date("Y")-1980;
 		$mail_data[$n]=$tmp;
 		$n++;
 	}
+*/
 
-
+	$sql	 ="SELECT * FROM wp01_0castmail";
+	$sql	.=" LEFT JOIN wp01_0customer ON wp01_0castmail.customer_id=wp01_0customer.id";
+	$sql	.=" WHERE wp01_0castmail.cast_id='{$_SESSION["id"]}'";
+	$sql	.=" ORDER BY send_date DESC";
+	$n=0;
+	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
+	foreach($mail_data0 AS $tmp){
+		$mail_data[]=$tmp;
+	}
+print($sql);
 
 	$sql ="SELECT * FROM wp01_0cast_config";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
