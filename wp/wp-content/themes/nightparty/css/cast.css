@@ -351,13 +351,12 @@ input:focus{
 }
 
 .cal_table{
-	border-collapse: separate;
+	border-collapse	:collapse;
 	width			:99vw;
-	border			:none;
 	margin			:1vw auto;
 	table-layout	:fixed;
-	border-spacing	: 0.5vw;
-	background:#303030;
+	background		:#303030;
+	border:0.5vw solid #303030
 }
 
 .cal_next,.cal_prev{
@@ -387,6 +386,7 @@ input:focus{
 	vertical-align	:bottom;
 	text-align		:left;
 	background		:#ffc090;
+	border:1px solid #303030
 }
 
 .v_month{
@@ -533,6 +533,7 @@ input:focus{
 	font-size		:0;
 	background		:linear-gradient(#fcfcfc,#f8f8f8);
 	cursor			:pointer;
+	border:1px solid #303030;
 }
 
 .cal_log{
@@ -3975,27 +3976,31 @@ input[type=range]::-moz-range-thumb{
 }
 
 .cc1,.cc2,.cc3,.cc4,.cc5{
+	box-shadow:2px 2px 0 rgba(0,0,0,0) inset, -2px -2px 0 rgba(0,0,0,0) inset;
 	background		:linear-gradient(#fcfcfc,#f8f8f8);
 }
 
 
 .cc0{
+	box-shadow:2px 2px 0 rgba(0,0,0,0) inset, -2px -2px 0 rgba(0,0,0,0) inset;
 	background	:#fff0f0;
 	background	:linear-gradient(#fff0f0,#ffe0e0);
 }
 
 .cc6{
+	box-shadow:2px 2px 0 rgba(0,0,0,0) inset, -2px -2px 0 rgba(0,0,0,0) inset;
 	background	:#f0f0ff;
 	background	:linear-gradient(#f0f0ff,#e0e0ff);
 }
 
 .cc7{
+	box-shadow:2px 2px 0 rgba(0,0,0,0) inset, -2px -2px 0 rgba(0,0,0,0) inset;
 	background	:linear-gradient(#eeeed0,#ddddc0);
 	background	:#f0f000;
 }
 
 .cc8{
-	box-shadow:2px 2px 0 #ff0000, 2px -2px 0 #ff0000,-2px 2px 0 #ff0000, -2px -2px 0 #ff0000;
+	box-shadow:2px 2px 0 #ff0000 inset, -2px -2px 0 #ff0000 inset;
 }
 
 .nowmonth{

@@ -120,7 +120,7 @@ $reg_base_ag=date("Y")-1980;
 	$month_ed=date("Ymd",strtotime($calendar[3]));
 
 	/*--■メールチェック--*/
-	/*
+/*
 	$s_url	=get_option('mailserver_url');
 	$s_port	=get_option('mailserver_port');
 	$sv="{".$s_url.":".$s_port."/pop3}INBOX";
@@ -128,6 +128,7 @@ $reg_base_ag=date("Y")-1980;
 	$sv="{".$s_url."}INBOX";
 	$m_list=imap_open ($sv,$_SESSION["castmail"],$_SESSION["castmail_pass"]);
 	$num = imap_num_msg($m_list);
+*/
 	$sql	 ="SELECT * FROM wp01_0castmail_receive ";
 	$sql	.=" LEFT JOIN wp01_0castomer_list ON wp01_0castmail_receive.from_address=wp01_0castomer_list.address";
 	$sql	.=" WHERE to_id='".$_SESSION["id"]."'";
@@ -138,7 +139,7 @@ $reg_base_ag=date("Y")-1980;
 		$mail_data[$n]=$tmp;
 		$n++;
 	}
-	*/
+
 
 
 	$sql ="SELECT * FROM wp01_0cast_config";
