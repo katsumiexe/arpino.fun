@@ -149,7 +149,6 @@ $reg_base_ag=date("Y")-1980;
 	foreach($mail_data0 AS $tmp){
 		$mail_data[]=$tmp;
 	}
-print($sql);
 
 	$sql ="SELECT * FROM wp01_0cast_config";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
@@ -479,7 +478,6 @@ print($sql);
 	}
 
 //■Blog------------------
-
 	$sql ="SELECT * FROM wp01_posts";
 	$sql.=" LEFT JOIN wp01_term_relationships ON wp01_posts.ID=wp01_term_relationships.object_id";
 	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_term_relationships.term_taxonomy_id=wp01_term_taxonomy.term_id";
@@ -1110,15 +1108,15 @@ $(function(){
 		<td id="line_face2" class="config_img_b">
 			<img id="sumb1" src="<?=$prof_img[1]?>?t=<?=time()?>" class="config_img_b1">
 			<div id="s1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 1){?> img_sel<?}?>">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">選択</span>
 			</div>
 			<div id="t1" class="img_btn1 btn_set">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">登録</span>
 			</div>
 			<div id="d1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_del<?}?>">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">削除</span>
 			</div>
 		</td>
@@ -1127,15 +1125,15 @@ $(function(){
 		<td class="config_img_b">
 			<img id="sumb2" src="<?=$prof_img[2]?>?t=<?=time()?>" class="config_img_b1">
 			<div id="s2" class="img_btn1<?if(strpos($prof_img[2],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 2){?> img_sel<?}?>">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">選択</span>
 			</div>
 			<div id="t2" class="img_btn1 btn_set">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">登録</span>
 			</div>
 			<div id="d2" class="img_btn1<?if(strpos($prof_img[2],"noimage") === FALSE){?> btn_del<?}?>">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">削除</span>
 			</div>
 		</td>
@@ -1144,15 +1142,15 @@ $(function(){
 		<td class="config_img_b">
 			<img id="sumb3" src="<?=$prof_img[3]?>?t=<?=time()?>" class="config_img_b1">
 			<div id="s3" class="img_btn1<?if(strpos($prof_img[3],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 3){?> img_sel<?}?>">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">選択</span>
 			</div>
 			<div id="t3" class="img_btn1 btn_set">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">登録</span>
 			</div>
 			<div id="d3" class="img_btn1<?if(strpos($prof_img[3],"noimage") === FALSE){?> btn_del<?}?>">
-				<span class="img_btn_icon"></span>
+				<span class="img_btn_icon"></span>
 				<span class="img_btn_txt">削除</span>
 			</div>
 		</td>
@@ -1169,9 +1167,51 @@ $(function(){
 	<span class="config_tag2">Twitter連携:</span>
 </div>
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">切替時間設定</span></div></h2>
-一日の開始時間<br>
-週の開始曜日<br>
+<div class="config_box">
+<div class="config_tag3">
+<select id="day_start" class="config_tag3_sel">
+<option value="0">00:00</option>
+<option value="1">01:00</option>
+<option value="2">02:00</option>
+<option value="3">03:00</option>
+<option value="4">04:00</option>
+<option value="5">05:00</option>
+<option value="6">06:00</option>
+<option value="7">07:00</option>
+<option value="8">08:00</option>
+<option value="9">09:00</option>
+<option value="10">10:00</option>
+<option value="11">11:00</option>
+<option value="12">12:00</option>
+<option value="13">13:00</option>
+<option value="14">14:00</option>
+<option value="15">15:00</option>
+<option value="16">16:00</option>
+<option value="17">17:00</option>
+<option value="18">18:00</option>
+<option value="19">19:00</option>
+<option value="20">20:00</option>
+<option value="21">21:00</option>
+<option value="22">22:00</option>
+<option value="23">23:00</option>
+</select>
+<span class="config_tag3_in">一日の開始時間</span>
+</div>
+<div class="config_tag3">
+<select id="week_start" class="config_tag3_sel">
+<option value="0">日曜日</option>
+<option value="1">月曜日</option>
+<option value="2">火曜日</option>
+<option value="3">水曜日</option>
+<option value="4">木曜日</option>
+<option value="5">金曜日</option>
+<option value="6">土曜日</option>
+</select>
+<span class="config_tag3_in">週の開始曜日</span>
+</div>
 
+
+</div>
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">顧客グループ設定</span></div></h2>
 
 
@@ -1259,12 +1299,14 @@ $(function(){
 	</tr>
 </table>
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">お問合せ</span></div></h2>
-<div>
-問合せ<br>
-退会<br>
-プライバシーポリシー<br>
-ご利用規約<br>
+<div class="config_box">
+<div class="config_menu">お問合せ</div>
+<div class="config_menu">退会</div>
+<div class="config_menu">プライバシーポリシー</div>
+<div class="config_menu">ご利用規約</div>
 </div>
+
+
 </div>
 	<?}else{?>
 	<div class="main">

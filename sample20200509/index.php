@@ -46,7 +46,7 @@ if($step==2){
 	mb_send_mail($ask_mail, $subject, $body, $head);
 
 	$now=date("Y-m-d H:i:s");
-	$sql="INSERT INTO log_20200509 (regist_time,user_id,user_name,user_kana,user_mail)";
+	$sql="INSERT INTO zlog_20200509 (regist_time,user_id,user_name,user_kana,user_mail)";
 	$sql.=" VALUES ('{$now}','{$ask_id}','{$ask_name}','{$ask_kana}','{$ask_mail}')";
 	mysqli_query($mysqli,$sql);
 

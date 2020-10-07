@@ -21,7 +21,7 @@ if($ed_day){
 }
 
 
-$sql ="SELECT * FROM log_20200509";
+$sql ="SELECT * FROM zlog_20200509";
 $sql.=" WHERE user_id IS NOT NULL";
 $sql.=$app;
 
