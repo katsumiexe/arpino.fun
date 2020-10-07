@@ -294,9 +294,5 @@ $(function(){
 </tr>
 </table>
 <? } ?>
-
-
 </body>
 </html>
-
-
