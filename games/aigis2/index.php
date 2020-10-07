@@ -580,8 +580,6 @@ $('.kakumei_item2').html(Kt_f);
 		</div>
 	</div>
 </div>
-<form id="reset_top" action="./index.php" method="post">
-</form>
-
+<form id="reset_top" action="./index.php" method="post"></form>
 </body>
 </html>
