@@ -44,7 +44,7 @@ if($_POST["staff_set"]){
 
 		$sql="INSERT INTO wp01_0cast (`id`,genji`,`genji_kana`,`cast_id`,`cast_pass`,`castmail`,`castmail_pass`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$castmail}','{$castmail_pass}')";
-		$wpdb->query($sql);
+		$wpdb->query($sql);	
 	
 		$sql ="SELECT * FROM wp01_0encode"; 
 		$enc0 = $wpdb->get_results($sql,ARRAY_A );
@@ -79,7 +79,7 @@ if($_POST["staff_set"]){
 		$sql.="('{$tmp_auto}','ドリンクB','2','35','1000','1'),";
 		$sql.="('{$tmp_auto}','フードA','4','3','500','2'),";
 		$sql.="('{$tmp_auto}','フードB','5','7','100','3'),";
-		$sql.="('{$tmp_auto}','ボトル','3','36','2000','4'),";
+		$sql.="('{$tmp_auto}','ボトル','3','36','2000','4'),";	
 		$sql.="('{$tmp_auto}','本指名','8','55','2000','5'),";
 		$sql.="('{$tmp_auto}','場内指名','8','12','500','6'),";
 		$sql.="('{$tmp_auto}','同伴','6','59','2000','7')";

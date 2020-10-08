@@ -3371,7 +3371,7 @@ input[type=range]::-moz-range-thumb{
 	text-align	:right;
 	height		:7vw;
 	line-height	:7vw;
-	width		:6vw;
+	width		:7vw;
 	background	:#fafafa;
 	border		:1px solid #303030;
 }
@@ -3393,7 +3393,7 @@ input[type=range]::-moz-range-thumb{
 	height		:7vw;
 	line-height	:7vw;
 	background	:#fafafa;
-	width		:6vw;
+	width		:7vw;
 	border		:1px solid #303030;
 	cursor		:pointer;
 	font-family:at_icon;
@@ -3427,7 +3427,7 @@ input[type=range]::-moz-range-thumb{
 	height		:7vw;
 	line-height	:7vw;
 	background	:#fafafa;
-	width		:30vw;
+	width		:33vw;
 	border		:1px solid #303030;
 	vertical-align:middle;
 }
@@ -3437,7 +3437,7 @@ input[type=range]::-moz-range-thumb{
 	height		:7vw;
 	line-height	:7vw;
 	background	:#fafafa;
-	width		:18.5vw;
+	width		:23vw;
 	border		:1px solid #303030;
 	text-align	:right;
 }

@@ -59,6 +59,8 @@ for($n=0;$n<8;$n++){
 
 $reg_base_yy=1980;
 $reg_base_ag=date("Y")-1980;
+$week_start=$_SESSION["week_st"]+0;
+
 
 
 	$page_title="スケジュール";
@@ -104,9 +106,8 @@ $reg_base_ag=date("Y")-1980;
 	$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
 	$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
 
-	$week_start=get_option("start_of_week")+0;
-	$now_w=date("w");
 
+	$now_w=date("w");
 	$base_now=strtotime(date("Y-m-d 00:00:00"));
 	$base_w=$now_w-$week_start;
 	if($base_w<0) $base_w+=7;
@@ -1170,42 +1171,42 @@ $(function(){
 <div class="config_box">
 <div class="config_tag3">
 <select id="day_start" class="config_tag3_sel">
-<option value="0">00:00</option>
-<option value="1">01:00</option>
-<option value="2">02:00</option>
-<option value="3">03:00</option>
-<option value="4">04:00</option>
-<option value="5">05:00</option>
-<option value="6">06:00</option>
-<option value="7">07:00</option>
-<option value="8">08:00</option>
-<option value="9">09:00</option>
-<option value="10">10:00</option>
-<option value="11">11:00</option>
-<option value="12">12:00</option>
-<option value="13">13:00</option>
-<option value="14">14:00</option>
-<option value="15">15:00</option>
-<option value="16">16:00</option>
-<option value="17">17:00</option>
-<option value="18">18:00</option>
-<option value="19">19:00</option>
-<option value="20">20:00</option>
-<option value="21">21:00</option>
-<option value="22">22:00</option>
-<option value="23">23:00</option>
+<option value="0"<?if($_SESSION["times_st"]==0){?> selected="selected"<?}?>>00:00</option>
+<option value="1"<?if($_SESSION["times_st"]==1){?> selected="selected"<?}?>>01:00</option>
+<option value="2"<?if($_SESSION["times_st"]==2){?> selected="selected"<?}?>>02:00</option>
+<option value="3"<?if($_SESSION["times_st"]==3){?> selected="selected"<?}?>>03:00</option>
+<option value="4"<?if($_SESSION["times_st"]==4){?> selected="selected"<?}?>>04:00</option>
+<option value="5"<?if($_SESSION["times_st"]==5){?> selected="selected"<?}?>>05:00</option>
+<option value="6"<?if($_SESSION["times_st"]==6){?> selected="selected"<?}?>>06:00</option>
+<option value="7"<?if($_SESSION["times_st"]==7){?> selected="selected"<?}?>>07:00</option>
+<option value="8"<?if($_SESSION["times_st"]==8){?> selected="selected"<?}?>>08:00</option>
+<option value="9"<?if($_SESSION["times_st"]==9){?> selected="selected"<?}?>>09:00</option>
+<option value="10"<?if($_SESSION["times_st"]==10){?> selected="selected"<?}?>>10:00</option>
+<option value="11"<?if($_SESSION["times_st"]==11){?> selected="selected"<?}?>>11:00</option>
+<option value="12"<?if($_SESSION["times_st"]==12){?> selected="selected"<?}?>>12:00</option>
+<option value="13"<?if($_SESSION["times_st"]==13){?> selected="selected"<?}?>>13:00</option>
+<option value="14"<?if($_SESSION["times_st"]==14){?> selected="selected"<?}?>>14:00</option>
+<option value="15"<?if($_SESSION["times_st"]==15){?> selected="selected"<?}?>>15:00</option>
+<option value="16"<?if($_SESSION["times_st"]==16){?> selected="selected"<?}?>>16:00</option>
+<option value="17"<?if($_SESSION["times_st"]==17){?> selected="selected"<?}?>>17:00</option>
+<option value="18"<?if($_SESSION["times_st"]==18){?> selected="selected"<?}?>>18:00</option>
+<option value="19"<?if($_SESSION["times_st"]==19){?> selected="selected"<?}?>>19:00</option>
+<option value="20"<?if($_SESSION["times_st"]==20){?> selected="selected"<?}?>>20:00</option>
+<option value="21"<?if($_SESSION["times_st"]==21){?> selected="selected"<?}?>>21:00</option>
+<option value="22"<?if($_SESSION["times_st"]==22){?> selected="selected"<?}?>>22:00</option>
+<option value="23"<?if($_SESSION["times_st"]==23){?> selected="selected"<?}?>>23:00</option>
 </select>
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
 <div class="config_tag3">
 <select id="week_start" class="config_tag3_sel">
-<option value="0">日曜日</option>
-<option value="1">月曜日</option>
-<option value="2">火曜日</option>
-<option value="3">水曜日</option>
-<option value="4">木曜日</option>
-<option value="5">金曜日</option>
-<option value="6">土曜日</option>
+<option value="0"<?if($_SESSION["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
+<option value="1"<?if($_SESSION["week_st"]==1){?> selected="selected"<?}?>>月曜日</option>
+<option value="2"<?if($_SESSION["week_st"]==2){?> selected="selected"<?}?>>火曜日</option>
+<option value="3"<?if($_SESSION["week_st"]==3){?> selected="selected"<?}?>>水曜日</option>
+<option value="4"<?if($_SESSION["week_st"]==4){?> selected="selected"<?}?>>木曜日</option>
+<option value="5"<?if($_SESSION["week_st"]==5){?> selected="selected"<?}?>>金曜日</option>
+<option value="6"<?if($_SESSION["week_st"]==6){?> selected="selected"<?}?>>土曜日</option>
 </select>
 <span class="config_tag3_in">週の開始曜日</span>
 </div>
@@ -1453,6 +1454,7 @@ $(function(){
 				</select>
 				</td>
 			</tr>
+
 			<tr>
 				<td class="customer_base_tag">名前</td>
 				<td class="customer_base_item"><input type="text" id="regist_name" name="cus_name" value="" class="item_basebox"></td>

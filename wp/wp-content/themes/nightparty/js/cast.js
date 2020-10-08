@@ -1767,6 +1767,35 @@ console.log("VwBase:"+VwBase);
 	});
 
 
+	$('#week_start').on('change',function (){
+		Tmp=String($(this).val());
+		$.post({
+			url:Dir + "/post/config_week_chg.php",
+			data:{
+			'week'		:Tmp,
+			'cast_id'	:CastId,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Tmp)
+			console.log(data)
+		});
+	});
+
+
+	$('#day_start').on('change',function (){
+		Tmp=String($(this).val());
+		$.post({
+			url:Dir + "/post/config_week_chg.php",
+			data:{
+			'times'		:Tmp,
+			'cast_id'	:CastId,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Tmp)
+			console.log(data)
+		});
+	});
+
 
 
 	$('.cal_days_memo').on('change',function (){
