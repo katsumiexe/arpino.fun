@@ -27,9 +27,12 @@
 	right		:0;
 	margin		:auto;
 	background-size:contain;
-	width		:500px;
+	width		:100vw;
+	max-width	:500px;
 	height		:400px;
+	text-align:center;	
 }
+
 
 .ans{
 	position	:relative;
@@ -95,7 +98,8 @@
 	bottom		:0;
 	right		:0;
 	margin		:auto;
-	width		:500px;
+	width		:100vw;
+	max-width	:500px;
 	height		:400px;
 	z-index		:50;
 }
@@ -133,6 +137,7 @@
 	position	: absolute;
 	top			: 0;
 	left		: 0;
+	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	border-radius	:5px;
 }
@@ -151,8 +156,6 @@
 	background-size:contain;
 	transform		:rotateY(180deg);
 }
-
-
 
 .card_ps{
 	display			:inline-block;
@@ -219,6 +222,54 @@
 	text-align:center;
 }
 
+
+/*-------------------------------------------------------------------*/
+@media screen and (max-width: 560px) {
+
+.ans{
+	margin			:1vw auto;
+	width			:98vw;
+	height			:47vw;
+}
+
+.ans_img{
+	top				:1vw;
+	left			:1vw;
+	width			:30vw;
+	height			:45vw;
+}
+
+.ans_ttl{
+	top				:1vw;
+	left			:32vw;
+	width			:62vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+	padding			:1vw;
+}
+
+.ans_msg{
+	top				:10vw;
+	left			:32vw;
+	width			:62vw;
+	height			:5vw;
+	line-height		:5vw;
+	font-size		:3.5vw;
+	padding			:1vw;
+}
+
+.ans_comm{
+	top				:17vw;
+	left			:32vw;
+	width			:62vw;
+	height			:25vw;
+	font-size		:3vw;
+	padding			:1vw;
+}
+
+}
+
 .n1{
 	background:linear-gradient(#90a0ff,#6080ff);
 }
@@ -226,4 +277,3 @@
 .n0{
 	background:linear-gradient(#ffa0b0,#d08090);
 }
-
