@@ -21,7 +21,8 @@ $ask_manage_id		=$_POST["ask_manage_id"];
 $ask_park_name		=$_POST["ask_park_name"];
 $ask_owner_name		=$_POST["ask_owner_name"];
 $ask_tel			=$_POST["ask_tel"];
-$ask_gps			=$_POST["ask_gps"];
+$ask_gps1			=$_POST["ask_gps1"];
+$ask_gps2			=$_POST["ask_gps2"];
 $ask_memo			=$_POST["ask_memo"];
 
 if($send=="戻る"){
@@ -39,7 +40,7 @@ if($step==2){
 		$body.="駐車場名：{$ask_park_name}\r\n";
 		$body.="オーナー：{$ask_owner_name}\r\n";
 		$body.="電話番号：{$ask_tel}\r\n";
-		$body.="位置情報：{$ask_gps}\r\n";
+		$body.="位置情報：{$ask_gps1} {$ask_gps2} \r\n";
 		$body.="-----------------------\r\n{$ask_memo}\r\n";
 
 		$head  = "From: " . mb_encode_mimeheader($from_mail,"ISO-2022-JP") . "<{$from_mail}> \r\n";
@@ -63,8 +64,8 @@ if($step==2){
 	}
 ----------------------------------------------*/
 	$now=date("Y-m-d H:i:s");
-	$sql="INSERT INTO log_data (d_date, d_name, d_manage_id, d_park_name, d_owner_name, d_tel, d_gps, d_memo)";
-	$sql.=" VALUES ('{$now}','{$ask_name}','{$ask_manage_id}','{$ask_park_name}','{$ask_owner_name}','{$ask_tel}','{$ask_gps}','{$ask_memo}')";
+	$sql="INSERT INTO log_data (d_date, d_name, d_manage_id, d_park_name, d_owner_name, d_tel, d_gps1, d_gps2, d_memo)";
+	$sql.=" VALUES ('{$now}','{$ask_name}','{$ask_manage_id}','{$ask_park_name}','{$ask_owner_name}','{$ask_tel}','{$ask_gps1}','{$ask_gps2}','{$ask_memo}')";
 	mysqli_query($mysqli,$sql);
 
 }
@@ -76,12 +77,27 @@ if($step==2){
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<script src="../js/jquery-3.2.1.min.js"></script>
 <style>
 </style>
+<script>
+$(function(){ 
+	$('#gps').on('click',function(){
+		navigator.geolocation.watchPosition(function(position){
+			const Gps1=position.coords.latitude;
+			const Gps2=position.coords.longitude;
+
+			$('#gps1').val(Gps1);//緯度
+			$('#gps2').val(Gps2);//経度
+		});
+	});
+});
+</script>
+
 </head>
 <body class="body">
 <?if($step==1){?>
-<form id="send_form" method="post" action="index.php">
+<form id="send_form" method="post" action="form1.php">
 これでよろしいでしょうか。<br>
 <input id="step" type="hidden" value="2" name="step">
 <input name="ask_name" value="<?=$ask_name?>" type="hidden">
@@ -89,7 +105,8 @@ if($step==2){
 <input name="ask_park_name" value="<?=$ask_park_name?>" type="hidden">
 <input name="ask_owner_name" value="<?=$ask_owner_name?>" type="hidden">
 <input name="ask_tel" value="<?=$ask_tel?>" type="hidden">
-<input name="ask_gps" value="<?=$ask_gps?>" type="hidden">
+<input name="ask_gps1" value="<?=$ask_gps1?>" type="hidden">
+<input name="ask_gps2" value="<?=$ask_gps2?>" type="hidden">
 <input name="ask_memo" value="<?=$ask_memo?>" type="hidden">
 <div class="box_1">
 <table>
@@ -104,7 +121,7 @@ if($step==2){
 </tr><tr>
 <td class="lv">電話番号</td><td class="lv_2"><?=$ask_tel?></td>
 </tr><tr>
-<td class="lv">位置情報</td><td class="lv_2"><?=$ask_gps?></td>
+<td class="lv">位置情報</td><td class="lv_2">東経：<?=$ask_gps1?>　北緯：<?=$ask_gps2?></td>
 </tr>
 <td class="lv" colspan="2"><?=str_replace("\n","<br>",$ask_memo)?></td>
 <tr>
@@ -117,11 +134,10 @@ if($step==2){
 </table>
 </form>
 
-
 <?}elseif($step==2){?>
 送信しました。<br>
 <?}else{?>
-<form id="send_form" method="post" action="index.php">
+<form id="send_form" method="post" action="form1.php">
 <div class="box_1">
 <input type="hidden" value="1" name="step">
 <table>
@@ -130,7 +146,9 @@ if($step==2){
 <tr><td class="lv">駐車場名</td><td class="lv"><input name="ask_park_name" value="<?=$ask_park_name?>" type="text"></td></tr>
 <tr><td class="lv">オーナー</td><td class="lv"><input name="ask_owner_name" value="<?=$ask_owner_name?>" type="text"></td></tr>
 <tr><td class="lv">電話番号</td><td class="lv"><input name="ask_tel" value="<?=$ask_tel?>" type="text"></td></tr>
-<tr><td class="lv">位置情報</td><td class="lv"><input name="ask_gps" value="<?=$ask_gps?>" type="text"></td></tr>
+<tr><td class="lv">東経</td><td class="lv"><input id="gps1" name="ask_gps1" value="<?=$ask_gps1?>" type="text"></td></tr>
+<tr><td class="lv">北緯</td><td class="lv"><input id="gps2" name="ask_gps2" value="<?=$ask_gps2?>" type="text"><button type="button" id="gps">GPS</button></td></tr>
+
 <tr><td class="lv" colspan="2">メモ<br>
 <textarea name="ask_memo"><?=$ask_memo?></textarea><br>
 <button id="send" type="submit">送信</button>
@@ -139,5 +157,20 @@ if($step==2){
 <div>
 </form>
 <? } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
