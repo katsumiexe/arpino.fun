@@ -24,7 +24,10 @@ $ask_tel			=$_POST["ask_tel"];
 $ask_gps			=$_POST["ask_gps"];
 $ask_memo			=$_POST["ask_memo"];
 
-if($step){
+if($send=="戻る"){
+	$step=0;
+}
+if($step==2){
 	if($to_mail){
 		if(!$from_mail) $from_mail=$to_mail; 
 		$subject	= "お問合せメール";
@@ -64,7 +67,6 @@ if($step){
 	$sql.=" VALUES ('{$now}','{$ask_name}','{$ask_manage_id}','{$ask_park_name}','{$ask_owner_name}','{$ask_tel}','{$ask_gps}','{$ask_memo}')";
 	mysqli_query($mysqli,$sql);
 
-print($sql);
 }
 ?>
 
@@ -78,10 +80,48 @@ print($sql);
 </style>
 </head>
 <body class="body">
-<?if($step){?>
+<?if($step==1){?>
+<form id="send_form" method="post" action="index.php">
+これでよろしいでしょうか。<br>
+<input id="step" type="hidden" value="2" name="step">
+<input name="ask_name" value="<?=$ask_name?>" type="hidden">
+<input name="ask_manage_id" value="<?=$ask_manage_id?>" type="hidden">
+<input name="ask_park_name" value="<?=$ask_park_name?>" type="hidden">
+<input name="ask_owner_name" value="<?=$ask_owner_name?>" type="hidden">
+<input name="ask_tel" value="<?=$ask_tel?>" type="hidden">
+<input name="ask_gps" value="<?=$ask_gps?>" type="hidden">
+<input name="ask_memo" value="<?=$ask_memo?>" type="hidden">
+<div class="box_1">
+<table>
+<tr>
+<td class="lv">名前</td><td class="lv_2"><?=$ask_name?></td>
+</tr><tr>
+<td class="lv">管理番号</td><td class="lv_2"><?=$ask_manage_id?></td>
+</tr><tr>
+<td class="lv">駐車場名</td><td class="lv_2"><?=$ask_park_name?></td>
+</tr><tr>
+<td class="lv">オーナー</td><td class="lv_2"><?=$ask_owner_name?></td>
+</tr><tr>
+<td class="lv">電話番号</td><td class="lv_2"><?=$ask_tel?></td>
+</tr><tr>
+<td class="lv">位置情報</td><td class="lv_2"><?=$ask_gps?></td>
+</tr>
+<td class="lv" colspan="2"><?=str_replace("\n","<br>",$ask_memo)?></td>
+<tr>
+<td class="lv_3" colspan="2">
+<input type="submit" value="送信" name="send">
+<input type="submit" value="戻る" name="send">
+</td>
+<td></td>
+</tr>
+</table>
+</form>
+
+
+<?}elseif($step==2){?>
 送信しました。<br>
 <?}else{?>
-<form id="send_form" method="post" action="form1.php">
+<form id="send_form" method="post" action="index.php">
 <div class="box_1">
 <input type="hidden" value="1" name="step">
 <table>
