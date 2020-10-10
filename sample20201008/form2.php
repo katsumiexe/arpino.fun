@@ -64,7 +64,6 @@ if($step){
 	$sql.=" VALUES ('{$now}','{$ask_name}','{$ask_manage_id}','{$ask_park_name}','{$ask_owner_name}','{$ask_tel}','{$ask_gps}','{$ask_memo}')";
 	mysqli_query($mysqli,$sql);
 
-print($sql);
 }
 ?>
 

@@ -18,30 +18,39 @@ $ed_day=$_POST["ed_day"];
 
 if($st_day){
 	$st=date("Y-m-d 00:00:00",strtotime($st_day));
-	$app.=" AND regist_time>='{$st}'";
+	$app.=" AND d_date>='{$st}'";
 }
 
 if($ed_day){
-	$ed=date("Y-m-d 00:00:00",strtotime($ed_day));
-	$app.=" AND regist_time<'{$ed}'";
+	$ed=date("Y-m-d 00:00:00",strtotime($ed_day)+86400);
+	$app.=" AND d_date<'{$ed}'";
 }
 
 
-$sql ="SELECT * FROM zlog_20200509";
-$sql.=" WHERE user_id IS NOT NULL";
+$sql ="SELECT * FROM log_data";
+$sql.=" WHERE d_id >0";
 $sql.=$app;
 
 
 if($dat0 = mysqli_query($mysqli,$sql)){
 	while($dat1 = mysqli_fetch_assoc($dat0)){
 		$dat[]	 =$dat1;
-		$csv	.=$dat1["regist_time"].",".$dat1["user_id"].",".$dat1["user_name"].",".$dat1["user_kana"].",".$dat1["user_mail"].",\n";
+		foreach($dat1 as $a1){
+			$csv_s	.=$a1.",";
+		}
+			$csv_s	.="\n";
 	}
 }
 
+foreach($dat[0] as $a1=>$a2){
+	$csv	.=$a1.",";
+}
+	$csv	.="\n";
+	$csv	.=$csv_s;
+
+
 $csv=mb_convert_encoding($csv,"SJIS", "UTF-8");
 file_put_contents("./data.csv",$csv);
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -50,8 +59,6 @@ file_put_contents("./data.csv",$csv);
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="robots" content="noindex">
 <style>
-
-
 .menu{
 	display			:inline-block;
 	position		:absolute;
@@ -170,10 +177,6 @@ td{
 .td_mail{
 	width			:300px;
 }
-
-
-
-
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 <script src="../js/jquery-3.2.1.min.js"></script>
@@ -189,7 +192,6 @@ $(function() {
 });
 </script>
 </head>
-
 <body class="body">
 <div class="menu">
 <form action="./list.php" method="post" >
@@ -205,20 +207,18 @@ $(function() {
 <div class="main">
 
 <table class="table">
+
 <tr>
-<td class="td td_date">date</td>
-<td class="td td_id">USER_ID</td>
-<td class="td td_name">USER_NAME</td>
-<td class="td td_kana">USER_KANA</td>
-<td class="td td_mail">USER_MAIL</td>
+<?foreach((array)$dat[0] as $a1 => $a2){?>
+<td class="td"><?=$a1?></td>
+<?}?>
 </tr>
+
 <?for($n=0;$n<count($dat);$n++){?>
 <tr>
-<td class="td_b"><?=$dat[$n]["regist_time"]?></td>
-<td class="td_b"><?=$dat[$n]["user_id"]?></td>
-<td class="td_b"><?=$dat[$n]["user_name"]?></td>
-<td class="td_b"><?=$dat[$n]["user_kana"]?></td>
-<td class="td_b"><?=$dat[$n]["user_mail"]?></td>
+<?foreach($dat[$n] as $a1){?>
+<td class="td_b"><?=$a1?></td>
+<?}?>
 </tr>
 <?}?>
 </table>

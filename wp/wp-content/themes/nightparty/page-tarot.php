@@ -65,9 +65,10 @@ const Oc=<?=$oc?>;
 <?for($n=0;$n<$oc;$n++){?>
 <div class="ans">
 	<img id="img-<?=$n?>" src="<?php echo get_template_directory_uri(); ?>/img/tarot/tarot_0.jpg" class="ans_img">
-	<div class="ans_ttl"><span id="name_j-<?=$n?>">愚者</span>/<span id="name_e-<?=$n?>">The Fool</span><span id="rev-<?=$n?>" class="face">正</span></div>
+	<div class="ans_ttl"><span id="name_j-<?=$n?>">愚者</span>/<span id="name_e-<?=$n?>">The Fool</span></div>
 	<div class="ans_msg"><span id="mean-<?=$n?>"></span></div>
 	<div id="log-<?=$n?>" class="ans_comm"></div>
+	<div id="rev-<?=$n?>" class="face">正</div>
 </div>
 <? } ?>
 <?foreach($tarot_base as $a1 => $a2 ){?><?foreach($a2 as $a3 => $a4){?>

@@ -11,7 +11,7 @@ var Tarot_cd	=[];
 var Tarot_rv	=[];
 
 var Tmp=[0,0,0,0,0,0,0];
-var CardCnt=60;
+var CardCnt=10;
 var S_G=['rotate(180deg)',''];
 
 var N_R=['逆','正'];
@@ -91,11 +91,11 @@ console.log(Cd);
 
 		stop: function( event, ui ) {
 			 $('.hand').fadeOut(1000);
-			 $('.card').animate({'top':'250px','left':'25px'},300).css({'transform':'rotate(0deg)'});
+			 $('.card').animate({'top':'65%','left':'5%'},300).css({'transform':'rotate(0deg)'});
 			for(var N=0;　N < 22;N++){
-				Tmp_a=405-N*18;
+				Tmp_a=78.5-N*3.51;
 				Tmp_b=500+N*40;
-				 $('#c'+N).delay(Tmp_b).animate({'left':Tmp_a+'px'},500).addClass('card_sel');
+				 $('#c'+N).delay(Tmp_b).animate({'left':Tmp_a+'%'},500).addClass('card_sel');
 			}
 			 $('.guard').delay(2350).fadeOut(0);
 			 $('.card').addClass('card_sel').css({'transform':'rotate(0)'});
@@ -104,7 +104,7 @@ console.log(Cd);
 
 	$('.hand').hover(
 		function(){
-			 $(this).css({'color':'#0000d0'});
+			 $(this).css({'color':'#ff3030'});
 		},
 		function(){
 			 $(this).animate({'color':'#d0a060'},200);
@@ -113,13 +113,13 @@ console.log(Cd);
 	$(document).on({
 		'mouseenter': function() {	
 			if(CardCnt<230){
-				 $(this).animate({'top':'240px'},20).addClass('card_get');
+				 $(this).animate({'top':'60%'},20).addClass('card_get');
 			}
 		},
 
 		'mouseleave': function() {
 			if(CardCnt<230){
-				 $(this).animate({'top':'250px'},0).removeClass('card_get');
+				 $(this).animate({'top':'65%'},0).removeClass('card_get');
 			}
 		}
 	}, '.card_sel');
@@ -129,10 +129,10 @@ console.log(Cd);
 		if(CardCnt<230){
 			 $(this)
 			 	.removeClass('card_sel')
-			 	.animate({'top':'60px','left':CardCnt+'px'},500)
+			 	.animate({'top':'15%','left':CardCnt+'%'},500)
 			 $(this).children('.card_f').css('transform','rotateY(-180deg)');
 			 $(this).children('.card_b').css('transform','rotateY(0) '+S_G[Sei[TmpId]]);
-			CardCnt+=80;
+			CardCnt+=20;
 			Tarot_cd[M]=Cd[TmpId];
 			Tarot_rv[M]=Sei[TmpId];
 			M++;
@@ -156,8 +156,8 @@ console.log(Cd);
 			}).done(function(data, textStatus, jqXHR){
 				console.log(data);
 
-				$('.ans').delay(800).fadeIn(500);
-				$('.main').delay(800).fadeOut(500);
+				$('.ans').delay(1500).fadeIn(500);
+				$('.main').delay(1500).fadeOut(500);
 				for(var i=0;i<Oc;i++){
 					$('#img-'+i).attr('src',Dir+ '/img/tarot/tarot_'+ Tarot_cd[i] +'.jpg');
 					$('#rev-'+i).addClass('n'+Tarot_rv[i]).text(N_R[Tarot_rv[i]]);
