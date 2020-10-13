@@ -14,6 +14,8 @@
 }
 
 .rank_table{
+	display:inline-block;
+	vertical-align:top;
 	margin: 5px;
 	border-collapse:collapse;
 	background:#fafafa;
