@@ -39,7 +39,7 @@ Template Name: access
 		</div>
 
 
-<?=do_shortcode('[asp_product id="366"]'); ?>
+<?=do_shortcode('[chu_chu_tarot]'); ?>
 
 
 	</div>
