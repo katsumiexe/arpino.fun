@@ -37,7 +37,6 @@ global $wpdb;
     esc_html_e(include_once('chu_chu_tarot_group.php'),'textdomain');  
 }
 
-
 function set_tarot_base(){
 	global $wpdb;
 	$n=0;
@@ -57,6 +56,16 @@ function set_tarot_detail(){
 }
 
 function set_tarot_card(){
+	global $wpdb;
+	$n=0;
+	$sql	 ="SELECT * FROM tarot_base";
+	$sql	.=" ORDER BY id ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$card[$n]=$res;
+		$n++;
+	}
 	esc_html_e(include_once('chu_chu_tarot_card.php'),'textdomain');  
 }
 
