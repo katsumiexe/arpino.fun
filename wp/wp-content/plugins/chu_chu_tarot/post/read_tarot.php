@@ -3,52 +3,53 @@ $_SESSION["time"]=time()+32400;;
 ini_set('display_errors',1);
 require_once ("../../../../wp-load.php");
 global $wpdb;
-$jst=time()+32400;
-$now_8=date("Ymd",$jst-($start_time*3600));
-$link=get_template_directory_uri();
 
-$tarot_id0	=$_POST["tarot_id0"];
-$tarot_id1	=$_POST["tarot_id1"];
-$tarot_id2	=$_POST["tarot_id2"];
+$tarot_id		=$_POST["tarot_id"];
+$n_r			=$_POST["n_r"];
+$s=0;
 
-$n_r0		=$_POST["n_r0"];
-$n_r1		=$_POST["n_r1"];
-$n_r2		=$_POST["n_r2"];
+$position[1]="正";
+$position[0]="逆";
 
-$dat[0]=" ";
-$dat[1]=" ";
-$dat[2]=" ";
-$dat[3]=" ";
-$dat[4]=" ";
-$dat[5]=" ";
-$dat[6]=" ";
-$dat[7]=" ";
-$dat[8]=" ";
-$dat[9]=" ";
-$dat[10]=" ";
-$dat[11]=" ";
-$dat[12]=" ";
-$dat[13]=" ";
-$dat[14]=" ";
-$dat[15]=" ";
-$dat[16]=" ";
-$dat[17]=" ";
-$dat[18]=" ";
-$dat[19]=" ";
-$dat[20]=" ";
-$dat[21]=" ";
+$rev[0]="chu_img_rev";
+
 
 
 $sql	 ="SELECT * FROM tarot_data";
-$sql	 .=" WHERE (tarot_id='{$tarot_id0}' && n_r='{$n_r0}' && result='0')";
-$sql	 .=" OR (tarot_id='{$tarot_id1}' && n_r='{$n_r1}' && result='1')";
-$sql	 .=" OR (tarot_id='{$tarot_id2}' && n_r='{$n_r2}' && result='2')";
-$sql1 = $wpdb->get_results($sql,ARRAY_A );
+$sql	 .=" WHERE (tarot_id='{$tarot_id[0]}' && n_r='{$n_r[0]}' && result='0')";
+$sql	 .=" OR (tarot_id='{$tarot_id[1]}' && n_r='{$n_r[1]}' && result='1')";
+$sql	 .=" OR (tarot_id='{$tarot_id[2]}' && n_r='{$n_r[2]}' && result='2')";
+$sql1 = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($sql1 as $a1){
 	$dat[$a1["result"]]=str_replace("\n","<br>",$a1["tarot_log"]);
 }
 
-echo json_encode($dat);
+
+$sql	 ="SELECT * FROM tarot_base";
+$sql	 .=" WHERE id='{$tarot_id[0]}' OR id='{$tarot_id[1]}' OR id='{$tarot_id[2]}'";
+$sql2 = $wpdb->get_results($sql,ARRAY_A);
+
+foreach($sql2 as $a2){
+	$dat2[$a2["id"]]=$a2;
+	if($n_r[$s]==1){
+		$dat2[$a2["id"]]["mean"]=$a2["mean_1"];
+
+	}else{
+		$dat2[$a2["id"]]["mean"]=$a2["mean_0"];
+	}
+	$s++;
+}
+
+
+for($n=0;$n<3;$n++){
+$html.="<div class=\"chu_ans\"><img id=\"img-{$n}\" src=\"../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_{$tarot_id[$n]}.jpg\" class=\"chu_ans_img {$rev[$n_r[$n]]}\">";
+$html.="<div class=\"chu_ans_ttl\"><span id=\"name_j-{$n}\">{$dat2[$tarot_id[$n]]["name_j"]}</span>/<span id=\"name_e-{$n}\">{$dat2[$tarot_id[$n]]["name_e"]}</span></div>";
+$html.="<div class=\"chu_ans_msg\"><span id=\"mean-{$n}\">{$dat2[$tarot_id[$n]]["mean"]}</span></div>";
+$html.="<div id=\"log-{$n}\" class=\"chu_ans_comm\">{$dat[$n]}</div>";
+$html.="<div id=\"rev-{$n}\" class=\"chu_face f$n_r[$n]\">{$position[$n_r[$n]]}</div></div>";
+}
+
+echo $html;
 exit();
 ?>

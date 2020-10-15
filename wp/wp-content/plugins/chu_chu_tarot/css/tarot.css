@@ -19,7 +19,11 @@
 	100% { transform: rotate(0deg); }
 }
 
-.main{
+.chu_box{
+	position	:relative;
+}
+
+.chu_main{
 	position	:absolute;
 	top			:0;
 	left		:0;	
@@ -33,9 +37,12 @@
 }
 
 
-.ans{
-	position	:relative;
+.chu_ans_box{
 	display		:none;
+
+}
+.chu_ans{
+	position	:relative;
 	margin		:5px auto;
 	width		:500px;
 	height		:300px;
@@ -44,7 +51,7 @@
 	background:linear-gradient(#ffffe0,#fffff0);
 }
 
-.ans_img{
+.chu_ans_img{
 	position	:absolute;
 	top			:5px;
 	left		:5px;
@@ -52,7 +59,7 @@
 	height		:290px;
 }
 
-.ans_ttl{
+.chu_ans_ttl{
 	display		:inline-block;
 	position	:absolute;
 	top			:5px;
@@ -65,7 +72,7 @@
 	border-bottom:5px double #c09000;
 }
 
-.ans_msg{
+.chu_ans_msg{
 	display		:inline-block;
 	position	:absolute;
 	top			:45px;
@@ -77,7 +84,7 @@
 	font-size	:13px;
 }
 
-.ans_comm{
+.chu_ans_comm{
 	display			:inline-block;
 	position		:absolute;
 	top				:75px;
@@ -90,7 +97,7 @@
 	border-bottom	:3px solid #909090;
 }
 
-.guard{
+.chu_guard{
 	position	:absolute;
 	top			:0;
 	left		:0;
@@ -103,14 +110,14 @@
 	z-index		:50;
 }
 
-.hand{
+.chu_hand{
 	display		:inline-block;
 	position	:absolute;
 	top			:0;
 	left		:0;
 	right		:0;
 	bottom		:0;
-	margin:auto;
+	margin		:auto;
 	height		:50px;
 	line-height	:50px;
 	width		:50px;
@@ -123,7 +130,7 @@
 	text-shadow	:2px 2px 2px #303030;
 }
 
-.card{
+.chu_card{
 	perspective		:150rem;
 	display			:inline-block;
 	position		:absolute;
@@ -134,7 +141,7 @@
 	z-index			:12;
 }
 
-.card_f,.card_b{
+.chu_card_f,.chu_card_b{
 	transition	:.8s;
 	position	: absolute;
 	top			: 0;
@@ -144,14 +151,14 @@
 	border-radius	:5px;
 }
 
-.card_f{
+.chu_card_f{
 	background	:linear-gradient(#8040b0,#400080);
 	height		:95px;
 	width		:55px;
 	border		:5px solid #f5f5f5;
 }
 
-.card_b{
+.chu_card_b{
 	height		:95px;
 	width		:55px;
 	border		:5px solid #f5f5f5;
@@ -159,7 +166,7 @@
 	transform		:rotateY(180deg);
 }
 
-.card_ps{
+.chu_card_ps{
 	display			:inline-block;
 	position		:absolute;
 	height			:105px;
@@ -202,11 +209,11 @@
 	transform-origin: 0px 25px;
 }
 
-.img_rev{
+.chu_img_rev{
 	transform		:rotate(180deg);
 }
 
-.face{
+.chu_face{
 	display			:inline-block;
 	position		:absolute;
 	top				:10px;
@@ -225,49 +232,49 @@
 
 /*-------------------------------------------------------------------*/
 @media screen and (max-width: 560px) {
-.main{
+.chu_main{
 	width		:90vw;
 	height		:72vw;
 }
 
-.card{
+.chu_card{
 	height			:21vw;
 	width			:14vw;
 	border-radius	:5px;
 }
 
-.card_f{
+.chu_card_f{
 	height		:19vw;
 	width		:12vw;
 	border		:1vw solid #f5f5f5;
 }
 
-.card_b{
+.chu_card_b{
 	height		:19vw;
 	width		:12vw;
 	border		:1vw solid #f5f5f5;
 }
 
-.card_ps{
+.chu_card_ps{
 	height		:19vw;
 	width		:12vw;
 	border-radius	:5px;
 }
 
-.ans{
+.chu_ans{
 	margin			:1vw auto;
 	width			:98vw;
 	height			:47vw;
 }
 
-.ans_img{
+.chu_ans_img{
 	top				:1vw;
 	left			:1vw;
 	width			:30vw;
 	height			:45vw;
 }
 
-.ans_ttl{
+.chu_ans_ttl{
 	top				:1vw;
 	left			:32vw;
 	width			:62vw;
@@ -277,7 +284,7 @@
 	padding			:1vw;
 }
 
-.ans_msg{
+.chu_ans_msg{
 	top				:10vw;
 	left			:32vw;
 	width			:62vw;
@@ -287,7 +294,7 @@
 	padding			:1vw;
 }
 
-.ans_comm{
+.chu_ans_comm{
 	top				:17vw;
 	left			:32vw;
 	width			:62vw;
@@ -296,7 +303,7 @@
 	padding			:1vw;
 }
 
-.face{
+.chu_face{
 	top				:1vw;
 	left			:1vw;
 }
@@ -304,10 +311,10 @@
 
 }
 
-.n1{
+.f1{
 	background:linear-gradient(#90a0ff,#6080ff);
 }
 
-.n0{
+.f0{
 	background:linear-gradient(#ffa0b0,#d08090);
 }
