@@ -1170,7 +1170,7 @@ $(function(){
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">切替時間設定</span></div></h2>
 <div class="config_box">
 <div class="config_tag3">
-<select id="day_start" class="config_tag3_sel">
+<select id="config_day_start" class="config_tag3_sel">
 <option value="0"<?if($_SESSION["times_st"]==0){?> selected="selected"<?}?>>00:00</option>
 <option value="1"<?if($_SESSION["times_st"]==1){?> selected="selected"<?}?>>01:00</option>
 <option value="2"<?if($_SESSION["times_st"]==2){?> selected="selected"<?}?>>02:00</option>
@@ -1199,7 +1199,7 @@ $(function(){
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
 <div class="config_tag3">
-<select id="week_start" class="config_tag3_sel">
+<select id="config_week_start" class="config_tag3_sel">
 <option value="0"<?if($_SESSION["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
 <option value="1"<?if($_SESSION["week_st"]==1){?> selected="selected"<?}?>>月曜日</option>
 <option value="2"<?if($_SESSION["week_st"]==2){?> selected="selected"<?}?>>火曜日</option>
