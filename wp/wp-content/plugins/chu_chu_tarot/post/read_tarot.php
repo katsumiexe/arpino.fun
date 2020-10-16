@@ -6,11 +6,11 @@ global $wpdb;
 
 $tarot_id		=$_POST["tarot_id"];
 $n_r			=$_POST["n_r"];
-$s=0;
+$oc				=$_POST["oc"];
 
+$s=0;
 $position[1]="正";
 $position[0]="逆";
-
 $rev[0]="chu_img_rev";
 
 
@@ -42,7 +42,7 @@ foreach($sql2 as $a2){
 }
 
 
-for($n=0;$n<3;$n++){
+for($n=0;$n<$oc;$n++){
 $html.="<div class=\"chu_ans\"><img id=\"img-{$n}\" src=\"../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_{$tarot_id[$n]}.jpg\" class=\"chu_ans_img {$rev[$n_r[$n]]}\">";
 $html.="<div class=\"chu_ans_ttl\"><span id=\"name_j-{$n}\">{$dat2[$tarot_id[$n]]["name_j"]}</span>/<span id=\"name_e-{$n}\">{$dat2[$tarot_id[$n]]["name_e"]}</span></div>";
 $html.="<div class=\"chu_ans_msg\"><span id=\"mean-{$n}\">{$dat2[$tarot_id[$n]]["mean"]}</span></div>";

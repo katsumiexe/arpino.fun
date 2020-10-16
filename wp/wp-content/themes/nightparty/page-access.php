@@ -37,13 +37,9 @@ Template Name: access
 		<div class="access_box">
 		03-6457-6156
 		</div>
-
-
-<?=do_shortcode('[chu_chu_tarot]'); ?>
-
-
 	</div>
-	
 	</div>
 </div>
+<?=do_shortcode('[chu_chu_tarot]'); ?>
+
 <?php get_footer(); ?>

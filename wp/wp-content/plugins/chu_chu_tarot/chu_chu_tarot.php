@@ -78,7 +78,7 @@ function chu_chu_fanc() {
 		$tarot_base[$nn["id"]]=$nn;
 	}
 
-	$oc=3;
+	$oc=1;
 
 $str=<<<EOF
 <link rel="stylesheet" href="../../../../wp/wp-content/plugins/chu_chu_tarot/css/tarot.css?_{$jst}">
@@ -92,7 +92,7 @@ const Oc={$oc};
 </script>
 <style>
 .chu_main{
-	background-image: url("{$wpurl}/img/tarot/paper.png");
+	background-image: url("../../../../wp/wp-content/plugins/chu_chu_tarot/img/paper.png");
 }
 </style>
 <div class="chu_box">
