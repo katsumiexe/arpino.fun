@@ -1767,7 +1767,7 @@ console.log("VwBase:"+VwBase);
 	});
 
 
-	$('#week_start').on('change',function (){
+	$('#config_week_start').on('change',function (){
 		Tmp=String($(this).val());
 		$.post({
 			url:Dir + "/post/config_week_chg.php",
@@ -1782,10 +1782,10 @@ console.log("VwBase:"+VwBase);
 	});
 
 
-	$('#day_start').on('change',function (){
+	$('#config_day_start').on('change',function (){
 		Tmp=String($(this).val());
 		$.post({
-			url:Dir + "/post/config_week_chg.php",
+			url:Dir + "/post/config_day_chg.php",
 			data:{
 			'times'		:Tmp,
 			'cast_id'	:CastId,

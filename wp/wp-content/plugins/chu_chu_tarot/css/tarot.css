@@ -21,13 +21,13 @@
 
 .chu_box{
 	position	:relative;
+	min-height	:420px;
 }
 
 .chu_main{
 	position	:absolute;
 	top			:0;
-	left		:0;	
-	bottom		:0;
+	left		:0;
 	right		:0;
 	margin		:auto;
 	background-size:contain;
@@ -39,6 +39,12 @@
 
 .chu_ans_box{
 	display		:none;
+	position	:absolute;
+	top			:0;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	z-index		:49;
 
 }
 .chu_ans{
@@ -49,6 +55,7 @@
 	text-align	:left;
 	box-shadow:-5px -5px 80px 10px rgba(220,150,50,0.3) inset, 5px 5px 50px 10px rgba(220,150,50,0.3) inset;
 	background:linear-gradient(#ffffe0,#fffff0);
+
 }
 
 .chu_ans_img{

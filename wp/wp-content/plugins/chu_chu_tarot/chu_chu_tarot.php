@@ -69,7 +69,11 @@ function set_tarot_card(){
 	esc_html_e(include_once('chu_chu_tarot_card.php'),'textdomain');  
 }
 
-function chu_chu_fanc() {
+function chu_chu_fanc($num) {
+	$oc=$num[0];
+	if($oc+0==0) $oc=1;
+	if($oc+0>3) $oc=3;
+
 	global $wpdb;
 	$jst	=time()+32400;
 	$sql	="SELECT * FROM tarot_base";
@@ -78,7 +82,10 @@ function chu_chu_fanc() {
 		$tarot_base[$nn["id"]]=$nn;
 	}
 
-	$oc=3;
+for($p=1;$p<$oc+1;$p++){
+	$ps.="<div id=\"p{$p}\" class=\"chu_card_ps\"></div>";
+}
+
 
 $str=<<<EOF
 <link rel="stylesheet" href="../../../../wp/wp-content/plugins/chu_chu_tarot/css/tarot.css?_{$jst}">
@@ -92,15 +99,13 @@ const Oc={$oc};
 </script>
 <style>
 .chu_main{
-	background-image: url("{$wpurl}/img/tarot/paper.png");
+	background-image: url("../../../../wp/wp-content/plugins/chu_chu_tarot/img/paper.png");
 }
 </style>
 <div class="chu_box">
 <div class="chu_main">
 <div class="chu_hand"></div>
-<div id="p1" class="chu_card_ps"></div>
-<div id="p2" class="chu_card_ps"></div>
-<div id="p3" class="chu_card_ps"></div>
+{$ps}
 <div id="c21" class="chu_card"><span class="chu_card_f"></span><span id="b21" class="chu_card_b"></span></div>
 <div id="c20" class="chu_card"><span class="chu_card_f"></span><span id="b20" class="chu_card_b"></span></div>
 <div id="c19" class="chu_card"><span class="chu_card_f"></span><span id="b19" class="chu_card_b"></span></div>
