@@ -69,23 +69,31 @@ function set_tarot_card(){
 	esc_html_e(include_once('chu_chu_tarot_card.php'),'textdomain');  
 }
 
+
+//------------------------------------------------------
 function chu_chu_fanc($num) {
-	$oc=$num[0];
-	if($oc+0==0) $oc=1;
-	if($oc+0>3) $oc=3;
+
+	$gp=$num[0];
+	if($gp+0==0) $gp=1;
 
 	global $wpdb;
 	$jst	=time()+32400;
+
+	$sql	="SELECT * FROM tarot_group";
+	$sql	.=" WHERE group_id='{$gp}'";
+	$sql	.=" LIMIT 1";
+	$group	= $wpdb->get_row($sql);
+
+	for($p=1;$p<$group["oracle"]+1;$p++){
+		$ps.="<div id=\"p{$p}\" class=\"chu_card_ps\"></div>";
+	}
+
 	$sql	="SELECT * FROM tarot_base";
 	$sql1	= $wpdb->get_results($sql,ARRAY_A );
+
 	foreach($sql1 as $nn){
 		$tarot_base[$nn["id"]]=$nn;
 	}
-
-for($p=1;$p<$oc+1;$p++){
-	$ps.="<div id=\"p{$p}\" class=\"chu_card_ps\"></div>";
-}
-
 
 $str=<<<EOF
 <link rel="stylesheet" href="../../../../wp/wp-content/plugins/chu_chu_tarot/css/tarot.css?_{$jst}">
@@ -95,7 +103,8 @@ $str=<<<EOF
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/tarot.js?_{$jst}"></script>
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/jquery.ui.touch-punch.min.js?_{$jst}"></script>
 <script>
-const Oc={$oc};
+const Oc={$group["oracle"]};
+const Gp={$gp};
 </script>
 <style>
 .chu_main{
@@ -135,4 +144,4 @@ const Oc={$oc};
 EOF;
 return $str;
 }
-add_shortcode( 'chu_chu_tarot', 'chu_chu_fanc' );
+add_shortcode('chu_chu_tarot','chu_chu_fanc');

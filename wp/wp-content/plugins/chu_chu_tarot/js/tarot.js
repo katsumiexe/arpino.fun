@@ -127,68 +127,38 @@ console.log(Cd);
 	$('.chu_main').on('click','.chu_card_get',function(){
 		TmpId=$(this).attr('id').replace('c','');
 
-console.log(Oc);
-
-		if(Oc == 10000){
-			$(this).children('.chu_card_f').css('transform','rotateY(-180deg)');
-			$(this).children('.chu_card_b').animate({'width':'165px','height':'290px'},500).css('transform','rotateY(0) '+S_G[Sei[TmpId]]);
-			$(this)
+		if(CardCnt<230){
+			 $(this)
 			 	.removeClass('chu_card_sel')
-				.animate({'top':'5px','left':'5px','width':'165px','height':'290px'},500)
+			 	.animate({'top':'15%','left':CardCnt+'%'},500)
+			 $(this).children('.chu_card_f').css('transform','rotateY(-180deg)');
+			 $(this).children('.chu_card_b').css('transform','rotateY(0) '+S_G[Sei[TmpId]]);
+			CardCnt+=20;
+			Tarot_cd[M]=Cd[TmpId];
+			Tarot_rv[M]=Sei[TmpId];
+			M++;
+		}
 
+		if(M>=Oc){
 			$('.chu_guard').show();
-/*
 			$.post({
 				url:"../../../../wp/wp-content/plugins/chu_chu_tarot/post/read_tarot.php",
 				data:{
-					'tarot_id0'	:Cd[TmpId],
-					'n_r0'		:Sei[TmpId],
+					'oc':Oc,
+					'gp':Gp,
+					'tarot_id[]':Tarot_cd,
+					'n_r[]'		:Tarot_rv,
 				},
 
 			}).done(function(data, textStatus, jqXHR){
 				console.log(data);
-				$('.chu_main').delay(1500).fadeOut(500);
-				$('.chu_ans_box').delay(1500).fadeIn(500).html(data);
+				$('.chu_main').delay(1200).fadeOut(0);
+				$('.chu_ans_box').delay(1000).fadeIn(500).html(data);
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);
 				console.log(errorThrown);
 			});
-*/
-
-		}else{
-			if(CardCnt<230){
-				 $(this)
-				 	.removeClass('chu_card_sel')
-				 	.animate({'top':'15%','left':CardCnt+'%'},500)
-				 $(this).children('.chu_card_f').css('transform','rotateY(-180deg)');
-				 $(this).children('.chu_card_b').css('transform','rotateY(0) '+S_G[Sei[TmpId]]);
-				CardCnt+=20;
-				Tarot_cd[M]=Cd[TmpId];
-				Tarot_rv[M]=Sei[TmpId];
-				M++;
-			}
-
-			if(M>=Oc){
-				$('.chu_guard').show();
-				$.post({
-					url:"../../../../wp/wp-content/plugins/chu_chu_tarot/post/read_tarot.php",
-					data:{
-						'oc':Oc,
-						'tarot_id[]':Tarot_cd,
-						'n_r[]'		:Tarot_rv,
-					},
-
-				}).done(function(data, textStatus, jqXHR){
-					console.log(data);
-					$('.chu_main').delay(1200).fadeOut(0);
-					$('.chu_ans_box').delay(1000).fadeIn(500).html(data);
-
-				}).fail(function(jqXHR, textStatus, errorThrown){
-					console.log(textStatus);
-					console.log(errorThrown);
-				});
-			}
 		}
 	});
 });

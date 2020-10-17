@@ -40,5 +40,5 @@ Template Name: access
 	</div>
 	</div>
 </div>
-<?=do_shortcode('[chu_chu_tarot 2]'); ?>
+<?=do_shortcode('[chu_chu_tarot 1]'); ?>
 <?php get_footer(); ?>

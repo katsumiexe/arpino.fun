@@ -4,32 +4,21 @@ ini_set('display_errors',1);
 require_once ("../../../../wp-load.php");
 global $wpdb;
 
-<<<<<<< HEAD
 $tarot_id	=$_POST["tarot_id"];
 $n_r		=$_POST["n_r"];
+$gp			=$_POST["gp"];
 $s=0;
 
-$gp=1;
 
 $position[1]="正";
 $position[0]="逆";
 $rev[0]		="chu_img_rev";
 
-=======
-$tarot_id		=$_POST["tarot_id"];
-$n_r			=$_POST["n_r"];
-$oc				=$_POST["oc"];
-
-$s=0;
-$position[1]="正";
-$position[0]="逆";
-$rev[0]="chu_img_rev";
->>>>>>> abd4b54df8f2a04de320f509c292deb84225bd08
 
 $sql	 ="SELECT * FROM tarot_group";
 $sql	 .=" WHERE group_id='{$gp}'";
 $sql	 .=" AND del=0";
-$group = $wpdb->get_row($sql,ARRAY_A);
+$group = $wpdb->get_row($sql);
 
 $sql	 ="SELECT sort, oracle_name FROM tarot_oracle";
 $sql	 .=" WHERE oracle_id='{$gp}'";
@@ -68,7 +57,7 @@ foreach($sql2 as $a2){
 }
 
 
-for($n=0;$n<$oc;$n++){
+for($n=0;$n<3;$n++){
 $html.="<div class=\"chu_ans\"><img id=\"img-{$n}\" src=\"../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_{$tarot_id[$n]}.jpg\" class=\"chu_ans_img {$rev[$n_r[$n]]}\">";
 $html.="<div class=\"chu_ans_ttl\"><span id=\"name_j-{$n}\">{$dat2[$tarot_id[$n]]["name_j"]}</span>/<span id=\"name_e-{$n}\">{$dat2[$tarot_id[$n]]["name_e"]}</span></div>";
 $html.="<div class=\"chu_ans_msg\"><span id=\"mean-{$n}\">{$dat2[$tarot_id[$n]]["mean"]}</span></div>";
