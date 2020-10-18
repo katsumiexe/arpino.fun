@@ -15,7 +15,9 @@ input:focus{
 	line-height	:1.2;
 	color		:#333;
 	font-size	:3.5vw;
-	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+//	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	font		:400 14px Verdana, "ＭＳ Ｐゴシック", sans-serif;
+
 	text-align	:center;
 	width		:100vw;
 }
@@ -3293,18 +3295,20 @@ input[type=range]::-moz-range-thumb{
 }
 
 .sch_time_in,.sch_time_out{
-	position	:absolute;
-	bottom		:1vw;
-	border		:0.5vw solid #909090;
-	width		:24vw;
-	height		:8vw;
-	line-height	:8vw;
-	background	:#fafafa;
-	font-size	:5vw;
-	font-weight	:600;
-	color		:#909090;
-	padding-left:1vw;
-	border-radius:0;
+	position		:absolute;
+	bottom			:1vw;
+	border			:0.5vw solid #909090;
+	width			:24vw;
+	height			:8vw;
+	line-height		:8vw;
+	background		:#fafafa;
+	font-size		:5vw;
+	font-weight		:600;
+	color			:#909090;
+	padding-left	:1vw;
+	border-radius	:0;
+	font-family		:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+
 }
 
 .d_sch_time_in,.d_sch_time_out{

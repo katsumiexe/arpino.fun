@@ -549,7 +549,7 @@ $week_start=$_SESSION["week_st"]+0;
 		}	
 		$n++;
 	}
-	
+
 	$blog_status[0]="公開";
 	$blog_status[1]="予約";
 	$blog_status[2]="非公開";
@@ -1359,8 +1359,8 @@ $(function(){
 						<?if($base_now>$base_day+86400*$n){?>
 							<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
 							<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
-							<input id="sel_in<?=$n?>" type="hidden" value="<?=$stime[date("Ymd",$base_day+86400*$n)]?>">
-							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>">
+							<input id="sel_in<?=$n?>" type="hidden" value="<?=$stime[date("Ymd",$base_day+86400*$n)]?>" class="sch_time_in">
+							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>" class="sch_time_in">
 
 						<?}else{?>
 <select id="sel_in<?=$n?>" value="" name="sel_in<?=$n?>" class="sch_time_in">

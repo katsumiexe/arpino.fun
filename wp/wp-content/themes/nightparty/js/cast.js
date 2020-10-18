@@ -1162,6 +1162,11 @@ console.log("VwBase:"+VwBase);
 	});
 
 	$('.sch_set').on('click',function () {
+		Tmp_1=$('.cal_weeks_box_2').children().eq(12).children('.sch_time_in').val();
+		Tmp_2=$('.cal_weeks_box_2').children().eq(13).children('.sch_time_in').val();
+		console.log(Tmp_1);
+		console.log(Tmp_2);
+
 		$.post({
 			url:Dir + "/post/sch_set.php",
 			data:{
@@ -1184,12 +1189,22 @@ console.log("VwBase:"+VwBase);
 				'sel_out[5]':$('.cal_weeks_box_2').children().eq(12).children('.sch_time_out').val(),
 				'sel_out[6]':$('.cal_weeks_box_2').children().eq(13).children('.sch_time_out').val(),
 			},
-
+			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$.each(data, function(a1, a2){
+				if(a2){
+					$('#c'+a1).children('.cal_i2').addClass('n2');
+				}else{
+					$('#c'+a1).children('.cal_i2').removeClass('n2');
+				}
+			  console.log(a1 + ':' + a2);
+			})
+
+
 			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
 			$('.cal_weeks').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
-
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
