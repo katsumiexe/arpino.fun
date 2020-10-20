@@ -447,7 +447,7 @@ $week_start=$_SESSION["week_st"]+0;
 	}
 
 	$sql	 ="SELECT * FROM wp01_0notice";
-	$sql	.=" LEFT JOIN  wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
+	$sql	.=" LEFT JOIN wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
 	$sql	.=" WHERE del='0'";
 	$sql	.=" AND cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND status>0";
@@ -455,8 +455,10 @@ $week_start=$_SESSION["week_st"]+0;
 
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat2 as $cus2){
-		$notice[]=$cus2;
+		$notice[$cus2["id"]]=$cus2;
+		$notice[$cus2["id"]]["log"]=str_replace("\n","<br>",$cus2["log"]);
 	}
+
 
 	$sql	 ="SELECT * FROM wp01_0customer_item";
 	$sql	.=" WHERE del='0'";
@@ -1333,10 +1335,14 @@ $(function(){
 			<span class="notice_box_birth"><?=$days_birth_3?></span>
 		</div>
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
+
 		<div class="notice_list">
-			<?for($n=0;$n<count($notice);$n++){?>
-				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>"><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日　<?=$notice[$n]["title"]?>
-				<div class="notice_yet<?=$notice[$n]["status"]?>"></div></div>
+			<?foreach($notice as $n =>$a2){?>
+				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>">
+					<span class="notice_d"><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日</span>
+					<span class="notice_t"><?=$notice[$n]["title"]?></span>
+					<span class="notice_yet<?=$notice[$n]["status"]?>"></span>
+				</div>
 				<input id="notice_box_hidden<?=$notice[$n]["id"]?>" type="hidden" value="<?=$notice[$n]["log"]?>">
 			<? } ?>
 		</div>

@@ -111,7 +111,7 @@ if($img_code){
 	$wpdb->query($sql_log);
 
 
-	$html_img ="<img src=\"{$link}\" class=\"mail_img\">";
+	$html_img ="<img src=\"{$res}\" class=\"mail_img\">";
 	$html_img.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$clist}\">";
 }else{
 //	$html_img="<img src=\"{php echo get_template_directory_uri();}/img/customer_no_img.jpg\" class=\"mail_img\">";
@@ -121,7 +121,7 @@ if($img_code){
 for($s=1;$s<6;$s++){
 	$html_fav.="<span id=\"fav_{$tmp_auto}_{$s}\" class=\"customer_list_fav_icon";
 
-	if($customer[$n]["fav"]>=$s){
+	if($fav>=$s){
 		$html_fav.=" fav_in";
 	}
 	$html_fav.="\"></span>\"";
@@ -134,7 +134,7 @@ $html.=$html_fav;
 $html.="</div>";
 
 $html.="<div class=\"customer_list_name\">{$name} 様</div>";
-$html.="<div class=\"customer_list_nickname\">{$name}</div>";
+$html.="<div class=\"customer_list_nickname\">{$nick}</div>";
 $html.="<span class=\"mail_al\"></span>";
 $html.="<input type=\"hidden\" class=\"customer_hidden_fav\" value=\"{$fav}\">";
 $html.="<input type=\"hidden\" class=\"customer_hidden_yy\" value=\"{$yy}\">";

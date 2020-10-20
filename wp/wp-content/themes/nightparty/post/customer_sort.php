@@ -28,12 +28,8 @@ for($n=0;$n<8;$n++){
 	$box_no.=$dec[$id_0][$tmp_id];
 }
 
-if($fil>0){
-	$app=" AND c_group={$fil}";
-}
-
-	if($c_sort["c_sort_group"]>0){
-		$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
+	if($fil>0){
+		$app1=" AND c_group={$fil}";
 	}
 
 	if($sel==1){
