@@ -39,12 +39,12 @@
 
 .chu_ans_box{
 	display		:none;
-	position	:absolute;
-	top			:0;
-	left		:0;
-	right		:0;
+	width		:520px;
+	position	:relative;
 	margin		:auto;
+	background	:#e0e0d0;
 	z-index		:49;
+	padding		:10px;
 
 }
 .chu_ans{
@@ -94,7 +94,7 @@
 .chu_ans_comm{
 	display			:inline-block;
 	position		:absolute;
-	top				:75px;
+	top				:70px;
 	left			:180px;
 	width			:300px;
 	height			:205px;
@@ -266,6 +266,10 @@
 	height		:19vw;
 	width		:12vw;
 	border-radius	:5px;
+}
+
+.chu_box{
+	width			:99vw;
 }
 
 .chu_ans{

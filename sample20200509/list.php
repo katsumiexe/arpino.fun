@@ -10,13 +10,15 @@ mysqli_set_charset($mysqli,'UTF-8');
 $st_day=$_POST["st_day"];
 $ed_day=$_POST["ed_day"];
 
+if(!$st_day) $st_day=date("Ymd");
+
 if($st_day){
 	$st=date("Y-m-d 00:00:00",strtotime($st_day));
 	$app.=" AND regist_time>='{$st}'";
 }
 
 if($ed_day){
-	$ed=date("Y-m-d 00:00:00",strtotime($ed_day));
+	$ed=date("Y-m-d 00:00:00",strtotime($ed_day)+86400);
 	$app.=" AND regist_time<'{$ed}'";
 }
 
