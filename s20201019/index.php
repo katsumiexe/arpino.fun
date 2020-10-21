@@ -65,7 +65,7 @@ $(function(){
 }
 
 .set{
-	height		:24px;
+	height		:28px;
 	width		:50px;
 	font-size	:16px;
 }
@@ -133,7 +133,7 @@ $(function(){
 <option value="<?=$n?>"<?if($now_d==$n){?> selected="selected"<?}?>><?=$n?></option><?}?>
 </select>
 <span class="ymd">日</span>
-<button id="set" type="button" class="set">SET</button>
+<button id="set" type="button" class="set">計算</button>
 </div>
 <div class="ans_box">
 </div>
