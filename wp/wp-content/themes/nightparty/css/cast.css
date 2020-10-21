@@ -161,7 +161,7 @@ input:focus{
 .notice_ttl{
 	display			:flex;
 	margin			:1vw auto 0 auto;
-	width			:86vw;
+	width			:96vw;
 	height			:6.5vw;
 	text-align		:left;
 	font-size		:0;
@@ -204,7 +204,7 @@ input:focus{
 .notice_box{
 	display			:none;
 	margin			:0 auto 3vw auto;
-	width			:85vw;
+	width			:95vw;
 	font-size		:4vw;
 	text-align		:left;
 	border			:0.5vw solid #f17766;
@@ -215,10 +215,11 @@ input:focus{
 #notice_box_1{display:block;}
 
 .notice_list{
-	display			:flex;
-	flex-direction: column;
+	display			:inline-flex;
+	flex-wrap		:wrap;
+//	flex-direction	:column;
 	margin			:0 auto;
-	width			:85vw;
+	width			:95vw;
 	font-size		:4vw;
 	text-align		:left;
 	border			:0.5vw solid #f17766;
@@ -271,9 +272,8 @@ input:focus{
 	position		:relative;
 	height			:7vw;
 	line-height		:7vw;
-	flex			:1;
+	flex-basis		:94vw;
 	font-size		:4vw;
-	padding-left	:1vw;
 	margin			:0;
 	text-align		:left;
 	background		:#fafafa;
@@ -281,9 +281,10 @@ input:focus{
 }
 
 .notice_box_item1{
-	color:#000000;
-	text-shadow:1px 1px #000000;
+	color			:#000000;
+//	text-shadow		:1px 1px #000000;
 	background		:#e0ffff;
+	font-weight		:600;
 }
 
 .notice_box_sel{
@@ -307,16 +308,19 @@ input:focus{
 
 
 .notice_box_log{
-	display			:inline-block;
-	margin			:0 auto 3vw auto;
-	width			:83vw;
-	font-size		:4vw;
-	background		:#fafafa;
-	text-align		:left;
-	padding			:1vw;
-	color			:#303030;
-	min-height		:30vw;
-	border			:0.5vw solid #f17766;
+	display				:inline-block;
+	margin				:0 auto 3vw auto;
+	width				:93vw;
+	font-size			:4vw;
+	background			:#fafafa;
+	text-align			:left;
+	padding				:1vw;
+	color				:#303030;
+	min-height			:30vw;
+	border-left			:0.5vw solid #f17766;
+	border-right		:0.5vw solid #f17766;
+	border-bottom		:0.5vw solid #f17766;
+
 }
 
 .notice_icon{
@@ -345,6 +349,33 @@ input:focus{
 	font-family		:at_icon;
 	color			:#d00000;
 }
+
+.notice_d{
+	position		:absolute;
+	display			:inline-block;
+	top				:0;
+	bottom			:0;
+	left			:1vw;
+	margin			:auto;
+	height			:7vw;
+	line-height		:7vw;
+	width			:20vw;
+	overflow		:hidden;
+
+}
+.notice_t{
+	position		:absolute;
+	display			:inline-block;
+	top				:0;
+	bottom			:0;
+	left			:22vw;
+	margin			:auto;
+	height			:7vw;
+	line-height		:7vw;
+	width			:64vw;
+	overflow		:hidden;
+}
+
 
 
 .cal_box{
