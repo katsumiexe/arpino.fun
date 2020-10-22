@@ -75,6 +75,8 @@ for($e=0;$e<7;$e++){
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
 	<a href="<?=get_template_directory_uri(); ?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+	<a href="<?=home_url('/person')?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+
 		<img src="<?=$dat[$b1]["face"]?>" class="main_b_1_1">
 		<span class="main_b_1_2">
 			<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>

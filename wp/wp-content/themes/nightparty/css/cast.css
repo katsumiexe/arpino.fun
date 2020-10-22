@@ -217,7 +217,7 @@ input:focus{
 .notice_list{
 	display			:inline-flex;
 	flex-wrap		:wrap;
-//	flex-direction	:column;
+	
 	margin			:0 auto;
 	width			:95vw;
 	font-size		:4vw;
@@ -272,18 +272,18 @@ input:focus{
 	position		:relative;
 	height			:7vw;
 	line-height		:7vw;
-	flex-basis		:94vw;
+	flex-basis		:95vw;
 	font-size		:4vw;
 	margin			:0;
 	text-align		:left;
 	background		:#fafafa;
 	color			:#303030;
+	cursor			:pointer;
 }
 
 .notice_box_item1{
 	color			:#000000;
-//	text-shadow		:1px 1px #000000;
-	background		:#e0ffff;
+	background		:#d0c0ff;
 	font-weight		:600;
 }
 
@@ -338,16 +338,16 @@ input:focus{
 	position		:absolute;
 	top				:0;
 	bottom			:0;
-	right			:1vw;
+	right			:0;
 	margin			:auto;
 	display			:inline-block;
-	height			:5vw;
-	line-height		:5vw;
-	width			:5vw;
-	font-size		:5vw;
+	height			:7vw;
+	line-height		:7vw;
+	width			:7vw;
+	font-size		:7vw;
 	
 	font-family		:at_icon;
-	color			:#d00000;
+	color			:#ff1020;
 }
 
 .notice_d{
@@ -385,8 +385,8 @@ input:focus{
 
 .cal_table{
 	border-collapse	:collapse;
-	width			:99vw;
-	margin			:1vw auto;
+	width			:98vw;
+	margin			:1vw;
 	table-layout	:fixed;
 	background		:#303030;
 	border:0.5vw solid #303030
@@ -1968,7 +1968,6 @@ input:focus{
 	background		:#fafafa;
 	width			:100vw;
 	min-height		:100vh;
-	max-width		:650px;
 	overflow		:hidden;
 }
 
@@ -3798,19 +3797,48 @@ input[type=range]::-moz-range-thumb{
 	text-align	:left;
 	font-size	:4vw;
 	height		:8vw;
-	line-height	:8vw;
-	border-bottom:1px solid #303030;
+	line-height		:8vw;
+	border-bottom	:1px solid #303030;
 }
 
 .config_box{
-	font-size:0;
-	text-align:center;
+	font-size		:0;
+	text-align		:center;
 
 }
+
+.config_tag1{
+	display			:inline-block;
+	width			:30vw;
+	height			:10vw;
+	line-height		:10vw;
+	font-size		:4.5vw;
+	padding-left	:2vw;
+	width			:37vw;
+	background		:linear-gradient(#cea877,#be9867);
+	color			:#fafafa;
+	font-weight		:600;
+	text-align		:left;
+	border-radius	:1vw 0 0 1vw;
+
+
+}
+
+.config_text1{
+	margin			:auto;
+	height			:10vw;
+	line-height		:10vw;
+	font-size		:4.5vw;
+	padding-left	:4vw;
+	width			:60vw;
+}
+
+
+
 .config_tag3{
 	display		:inline-block;
 	position	:relative;
-	width		:58vw;
+	width		:62vw;
 	height		:11vw;
 }
 
