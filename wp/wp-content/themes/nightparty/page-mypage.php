@@ -1160,10 +1160,10 @@ $(function(){
 	</tr>
 </table>
 <div class="config_box">
-	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["nickname"]?>" class="config_text1"><br>
-	<span class="config_tag1">USER_ID：</span><span class=""><?=$_SESSION["cast_id"]?></span>q<br>
+	<span class="config_tag1">USER_ID：</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
 	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1"><br>
-	<span class="config_tag1">メール登録:</span><input type="text" value="<?=$_SESSION["nickname"]?>" class="config_text1"><br>
+	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
+	<span class="config_tag1">メール:</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
 
 	<span class="config_tag2">LINE連携:</span>
 	<span class="config_tag2">Twitter連携:</span>

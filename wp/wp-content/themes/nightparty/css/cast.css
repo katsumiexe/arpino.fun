@@ -3804,17 +3804,16 @@ input[type=range]::-moz-range-thumb{
 .config_box{
 	font-size		:0;
 	text-align		:center;
-
+	margin			:1vw auto 2vw auto;
 }
 
 .config_tag1{
 	display			:inline-block;
-	width			:30vw;
+	width			:35vw;
 	height			:10vw;
 	line-height		:10vw;
 	font-size		:4.5vw;
 	padding-left	:2vw;
-	width			:37vw;
 	background		:linear-gradient(#cea877,#be9867);
 	color			:#fafafa;
 	font-weight		:600;
@@ -3830,7 +3829,21 @@ input[type=range]::-moz-range-thumb{
 	line-height		:10vw;
 	font-size		:4.5vw;
 	padding-left	:4vw;
-	width			:60vw;
+	border			:0.5vw solid #cccccc;
+	width			:55vw;
+}
+
+.config_text2{
+	display			:inline-block;
+	margin			:auto;
+	height			:10vw;
+	line-height		:10vw;
+	font-size		:4.5vw;
+	padding-left	:4vw;
+	width			:50vw;
+	background		:#fafafa;
+	border			:0.5vw solid #cccccc;
+	text-align		:left;
 }
 
 
