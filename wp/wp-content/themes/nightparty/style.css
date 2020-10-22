@@ -68,7 +68,6 @@ ul {
 	margin		:auto;
 	background	:#101213;
 	text-align	:center;
-//	box-shadow	:5px 5px 5px rgba(100,50,0,0.6);
 	z-index		:120;
 	padding:0;
 }
@@ -150,11 +149,11 @@ ul {
 }
 
 .cast_tag{
-	display		:inline-flex;
-	width		:1024px;
-	text-align	:left;
-	height		:30px;
-	overflow	:hidden;
+	display			:inline-flex;
+	width			:1024px;
+	text-align		:left;
+	height			:30px;
+	overflow		:hidden;
 }
 
 .cast_tag_box{
@@ -940,11 +939,44 @@ ul {
 	border		:1px solid #e8d8a0;
 }
 
-@media screen and (max-width: 1024px) {
+
+@media screen and (max-width: 959px){
 
 }
 
-@media screen and (max-width: 559px) {
+@media screen and (max-width: 559px){
+
+.menu{
+	width:50vw;
 
 }
+
+.menu-item {
+	height		:10vw;
+	line-height	:10vw;
+	width		:40vw;
+	flex-basis	:40vw;
+	margin		:0;
+}
+
+
+.main{
+	display		:block;
+	width		:100vw;
+	padding-top	:20vw;
+}
+
+.main_top{
+	width		:98vw;
+}
+
+.head{
+	width		:100vw;
+	height		:20vw;
+}
+
+
+}
+
+
 
