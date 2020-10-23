@@ -3804,7 +3804,7 @@ input[type=range]::-moz-range-thumb{
 .config_box{
 	font-size		:0;
 	text-align		:center;
-	margin			:1vw auto 2vw auto;
+	margin			:2vw auto 5vw auto;
 }
 
 .config_tag1{

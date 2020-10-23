@@ -1219,6 +1219,7 @@ $(function(){
 
 
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
+<div class="config_box">
 <table class="log_item_set">
 <thead>
 	<tr>
@@ -1300,13 +1301,13 @@ $(function(){
 		<td class="log_td_handle"><span id="new_set"></span></td>
 	</tr>
 </table>
+</div>
+
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">お問合せ</span></div></h2>
-<div class="config_box">
 <div class="config_menu">お問合せ</div>
 <div class="config_menu">退会</div>
 <div class="config_menu">プライバシーポリシー</div>
 <div class="config_menu">ご利用規約</div>
-</div>
 
 
 </div>
