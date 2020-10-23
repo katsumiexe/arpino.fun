@@ -66,15 +66,16 @@
 			</div>
 				</div>
 		<div class="wrap">
-<h1 class="wp-heading-inline">固定ページ</h1>
+<h1 class="wp-heading-inline">CAST一覧</h1>
  <a href="https://arpino.fun/wp/wp-admin/post-new.php?post_type=page" class="page-title-action">新規追加</a>
 <hr class="wp-header-end">
 
-<h2 class='screen-reader-text'>固定ページリストの絞り込み</h2>
+<h2 class='screen-reader-text'>絞り込み</h2>
 <ul class='subsubsub'>
 	<li class='all'><a href="edit.php?post_type=page" class="current" aria-current="page">すべて <span class="count">(18)</span></a> |</li>
 	<li class='publish'><a href="edit.php?post_status=publish&#038;post_type=page">公開済み <span class="count">(18)</span></a></li>
 </ul>
+
 <form id="posts-filter" method="get">
 <p class="search-box">
 	<label class="screen-reader-text" for="post-search-input">固定ページを検索:</label>
@@ -96,7 +97,6 @@
 		</select>
 		<input type="submit" id="doaction" class="button action" value="適用"  />
 	</div>
-
 
 	<div class="alignleft actions">
 		<label for="filter-by-date" class="screen-reader-text">日付で絞り込み</label>
@@ -151,6 +151,7 @@
 					&#8220;access&#8221; はロックされています				</span>
 				</div>
 			</th>
+
 			<td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
 				<div class="locked-info"><span class="locked-avatar"></span> <span class="locked-text"></span></div>
 				<strong><a class="row-title" href="https://arpino.fun/wp/wp-admin/post.php?post=65&amp;action=edit" aria-label="「access」 (編集)">access</a></strong>
