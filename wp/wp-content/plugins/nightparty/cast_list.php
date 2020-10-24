@@ -41,6 +41,25 @@
 	padding-left	:5px;
 	padding-right	:5px;
 }
+.txt_box_p{
+	width			:80%;
+	height			:30px;
+	padding-left	:5px;
+	padding-right	:5px;
+}
+
+.watch{
+	display			:inline-block;
+	width			:20%;
+	height			:28px;
+	line-height		:28px;
+	text-align		:center;
+	font-sie		:20px;
+	border-radius	:3px;
+	background		:#e0f0ff;
+}
+
+
 .span_box{
 	display			:inline-block;
 	width			:90%;
@@ -65,6 +84,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(function(){ 
+	$('.watch').on('click',function () {
+		Chg=$(this).attr('id').replace('w','');
+		$('#cast_pass'+Chg).attr('type','text');
+
+console.log(Chg);
+	});
+
+
 	$('.chg_btn').on('click',function () {
 		Chg=$(this).attr('id').replace('chg','');
 
@@ -215,7 +242,7 @@ $(function(){
 <td class='manage-column column-author btm'><input id="sort<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["sort"]?>" class="txt_box right"></td>
 <td class='manage-column column-author btm'><input id="rank<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["rank"]?>" class="txt_box right"></td>
 <td class='manage-column column-author btm'><input id="cast_id<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["cast_id"]?>" class="txt_box"></td>
-<td class='manage-column column-author btm'><input id="cast_pass<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["cast_pass"]?>" class="txt_box"></td>
+<td class='manage-column column-author btm'><input id="cast_pass<?=$member[$n]["id"]?>" type="password" value="<?=$member[$n]["cast_pass"]?>" class="txt_box_p"><span id="w<?=$member[$n]["id"]?>" class="watch">●</span></td>
 <td class='manage-column column-author btm'>
 	<select name="m" id="del<?=$member[$n]["id"]?>">
 
