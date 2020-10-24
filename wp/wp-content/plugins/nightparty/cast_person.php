@@ -62,49 +62,9 @@
 }
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(function(){ 
-	$('.chg_btn').on('click',function () {
-		Chg=$(this).attr('id').replace('chg','');
-
-		if($('#del'+Chg).val() ==4){
-
-			if (!confirm('削除します。よろしいですか')) {
-				return false;
-			}else{
-				$.post({
-					url:"../../../../wp/wp-content/plugins/nightparty/post/chg_cast_list.php",
-					data:{
-					'del'		:$('#del'+Chg).val(),
-					},
-				}).done(function(data, textStatus, jqXHR){
-
-				});
-			}
-
-		}else{
-			$.post({
-				url:"../../../../wp/wp-content/plugins/nightparty/post/Chg_cast_list.php",
-				data:{
-				'genji'		:$('#genji'+Chg).val(),
-				'sort'		:$('#sort'+Chg).val(),
-				'rank'		:$('#rank'+Chg).val(),
-				'cast_id'	:$('#cast_id'+Chg).val(),
-				'cast_pass'	:$('#cast_pass'+Chg).val(),
-				'del'		:$('#del'+Chg).val(),
-				},
-			}).done(function(data, textStatus, jqXHR){
-
-			});
-		}
-	});
-});
-</script>
-
 <div class="wrap">
-<h1 class="wp-heading-inline">CAST一覧</h1>
-<a href="staff_regist.php" class="page-title-action">新規追加</a>
+<h1 class="wp-heading-inline">CAST詳細</h1>
+<a href="https://arpino.fun/wp/wp-admin/post-new.php?post_type=page" class="page-title-action">新規追加</a>
 <hr class="wp-header-end">
 
 <h2 class='screen-reader-text'>絞り込み</h2>
@@ -207,8 +167,10 @@ $(function(){
 <tr>
 
 <td class='manage-column column-author btm'>
-<input type="submit" name="detail" id="detail<?=$member[$n]["id"]?>" class="detal_btn button button-primary button-large" value="詳細"><br>
-<button type="button" name="chg" id="chg<?=$member[$n]["id"]?>" class="chg_btn button button-large">修正</button>
+<input type="submit" name="publish" id="detail<?=$member[$n]["id"]?>" class="button button-primary button-large" value="詳細"><br>
+<input type="submit" name="publish" id="chg<?=$member[$n]["id"]?>" class="button button-large" value="修正">
+
+
 </td>
 <td class='manage-column column-author btm'><div class="img_wrap"><img src="<?=$member[$n]["img"]?>" class="img_wrap_in"></div></td>
 <td class='manage-column column-author btm'><input id="genji<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["genji"]?>" class="txt_box"></td>
@@ -217,14 +179,14 @@ $(function(){
 <td class='manage-column column-author btm'><input id="cast_id<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["cast_id"]?>" class="txt_box"></td>
 <td class='manage-column column-author btm'><input id="cast_pass<?=$member[$n]["id"]?>" type="text" value="<?=$member[$n]["cast_pass"]?>" class="txt_box"></td>
 <td class='manage-column column-author btm'>
-	<select name="m" id="del<?=$member[$n]["id"]?>">
+	<select name="m" id="filter-by-date">
 
 	<option selected='selected' value="0">表示</option>
 	<option value="1"<?if($member[$n]["del"] == 1){?> selected="selected"<?}?>>非表示</option>
 	<option value="2"<?if($member[$n]["del"] == 2){?> selected="selected"<?}?>>準備中</option>
 	<option value="3"<?if($member[$n]["del"] == 3){?> selected="selected"<?}?>>退職</option>
-	<option value="4"<?if($member[$n]["del"] == 4){?> selected="selected"<?}?>>利用停止</option>
-	<option value="5">削除</option>
+	<option value="3"<?if($member[$n]["del"] == 4){?> selected="selected"<?}?>>利用停止</option>
+	<option value="4">削除</option>
 	</select>
 </td>
 </tr>
