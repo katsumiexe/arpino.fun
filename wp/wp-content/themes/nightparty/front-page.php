@@ -40,14 +40,22 @@ get_header();
 
 <div class="main_top">
 	<div class="slide">
-		<div class="slide_img"></div>
+		<div class="slide_img">
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top1.jpg" class="topimg">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top2.jpg" class="topimg">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top3.jpg" class="topimg">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top4.jpg" class="topimg">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top5.jpg" class="topimg">;
+
+		</div>
 		<div class="slide_point">
-			<div class="slide_dot"></div>
-			<div class="slide_dot"></div>
-			<div class="slide_dot"></div>
-			<div class="slide_dot"></div>
-			<div class="slide_dot"></div>
-			<div class="slide_dot"></div>
+
+			<div id="dot0" class="slide_dot dot_on"></div>
+			<div id="dot1" class="slide_dot"></div>
+			<div id="dot2" class="slide_dot"></div>
+			<div id="dot3" class="slide_dot"></div>
+			<div id="dot4" class="slide_dot"></div>
+
 		</div>
 	</div>
 	<div class="main_b">

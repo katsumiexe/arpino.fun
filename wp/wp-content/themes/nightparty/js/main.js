@@ -1,11 +1,35 @@
 $(document).ready(function () {
+var TopCnt=0;
 $('.main').fadeIn(1500);
-
 	$('.main_b_11').on('click',function () {
 		TMP=$(this).attr('id').replace('i','');
 		$('#val_p').val(TMP);
 		$('#form_p').submit();
 	});
+
+
+	$('.slide_dot').on('click',function () {
+		TMP=$(this).attr('id').replace('dot','');
+		Left=TMP * (-1050);
+		$('.slide_img').animate({'left':Left},1000);
+		$('.slide_dot').removeClass('dot_on');
+		$(this).addClass('dot_on');
+		TopCnt=TMP;
+
+	});
+
+	setInterval(function(){
+		TopCnt++;
+		if(TopCnt>4) TopCnt=0;
+		Left=TopCnt * (-1050);
+		$('.slide_img').animate({'left':Left},1000);
+		$('.slide_dot').removeClass('dot_on');
+		$('#dot'+TopCnt).addClass('dot_on');
+	},6000);
+
+
+
+
 
 	$('.person_img_sub').hover(function () {
 		TMP=$(this).attr('src');
