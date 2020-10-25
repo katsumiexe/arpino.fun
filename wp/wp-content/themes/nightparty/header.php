@@ -21,6 +21,7 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 <?php wp_head(); ?>
 </head>
 <body class="body">
+
 <div class="head">
 <?php
 	$args = array(

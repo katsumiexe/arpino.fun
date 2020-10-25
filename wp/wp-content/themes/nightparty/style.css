@@ -68,10 +68,10 @@ ul {
 	left		:0;
 	right		:0;
 	display		:flex;
-	width		:1050px;
+	width		:100vw;
 	height		:70px;
 	margin		:auto;
-	background	:#101213;
+	background	:linear-gradient(#202020,#1a1a1a);
 	text-align	:center;
 	z-index		:120;
 	padding:0;
@@ -309,12 +309,13 @@ ul {
 
 .foot{
 	display		:inline-block;
-	width		:1020px;
+	width		:100%;
 	height		:100px;
-	background	:#101213;
+	background	:#101513;
 	margin		:10px auto;
-	border		:1px solid #c8b880;
-	background	:#302520;
+	border-top	:1px solid #c8b880;
+	background	:#051010;
+
 }
 
 .access_map{

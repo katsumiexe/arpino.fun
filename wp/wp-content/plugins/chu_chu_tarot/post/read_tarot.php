@@ -4,7 +4,6 @@ global $wpdb;
 $tarot_id	=$_POST["tarot_id"];
 $n_r		=$_POST["n_r"];
 $gp			=$_POST["gp"];
-$s=0;
 
 $position[1]="正";
 $position[0]="逆";
@@ -38,6 +37,7 @@ foreach($sql1 as $a1){
 	$dat[$a1["result"]]=str_replace("\n","<br>",$a1["tarot_log"]);
 }
 
+$s=0;
 $sql	 ="SELECT * FROM tarot_base";
 $sql	 .=" WHERE id='{$tarot_id[0]}' OR id='{$tarot_id[1]}' OR id='{$tarot_id[2]}'";
 $sql2 = $wpdb->get_results($sql,ARRAY_A);

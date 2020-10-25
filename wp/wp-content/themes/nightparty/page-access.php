@@ -3,7 +3,6 @@
 Template Name: access
 */get_header();
 ?>
-<div class="">
 <div class="footmark">
 	<a href="<?=home_url()?>" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -39,5 +38,4 @@ Template Name: access
 		</div>
 	</div>
 </div>
-<?=do_shortcode('[chu_chu_tarot 1]'); ?>
 <?php get_footer(); ?>

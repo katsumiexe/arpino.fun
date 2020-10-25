@@ -8,11 +8,7 @@
 
 get_header();
 ?>
-
-<div class="cast_tag">
-お探しのページは見つかりませんでした
-
+<div class="main_top">
+<?=do_shortcode('[chu_chu_tarot 1]'); ?>
 </div>
-
-<?php
-get_footer();
+<?php get_footer(); ?>

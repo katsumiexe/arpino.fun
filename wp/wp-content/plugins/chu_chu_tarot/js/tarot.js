@@ -44,7 +44,6 @@ $(function(){
 		 Cd[No1]	=Cd[No2];
 		 Cd[No2]	=Tmp_s;
 	}
-console.log(Cd);
 
 	cd_cnt[0]=cd_y[0].length;
 	cd_cnt[1]=cd_y[1].length;

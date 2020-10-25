@@ -92,6 +92,8 @@ function chu_chu_fanc($num) {
 	for($p=1;$p<$group["oracle"]+1;$p++){
 		$ps.="<div id=\"p{$p}\" class=\"chu_card_ps\"></div>";
 	}
+
+
 $str=<<<EOF
 <link rel="stylesheet" href="../../../../wp/wp-content/plugins/chu_chu_tarot/css/tarot.css?_{$jst}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -100,8 +102,8 @@ $str=<<<EOF
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/tarot.js?_{$jst}"></script>
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/jquery.ui.touch-punch.min.js?_{$jst}"></script>
 <script>
-const Oc={$group["oracle"]};
-const Gp={$gp};
+var Oc={$group["oracle"]};
+var Gp={$gp};
 </script>
 <style>
 .chu_main{
