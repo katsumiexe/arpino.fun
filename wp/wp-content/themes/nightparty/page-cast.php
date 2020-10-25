@@ -36,7 +36,7 @@ foreach($res2 as $a2){
 		$sort[$a2["cast_id"]]=$sch_table["in"][$a2["stime"]];
 	}else{
 		$sch[$a2["cast_id"]]	="休み";
-		$sort[$a2["cast_id"]]=999999;
+		$sort[$a2["cast_id"]]	=999999;
 	}
 }
 
@@ -55,7 +55,6 @@ for($e=0;$e<7;$e++){
 	$cast_tag[$e]=date("m月d日",$now+86400*$e).$week[date("w",$now+86400*$e)];
 	$cast_id[$e]=date("Ymd",$now+86400*$e);
 }
-
 ?>
 <div class="footmark">
 	<a href="<?=home_url()?>" class="footmark_box box_a">
@@ -74,9 +73,7 @@ for($e=0;$e<7;$e++){
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="<?=get_template_directory_uri(); ?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
 	<a href="<?=home_url('/person')?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
-
 		<img src="<?=$dat[$b1]["face"]?>" class="main_b_1_1">
 		<span class="main_b_1_2">
 			<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>

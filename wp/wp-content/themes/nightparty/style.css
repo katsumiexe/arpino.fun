@@ -26,6 +26,11 @@ ul {
 	font-family:at_icon;
 }
 
+.head_menu{
+	display:none;
+
+}
+
 .menu{
 	display		:block;
 	text-align	:center;
@@ -687,7 +692,6 @@ ul {
 	padding-right:5px;
 }
 
-
 .all_tag{
 	display			:inline-block;
 	width			:300px;
@@ -947,8 +951,10 @@ ul {
 @media screen and (max-width: 559px){
 
 .menu{
-	width:50vw;
-
+	position:absolute;
+	top:15vw;
+	left:1vw;
+	width:41vw;
 }
 
 .menu-item {
@@ -971,12 +977,59 @@ ul {
 }
 
 .head{
-	width		:100vw;
-	height		:20vw;
+	width			:100vw;
+	height			:14vw;
+	background		:#302520;
+
 }
 
+.head_menu{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:2vw;
+	bottom			:0; 
+	margin			:auto;
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
 
+	text-align		:center;
+	background		:#c8b880;
+	color			:#ffffff;
+	border-radius	:1vw;
+	cursor			:pointer;
 }
 
+.menu_a{
+	position		:absolute;
+	top				:2vw;
+	left			:1vw;
+	height			:1vw;
+	width			:8vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+	transform-origin:right;
+}
 
+.menu_b{
+	position		:absolute;
+	top				:4.5vw;
+	left			:1vw;
+	height			:1vw;
+	width			:8vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+}
 
+.menu_c{
+	position		:absolute;
+	top				:7vw;
+	left			:1vw;
+	height			:1vw;
+	width			:8vw;
+	background		:#fafafa;
+	border-radius	:0.4vw;
+	transform-origin:right;
+}
+}

@@ -33,5 +33,11 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 	 );
 wp_nav_menu($args);
 ?>
+<div class="head_menu">
+	<div class="menu_a"></div>
+	<div class="menu_b"></div>
+	<div class="menu_c"></div>
+</div>	
+
 </div>
 <div class="main">
