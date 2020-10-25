@@ -133,10 +133,6 @@ ul {
 	font-size:0;
 }
 
-.topimg{
-	flex-basis:350px;
-}
-
 
 .slide_point{
 	position		:absolute;
@@ -979,7 +975,6 @@ ul {
 	margin		:0;
 }
 
-
 .main{
 	display		:block;
 	width		:100vw;
@@ -1046,4 +1041,24 @@ ul {
 	border-radius	:0.4vw;
 	transform-origin:right;
 }
+
+.slide{
+	width		:100vw;
+	flex-basis	:100vw;
+	height		:40vw;
+	margin		:2vw auto;
+}
+
+
+.slide_img{
+	width		:500vw;
+	height		:30vw;
+	background	:#fafafa;
+	margin		:auto;
+	font-size:0;
+}
+
+
+
+
 }
