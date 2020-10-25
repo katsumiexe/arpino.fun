@@ -87,9 +87,17 @@ if($_POST["staff_set"]){
 	}
 }
 
+
+if($_POST["staff_set"]){
+    esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
+}
+
+
+
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
 	add_menu_page('スタッフ', 'スタッフ', 'manage_options', 'staff', 'staff', 'dashicons-businessman',6);
+
 	add_submenu_page('staff', 'スタッフ登録ページ', 'スタッフ登録', 'manage_options', 'staff_regist', 'staff_regist');
 	add_submenu_page('staff', 'スタッフ一覧ページ', 'スタッフ一覧', 'manage_options', 'staff_list', 'staff_list');
 
@@ -111,25 +119,42 @@ function custom_menu_page(){
 	add_submenu_page('config', 'アイテム設定', 'アイテム設定', 'manage_options', 'config_item', 'config_item');
 }
 
+
+
 function cast_regist(){
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }
 
+
 function cast_list(){
 	global $wpdb;
+	$updir = wp_upload_dir();
+	$sort_del=$_REQUEST["sort_del"];
 	$n=0;
 	$sql	 ="SELECT * FROM wp01_0cast";
+	$sql	.=" WHERE id>0";
 	$sql	.=" ORDER BY id DESC";
 	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
 
 	foreach($tmp_list as $res){
-		$member[$n]=$res;
-		$n++;
+		$count_del[$res["del"]]++;
+		$count_all++;
+
+		if(mb_strlen($sort_del)==0 || $res["del"]===$sort_del){
+
+			$member[$n]=$res;
+			if (file_exists(get_template_directory()."/img/page/{$res["id"]}/1.jpg")) {
+				$member[$n]["img"]=get_template_directory_uri()."/img/page/".$res["id"]."/1.jpg";
+			}else{
+				$member[$n]["img"]=get_template_directory_uri()."/img/page/noimage.jpg";			
+			}
+			$n++;
+		}
 	}
     esc_html_e( include_once('cast_list.php'), 'textdomain' );  
 }
 
-//var_dump($wpdb);
+
 
 function staff_list(){
 	global $wpdb;
