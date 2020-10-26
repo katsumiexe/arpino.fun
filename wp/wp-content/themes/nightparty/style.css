@@ -179,15 +179,15 @@ ul {
 .cast_tag_box{
 	display			:inline-block;
 	position		:relative;
-	width			:160px;
-	flex-basis		:160px;
+	width			:150px;
+	flex-basis		:150px;
 	height			:40px;
 	line-height		:40px;
 	margin			:0;
 	background		:#302520;
 	text-align		:left;
 	font-size		:16px;
-	border-radius	:0 35px 0 0;
+	border-radius	:0 25px 0 0;
 	font-weight		:700;
 	color			:#c8b880;
 	border			:1px solid #c8b880;
