@@ -8,6 +8,7 @@ foreach($res0 as $a1){
 }
 
 $sql="SELECT * FROM wp01_0cast";
+$sql.=" WHERE del=0";
 $res= $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $a1){
@@ -41,35 +42,38 @@ get_header();
 <div class="main_top">
 	<div class="slide">
 		<div class="slide_img">
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top1.jpg" class="topimg">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top2.jpg" class="topimg">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top3.jpg" class="topimg">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top4.jpg" class="topimg">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top5.jpg" class="topimg">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top1.jpg" class="top_img">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top2.jpg" class="top_img">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top3.jpg" class="top_img">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top4.jpg" class="top_img">;
+		<img src="<?=get_template_directory_uri()?>/img/page/top/top5.jpg" class="top_img">;
 
 		</div>
 		<div class="slide_point">
-
 			<div id="dot0" class="slide_dot dot_on"></div>
 			<div id="dot1" class="slide_dot"></div>
 			<div id="dot2" class="slide_dot"></div>
 			<div id="dot3" class="slide_dot"></div>
 			<div id="dot4" class="slide_dot"></div>
-
 		</div>
 	</div>
+
 	<div class="main_b">
+		<div class="main_b_in">
+		</div>
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
-		<? foreach($sort as $b1=> $b2){?>
-			<a href="<?=get_template_directory_uri(); ?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
-				<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
-				<span class="main_b_1_2">
-					<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
-					<span class="main_b_1_2_sch"></span>
-				</span>
-				<span class="main_b_1_3"></span>
-			</a>
-		<? } ?>
+		<div class="main_b_in">
+			<? foreach($sort as $b1=> $b2){?>
+				<a href="<?=get_template_directory_uri(); ?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+					<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
+					<span class="main_b_1_2">
+						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
+						<span class="main_b_1_2_sch"></span>
+					</span>
+					<span class="main_b_1_3"></span>
+				</a>
+			<? } ?>
+		</div>
 	</div>
 	<div class="main_c">
 		<a class="twitter-timeline" data-width="310" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

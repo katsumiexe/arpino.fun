@@ -7,13 +7,14 @@ get_header();
 $now=time()+32400+$chg_time*86400;
 $now_ymd=date("Ymd",$now);
 
-$sql=" SELECT * FROM wp01_0sch_table";
+$sql	 =" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
 	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
 }
 
-$sql="SELECT * FROM wp01_0cast";
+$sql	="SELECT * FROM wp01_0cast";
+$sql	.=" WHERE del=0";
 $res= $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $a1){
@@ -29,7 +30,6 @@ foreach($res as $a1){
 
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_ymd}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
-print($sql);
 foreach($res2 as $a2){
 	if($a2["stime"] && $a2["etime"]){
 		$dat[$a2["cast_id"]]["sch"]	="{$a2["stime"]} - {$a2["etime"]}";
@@ -73,13 +73,13 @@ for($e=0;$e<7;$e++){
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="<?=home_url('/person')?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
-		<img src="<?=$dat[$b1]["face"]?>" class="main_b_1_1">
-		<span class="main_b_1_2">
-			<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
-			<span class="main_b_1_2_sch"><?=$dat[$b1]["sch"]?></span>
+	<a href="<?=home_url('/person')?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
+		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
+		<span class="main_d_1_2">
+			<span class="main_d_1_2_name"><?=$dat[$b1]["genji"]?></span>
+			<span class="main_d_1_2_sch"><?=$dat[$b1]["sch"]?></span>
 		</span>
-		<span class="main_b_1_3"></span>
+		<span class="main_d_1_3"></span>
 	</a>
 <? } ?>
 </div>
