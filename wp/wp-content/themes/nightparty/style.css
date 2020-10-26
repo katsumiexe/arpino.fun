@@ -86,7 +86,7 @@ ul {
 	flex-basis	:150px;
 	line-height	:50px;
 	background	:#252018;
-	border		:2px solid #c8b880;
+	border		:1px solid #c8b880;
 	margin		:10px 5px;
 	text-align	:center;
 	overflow	:hidden;
@@ -115,7 +115,7 @@ ul {
 	position	:relative;
 	width		:1200px;
 	flex-basis	:1200px;
-	height		:480px;
+	height		:580px;
 	margin		:0 auto;
 	overflow	:hidden;
 }
@@ -127,7 +127,7 @@ ul {
 	left		:0;
 	right		:0;
 	width		:6000px;
-	height		:400px;
+	height		:480px;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
@@ -135,14 +135,14 @@ ul {
 
 .top_img{
 	width			:1200px;
-	height			:400px;
+	height			:480px;
 	
 }
 
 .slide_point{
 	position		:absolute;
 	display			:inline-block;
-	bottom			:20px;
+	bottom			:30px;
 	left			:0;
 	right			:0;
 	width			:290px;
