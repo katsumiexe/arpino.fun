@@ -1164,7 +1164,6 @@ $(function(){
 	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1"><br>
 	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
 	<span class="config_tag1">メール:</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
-
 	<span class="config_tag2">LINE連携:</span>
 	<span class="config_tag2">Twitter連携:</span>
 </div>
