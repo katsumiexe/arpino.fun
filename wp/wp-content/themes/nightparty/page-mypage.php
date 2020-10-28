@@ -60,6 +60,7 @@ for($n=0;$n<8;$n++){
 $reg_base_yy=1980;
 $reg_base_ag=date("Y")-1980;
 $week_start=$_SESSION["week_st"]+0;
+$times_start=$_SESSION["times_st"]*3600;
 
 
 
@@ -115,8 +116,8 @@ $week_start=$_SESSION["week_st"]+0;
 
 	$base_day=$base_now-($base_w+7)*86400;
 
-	$week_st=date("Ymd",$base_day);
-	$week_ed=date("Ymd",$base_day+604800);
+	$week_st=date("Ymd",$base_day-$times_start);
+	$week_ed=date("Ymd",$base_day+604800-$times_start);
 
 	$month_st=date("Ymd",strtotime($calendar[0]));
 	$month_ed=date("Ymd",strtotime($calendar[3]));

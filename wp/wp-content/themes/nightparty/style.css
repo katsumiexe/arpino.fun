@@ -96,7 +96,7 @@ ul {
 .menu-item a{
 	color		:#c8b880;
 	font-size	:18px;
-	font-weight	:600;
+//	font-weight	:600;
 	display		:inline-block;
 	width		:100%;
 	height		:50px;
@@ -255,13 +255,13 @@ ul {
 	height		:240px;
 }
 
-
-
 .main_b_1_2{
 	position	:absolute;
 	display		:inline-block;
 	bottom		:10px;
-	left		:10px;
+	left		:0;
+	right		:0;
+	margin		:auto;
 	width		:150px;
 	height		:50px;
 	background	:rgba(245,245,245,0.8);
@@ -292,7 +292,9 @@ ul {
 	position	:absolute;
 	display		:none;
 	bottom		:10px;
-	left		:10px;
+	left		:0;
+	right		:0;
+	margin		:auto;
 	width		:156px;
 	height		:216px;
 	border		:2px solid #906000;
@@ -514,7 +516,7 @@ ul {
 }
 
 .system_box{
-	font-size:13px;
+	font-size:15px;
 	margin:5px auto 15px auto;
 	width:780px;
 	text-align:left;
@@ -1197,8 +1199,7 @@ ul {
 	position		:absolute;
 	display			:inline-block;
 	bottom			:2vw;
-	left			:2vw;
-	width			:39vw;
+	width			:38vw;
 	height			:50px;
 	background		:rgba(245,245,245,0.8);
 	padding			:5px;
@@ -1225,13 +1226,10 @@ ul {
 }
 
 .main_b_1_3{
-	position	:absolute;
-	display		:none;
-	bottom		:10px;
-	left		:10px;
-	width		:156px;
-	height		:216px;
-	border		:2px solid #906000;
+	bottom		:2vw;
+	width		:39.5vw;
+	height		:55vw;
+	border		:0.5vw solid #906000;
 	z-index		:11;	
 }	
 
@@ -1305,6 +1303,9 @@ ul {
 
 }
 @media screen and (max-width: 559px){
+
+
+
 
 .access_map{
 	flex-basis	:98vw;
