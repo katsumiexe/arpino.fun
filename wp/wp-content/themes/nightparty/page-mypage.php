@@ -6,13 +6,7 @@ if($_POST["log_out"] == 1){
 	$_SESSION="";
 	session_destroy();
 }
-$jst=time()+32400;
 require_once ("post/inc_code.php");
-
-$now		=date("Y-m-d H:i:s",$jst);
-$now_ymd	=date("Ymd",$jst);
-$now_ymd_2	=date("Ymd",$jst+86400);
-$now_ymd_3	=date("Ymd",$jst+172800);
 
 if($_SESSION){
 	if($jst<$_SESSION["time"]+32400){
@@ -57,10 +51,20 @@ for($n=0;$n<8;$n++){
 	$box_no.=$dec[$id_0][$tmp_id];
 }
 
-$reg_base_yy=1980;
-$reg_base_ag=date("Y")-1980;
-$week_start=$_SESSION["week_st"]+0;
-$times_start=$_SESSION["times_st"]*3600;
+$reg_base_yy	=1980;
+$reg_base_ag	=date("Y")-1980;
+$week_start		=$_SESSION["week_st"]+0;
+$times_start	=$_SESSION["times_st"]*3600;
+
+$jst=time()+32400-$times_start;
+
+$now		=date("Y-m-d H:i:s",$jst);
+$now_ymd	=date("Ymd",$jst);
+$now_ymd_2	=date("Ymd",$jst+86400);
+$now_ymd_3	=date("Ymd",$jst+172800);
+
+
+
 
 
 
@@ -109,8 +113,8 @@ $times_start=$_SESSION["times_st"]*3600;
 	$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
 
 
-	$now_w=date("w");
-	$base_now=strtotime(date("Y-m-d 00:00:00"));
+	$now_w=date("w",$jst);
+	$base_now=strtotime(date("Y-m-d 00:00:00")+$jst);
 	$base_w=$now_w-$week_start;
 	if($base_w<0) $base_w+=7;
 
