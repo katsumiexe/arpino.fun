@@ -97,6 +97,7 @@ $week_start=$_SESSION["week_st"]+0;
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
 
+
 	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
 	$calendar[1]=$c_month;
 	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
@@ -1161,7 +1162,7 @@ $(function(){
 </table>
 <div class="config_box">
 	<span class="config_tag1">USER_ID：</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
-	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1"><br>
+	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="off"><br>
 	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
 	<span class="config_tag1">メール:</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
 	<span class="config_tag2">LINE連携:</span>

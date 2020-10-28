@@ -1,6 +1,6 @@
 <?
 /*
-BlogSet
+logSet
 */
 
 require_once ("./post_inc.php");

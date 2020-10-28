@@ -1,6 +1,62 @@
 $(document).ready(function () {
 var TopCnt=0;
 $('.main').fadeIn(2000);
+
+	$('.head_menu').on('click',function(){
+		if($(this).hasClass('on')){
+			$(this).removeClass('on');
+			$('.menu').animate({'left':'-46vw'},150);
+			$('.menu_b').fadeIn(150);
+
+			$('.menu_a,.menu_c').animate({'left':'1vw','width':'8vw'},150);
+			$('.head_menu').animate({'border-radius':'1vw'},150);
+
+			$({deg:-23}).animate({deg:0}, {
+				duration:150,
+				progress:function() {
+					$('.menu_a').css({
+						transform:'rotate(' + this.deg + 'deg)'
+					});
+				},
+			});
+
+			$({deg:23}).animate({deg:0}, {
+				duration:150,
+				progress:function() {
+					$('.menu_c').css({
+						transform:'rotate(' + this.deg + 'deg)'
+					});
+				},
+			});
+
+		}else{
+			$(this).addClass('on');
+			$('.menu').animate({'left':'-0.5vw'},150);
+			$('.menu_b').fadeOut(150);
+			$('.menu_a,.menu_c').animate({'left':'0.5vw','width':'7vw'},150);
+			$('.head_menu').animate({'border-radius':'5vw'},150);
+
+			$({deg:0}).animate({deg:-45}, {
+				duration:150,
+				progress:function() {
+					$('.menu_a').css({
+						transform:'rotate(' + this.deg + 'deg)'
+					});
+				},
+			});
+
+			$({deg:0}).animate({deg:45}, {
+				duration:150,
+				progress:function() {
+					$('.menu_c').css({
+						transform:'rotate(' + this.deg + 'deg)'
+					});
+				},
+			});
+		}
+	});
+
+
 	$('.main_b_11').on('click',function () {
 		TMP=$(this).attr('id').replace('i','');
 		$('#val_p').val(TMP);
