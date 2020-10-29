@@ -41,7 +41,7 @@
 	width		:380px;
 	flex-basis	:380px;
 	min-height	:600px;	
-	text-align:left;
+	text-align	:left;
 }
 
 .person_middle{
@@ -290,5 +290,137 @@
 	color		:#90b8c0;
 	font-weight	:600;
 }
+@media screen and (max-width: 959px){
+
+.person_main{
+	width		:98vw;
+}
+.person_left{
+	width		:380px;
+	flex-basis	:380px;
+	min-height	:600px;	
+}
+
+.person_middle{
+	flex			:1;
+}
+
+.person_right{
+	flex-basis		:310px;
+}
+
+}
+@media screen and (max-width: 559px){
+
+.person_main{
+	flex-wrap	:wrap;
+}
+
+.person_left{
+	width		:98vw;
+	flex-basis	:98vw;
+	height		:152vw;	
+	min-height	:152vw;	
+	text-align	:center;
+}
+
+.person_middle{
+	width		:98vw;
+	flex-basis	:98vw;
+	text-align	:center;
+	min-height	:0;	
+	margin		:2vw auto;
+}
+
+.person_right{
+	width		:90vw;
+	flex-basis	:90vw;
+	min-height	:0;	
+	margin		:0 5vw;
+}
 
 
+.person_img_main{
+	width			:90vw;
+	height			:120vw;	
+	margin			:1vw auto;
+}
+
+.person_img_list{
+	top				:122vw;
+	left			:4vw;
+	width			:92vw;
+	height			:28vw;
+}
+
+.person_img_sub{
+	width			:21vw;
+	height			:28vw;
+	margin-right 	:2vw;
+}
+
+
+.prof{
+	border-spacing: 0px 1vw;
+	margin:0 auto;
+}
+
+.prof_l{
+	padding-left:2vw;
+	height		:8vw;
+	line-height	:8vw;
+	width		:35vw;
+	font-size	:4vw;
+}
+
+
+.prof_r{
+	padding-left:2vw;
+	height		:8vw;
+	line-height	:8vw;
+	width		:51vw;
+	font-size	:4vw;
+}
+
+.sche{
+	border-collapse: collapse;
+	margin:1vw auto;
+}
+
+.sche_l_0,
+.sche_l_1,
+.sche_l_2,
+.sche_l_3,
+.sche_l_4,
+.sche_l_5,
+.sche_l_6
+{
+	border		:2px solid #303030;
+	padding-left:2vw;
+	height		:8vw;
+	line-height	:8vw;
+	width		:33vw;
+	font-size	:4vw;
+}
+
+
+.sche_r_0,
+.sche_r_1,
+.sche_r_2,
+.sche_r_3,
+.sche_r_4,
+.sche_r_5,
+.sche_r_6
+{
+	border		:2px solid #303030;
+	padding-left:2vw;
+	height		:8vw;
+	line-height	:8vw;
+	width		:51vw;
+	font-size	:4vw;
+}
+
+
+
+
+}

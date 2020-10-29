@@ -151,6 +151,7 @@ get_header();
 		</div>
 
 	</div>
+
 <div class="person_main">
 	<div class="person_left">
 			<?PHP ECHO $face_a?>
