@@ -141,12 +141,14 @@ ul {
 
 .slide_point{
 	position		:absolute;
-	display			:inline-block;
+	display			:inline-flex;
+	justify-content	:space-evenly;
 	bottom			:30px;
 	left			:0;
 	right			:0;
 	width			:290px;
 	height			:40px;
+	line-height		:40px;
 	background		:#303538;
 	margin			:auto;
 	border-radius	:10px;
@@ -159,8 +161,9 @@ ul {
 	width			:16px;
 	height			:16px;
 	background		:#fafafa;
-	margin			:12px;
 	border-radius	:8px;
+	margin-top		:12px;
+	margin-bottom	:12px;
 }
 
 .dot_on{
@@ -1086,7 +1089,7 @@ ul {
 .main{
 	display			:block;
 	width			:100vw;
-	padding-top		:20vw;
+	padding-top		:14vw;
 }
 
 .main_top{
@@ -1149,18 +1152,41 @@ ul {
 .slide{
 	width		:100vw;
 	flex-basis	:100vw;
-	height		:40vw;
-	margin		:2vw auto;
+	height		:45vw;
 }
-
 
 .slide_img{
 	width		:500vw;
-	height		:30vw;
+	height		:25vw;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
 }
+
+.slide_point{
+	bottom			:5vw;
+	width			:60vw;
+	height			:10vw;
+	line-height		:10vw;
+	border-radius	:2vw;
+	border			:0.5vw solid #c8b880;
+}
+
+.slide_dot{
+	width			:4vw;
+	height			:4vw;
+	border-radius	:2vw;
+	margin-top		:3vw;
+	margin-bottom	:3vw;
+}
+
+
+
+.top_img{
+	width		:100vw;
+	height		:25vw;
+}
+
 
 .main_b{
 	width			:98vw;
@@ -1234,13 +1260,11 @@ ul {
 }	
 
 .main_c{
-	display		:inline-block;
-	width		:310px;
-	background	:#302520;
-	border		:1px solid #c8b880;
-	margin		:0 5px auto 10px;
-	padding		:0;
+	width		:98vw;
+	height		:140vw;
+	margin		:1vw auto;
 	text-align	:center;
+	overflow	:hidden;
 }
 
 .main_c_1{
@@ -1263,26 +1287,22 @@ ul {
 	flex-wrap	:wrap;
 }
 
-
 .access_sig{
-	width		:90vw;
-	margin		:1vw auto;
-	font-size	:0;
-	text-align	:center;
-	border-radius:2vw;
-	margin		:1vw 2vw;
+	width			:90vw;
+	margin			:1vw auto;
+	font-size		:0;
+	text-align		:center;
+	border-radius	:2vw;
+	margin			:1vw 2vw;
 }
-
 
 .access_tag{
-	font-size	:4vw;
-	width		:80vw;
-	height		:8vw;
-	line-height	:8vw;
-	margin		:2vw auto 1vw auto;
+	font-size		:4vw;
+	width			:80vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:2vw auto 1vw auto;
 }
-
-
 
 .access_box{
 	font-size		:3.5vw;
@@ -1303,9 +1323,6 @@ ul {
 
 }
 @media screen and (max-width: 559px){
-
-
-
 
 .access_map{
 	flex-basis	:98vw;

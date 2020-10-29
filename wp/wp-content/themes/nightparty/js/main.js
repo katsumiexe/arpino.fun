@@ -56,18 +56,16 @@ $('.main').fadeIn(2000);
 		}
 	});
 
-
 	$('.main_b_11').on('click',function () {
 		TMP=$(this).attr('id').replace('i','');
 		$('#val_p').val(TMP);
 		$('#form_p').submit();
 	});
 
-
 	$('.slide_dot').on('click',function () {
 		TMP=$(this).attr('id').replace('dot','');
-		Left=TMP * (-1200);
-		$('.slide_img').animate({'left':Left},1000);
+		Left=TMP * (-100);
+		$('.slide_img').animate({'left':Left+"%"},1000);
 		$('.slide_dot').removeClass('dot_on');
 		$(this).addClass('dot_on');
 		TopCnt=TMP;
@@ -77,11 +75,11 @@ $('.main').fadeIn(2000);
 	setInterval(function(){
 		TopCnt++;
 		if(TopCnt>4) TopCnt=0;
-		Left=TopCnt * (-1200);
-		$('.slide_img').animate({'left':Left},1000);
+		Left=TopCnt * (-100);
+		$('.slide_img').animate({'left':Left+"%"},1000);
 		$('.slide_dot').removeClass('dot_on');
 		$('#dot'+TopCnt).addClass('dot_on');
-	},6000);
+	},4000);
 
 	$('.person_img_sub').hover(function () {
 		TMP=$(this).attr('src');
