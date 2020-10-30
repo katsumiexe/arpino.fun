@@ -22,7 +22,7 @@ if($fp){
 			$dat["date"]=$f2[3];
 			$dat["max"]=$f2[4];
 			$dat["zip"]=$f2[5];
-			if($dat["ps"] == $ps) $in=1;
+			if($dat["ps"] === $ps) $in=1;
 		}
 	}
 }
