@@ -32,11 +32,12 @@ foreach($dat0 AS $dat1){
 
 
 	$sql	 ="SELECT * FROM wp01_0cast_log_list";
-	$sql	.=" LEFT JOIN wp01_0cast_log_table ON wp01_0cast_log_list.action_id=wp01_0cast_log_table.id";
-	$sql	.=" WHERE master_id='{$dat1["id"]}'";
+//	$sql	.=" LEFT JOIN wp01_0cast_log_table ON wp01_0cast_log_list.action_id=wp01_0cast_log_table.id";
+	$sql	.=" WHERE master_id='{$dat1["log_id"]}'";
 	$sql	.=" ORDER BY wp01_0cast_log_list.id DESC";
 
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
+
 	$dat.="<div class=\"customer_log_memo\">";
 	$dat.="{$dat1["log"]}";
 	$dat.="</div>";

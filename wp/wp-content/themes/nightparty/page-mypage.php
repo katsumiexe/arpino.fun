@@ -6,13 +6,7 @@ if($_POST["log_out"] == 1){
 	$_SESSION="";
 	session_destroy();
 }
-$jst=time()+32400;
 require_once ("post/inc_code.php");
-
-$now		=date("Y-m-d H:i:s",$jst);
-$now_ymd	=date("Ymd",$jst);
-$now_ymd_2	=date("Ymd",$jst+86400);
-$now_ymd_3	=date("Ymd",$jst+172800);
 
 if($_SESSION){
 	if($jst<$_SESSION["time"]+32400){
@@ -57,9 +51,20 @@ for($n=0;$n<8;$n++){
 	$box_no.=$dec[$id_0][$tmp_id];
 }
 
-$reg_base_yy=1980;
-$reg_base_ag=date("Y")-1980;
-$week_start=$_SESSION["week_st"]+0;
+$reg_base_yy	=1980;
+$reg_base_ag	=date("Y")-1980;
+$week_start		=$_SESSION["week_st"]+0;
+$times_start	=$_SESSION["times_st"]*3600;
+
+$jst=time()+32400-$times_start;
+
+$now		=date("Y-m-d H:i:s",$jst);
+$now_ymd	=date("Ymd",$jst);
+$now_ymd_2	=date("Ymd",$jst+86400);
+$now_ymd_3	=date("Ymd",$jst+172800);
+
+
+
 
 
 
@@ -97,6 +102,7 @@ $week_start=$_SESSION["week_st"]+0;
 	$c_month=$_POST["c_month"];
 	if(!$c_month) $c_month=date("Y-m-01");
 
+
 	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
 	$calendar[1]=$c_month;
 	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
@@ -107,15 +113,15 @@ $week_start=$_SESSION["week_st"]+0;
 	$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
 
 
-	$now_w=date("w");
-	$base_now=strtotime(date("Y-m-d 00:00:00"));
+	$now_w=date("w",$jst);
+	$base_now=strtotime(date("Y-m-d 00:00:00")+$jst);
 	$base_w=$now_w-$week_start;
 	if($base_w<0) $base_w+=7;
 
 	$base_day=$base_now-($base_w+7)*86400;
 
-	$week_st=date("Ymd",$base_day);
-	$week_ed=date("Ymd",$base_day+604800);
+	$week_st=date("Ymd",$base_day-$times_start);
+	$week_ed=date("Ymd",$base_day+604800-$times_start);
 
 	$month_st=date("Ymd",strtotime($calendar[0]));
 	$month_ed=date("Ymd",strtotime($calendar[3]));
@@ -1161,7 +1167,7 @@ $(function(){
 </table>
 <div class="config_box">
 	<span class="config_tag1">USER_ID：</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
-	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1"><br>
+	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="off"><br>
 	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
 	<span class="config_tag1">メール:</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
 	<span class="config_tag2">LINE連携:</span>

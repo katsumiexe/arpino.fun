@@ -12,6 +12,7 @@ $week[6]="(土)";
 
 $t_day=date("Ymd",time()+32400);
 $n_day=date("Ymd",time()+32400+86400*7);
+
 $tm=time();
 $link=get_template_directory_uri();
 
@@ -150,6 +151,7 @@ get_header();
 		</div>
 
 	</div>
+
 <div class="person_main">
 	<div class="person_left">
 			<?PHP ECHO $face_a?>
@@ -157,30 +159,33 @@ get_header();
 			<?PHP ECHO $face_b?>
 		</div>
 	</div>
-<div class="person_middle">
-<table class="prof">
-<tr>
-<td class="prof_l">名前</td>
-<td class="prof_r"><?PHP ECHO $a1["genji"]?></td>
-</tr>
-<?=$charm_list?>
-</table>
-<table class="sche">
-<?=$list?>
-</table>
-</div>
-<div class="person_right">
-	<div class="person_blog_ttl">Blog</div>
-	<?for($s=0;$s<count($blog);$s++){?>
-		<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
-			<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
-			<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-			<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
-			<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
-			<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
-		</a>
-	<?}?>
-	<div class="person_blog_btm">一覧へ</div>
-</div>
+
+	<div class="person_middle">
+		<table class="prof">
+			<tr>
+				<td class="prof_l">名前</td>
+				<td class="prof_r"><?PHP ECHO $a1["genji"]?></td>
+			</tr>
+			<?=$charm_list?>
+		</table>
+
+		<table class="sche">
+			<?=$list?>
+		</table>
+	</div>
+
+	<div class="person_right">
+		<div class="person_blog_ttl">Blog</div>
+		<?for($s=0;$s<count($blog);$s++){?>
+			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+				<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+				<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+				<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
+				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
+			</a>
+		<?}?>
+		<div class="person_blog_btm">一覧へ</div>
+	</div>
 </div>
 <?php get_footer(); ?>
