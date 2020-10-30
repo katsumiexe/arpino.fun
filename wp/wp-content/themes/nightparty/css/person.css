@@ -154,9 +154,11 @@
 }
 
 .person_img_main{
+	position		:absolute;
+	top				:7px;
+	left			:0;
 	width			:360px;
 	height			:480px;	
-	margin-top		:7px;
 }
 
 .person_img_list{
@@ -167,7 +169,6 @@
 	width			:368px;
 	height			:112px;
 	font-size		:0;
-	margin-top		:10px;
 }
 
 .person_img_sub{
@@ -319,14 +320,15 @@
 .person_left{
 	width		:98vw;
 	flex-basis	:98vw;
-	height		:152vw;	
-	min-height	:152vw;	
+	height		:155vw;	
+	min-height	:155vw;	
 	text-align	:center;
+	margin		:0 auto;
 }
 
 .person_middle{
-	width		:98vw;
-	flex-basis	:98vw;
+	width		:94vw;
+	flex-basis	:94vw;
 	text-align	:center;
 	min-height	:0;	
 	margin		:2vw auto;
@@ -336,27 +338,28 @@
 	width		:90vw;
 	flex-basis	:90vw;
 	min-height	:0;	
-	margin		:0 5vw;
+	margin		:0 auto;
 }
 
 
 .person_img_main{
-	width			:90vw;
-	height			:120vw;	
-	margin			:1vw auto;
+	top				:5vw;
+	left			:0vw;
+	width			:69vw;
+	height			:92vw;	
 }
 
 .person_img_list{
-	top				:122vw;
-	left			:4vw;
-	width			:92vw;
-	height			:28vw;
+	flex-wrap		:wrap;
+	top				:5vw;
+	left			:71vw;
+	width			:18vw;
+	height			:92vw;
 }
 
 .person_img_sub{
-	width			:21vw;
-	height			:28vw;
-	margin-right 	:2vw;
+	width			:15vw;
+	height			:20vw;
 }
 
 
