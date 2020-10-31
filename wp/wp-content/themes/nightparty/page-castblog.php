@@ -69,7 +69,6 @@ if($pg_ed>count($res)){
 	$pg_next=1;
 }
 
-print($sql);
 $pg_max=ceil(count($res)/20);
 $updir = wp_upload_dir();
 

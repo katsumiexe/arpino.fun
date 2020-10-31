@@ -80,7 +80,7 @@
 	width			:308px;
 	height			:90px;	
 	background		:#fafafa;
-	border			:1px solid #C8B880;
+//	border			:1px solid #C8B880;
 	margin-top		:2px;
 	
 }
@@ -335,8 +335,8 @@
 }
 
 .person_right{
-	width		:90vw;
-	flex-basis	:90vw;
+	width		:89vw;
+	flex-basis	:89vw;
 	min-height	:0;	
 	margin		:0 auto;
 }
@@ -350,6 +350,7 @@
 }
 
 .person_img_list{
+	align-content	:flex-start;
 	flex-wrap		:wrap;
 	top				:0;
 	left			:72.5vw;
@@ -404,7 +405,7 @@
 	padding-left:2vw;
 	height		:8vw;
 	line-height	:8vw;
-	width		:33vw;
+	width		:33.5vw;
 	font-size	:4vw;
 }
 
@@ -421,22 +422,21 @@
 	padding-left:2vw;
 	height		:8vw;
 	line-height	:8vw;
-	width		:49vw;
+	width		:49.5vw;
 	font-size	:4vw;
 }
 
 
 .person_blog_ttl{
-	width			:88vw;
+	width			:89vw;
 	height			:10vw;	
 	line-height		:10vw;	
 	font-size		:5vw;
 }
 
 .person_blog{
-	width			:88vw;
-	height			:20vw;	
-	border			:0.5vw solid #C8B880;
+	width			:89vw;
+	height			:20vw;
 	margin-top		:0.5vw;
 	
 }
@@ -449,7 +449,7 @@
 }
 
 .person_blog_date{
-	top				:1vw;
+	top				:2vw;
 	left			:20vw;
 	width			:50vw;
 	height			:4vw;	
@@ -462,8 +462,8 @@
 	position		:absolute;
 	top				:1vw;
 	right			:1vw;
-	width			:10vw;
-	height			:8vw;	
+	width			:20vw;
+	height			:6vw;	
 	line-height		:8vw;
 }
 
@@ -475,7 +475,7 @@
 }
 
 .person_blog_c{
-	width			:5vw;
+	width			:14vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;

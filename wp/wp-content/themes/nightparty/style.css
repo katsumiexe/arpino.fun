@@ -1081,14 +1081,14 @@ ul {
 }
 
 .slide{
-	width		:100vw;
-	flex-basis	:100vw;
+	width		:98vw;
+	flex-basis	:98vw;
 	height		:55vw;
 }
 
 .slide_img{
-	width		:500vw;
-	height		:40vw;
+	width		:490vw;
+	height		:39.2vw;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
@@ -1117,8 +1117,8 @@ ul {
 
 
 .top_img{
-	width		:100vw;
-	height		:40vw;
+	width		:98vw;
+	height		:39.2vw;
 }
 
 
