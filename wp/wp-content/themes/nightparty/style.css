@@ -1061,103 +1061,34 @@ ul {
 	border		:1px solid #e8d8a0;
 }
 
-
 @media screen and (max-width: 959px){
-
 .footmark{
 	width		:98vw;
-}
-
-.menu{
-	position	:absolute;
-	top			:14vw;
-	left		:-46vw;
-	width		:40.5vw;
-	height		:100vh;
-	background	:#303030;
-	border		:1vw solid #303030;
-}
-
-.menu-item {
-	height			:10vw;
-	line-height		:10vw;
-	width			:40vw;
-	flex-basis		:40vw;
-	margin			:0;
 }
 
 .main{
 	display			:block;
 	width			:100vw;
-	padding-top		:14vw;
 }
 
 .main_top{
 	width			:98vw;
 }
 
-.head{
-	width			:100vw;
-	height			:14vw;
-	background		:#302520;
-
-}
-
-
-.head_menu{
-	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	left			:2vw;
-	bottom			:0; 
-	margin			:auto;
-	width			:10vw;
-	height			:10vw;
-	line-height		:10vw;
-	text-align		:center;
-	border			:1px solid #c8b880;
-	border-radius	:1vw;
-	cursor			:pointer;
-}
-
-.menu_a{
-	position		:absolute;
-	top				:2.5vw;
-	left			:1.5vw;
-	height			:1px;
-	width			:7vw;
-	background		:#c8b880;
-	transform-origin:right;
-}
-
-.menu_b{
-	position		:absolute;
-	top				:5vw;
-	left			:1.5vw;
-	height			:1px;
-	width			:7vw;
-	background		:#c8b880;
-}
-
-.menu_c{
-	position		:absolute;
-	top				:7.5vw;
-	left			:1.5vw;
-	height			:1px;
-	width			:7vw;
-	background		:#c8b880;
-	transform-origin:right;
+.menu-item {
+	width			:14%;
+	flex-basis		:14%;
 }
 
 .slide{
 	width		:100vw;
 	flex-basis	:100vw;
-	height		:40vw;
+	height		:55vw;
 }
 
 .slide_img{
 	width		:500vw;
-	height		:25vw;
+	height		:40vw;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
@@ -1185,10 +1116,9 @@ ul {
 }
 
 
-
 .top_img{
 	width		:100vw;
-	height		:25vw;
+	height		:40vw;
 }
 
 
@@ -1327,6 +1257,82 @@ ul {
 
 }
 @media screen and (max-width: 559px){
+
+.menu{
+	position	:absolute;
+	top			:14vw;
+	left		:-46vw;
+	width		:40.5vw;
+	height		:100vh;
+	background	:#303030;
+	border		:1vw solid #303030;
+}
+
+
+.menu-item {
+	height			:10vw;
+	line-height		:10vw;
+	width			:40vw;
+	flex-basis		:40vw;
+	margin			:0;
+}
+
+.menu_a{
+	position		:absolute;
+	top				:2.5vw;
+	left			:1.5vw;
+	height			:1px;
+	width			:7vw;
+	background		:#c8b880;
+	transform-origin:right;
+}
+
+.menu_b{
+	position		:absolute;
+	top				:5vw;
+	left			:1.5vw;
+	height			:1px;
+	width			:7vw;
+	background		:#c8b880;
+}
+
+.menu_c{
+	position		:absolute;
+	top				:7.5vw;
+	left			:1.5vw;
+	height			:1px;
+	width			:7vw;
+	background		:#c8b880;
+	transform-origin:right;
+}
+
+.main{
+	padding-top		:14vw;
+
+}
+
+.head{
+	width			:100vw;
+	height			:14vw;
+	background		:#302520;
+}
+
+.head_menu{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:2vw;
+	bottom			:0; 
+	margin			:auto;
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
+	text-align		:center;
+	border			:1px solid #c8b880;
+	border-radius	:1vw;
+	cursor			:pointer;
+}
+
 
 .access_map{
 	flex-basis	:98vw;

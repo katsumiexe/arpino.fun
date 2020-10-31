@@ -318,17 +318,17 @@
 }
 
 .person_left{
-	width		:98vw;
-	flex-basis	:98vw;
-	height		:155vw;	
-	min-height	:155vw;	
+	width		:89vw;
+	flex-basis	:89vw;
+	height		:95vw;	
+	min-height	:95vw;	
 	text-align	:center;
 	margin		:0 auto;
 }
 
 .person_middle{
-	width		:94vw;
-	flex-basis	:94vw;
+	width		:89vw;
+	flex-basis	:89vw;
 	text-align	:center;
 	min-height	:0;	
 	margin		:2vw auto;
@@ -343,23 +343,25 @@
 
 
 .person_img_main{
-	top				:5vw;
-	left			:0vw;
-	width			:69vw;
-	height			:92vw;	
+	top				:0;
+	left			:0;
+	width			:70.5vw;
+	height			:94vw;	
 }
 
 .person_img_list{
 	flex-wrap		:wrap;
-	top				:5vw;
-	left			:71vw;
-	width			:18vw;
-	height			:92vw;
+	top				:0;
+	left			:72.5vw;
+	width			:16.5vw;
+	height			:96vw;
 }
 
 .person_img_sub{
-	width			:15vw;
-	height			:20vw;
+	width			:16.5vw;
+	height			:22vw;
+	margin-right	:0;
+	margin-bottom	:2vw;
 }
 
 
@@ -381,7 +383,7 @@
 	padding-left:2vw;
 	height		:8vw;
 	line-height	:8vw;
-	width		:51vw;
+	width		:49vw;
 	font-size	:4vw;
 }
 
@@ -419,11 +421,74 @@
 	padding-left:2vw;
 	height		:8vw;
 	line-height	:8vw;
-	width		:51vw;
+	width		:49vw;
 	font-size	:4vw;
 }
 
 
+.person_blog_ttl{
+	width			:88vw;
+	height			:10vw;	
+	line-height		:10vw;	
+	font-size		:5vw;
+}
+
+.person_blog{
+	width			:88vw;
+	height			:20vw;	
+	border			:0.5vw solid #C8B880;
+	margin-top		:0.5vw;
+	
+}
+
+.person_blog_img{
+	top				:1vw;
+	left			:1vw;
+	width			:18vw;
+	height			:18vw;
+}
+
+.person_blog_date{
+	top				:1vw;
+	left			:20vw;
+	width			:50vw;
+	height			:4vw;	
+	line-height		:4vw;	
+	font-size		:4vw;
+}
+
+.person_blog_comm{
+	display			:inline-block;
+	position		:absolute;
+	top				:1vw;
+	right			:1vw;
+	width			:10vw;
+	height			:8vw;	
+	line-height		:8vw;
+}
+
+.person_blog_i{
+	width			:5vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+}
+
+.person_blog_c{
+	width			:5vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:4vw;
+}
+
+.person_blog_title{
+	top				:8vw;
+	left			:21vw;
+	width			:66vw;
+	height			:50px;	
+	font-size		:4.5vw;
+	line-height		:6vw;	
+}
 
 
 }
