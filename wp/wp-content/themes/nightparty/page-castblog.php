@@ -105,8 +105,6 @@ if(!$a2 && $tag_list){
 	$a2["tagname"]=$res[0]["name"];
 }
 
-
-
 //■カテゴリ--------------------
 $n=1;
 $sql ="SELECT count,name,slug FROM wp01_term_taxonomy";

@@ -3967,7 +3967,7 @@ input[type=range]::-moz-range-thumb{
 
 .ana{
 	border			:1px solid #303030;
-	font-size		:3.5vw;
+	font-size		:3.2vw;
 	border-collapse	:collapse;
 	background		:#fafafa;
 }
@@ -3983,7 +3983,6 @@ input[type=range]::-moz-range-thumb{
 .ana_month{
 	width			:13vw;
 	border			:1px solid #303030;
-	border-bottom	:2px solid #303030;
 	text-align		:center;
 }
 .ana_sche{
@@ -3994,8 +3993,8 @@ input[type=range]::-moz-range-thumb{
 
 .ana_pay{
 	width			:50vw;
-	height			:7vw;
-	padding			:1vw;
+	height			:6vw;
+	padding			:0.5vw;
 	border			:1px solid #303030;
 }
 
@@ -4020,13 +4019,17 @@ input[type=range]::-moz-range-thumb{
 	padding-right	:1vw;
 }
 
-
-.ana_detail{
+.ana_detail,.ana_detail_n{
 	position		:relative;
 	width			:6vw;
 	text-align		:center;
 	background		:linear-gradient(#6060ff,#3030ff);
-	border:1px solid #303030;
+	border			:1px solid #303030;
+	color			:#fafafa;
+}
+
+.ana_detail_n{
+	background		:linear-gradient(#e0e0e0,#d0d0d0);
 	color			:#fafafa;
 }
 
@@ -4058,8 +4061,9 @@ input[type=range]::-moz-range-thumb{
 
 
 .ana_list{
-	border:1px solid #303030;
-	padding: 0;
+	display			:none;
+	border			:1px solid #303030;
+	padding			: 0;
 	
 }
 

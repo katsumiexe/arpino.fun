@@ -1117,7 +1117,7 @@ $(function(){
 	<td id="ana20201101" class="ana_detail"><span class="ana_arrow"></span></td>
 </tr>
 <tr>
-	<td id="" class="ana_list" colspan="3">
+	<td id="lana20201101" class="ana_list" colspan="3">
 		<div id="dana20201101" class="ana_list_div">
 		<span class="ana_list_c lc1">
 			<span class="ana_list_name">ゲスト</span>
@@ -1148,7 +1148,7 @@ $(function(){
 </tr>
 
 <tr>
-	<td rowspan="2" class="ana_month">02(日)</td>
+	<td rowspan="2" class="ana_month">02(月)</td>
 	<td class="ana_sche">21:00-01:00</td>
 	<td class="ana_pay">
 		<span class="ana_icon"></span><span class="ana_pay1">12000</span>
@@ -1159,7 +1159,7 @@ $(function(){
 </tr>
 
 <tr>
-	<td id="" class="ana_list" colspan="3">
+	<td id="lana20201102" class="ana_list" colspan="3">
 		<div id="dana20201102" class="ana_list_div">
 		<span class="ana_list_c lc1">
 			<span class="ana_list_name">ゲスト</span>
@@ -1190,7 +1190,46 @@ $(function(){
 </tr>
 
 
-
+<tr>
+	<td rowspan="2" class="ana_month">03(火)</td>
+	<td class="ana_sche">休み</td>
+	<td class="ana_pay">
+		<span class="ana_icon"></span><span class="ana_pay1">0</span>
+		<span class="ana_icon"></span><span class="ana_pay2">0</span>
+		<span class="ana_icon"></span><span class="ana_pay3">0</span>
+	</td>
+	<td id="ana20201102" class="ana_detail_n"><span class="ana_arrow"></span></td>
+</tr>
+<tr>
+	<td id="lana20201102" class="ana_list" colspan="3">
+		<div id="dana20201102" class="ana_list_div">
+		<span class="ana_list_c lc1">
+			<span class="ana_list_name">ゲスト</span>
+			<span class="ana_list_icon"></span>
+			<span class="ana_list_item">指名</span>
+			<span class="ana_list_pts">150</span>
+		</span>
+		<span class="ana_list_c">
+			<span class="ana_list_name">ゲスト</span>
+			<span class="ana_list_icon"></span>
+			<span class="ana_list_item">ボトル</span>
+			<span class="ana_list_pts">15000</span>
+		</span>
+		<span class="ana_list_c lc1">
+			<span class="ana_list_name">ゲスト</span>
+			<span class="ana_list_icon"></span>
+			<span class="ana_list_item">指名</span>
+			<span class="ana_list_pts">150</span>
+		</span>
+		<span class="ana_list_c">
+			<span class="ana_list_name">ゲスト</span>
+			<span class="ana_list_icon"></span>
+			<span class="ana_list_item">ドリンク</span>
+			<span class="ana_list_pts">150</span>
+		</span>
+	</div>
+	</td>
+</tr>
 </table>
 </div>
 	<?}elseif($cast_page==6){?>

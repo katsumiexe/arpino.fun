@@ -2247,14 +2247,17 @@ console.log("VwBase:"+VwBase);
 		TMP=$(this).attr('id');
 		$('.ana_detail').removeClass('ana_on');
 		$('.ana_arrow').removeClass('ana_arrow_on');
-
 		$('.ana_list_div').slideUp(300);
 
+		$('.ana_list').not('#l'+TMP).delay(300).fadeOut(0);
+
 		if($('#d'+TMP).css('display')=='none'){
+			$('#l'+TMP).show();
 			$(this).addClass('ana_on');
 			$(this).children('.ana_arrow').addClass('ana_arrow_on');
 			$('#d'+TMP).slideDown(300);
-
+		}else{
+			$('#l'+TMP).delay(300).fadeOut(0);
 		}
 	});
 });
