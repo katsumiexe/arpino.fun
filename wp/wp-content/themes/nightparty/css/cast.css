@@ -3964,6 +3964,176 @@ input[type=range]::-moz-range-thumb{
 	width			:8vw;
 }
 
+
+.ana{
+	border			:1px solid #303030;
+	font-size		:3.5vw;
+	border-collapse	:collapse;
+	background		:#fafafa;
+}
+
+.ana_top{
+	background		:#e0f0ff;
+	border			:1px solid #303030;
+	text-align		:center;
+	font-size		:3vw;
+	font-weight		:600;
+}
+
+.ana_month{
+	width			:13vw;
+	border			:1px solid #303030;
+	border-bottom	:2px solid #303030;
+	text-align		:center;
+}
+.ana_sche{
+	width			:25vw;
+	border			:1px solid #303030;
+	text-align		:center;
+}
+
+.ana_pay{
+	width			:50vw;
+	height			:7vw;
+	padding			:1vw;
+	border			:1px solid #303030;
+}
+
+.ana_icon{
+	display			:inline-block;
+	height			:5vw;
+	line-height		:5vw;
+	width			:3.5vw;
+	text-align		:center;
+	font-family		:at_icon;
+	text-align		:right;
+	border-bottom	:1px solid #303030;
+}
+
+.ana_pay1,.ana_pay2,.ana_pay3{
+	display			:inline-block;
+	height			:5vw;
+	line-height		:5vw;
+	width			:11vw;
+	text-align		:right;
+	border-bottom	:1px solid #303030;
+	padding-right	:1vw;
+}
+
+
+.ana_detail{
+	position		:relative;
+	width			:6vw;
+	text-align		:center;
+	background		:linear-gradient(#6060ff,#3030ff);
+	border:1px solid #303030;
+	color			:#fafafa;
+}
+
+.ana_arrow{
+	position		:absolute;
+	top				:1.5vw;
+	left			:0;
+	right			:0;
+	margin			:auto;
+	width			:2vw;
+	height			:2vw;
+	border-bottom	:1vw solid #fafafa;
+	border-right	:1vw solid #fafafa;
+	transform		:rotate(45deg);
+	transform-origin: center;
+}
+
+.ana_on{
+	background		:linear-gradient(#ff6060,#ff3030);
+}
+
+.ana_arrow_on{
+	top				:3vw;
+	border-top		:1vw solid #fafafa;
+	border-left		:1vw solid #fafafa;
+	border-bottom	:none;
+	border-right	:none;
+}
+
+
+.ana_list{
+	border:1px solid #303030;
+	padding: 0;
+	
+}
+
+.ana_list_div{
+	display:none;
+}
+
+.ana_list_c{
+	display			:inline-block;
+	position		:relative;
+	height			:7vw;
+	line-height		:7vw;
+	width			:100%;
+	margin			:0;
+}
+
+.lc1{
+	background		:#f0f0f0;
+}
+
+.ana_list_name{
+	display			:inline-block;
+	position		:absolute;
+	top				:1vw;
+	left			:1vw;
+	height			:4.5vw;
+	line-height		:4.5vw;
+	width			:35vw;
+	font-size		:3.5vw;
+	text-align		:left;
+}
+
+.ana_list_icon{
+	display			:inline-block;
+	position		:absolute;
+	top				:1vw;
+	right			:41vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:5vw;
+	border-bottom	:1px solid #303030;
+	font-size		:3.5vw;
+	font-family		:at_icon;
+	text-align		:center;
+}
+
+.ana_list_item{
+	display			:inline-block;
+	position		:absolute;
+	top				:1vw;
+	right			:16vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:25vw;
+	border-bottom	:1px solid #303030;
+	font-size		:3.5vw;
+	text-align		:left;
+}
+
+.ana_list_pts{
+	display			:inline-block;
+	position		:absolute;
+	top				:1vw;
+	right			:1vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:14vw;
+	border-bottom	:1px solid #303030;
+	font-size		:3.5vw;
+	font-family		:at_icon;
+	text-align		:right;
+	padding-right	:1vw;
+}
+
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
 

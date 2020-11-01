@@ -2241,4 +2241,20 @@ console.log("VwBase:"+VwBase);
 			}
 		});
 	});
+
+
+	$('.ana_detail').on('click',function () {
+		TMP=$(this).attr('id');
+		$('.ana_detail').removeClass('ana_on');
+		$('.ana_arrow').removeClass('ana_arrow_on');
+
+		$('.ana_list_div').slideUp(300);
+
+		if($('#d'+TMP).css('display')=='none'){
+			$(this).addClass('ana_on');
+			$(this).children('.ana_arrow').addClass('ana_arrow_on');
+			$('#d'+TMP).slideDown(300);
+
+		}
+	});
 });

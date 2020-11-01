@@ -1,7 +1,6 @@
 $(document).ready(function () {
 var TopCnt=0;
 $('.main').fadeIn(2000);
-
 	$('.head_menu').on('click',function(){
 		if($(this).hasClass('on')){
 			$(this).removeClass('on');
@@ -55,6 +54,7 @@ $('.main').fadeIn(2000);
 			});
 		}
 	});
+
 
 	$('.main_b_11').on('click',function () {
 		TMP=$(this).attr('id').replace('i','');

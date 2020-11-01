@@ -91,7 +91,6 @@ foreach($res as $a2){
 	$n++;
 }
 
-
 if(!$a2 && $cast_list){
 	$sql	 ="SELECT `name` FROM wp01_terms";
 	$sql	.=" WHERE slug='{$cast_list}'";
