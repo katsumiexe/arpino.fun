@@ -164,7 +164,7 @@
 .person_img_list{
 	position		:absolute;
 	display			:inline-flex;
-	top				:485px;
+	top				:495px;
 	left			:0px;
 	width			:368px;
 	height			:112px;
@@ -180,7 +180,7 @@
 .prof{
 	border-collapse: separate;
 	border-spacing: 0px 8px;
-	margin:0 10px;
+	margin:0;
 }
 
 .prof_l{
@@ -188,7 +188,7 @@
 	padding-left:10px;
 	height		:26px;
 	line-height	:30px;
-	width		:130px;
+	width		:150px;
 	font-size	:16px;
 	background	:#323232;
 	color:#C8B880;
@@ -200,14 +200,14 @@
 	padding-left	:10px;
 	height			:26px;
 	line-height		:30px;
-	width			:270px;
+	width			:320px;
 	font-size		:16px;
 	background		:#272727;
 	color			:#C8B880;
 }
 .sche{
 	border-collapse: collapse;
-	margin:10px;
+	margin:10px 0;
 }
 
 .sche_l_1,
@@ -218,9 +218,9 @@
 {
 	border		:2px solid #303030;
 	text-align	:center;
-	height		:20px;
-	line-height	:22px;
-	width		:80px;
+	height		:28px;
+	line-height	:28px;
+	width		:150px;
 	font-size	:14px;
 	background	:#323232;
 	color		:#C8B880;
@@ -229,9 +229,9 @@
 .sche_l_0{
 	border		:2px solid #303030;
 	text-align	:center;
-	height		:20px;
-	line-height	:22px;
-	width		:80px;
+	height		:28px;
+	line-height	:28px;
+	width		:150px;
 	font-size	:14px;
 	background	:#323232;
 	color		:#f0a080;
@@ -240,9 +240,9 @@
 .sche_l_6{
 	border		:2px solid #303030;
 	text-align	:center;
-	height		:20px;
-	line-height	:22px;
-	width		:80px;
+	height		:28px;
+	line-height	:28px;
+	width		:150px;
 	font-size	:14px;
 	background	:#323232;
 	color		:#90b8c0;
@@ -257,41 +257,42 @@
 {
 	border		:2px solid #303030;
 	padding-left:10px;
-	height		:20px;
-	line-height	:22px;
-	width		:140px;
+	height		:28px;
+	line-height	:28px;
+	width		:150px;
 	font-size	:14px;
 	background	:#272727;
 	color		:#C8B880;
-	font-weight	:600;
 }
 
 .sche_r_0
 {
 	border		:2px solid #303030;
 	padding-left:10px;
-	height		:20px;
-	line-height	:22px;
-	width		:140px;
+	height		:28px;
+	line-height	:28px;
+	width		:150px;
 	font-size	:14px;
 	background	:#272727;
 	color		:#f0a080;
-	font-weight	:600;
 }
 
 .sche_r_6
 {
 	border		:2px solid #303030;
 	padding-left:10px;
-	height		:20px;
-	line-height	:22px;
-	width		:140px;
+	height		:28px;
+	line-height	:28px;
+	width		:150px;
 	font-size	:14px;
 	background	:#272727;
 	color		:#90b8c0;
-	font-weight	:600;
 }
 @media screen and (max-width: 959px){
+.person_main{
+	flex-wrap	:wrap;
+}
+
 
 .person_main{
 	width		:98vw;
@@ -303,19 +304,15 @@
 }
 
 .person_middle{
-	flex			:1;
+	flex-basis:calc(100% - 400px);
 }
 
 .person_right{
-	flex-basis		:310px;
+	flex:1;
 }
 
 }
 @media screen and (max-width: 559px){
-
-.person_main{
-	flex-wrap	:wrap;
-}
 
 .person_left{
 	width		:89vw;

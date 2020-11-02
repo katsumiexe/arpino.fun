@@ -63,6 +63,22 @@ $now_ymd	=date("Ymd",$jst);
 $now_ymd_2	=date("Ymd",$jst+86400);
 $now_ymd_3	=date("Ymd",$jst+172800);
 
+$c_month=$_POST["c_month"];
+if(!$c_month) $c_month=date("Y-m-01");
+
+$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
+$calendar[1]=$c_month;
+$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
+$calendar[3]=date("Y-m-01",strtotime($calendar[2])+3456000);
+
+$month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);	
+$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
+$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
+
+
+$now_count	=date("t",$jst);
+$week_01	=date("w",strtotime($c_month));
+$ana_line[$week_start]=" ana_line";
 
 
 
@@ -99,18 +115,6 @@ $now_ymd_3	=date("Ymd",$jst+172800);
 		$page_title="トップページ";
 	}
 
-	$c_month=$_POST["c_month"];
-	if(!$c_month) $c_month=date("Y-m-01");
-
-
-	$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
-	$calendar[1]=$c_month;
-	$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
-	$calendar[3]=date("Y-m-01",strtotime($calendar[2])+3456000);
-
-	$month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);	
-	$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
-	$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
 
 
 	$now_w=date("w",$jst);
@@ -229,6 +233,9 @@ $now_ymd_3	=date("Ymd",$jst+172800);
 	foreach($dat as $tmp2){
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+
+		$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
+		$ana_sche[$ana_day]	=$tmp2["stime"]."-".$tmp2["etime"];
 	}
 
 	if($stime[$now_ymd] && $etime[$now_ymd]){
@@ -1099,6 +1106,7 @@ $(function(){
 		</div>
 	<?}elseif($cast_page==5){?>
 <div class="main">
+<div class="config_box">
 
 <table class="ana">
 <tr>
@@ -1106,19 +1114,22 @@ $(function(){
 	<td class="ana_top">シフト時間</td>
 	<td class="ana_top" colspan="2">給与・歩合</td>
 </tr>
+<?for($n=1;$n<$now_count+1;$n++){?>
+<?$ana_week=($week_01+$n-1)%7?>
 <tr>
-	<td rowspan="2" class="ana_month">01(日)</td>
-	<td class="ana_sche">21:00-01:00</td>
-	<td class="ana_pay">
+
+	<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
+	<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
+	<td class="ana_pay <?=$ana_line[$ana_week]?>">
 		<span class="ana_icon"></span><span class="ana_pay1">12000</span>
 		<span class="ana_icon"></span><span class="ana_pay2">18000</span>
 		<span class="ana_icon"></span><span class="ana_pay3">20000</span>
 	</td>
-	<td id="ana20201101" class="ana_detail"><span class="ana_arrow"></span></td>
+	<td id="ana_<?=$n?>" class="ana_detail <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
 </tr>
 <tr>
-	<td id="lana20201101" class="ana_list" colspan="3">
-		<div id="dana20201101" class="ana_list_div">
+	<td id="lana_<?=$n?>" class="ana_list" colspan="3">
+		<div id="dana_<?=$n?>" class="ana_list_div">
 		<span class="ana_list_c lc1">
 			<span class="ana_list_name">ゲスト</span>
 			<span class="ana_list_icon"></span>
@@ -1146,92 +1157,12 @@ $(function(){
 	</div>
 	</td>
 </tr>
-
-<tr>
-	<td rowspan="2" class="ana_month">02(月)</td>
-	<td class="ana_sche">21:00-01:00</td>
-	<td class="ana_pay">
-		<span class="ana_icon"></span><span class="ana_pay1">12000</span>
-		<span class="ana_icon"></span><span class="ana_pay2">18000</span>
-		<span class="ana_icon"></span><span class="ana_pay3">20000</span>
-	</td>
-	<td id="ana20201102" class="ana_detail"><span class="ana_arrow"></span></td>
-</tr>
-
-<tr>
-	<td id="lana20201102" class="ana_list" colspan="3">
-		<div id="dana20201102" class="ana_list_div">
-		<span class="ana_list_c lc1">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">指名</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-		<span class="ana_list_c">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">ボトル</span>
-			<span class="ana_list_pts">15000</span>
-		</span>
-		<span class="ana_list_c lc1">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">指名</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-		<span class="ana_list_c">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">ドリンク</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-	</div>
-	</td>
-</tr>
-
-
-<tr>
-	<td rowspan="2" class="ana_month">03(火)</td>
-	<td class="ana_sche">休み</td>
-	<td class="ana_pay">
-		<span class="ana_icon"></span><span class="ana_pay1">0</span>
-		<span class="ana_icon"></span><span class="ana_pay2">0</span>
-		<span class="ana_icon"></span><span class="ana_pay3">0</span>
-	</td>
-	<td id="ana20201102" class="ana_detail_n"><span class="ana_arrow"></span></td>
-</tr>
-<tr>
-	<td id="lana20201102" class="ana_list" colspan="3">
-		<div id="dana20201102" class="ana_list_div">
-		<span class="ana_list_c lc1">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">指名</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-		<span class="ana_list_c">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">ボトル</span>
-			<span class="ana_list_pts">15000</span>
-		</span>
-		<span class="ana_list_c lc1">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">指名</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-		<span class="ana_list_c">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">ドリンク</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-	</div>
-	</td>
-</tr>
+<?}?>
+<tr><td colspan="4" style="padding: 0;"></td></tr>
 </table>
 </div>
+</div>
+
 	<?}elseif($cast_page==6){?>
 <div class="main">
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">基本情報</span></div></h2>
