@@ -155,9 +155,7 @@ $(function(){
 			}else{
 				$('.blog_open_no').removeClass('no_on');
 				$('.blog_open_yes').addClass('yes_on');
-		
 			}
-
 
 		}else{
 			$('#blog_open').val('0');
@@ -939,7 +937,7 @@ $(function(){
 		$('.set_back').fadeIn(100);
 	});
 
-	$('#img_set').on('click',function(){
+	$('#img_set').on('click',function(){	
 		if($('#upd').val() == '') {
 			$.post({
 				url:Dir + "/post/img_del.php",

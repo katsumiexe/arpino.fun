@@ -245,15 +245,20 @@ ul {
 .main_b_1{
 	position	:relative;
 	display		:inline-block;
-	width		:180px;	
-	height		:240px;
-	background	:#000000;
+	width		:198px;	
+	height		:258px;
+	background	:linear-gradient(135deg,#fafafa,#e0e0e0);;
 	margin		:8px;
-	border		:9px solid #fafafa;
+	border		:0;
 }
 
 .main_b_1_1{
-	display		:inline-block;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	left		:0;
+	right		:0;
+	margin		:auto;
 	width		:180px;
 	height		:240px;
 }
@@ -1122,17 +1127,18 @@ ul {
 }
 
 
-.main_b{
+.main_d,.main_b{
 	width			:98vw;
 	margin			:0 auto;
+	padding			:0;
 }
 
-.main_b_in{
+.main_d_in,.main_b_in{
 	width			:98vw;
 	padding			:0;
 }
 
-.main_b_title{
+.main_d_title,.main_b_title{
 	width			:97vw;
 	height			:8vw;
 	line-height		:8vw;
@@ -1141,21 +1147,18 @@ ul {
 	padding-left	:1vw;
 }
 
-.main_b_1{
-	width			:45vw;	
-	height			:60vw;
-	background		:#000000;
+.main_d_1,.main_b_1{
+	width			:44vw;	
+	height			:58vw;
 	margin			:1vw;
-	border			:1vw solid #fafafa;
 }
 
-.main_b_1_1{
-	display			:inline-block;
-	width			:45vw;
-	height			:60vw;
+.main_d_1_1,.main_b_1_1{
+	width			:39vw;
+	height			:52vw;
 }
 
-.main_b_1_2{
+.main_d_1_2,.main_b_1_2{
 	position		:absolute;
 	display			:inline-block;
 	bottom			:2vw;
@@ -1165,7 +1168,7 @@ ul {
 	padding			:5px;
 }
 
-.main_b_1_2_name{
+.main_d_1_2_name,.main_b_1_2_name{
 	display		:inline-block;
 	width		:130px;
 	height		:25px;
@@ -1175,7 +1178,7 @@ ul {
 	font-weight	:600;	
 }
 
-.main_b_1_2_sch{
+.main_d_1_2_sch,.main_b_1_2_sch{
 	display		:inline-block;
 	width		:130px;
 	height		:25px;
@@ -1185,7 +1188,7 @@ ul {
 	font-weight	:600;	
 }
 
-.main_b_1_3{
+.main_d_1_3,.main_b_1_3{
 	bottom		:2vw;
 	width		:39.5vw;
 	height		:55vw;
@@ -1347,6 +1350,40 @@ ul {
 
 .access_table{
 	flex-wrap	:wrap;
+}
+
+
+
+.main_d{
+	width			:98vw;
+	height			:auto;
+	margin			:1vw auto;
+	text-align		:center;
+	overflow		:hidden;
+}
+
+.cast_tag{
+	width			:98vw;
+	height			:auto;
+	flex-wrap		:wrap;
+}
+
+.cast_tag_box{
+	width			:90vw;
+	flex-basis		:90vw;
+	height			:6vw;
+	line-height		:6vw;
+	text-align		:left;
+	font-size		:4vw;
+	border-radius	:0;
+	font-weight		:400;
+	border			:none;
+	cursor			:pointer;
+}
+
+.cast_tag_box_sel{
+	background		:#c8b880;
+	color			:#fafafa;
 }
 
 

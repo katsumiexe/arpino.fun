@@ -31,6 +31,62 @@ if($_SESSION){
 }
 
 if($_SESSION){
+/*--■祝日カレンダー--*/
+$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
+$ob_holiday = json_decode($holiday,true);
+//$ob_holiday["20200101"];
+
+/*--■カレンダー設定--*/
+$week_start		=$_SESSION["week_st"]+0;
+$times_start	=$_SESSION["times_st"]*3600;
+$jst			=time()+32400-$times_start;
+$now_w			=date("w",$jst);
+$now_count		=date("t",$jst);
+
+
+//Customer-----------------------
+$reg_base_yy	=1980;
+$reg_base_ag	=date("Y")-1980;
+
+
+
+//Notice-----------------------
+$now		=date("Y-m-d H:i:s",$jst);
+$now_ymd	=date("Ymd",$jst);
+$now_ymd_2	=date("Ymd",$jst+86400);
+$now_ymd_3	=date("Ymd",$jst+172800);
+
+
+
+//Sche-----------------------
+$c_month=$_POST["c_month"];
+if(!$c_month) $c_month=date("Y-m-01");
+
+$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
+$calendar[1]=$c_month;
+$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
+$calendar[3]=date("Y-m-01",strtotime($calendar[2])+3456000);
+
+$month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);	
+$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
+$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
+
+$base_now=strtotime(date("Y-m-d 00:00:00"))+32400-$times_start;
+$base_w=$now_w-$week_start;
+if($base_w<0) $base_w+=7;
+
+$base_day		=$base_now-($base_w+7)*86400;
+$week_st		=date("Ymd",$base_day-$times_start);
+$week_ed		=date("Ymd",$base_day+604800-$times_start);
+$month_st		=date("Ymd",strtotime($calendar[0]));
+$month_ed		=date("Ymd",strtotime($calendar[3]));
+
+print("■".$base_now."■"."■".date("Y-m-d H:i:s",$base_now)."■".$base_w."<br>\n");
+//analytics-----------------------
+$week_01		=date("w",strtotime($c_month));
+$ana_line[$week_start]=" ana_line";
+
+
 
 $sql ="SELECT term_id FROM wp01_terms"; 
 $sql .=" WHERE slug='{$_SESSION["id"]}'"; 
@@ -50,45 +106,6 @@ for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$box_no.=$dec[$id_0][$tmp_id];
 }
-
-$reg_base_yy	=1980;
-$reg_base_ag	=date("Y")-1980;
-$week_start		=$_SESSION["week_st"]+0;
-$times_start	=$_SESSION["times_st"]*3600;
-
-$jst=time()+32400-$times_start;
-
-$now		=date("Y-m-d H:i:s",$jst);
-$now_ymd	=date("Ymd",$jst);
-$now_ymd_2	=date("Ymd",$jst+86400);
-$now_ymd_3	=date("Ymd",$jst+172800);
-
-$c_month=$_POST["c_month"];
-if(!$c_month) $c_month=date("Y-m-01");
-
-$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
-$calendar[1]=$c_month;
-$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
-$calendar[3]=date("Y-m-01",strtotime($calendar[2])+3456000);
-
-$month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);	
-$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
-$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
-
-
-$now_count	=date("t",$jst);
-$week_01	=date("w",strtotime($c_month));
-$ana_line[$week_start]=" ana_line";
-
-
-
-
-
-	$page_title="スケジュール";
-	/*--■祝日カレンダー--*/
-	$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
-	$ob_holiday = json_decode($holiday,true);
-	//$ob_holiday["20200101"];
 
 	/*--■イニシャライズ--*/
 	$cast_page=$_POST["cast_page"]+0;
@@ -114,21 +131,6 @@ $ana_line[$week_start]=" ana_line";
 	}else{
 		$page_title="トップページ";
 	}
-
-
-
-	$now_w=date("w",$jst);
-	$base_now=strtotime(date("Y-m-d 00:00:00")+$jst);
-	$base_w=$now_w-$week_start;
-	if($base_w<0) $base_w+=7;
-
-	$base_day=$base_now-($base_w+7)*86400;
-
-	$week_st=date("Ymd",$base_day-$times_start);
-	$week_ed=date("Ymd",$base_day+604800-$times_start);
-
-	$month_st=date("Ymd",strtotime($calendar[0]));
-	$month_ed=date("Ymd",strtotime($calendar[3]));
 
 	/*--■メールチェック--*/
 /*
@@ -208,8 +210,6 @@ $ana_line[$week_start]=" ana_line";
 			$app3	.=" DESC";
 		}
 	}
-
-
 
 	/*--■スケジュール--*/
 	$tmp_today[$now_ymd]="cc8";
@@ -1433,8 +1433,8 @@ $(function(){
 					<div class="cal_list">
 						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
 						<?if($base_now>$base_day+86400*$n){?>
-							<div class="d_sch_time_in"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
-							<div class="d_sch_time_out"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
+							<div class="d_sch_time_in <?=date("Ymd",$base_day+86400*$n)?>"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
+							<div class="d_sch_time_out <?=$base_day?>"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
 							<input id="sel_in<?=$n?>" type="hidden" value="<?=$stime[date("Ymd",$base_day+86400*$n)]?>" class="sch_time_in">
 							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>" class="sch_time_in">
 
