@@ -205,7 +205,6 @@ ul {
 
 .main_b{
 	display			:inline-block;
-	border			:1px solid #c8b880;
 	width			:870px;
 	margin			:0;
 	vertical-align	:top;
@@ -213,19 +212,20 @@ ul {
 
 .main_b_notice{
 	display			:inline-block;
-	width			:820px;
+	width			:850px;
 	height			:100px;
 	text-align		:left;
 	background		:linear-gradient(135deg,#909090,#707070);
 	vertical-align	:top;
-	margin			:10px;
+	margin			:0 auto 10px auto;
 	padding			:10px;
 }
 
 .main_b_in{
 	display			:inline-block;
-	width			:860px;
+	width			:858px;
 	text-align		:left;
+	border			:1px solid #c8b880;
 	background		:#302520;
 	vertical-align	:top;
 	padding			:5px;
@@ -241,16 +241,19 @@ ul {
 
 .main_b_title{
 	display			:inline-block;
-	width			:860px;
+	width			:865px;
 	height			:40px;
 	line-height		:40px;
 	color			:#aa8020;
 	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
-	margin			:5px;
+	margin			:10px auto;
 	font-size		:18px;
 	font-weight		:600;
 	padding-left	:5px;
 	text-align		:left;
+
+	margin-block-start	:0;
+	margin-block-end	:0;
 }
 
 .main_b_1{
@@ -277,7 +280,7 @@ ul {
 .main_b_1_2{
 	position	:absolute;
 	display		:inline-block;
-	bottom		:10px;
+	bottom		:20px;
 	left		:0;
 	right		:0;
 	margin		:auto;
@@ -310,11 +313,11 @@ ul {
 .main_b_1_3{
 	position	:absolute;
 	display		:none;
-	bottom		:10px;
+	bottom		:18px;
 	left		:0;
 	right		:0;
 	margin		:auto;
-	width		:156px;
+	width		:160px;
 	height		:216px;
 	border		:2px solid #906000;
 	z-index		:11;	
@@ -345,41 +348,44 @@ ul {
 
 .main_d{
 	display			:inline-block;
-	width			:1200px;
+	width			:1180px;
 	min-height		:90vh;
 	border			:1px solid #c8b880;
 	text-align		:left;
 	background		:#302520;
 	margin			:0;
 	vertical-align	:top;
-	padding			:5px;
+	padding			:10px;
 }
-
 
 .main_d_1{
 	position	:relative;
 	display		:inline-block;
-	width		:210px;	
+	width		:216px;	
 	height		:280px;
-	background	:#000000;
+	background	:linear-gradient(135deg,#fafafa,#e0e0e0);;
 	margin		:10px;
-	border		:5px solid #fafafa;
 }
 
 .main_d_1_1{
 	display		:inline-block;
-	width		:210px;
-	height		:280px;
+	width		:192px;
+	height		:256px;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	left		:0;
+	right		:0;
+	margin		:auto;
 }
-
 
 
 .main_d_1_2{
 	position	:absolute;
 	display		:inline-block;
-	bottom		:10px;
-	left		:10px;
-	width		:170px;
+	bottom		:24px;
+	left		:24px;
+	width		:148px;
 	height		:50px;
 	background	:rgba(245,245,245,0.8);
 	padding		:10px;
@@ -408,10 +414,10 @@ ul {
 .main_d_1_3{
 	position	:absolute;
 	display		:none;
-	bottom		:10px;
-	left		:10px;
-	width		:186px;
-	height		:256px;
+	bottom		:22px;
+	left		:22px;
+	width		:148px;
+	height		:232px;
 	border		:2px solid #906000;
 	z-index		:11;	
 }	
@@ -1145,7 +1151,7 @@ ul {
 }
 
 .main_b_notice{
-	width			:90vw;
+	width			:86vw;
 	height			:40vw;
 	margin			:2vw;
 	padding			:2vw;
@@ -1172,44 +1178,38 @@ ul {
 }
 
 .main_d_1_1,.main_b_1_1{
-	width			:39vw;
-	height			:52vw;
+	width			:42vw;
+	height			:56vw;
 }
 
 .main_d_1_2,.main_b_1_2{
 	position		:absolute;
 	display			:inline-block;
-	bottom			:2vw;
-	width			:38vw;
-	height			:50px;
+	bottom			:4vw;
+	width			:36vw;
+	height			:11vw;
 	background		:rgba(245,245,245,0.8);
-	padding			:5px;
+	padding			:1vw;
 }
 
 .main_d_1_2_name,.main_b_1_2_name{
-	display		:inline-block;
-	width		:130px;
-	height		:25px;
-	line-height	:25px;
-	color		:#606040;
-	font-size	:16px;
-	font-weight	:600;	
+	width		:36vw;
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:4vw;
 }
 
 .main_d_1_2_sch,.main_b_1_2_sch{
-	display		:inline-block;
-	width		:130px;
-	height		:25px;
-	line-height	:25px;
-	color		:#3030c0;
-	font-size	:16px;
-	font-weight	:600;	
+	width		:36vw;
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:4vw;
 }
 
 .main_d_1_3,.main_b_1_3{
-	bottom		:2vw;
-	width		:39.5vw;
-	height		:55vw;
+	bottom		:4vw;
+	width		:37vw;
+	height		:49vw;
 	border		:0.5vw solid #906000;
 	z-index		:11;	
 }	
