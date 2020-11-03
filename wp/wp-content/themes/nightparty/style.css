@@ -211,6 +211,17 @@ ul {
 	vertical-align	:top;
 }
 
+.main_b_notice{
+	display			:inline-block;
+	width			:820px;
+	height			:100px;
+	text-align		:left;
+	background		:linear-gradient(135deg,#909090,#707070);
+	vertical-align	:top;
+	margin			:10px;
+	padding			:10px;
+}
+
 .main_b_in{
 	display			:inline-block;
 	width			:860px;
@@ -230,7 +241,7 @@ ul {
 
 .main_b_title{
 	display			:inline-block;
-	width			:846px;
+	width			:860px;
 	height			:40px;
 	line-height		:40px;
 	color			:#aa8020;
@@ -1128,18 +1139,25 @@ ul {
 
 
 .main_d,.main_b{
-	width			:98vw;
+	width			:94vw;
 	margin			:0 auto;
 	padding			:0;
 }
 
+.main_b_notice{
+	width			:90vw;
+	height			:40vw;
+	margin			:2vw;
+	padding			:2vw;
+}
+
 .main_d_in,.main_b_in{
-	width			:98vw;
-	padding			:0;
+	width			:92vw;
+	padding			:1vw;
 }
 
 .main_d_title,.main_b_title{
-	width			:97vw;
+	width			:93vw;
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto 1vw auto;
@@ -1351,8 +1369,6 @@ ul {
 .access_table{
 	flex-wrap	:wrap;
 }
-
-
 
 .main_d{
 	width			:98vw;
