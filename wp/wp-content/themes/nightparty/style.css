@@ -28,7 +28,11 @@ ul {
 
 .head_menu{
 	display:none;
+}
 
+.twitter-timeline{
+	width:300px !important;
+	height:400px !important;
 }
 
 .menu{
@@ -251,7 +255,7 @@ ul {
 	font-weight		:600;
 	padding-left	:5px;
 	text-align		:left;
-
+	border			:1px solid #c8b880;
 	margin-block-start	:0;
 	margin-block-end	:0;
 }
@@ -541,11 +545,11 @@ ul {
 }
 
 .system_box{
-	font-size:15px;
+	font-size		:15px;
 	margin:5px auto 15px auto;
-	width:780px;
-	text-align:left;
-	background:inear-gradient(90deg,green 0%, green 50%, orange 50%, orange 100%),linear-gradient(black 0%, black 50%);
+	width			:780px;
+	text-align		:left;
+	background		:inear-gradient(90deg,green 0%, green 50%, orange 50%, orange 100%),linear-gradient(black 0%, black 50%);
 }
 
 .system_box_1{
@@ -1151,9 +1155,8 @@ ul {
 }
 
 .main_b_notice{
-	width			:86vw;
+	width			:90vw;
 	height			:40vw;
-	margin			:2vw;
 	padding			:2vw;
 }
 
@@ -1166,7 +1169,7 @@ ul {
 	width			:93vw;
 	height			:8vw;
 	line-height		:8vw;
-	margin			:0 auto 1vw auto;
+	margin			:0 auto;
 	font-size		:5vw;
 	padding-left	:1vw;
 }
@@ -1215,8 +1218,8 @@ ul {
 }	
 
 .main_c{
-	width		:98vw;
-	height		:140vw;
+	width		:80vw;
+	height		:auto;
 	margin		:1vw auto;
 	text-align	:center;
 	overflow	:hidden;
@@ -1234,6 +1237,12 @@ ul {
 	box-shadow	:5px 5px 10px 10px rgba(200,200,200,0.4) inset,-5px -5px 10px 10px rgba(200,200,200,0.4) inset;
 	color		:#606060;
 }
+
+.twitter-timeline{
+	width:80vw !important;
+	height:100vw !important;
+}
+
 
 .access_table{
 	width		:98vw;
