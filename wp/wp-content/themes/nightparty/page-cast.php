@@ -51,8 +51,10 @@ $week[6]="(土)";
 $cl[0]="tag_sun";
 $cl[6]="tag_sat";
 
+
+
 for($e=0;$e<7;$e++){
-	$cast_tag[$e]=date("m月d日",$now+86400*$e).$week[date("w",$now+86400*$e)];
+	$cast_tag[$e]="<span class=\"tag_pc\">".date("m月d日",$now+86400*$e).$week[date("w",$now+86400*$e)]."</span><span class=\"tag_sp\">".date("m/d",$now+86400*$e)."<br>".$week[date("w",$now+86400*$e)]."</span>";
 	$cast_id[$e]=date("Ymd",$now+86400*$e);
 }
 ?>

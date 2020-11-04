@@ -314,6 +314,10 @@
 }
 @media screen and (max-width: 559px){
 
+.person_main{
+	display:inline-block;
+}
+
 .person_left{
 	width		:89vw;
 	flex-basis	:89vw;
@@ -446,8 +450,8 @@
 }
 
 .person_blog_date{
-	top				:2vw;
-	left			:20vw;
+	top				:2.5vw;
+	left			:20.5vw;
 	width			:50vw;
 	height			:4vw;	
 	line-height		:4vw;	
@@ -467,7 +471,7 @@
 .person_blog_i{
 	width			:5vw;
 	height			:6vw;
-	line-height		:6vw;
+	line-height		:6vw;	
 	font-size		:4vw;
 }
 
@@ -483,9 +487,8 @@
 	left			:21vw;
 	width			:66vw;
 	height			:50px;	
-	font-size		:4.5vw;
-	line-height		:6vw;	
+	font-size		:4vw;
+	line-height		:5.5vw;	
 }
-
 
 }

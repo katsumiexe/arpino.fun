@@ -208,7 +208,7 @@ get_header();
 
 <div class="main_top">
 	<div class="main_b">
-		<h2 class="main_b_title">本日の出勤キャスト</h2>
+		<h2 class="main_b_title"> Cast Blog</h2>
 		<?for($n=$pg_st;$n<$pg_ed;$n++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
@@ -231,7 +231,13 @@ get_header();
 			</a>
 		<? } ?>
 	</div>
-
+	<ul class="page_box">
+		<li class="page_n pg_f">«</li>
+		<?for($pp=1;$pp<$pg_max+1;$pp++){?>
+			<li class="page_n <?if($pp==$pg){?>pg_n<?}?>"><?=$pp?></li>
+		<?}?>
+		<li class="page_n pg_b">»</li>
+	</ul>
 	<div class="main_c">
 	<table id="c" class="blog_calendar">
 		<tr>
@@ -250,23 +256,25 @@ get_header();
 			<?=$c_inc?>
 		</tr>
 	</table>
+
 	<div class="blog_h1">
 		<div class="blog_h2">
 		カテゴリー
 		</div>
 	</div>
+
 	<div class="blog_h3">
-			<a href="<?=get_template_directory_uri(); ?>/castblog/" class="all_tag">
+		<a href="<?=get_template_directory_uri(); ?>/castblog/" class="all_tag">
 			<span class="all_tag_icon"><?=$tag_icon[0]?></span>
 			<span class="all_tag_name">全て</span>
 			<span class="all_tag_count"><?=$all_tag_all?></span>
-			</a>
+		</a>
 		<?foreach($all_tag as $a1 => $a2){?>
-			<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
+		<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
 			<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
 			<span class="all_tag_name"><?=$all_tag[$a1]["name"]?></span>
 			<span class="all_tag_count"><?=$all_tag[$a1]["count"]?></span>
-			</a>
+		</a>
 		<? } ?>
 	</div>
 	<div class="blog_h1">
@@ -285,12 +293,5 @@ get_header();
 		</a>
 	<?}?>
 </div>
-	<ul class="page_box">
-		<li class="page_n pg_f">«</li>
-<?for($pp=1;$pp<$pg_max+1;$pp++){?>
-		<li class="page_n <?if($pp==$pg){?>pg_n<?}?>"><?=$pp?></li>
-<?}?>
-		<li class="page_n pg_b">»</li>
-	</ul>
 </div>
 <?php get_footer(); ?>

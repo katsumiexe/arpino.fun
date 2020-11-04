@@ -1,5 +1,9 @@
 <?php
+/*
+Template Name: System
+*/
 get_header();
+
 $sql="SELECT * FROM wp01_posts WHERE post_name LIKE 'SYSTEM-%' ORDER BY post_name DESC";
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
@@ -8,7 +12,6 @@ foreach($res as $a1){
 }
 //ksort($sys);
 ?>
-<div class="main_top">
 <div class="footmark">
 	<a href="<?=home_url()?>" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -20,10 +23,9 @@ foreach($res as $a1){
 		<span class="footmark_text">SYSTEM</span>
 	</div>
 </div>
-
 <?foreach($sys as $a1){?>
 <?if($a1["post_content"]){?>
-<div class="sys_box">
+<div class="main_d">
 <span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
 <span class="sys_box_log"><?=$a1["post_content"]?></span><br>
 </div>
