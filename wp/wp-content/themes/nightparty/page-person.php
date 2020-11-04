@@ -131,6 +131,10 @@ foreach($res as $a2){
 	}
 	$n++;
 }
+
+
+echo $_SERVER["REQUEST_URI"];
+
 get_header();
 ?>
 <div class="main_top">

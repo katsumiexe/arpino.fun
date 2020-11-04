@@ -426,12 +426,17 @@ ul {
 	position	:absolute;
 	display		:none;
 	bottom		:22px;
-	left		:22px;
+	left		:0;
+	right		:0;
 	width		:168px;
 	height		:232px;
+	margin:auto;
 	border		:2px solid #906000;
 	z-index		:11;	
 }	
+
+
+
 
 .main_c{
 	display		:inline-block;
@@ -1221,12 +1226,16 @@ ul {
 }
 
 .main_d_1_3,.main_b_1_3{
+
 	bottom		:4vw;
 	width		:37vw;
 	height		:49vw;
 	border		:0.5vw solid #906000;
 	z-index		:11;	
 }	
+
+
+
 
 .main_c{
 	width		:94vw;

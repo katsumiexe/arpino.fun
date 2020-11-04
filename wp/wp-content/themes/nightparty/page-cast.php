@@ -51,8 +51,6 @@ $week[6]="(土)";
 $cl[0]="tag_sun";
 $cl[6]="tag_sat";
 
-
-
 for($e=0;$e<7;$e++){
 	$cast_tag[$e]="<span class=\"tag_pc\">".date("m月d日",$now+86400*$e).$week[date("w",$now+86400*$e)]."</span><span class=\"tag_sp\">".date("m/d",$now+86400*$e)."<br>".$week[date("w",$now+86400*$e)]."</span>";
 	$cast_id[$e]=date("Ymd",$now+86400*$e);
@@ -76,6 +74,8 @@ for($e=0;$e<7;$e++){
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
 	<a href="<?=home_url('/person')?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
+
+
 		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
 		<span class="main_d_1_2">
 			<span class="main_d_1_2_name"><?=$dat[$b1]["genji"]?></span>

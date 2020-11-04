@@ -55,7 +55,7 @@ asort($sort);
 
 foreach($sort as $b1=> $b2){
 
-$html.="<a href=\"{$link}/person/{$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";
+$html.="<a href=\"{$link}/person/?cast={$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";
 $html.="<img src=\"{$dat[$b1]["face"]}\" class=\"main_d_1_1\">";
 $html.="<span class=\"main_d_1_2\">";
 $html.="<span class=\"main_d_1_2_name\">{$dat[$b1]["genji"]}</span>";
