@@ -119,7 +119,7 @@ get_header();
 </div>
 
 <div class="main_top">
-	<div class="main_b">
+	<div class="main_b_in">
 		<h1 class="blog_ttl">
 			<?=$res0["post_title"]?>
 		</h1>

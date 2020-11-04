@@ -165,7 +165,6 @@ for($n=0;$n<$month_max ;$n++){
 	}
 }
 
-
 get_header();
 ?>
 <div class="footmark">
@@ -209,35 +208,37 @@ get_header();
 <div class="main_top">
 	<div class="main_b">
 		<h2 class="main_b_title"> Cast Blog</h2>
-		<?for($n=$pg_st;$n<$pg_ed;$n++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
-				<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
+		<div class="main_b_in">
+			<?for($n=$pg_st;$n<$pg_ed;$n++){?>
+				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
-				<span class="blog_list_comm">
-					<span class="blog_list_i"></span>
-					<span class="blog_list_c"><?=$blog[$n]["count"]+0?></span>
-				</span>
+					<span class="blog_list_comm">
+						<span class="blog_list_i"></span>
+						<span class="blog_list_c"><?=$blog[$n]["count"]+0?></span>
+					</span>
 
-				<span class="blog_list_title"><?=$blog[$n]["post_title"]?></span>
-				<span class="blog_list_tag"></span>
+					<span class="blog_list_title"><?=$blog[$n]["post_title"]?></span>
+					<span class="blog_list_tag"></span>
 
-				<span class="blog_list_cast">
-				<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
-				<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
-				<span class="blog_list_frame_a">
-				<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
-				</span>
-				</span>
-			</a>
-		<? } ?>
+					<span class="blog_list_cast">
+					<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
+					<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
+					<span class="blog_list_frame_a">
+					<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
+					</span>
+					</span>
+				</a>
+			<? } ?>
+		</div>
+		<ul class="page_box">
+			<li class="page_n pg_f">«</li>
+			<?for($pp=1;$pp<$pg_max+1;$pp++){?>
+				<li class="page_n <?if($pp==$pg){?>pg_n<?}?>"><?=$pp?></li>
+			<?}?>
+			<li class="page_n pg_b">»</li>
+		</ul>
 	</div>
-	<ul class="page_box">
-		<li class="page_n pg_f">«</li>
-		<?for($pp=1;$pp<$pg_max+1;$pp++){?>
-			<li class="page_n <?if($pp==$pg){?>pg_n<?}?>"><?=$pp?></li>
-		<?}?>
-		<li class="page_n pg_b">»</li>
-	</ul>
 	<div class="main_c">
 	<table id="c" class="blog_calendar">
 		<tr>
