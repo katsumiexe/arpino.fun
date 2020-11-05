@@ -110,12 +110,11 @@ get_header();
 		<span class="footmark_text"><?=$res0["name"]?></span>
 	</a>
 
-	<span class="footmark_icon"></span>
-	<div class="footmark_box">
+	<span class="footmark_icon pc_only"></span>
+	<div class="footmark_box pc_only">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">『<?=$res0["post_title"]?>』</span>
 	</div>
-
 </div>
 
 <div class="main_top">
@@ -123,8 +122,9 @@ get_header();
 		<h1 class="blog_ttl">
 			<?=$res0["post_title"]?>
 		</h1>
+
 		<div class="blog_ttl_btm">
-			<span class="blog_ttl_tag"><span class="icon"></span><?=$tag?></span>
+			<span class="blog_ttl_tag"><span class="blog_list_icon"></span><span class="blog_list_tcomm"><?=$tag?></span></span>
 			<span class="blog_ttl_date"><span class="icon"></span><?=$res0["date"]?></span>
 		</div>
 		<div class="blog_ttl_border">　</div>
@@ -169,7 +169,6 @@ get_header();
 			新着
 			</div>
 		</div>
-
 		<?for($s=0;$s<count($blog);$s++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
 				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
@@ -179,8 +178,6 @@ get_header();
 				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 			</a>
 		<?}?>
-
-
 		<div class="blog_h1">
 			<div class="blog_h2">
 			カテゴリー

@@ -149,7 +149,7 @@ get_header();
 			<span class="footmark_text">CAST</span>
 		</a>
 		<span class="footmark_icon"></span>
-		<div class="footmark_box">
+		<div class="footmark_box pc_only">
 			<span class="footmark_icon"></span>
 			<span class="footmark_text"><?=$a1["genji"]?></span>
 		</div>

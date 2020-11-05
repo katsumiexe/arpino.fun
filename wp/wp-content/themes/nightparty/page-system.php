@@ -2,7 +2,6 @@
 /*
 Template Name: System
 */
-get_header();
 
 $sql="SELECT * FROM wp01_posts WHERE post_name LIKE 'SYSTEM-%' ORDER BY post_name DESC";
 $res = $wpdb->get_results($sql,ARRAY_A);
@@ -11,6 +10,7 @@ foreach($res as $a1){
 	$sys[$sort]=$a1;
 }
 //ksort($sys);
+get_header();
 ?>
 <div class="footmark">
 	<a href="<?=home_url()?>" class="footmark_box box_a">
@@ -25,10 +25,11 @@ foreach($res as $a1){
 </div>
 <?foreach($sys as $a1){?>
 <?if($a1["post_content"]){?>
-<div class="main_d">
+<div class="main_e">
 <span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
 <span class="sys_box_log"><?=$a1["post_content"]?></span><br>
 </div>
+<br>
 <?}?>
 <?}?>
 <?if(!$sys){?>
@@ -36,5 +37,4 @@ foreach($res as $a1){
 <span class="sys_box_log">情報はまだありません</span><br>
 </div>
 <?}?>
-</div>
 <?php get_footer(); ?>

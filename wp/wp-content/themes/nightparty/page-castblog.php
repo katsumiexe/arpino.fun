@@ -217,11 +217,9 @@ get_header();
 						<span class="blog_list_i"></span>
 						<span class="blog_list_c"><?=$blog[$n]["count"]+0?></span>
 					</span>
-
 					<span class="blog_list_title"><?=$blog[$n]["post_title"]?></span>
-					<span class="blog_list_tag"></span>
-
 					<span class="blog_list_cast">
+					<span class="blog_list_tag"><span class="blog_list_icon"></span><span class="blog_list_tcomm"><?=$blog[$n]["tagname"]?></span></span>
 					<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
 					<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
 					<span class="blog_list_frame_a">
@@ -280,7 +278,7 @@ get_header();
 	</div>
 	<div class="blog_h1">
 		<div class="blog_h2">
-		最新コメント
+		CAST一覧
 		</div>
 	</div>
 
