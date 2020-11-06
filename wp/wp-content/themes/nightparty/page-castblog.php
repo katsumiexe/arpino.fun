@@ -44,7 +44,7 @@ $sql.=" LEFT JOIN wp01_terms AS T2 ON R2.term_taxonomy_id=T2.term_id";
 
 $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
-$sql.=" AND P.post_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
+//$sql.=" AND P.post_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
 $sql.=" AND P.post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
 $sql.=" AND X2.taxonomy='post_tag' ";
@@ -59,7 +59,7 @@ if($tag_list){
 }
 
 $sql.=" ORDER BY P.post_date DESC";
-//$sql.=" LIMIT {$pg_st},21";
+$sql.=" LIMIT {$pg_st},21";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 if($pg_ed>count($res)){

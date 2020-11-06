@@ -254,7 +254,7 @@ ul {
 
 .main_b_title{
 	display			:inline-block;
-	width			:865px;
+	width			:863px;
 	height			:40px;
 	line-height		:40px;
 	color			:#aa8020;
@@ -691,9 +691,9 @@ ul {
 .blog_list{
 	display			:inline-block;
 	position		:relative;
-	width			:330px;
+	width			:420px;
 	height			:110px;
-	margin			:5px;
+	margin			:4px;
 	text-align		:left;
 	text-decoration	:none;
 	background		:#fafafa;
@@ -717,7 +717,7 @@ ul {
 	position		:absolute;
 	top				:5px;
 	left			:120px;
-	width			:205px;
+	width			:290px;
 	height			:50px;
 	line-height		:24px;
 	margin			:0 auto;
@@ -734,7 +734,7 @@ ul {
 	bottom			:5px;
 	left			:0;
 	height			:18px;
-	width			:70px;
+	width			:60px;
 
 	background		:#c8c0b0;
 	text-align		:right;
@@ -779,8 +779,8 @@ ul {
 	position		:absolute;
 	bottom			:2px;
 	right			:2px;
-	width			:185px;
-	height			:50px;
+	width			:300px;
+	height			:55px;
 	margin			:0 auto;
 	text-align		:left;
 	font-size		:0;
@@ -1482,6 +1482,42 @@ ul {
 	font-size		:3.5vw;
 }
 
+.cast_tag{
+	width			:94vw;
+	height			:auto;
+	border			:1px solid #c8b880;
+	margin:0 auto 2vw auto;
+}
+
+.cast_tag_box{
+	flex-basis		:1;
+	height			:9vw;
+	text-align		:left;
+	border-radius	:0;
+	font-weight		:400;
+}
+
+.cast_tag_box_sel{
+	background		:#c8b880;
+	color			:#fafafa;
+}
+
+.tag_pc{
+	display:none;
+}
+
+.tag_sp{
+	display			:inline-block;
+	position		:absolute;
+	top				:1vw
+	left			:0;
+	right			:0;
+	margin			:auto;
+	font-size		:3.2vw;
+	line-height		:4vw;
+	width			:100%;
+	text-align		:center;
+}
 
 
 }
@@ -1587,42 +1623,6 @@ ul {
 	flex-wrap	:wrap;
 }
 
-.cast_tag{
-	width			:94vw;
-	height			:auto;
-	border			:1px solid #c8b880;
-	margin:0 auto 2vw auto;
-}
-
-.cast_tag_box{
-	flex-basis		:1;
-	height			:9vw;
-	text-align		:left;
-	border-radius	:0;
-	font-weight		:400;
-}
-
-.cast_tag_box_sel{
-	background		:#c8b880;
-	color			:#fafafa;
-}
-
-.tag_pc{
-	display:none;
-}
-
-.tag_sp{
-	display			:inline-block;
-	position		:absolute;
-	top				:1vw
-	left			:0;
-	right			:0;
-	margin			:auto;
-	font-size		:3.2vw;
-	line-height		:4vw;
-	width			:100%;
-	text-align		:center;
-}
 
 .page_box{
 	width			:94vw;
@@ -1701,8 +1701,8 @@ ul {
 	top				:1vw;
 	left			:25vw;
 	width			:64vw;
-	height			:12vw;
-	line-height		:6vw;
+	height			:11vw;
+	line-height		:5.5vw;
 	font-size		:4vw;
 }
 
