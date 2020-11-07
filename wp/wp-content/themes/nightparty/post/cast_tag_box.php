@@ -47,14 +47,10 @@ foreach($res as $a1){
 	}else{
 		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
 	}
-
-
-
 }
 asort($sort);
 
 foreach($sort as $b1=> $b2){
-
 $html.="<a href=\"{$link}/person/?cast={$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";
 $html.="<img src=\"{$dat[$b1]["face"]}\" class=\"main_d_1_1\">";
 $html.="<span class=\"main_d_1_2\">";

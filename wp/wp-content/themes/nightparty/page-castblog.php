@@ -16,8 +16,8 @@ $tag_icon[8]="";
 $pg=$_REQUEST["pg"];
 if($pg+0<1) $pg=1;
 
-$pg_st=($pg-1)*10;
-$pg_ed=($pg-1)*10+10;
+$pg_st=($pg-1)*20;
+$pg_ed=($pg-1)*20+20;
 
 $blog_day	=$_REQUEST["blog_day"];
 $cast_list	=$_REQUEST["cast_list"];
@@ -46,45 +46,50 @@ foreach($res as $a1){
 
 //■キャスト件数カウント
 $sql ="";
-$sql ="SELECT T.slug, COUNT(term_id) AS cnt FROM wp01_posts AS P";
+$sql ="SELECT T.slug, T.name, COUNT(T.term_id) AS cnt FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R on P.ID=R.object_id";
-$sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
-$sql.=" LEFT JOIN wp01_terms AS T on X.term_id_id=T.term_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.term_id";
+$sql.=" LEFT JOIN wp01_terms AS T on X.term_id=T.term_id";
 $sql.=" WHERE post_type='post'";
 $sql.=" AND post_status='publish'";
 $sql.=" AND post_date<='{$now}'";
-$sql.=" AND T.taxonomy='post_tag'";
+$sql.=" AND X.taxonomy='category'";
 $sql.=" GROUP BY slug";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
+	$cast_name[$a1["slug"]]=$a1["name"];
 	$cast_count[$a1["slug"]]=$a1["cnt"];
+
+
+	if (file_exists(get_template_directory()."/img/page/{$a1["slug"]}/1.jpg")) {
+		$cast_face[$a1["slug"]]=get_template_directory_uri()."/img/page/".$a1["slug"]."/1.jpg";			
+	}else{
+		$cast_face[$a1["slug"]]=get_template_directory_uri()."/img/page/noimage.jpg";			
+	}
+//	$all_cast[$n]["last"]=date("Y.m.d H:i",strtotime($all_cast[$n]["last"]));
+
 }
 ksort($cast_count);
 
-echo $cast_count;
-
-
 //■カテゴリ件数カウント
 $sql ="";
-$sql ="SELECT T.slug, COUNT(term_id) AS cnt FROM wp01_posts AS P";
+$sql ="SELECT T.slug, T.name, COUNT(T.term_id) AS cnt FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R on P.ID=R.object_id";
-$sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
-$sql.=" LEFT JOIN wp01_terms AS T on X.term_id_id=T.term_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.term_id";
+$sql.=" LEFT JOIN wp01_terms AS T on X.term_id=T.term_id";
 $sql.=" WHERE post_type='post'";
 $sql.=" AND post_status='publish'";
 $sql.=" AND post_date<='{$now}'";
-$sql.=" AND T.taxonomy='category'";
+$sql.=" AND X.taxonomy='post_tag'";
 $sql.=" GROUP BY slug";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
+	$cate_name[$a1["slug"]]=$a1["name"];
 	$cate_count[$a1["slug"]]=$a1["cnt"];
+	$cate_all+=$a1["cnt"];
 }
-ksort($cate_count);
-
-echo $sql;
-
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
@@ -118,6 +123,7 @@ if($tag_list){
 
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT {$pg_st},21";
+
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 if($pg_ed>count($res)){
@@ -163,7 +169,7 @@ if(!$a2 && $tag_list){
 	$a2["tagname"]=$res[0]["name"];
 }
 
-//■カテゴリ--------------------
+/*/■カテゴリ--------------------
 $n=1;
 $sql ="SELECT count,name,slug FROM wp01_term_taxonomy";
 $sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
@@ -176,8 +182,10 @@ foreach($res as $res2){
 	$all_tag_all+=$res2["count"];
 	$n++;
 }
+*/
 
 //■allcast--------------------
+/*
 $n=0;
 $sql ="SELECT count,name,slug, MAX(post_date) AS last FROM wp01_term_taxonomy";
 $sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
@@ -198,6 +206,7 @@ foreach($res3 as $res4){
 	$all_cast[$n]["last"]=date("Y.m.d H:i",strtotime($all_cast[$n]["last"]));
 	$n++;
 }
+*/
 
 
 $v_month=date("Y年m月",strtotime($month."01"));
@@ -317,29 +326,29 @@ get_header();
 	<div class="blog_h1_b"></div>
 
 	<div class="blog_h3">
-		<a href="<?=get_template_directory_uri(); ?>/castblog/" class="all_tag">
+		<a href="<?=get_template_directory_uri();?>/castblog/" class="all_tag">
 			<span class="all_tag_icon"><?=$tag_icon[0]?></span>
 			<span class="all_tag_name">全て</span>
-			<span class="all_tag_count"><?=$all_tag_all?></span>
+			<span class="all_tag_count"><?=$cate_all?></span>
 		</a>
-		<?foreach($all_tag as $a1 => $a2){?>
+		<?foreach($cate_count as $a1=> $a2){?>
 		<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
 			<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
-			<span class="all_tag_name"><?=$all_tag[$a1]["name"]?></span>
-			<span class="all_tag_count"><?=$all_tag[$a1]["count"]?></span>
+			<span class="all_tag_name"><?=$cate_name[$a1]?></span>
+			<span class="all_tag_count"><?=$a2?></span>
 		</a>
 		<? } ?>
 	</div>
 	<div class="blog_h1_t"></div>
 	<div class="blog_h1">CAST一覧</div>
 	<div class="blog_h1_b"></div>
-	<?for($s=0;$s<count($all_cast);$s++){?>
-		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">
-			<span class="all_cast_img"><img src="<?=$all_cast[$s]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
-			<span class="all_cast_name"><?=$all_cast[$s]["name"]?></span>
+	<?foreach($cast_count as $a1=> $a2){?>
+		<a href="./?cast_list=<?=$a1?>" class="all_cast">
+			<span class="all_cast_img"><img src="<?=$cast_face[$a1]?>?t=<?=time()?>" class="all_cast_img_in"></span>
+			<span class="all_cast_name"><?=$cast_name[$a1]?></span>
 			<span class="all_cast_icon"></span>
 			<span class="all_cast_last"><?=$all_cast[$s]["last"]?></span>
-			<span class="all_cast_count"><?=$all_cast[$s]["count"]?></span>
+			<span class="all_cast_count"><?=$a2?></span>
 		</a>
 	<?}?>
 </div>
