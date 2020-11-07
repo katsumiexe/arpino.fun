@@ -256,11 +256,9 @@ get_header();
 		</tr>
 	</table>
 
-	<div class="blog_h1">
-		<div class="blog_h2">
-		カテゴリー
-		</div>
-	</div>
+	<div class="blog_h1_t"></div>
+	<div class="blog_h1">カテゴリー</div>
+	<div class="blog_h1_b"></div>
 
 	<div class="blog_h3">
 		<a href="<?=get_template_directory_uri(); ?>/castblog/" class="all_tag">
@@ -276,11 +274,11 @@ get_header();
 		</a>
 		<? } ?>
 	</div>
-	<div class="blog_h1">
-		<div class="blog_h2">
-		CAST一覧
-		</div>
-	</div>
+	<div class="blog_h1_t"></div>
+	<div class="blog_h1">CAST一覧</div>
+	<div class="blog_h1_b"></div>
+
+
 
 	<?for($s=0;$s<count($all_cast);$s++){?>
 		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">

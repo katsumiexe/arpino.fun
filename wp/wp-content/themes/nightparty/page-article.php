@@ -140,11 +140,9 @@ get_header();
 	</div>
 
 	<div class="main_c">
-		<div class="blog_h1">
-			<div class="blog_h2">
-				<?=$res0["name"]?>
-			</div>
-		</div>
+		<div class="blog_h1_t"></div>
+		<div class="blog_h1"><?=$res0["name"]?></div>
+		<div class="blog_h1_b"></div>
 		<img src="<?=$cast_face?>" class="blog_cast_img">
 
 
@@ -164,11 +162,10 @@ get_header();
 			</tr>
 		</table-->
 
-		<div class="blog_h1">
-			<div class="blog_h2">
-			新着
-			</div>
-		</div>
+		<div class="blog_h1_t"></div>
+		<div class="blog_h1">新着</div>
+		<div class="blog_h1_b"></div>
+
 		<?for($s=0;$s<count($blog);$s++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
 				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
@@ -178,11 +175,10 @@ get_header();
 				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 			</a>
 		<?}?>
-		<div class="blog_h1">
-			<div class="blog_h2">
-			カテゴリー
-			</div>
-		</div>
+		<div class="blog_h1_t"></div>
+		<div class="blog_h1">カテゴリー</div>
+		<div class="blog_h1_b"></div>
+
 	</div>
 </div>
 <?php get_footer(); ?>
