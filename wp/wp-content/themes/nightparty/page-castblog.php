@@ -91,6 +91,47 @@ foreach($res as $a1){
 	$cate_all+=$a1["cnt"];
 }
 
+$pg_max=ceil($cate_all/20);
+
+if($pg_max==1){
+
+}elseif($pg_max<=5){
+	$p_list.="<div class=\"page_box\">";
+		for($pp=1;$pp<$pg_max+1;$pp++){
+			$p_list.="<a href=\"".get_template_directory_uri()."/?pg={$pp}\" class=\"page_n ";
+			if($pp==$pg) $p_list.="pg_n";
+			$p_list.="\">{$pp}</a>";
+		}
+	$p_list.="</div>";
+}else{
+	if($pg<3){
+		$pg_s=1;
+		$pg_e=5;
+
+	}elseif($pg_max-$pg<2){
+		$pg_e=$pg_max;
+		$pg_s=$pg_max-5;
+	
+	}else{
+		$pg_s=$pg-2;
+		$pg_e=$pg+2;
+	}
+
+
+
+
+	$p_list.="<div class=\"page_box\">";
+		$p_list.="<a href=\"castblog.php/?\" class=\"page_n pg_f\">«</a>";
+		for($pp=$pg_s;$pp<$pg_e+1;$pp++){
+			$p_list.="<a href=\"".get_template_directory_uri()."/?pg={$pp}\" class=\"page_n ";
+		if($pp==$pg) $p_list.="pg_n";
+			$p_list.="\">{$pp}</a>";
+		}
+		$p_list.="<a href=\"\" class=\"page_n pg_b\">»</a>";
+	$p_list.="</div>";
+
+}
+
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
 $sql.=" T.slug AS castslug, T.name AS castname,";
@@ -123,17 +164,8 @@ if($tag_list){
 
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT {$pg_st},21";
-
-
 $res = $wpdb->get_results($sql,ARRAY_A);
-if($pg_ed>count($res)){
-	$pg_ed=count($res);
 
-}elseif($pg_ed<count($res)){
-	$pg_next=1;
-}
-
-$pg_max=ceil(count($res)/20);
 $updir = wp_upload_dir();
 
 foreach($res as $a2){
@@ -294,13 +326,7 @@ get_header();
 				</a>
 			<? } ?>
 		</div>
-		<ul class="page_box">
-			<li class="page_n pg_f">«</li>
-			<?for($pp=1;$pp<$pg_max+1;$pp++){?>
-				<li class="page_n <?if($pp==$pg){?>pg_n<?}?>"><?=$pp?></li>
-			<?}?>
-			<li class="page_n pg_b">»</li>
-		</ul>
+	<?=$p_list?>
 	</div>
 	<div class="main_c">
 	<table id="c" class="blog_calendar">
