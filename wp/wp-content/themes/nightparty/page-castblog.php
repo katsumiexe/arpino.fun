@@ -28,6 +28,56 @@ $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);
 if(!$month) $month=substr($now,0,4).substr($now,5,2);
 
+
+//■カレンダーカウント
+$sql ="";
+$sql ="SELECT post_date FROM wp01_posts";
+$sql.=" WHERE post_type='post'";
+$sql.=" AND post_status='publish'";
+$sql.=" AND post_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
+$sql.=" AND post_date<='{$now}'";
+$res = $wpdb->get_results($sql,ARRAY_A);
+
+foreach($res as $a1){
+	$tmp=substr($a1,8,2)+0;
+	$calendar_ck[$tmp]++;
+}
+
+
+//■キャスト件数カウント
+$sql ="";
+$sql ="SELECT T.slug, COUNT(term_id) AS cnt FROM wp01_posts AS P";
+$sql.=" LEFT JOIN `wp01_term_relationships AS R on P.ID=R.object_id";
+$sql.=" LEFT JOIN `wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
+$sql.=" LEFT JOIN `wp01_term AS T on X.term_id_id=T.term_id";
+$sql.=" WHERE post_type='post'";
+$sql.=" AND post_status='publish'";
+$sql.=" AND post_date<='{$now}'";
+$sql.=" AND T.taxonomy='post_tag'";
+$sql.=" GROUP BY slug";
+
+$res = $wpdb->get_results($sql,ARRAY_A);
+foreach($res as $a1){
+	$cast_count[$a1["slug"]]=$a1["cnt"];
+}
+
+//■カテゴリ件数カウント
+$sql ="";
+$sql ="SELECT T.slug, COUNT(term_id) AS cnt FROM wp01_posts AS P";
+$sql.=" LEFT JOIN `wp01_term_relationships AS R on P.ID=R.object_id";
+$sql.=" LEFT JOIN `wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
+$sql.=" LEFT JOIN `wp01_term AS T on X.term_id_id=T.term_id";
+$sql.=" WHERE post_type='post'";
+$sql.=" AND post_status='publish'";
+$sql.=" AND post_date<='{$now}'";
+$sql.=" AND T.taxonomy='category'";
+$sql.=" GROUP BY slug";
+
+$res = $wpdb->get_results($sql,ARRAY_A);
+foreach($res as $a1){
+	$cate_count[$a1["slug"]]=$a1["cnt"];
+}
+
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
 $sql.=" T.slug AS castslug, T.name AS castname,";
