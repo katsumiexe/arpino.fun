@@ -39,17 +39,17 @@ $sql.=" AND post_date<='{$now}'";
 $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $a1){
-	$tmp=substr($a1,8,2)+0;
-	$calendar_ck[$tmp]++;
+	$tmp=substr($a1["post_date"],8,2)+0;
+	$calendar_ck[$tmp]=1;
 }
 
 
 //■キャスト件数カウント
 $sql ="";
 $sql ="SELECT T.slug, COUNT(term_id) AS cnt FROM wp01_posts AS P";
-$sql.=" LEFT JOIN `wp01_term_relationships AS R on P.ID=R.object_id";
-$sql.=" LEFT JOIN `wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
-$sql.=" LEFT JOIN `wp01_term AS T on X.term_id_id=T.term_id";
+$sql.=" LEFT JOIN wp01_term_relationships AS R on P.ID=R.object_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
+$sql.=" LEFT JOIN wp01_terms AS T on X.term_id_id=T.term_id";
 $sql.=" WHERE post_type='post'";
 $sql.=" AND post_status='publish'";
 $sql.=" AND post_date<='{$now}'";
@@ -60,13 +60,17 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
 	$cast_count[$a1["slug"]]=$a1["cnt"];
 }
+ksort($cast_count);
+
+echo $cast_count;
+
 
 //■カテゴリ件数カウント
 $sql ="";
 $sql ="SELECT T.slug, COUNT(term_id) AS cnt FROM wp01_posts AS P";
-$sql.=" LEFT JOIN `wp01_term_relationships AS R on P.ID=R.object_id";
-$sql.=" LEFT JOIN `wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
-$sql.=" LEFT JOIN `wp01_term AS T on X.term_id_id=T.term_id";
+$sql.=" LEFT JOIN wp01_term_relationships AS R on P.ID=R.object_id";
+$sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.tarm_id";
+$sql.=" LEFT JOIN wp01_terms AS T on X.term_id_id=T.term_id";
 $sql.=" WHERE post_type='post'";
 $sql.=" AND post_status='publish'";
 $sql.=" AND post_date<='{$now}'";
@@ -77,6 +81,10 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
 	$cate_count[$a1["slug"]]=$a1["cnt"];
 }
+ksort($cate_count);
+
+echo $sql;
+
 
 $sql ="SELECT";
 $sql.=" ID, post_date,post_content,post_title,post_status,comment_count,T.slug AS castslug,";
@@ -207,9 +215,7 @@ for($n=0;$n<$month_max ;$n++){
 	if($n>$month_w && $n<=$month_w+$month_e){
 
 		$ky=$month."00"+$tmp_days;
-
-
-		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"".get_template_directory_uri()."/castblog/?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$cal[$tmp_days]}\">{$tmp_days}</a></td>";
+		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"".get_template_directory_uri()."/castblog/?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$calendar_ck[$tmp_days]}\">{$tmp_days}</a></td>";
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
@@ -327,9 +333,6 @@ get_header();
 	<div class="blog_h1_t"></div>
 	<div class="blog_h1">CAST一覧</div>
 	<div class="blog_h1_b"></div>
-
-
-
 	<?for($s=0;$s<count($all_cast);$s++){?>
 		<a href="./?cast_list=<?=$all_cast[$s]["slug"]?>" class="all_cast">
 			<span class="all_cast_img"><img src="<?=$all_cast[$s]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
