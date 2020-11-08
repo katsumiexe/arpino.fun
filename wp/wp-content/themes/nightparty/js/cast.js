@@ -1,10 +1,11 @@
 $(function(){ 
-	var VwBase	=$(window).width()/100;
-	var VhBase	=$(window).height()/100;
 
 
 	var VwBase	=screen.availWidth/100;
 	var VhBase	=screen.availHeight/100;
+	var VwBase	=$(window).width()/100;
+	var VhBase	=$(window).height()/100;
+
 	console.log(VwBase);
 	console.log(VhBase);
 

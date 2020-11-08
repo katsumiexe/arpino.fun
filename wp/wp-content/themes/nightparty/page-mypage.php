@@ -81,7 +81,6 @@ $week_ed		=date("Ymd",$base_day+604800-$times_start);
 $month_st		=date("Ymd",strtotime($calendar[0]));
 $month_ed		=date("Ymd",strtotime($calendar[3]));
 
-print("■".$base_now."■"."■".date("Y-m-d H:i:s",$base_now)."■".$base_w."<br>\n");
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
 $ana_line[$week_start]=" ana_line";

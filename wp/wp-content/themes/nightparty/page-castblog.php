@@ -16,8 +16,8 @@ $tag_icon[8]="";
 $pg=$_REQUEST["pg"];
 if($pg+0<1) $pg=1;
 
-$pg_st=($pg-1)*20;
-$pg_ed=($pg-1)*20+20;
+$pg_st=($pg-1)*16;
+$pg_ed=($pg-1)*16+16;
 
 $blog_day	=$_REQUEST["blog_day"];
 $cast_list	=$_REQUEST["cast_list"];
@@ -91,14 +91,14 @@ foreach($res as $a1){
 	$cate_all+=$a1["cnt"];
 }
 
-$pg_max=ceil($cate_all/20);
+$pg_max=ceil($cate_all/16);
 
 if($pg_max==1){
 
 }elseif($pg_max<=5){
 	$p_list.="<div class=\"page_box\">";
 		for($pp=1;$pp<$pg_max+1;$pp++){
-			$p_list.="<a href=\"".get_template_directory_uri()."/?pg={$pp}\" class=\"page_n ";
+			$p_list.="<a href=\"".get_template_directory_uri()."/castblog/?pg={$pp}\" class=\"page_n ";
 			if($pp==$pg) $p_list.="pg_n";
 			$p_list.="\">{$pp}</a>";
 		}
@@ -117,13 +117,10 @@ if($pg_max==1){
 		$pg_e=$pg+2;
 	}
 
-
-
-
 	$p_list.="<div class=\"page_box\">";
 		$p_list.="<a href=\"castblog.php/?\" class=\"page_n pg_f\">«</a>";
 		for($pp=$pg_s;$pp<$pg_e+1;$pp++){
-			$p_list.="<a href=\"".get_template_directory_uri()."/?pg={$pp}\" class=\"page_n ";
+			$p_list.="<a href=\"".get_template_directory_uri()."/castblog/?pg={$pp}\" class=\"page_n ";
 		if($pp==$pg) $p_list.="pg_n";
 			$p_list.="\">{$pp}</a>";
 		}
@@ -163,9 +160,8 @@ if($tag_list){
 }
 
 $sql.=" ORDER BY P.post_date DESC";
-$sql.=" LIMIT {$pg_st},21";
+$sql.=" LIMIT {$pg_st},16";
 $res = $wpdb->get_results($sql,ARRAY_A);
-
 $updir = wp_upload_dir();
 
 foreach($res as $a2){
@@ -306,7 +302,7 @@ get_header();
 	<div class="main_b">
 		<h2 class="main_b_title"> Cast Blog</h2>
 		<div class="main_b_in">
-			<?for($n=$pg_st;$n<$pg_ed;$n++){?>
+			<?for($n=0;$n<count($blog);$n++){?>
 				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
