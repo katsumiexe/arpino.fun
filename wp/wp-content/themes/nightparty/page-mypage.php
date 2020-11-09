@@ -357,6 +357,11 @@ for($n=0;$n<8;$n++){
 			$tmp_day	=date("d",$st+($m*86400));
 			$tmp_week	=date("w",$st+($m*86400));
 
+			$app_n1="";
+			$app_n2="";
+			$app_n3="";
+			$app_n4="";
+	
 			$tmp_w	=$m % 7;
 			if($tmp_w==0){
 				if($now_month<$tmp_month){
@@ -378,22 +383,22 @@ for($n=0;$n<8;$n++){
 
 			}else{
 				$day_tag=" nowmonth";
+
+				$app_n1=$birth_dat[substr($tmp_ymd,4,4)];
+
+				if($stime[$tmp_ymd] && $etime[$tmp_ymd]){
+					$app_n2=" n2";
+					$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$stime[$tmp_ymd]}-{$etime[$tmp_ymd]}\">";
+				}else{
+					$app_n2="";
+				}
+				$app_n3=$memo_dat[$tmp_ymd];
+				$app_n4=$blog_dat[$tmp_ymd];
 			}
-
-			$app_n1=$birth_dat[substr($tmp_ymd,4,4)];
-
-			if($stime[$tmp_ymd] && $etime[$tmp_ymd]){
-				$app_n2=" n2";
-				$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$stime[$tmp_ymd]}-{$etime[$tmp_ymd]}\">";
-			}else{
-				$app_n2="";
-			}
-
-			$app_n3=$memo_dat[$tmp_ymd];
-			$app_n4=$blog_dat[$tmp_ymd];
 
 			$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
 			$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
+
 			$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
 			$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
 			$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
