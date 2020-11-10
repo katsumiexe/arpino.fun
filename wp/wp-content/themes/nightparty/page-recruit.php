@@ -28,11 +28,12 @@ get_header();
 <div class="main_b">
 <?for($n=0;$n<count($recruit);$n++){?>
 	<?if($recruit[$n]["post_content"]){?>
-	<div class="rec_l"><?=$recruit[$n]["post_title"]?></div><div class="rec_r"><?=$recruit[$n]["post_content"]?></div>
+	<div class="rec"><div class="rec_l"><?=$recruit[$n]["post_title"]?></div><div class="rec_r"><?=$recruit[$n]["post_content"]?></div></div>
 	<?}?>
 <?}?>
 </div>
-<?if(!$reqruit){?>
+
+<?if(!$recruit){?>
 <div class="main_e">
 <span class="sys_box_log">情報はまだありません</span><br>
 </div>

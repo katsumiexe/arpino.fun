@@ -1,12 +1,15 @@
 a{
 	text-decoration:none;
 	color: initial;
-}
+}		
+
+.timeline-Footer{font-size:0 !important}
+
 ul {
-	margin-block-start:0;
-	margin-block-end:0;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
+	margin-block-start	:0;
+	margin-block-end	:0;
+	margin-inline-start	:0;
+	margin-inline-end	:0;
 	padding-inline-start:0;
 }
 .body{
@@ -1201,20 +1204,33 @@ ul {
 }
 
 
+.rec{
+	display		:flex;
+	width		:600px;
+	border		:1px solid #303030;
+}
+
 .rec_l{
-	width		:200px;
+	display		:inline-block;
+	text-align	:left;
+	flex-basis	:120px;
 	background	:#c8b880;
-	color		:#fafafa;
+	background	:#d0d0d0;
+	color		:#606060;
 	font-size	:14px;
 	padding		:10px;
 }
 
 .rec_r{
-	background	:#c8b880fafafa;
-	color		:#c8b880;
+	display		:inline-block;
+	text-align	:left;
+	flex		:1;
+	background	:#fafafa;
+	color		:#606060;
 	font-size	:14px;
 	padding		:10px;
 }
+
 
 @media screen and (max-width: 959px){
 .pc_only{
