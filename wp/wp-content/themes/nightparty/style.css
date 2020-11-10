@@ -1203,8 +1203,8 @@ ul {
 	border		:1px solid #e8d8a0;
 }
 
-
 .rec{
+	margin:0 auto;
 	display		:flex;
 	width		:600px;
 	border		:1px solid #303030;
@@ -1219,6 +1219,7 @@ ul {
 	color		:#606060;
 	font-size	:14px;
 	padding		:10px;
+	line-height	:20px;
 }
 
 .rec_r{
@@ -1229,6 +1230,7 @@ ul {
 	color		:#606060;
 	font-size	:14px;
 	padding		:10px;
+	line-height	:20px;
 }
 
 
@@ -1559,6 +1561,26 @@ ul {
 	width			:100%;
 	text-align		:center;
 }
+
+
+.rec{
+	width		:80vw;
+}
+
+.rec_l{
+	flex-basis	:30vw;
+	font-size	:4vw;
+	padding		:2vw;
+	line-height	:6vw;
+}
+
+.rec_r{
+	font-size	:4vw;
+	padding		:2vw;
+	line-height	:6vw;
+}
+
+
 
 }
 @media screen and (max-width: 559px){
@@ -1911,6 +1933,18 @@ ul {
 }
 
 
+
+.rec{
+	flex-wrap:wrap;
+}
+
+.rec_l{
+	flex-basis	:100%;
+}
+
+.rec_r{
+	flex-basis	:100%;
+}
 
 
 }
