@@ -816,7 +816,7 @@ $(function(){
 				'cast_id':CastId,
 				'ttl':$('#blog_title').val(),
 				'log':$('#blog_log').val(),
-				'tag':$('#blog_tag_sel').val(),
+				'tag':$('#blog_tag').val(),
 				'chg':$('#blog_chg').val(),
 				'open':$('#blog_open').val(),
 

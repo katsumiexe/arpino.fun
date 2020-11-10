@@ -733,8 +733,8 @@ ul {
 	position		:absolute;
 	bottom			:5px;
 	left			:0;
-	height			:18px;
-	width			:60px;
+	height			:24px;
+	width			:75px;
 
 	background		:#c8c0b0;
 	text-align		:right;
@@ -1200,6 +1200,22 @@ ul {
 	border		:1px solid #e8d8a0;
 }
 
+
+.rec_l{
+	width		:200px;
+	background	:#c8b880;
+	color		:#fafafa;
+	font-size	:14px;
+	padding		:10px;
+}
+
+.rec_r{
+	background	:#c8b880fafafa;
+	color		:#c8b880;
+	font-size	:14px;
+	padding		:10px;
+}
+
 @media screen and (max-width: 959px){
 .pc_only{
 	display		:none;
@@ -1528,7 +1544,6 @@ ul {
 	text-align		:center;
 }
 
-
 }
 @media screen and (max-width: 559px){
 
@@ -1668,10 +1683,6 @@ ul {
 	font-size	:4vw;
 }
 
-
-
-
-
 .all_tag{
 	width			:94vw;
 	height			:8vw;
@@ -1701,9 +1712,6 @@ ul {
 	margin			:1vw;
 	padding-right	:1vw;
 }
-
-
-
 
 .all_cast{
 	width			:94vw;
@@ -1812,8 +1820,8 @@ ul {
 
 .blog_list_tag{
 	bottom			:1vw;
-	height			:5vw;
-	width			:16vw;
+	height			:6vw;
+	width			:17vw;
 	border-radius	:1vw;
 }
 

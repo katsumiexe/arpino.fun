@@ -38,7 +38,7 @@ foreach($res2 as $a2){
 }
 get_header();
 ?>
-
+<script src="<?php echo get_template_directory_uri(); ?>/js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
 	<div class="slide">
 		<div class="slide_img">
@@ -47,7 +47,6 @@ get_header();
 		<img src="<?=get_template_directory_uri()?>/img/page/top/top3.jpg" class="top_img">;
 		<img src="<?=get_template_directory_uri()?>/img/page/top/top4.jpg" class="top_img">;
 		<img src="<?=get_template_directory_uri()?>/img/page/top/top5.jpg" class="top_img">;
-
 		</div>
 		<div class="slide_point">
 			<div id="dot0" class="slide_dot dot_on"></div>
