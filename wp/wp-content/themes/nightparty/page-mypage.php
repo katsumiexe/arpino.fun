@@ -952,25 +952,34 @@ $(function(){
 	</div>
 	<?}elseif($cast_page==3){?>
 	<div class="main">
-		<?for($s=0;$s<count($mail_data);$s++){?>
-			<div class="mail_hist <?if($mail_data[$s]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-				<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg" class="mail_img">
-				<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$s]["send_date"]?></span>
+
+		<?foreach($mail_data as $a1 => $a2){?>
+<?=var_dump($a2)?>
+			<div class="mail_hist <?if($a2["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
+
+				<?if($a2["face"]){?>
+					<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$a2["face"]?>?t_<?=time()?>" class="mail_img">
+					<input type="hidden" class="customer_hidden_face" value="<?=$a2["face"]?>">
+				<?}else{?>
+					<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+				<? } ?>
+
+				<span id="mail_date<?=$s?>" class="mail_date"><?=$a2["send_date"]?></span>
 				<span id="mail_icon<?=$s?>" class="mail_icon">
-					<span class="mail_tmp<?if($mail_data[$s]["img_1"]){?> mail_ck<?}?>"></span>
-					<span class="mail_res<?if($mail_data[$s]["res"]){?> mail_ck<?}?>"></span>
-					<span class="mail_star<?if($mail_data[$s]["star"] =="1"){?> mail_ck<?}?>"></span>
+					<span class="mail_tmp<?if($a2["img_1"]){?> mail_ck<?}?>"></span>
+					<span class="mail_res<?if($a2["send_flg"] == "1"){?> mail_ck<?}?>"></span>
+					<span class="mail_star<?if($a2["star"] =="1"){?> mail_ck<?}?>"></span>
 				</span>
 
-				<span id="mail_title<?=$s?>" class="mail_title"><?=$mail_data[$s]["title"]?></span>
+				<span id="mail_title<?=$s?>" class="mail_title"><?=$a1["title"]?></span>
 				<span id="mail<?=$s?>" class="mail_al"></span>
-				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$s]["from_name"]?></span>
+				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$a2["nickname"]?></span>
 
-				<input id="mail_address<?=$s?>" type="hidden" value="<?=$mail_data[$s]["from_address"]?>">
-				<input id="mail_log<?=$s?>" type="hidden" value="<?=$mail_data[$s]["log"]?>">
-				<?if($mail_data[$s]["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_1"]?>'><? } ?>
-				<?if($mail_data[$s]["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_2"]?>'><? } ?>
-				<?if($mail_data[$s]["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$mail_data[$s]["img_3"]?>'><? } ?>
+				<input id="mail_address<?=$s?>" type="hidden" value="<?=$a1["from_address"]?>">
+				<input id="mail_log<?=$s?>" type="hidden" value="<?=$a1["log"]?>">
+				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
+				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
+				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
 

@@ -3181,10 +3181,6 @@ input[type=range]::-moz-range-thumb{
 	text-align		:center;
 }
 
-.mail_ck{
-	color			:#0000ff;
-}
-
 .mail_icon{
 	display			:inline-block;
 	position		:absolute;
@@ -4265,6 +4261,10 @@ input[type=range]::-moz-range-thumb{
 }
 
 /*-------------------------------------------------------------------*/
+. mail_ck{
+	color:#909000 !important;
+}
+
 .n1,.n2,.n3,.n4{
 	font-size:4vw;
 }
@@ -4464,4 +4464,3 @@ input[type=range]::-moz-range-thumb{
 .color_10{background:#ffd700;}
 .color_11{background:#ffc0cb;}
 .color_12{background:#b0e0e6;}
-© 2020 GitHub, Inc.
