@@ -62,6 +62,8 @@ if($_SESSION){
 	$sql	.=" watch_date='{$now}'";
 	$sql	.=" WHERE customer_id='{$customer}' AND cast_id='{$cast}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
 }
+
+$err="";
 ?>
 
 <html lang="ja">
@@ -81,12 +83,15 @@ if($_SESSION){
 <body class="body">
 <div class="main">
 <?if($err==1){?>
+<div class="err_msg">
 タイムアウトしました<br>
 再度メールからログインしてください。<br>
-
+</div>
 <?}elseif($err==2){?>
+<div class="err_msg">
 ログインコードが無効です。<br>
 最新のメールからログインしてください。<br>
+</div>
 
 <?}else{?>
 <div class="main_mail">

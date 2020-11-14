@@ -152,10 +152,13 @@ for($n=0;$n<8;$n++){
 	}
 */
 
-	$sql	 ="SELECT * FROM wp01_0castmail";
-	$sql	.=" LEFT JOIN wp01_0customer ON wp01_0castmail.customer_id=wp01_0customer.id";
-	$sql	.=" WHERE wp01_0castmail.cast_id='{$_SESSION["id"]}'";
-	$sql	.=" ORDER BY send_date DESC";
+	$sql	 ="SELECT M.send_date, M.customer_id, M.send_flg, M.img_1, M.img_2, M.img_3, C.name, C.nickname, C.face FROM wp01_0castmail AS M";
+
+	$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
+	$sql	.=" WHERE M.cast_id='{$_SESSION["id"]}'";
+	$sql	.=" AND M.del='0'";
+	$sql	.=" ORDER BY M.send_date DESC";
+
 	$n=0;
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($mail_data0 AS $tmp){
