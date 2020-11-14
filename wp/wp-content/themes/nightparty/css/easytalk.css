@@ -1,0 +1,130 @@
+a{
+	text-decoration:none;
+	color: initial;
+}		
+
+.timeline-Footer{font-size:0 !important}
+
+ul {
+	margin-block-start	:0;
+	margin-block-end	:0;
+	margin-inline-start	:0;
+	margin-inline-end	:0;
+	padding-inline-start:0;
+}
+.body{
+	background	:#fafafa;
+	text-align	:center;
+	margin		:0;
+	padding		:0;
+	line-height	:1.2;
+	color		:#333;
+	font-size	:0;
+	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	text-align	:center;
+	width		:99vw;
+}
+
+.main{
+	background	:#ffe0f0;
+
+	text-align	:center;
+	width		:1200px;
+	min-height	:90vh;
+	margin		:0 auto;
+	padding-top	:70px;
+	font-size	:0;
+	vertical-align:top;
+}
+
+.main_mail{
+	display		:inline-block;
+	width		:850px;
+	background	:#f0f0f0;
+	min-height	:100vh;
+	padding		:10px;
+	vertical-align:top;
+}
+
+.main_sub{
+	display		:inline-block;
+	width		:300px;
+	background	:#e0f0ff;
+	min-height	:100vh;
+	padding		:10px;
+	vertical-align:top;
+}
+
+.mail_box_a{
+	display		:inline-block;
+	width		:850px;
+	margin		:10px auto;
+	text-align	:left;
+}
+
+.mail_box_b{
+	display		:inline-block;
+	width		:850px;
+	margin		:10px auto;
+	text-align	:right;
+}
+
+.mail_box_face{
+	display			:inline-block;
+	position		:relative;
+	min-height		:80px;	
+	width			:80px;
+	background		:#c0cc00;
+	vertical-align	:top;
+	overflow		:hidden;
+	border-radius	:10px;
+	border			:5px solid #ffe0f0;
+	margin:3px 10px 0 5px;
+}
+
+.mail_box_img{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	height			:80px;	
+	width			:80px;
+	background		:#e0e0ff;
+}
+
+.mail_box_log_1{
+	position		:relative;
+	display			:inline-block;
+	width			:600px;
+	background		:#fff0fa;
+	border			:2px solid #d00000;
+	margin			:0;
+	font-size		:15px;
+	line-height		:25px;
+	border-radius	:5px 5px 20px 5px;
+	padding			:10px 15px 30px 15px;
+}
+
+.mail_box_log_2{
+	position		:relative;
+	display			:inline-block;
+	width			:600px;
+	border			:2px solid #1dcd00;
+	border-radius	:5px 5px 5px 20px;
+	background		:#1dcd00;
+	margin			:0;
+	color			:#000000;
+	font-size		:15px;
+	line-height		:25px;
+	padding			:10px 15px 30px 15px;
+	text-align:left;
+}
+
+.mail_box_date{
+	position	:absolute;
+	bottom		:5px;
+	right		:10px;
+	height		:16px;
+	line-height	:16px;
+	font-size	:13px;
+	font-weight	:600;
+}

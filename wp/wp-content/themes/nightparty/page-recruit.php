@@ -10,7 +10,7 @@ foreach($res as $a1){
 	$recruit[]=$a1;
 }
 
-var_dump($recruit);
+//var_dump($recruit);
 //ksort($sys);
 get_header();
 ?>

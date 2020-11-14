@@ -1462,10 +1462,10 @@ ul {
 
 
 .access_h1{
-	font-size	:6vw;
+	font-size	:5vw;
 	width		:80vw;
-	height		:12vw;
-	line-height	:12vw;
+	height		:10vw;
+	line-height	:10vw;
 	margin		:1vw auto;
 }
 
@@ -1530,7 +1530,7 @@ ul {
 	width			:94vw;
 	height			:auto;
 	border			:1px solid #c8b880;
-	margin:0 auto 2vw auto;
+	margin			:0 auto 2vw auto;
 }
 
 .cast_tag_box{
@@ -1674,12 +1674,12 @@ ul {
 
 .access_map{
 	flex-basis	:98vw;
-	height		:70vw;
+	height		:90vw;
 }
 
 .access_map_in{
 	width:90vw;
-	height:70vw;
+	height:90vw;
 }
 
 .access_table{

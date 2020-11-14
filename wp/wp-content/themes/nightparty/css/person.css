@@ -162,7 +162,7 @@
 	width		:150px;
 	font-size	:16px;
 	background	:#323232;
-	color:#C8B880;
+	color		:#C8B880;
 }
 
 
@@ -187,35 +187,38 @@
 .sche_l_4,
 .sche_l_5
 {
-	border		:2px solid #303030;
-	text-align	:center;
-	height		:28px;
-	line-height	:28px;
+//	border		:2px solid #303030;
+	border-bottom:2px solid #202020;
+	padding-left:10px;
+	height		:26px;
+	line-height	:30px;
 	width		:150px;
 	font-size	:14px;
-	background	:#323232;
+	background	:#444444;
 	color		:#C8B880;
 }
 
 .sche_l_0{
-	border		:2px solid #303030;
-	text-align	:center;
-	height		:28px;
-	line-height	:28px;
+//	border		:2px solid #303030;
+	border-bottom:2px solid #202020;
+	padding-left:10px;
+	height		:26px;
+	line-height	:30px;
 	width		:150px;
 	font-size	:14px;
-	background	:#323232;
+	background	:#444444;
 	color		:#f0a080;
 }
 
 .sche_l_6{
-	border		:2px solid #303030;
-	text-align	:center;
-	height		:28px;
-	line-height	:28px;
+//	border		:2px solid #303030;
+	border-bottom:2px solid #202020;
+	padding-left:10px;
+	height		:26px;
+	line-height	:30px;
 	width		:150px;
 	font-size	:14px;
-	background	:#323232;
+	background	:#444444;
 	color		:#90b8c0;
 }
 
@@ -226,7 +229,8 @@
 .sche_r_4,
 .sche_r_5
 {
-	border		:2px solid #303030;
+//	border		:2px solid #303030;
+	border-bottom:2px solid #202020;
 	padding-left:10px;
 	height		:28px;
 	line-height	:28px;
@@ -238,7 +242,8 @@
 
 .sche_r_0
 {
-	border		:2px solid #303030;
+//	border		:2px solid #303030;
+	border-bottom:2px solid #202020;
 	padding-left:10px;
 	height		:28px;
 	line-height	:28px;
@@ -250,7 +255,8 @@
 
 .sche_r_6
 {
-	border		:2px solid #303030;
+//	border		:2px solid #303030;
+	border-bottom:2px solid #202020;
 	padding-left:10px;
 	height		:28px;
 	line-height	:28px;
@@ -307,8 +313,8 @@
 }
 
 .person_right{
-	width		:89vw;
-	flex-basis	:89vw;
+	width		:88vw;
+	flex-basis	:88vw;
 	min-height	:0;	
 	margin		:0 auto;
 }
@@ -344,20 +350,20 @@
 }
 
 .prof_l{
-	padding-left:2vw;
-	height		:8vw;
-	line-height	:8vw;
-	width		:35vw;
-	font-size	:4vw;
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:36vw;
+	font-size	:3.8vw;
 }
 
 
 .prof_r{
-	padding-left:2vw;
-	height		:8vw;
-	line-height	:8vw;
-	width		:49vw;
-	font-size	:4vw;
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:50vw;
+	font-size	:3.8vw;
 }
 
 .sche{
@@ -373,12 +379,11 @@
 .sche_l_5,
 .sche_l_6
 {
-	border		:2px solid #303030;
-	padding-left:2vw;
-	height		:8vw;
-	line-height	:8vw;
-	width		:33.5vw;
-	font-size	:4vw;
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:36vw;
+	font-size	:3.8vw;
 }
 
 
@@ -390,24 +395,23 @@
 .sche_r_5,
 .sche_r_6
 {
-	border		:2px solid #303030;
-	padding-left:2vw;
-	height		:8vw;
-	line-height	:8vw;
-	width		:49.5vw;
-	font-size	:4vw;
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:50vw;
+	font-size	:3.8vw;
 }
 
 
 .person_blog_ttl{
-	width			:89vw;
-	height			:10vw;	
-	line-height		:10vw;	
-	font-size		:5vw;
+	width			:88vw;
+	height			:8vw;	
+	line-height		:8vw;	
+	font-size		:4vw;
 }
 
 .person_blog{
-	width			:89vw;
+	width			:88vw;
 	height			:20vw;
 	margin-top		:0.5vw;
 	

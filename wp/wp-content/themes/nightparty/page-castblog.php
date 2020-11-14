@@ -273,7 +273,7 @@ get_header();
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"></span>
+		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$a2["castname"]?></span>
 	</div>
 
