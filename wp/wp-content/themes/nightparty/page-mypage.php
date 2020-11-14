@@ -162,7 +162,9 @@ for($n=0;$n<8;$n++){
 	$n=0;
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($mail_data0 AS $tmp){
-		$mail_data[]=$tmp;
+		if(!$mail_data[$tmp["customer_id"]]){
+			$mail_data[$tmp["customer_id"]]=$tmp;
+		}
 	}
 
 	$sql ="SELECT * FROM wp01_0cast_config";
