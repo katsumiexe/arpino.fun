@@ -97,7 +97,7 @@ var Santa	=0;
 var Tona	=0;
 var Rnd		=[]
 
-var ORZ=4
+var ORZ=<?=$orz?>+2;
 
 for(s=0;s<6;s++){
 	Rnd[s]= Math.floor(Math.random() * 2)+3;
