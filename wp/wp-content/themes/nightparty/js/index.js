@@ -2,8 +2,8 @@ var TopCnt=0;
 var Vw	=$(window).width();
 var Vh	=$(window).height();
 
-$(document).ready(function () {
-	var timerId = setInterval(Fnc,4000);
+$(function(){ 
+	timerId = setInterval(Fnc,4000);
 	if(Vw <1200){
 		var TopW=Vw;
 
@@ -77,6 +77,8 @@ function Fnc() {
 	$('.slide_img').animate({'left':Left+"%"},1000);
 	$('.slide_dot').removeClass('dot_on');
 	$('#dot'+TopCnt).addClass('dot_on');
+
+console.log(TopCnt)
 }
 
 
