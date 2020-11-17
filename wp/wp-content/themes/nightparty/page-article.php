@@ -117,8 +117,8 @@ get_header();
 	</div>
 </div>
 
-<div class="main_top">
-	<div class="main_b_in">
+<div class="main_top_flex">
+	<div class="main_article">
 		<h1 class="blog_ttl">
 			<?=$res0["post_title"]?>
 		</h1>
@@ -128,7 +128,6 @@ get_header();
 			<span class="blog_ttl_date"><span class="icon"></span><?=$res0["date"]?></span>
 		</div>
 		<div class="blog_ttl_border">　</div>
-
 		<?if($blog_img){?>
 		<div class="blog_top_img">
 		<img src="<?=$blog_img?>" class="blog_img">
@@ -139,12 +138,11 @@ get_header();
 		</div>
 	</div>
 
-	<div class="main_c">
-		<div class="blog_h1_t"></div>
-		<div class="blog_h1"><?=$res0["name"]?></div>
-		<div class="blog_h1_b"></div>
-		<img src="<?=$cast_face?>" class="blog_cast_img">
-
+	<div class="sub_blog">
+		<div class="sub_blog_in">
+			<div class="blog_h1"><?=$res0["name"]?></div>
+			<img src="<?=$cast_face?>" class="blog_cast_img">
+		</div>
 
 		<!--table class="blog_calender">
 			<tr>
@@ -162,9 +160,8 @@ get_header();
 			</tr>
 		</table-->
 
-		<div class="blog_h1_t"></div>
+		<div class="sub_blog_in">
 		<div class="blog_h1">新着</div>
-		<div class="blog_h1_b"></div>
 
 		<?for($s=0;$s<count($blog);$s++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
@@ -175,9 +172,13 @@ get_header();
 				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 			</a>
 		<?}?>
-		<div class="blog_h1_t"></div>
+		</div>
+
+
+
+		<div class="sub_blog_in">
 		<div class="blog_h1">カテゴリー</div>
-		<div class="blog_h1_b"></div>
+		</div>
 
 	</div>
 </div>

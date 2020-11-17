@@ -61,6 +61,8 @@ get_header();
 		<div class="main_b_notice">
 
 		</div>
+
+
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>

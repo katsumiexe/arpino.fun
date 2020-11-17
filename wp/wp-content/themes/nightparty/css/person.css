@@ -48,11 +48,11 @@
 .person_blog{
 	display			:inline-block;
 	position		:relative;
-	width			:308px;
+	width			:320px;
 	height			:90px;	
 	background		:#fafafa;
 //	border			:1px solid #C8B880;
-	margin-top		:2px;
+	border-bottom	:1px solid #C8B880;
 	
 }
 
