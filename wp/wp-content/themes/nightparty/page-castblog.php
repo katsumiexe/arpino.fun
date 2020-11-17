@@ -298,10 +298,10 @@ get_header();
 <?}?>
 </div>
 
-<div class="main_top">
-	<div class="main_b">
-		<h2 class="main_b_title"> Cast Blog</h2>
-		<div class="main_b_in">
+<div class="main_top_flex">
+	<div class="main_article_out">
+		<h2 class="main_blog_title"> Cast Blog</h2>
+		<div class="main_article">
 			<?for($n=0;$n<count($blog);$n++){?>
 				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
@@ -322,57 +322,57 @@ get_header();
 				</a>
 			<? } ?>
 		</div>
-	<?=$p_list?>
+		<?=$p_list?>
 	</div>
-	<div class="main_c">
-	<table id="c" class="blog_calendar">
-		<tr>
-			<td id="c_prev"class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
-			<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
-			<td id="c_next" class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
-		</tr>
-		<tr>
-			<td class="blog_calendar_w">日</td>
-			<td class="blog_calendar_w">月</td>
-			<td class="blog_calendar_w">火</td>
-			<td class="blog_calendar_w">水</td>
-			<td class="blog_calendar_w">木</td>
-			<td class="blog_calendar_w">金</td>
-			<td class="blog_calendar_w">土</td>
-			<?=$c_inc?>
-		</tr>
-	</table>
 
-	<div class="blog_h1_t"></div>
-	<div class="blog_h1">カテゴリー</div>
-	<div class="blog_h1_b"></div>
+	<div class="sub_blog">
+		<table id="c" class="blog_calendar">
+			<tr>
+				<td id="c_prev"class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
+				<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
+				<td id="c_next" class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
+			</tr>
+			<tr>
+				<td class="blog_calendar_w">日</td>
+				<td class="blog_calendar_w">月</td>
+				<td class="blog_calendar_w">火</td>
+				<td class="blog_calendar_w">水</td>
+				<td class="blog_calendar_w">木</td>
+				<td class="blog_calendar_w">金</td>
+				<td class="blog_calendar_w">土</td>
+				<?=$c_inc?>
+			</tr>
+		</table>
 
-	<div class="blog_h3">
-		<a href="<?=get_template_directory_uri();?>/castblog/" class="all_tag">
-			<span class="all_tag_icon"><?=$tag_icon[0]?></span>
-			<span class="all_tag_name">全て</span>
-			<span class="all_tag_count"><?=$cate_all?></span>
-		</a>
-		<?foreach($cate_count as $a1=> $a2){?>
-		<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
-			<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
-			<span class="all_tag_name"><?=$cate_name[$a1]?></span>
-			<span class="all_tag_count"><?=$a2?></span>
-		</a>
-		<? } ?>
+		<div class="sub_blog_in">
+			<div class="blog_h1">カテゴリー</div>
+			<a href="<?=get_template_directory_uri();?>/castblog/" class="all_tag">
+				<span class="all_tag_icon"><?=$tag_icon[0]?></span>
+				<span class="all_tag_name">全て</span>
+				<span class="all_tag_count"><?=$cate_all?></span>
+			</a>
+			<?foreach($cate_count as $a1=> $a2){?>
+			<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
+				<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
+				<span class="all_tag_name"><?=$cate_name[$a1]?></span>
+				<span class="all_tag_count"><?=$a2?></span>
+			</a>
+			<? } ?>
+		</div>
+
+		<div class="sub_blog_in">
+			<div class="blog_h1">CAST一覧</div>
+			<?foreach($cast_count as $a1=> $a2){?>
+				<a href="./?cast_list=<?=$a1?>" class="all_cast">
+					<span class="all_cast_img"><img src="<?=$cast_face[$a1]?>?t=<?=time()?>" class="all_cast_img_in"></span>
+					<span class="all_cast_name"><?=$cast_name[$a1]?></span>
+					<span class="all_cast_icon"></span>
+					<span class="all_cast_last"><?=$all_cast[$s]["last"]?></span>
+					<span class="all_cast_count"><?=$a2?></span>
+				</a>
+			<?}?>
+		</div>
 	</div>
-	<div class="blog_h1_t"></div>
-	<div class="blog_h1">CAST一覧</div>
-	<div class="blog_h1_b"></div>
-	<?foreach($cast_count as $a1=> $a2){?>
-		<a href="./?cast_list=<?=$a1?>" class="all_cast">
-			<span class="all_cast_img"><img src="<?=$cast_face[$a1]?>?t=<?=time()?>" class="all_cast_img_in"></span>
-			<span class="all_cast_name"><?=$cast_name[$a1]?></span>
-			<span class="all_cast_icon"></span>
-			<span class="all_cast_last"><?=$all_cast[$s]["last"]?></span>
-			<span class="all_cast_count"><?=$a2?></span>
-		</a>
-	<?}?>
 </div>
 </div>
 <?php get_footer(); ?>

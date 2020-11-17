@@ -58,10 +58,16 @@ get_header();
 	</div>
 
 	<div class="main_b">
-		<div class="main_b_notice">
-
+		<div class="main_b_top">
+			<div class="main_b_top_l">
+				<h2 class="main_b_title_l">お知らせ</h2>
+			</div>
+			<div class="main_b_top_r">
+				<h2 class="main_b_title_r">お知らせ</h2>
+				<div class="main_b_notice">
+				</div>
+			</div>
 		</div>
-
 
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<div class="main_b_in">

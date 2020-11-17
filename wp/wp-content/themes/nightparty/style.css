@@ -237,16 +237,78 @@ ul {
 	vertical-align	:top;
 }
 
-.main_b_notice{
-	display			:inline-block;
-	width			:850px;
-	height			:100px;
-	text-align		:left;
-	background		:linear-gradient(135deg,#909090,#707070);
-	vertical-align	:top;
-	margin			:0 auto 10px auto;
-	padding			:10px;
+
+.main_b_top{
+	display			:inline-flex;
+	justify-content: space-between;
+	width			:870px;
+	height			:400px;
+	margin			:0 auto 20px auto;
 }
+.main_b_top_l{
+	display			:inline-block;
+	width			:300px;
+	height			:400px;
+}
+.main_b_top_r{
+	display			:inline-block;
+	width			:570px;
+	height			:400px;
+}
+.main_b_title_l{
+	display			:inline-block;
+	width			:295px;
+	height			:40px;
+	line-height		:40px;
+	color			:#aa8020;
+	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	margin			:10px auto;
+	font-size		:18px;
+	font-weight		:600;
+	padding-left	:5px;
+	text-align		:left;
+	border			:1px solid #c8b880;
+	margin-block-start	:0;
+	margin-block-end	:0;
+}
+
+.main_b_title_r{
+	display			:inline-block;
+	width			:565px;
+	height			:40px;
+	line-height		:40px;
+	color			:#aa8020;
+	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	margin			:10px auto;
+	font-size		:18px;
+	font-weight		:600;
+	padding-left	:5px;
+	text-align		:left;
+	border			:1px solid #c8b880;
+	margin-block-start	:0;
+	margin-block-end	:0;
+}
+
+
+.main_b_notice{
+	display			:inline-flex;
+	justify-content: space-between;
+	width			:570px;
+	height			:400px;
+	text-align		:left;
+	vertical-align	:top;
+	background		:#302520;
+}
+
+.main_b_notice_in{
+	flex-basis		:260px;
+	border			:1px solid #c8b880;
+	background		:linear-gradient(135deg,#909090,#707070);
+	margin			:20px auto;
+	border-radius	:5px;
+	height:100px
+}
+
 
 .main_b_in{
 	display			:inline-block;
@@ -484,6 +546,11 @@ ul {
 	padding			:10px;
 }
 
+.main_article_out{
+	display			:inline-block;
+	width			:850px;
+}
+
 .main_article{
 	display			:inline-block;
 	width			:850px;
@@ -491,6 +558,23 @@ ul {
 	border			:1px solid #c8b880;
 	background		:#302520;
 	vertical-align	:top;
+}
+
+.main_blog_title{
+	display			:inline-block;
+	width			:845px;
+	height			:40px;
+	line-height		:40px;
+	color			:#aa8020;
+	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	margin			:10px auto;
+	font-size		:18px;
+	font-weight		:600;
+	padding-left	:5px;
+	text-align		:left;
+	border			:1px solid #c8b880;
+	margin-block-start	:0;
+	margin-block-end	:0;
 }
 
 
@@ -734,12 +818,16 @@ ul {
 .blog_list{
 	display			:inline-block;
 	position		:relative;
-	width			:420px;
+	width			:424px;
 	height			:110px;
-	margin			:4px;
+	margin			:0;
 	text-align		:left;
 	text-decoration	:none;
 	background		:#fafafa;
+	border-left		:1px solid #c8b880;
+	border-bottom	:1px solid #c8b880;
+
+
 }
 
 .blog_list_img{
@@ -840,8 +928,8 @@ ul {
 
 .blog_list_frame_a{
 	position	:absolute;
-	right		:0;
-	bottom		:0;
+	right		:5px;
+	bottom		:5px;
 	width		:50px;
 	height		:50px;
 	overflow	:hidden;
@@ -853,20 +941,20 @@ ul {
 
 .blog_list_date{
 	position	:absolute;
-	right		:55px;
-	bottom		:2px;
+	right		:65px;
+	bottom		:5px;
 	font-size	:13px;
 	text-align	:right
 }
 
 .blog_list_castname{
 	position	:absolute;
-	right		:55px;
-	bottom		:20px;
+	right		:65px;
+	bottom		:25px;
 	font-size	:16px;
 	font-weight	:600;
 	text-align	:right
-	
+	color:#202020;
 }
 
 .blog_h1{
@@ -882,15 +970,14 @@ ul {
 	font-size	:20px;
 	font-weight	:600;
 	color		:#302520;
-	color		:#fafafa;
-	color		:#302520;
+	color		:#ffffff;
 }
 
 
 .all_cast{
 	position		:relative;
 	display			:inline-block;
-	width			:300px;
+	width			:320px;
 	height			:60px;
 	line-height		:60px;
 	font-size		:0;
@@ -904,8 +991,8 @@ ul {
 	left			:65px;
 	color			:#303030;
 	width			:230px;
-	height			:35px;
-	line-height		:35px;
+	height			:25px;
+	line-height		:25px;
 	font-size		:20px;
 	font-weight		:700;
 	text-align		:left;
@@ -970,9 +1057,9 @@ ul {
 
 .all_tag{
 	display			:inline-block;
-	width			:300px;
-	height			:30px;
-	line-height		:30px;
+	width			:320px;
+	height			:40px;
+	line-height		:40px;
 	font-size		:0;
 	border-bottom	:1px solid #c8b880;
 	color			:#c8b880;
@@ -983,9 +1070,9 @@ ul {
 	display			:inline-block;
 	color			:#c8b880;
 	width			:215px;
-	height			:30px;
-	line-height		:30px;
-	font-size		:14px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:16px;
 	font-weight		:500;
 	text-align		:left;
 	vertical-align	:top;
@@ -993,10 +1080,10 @@ ul {
 
 .all_tag_icon{
 	display			:inline-block;
-	width			:30px;
-	height			:30px;
-	line-height		:30px;
-	font-size		:20px;
+	width			:40px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:24px;
 	font-family		:at_icon;	
 	text-align		:center;
 	vertical-align	:top;
@@ -1005,16 +1092,16 @@ ul {
 .all_tag_count{
 	display			:inline-block;
 	width			:40px;
-	height			:20px;
-	line-height		:20px;
-	font-size		:13px;
+	height			:24px;
+	line-height		:24px;
+	font-size		:14px;
 	font-weight		:600;
 	text-align		:right;
 	vertical-align	:top;
 	color			:#302520;
 	background		:#c8b880;
 	border-radius	:5px;
-	margin			:5px;
+	margin			:8px;
 	padding-right	:5px;
 }
 
@@ -1100,12 +1187,12 @@ ul {
 }
 
 .blog_calendar{
-	width			:290px;
+	width			:322px;
 	border-collapse	:collapse;
 	table-layout	:fixed;
 	background		:#fafafa;
 	background		:#302520;
-	margin			:10px;
+	margin-bottom	:20px;
 }
 
 .blog_calendar_m{
@@ -1144,8 +1231,8 @@ ul {
 	position		:relative;
 	text-align		:center;
 	border			:1px solid #c8b880;
-	height			:35px;
-	line-height		:35px;
+	height			:40px;
+	line-height		:40px;
 }
 .cal,.cal1{
 	display			:inline-block;
@@ -1174,7 +1261,7 @@ ul {
 
 .page_box{
 	display			:inline-block;
-	width			:870px;
+	width			:850px;
 	text-align		:center;
 	height			:50px;
 	line-height		:50px;
