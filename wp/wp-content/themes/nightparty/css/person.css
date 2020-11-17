@@ -19,31 +19,19 @@
 	display			:inline-block;
 	position		:relative;
 	flex			:1;
-	min-height		:600px;	
+	min-height		:500px;	
 }
 
 .person_right{
 	display			:inline-block;
 	position		:relative;
-	flex-basis		:310px;
-	min-height		:600px;	
+	flex-basis		:320px;
+	min-height		:100px;	
 	border			:1px solid #c8b880;
 	margin-top		:8px;
 	text-align		:center;
 }
 
-.person_blog_ttl{
-	display			:inline-block;
-	position		:relative;
-	width			:310px;
-	height			:35px;	
-	line-height		:35px;	
-	margin			:0;
-	background		:#C8B880;
-	color			:#fafafa;
-	font-size		:20px;
-	font-weight		:700;
-}
 
 .person_blog{
 	display			:inline-block;
@@ -156,22 +144,23 @@
 
 .prof_l{
 	border-bottom:1px solid #C8B880;
-	padding-left:10px;
-	height		:26px;
+	padding		:0 5px;
+	height		:30px;
 	line-height	:30px;
 	width		:150px;
 	font-size	:16px;
 	background	:#323232;
 	color		:#C8B880;
-}
+	vertical-align:top;
+	}
 
 
 .prof_r{
 	border-bottom	:1px solid #C8B880;
-	padding-left	:10px;
-	height			:26px;
+	padding			:0 5px;
+	height			:30px;
 	line-height		:30px;
-	width			:320px;
+	width			:310px;
 	font-size		:16px;
 	background		:#272727;
 	color			:#C8B880;

@@ -177,7 +177,7 @@ get_header();
 	</div>
 
 	<div class="person_right">
-		<div class="person_blog_ttl">Blog</div>
+		<div class="blog_h1">Blog</div>
 		<?for($s=0;$s<count($blog);$s++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
 				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">

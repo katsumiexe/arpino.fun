@@ -869,16 +869,6 @@ ul {
 	
 }
 
-.blog_h1_t{
-	display		:inline-block;
-	position	:relative;
-	width		:320px;
-	height		:2px;
-	background	:linear-gradient(90deg,#fff0b8,#c8b880,#fff0c0);
-	margin: 0 auto;
-}
-
-
 .blog_h1{
 	display		:inline-block;
 	width		:320px;
@@ -893,6 +883,7 @@ ul {
 	font-weight	:600;
 	color		:#302520;
 	color		:#fafafa;
+	color		:#302520;
 }
 
 
