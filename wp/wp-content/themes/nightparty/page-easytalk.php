@@ -2,7 +2,7 @@
 /*
 Template Name: easytalk
 */
-session_start();
+
 global $wpdb;
 if($_POST["log_out"] == 1){
 	$_POST="";
@@ -10,8 +10,30 @@ if($_POST["log_out"] == 1){
 	session_destroy();
 }
 $jst=time();
+$now=date("Y-m-d H:i:s",time()+21600);
 
-if($_SESSION){
+if($_REQUEST["ss"]){
+//	session_destroy();
+	$sql	 ="SELECT * FROM wp01_0ssid";
+	$sql	.=" WHERE ssid='{$_REQUEST["ss"]}'";
+	$ssid = $wpdb->get_row($sql,ARRAY_A);
+	$_SESSION=$ssid;
+
+	if(!$ssid){
+		$err=1;
+
+	}else{
+		$_SESSION["time"]=$jst;
+		$sql	 ="UPDATE wp01_0ssid";
+		$sql	.=" cast_id='',";
+		$sql	.=" customer_id=''";
+		$sql	.=" WHERE ssid !='{$_REQUEST["ss"]}'";
+		$sql	.=" AND cast_id='{$session["cast_id"]}'";
+		$sql	.=" AND customer_id='{$session["customer_id"]}'";
+		$wpdb->query($sql);
+	}
+
+}elseif($_SESSION["ssid"]){
 	if($jst<$_SESSION["time"]+18000){
 		$_SESSION["time"]=$jst;
 	}else{
@@ -19,38 +41,17 @@ if($_SESSION){
 		session_destroy();
 		$err=2;
 	}
-
-}elseif($_REQUEST["ss"]){
-	$sql	 ="SELECT * FROM wp01_0ssid";
-	$sql	.=" WHERE ssid='{$ss}'";
-	$session = $wpdb->get_row($sql,ARRAY_A);
-
-	if(!$ssid){
-		$err=1;
-	}else{
-		$_SESSION=$ssid;
-		$_SESSION["time"]=$jst;
-		$sql	 ="UPDATE wp01_0ssid";
-		$sql	.=" cast_id='',";
-		$sql	.=" customer_id=''";
-		$sql	.=" WHERE ssid !='{$ss}'";
-		$sql	.=" AND cast_id='{$ssid["cast_id"]}'";
-		$sql	.=" AND customer_id='{$ssid["customer_id"]}'";
-	}
-
-}else{
-	$err="2";
 }
 
 if($_SESSION){
-	if (file_exists(get_template_directory()."/img/page/{$cast}/1.jpg")) {
-		$face_link=get_template_directory_uri()."/img/page/".$cast."/1.jpg";			
+	if (file_exists(get_template_directory()."/img/page/{$_SESSION["cast_id"]}/1.jpg")) {
+		$face_link=get_template_directory_uri()."/img/page/".$_SESSION["cast_id"]."/1.jpg";			
 	}else{
 		$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
 
 	$sql	 ="SELECT * FROM wp01_0castmail";
-	$sql	.=" WHERE customer_id='{$customer}' AND cast_id='{$cast}'";
+	$sql	.=" WHERE customer_id='{$_SESSION["customer_id"]}' AND cast_id='{$_SESSION["cast_id"]}'";
 	$sql	.=" ORDER BY mail_id DESC";
 	$sql	.=" LIMIT 10";
 
@@ -58,20 +59,21 @@ if($_SESSION){
 	foreach($res as $a1){
 		$dat[]=$a1;
 	}
-	$sql	 ="UPDATE wp01_castmail SET";
+	$sql	 ="UPDATE wp01_0castmail SET";
 	$sql	.=" watch_date='{$now}'";
-	$sql	.=" WHERE customer_id='{$customer}' AND cast_id='{$cast}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
+	$sql	.=" WHERE customer_id='{$_SESSION["customer_id"]}' AND cast_id='{$_SESSION["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
+	$wpdb->query($sql);
+
+echo $sql;
 }
 
-$err="";
 ?>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Night-party</title>
+<title>Easy-Talk</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -91,6 +93,11 @@ $err="";
 <div class="err_msg">
 ログインコードが無効です。<br>
 最新のメールからログインしてください。<br>
+</div>
+
+<?}elseif($err==3){?>
+<div class="err_msg">
+SESSIONが拾えません。<br>
 </div>
 
 <?}else{?>

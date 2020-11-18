@@ -57,7 +57,7 @@ $(function(){
 	$('.slide_dot').on('click',function () {
 		TMP=$(this).attr('id').replace('dot','');
 		Left=TMP * (-100);
-		$('.slide_img').animate({'left':Left+"%"},1000);
+		$('.slide_img').animate({'left':Left+"%"},500);
 		$('.slide_dot').removeClass('dot_on');
 		$(this).addClass('dot_on');
 		TopCnt=TMP;
@@ -75,11 +75,11 @@ function Fnc() {
 	}
 
 	Left=TopCnt * (-100);
-	$('.slide_img').animate({'left':Left+"%"},1000);
+	$('.slide_img').animate({'left':Left+"%"},1500);
 	$('.slide_dot').removeClass('dot_on');
 	$('#dot'+TopCnt).addClass('dot_on');
 
-console.log(TopCnt)
+console.log(TMR)
 }
 
 

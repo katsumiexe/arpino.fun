@@ -1,22 +1,10 @@
 <?php
-function nightparty() {
-	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'menus');
+function init_session_start(){
+    if(session_status() !== PHP_SESSION_ACTIVE){
+        session_start();
+    }
+    $_SESSION['foo'] = 'var'; 
 }
-add_action('after_setup_theme', 'nightparty' );
-
-function custom_menu() {
-	register_nav_menus( array(
-		'global' => 'メインメニュー',
-		'sns' => 'SNSリンク',
-	));
-}
-add_action('after_setup_theme','custom_menu');
-
-function geotag_queryvars( $qvars ){
-	$qvars[] = 'val';
-	return $qvars;
-}
-add_filter('query_vars', 'geotag_queryvars' );
-
+add_action('init', 'init_session_start');
 ?>
+
