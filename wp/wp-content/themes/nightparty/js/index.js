@@ -1,9 +1,10 @@
 var TopCnt=0;
 var Vw	=$(window).width();
 var Vh	=$(window).height();
+const TMR=4000;
 
 $(function(){ 
-	timerId = setInterval(Fnc,4000);
+	timerId = setInterval(Fnc,TMR);
 	if(Vw <1200){
 		var TopW=Vw;
 
@@ -31,7 +32,7 @@ $(function(){
 				$('#dot'+TMP).addClass('dot_on');
 				TopCnt=TMP;
 				clearInterval(timerId);
-				timerId = setInterval(Fnc,4000);
+				timerId = setInterval(Fnc,TMR);
 
 			}else if(startPosition - ui.position.left> 100){//■右へ
 				TMP=$('.dot_on').attr('id').replace('dot','')-0+1;
@@ -41,14 +42,14 @@ $(function(){
 				$('#dot'+TMP).addClass('dot_on');
 				TopCnt=TMP;
 				clearInterval(timerId);
-				timerId = setInterval(Fnc,4000);
+				timerId = setInterval(Fnc,TMR);
 
 			}else{
 				TMP=$('.dot_on').attr('id').replace('dot','');
 				Left=TMP * (-100);
 				$('.slide_img').animate({'left':Left+"%"},200);
 				clearInterval(timerId);
-				setInterval(timerId,4000);
+				setInterval(timerId,TMR);
 			}
 		}
 	})
@@ -61,7 +62,7 @@ $(function(){
 		$(this).addClass('dot_on');
 		TopCnt=TMP;
 		clearInterval(timerId);
-		timerId = setInterval(Fnc,4000);
+		timerId = setInterval(Fnc,TMR);
 	});
 });
 
@@ -70,7 +71,7 @@ function Fnc() {
 	if(TopCnt>4){
 		TopCnt=0;
 		clearInterval(timerId);
-		timerId = setInterval(Fnc,4000);
+		timerId = setInterval(Fnc,TMR);
 	}
 
 	Left=TopCnt * (-100);
