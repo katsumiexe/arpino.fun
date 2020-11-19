@@ -20,14 +20,22 @@ ul {
 	line-height	:1.2;
 	color		:#333;
 	font-size	:0;
-	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	font-family: "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
 	text-align	:center;
 	width		:99vw;
 }
 
+.midoku{
+	display		:inline-block;
+	color		:#fafafa;
+	background	:#d00000;
+	padding		:1px 3px;
+	border-radius:2px;
+}
+
+
 .main{
 	background	:#ffe0f0;
-
 	text-align	:center;
 	width		:1200px;
 	min-height	:90vh;
@@ -38,12 +46,13 @@ ul {
 }
 
 .main_mail{
-	display		:inline-block;
-	width		:850px;
-	background	:#f0f0f0;
-	min-height	:100vh;
-	padding		:10px;
-	vertical-align:top;
+	display			:inline-block;
+	width			:850px;
+	background		:#f0f0f0;
+	height			:80vh;
+	padding			:10px;
+	overflow-y		:scroll;
+	vertical-align	:top;
 }
 
 .main_sub{
@@ -51,11 +60,12 @@ ul {
 	width		:300px;
 	background	:#e0f0ff;
 	min-height	:100vh;
-	padding		:10px;
 	vertical-align:top;
 }
 
 .mail_box_a{
+	padding-top:20px;
+	position	:relative;
 	display		:inline-block;
 	width		:850px;
 	margin		:10px auto;
@@ -63,11 +73,14 @@ ul {
 }
 
 .mail_box_b{
+	padding-top:20px;
+	position	:relative;
 	display		:inline-block;
 	width		:850px;
 	margin		:10px auto;
 	text-align	:right;
 }
+
 
 .mail_box_face{
 	display			:inline-block;
@@ -100,31 +113,155 @@ ul {
 	margin			:0;
 	font-size		:15px;
 	line-height		:25px;
-	border-radius	:5px 5px 20px 5px;
-	padding			:10px 15px 30px 15px;
+	border-radius	:10px 10px 30px 10px;
+	padding			:10px 15px;
 }
 
 .mail_box_log_2{
 	position		:relative;
 	display			:inline-block;
 	width			:600px;
-	border			:2px solid #1dcd00;
-	border-radius	:5px 5px 5px 20px;
-	background		:#1dcd00;
+	border			:2px solid #30e020;
+	border-radius	:10px 10px 10px 30px;
 	margin			:0;
-	color			:#000000;
 	font-size		:15px;
 	line-height		:25px;
-	padding			:10px 15px 30px 15px;
-	text-align:left;
+	padding			:10px 15px;
+	text-align		:left;
 }
 
-.mail_box_date{
+.mail_box_date_a{
 	position	:absolute;
-	bottom		:5px;
+	top			:5px;
+	left		:120px;
+	height		:16px;
+	line-height	:16px;
+	font-size	:13px;
+	font-weight	:600;
+}
+.mail_box_date_b{
+	position	:absolute;
+	top			:5px;
 	right		:10px;
 	height		:16px;
 	line-height	:16px;
 	font-size	:13px;
 	font-weight	:600;
 }
+.easytalk_img{
+	width	:300px;
+	height	:100px;
+}
+.easytalk_text{
+	width		:300px;
+	height		:160px;
+	resize		:none;
+	font-size	:16px;
+	padding		:5px;
+	margin-top	:10px;
+}
+
+
+
+@media screen and (max-width: 559px){
+
+.main{
+	width			:98vw;
+}
+
+.main_mail{
+	width			:96vw;
+	min-height		:0;
+	padding			:1vw;
+	margin-bottom	:5vw;
+	height			:auto;
+	overflow-y		:auto;
+}
+
+
+.mail_box_a,.mail_box_b{
+	padding-top		:5vw;
+	width			:96vw;
+	margin			:2vw auto;
+}
+
+.mail_box_date_a{
+	top			:1vw;
+	left		:16vw;
+	height		:4vw;
+	line-height	:4vw;
+	font-size	:3vw;
+}
+.mail_box_date_b{
+	top			:1vw;
+	right		:2vw;
+	height		:4vw;
+	line-height	:4vw;
+	font-size	:3vw;
+}
+
+.mail_box_face{
+	min-height		:11vw;	
+	width			:11vw;
+	border-radius	:2vw;
+	border			:1vw solid #ffe0f0;
+	margin			:1vw 1vw 0 0.5vw;
+}
+
+.mail_box_img{
+	width			:11vw;
+}
+
+.mail_box_log_1{
+	width			:66vw;
+	font-size		:3.5vw;
+	line-height		:6vw;
+	border-radius	:1vw 1vw 4vw 1vw;
+	padding			:2vw 2vw 7vw 2vw;
+}
+
+.mail_box_log_2{
+	width			:66vw;
+	font-size		:3.5vw;
+	line-height		:6vw;
+	border-radius	:1vw 1vw 1vw 4vw;
+	padding			:2vw 2vw 7vw 2vw;
+}
+
+.main_sub{
+	width		:98vw;
+	min-height	:0;
+}
+
+
+.easytalk_img{
+	width	:96vw;
+	height:auto;
+}
+
+.easytalk_text{
+	width		:96vw;
+	height		:40vw;
+	font-size	:4.5vw;
+	padding		:1vw;
+	margin-top	:3vw;
+}
+
+
+.easytalk_img{
+	display:none;
+
+}
+
+}
+
+.bg{
+	color			:#303030;
+	background		:#30e020;
+}
+
+.bg1{
+	color			:#000000;
+	background		:#d0ffe0;
+}
+

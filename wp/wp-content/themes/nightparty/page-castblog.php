@@ -252,7 +252,7 @@ for($n=0;$n<$month_max ;$n++){
 	if($n>$month_w && $n<=$month_w+$month_e){
 
 		$ky=$month."00"+$tmp_days;
-		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"".get_template_directory_uri()."/castblog/?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$calendar_ck[$tmp_days]}\">{$tmp_days}</a></td>";
+		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"".home_url('/castblog')."/?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$calendar_ck[$tmp_days]}\">{$tmp_days}</a></td>";
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
@@ -303,7 +303,8 @@ get_header();
 		<h2 class="main_blog_title"> Cast Blog</h2>
 		<div class="main_article">
 			<?for($n=0;$n<count($blog);$n++){?>
-				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+				<a href="<?=home_url('/article')?>/?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
+
 					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 
 					<span class="blog_list_comm">
@@ -328,9 +329,9 @@ get_header();
 	<div class="sub_blog">
 		<table id="c" class="blog_calendar">
 			<tr>
-				<td id="c_prev"class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
+				<td id="c_prev"class="blog_calendar_n"><a href="<?=home_url('/castblog')?>/?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
 				<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
-				<td id="c_next" class="blog_calendar_n"><a href="<?=get_template_directory_uri();?>/castblog/?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
+				<td id="c_next" class="blog_calendar_n"><a href="<?=home_url('/castblog')?>/?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
 			</tr>
 			<tr>
 				<td class="blog_calendar_w">日</td>
@@ -346,13 +347,13 @@ get_header();
 
 		<div class="sub_blog_in">
 			<div class="blog_h1">カテゴリー</div>
-			<a href="<?=get_template_directory_uri();?>/castblog/" class="all_tag">
+			<a href="<?=home_url('/castblog')?>/" class="all_tag">
 				<span class="all_tag_icon"><?=$tag_icon[0]?></span>
 				<span class="all_tag_name">全て</span>
 				<span class="all_tag_count"><?=$cate_all?></span>
 			</a>
 			<?foreach($cate_count as $a1=> $a2){?>
-			<a href="./?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
+			<a href="<?=home_url('/castblog')?>/?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
 				<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
 				<span class="all_tag_name"><?=$cate_name[$a1]?></span>
 				<span class="all_tag_count"><?=$a2?></span>
@@ -363,7 +364,7 @@ get_header();
 		<div class="sub_blog_in">
 			<div class="blog_h1">CAST一覧</div>
 			<?foreach($cast_count as $a1=> $a2){?>
-				<a href="./?cast_list=<?=$a1?>" class="all_cast">
+				<a href="<?=home_url('/castblog')?>/?cast_list=<?=$a1?>" class="all_cast">
 					<span class="all_cast_img"><img src="<?=$cast_face[$a1]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 					<span class="all_cast_name"><?=$cast_name[$a1]?></span>
 					<span class="all_cast_icon"></span>

@@ -16,7 +16,7 @@ input:focus{
 	color		:#333;
 	font-size	:3.5vw;
 //	font-family	:Verdana, "ＭＳ Ｐゴシック", sans-serif;
-	font		:400 14px Verdana, "ＭＳ Ｐゴシック", sans-serif;
+	font		:400 14px "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
 
 	text-align	:center;
 	width		:100vw;

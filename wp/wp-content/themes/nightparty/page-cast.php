@@ -73,7 +73,7 @@ for($e=0;$e<7;$e++){
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="<?=home_url('/person')?>/person/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
+	<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
 
 
 		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
