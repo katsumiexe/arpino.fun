@@ -151,20 +151,18 @@ for($n=0;$n<8;$n++){
 		$n++;
 	}
 */
-
-	$sql	 ="SELECT M.send_date, M.customer_id, M.send_flg, M.img_1, M.img_2, M.img_3, C.name, C.nickname, C.face FROM wp01_0castmail AS M";
-
+	$sql	 ="SELECT nickname, MAX(send_date) AS last_date, COUNT(send_flg = 1 or null) AS s_count,COUNT(send_flg = 2 or null) AS r_count,face,send_flg FROM wp01_0castmail AS M";
 	$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 	$sql	.=" WHERE M.cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND M.del='0'";
-	$sql	.=" ORDER BY M.send_date DESC";
-
+	$sql	.=" GROUP BY nickname";
+	$sql	.=" ORDER BY last_date DESC";
 	$n=0;
+
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
+
 	foreach($mail_data0 AS $tmp){
-		if(!$mail_data[$tmp["customer_id"]]){
-			$mail_data[$tmp["customer_id"]]=$tmp;
-		}
+		$mail_data[]=$tmp;
 	}
 
 	$sql ="SELECT * FROM wp01_0cast_config";
@@ -952,28 +950,27 @@ $(function(){
 	</div>
 	<?}elseif($cast_page==3){?>
 	<div class="main">
+		<?for($n=0;$n<count($mail_data);$n++){?>
+			<div class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 
-		<?foreach($mail_data as $a1 => $a2){?>
-<?=var_dump($a2)?>
-			<div class="mail_hist <?if($a2["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-
-				<?if($a2["face"]){?>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$a2["face"]?>?t_<?=time()?>" class="mail_img">
-					<input type="hidden" class="customer_hidden_face" value="<?=$a2["face"]?>">
+				<?if($mail_data[$n]["face"]){?>
+					<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+					<input type="hidden" class="customer_hidden_face" value="<?=$mail_data[$n]["face"]?>">
 				<?}else{?>
 					<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 				<? } ?>
 
-				<span id="mail_date<?=$s?>" class="mail_date"><?=$a2["send_date"]?></span>
+	
+				<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span id="mail_icon<?=$s?>" class="mail_icon">
-					<span class="mail_tmp<?if($a2["img_1"]){?> mail_ck<?}?>"></span>
-					<span class="mail_res<?if($a2["send_flg"] == "1"){?> mail_ck<?}?>"></span>
-					<span class="mail_star<?if($a2["star"] =="1"){?> mail_ck<?}?>"></span>
+					<span class="mail_tmp<?if($mail_data[$n]["img_1"]){?> mail_ck<?}?>"></span>
+					<span class="mail_res<?if($mail_data[$n]["send_flg"] == "1"){?> mail_ck<?}?>"></span>
+					<span class="mail_star<?if($mail_data[$n]["star"] =="1"){?> mail_ck<?}?>"></span>
 				</span>
 
 				<span id="mail_title<?=$s?>" class="mail_title"><?=$a1["title"]?></span>
 				<span id="mail<?=$s?>" class="mail_al"></span>
-				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$a2["nickname"]?></span>
+				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$n]["nickname"]?><?=$mail_data[$n]["s_count"]?>□<?=$mail_data[$n]["r_count"]?></span>
 
 				<input id="mail_address<?=$s?>" type="hidden" value="<?=$a1["from_address"]?>">
 				<input id="mail_log<?=$s?>" type="hidden" value="<?=$a1["log"]?>">

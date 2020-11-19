@@ -25,9 +25,9 @@ $wpdb->query($sql);
 $dat="<div class=\"mail_box_b\">";		
 $dat.="<div class=\"mail_box_log_2 bg\">";		
 $dat.=$log;		
-$dat.="<span class=\"mail_box_date\">{$now_dat}</span>";		
-$dat.="</div></div>";
-
+$dat.="</div>";
+$dat.="<span class=\"mail_box_date_b\"><span class=\"midoku\">未読</span>　{$now_dat}</span>";		
+$dat.="</div>";
 echo $dat;
 exit();
 ?>
