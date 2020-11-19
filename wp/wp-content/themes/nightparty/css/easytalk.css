@@ -47,7 +47,7 @@ ul {
 
 .main_mail{
 	display			:inline-block;
-	width			:850px;
+	width			:870px;
 	background		:#f0f0f0;
 	height			:80vh;
 	padding			:10px;
@@ -181,7 +181,7 @@ ul {
 
 .mail_box_a,.mail_box_b{
 	padding-top		:5vw;
-	width			:96vw;
+	width			:94vw;
 	margin			:2vw auto;
 }
 
