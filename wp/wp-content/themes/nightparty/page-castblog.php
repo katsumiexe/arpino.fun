@@ -199,7 +199,7 @@ if(!$a2 && $tag_list){
 
 /*/■カテゴリ--------------------
 $n=1;
-$sql ="SELECT count,name,slug FROM wp01_term_taxonomy";
+$sql ="SELECT name,slug FROM wp01_term_taxonomy";
 $sql.=" LEFT JOIN `wp01_terms` USING(term_id)";
 $sql.=" WHERE taxonomy='post_tag'";
 $sql.=" ORDER BY count DESC";
@@ -207,10 +207,11 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $res2){
 	$all_tag[$n]=$res2;
-	$all_tag_all+=$res2["count"];
+
 	$n++;
 }
 */
+
 
 //■allcast--------------------
 /*
@@ -353,7 +354,7 @@ get_header();
 				<span class="all_tag_count"><?=$cate_all?></span>
 			</a>
 			<?foreach($cate_count as $a1=> $a2){?>
-			<a href="<?=home_url('/castblog')?>/?tag_list=<?=$all_tag[$a1]["slug"]?>" class="all_tag">
+			<a href="<?=home_url('/castblog')?>/?tag_list=<?=$a1?>" class="all_tag">
 				<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
 				<span class="all_tag_name"><?=$cate_name[$a1]?></span>
 				<span class="all_tag_count"><?=$a2?></span>
