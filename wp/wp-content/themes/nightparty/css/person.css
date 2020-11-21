@@ -27,7 +27,6 @@
 	position		:relative;
 	flex-basis		:320px;
 	min-height		:100px;	
-	border			:1px solid #c8b880;
 	margin-top		:8px;
 	text-align		:center;
 }

@@ -6,9 +6,6 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 
-	console.log(VwBase);
-	console.log(VhBase);
-
 	var Fav			=0;
 	var cvs_A		=0;
 	var Rote		=0;
@@ -287,33 +284,21 @@ $(function(){
 		});
 	});
 
-	$('.mail_al').on('click',function () {
+	$('.mail_hist').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
-		Tmp=$(this).attr('id').replace('mail','');
-		Dir=$('#dir').val();
+		Tmp=$(this).attr('id').replace('mail_hist','');
+		$.post({
+			url:Dir + "/post/mail_hist.php",
+			data:{
+				'cast_id'	:CastId,
+				'c_id'		:Tmp
+			},
 
-		$('.mail_detail_name').html($('#mail_name' + Tmp).text());
-		$('.mail_detail_title').html($('#mail_title' + Tmp).text());
-		$('.mail_detail_log').html($('#mail_log' + Tmp).val());
-		$('.mail_detail_address').html($('#mail_address' + Tmp).val());
-		$('.mail_detail_date').html($('#mail_date' + Tmp).text());
-		$('.mail_detail_icon').html($('#mail_icon' + Tmp).html());
-		$('.mail_detail_img').attr('src',$('#mail_img' + Tmp).attr('src'));
-
-		if($('#img_a' + Tmp).val() != ''){
-			$('#sum_img_a').css('background-image','url('+$('#img_a' + Tmp).val() +')');
-			$('.detail_modal_link').html('<span id="point_img_a" class="modal_link_point"></span>');
-		}
-
-		if($('#img_b' + Tmp).val() != ''){
-			$('#sum_img_b').css('background-image','url('+$('#img_b' + Tmp).val() +')');
-			$('.detail_modal_link').append('<span id="point_img_b" class="modal_link_point"></span>');
-		}
-
-		if($('#img_c' + Tmp).val() != ''){
-			$('#sum_img_c').css('background-image','url('+$('#img_c' + Tmp).val() +')');
-			$('.detail_modal_link').append('<span id="point_img_c" class="modal_link_point"></span>');
-		}
+		}).done(function(data, textStatus, jqXHR){
+console.log(data);
+			$('.mail_detail_in').html(data);
+	
+		});
 	});
 
 	$('.detail_modal_link').on('click','.modal_link_point',function () {

@@ -151,18 +151,25 @@ for($n=0;$n<8;$n++){
 		$n++;
 	}
 */
-	$sql	 ="SELECT nickname, MAX(send_date) AS last_date, COUNT(send_flg = 1 or null) AS s_count,COUNT(send_flg = 2 or null) AS r_count,face,send_flg FROM wp01_0castmail AS M";
+	$sql	 ="SELECT nickname, customer_id,log, MAX(send_date) AS last_date,COUNT((send_flg = 2 and watch_date='0000-00-00 00:00:00') or null) AS r_count,face,send_flg FROM wp01_0castmail AS M";
 	$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 	$sql	.=" WHERE M.cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND M.del='0'";
-	$sql	.=" GROUP BY nickname";
+	$sql	.=" GROUP BY customer_id";
 	$sql	.=" ORDER BY last_date DESC";
 	$n=0;
 
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 
 	foreach($mail_data0 AS $tmp){
+		$tmp["log_p"]=mb_substr($tmp["log"],0,39);
+		if(mb_strlen($tmp["log"])>39){
+			$tmp["log_p"].="...";
+
+		}
+		$tmp["last_date"]=date("m.d H:i",strtotime($tmp["last_date"]));
 		$mail_data[]=$tmp;
+
 	}
 
 	$sql ="SELECT * FROM wp01_0cast_config";
@@ -614,6 +621,7 @@ for($n=0;$n<8;$n++){
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -951,65 +959,26 @@ $(function(){
 	<?}elseif($cast_page==3){?>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
-			<div class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-
+			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<?if($mail_data[$n]["face"]){?>
 					<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
-					<input type="hidden" class="customer_hidden_face" value="<?=$mail_data[$n]["face"]?>">
 				<?}else{?>
 					<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 				<? } ?>
+				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
+				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
+				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$n]["nickname"]?></span>
+				<?if($mail_data[$n]["r_count"]>0 || $mail_data[$n]["r_count"]=="9+"){?>
+					<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
+				<?}?>
 
-	
-				<span id="mail_date<?=$s?>" class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
-				<span id="mail_icon<?=$s?>" class="mail_icon">
-					<span class="mail_tmp<?if($mail_data[$n]["img_1"]){?> mail_ck<?}?>"></span>
-					<span class="mail_res<?if($mail_data[$n]["send_flg"] == "1"){?> mail_ck<?}?>"></span>
-					<span class="mail_star<?if($mail_data[$n]["star"] =="1"){?> mail_ck<?}?>"></span>
-				</span>
-
-				<span id="mail_title<?=$s?>" class="mail_title"><?=$a1["title"]?></span>
-				<span id="mail<?=$s?>" class="mail_al"></span>
-				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$n]["nickname"]?><?=$mail_data[$n]["s_count"]?>□<?=$mail_data[$n]["r_count"]?></span>
-
-				<input id="mail_address<?=$s?>" type="hidden" value="<?=$a1["from_address"]?>">
-				<input id="mail_log<?=$s?>" type="hidden" value="<?=$a1["log"]?>">
 				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
 				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
 				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
-
 		<div class="mail_detail">
-			<span class="mail_detail_from">
-				<span class="mail_detail_back"></span>
-				<span class="mail_detail_name"></span>
-				<span class="mail_detail_address"></span>
-				<img class="mail_detail_img">
-			</span>
-			<span class="mail_detail_body">
-				<span class="mail_detail_head">
-					<span class="mail_detail_date"></span>
-					<span class="mail_detail_icon"></span>
-					<span class="mail_detail_title"></span>
-				</span>
-				<span class="mail_detail_log"></span>
-
-				<span class="mail_detail_img_box">
-					<span id="sum_img_a" class="mail_detail_tmp"></span>
-					<span id="sum_img_b" class="mail_detail_tmp"></span>
-					<span id="sum_img_c" class="mail_detail_tmp"></span>
-				</span>
-			</span>
-		</div>
-		<input id="dir" type="hidden" value="<?php echo get_template_directory_uri(); ?>">
-		<div class="detail_modal">
-			<div class="detail_modal_box">
-				<span class="detail_modal_out">×</span>
-				<img src="" class="detail_modal_img">
-				<div class="detail_modal_link">
-				</div>
-			</div>
+		<div class="mail_detail_in"></div>
 		</div>
 	</div>
 

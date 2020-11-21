@@ -2887,235 +2887,34 @@ input[type=range]::-moz-range-thumb{
 	width			:96vw;
 	margin			:1vw auto;
 	border			:0.5vw solid #cccccc;
+	background:#fafafa;
 }
 
 .mail_detail{
 	display			:inline-block;
 	position		:fixed;
-	top				:0;
+	top				:14vw;
 	right			:-100vw;
 	width			:100vw;
-	height			:100vh;
+	height			:calc(100vh - 14vw);
+	text-align		:center;
+	font-size		:0;
+	overflow-y		:scroll;
+	overflow-x		:hidden;
+
+	background		:#f0f0f0;
+}
+
+.mail_detail_in{
+	display			:inline-block;
+	width			:98vw;
+	min-height		:calc(100vh - 14vw);
 	background		:#f0f0f0;
 	text-align		:center;
 	font-size		:0;
+	padding-bottom	:10vw;
 }
 
-
-.mail_detail_from{
-	position		:relative;
-	display			:inline-block;
-	width			:100vw;
-	height			:12vw;
-	margin			:0;
-	background		:#f0e0ff;
-	text-align		:left;
-}
-
-.mail_detail_img{
-	position		:absolute;
-	bottom			:1vw;
-	right			:1vw;
-	width			:10vw;
-	height			:10vw;
-}
-
-.mail_detail_name{
-	display			:inline-block;
-	position		:absolute;
-	bottom			:4.5vw;
-	left			:9.5vw;
-	font-size		:4.5vw;;
-	font-weight		:600;
-	color			:#303030;
-}
-
-.mail_detail_address{
-	display			:inline-block;
-	position		:absolute;
-	bottom			:0.5vw;
-	left			:9.5vw;
-	font-size		:3.5vw;;
-	color			:#909090;
-}
-
-
-.mail_detail_back{
-	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	left			:0;
-	height			:12vw;
-	line-height		:12vw;
-	width			:8vw;
-	text-align		:center;
-	font-size		:5vw;
-	font-family		:at_icon;
-	background		:#f0e0ff;
-}
-
-.mail_detail_body{
-	display			:inline-block;
-	background		:#f0e0ff;
-	width			:95vw;
-	margin			:1.5vw auto;
-	border-radius	:0 0 2vw 2vw;
-	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
-}
-
-.mail_detail_head{
-	position		:relative;
-	display			:inline-block;
-	width			:93vw;
-	height			:12vw;
-	margin			:1vw auto 0 auto;
-	text-align		:left;
-	background		:#f0e0ff;
-
-}
-
-.mail_detail_log{
-	background		:#fafafa;
-	display			:inline-block;
-	width			:89vw;
-	margin			:0 auto;
-	padding			:2vw;
-	line-height		:6vw;
-	font-size		:4vw;
-	text-align		:left;
-
-}
-
-.mail_detail_date{
-	display			:inline-block;
-	position		:absolute;
-	top				:0vw;
-	left			:2vw;
-	border-bottom	:1px solid #0000d0;
-	height			:4vw;
-	line-height		:4vw;
-	font-size		:3vw;
-	padding			:0.5vw;
-}	
-
-.mail_detail_icon{
-	display			:inline-block;
-	position		:absolute;
-	top				:0.5vw;
-	right			:1vw;
-	font-size		:0;
-}
-
-.mail_detail_title{
-	display			:inline-block;
-	position		:absolute;
-	top				:6vw;
-	left			:1.5vw;
-	font-size		:4.5vw;
-	font-weight		:600;
-	color			:#303030;	
-}
-
-.mail_detail_img_box{
-	position		:relative;
-	display			:inline-block;
-	width			:93vw;
-	height			:20vw;
-	margin			:0vw auto 1vw auto;
-	text-align		:center;
-	background		:#fafafa;
-}
-
-.mail_detail_tmp{
-	display			:inline-block;
-	height			:16vw;
-	width			:16vw;
-	background-size	:cover;
-	margin			:2vw 1vw;
-}
-
-.detail_modal{
-	position		:fixed;
-	top				:105vh;
-	left			:-5vw;
-	margin			:auto;
-	display			:inline-block;
-	width			:110vw;
-	height			:110vh;
-	background		:#303030;
-}
-
-.detail_modal_box{
-	position		:absolute;
-	top				:10vh;
-	left			:0;
-	right			:0;
-	margin			:auto;
-	display			:inline-block;
-	width			:90vw;
-	height			:90vw;
-	background		:#606090;
-}
-
-.detail_modal_out{
-	position		:absolute;
-	top				:-3vw;
-	right			:-3vw;
-	display			:inline-block;
-	width			:10vw;
-	height			:10vw;
-	background		:#c0c0c0;
-	border			:1vw solid #303030;
-	font-weight		:800;
-	color			:#303030;
-	text-align		:center;	
-	line-height		:9vw;
-	font-size		:6vw;
-	border-radius	:50%;
-}
-
-.detail_modal_img{
-	position		:absolute;
-	top				:0;
-	left			:0;
-	right			:0;
-	bottom			:0;
-	margin			:auto;
-	max-width		:80vw;
-	max-height		:80vw;
-	height			:auto;
-	width			:auto;	
-}
-
-.detail_modal_link{
-	display			:flex;
-	justify-content	: space-around;
-	position		:absolute;
-	bottom			:-15vw;
-	left			:0;
-	right			:0;
-	margin			:auto;
-	width			:40vw;
-	height			:10vw;
-	line-height		:10vw;
-	background		:#c0c0c0;
-	border-radius	:2vw;
-}
-
-.modal_link_point{
-	display			:inline-block;
-	margin			:auto 3vw;
-	width			:4vw;
-	height			:4vw;
-	border			:0.5vw solid #d5d5d5;
-	background		:linear-gradient(#e0e0e0,#d5d5d5);
-	border-radius	:50%;
-}
-
-.link_point_on{
-	background		:#fff000;
-	border			:0.5vw solid #fafa90;
-}
 
 .mail_yet{
 	background		:#ffffd0;
@@ -3136,11 +2935,11 @@ input[type=range]::-moz-range-thumb{
 .mail_date{
 	display			:inline-block;
 	position		:absolute;
-	top				:0vw;
-	left			:19vw;
+	top				:0.5vw;
+	right			:1vw;
 	border-bottom	:1px solid #0000d0;
-	height			:4vw;
-	line-height		:4vw;
+	height			:3.5vw;
+	line-height		:3.5vw;
 	font-size		:3vw;
 	padding			:0.5vw;
 }
@@ -3159,11 +2958,25 @@ input[type=range]::-moz-range-thumb{
 .mail_name{
 	display			:inline-block;
 	position		:absolute;
-	bottom			:0.5vw;
+	top				:0.5vw;
 	left			:25vw;
 	height			:5vw;
 	font-size		:4vw;
 	color			:#303030;	
+}
+
+.mail_log{
+	display			:inline-block;
+	position		:absolute;
+	top				:7vw;
+	left			:20vw;
+	height			:10vw;
+	width			:69vw;
+	line-height		:5vw;
+	font-size		:3.5vw;
+	color			:#c0c0c0;	
+	overflow:hidden;
+	text-align:left;
 }
 
 .mail_al{
@@ -3180,6 +2993,23 @@ input[type=range]::-moz-range-thumb{
 	color			:#a0a0a0;	
 	text-align		:center;
 }
+
+.mail_count{
+	display			:inline-block;
+	position		:absolute;
+	top				:8vw;
+	right			:0.5vw;
+	width			:6vw;
+	height			:6vw;
+	line-height		:6vw;
+	text-align		:center;
+	border-radius	:1vw;
+	font-size		:3vw;
+	color			:#fafafa;	
+	background		:#ff3030;
+	
+}
+
 
 .mail_icon{
 	display			:inline-block;
@@ -3202,7 +3032,7 @@ input[type=range]::-moz-range-thumb{
 
 .mail_gp{
 	position		:absolute;
-	bottom			:0.5vw;
+	top				:0.5vw;
 	left			:19vw;
 }
 

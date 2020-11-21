@@ -14,7 +14,6 @@ $sql	 ="SELECT cast_id,customer_id FROM wp01_0ssid";
 $sql	.=" WHERE ssid='{$sid}'";
 $tmp	 = $wpdb->get_row($sql,ARRAY_A);
 
-$log=str_replace("\n","<br>",$log);
 
 $sql	 ="INSERT INTO wp01_0castmail";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
