@@ -116,7 +116,7 @@ for($n=0;$n<8;$n++){
 		$page_title="顧客リスト";
 
 	}elseif($cast_page == 3){
-		$page_title="メール";
+		$page_title="Easy Talk";
 
 	}elseif($cast_page == 4){
 		$page_title="ブログ";
@@ -161,9 +161,6 @@ for($n=0;$n<8;$n++){
 	$sql	.=" GROUP BY M.customer_id";
 	$sql	.=" ORDER BY last_date DESC";
 	$n=0;
-
-
-print $sql;
 
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 

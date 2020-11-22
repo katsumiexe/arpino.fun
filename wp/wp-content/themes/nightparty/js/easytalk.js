@@ -1,5 +1,6 @@
 $(function(){ 
 	$('.main_mail').animate({scrollTop: $('.main_mail')[0].scrollHeight},1000);
+
 	$('#send_mail').on('click',function(){
 		$.post({
 			url:Dir + "/post/easytalk_send.php",
@@ -15,13 +16,10 @@ $(function(){
 				$('.main_mail').animate({ scrollTop: $('.main_mail')[0].scrollHeight},300);
 			}
 
-
-
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
 		});
 	});
 });
-
 

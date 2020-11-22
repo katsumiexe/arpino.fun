@@ -2913,6 +2913,7 @@ input[type=range]::-moz-range-thumb{
 	text-align		:center;
 	font-size		:0;
 	padding-bottom	:16vw;
+	margin-bottom	:0;
 }
 
 

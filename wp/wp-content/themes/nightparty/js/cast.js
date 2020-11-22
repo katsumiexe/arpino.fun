@@ -287,6 +287,7 @@ $(function(){
 	$('.mail_hist').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
 		Tmp=$(this).attr('id').replace('mail_hist','');
+		Name=$(this).children('.mail_name').text();
 		$.post({
 			url:Dir + "/post/mail_hist.php",
 			data:{
@@ -296,7 +297,13 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			$('.mail_detail_in').html(data);
-			$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000);
+//			$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000);
+			$('.mail_detail_in').animate({'scrollTop':'600'},5000);
+			$('.head_mymenu_arrow').addClass('mail_detail_back');
+			$('.head_mymenu_ttl').text(Name);
+
+console.log($('.mail_detail_in')[0].scrollHeight);
+
 		});
 	});
 
@@ -319,9 +326,12 @@ $(function(){
 		$('.link_point_on').removeClass('link_point_on');
 	});
 
-	$('.mail_detail_back').on('click',function () {
-		$('.mail_detail').animate({'right':'-100vw'},100);
-		$('.detail_modal_link').html();
+
+	$('.head_mymenu_comm').on('click','.mail_detail_back',function () {
+		$(this).removeClass('mail_detail_back');
+		$('.mail_detail').animate({'right':'-100vw'},200);
+		$('.head_mymenu_ttl').text('Easy Talk');
+
 	});
 
 	$('.reg_fav').on('click',function () {
@@ -378,13 +388,11 @@ $(function(){
 			$('#reg_ag').val('30');
 			$('.reg_fav').css('color','#cccccc');
 
-
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
 		});
 	});
-
 
 	$('#reg_yy,#reg_mm,#reg_dd').on('change', function(){
 		var Tmp=$('#reg_mm').val()+$('#reg_dd').val();

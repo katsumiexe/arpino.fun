@@ -95,58 +95,62 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
 </head>
 <body class="body">
-<div class="main">
-<?if($err==1){?>
-<div class="err_msg">
-タイムアウトしました<br>
-再度メールからログインしてください。<br>
-</div>
-<?}elseif($err==2){?>
-<div class="err_msg">
-ログインコードが無効です。<br>
-最新のメールからログインしてください。<br>
-</div>
+<div class="head_easytalk"></div>
 
-<?}elseif($err==3){?>
-<div class="err_msg">
-SESSIONが拾えません。<br>
-</div>
-
-<?}else{?>
-<div class="main_mail">
-<?for($n=0;$n<count($dat);$n++){?>
-	<?if($dat[$n]["send_flg"] == 1){?>
-
-		<div class="mail_box_a">		
-			<div class="mail_box_face">
-				<img src="<?=$face_link?>" class="mail_box_img">
+<div class="main_easytalk">
+	<div class="main_mail">
+		<?if($err==1){?>
+			<div class="err_msg">
+				タイムアウトしました<br>
+				再度メールからログインしてください。<br>
 			</div>
-			<div class="mail_box_log_1">
-				<?=$dat[$n]["log"]?>
+		<?}elseif($err==2){?>
+			<div class="err_msg">
+				ログインコードが無効です。<br>
+				最新のメールからログインしてください。<br>
 			</div>
-			<span class="mail_box_date_a"><?=$dat[$n]["send_date"]?></span>
-		</div>
 
-	<?}else{?>
-		<div class="mail_box_b">		
-			<div class="mail_box_log_2 bg<?=$dat[$n]["bg"]?>">
-				<?=$dat[$n]["log"]?>
+		<?}elseif($err==3){?>
+			<div class="err_msg">
+				SESSIONが拾えません。<br>
 			</div>
-			<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
-		</div>
-	<? } ?>
-<? } ?>
-</div>
 
-<div class="main_sub">
-<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy1.png" class="easytalk_img"></img>
-<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy2.png" class="easytalk_img"></img>
-<input type="hidden" id="ssid" value="<?=$_SESSION["ssid"]?>">
-<textarea id="send_msg" class="easytalk_text"></textarea>
-<button id="send_mail" type="button">送</button>
-<button id="send_img" type="button">画</button>
+		<?}else{?>
+			<?for($n=0;$n<count($dat);$n++){?>
+				<?if($dat[$n]["send_flg"] == 1){?>
+					<div class="mail_box_a">		
+						<div class="mail_box_face">
+							<img src="<?=$face_link?>" class="mail_box_img">
+						</div>
+						<div class="mail_box_log_1">
+							<?=$dat[$n]["log"]?>
+						</div>
+						<span class="mail_box_date_a"><?=$dat[$n]["send_date"]?></span>
+					</div>
+
+				<?}else{?>
+					<div class="mail_box_b">		
+						<div class="mail_box_log_2 bg<?=$dat[$n]["bg"]?>">
+							<?=$dat[$n]["log"]?>
+						</div>
+						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
+					</div>
+				<? } ?>
+			<? } ?>
+		<? } ?>
+	</div>
+	<div class="main_sub">
+		<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy1.png" class="easytalk_img"></img>
+		<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy2.png" class="easytalk_img"></img>
+		<?if(!$er){?>
+		<input type="hidden" id="ssid" value="<?=$_SESSION["ssid"]?>">
+		<textarea id="send_msg" class="easytalk_text"></textarea>
+		<button id="send_mail" type="button">送</button>
+		<button id="send_img" type="button">画</button>
+		<? } ?>
+	</div>
 </div>
-<? } ?>
+<div class="foot_easytalk">
 </div>
 </body>	
 </html>

@@ -34,33 +34,52 @@ ul {
 }
 
 
-.main{
+.main_easytalk{
 	background	:#ffe0f0;
 	text-align	:center;
 	width		:1200px;
-	min-height	:90vh;
+	height		:calc( 100vh - 120px);
 	margin		:0 auto;
-	padding-top	:70px;
 	font-size	:0;
 	vertical-align:top;
 }
 
+.head_easytalk{
+	margin		:auto;
+	background	:#000090;
+	width		:1200px;
+	height		:70px;
+	font-size	:0;
+	z-index:11;
+}
+
+.foot_easytalk{
+	margin		:auto;
+	background	:#f00090;
+	width		:1200px;
+	height		:50px;
+	font-size	:0;
+	z-index:11;
+}
+
+
+
 .main_mail{
 	display			:inline-block;
-	width			:870px;
+	width			:880px;
 	background		:#f0f0f0;
-	height			:80vh;
 	padding			:10px;
 	overflow-y		:scroll;
 	vertical-align	:top;
+	height			:calc( 100vh - 140px);
 }
 
 .main_sub{
-	display		:inline-block;
-	width		:300px;
-	background	:#e0f0ff;
-	min-height	:100vh;
-	vertical-align:top;
+	display			:inline-block;
+	width			:300px;
+	background		:#e0f0ff;
+	vertical-align	:top;
+	height			:calc( 100vh - 120px);
 }
 
 .mail_box_a{
@@ -164,9 +183,24 @@ ul {
 
 @media screen and (max-width: 559px){
 
-.main{
-	width			:98vw;
+.main_easytalk{
+	width		:98vw;
+	height		:auto;
 }
+
+.head_easytalk{
+	width		:100vw;
+	height		:10vw;
+}
+
+.foot_easytalk{
+	width		:100vw;
+	height		:8vw;
+}
+
+
+
+
 
 .main_mail{
 	width			:96vw;
@@ -229,7 +263,8 @@ ul {
 
 .main_sub{
 	width		:98vw;
-	min-height	:0;
+	height		:auto;
+
 }
 
 
