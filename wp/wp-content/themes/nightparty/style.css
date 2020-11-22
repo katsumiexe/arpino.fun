@@ -240,15 +240,17 @@ ul {
 
 .main_b_top{
 	display			:inline-block;
-	width			:800px;
+	width			:1020px;
 	margin			:0 auto 20px auto;
 	background		:#302520;
+	padding			:10px;
+	border-radius:5px;
 }
 
 .main_b_notice{
 	display			:inline-block;
-	width			:780px;
-	height			:30px;
+	width			:1000px;
+	height			:60px;
 	text-align		:left;
 	vertical-align	:top;
 	border-bottom	:1px dashed #fafafa;
@@ -1422,15 +1424,21 @@ ul {
 
 
 .main_b{
-	width			:94vw;
+	width			:96vw;
 	margin			:0 auto;
 	padding			:0;
 }
 
+.main_b_top{
+	width			:90vw;
+	margin			:2vw auto 4vw auto;
+	padding			:2vw;
+	border-radius:1vw;
+}
+
 .main_b_notice{
 	width			:90vw;
-	height			:40vw;
-	padding			:2vw;
+	height			:9vw;
 }
 
 .main_d,.main_b_in{

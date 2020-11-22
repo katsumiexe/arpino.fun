@@ -295,9 +295,8 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-console.log(data);
 			$('.mail_detail_in').html(data);
-	
+			$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000);
 		});
 	});
 

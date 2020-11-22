@@ -2912,7 +2912,7 @@ input[type=range]::-moz-range-thumb{
 	background		:#f0f0f0;
 	text-align		:center;
 	font-size		:0;
-	padding-bottom	:10vw;
+	padding-bottom	:16vw;
 }
 
 
@@ -2958,9 +2958,10 @@ input[type=range]::-moz-range-thumb{
 .mail_name{
 	display			:inline-block;
 	position		:absolute;
-	top				:0.5vw;
+	top				:1vw;
 	left			:25vw;
 	height			:5vw;
+	line-height		:5vw;
 	font-size		:4vw;
 	color			:#303030;	
 }
@@ -2974,9 +2975,9 @@ input[type=range]::-moz-range-thumb{
 	width			:69vw;
 	line-height		:5vw;
 	font-size		:3.5vw;
-	color			:#c0c0c0;	
-	overflow:hidden;
-	text-align:left;
+	color			:#909090;	
+	overflow		:hidden;
+	text-align		:left;
 }
 
 .mail_al{

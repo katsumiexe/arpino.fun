@@ -32,11 +32,7 @@ $sql	.=" AND watch_date='0000-00-00 00:00:00'";
 $sql	.=" AND send_flg=2";
 $wpdb->query($sql);
 
-$html=$sql;
-
-
 $sql	 ="SELECT * FROM wp01_0castmail AS M";
-
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 $sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_id}'";
 $sql	.=" AND M.del='0'";
@@ -62,8 +58,8 @@ foreach($res as $a1){
 }
 
 
-if($dat[0]["face"]){
-$face=get_template_directory_uri()."/img/cast/".$box_no."/c/".$customer[0]["face"]."?t_".time();
+if($a1["face"]){
+$face=get_template_directory_uri()."/img/cast/".$box_no."/c/".$a1["face"]."?t_".time();
 }else{
 $face=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
 }

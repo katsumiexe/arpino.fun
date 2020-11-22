@@ -151,13 +151,19 @@ for($n=0;$n<8;$n++){
 		$n++;
 	}
 */
-	$sql	 ="SELECT nickname, customer_id,log, MAX(send_date) AS last_date,COUNT((send_flg = 2 and watch_date='0000-00-00 00:00:00') or null) AS r_count,face,send_flg FROM wp01_0castmail AS M";
+	$sql	 ="SELECT nickname, M.customer_id,M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
+	$sql	.=" FROM wp01_0castmail AS M";
 	$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
+	$sql	.=" LEFT JOIN wp01_0castmail AS M2 ON (M.customer_id = M2.customer_id AND M.send_date < M2.send_date)";
 	$sql	.=" WHERE M.cast_id='{$_SESSION["id"]}'";
+	$sql	.=" AND M2.send_date IS NULL";
 	$sql	.=" AND M.del='0'";
-	$sql	.=" GROUP BY customer_id";
+	$sql	.=" GROUP BY M.customer_id";
 	$sql	.=" ORDER BY last_date DESC";
 	$n=0;
+
+
+print $sql;
 
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 
