@@ -40,7 +40,8 @@ $sql	.=" ORDER BY mail_id DESC";
 $sql	.=" LIMIT 10";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
-$n=count($res)-1;
+//$n=count($res)-1;
+$n=0;
 
 foreach($res as $a1){
 	$dat[$n]=$a1;
@@ -54,7 +55,7 @@ foreach($res as $a1){
 		$dat[$n]["bg"]=1;
 	}
 
-	$n--;
+	$n++;
 }
 
 

@@ -296,13 +296,17 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.mail_detail_in').html(data);
-//			$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000);
-			$('.mail_detail_in').animate({'scrollTop':'600'},5000);
-			$('.head_mymenu_arrow').addClass('mail_detail_back');
-			$('.head_mymenu_ttl').text(Name);
+			$.when(
+				$('.mail_detail_in').html(data),
+console.log("●")
 
-console.log($('.mail_detail_in')[0].scrollHeight);
+			).done(function(){
+//				$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000),
+				$('.mail_detail_in').animate({ 'scrollTop':'500px'},5000),
+				$('.head_mymenu_arrow').addClass('mail_detail_back'),
+				$('.head_mymenu_ttl').text(Name),
+console.log("◎")
+			});
 
 		});
 	});
@@ -330,7 +334,7 @@ console.log($('.mail_detail_in')[0].scrollHeight);
 	$('.head_mymenu_comm').on('click','.mail_detail_back',function () {
 		$(this).removeClass('mail_detail_back');
 		$('.mail_detail').animate({'right':'-100vw'},200);
-		$('.head_mymenu_ttl').text('Easy Talk');
+			$('.head_mymenu_ttl').text('Easy Talk');
 
 	});
 

@@ -55,12 +55,13 @@ if($_SESSION){
 	$sql	.=" LIMIT 10";
 
 	$res = $wpdb->get_results($sql,ARRAY_A);
-	$n=count($res)-1;
+	$n=0;
 
 	foreach($res as $a1){
 		$dat[$n]=$a1;
 		$dat[$n]["log"]=str_replace("\n","<br>",$dat[$n]["log"]);
 		$dat[$n]["send_date"]=str_replace("-",".",$dat[$n]["send_date"]);
+		$dat[$n]["send_date"]=substr($dat[$n]["send_date"],0,16);
 
 		if($dat[$n]["watch_date"] =='0000-00-00 00:00:00'){
 			$dat[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
@@ -68,7 +69,7 @@ if($_SESSION){
 			$dat[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
 			$dat[$n]["bg"]=1;
 		}
-		$n--;
+		$n++;
 	}
 
 	$sql	 ="UPDATE wp01_0castmail SET";

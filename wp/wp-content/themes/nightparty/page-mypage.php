@@ -704,13 +704,10 @@ $(function(){
 
 	<?}elseif($cast_page==3){?>
 		<div id="regist_mail_set" class="regist_btn">
-			<span class="regist_icon"></span>
-			<span class="regist_txt">送信</span>
-		</div>
-		<div id="regist_customer" class="regist_btn">
 			<span class="regist_icon"></span>
 			<span class="regist_txt">作成</span>
 		</div>
+
 
 	<?}elseif($cast_page==4){?>
 		<div id="regist_blog_fix" class="regist_btn">
