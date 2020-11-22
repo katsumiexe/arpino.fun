@@ -1,10 +1,10 @@
 var TopCnt=0;
 var Vw	=$(window).width();
 var Vh	=$(window).height();
-const TMR=4000;
+var TMR=4000;
 
 $(function(){ 
-	timerId = setInterval(Fnc,TMR);
+	timerId = setInterval(Fnc_s,TMR);
 	if(Vw <1200){
 		var TopW=Vw;
 
@@ -32,7 +32,7 @@ $(function(){
 				$('#dot'+TMP).addClass('dot_on');
 				TopCnt=TMP;
 				clearInterval(timerId);
-				timerId = setInterval(Fnc,TMR);
+				timerId = setInterval(Fnc_s,TMR);
 
 			}else if(startPosition - ui.position.left> 100){//■右へ
 				TMP=$('.dot_on').attr('id').replace('dot','')-0+1;
@@ -42,7 +42,7 @@ $(function(){
 				$('#dot'+TMP).addClass('dot_on');
 				TopCnt=TMP;
 				clearInterval(timerId);
-				timerId = setInterval(Fnc,TMR);
+				timerId = setInterval(Fnc_s,TMR);
 
 			}else{
 				TMP=$('.dot_on').attr('id').replace('dot','');
@@ -62,11 +62,11 @@ $(function(){
 		$(this).addClass('dot_on');
 		TopCnt=TMP;
 		clearInterval(timerId);
-		timerId = setInterval(Fnc,TMR);
+		timerId = setInterval(Fnc_s,TMR);
 	});
 });
 
-function Fnc() {
+function Fnc_s() {
 	TopCnt++;
 	if(TopCnt>4){
 		TopCnt=0;
@@ -79,7 +79,7 @@ function Fnc() {
 	$('.slide_dot').removeClass('dot_on');
 	$('#dot'+TopCnt).addClass('dot_on');
 
-console.log(TMR)
+console.log(Left)
 }
 
 
