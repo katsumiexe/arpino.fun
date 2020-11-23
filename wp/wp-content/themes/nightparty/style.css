@@ -369,27 +369,28 @@ ul {
 	position	:absolute;
 	font-size	:20px;
 	color		:#c8b880;
+	color		:#a0a0a0;
 	font-family	:at_frame2;
 }
 
 .f_tr{
 	top		:0;
 	right	:0;
-	transform: rotate(270deg);
+	transform: rotatex(180deg);
 	transform-origin: center;
 }
 
 .f_tl{
 	top		:0;
 	left	:0;
-	transform: rotate(180deg);
+	transform: rotatex(180deg)  rotatey(180deg);
 	transform-origin: center;
 }
 
 .f_bl{
 	bottom	:0;
 	left	:0;
-	transform: rotate(90deg);
+	transform: rotatey(180deg);
 	transform-origin: center;
 }
 
@@ -408,8 +409,8 @@ ul {
 	left			:30px;
 	height			:44px;
 	width			:100px;
-	border-top		:1px solid #c8b880;
-	border-bottom	:1px solid #c8b880;
+	border-top		:1px solid #a0a0a0;
+	border-bottom	:1px solid #a0a0a0;
 }
 
 .main_b_1_2_w{
@@ -419,10 +420,9 @@ ul {
 	left			:6px;
 	height			:6px;
 	width			:146px;
-	border-left		:1px solid #c8b880;
-	border-right	:1px solid #c8b880;
+	border-left		:1px solid #a0a0a0;
+	border-right	:1px solid #a0a0a0;
 }
-
 
 .main_b_1_3{
 	position	:absolute;
@@ -975,9 +975,8 @@ ul {
 	right		:65px;
 	bottom		:25px;
 	font-size	:16px;
-	font-weight	:600;
-	text-align	:right
-	color:#202020;
+	text-align	:right;
+	color:#606040;
 }
 
 .blog_h1{
@@ -1562,6 +1561,17 @@ ul {
 	font-size	:4vw;
 }
 
+
+.main_b_1_2_f{
+	font-size	:4vw;
+}
+
+.main_b_1_2_h,.main_b_1_2_w{
+	display:none;
+}
+
+
+
 .main_d_1_3,.main_b_1_3{
 
 	bottom		:4vw;
@@ -1982,7 +1992,7 @@ ul {
 
 .blog_h1{
 	display		:inline-block;
-	width		:88vw;
+	width		:96vw;
 	height		:8vw;
 	line-height	:8vw;
 	font-size	:4vw;
@@ -2095,7 +2105,7 @@ ul {
 .blog_list_cast{
 	bottom			:0.5vw;
 	right			:0.5vw;
-	width			:64vw;
+	width			:70vw;
 	height			:12vw;
 	margin			:0 auto;
 }
@@ -2108,17 +2118,19 @@ ul {
 .blog_list_frame_a{
 	width		:12vw;
 	height		:12vw;
+	bottom		:1vw;
+	right		:1vw;
 }
 
 
 .blog_list_date{
-	right		:14vw;
+	right		:15vw;
 	bottom		:1vw;
 	font-size	:3vw;
 }
 
 .blog_list_castname{
-	right		:14vw;
+	right		:15vw;
 	bottom		:6vw;
 	font-size	:4.5vw;
 }
