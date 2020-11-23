@@ -21,6 +21,9 @@ $sql	.="VALUES";
 $sql	.="('{$now}','{$tmp["customer_id"]}','{$tmp["cast_id"]}','2','{$log}','{$img}')";
 $wpdb->query($sql);
 
+$log=str_replace("\n","<br>",$log);
+
+
 $dat="<div class=\"mail_box_b\">";		
 $dat.="<div class=\"mail_box_log_2 bg\">";		
 $dat.=$log;		

@@ -621,6 +621,8 @@ for($n=0;$n<8;$n++){
 	font-family: at_icon;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/font_0/fonts/icomoon.ttf) format('truetype');
 }
+
+
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">

@@ -19,11 +19,15 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 	font-family: at_icon;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/font_1/fonts/icomoon.ttf) format('truetype');
 }
+
+@font-face {
+	font-family: at_frame2;
+	src: url(<?php echo get_template_directory_uri(); ?>/font/border/frame2.ttf) format('truetype');
+}
 </style>
 <?php wp_head(); ?>
 </head>
 <body class="body">
-
 <div class="head">
 <?php
 	$args = array(

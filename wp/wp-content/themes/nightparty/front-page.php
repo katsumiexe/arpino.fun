@@ -64,6 +64,8 @@ get_header();
 			<div class="main_b_notice"></div>
 		</div>
 
+
+
 	<div class="main_b">
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<div class="main_b_in">
@@ -71,6 +73,13 @@ get_header();
 				<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
 					<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
 					<span class="main_b_1_2">
+						<span class="main_b_1_2_h"></span>
+						<span class="main_b_1_2_w"></span>
+
+						<span class="main_b_1_2_f f_tr">u</span>
+						<span class="main_b_1_2_f f_tl">u</span>
+						<span class="main_b_1_2_f f_br">u</span>
+						<span class="main_b_1_2_f f_bl">u</span>
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
 						<span class="main_b_1_2_sch"></span>
 					</span>

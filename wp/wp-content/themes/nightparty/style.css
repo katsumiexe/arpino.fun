@@ -346,11 +346,12 @@ ul {
 .main_b_1_2_name{
 	display		:inline-block;
 	width		:130px;
-	height		:25px;
-	line-height	:25px;
+	height		:20px;
+	line-height	:20px;
 	color		:#606040;
-	font-size	:16px;
+	font-size	:15px;
 	font-weight	:600;	
+	margin:8px;
 }
 
 .main_b_1_2_sch{
@@ -360,8 +361,68 @@ ul {
 	line-height	:25px;
 	color		:#3030c0;
 	font-size	:16px;
-	font-weight	:600;	
+	font-weight	:600;
 }
+
+.main_b_1_2_f{
+	display		:inline-block;
+	position	:absolute;
+	font-size	:20px;
+	color		:#c8b880;
+	font-family	:at_frame2;
+}
+
+.f_tr{
+	top		:0;
+	right	:0;
+	transform: rotate(270deg);
+	transform-origin: center;
+}
+
+.f_tl{
+	top		:0;
+	left	:0;
+	transform: rotate(180deg);
+	transform-origin: center;
+}
+
+.f_bl{
+	bottom	:0;
+	left	:0;
+	transform: rotate(90deg);
+	transform-origin: center;
+}
+
+
+.f_br{
+	bottom			:0;
+	right			:0;
+	transform		:rotate(0deg);
+	transform-origin:center;
+}
+
+.main_b_1_2_h{
+	display			:inline-block;
+	position		:absolute;
+	top				:7px;
+	left			:30px;
+	height			:44px;
+	width			:100px;
+	border-top		:1px solid #c8b880;
+	border-bottom	:1px solid #c8b880;
+}
+
+.main_b_1_2_w{
+	display			:inline-block;
+	position		:absolute;
+	top				:28px;
+	left			:6px;
+	height			:6px;
+	width			:146px;
+	border-left		:1px solid #c8b880;
+	border-right	:1px solid #c8b880;
+}
+
 
 .main_b_1_3{
 	position	:absolute;
@@ -1320,6 +1381,8 @@ ul {
 	padding		:10px;
 	line-height	:20px;
 }
+
+
 
 
 @media screen and (max-width: 959px){
