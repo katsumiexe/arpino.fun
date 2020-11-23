@@ -561,6 +561,7 @@ ul {
 }	
 
 .main_e{
+	position		:relative;
 	display			:inline-block;
 	width			:1180px;
 	border			:1px solid #c8b880;
@@ -570,6 +571,15 @@ ul {
 	vertical-align	:top;
 	padding			:10px;
 }
+
+.main_e_f{
+	display		:inline-block;
+	position	:absolute;
+	font-size	:50px;
+	color		:#c8b880;
+	font-family	:at_frame2;
+}
+
 
 .main_article_out{
 	display			:inline-block;
@@ -601,8 +611,6 @@ ul {
 	margin-block-start	:0;
 	margin-block-end	:0;
 }
-
-
 
 .main_c{
 	display		:inline-block;
