@@ -37,6 +37,18 @@ foreach($dat as $a1){
 	$term[]=$a1["term_id"];
 }
 
+if(count($term)<2){
+	$sql	 ="INSERT INTO wp01_terms(`name`,`slug`)";
+	$sql	.=" VALUES('{$_SESSION["genji"]}','{$cast_id}')";
+	$wpdb->query($sql);
+	$terms_id=$wpdb->insert_id;
+
+	$sql	 ="INSERT INTO wp01_term_taxonomy(`term_id`,`taxonomy`)";
+	$sql	.=" VALUES('{$terms_id}','category')";
+	$wpdb->query($sql);
+	$term[1]=$cast_id;
+}
+
 $blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
 $blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
 $blog_st[3]="<span class=\"hist_status hist_3\">削除</span>";
@@ -84,6 +96,8 @@ if($chg){
 	$wpdb->query($sql);
 
 }else{
+
+
 	$sql="INSERT INTO wp01_posts ";
 	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_password, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
@@ -120,6 +134,11 @@ if($chg){
 		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
 		$wpdb->query($sql);
 
+		$mk_dir="../../../../wp-content/uploads/np{$cast_id}/";
+		if(!is_dir($mk_dir)) {
+			mkdir($mk_dir, 0777, TRUE);
+			chmod($mk_dir, 0777);
+		}
 
 		$link2	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto2}.png";
 		$img2 		= imagecreatetruecolor(600,600);

@@ -136,8 +136,7 @@
 }
 
 .prof{
-	border-collapse: separate;
-	border-spacing: 0px 8px;
+	border-collapse: collapse;
 	margin:0;
 }
 
@@ -164,6 +163,37 @@
 	background		:#272727;
 	color			:#C8B880;
 }
+
+
+.prof_l2{
+	padding		:0 5px;
+	height		:30px;
+	line-height	:30px;
+	font-size	:16px;
+	background	:#323232;
+	color		:#C8B880;
+
+	border-spacing: 0;
+
+	}
+
+
+.prof_r2{
+	border-bottom	:1px solid #C8B880;
+	padding			:0 5px;
+	line-height		:30px;
+	font-size		:16px;
+	background		:#272727;
+	color			:#C8B880;
+	border-spacing	: 0;
+
+}
+
+
+.prof_0{
+	height			:8px;
+}
+
 .sche{
 	border-collapse: collapse;
 	margin:10px 0;
@@ -334,7 +364,7 @@
 
 .prof{
 	border-spacing: 0px 1vw;
-	margin:0 auto;
+	margin:1vw auto 3vw auto;
 }
 
 .prof_l{
@@ -353,6 +383,23 @@
 	width		:50vw;
 	font-size	:3.8vw;
 }
+
+.prof_l2{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	font-size	:3.8vw;
+}
+
+
+.prof_r2{
+	padding		:0 1vw;
+	height		:7vw;
+	line-height	:7vw;
+	font-size	:3.8vw;
+}
+
+
 
 .sche{
 	border-collapse: collapse;

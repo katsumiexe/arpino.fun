@@ -10,7 +10,6 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?t=<?=time()?>"></script>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?t=<?=time()?>">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/person.css?t=<?=time()?>">
-
 <script>
 const Dir='<?php echo get_template_directory_uri(); ?>'; 
 </script>
@@ -28,7 +27,6 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 	font-family: at_font1;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/Courgette-Regular.ttf) format('truetype');
 }
-
 </style>
 <?php wp_head(); ?>
 </head>
@@ -50,6 +48,5 @@ wp_nav_menu($args);
 	<div class="menu_b"></div>
 	<div class="menu_c"></div>
 </div>	
-
 </div>
 <div class="main">

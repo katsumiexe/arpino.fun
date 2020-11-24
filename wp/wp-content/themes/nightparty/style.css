@@ -565,13 +565,13 @@ ul {
 .main_e{
 	position		:relative;
 	display			:inline-block;
-	width			:1180px;
+	width			:1160px;
 	border			:1px solid #c8b880;
 	text-align		:left;
 	background		:#302520;
 	margin			:10px auto;
 	vertical-align	:top;
-	padding			:10px;
+	padding			:20px;
 }
 
 .main_e_f{
@@ -580,6 +580,9 @@ ul {
 	font-size	:50px;
 	color		:#c8b880;
 	font-family	:at_frame2;
+	width		:60px;
+	height		:55px;
+	text-align	:center;
 }
 
 
@@ -1521,10 +1524,17 @@ ul {
 }
 
 .main_e{
-	width			:92vw;
-	padding			:1vw;
+	width			:88vw;
+	padding			:1vw 3vw;
 	margin			:1vw auto;
 }
+
+.main_e_f{
+	font-size	:8vw;
+	width		:10vw;
+	height		:9vw;
+}
+
 
 
 .main_d_title,.main_b_title{

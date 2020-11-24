@@ -83,10 +83,14 @@ for($n=0;$n<7;$n++){
 	}
 }
 
-$sql="SELECT * FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
+$sql="SELECT id, charm,style FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
 $res3 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res3 as $a3){
-	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr>";
+	if($a3["style"] == 1){
+	$charm_list.="<tr><td class=\"prof_l2\" colspan=\"2\">{$a3["charm"]}</td></tr><tr><td class=\"prof_r2\" colspan=\"2\">{$charm[$a3["id"]]}</td></tr>";
+	}else{
+	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr><tr><td class=\"prof_0\" colspan=\"2\"></td></tr>";
+	}
 }
 
 
@@ -147,10 +151,8 @@ get_header();
 			<span class="footmark_text">CAST</span>
 		</a>
 		<span class="footmark_icon"></span>
-		<div class="footmark_box pc_only">
-			<span class="footmark_icon"></span>
-			<span class="footmark_text"><?=$a1["genji"]?></span>
-		</div>
+		<span class="footmark_icon"></span>
+		<span class="footmark_text"><?=$a1["genji"]?></span>
 
 	</div>
 
