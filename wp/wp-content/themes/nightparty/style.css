@@ -441,7 +441,7 @@ ul {
 
 .sub_blog{
 	display		:inline-block;
-	width		:322px;
+	width		:302px;
 	margin:0;
 	text-align:right
 }
@@ -449,7 +449,7 @@ ul {
 
 .sub_blog_in{
 	display		:inline-block;
-	width		:320px;
+	width		:300px;
 	background	:#302520;
 	border		:1px solid #c8b880;
 	margin-bottom:30px;
@@ -994,7 +994,7 @@ ul {
 
 .blog_h1{
 	display		:inline-block;
-	width		:320px;
+	width		:300px;
 	height		:40px;
 	line-height	:40px;
 	background	:#302520;
@@ -1012,7 +1012,7 @@ ul {
 .all_cast{
 	position		:relative;
 	display			:inline-block;
-	width			:320px;
+	width			:300px;
 	height			:60px;
 	line-height		:60px;
 	font-size		:0;
@@ -1092,7 +1092,7 @@ ul {
 
 .all_tag{
 	display			:inline-block;
-	width			:320px;
+	width			:300px;
 	height			:40px;
 	line-height		:40px;
 	font-size		:0;
@@ -1104,7 +1104,7 @@ ul {
 .all_tag_name{
 	display			:inline-block;
 	color			:#c8b880;
-	width			:215px;
+	width			:195px;
 	height			:40px;
 	line-height		:40px;
 	font-size		:16px;
@@ -1229,7 +1229,7 @@ ul {
 }
 
 .blog_calendar{
-	width			:322px;
+	width			:302px;
 	border-collapse	:collapse;
 	table-layout	:fixed;
 	background		:#fafafa;

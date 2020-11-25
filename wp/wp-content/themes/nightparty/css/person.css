@@ -25,7 +25,7 @@
 .person_right{
 	display			:inline-block;
 	position		:relative;
-	flex-basis		:320px;
+	flex-basis		:300px;
 	min-height		:100px;	
 	margin-top		:8px;
 	text-align		:center;
@@ -35,7 +35,7 @@
 .person_blog{
 	display			:inline-block;
 	position		:relative;
-	width			:320px;
+	width			:300px;
 	height			:90px;	
 	background		:#fafafa;
 //	border			:1px solid #C8B880;
@@ -103,7 +103,7 @@
 	position		:absolute;
 	top				:30px;
 	left			:90px;
-	width			:210px;
+	width			:200px;
 	height			:50px;	
 	line-height		:25px;	
 	text-align		:left;
@@ -137,7 +137,7 @@
 
 .prof{
 	border-collapse: collapse;
-	margin:0;
+	margin:7px 0;
 }
 
 .prof_l{
@@ -158,7 +158,7 @@
 	padding			:0 5px;
 	height			:30px;
 	line-height		:30px;
-	width			:310px;
+	width			:325px;
 	font-size		:16px;
 	background		:#272727;
 	color			:#C8B880;
@@ -167,6 +167,7 @@
 
 .prof_l2{
 	padding		:0 5px;
+	width		:495px;
 	height		:30px;
 	line-height	:30px;
 	font-size	:16px;
@@ -180,6 +181,7 @@
 
 .prof_r2{
 	border-bottom	:1px solid #C8B880;
+	width			:495px;
 	padding			:0 5px;
 	line-height		:30px;
 	font-size		:16px;
@@ -314,25 +316,25 @@
 }
 
 .person_left{
-	width		:89vw;
-	flex-basis	:89vw;
-	height		:95vw;	
-	min-height	:95vw;	
+	width		:96vw;
+	flex-basis	:96vw;
+	height		:102vw;
+	min-height	:102vw;
 	text-align	:center;
 	margin		:0 auto;
 }
 
 .person_middle{
-	width		:89vw;
-	flex-basis	:89vw;
+	width		:96vw;
+	flex-basis	:96vw;
 	text-align	:center;
 	min-height	:0;	
 	margin		:2vw auto;
 }
 
 .person_right{
-	width		:88vw;
-	flex-basis	:88vw;
+	width		:96vw;
+	flex-basis	:96vw;
 	min-height	:0;	
 	margin		:0 auto;
 }
@@ -341,37 +343,37 @@
 .person_img_main{
 	top				:0;
 	left			:0;
-	width			:70.5vw;
-	height			:94vw;	
+	width			:75vw;
+	height			:100vw;	
 }
 
 .person_img_list{
 	align-content	:flex-start;
 	flex-wrap		:wrap;
 	top				:0;
-	left			:72.5vw;
-	width			:16.5vw;
-	height			:96vw;
+	left			:78vw;
+	width			:18vw;
+	height			:102vw;
 }
 
 .person_img_sub{
-	width			:16.5vw;
-	height			:22vw;
+	width			:18vw;
+	height			:24vw;
 	margin-right	:0;
-	margin-bottom	:2vw;
+	margin-bottom	:1.3vw;
 }
 
 
 .prof{
 	border-spacing: 0px 1vw;
-	margin:1vw auto 3vw auto;
+	margin:1vw auto 5vw auto;
 }
 
 .prof_l{
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:36vw;
+	width		:39vw;
 	font-size	:3.8vw;
 }
 
@@ -380,11 +382,12 @@
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:50vw;
+	width		:54vw;
 	font-size	:3.8vw;
 }
 
 .prof_l2{
+	width		:96vw;
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
@@ -417,7 +420,7 @@
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:36vw;
+	width		:39vw;
 	font-size	:3.8vw;
 }
 
@@ -433,7 +436,7 @@
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:50vw;
+	width		:54vw;
 	font-size	:3.8vw;
 }
 
