@@ -298,7 +298,6 @@ $(function(){
 		}).done(function(data, textStatus, jqXHR){
 			$.when(
 				$('.mail_detail_in').html(data),
-console.log("●")
 
 			).done(function(){
 //				$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000),
@@ -328,6 +327,11 @@ console.log("◎")
 	$('.detail_modal_out').on('click',function () {
 		$('.detail_modal').animate({'top':'110vh'},100);
 		$('.link_point_on').removeClass('link_point_on');
+	});
+
+
+	$('.regist_mail_set').on('click',function () {
+		$('.mail_write').slideDown();
 	});
 
 
@@ -611,9 +615,11 @@ console.log("◎")
 
 	$('.head').on('click','.arrow_customer',function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
-		$('.customer_detail').animate({'left':'100vw'},300);
+		$('.customer_detail').animate({'left':'100vw'},150).css({'height':'100vh'});
 		$('.head_mymenu_ttl').html('顧客リスト');
 		$('.menu').css({'heigh':'auto'});
+		$('.pg3').hide();
+		$('.pg2').show();
 
 		$('.customer_sns_box').hide();
 		$('.customer_sns_tr').hide();
@@ -678,13 +684,9 @@ console.log("◎")
 		$('.head_mymenu_ttl').html('顧客リスト(詳細)');
 		$('.head_mymenu_comm').addClass('arrow_customer');
 
-		$('.main').css('position','fixed');
-		var TmpHgt=VhBase*100-VwBase*105;
-
-		$('.head_mymenu_ttl').html(VhBase);
-
-
-		$('.customer_body').css('height',TmpHgt);
+//		$('.main').css('position','fixed');
+		$('.pg2').delay(200).fadeOut(0);
+		$('.pg3').delay(200).fadeIn(0);
 
 		C_Id=$(this).attr('id').replace('clist','');
 
@@ -787,7 +789,7 @@ console.log("◎")
 			$('#customer_web').addClass('c_customer_web');		
 		}
 
-		$('.customer_detail').animate({'left':'0'},300);
+		$('.customer_detail').animate({'left':'0'},200).animate({'height':'75vw'},0);
 		$('.menu').css({'heigh':'100vh'});
 
 		$.post({
@@ -879,6 +881,9 @@ console.log("◎")
 
 	$('.customer_sns_btn').on('click',function(){
 		if($('.customer_sns_box').css('display') !== 'none'){
+			$('.customer_detail').animate({'height':'75vw'},100);
+			$('.pg3').animate({'margin-top':'76vw'},200);
+
 			$('.customer_sns_box').slideUp(100);
 			$('.customer_sns_tr').slideUp(100);
 			$('.sns_arrow_a').hide();
@@ -909,6 +914,8 @@ console.log("◎")
 
 			$('.customer_sns_box').slideDown(200);
 			$('.customer_sns_tr').slideDown(200);
+			$('.customer_detail').animate({'height':'95vw'},200);
+			$('.pg3').animate({'margin-top':'96vw'},200);
 
 		}else{
 			Tmp='';

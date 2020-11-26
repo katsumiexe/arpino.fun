@@ -787,6 +787,7 @@ $(function(){
 		</div>
 	</div>
 	<?}elseif($cast_page==2){?>
+
 	<div class="customer_sort_box">
 		<select id="customer_sort_sel" class="customer_sort_sel">
 			<option value="0">登録順</option>
@@ -811,6 +812,7 @@ $(function(){
 		<span class="customer_sort_tag"></span>
 		<input id="customer_sort_ext" type="hidden" value="<?=$c_sort["cast_id"]?>">
 	</div>
+
 	<div class="main pg2">
 		<div class="sort_alert">非表示になっている顧客がいます</div>
 		<?for($n=0;$n<count($customer);$n++){?>
@@ -846,6 +848,14 @@ $(function(){
 			</div>
 		<?}?>
 	</div>
+
+	<div class="main pg3">
+		<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
+		<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>
+		<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
+	</div>
+
+
 	<div class="customer_detail">
 		<table class="customer_base">
 			<tr>
@@ -931,11 +941,6 @@ $(function(){
 			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
 			<div id="tag_2" class="tag_set">メモ</div>
 			<div id="tag_3" class="tag_set">履歴</div>
-			<div class="customer_body">
-				<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
-				<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>
-				<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
-			</div>
 		</div>
 		<input id="h_customer_id" type="hidden" name="cus_id" value="0">
 		<input id="h_customer_set" type="hidden" name="cus_set" value="1">
@@ -958,6 +963,9 @@ $(function(){
 		<input id="n_customer_line" type="hidden" value="">
 		<input id="n_customer_web" type="hidden" value="">
 	</div>
+
+
+
 	<?}elseif($cast_page==3){?>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
@@ -980,9 +988,18 @@ $(function(){
 			</div>
 		<?}?>
 		<div class="mail_detail">
-		<div class="mail_detail_in"></div>
+			<div class="mail_write">
+				<textarea class="mail_write_text"></textarea>
+				<div class="mail_detail_btn"></div>
+			</div>
+			<div class="mail_detail_in"></div>
 		</div>
 	</div>
+	
+
+
+
+
 
 	<?}elseif($cast_page==4){?>
 		<div class="main">

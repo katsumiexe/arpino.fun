@@ -242,7 +242,7 @@ ul {
 
 .main_b_top{
 	display			:inline-block;
-	width			:1020px;
+	width			:840px;
 	margin			:0 auto 20px auto;
 	background		:#302520;
 	padding			:10px;
@@ -251,7 +251,7 @@ ul {
 
 .main_b_notice{
 	display			:inline-block;
-	width			:1000px;
+	width			:840px;
 	height			:60px;
 	text-align		:left;
 	vertical-align	:top;

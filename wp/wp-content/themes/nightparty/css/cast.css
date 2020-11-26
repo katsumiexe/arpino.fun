@@ -782,8 +782,10 @@ input:focus{
 
 .customer_tag{
 	position		:relative;
-	width			:95vw;
+	width			:98vw;
+	height			:9.5vw;
 	margin			:0 auto;
+	border-bottom	:1.5vw solid #f17766;
 }
 
 .tag_btn{
@@ -816,9 +818,9 @@ input:focus{
 }
 
 .tag_set_ck{
-	color			:#f17766;
+	color			:#fafafa;
 	border-color	:#f17766;
-	background		:#fff0f5;
+	background		:#f17766;
 	height			:8vw;
 	line-height		:7vw;
 	z-index			:18;
@@ -1324,6 +1326,7 @@ input:focus{
 	height			:100vh;
 	background		:linear-gradient(#ffe0f0,#ffe8f8);
 	z-index			:12;
+
 }
 
 
@@ -1364,6 +1367,7 @@ input:focus{
 	margin			:1vw auto;
 	border-collapse	:separate;
 	border-spacing	:2vw 0;
+	background:#fafafa;
 }
 
 .customer_base,.customer_regist_base{
@@ -1958,6 +1962,10 @@ input:focus{
 
 .pg2{
 	margin-top		:28vw;
+}
+
+.pg3{
+	margin-top		:76vw;
 }
 
 .main_sch{
@@ -3037,6 +3045,30 @@ input[type=range]::-moz-range-thumb{
 	top				:0.5vw;
 	left			:19vw;
 }
+
+
+.mail_write{
+    display: inline-block;
+	padding-top: 5vw;
+    width: 94vw;
+    margin: 2vw auto;
+	text-align:right;
+	height:50vw;
+	background:#f00000;
+}
+
+.mail_write_text{
+    display: inline-block;
+	height:50vw;
+    border: 2px solid #30e020;
+    width: 66vw;
+    font-size: 4.5vw;
+    line-height: 6vw;
+    border-radius: 1vw 1vw 1vw 4vw;
+    padding: 2vw 2vw 7vw 2vw;
+}
+
+
 
 .cal{
 	display			:flex;
