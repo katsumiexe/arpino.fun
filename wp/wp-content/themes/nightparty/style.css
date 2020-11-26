@@ -901,41 +901,33 @@ ul {
 	bottom			:5px;
 	left			:0;
 	height			:24px;
-	width			:75px;
+	padding			:0 5px;
 
 	background		:#c8c0b0;
 	text-align		:right;
 	color			:#302520;
 	border-radius	:5px;
+	text-align:left;
 }
 
 .blog_list_icon{
 	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	bottom			:0;
-	left			:5px;
-	margin			:auto;
-	height			:18px;
-	line-height		:18px;
+	height			:24px;
+	line-height		:24px;
 	width			:20px;
 	text-align		:center;
 	font-size		:16px;
 	font-family		:at_icon;
+	vertical-align	:middle;
 }
 
 .blog_list_tcomm{
 	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	bottom			:0;
-	left			:25px;
-	margin			:auto;
-	height			:18px;
-	line-height		:18px;
-	width			:120px;
+	height			:24px;
+	line-height		:24px;
 	text-align		:left;
 	font-size		:14px;
+	vertical-align	:middle;
 }
 
 
@@ -944,7 +936,7 @@ ul {
 	position		:absolute;
 	bottom			:2px;
 	right			:2px;
-	width			:300px;
+	width			:310px;
 	height			:55px;
 	margin			:0 auto;
 	text-align		:left;
@@ -1647,23 +1639,22 @@ ul {
 	bottom			:0;
 	left			:0;
 	height			:3vw;
-	width			:11vw;
 	border-radius	:5px;
+
 }
 
 .blog_list_icon{
 	left			:0;
-	height			:2.5vw;
-	line-height		:2.5vw;
+	height			:3vw;
+	line-height		:3vw;
 	width			:3vw;
 	font-size		:2.5vw;
 }
 
 .blog_list_tcomm{
 	left			:3.5vw;
-	height			:2.5vw;
-	line-height		:2.5vw;
-	width			:7vw;
+	height			:3vw;
+	line-height		:3vw;
 	font-size		:1.8vw;
 }
 
@@ -2158,14 +2149,13 @@ ul {
 .blog_list_tag{
 	bottom			:1vw;
 	height			:6vw;
-	width			:17vw;
 	border-radius	:1vw;
 }
 
 .blog_list_icon{
 	left			:1vw;
-	height			:5vw;
-	line-height		:5vw;
+	height			:6vw;
+	line-height		:6vw;
 	width			:5vw;
 	font-size		:4vw;
 
@@ -2173,9 +2163,8 @@ ul {
 
 .blog_list_tcomm{
 	left			:6vw;
-	height			:5vw;
-	line-height		:5vw;
-	width			:12vw;
+	height			:6vw;
+	line-height		:6vw;
 	font-size		:3vw;
 }
 
