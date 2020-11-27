@@ -56,10 +56,6 @@ get_header();
 			<div id="dot4" class="slide_dot"></div>
 		</div>
 	</div>
-
-
-
-
 	<div class="main_b">
 		<div class="main_b_top">
 			<div class="main_b_notice"></div>
@@ -67,6 +63,7 @@ get_header();
 			<div class="main_b_notice"></div>
 			<div class="main_b_notice"></div>
 		</div>
+
 
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<div class="main_b_in">
