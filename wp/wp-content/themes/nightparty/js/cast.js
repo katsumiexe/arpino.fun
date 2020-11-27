@@ -300,15 +300,22 @@ $(function(){
 				$('.mail_detail_in').html(data),
 
 			).done(function(){
+				TMP_H=$('.mail_detail_in').height();
+/*
 //				$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000),
-				$('.mail_detail_in').animate({ 'scrollTop':'500px'},5000),
-				$('.head_mymenu_arrow').addClass('mail_detail_back'),
-				$('.head_mymenu_ttl').text(Name),
-console.log("◎")
-			});
+				$('.mail_detail').animate({'scrollTop':TMP_H},5000),
+				$('.mail_detail_in').offset({ 'Top':'500px'}),
+				$('html, body').animate({scrollTop:'500px'});
+*/
+				$('.mail_detail').scrollTop(TMP_H);
 
+				$('.head_mymenu_ttl').text(Name),
+				$('.head_mymenu_comm').addClass('arrow_mail')
+
+			});
 		});
 	});
+	
 
 	$('.detail_modal_link').on('click','.modal_link_point',function () {
 		Img=$(this).attr('id').replace('point_','');
@@ -334,12 +341,10 @@ console.log("◎")
 		$('.mail_write').slideDown();
 	});
 
-
-	$('.head_mymenu_comm').on('click','.mail_detail_back',function () {
-		$(this).removeClass('mail_detail_back');
+	$('.head').on('click','.arrow_mail',function () {
+		$(this).removeClass('arrow_mail');
 		$('.mail_detail').animate({'right':'-100vw'},200);
-			$('.head_mymenu_ttl').text('Easy Talk');
-
+		$('.head_mymenu_ttl').text('Easy Talk');
 	});
 
 	$('.reg_fav').on('click',function () {
@@ -353,7 +358,6 @@ console.log("◎")
 			$('#regist_fav').val('0');
 		}
 	});
-
 
 	$('#customer_regist_set').on('click',function () {
 		$.post({

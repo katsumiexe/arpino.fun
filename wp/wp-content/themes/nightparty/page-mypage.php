@@ -988,11 +988,14 @@ $(function(){
 			</div>
 		<?}?>
 		<div class="mail_detail">
-			<div class="mail_write">
-				<textarea class="mail_write_text"></textarea>
-				<div class="mail_detail_btn"></div>
-			</div>
 			<div class="mail_detail_in"></div>
+			<div class="mail_write">
+				<textarea class="mail_write_text"></textarea><br>
+				<div class="mail_detail_btn_img">画像</div>
+				<div class="mail_detail_btn_send">送信</div>
+				<div class="mail_detail_btn_del">クリア</div>
+			</div>
+
 		</div>
 	</div>
 	

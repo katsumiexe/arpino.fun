@@ -2920,10 +2920,9 @@ input[type=range]::-moz-range-thumb{
 	background		:#f0f0f0;
 	text-align		:center;
 	font-size		:0;
-	padding-bottom	:16vw;
+	padding-bottom	:2vw;
 	margin-bottom	:0;
 }
-
 
 .mail_yet{
 	background		:#ffffd0;
@@ -3048,26 +3047,44 @@ input[type=range]::-moz-range-thumb{
 
 
 .mail_write{
-    display: inline-block;
-	padding-top: 5vw;
-    width: 94vw;
-    margin: 2vw auto;
-	text-align:right;
-	height:50vw;
-	background:#f00000;
+    display			: inline-block;
+	padding-top		: 5vw;
+    width			: 94vw;
+    margin			: 0 auto 10vw auto;;
+	text-align		:right;
 }
 
 .mail_write_text{
-    display: inline-block;
-	height:50vw;
-    border: 2px solid #30e020;
-    width: 66vw;
-    font-size: 4.5vw;
-    line-height: 6vw;
-    border-radius: 1vw 1vw 1vw 4vw;
-    padding: 2vw 2vw 7vw 2vw;
+    display			:inline-block;
+	height			:50vw;
+    border			:2px solid #30e020;
+    width			:70vw;
+    font-size		:4.5vw;
+    line-height		:6vw;
+    border-radius	:1vw;
+    padding			:1vw;
 }
 
+.mail_detail_btn_img,.mail_detail_btn_send,.mail_detail_btn_del{
+	margin		:2vw 0 2vw 3vw;
+	display		:inline-block;
+	height		:8vw;
+	line-height	:8vw;
+	background	:linear-gradient(#e8e8ff,#d8d8ff);
+	text-align	:center;
+	position	:relative;
+	font-size	:4vw;
+}
+
+.mail_detail_btn_img{
+	width:12vw;
+}
+.mail_detail_btn_send{
+	width:40vw;
+}
+.mail_detail_btn_del{
+	width:12vw;
+}
 
 
 .cal{

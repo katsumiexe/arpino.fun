@@ -22,7 +22,6 @@ foreach($res as $a1){
 		$sort[$a1["id"]]=999999;
 }
 
-
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 
@@ -63,7 +62,6 @@ get_header();
 			<div class="main_b_notice"></div>
 			<div class="main_b_notice"></div>
 		</div>
-
 
 		<h2 class="main_b_title">本日の出勤キャスト</h2>
 		<div class="main_b_in">
