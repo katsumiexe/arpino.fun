@@ -995,7 +995,6 @@ $(function(){
 				<div class="mail_detail_btn_send">送信</div>
 				<div class="mail_detail_btn_del">クリア</div>
 			</div>
-
 		</div>
 	</div>
 	

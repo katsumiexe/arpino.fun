@@ -300,12 +300,11 @@ $(function(){
 				$('.mail_detail_in').html(data),
 
 			).done(function(){
-				TMP_H=$('.mail_detail_in').height();
+				TMP_H=$('.mail_border').offset().top;
 /*
-//				$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000),
-				$('.mail_detail').animate({'scrollTop':TMP_H},5000),
-				$('.mail_detail_in').offset({ 'Top':'500px'}),
-				$('html, body').animate({scrollTop:'500px'});
+				if(TMP_H ==0){
+					TMP_H=$('.mail_detail_in').height();
+				}
 */
 				$('.mail_detail').scrollTop(TMP_H);
 

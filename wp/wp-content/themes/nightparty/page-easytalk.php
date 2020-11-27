@@ -55,7 +55,7 @@ if($_SESSION){
 	$sql	.=" LIMIT 10";
 
 	$res = $wpdb->get_results($sql,ARRAY_A);
-	$n=0;
+	$n=count($res)-1;
 
 	foreach($res as $a1){
 		$dat[$n]=$a1;
@@ -69,7 +69,7 @@ if($_SESSION){
 			$dat[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
 			$dat[$n]["bg"]=1;
 		}
-		$n++;
+		$n--;
 	}
 
 	$sql	 ="UPDATE wp01_0castmail SET";
