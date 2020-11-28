@@ -1343,9 +1343,8 @@ console.log("VwBase:"+VwBase);
 		$('.log_list_del_name').text($(this).next().next().next().next().children('.item_name').val());
 		$('.log_list_del_price').text($(this).next().next().next().next().next().children('.item_price').val());
 		$('.log_list_del_item').css({'color':$(this).next().next().next().css('color'),'border-color':$(this).next().next().next().css('color')});
-
-		console.log($(this).next().next().next().next().children('.item_name').val());
 	});
+
 
 	$('#log_list_del_set').on('click',function () {
 		$.post({
@@ -1753,6 +1752,21 @@ console.log("VwBase:"+VwBase);
 		}).done(function(data, textStatus, jqXHR){
 			console.log(Tmp)
 			console.log(data)
+		});
+	});
+
+	$('.log_item_set').on('change','.gp_name',function (){
+		Tmp=$(this).attr('id').replace('gp_name_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/gp_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
 		});
 	});
 
