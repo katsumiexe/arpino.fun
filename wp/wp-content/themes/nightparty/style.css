@@ -658,28 +658,23 @@ ul {
 	background	:linear-gradient(#1a1a1a,#3a3a3a);
 }
 
+.access_table{
+	display		:flex;
+	width		:1120px;
+	margin		:5px auto;
+	height		:420px;
+	position	:relative;
+	margin-bottom:10px;
+}
+
 .access_map{
-	flex-basis	:650px;
-	height		:300px;
+	flex-basis	:800px;
+	height		:400px;
 	background	:#fafafa;
 	color		:#303030;
 	margin		:10px;
 }
 
-.access_map_in{
-	width:650px;
-	height:300px;
-}
-
-.access_table{
-	border		:1px solid #c8b880;
-	display		:flex;
-	width		:1020px;
-	margin		:5px auto;
-	height		:320px;
-	position	:relative;
-	background	:#302520;
-}
 
 .access_sig{
 	display		:inline-block;
@@ -747,10 +742,10 @@ ul {
 .sys_box_ttl{
     display			:inline-block;
 	font-size		:24px;
-	width			:1000px;
+	width			:1080px;
 	height			:30px;
 	line-height		:30px;
-	margin			:10px auto 10px 10px;
+	margin			:10px 30px;
 	font-weight		:800;
 	color			:#c8b880;
 	text-shadow		:1px 1px 0px rgba(30,30,30,0);
@@ -759,8 +754,8 @@ ul {
 }
 
 .sys_box_log{
-	width			:1180px;
-	margin			:0 auto;
+	width			:1160px;
+	margin			:0 20px 30px 20px;
     display			:inline-block;
 	padding			:5px 10px;
 	color			:#c8c8b8;
@@ -768,8 +763,8 @@ ul {
 
 .system_title{
 	display			:inline-block;
-	height			:32px;
-	line-height		:32px;
+	height			:24px;
+	line-height		:24px;
 	font-size		:20px;
 	font-weight		:800;
 	width			:780px;
@@ -1521,7 +1516,7 @@ ul {
 }
 
 .main_e{
-	width			:88vw;
+	width			:92vw;
 	padding			:1vw 3vw;
 	margin			:1vw auto;
 }
@@ -1535,12 +1530,12 @@ ul {
 
 
 .main_d_title,.main_b_title{
-	width			:93vw;
+	width			:91.5vw;
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto;
 	font-size		:5vw;
-	padding-left	:1vw;
+	padding-left	:2.5vw;
 }
 
 .main_d_1,.main_b_1{
@@ -1569,6 +1564,7 @@ ul {
 	height		:5vw;
 	line-height	:5vw;
 	font-size	:4vw;
+	margin:1vw;
 }
 
 .main_d_1_2_sch,.main_b_1_2_sch{
@@ -1732,19 +1728,18 @@ ul {
 }
 
 .access_table{
-	width		:98vw;
-	margin		:1vw auto;
+	width		:92vw;
+	margin		:1vw auto 5vw auto;
 	height		:auto;
 	flex-wrap	:wrap;
 }
 
 .access_sig{
-	width			:90vw;
-	margin			:1vw auto;
+	width			:92vw;
+	margin			:1vw auto 2vw auto;
 	font-size		:0;
 	text-align		:center;
 	border-radius	:2vw;
-	margin			:1vw 2vw;
 }
 
 .access_tag{
@@ -1792,6 +1787,7 @@ ul {
 .sys_box_log{
 	width			:86vw;
 	padding			:1vw 2vw;
+	margin:0;
 }
 
 .system_title{
@@ -1976,13 +1972,15 @@ ul {
 
 
 .access_map{
-	flex-basis	:98vw;
-	height		:90vw;
+	margin:0 0 2vw 0;
+	flex-basis	:92vw;
+	width		:92vw;
+	height		:92vw;
 }
 
 .access_map_in{
-	width:90vw;
-	height:90vw;
+	width		:92vw;
+	height		:92vw;
 }
 
 .access_table{
