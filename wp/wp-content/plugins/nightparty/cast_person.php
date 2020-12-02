@@ -156,11 +156,11 @@
 <tr>
 <th class='manage-column column-author column-ttl w40'> </th>
 <th class='manage-column column-author column-ttl w80'></th>
-<th class='manage-column column-author column-ttl'>名前</th>
-<th class='manage-column column-author column-ttl w60'>SORT</th>
+<th class='manage-column column-author column-ttl w60'>ID/SORT</th>
+<th class='manage-column column-author column-ttl'>名前/ふりがな</th>
 <th class='manage-column column-author column-ttl w60'>ランク</th>
-<th class='manage-column column-author column-ttl w150'>ID</th>
-<th class='manage-column column-author column-ttl w150'>PASS</th>
+<th class='manage-column column-author column-ttl w150'>ログインID</th>
+<th class='manage-column column-author column-ttl w150'>ログインPASS</th>
 <th class='manage-column column-author column-ttl w80'>ステータス</th>
 </tr>
 <?for($n=0;$n<count($member);$n++){?>
@@ -184,9 +184,10 @@
 	<option selected='selected' value="0">表示</option>
 	<option value="1"<?if($member[$n]["del"] == 1){?> selected="selected"<?}?>>非表示</option>
 	<option value="2"<?if($member[$n]["del"] == 2){?> selected="selected"<?}?>>準備中</option>
-	<option value="3"<?if($member[$n]["del"] == 3){?> selected="selected"<?}?>>退職</option>
-	<option value="3"<?if($member[$n]["del"] == 4){?> selected="selected"<?}?>>利用停止</option>
-	<option value="4">削除</option>
+	<option value="3"<?if($member[$n]["del"] == 3){?> selected="selected"<?}?>>休職</option>
+	<option value="4"<?if($member[$n]["del"] == 4){?> selected="selected"<?}?>>退職</option>
+	<option value="5"<?if($member[$n]["del"] == 5){?> selected="selected"<?}?>>利用停止</option>
+	<option value="6">削除</option>
 	</select>
 </td>
 </tr>

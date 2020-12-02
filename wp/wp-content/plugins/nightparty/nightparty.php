@@ -59,6 +59,7 @@ if($_POST["staff_set"]){
 			$tmp_dir.=$dec[$id_0][$tmp_id];
 		}
 
+
 		$mk_dir="../wp-content/themes/nightparty/img/cast/".$tmp_dir;
 		if(!is_dir($mk_dir)) {
 			mkdir($mk_dir."/c/", 0777, TRUE);
@@ -119,8 +120,6 @@ function custom_menu_page(){
 	add_submenu_page('config', 'アイテム設定', 'アイテム設定', 'manage_options', 'config_item', 'config_item');
 }
 
-
-
 function cast_regist(){
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }
@@ -155,7 +154,6 @@ function cast_list(){
 }
 
 
-
 function staff_list(){
 	global $wpdb;
 	$n=0;
@@ -171,5 +169,19 @@ function staff_list(){
 }
 
 function staff_regist(){
+	global $wpdb;
+	$sql	 ="SELECT * FROM wp01_0charm_table";
+	$sql	.=" WHERE del=0";
+	$sql	.=" ORDER BY sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$cast_table[$res["sort"]]=$res;
+	}
+
+	$sql		="SELECT MAX(id) AS id_max FROM wp01_0staff";
+	$tmp_list	= $wpdb->get_row($sql,ARRAY_A);
+	$new_id		=$tmp_list["id_max"]+1;
+
     esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }
