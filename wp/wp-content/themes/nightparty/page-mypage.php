@@ -981,12 +981,12 @@ $(function(){
 				<?if($mail_data[$n]["r_count"]>0 || $mail_data[$n]["r_count"]=="9+"){?>
 					<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
 				<?}?>
-
 				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
 				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
 				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
+
 		<div class="mail_detail">
 			<div class="mail_detail_in"></div>
 			<div class="mail_write">
@@ -997,6 +997,9 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	
+
+
 	
 
 
@@ -1327,8 +1330,6 @@ $(function(){
 	</tr>
 </table>
 </div>
-
-
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
 <div class="config_box">
 <table class="log_item_set">
@@ -1343,7 +1344,6 @@ $(function(){
 		<td class="log_td_top">替</td>
 	</tr>
 </thead>
-
 <tbody id="item_sort">
 	<?foreach($log_item as $a1){?>
 		<tr id="i<?=$a1["sort"]?>">

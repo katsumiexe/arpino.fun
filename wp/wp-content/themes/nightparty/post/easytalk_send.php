@@ -7,6 +7,9 @@ require_once ("./post_inc.php");
 $log	=$_POST['log'];
 $sid	=$_POST['sid'];
 $img	=$_POST['img'];
+
+$send	=$_POST['send'];
+
 $now	=date("Y-m-d H:i:s",$jst);
 $now_dat=date("Y.m.d H:i",$jst);
 
@@ -17,9 +20,8 @@ $tmp	 = $wpdb->get_row($sql,ARRAY_A);
 $sql	 ="INSERT INTO wp01_0castmail";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
 $sql	.="VALUES";
-$sql	.="('{$now}','{$tmp["customer_id"]}','{$tmp["cast_id"]}','2','{$log}','{$img}')";
+$sql	.="('{$now}','{$tmp["customer_id"]}','{$tmp["cast_id"]}','{$send}','{$log}','{$img}')";
 $wpdb->query($sql);
-
 $log=str_replace("\n","<br>",$log);
 
 

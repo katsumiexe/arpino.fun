@@ -451,7 +451,6 @@ ul {
 	text-align:right
 }
 
-
 .sub_blog_in{
 	display		:inline-block;
 	width		:300px;
@@ -461,8 +460,6 @@ ul {
 	padding		:0;
 	text-align	:center;
 }
-
-
 
 .main_c{
 	display		:inline-block;
@@ -1175,8 +1172,6 @@ ul {
 	position		:absolute;
 	bottom			:3px;
 	left			:0;
-	height			:18px;
-	width			:70px;
 	background		:#c8c0b0;
 	text-align		:right;
 	padding			:3px 10px;
@@ -1424,11 +1419,91 @@ ul {
 
 .main_blog_title{
 	width			:95vw;
+	height			:5vw;
+	line-height		:5vw;
+	margin			:0 auto;
+	font-size		:3vw;
+	padding-left	:1vw;
+}
+
+
+.page_box{
+	width			:96vw;
 	height			:10vw;
 	line-height		:10vw;
-	margin			:0 auto;
-	font-size		:4.5vw;
-	padding-left	:1vw;
+	margin			:0 auto 1vw auto;
+	border-radius	:0.5vw;
+}
+
+.blog_h1{
+	display			:inline-block;
+	width			:47vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+}
+
+.all_cast{
+	width			:47vw;
+	height			:10vw;
+	line-height		:10vw;
+}
+
+
+.all_cast_name{
+	bottom			:1vw;
+	left			:11vw;
+	width			:35vw;
+	height			:3vw;
+	line-height		:3vw;
+	font-size		:3vw;
+}
+
+.all_cast_img{
+	top				:1vw;
+	left			:1vw;
+	width			:8vw;
+	height			:8vw;
+}
+
+
+.all_cast_icon{
+	top				:1vw;
+	left			:11vw;
+	width			:2.5vw;
+	height			:2.5vw;
+	line-height		:2.5vw;
+	font-size		:2.5vw;
+}
+
+.all_cast_last{
+	top				:1vw;
+	left			:14vw;
+	width			:25vw;
+	width			:2.5vw;
+	height			:2.5vw;
+	line-height		:2.5vw;
+	font-size		:2.5vw;
+}
+
+.all_cast_count{
+	top				:1vw;
+	right			:1vw;
+	width			:8vw;
+	height			:3vw;
+	line-height		:3vw;
+	font-size		:2.5vw;
+	border-radius	:0.5vw;
+	padding-right	:0.5vw;
+}
+
+.page_n{
+	width		:8vw;
+	height		:6vw;
+	line-height	:6vw;
+	margin		:2vw auto ;
+	border		:1px solid #e8d8a0;
+	font-size	:4vw;
 }
 
 
@@ -1437,11 +1512,22 @@ ul {
 	text-align	:center
 }
 
+.sub_blog_pack{
+	display			:flex;
+	justify-content	:space-between;
+	width		:96vw;
+}
+
 
 .sub_blog_in{
-	width		:96vw;
-	margin-bottom:5vw;
+	border		:none;
+	width		:47vw;
+	flex-basis	:47vw;
+	margin-bottom:0;
+	margin		:1vw;
 }
+
+
 
 .menu-item {
 	width		:14%;
@@ -1970,6 +2056,11 @@ ul {
 	cursor			:pointer;
 }
 
+.sub_blog_pack{
+	display			:inline-block;
+}
+
+
 
 .access_map{
 	margin:0 0 2vw 0;
@@ -2003,6 +2094,10 @@ ul {
 	font-size	:5vw;
 }
 
+.sub_blog_in{
+	width		:96vw;
+	margin-bottom:5vw;
+}
 
 .blog_h1{
 	display		:inline-block;
@@ -2184,8 +2279,6 @@ ul {
 	margin		:1vw 2vw;
 }
 
-
-
 .blog_ttl_btm{
 	width		:90vw;
 	height		:10vw;
@@ -2194,9 +2287,11 @@ ul {
 
 .blog_ttl_tag{
 	bottom			:1vw;
-	height			:4vw;
-	width			:15vw;
+	line-height		:6vw;
+	width			:28vw;
 	border-radius	:1vw;
+	padding			:0.5vw 1vw;
+	text-align		:left;
 }
 
 .blog_ttl_date{

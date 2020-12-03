@@ -1346,6 +1346,24 @@ console.log("VwBase:"+VwBase);
 	});
 
 
+	$('.mail_detail_btn_send').on('click',function(){
+		$.post({
+			url:Dir + "/post/easytalk_send.php",
+			data:{
+				'log'		:$('.mail_write_text').val(),
+				'cast_id'	:CastId,
+				'send'		:'1',
+				'img'		:$('#img').val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+			$('.mail_detail_in').prepend(data)
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
 	$('#log_list_del_set').on('click',function () {
 		$.post({
 			url:Dir + "/post/log_item_del.php",

@@ -155,7 +155,7 @@ console.log(Chg);
 
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=1" class="current" aria-current="page">
-			非表示
+			退職
 			<span class="count">(<?=$count_del[1]+0?>)</span>
 		</a>
 		|
@@ -163,14 +163,15 @@ console.log(Chg);
 
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=2" class="current" aria-current="page">
-			準備中
+			休職
 			<span class="count">(<?=$count_del[2]+0?>)</span>
 		</a>
 		|
 	</li>
+
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=3" class="current" aria-current="page">
-			退職
+			準備中
 			<span class="count">(<?=$count_del[3]+0?>)</span>
 		</a>
 		|
@@ -178,8 +179,16 @@ console.log(Chg);
 
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=4" class="current" aria-current="page">
-			利用停止
+			非表示
 			<span class="count">(<?=$count_del[4]+0?>)</span>
+		</a>
+		|
+	</li>
+
+	<li class='all'>
+		<a href="admin.php?page=cast_list&sort_del=5" class="current" aria-current="page">
+			利用停止
+			<span class="count">(<?=$count_del[5]+0?>)</span>
 		</a>
 	</li>
 </ul>
@@ -247,11 +256,12 @@ console.log(Chg);
 	<select name="m" id="del<?=$member[$n]["id"]?>">
 
 	<option selected='selected' value="0">表示</option>
-	<option value="1"<?if($member[$n]["del"] == 1){?> selected="selected"<?}?>>非表示</option>
-	<option value="2"<?if($member[$n]["del"] == 2){?> selected="selected"<?}?>>準備中</option>
-	<option value="3"<?if($member[$n]["del"] == 3){?> selected="selected"<?}?>>退職</option>
-	<option value="4"<?if($member[$n]["del"] == 4){?> selected="selected"<?}?>>利用停止</option>
-	<option value="5">削除</option>
+	<option value="1"<?if($member[$n]["del"] == 1){?> selected="selected"<?}?>>退職</option>
+	<option value="2"<?if($member[$n]["del"] == 2){?> selected="selected"<?}?>>休職</option>
+	<option value="3"<?if($member[$n]["del"] == 3){?> selected="selected"<?}?>>準備中</option>
+	<option value="4"<?if($member[$n]["del"] == 4){?> selected="selected"<?}?>>非表示</option>
+	<option value="5"<?if($member[$n]["del"] == 5){?> selected="selected"<?}?>>利用停止</option>
+	<option value="6">削除</option>
 	</select>
 </td>
 </tr>
