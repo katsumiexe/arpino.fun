@@ -59,6 +59,7 @@ if($_POST["staff_set"]){
 			$tmp_dir.=$dec[$id_0][$tmp_id];
 		}
 
+
 		$mk_dir="../wp-content/themes/nightparty/img/cast/".$tmp_dir;
 		if(!is_dir($mk_dir)) {
 			mkdir($mk_dir."/c/", 0777, TRUE);
@@ -97,7 +98,6 @@ if($_POST["staff_set"]){
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
 	add_menu_page('スタッフ', 'スタッフ', 'manage_options', 'staff', 'staff', 'dashicons-businessman',6);
-
 	add_submenu_page('staff', 'スタッフ登録ページ', 'スタッフ登録', 'manage_options', 'staff_regist', 'staff_regist');
 	add_submenu_page('staff', 'スタッフ一覧ページ', 'スタッフ一覧', 'manage_options', 'staff_list', 'staff_list');
 
@@ -108,17 +108,20 @@ function custom_menu_page(){
 
 	add_menu_page('更新ページ', '更新', 'manage_options', 'write', 'write', 'dashicons-text-page', 7);
 	add_submenu_page('write', 'キャストブログ', 'キャストブログ', 'manage_options', 'cast_blog', 'cast_blog' );
-	add_submenu_page('write', 'スタッフブログ', 'スタッフブログ', 'manage_options', 'staff_blog', 'staff_blog');
+	add_submenu_page('write', 'イベント', 'イベント', 'manage_options', 'event', 'event');
 	add_submenu_page('write', 'お知らせ', 'お知らせ', 'manage_options', 'notce', 'notce' );
-	add_submenu_page('write', 'ページ変更', 'ページ変更', 'manage_options', 'set_page', 'set_page' );
+	add_submenu_page('write', '固定ページ', '固定ページ', 'manage_options', 'set_page', 'set_page' );
+	add_submenu_page('write', 'TOP画像', 'TOP画像', 'manage_options', 'set_top_img', 'set_top_img' );
 
 	add_menu_page('各種設定', '各種設定', 'manage_options', 'config','config', 'dashicons-admin-tools', 8);
-	add_submenu_page('config', 'ページ設定', 'ページ設定', 'manage_options', 'config_page', 'config_page');
-	add_submenu_page('config', 'マイページ設定', 'マイページ設定', 'manage_options', 'config_mypage', 'config_mypage');
-	add_submenu_page('config', 'システム設定', 'システム設定', 'manage_options', 'config_system', 'config_system' );
-	add_submenu_page('config', 'アイテム設定', 'アイテム設定', 'manage_options', 'config_item', 'config_item');
-}
+	add_submenu_page('config', '時計/カレンダー', '時計/カレンダー', 'manage_options', 'config_page', 'config_page');
+	add_submenu_page('config', 'アイテム', 'アイテム', 'manage_options', 'config_item', 'config_item');
 
+	add_menu_page('情報', '情報', 'manage_options', 'manage','manage', 'dashicons-admin-tools', 9);
+	add_submenu_page('manage', 'EasyTalk', 'EasyTalk', 'manage_options', 'easytalk_list', 'easytalk_list');
+	add_submenu_page('manage', 'キャストジョブ', 'キャストジョブ', 'manage_options', 'castjob', 'castjob');
+	add_submenu_page('manage', 'お客様一覧', 'お客様一覧', 'manage_options', 'customer_list', 'customer_list');
+}
 
 
 function cast_regist(){
@@ -155,7 +158,6 @@ function cast_list(){
 }
 
 
-
 function staff_list(){
 	global $wpdb;
 	$n=0;
@@ -171,5 +173,19 @@ function staff_list(){
 }
 
 function staff_regist(){
+	global $wpdb;
+	$sql	 ="SELECT * FROM wp01_0charm_table";
+	$sql	.=" WHERE del=0";
+	$sql	.=" ORDER BY sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$cast_table[$res["sort"]]=$res;
+	}
+
+	$sql		="SELECT MAX(id) AS id_max FROM wp01_0staff";
+	$tmp_list	= $wpdb->get_row($sql,ARRAY_A);
+	$new_id		=$tmp_list["id_max"]+1;
+
     esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }

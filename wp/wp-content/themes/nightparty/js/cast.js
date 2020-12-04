@@ -300,15 +300,21 @@ $(function(){
 				$('.mail_detail_in').html(data),
 
 			).done(function(){
-//				$('.mail_detail_in').animate({ scrollTop:$('.mail_detail_in')[0].scrollHeight},5000),
-				$('.mail_detail_in').animate({ 'scrollTop':'500px'},5000),
-				$('.head_mymenu_arrow').addClass('mail_detail_back'),
-				$('.head_mymenu_ttl').text(Name),
-console.log("◎")
-			});
+				TMP_H=$('.mail_border').offset().top;
+/*
+				if(TMP_H ==0){
+					TMP_H=$('.mail_detail_in').height();
+				}
+*/
+				$('.mail_detail').scrollTop(TMP_H);
 
+				$('.head_mymenu_ttl').text(Name),
+				$('.head_mymenu_comm').addClass('arrow_mail')
+
+			});
 		});
 	});
+	
 
 	$('.detail_modal_link').on('click','.modal_link_point',function () {
 		Img=$(this).attr('id').replace('point_','');
@@ -334,12 +340,10 @@ console.log("◎")
 		$('.mail_write').slideDown();
 	});
 
-
-	$('.head_mymenu_comm').on('click','.mail_detail_back',function () {
-		$(this).removeClass('mail_detail_back');
+	$('.head').on('click','.arrow_mail',function () {
+		$(this).removeClass('arrow_mail');
 		$('.mail_detail').animate({'right':'-100vw'},200);
-			$('.head_mymenu_ttl').text('Easy Talk');
-
+		$('.head_mymenu_ttl').text('Easy Talk');
 	});
 
 	$('.reg_fav').on('click',function () {
@@ -353,7 +357,6 @@ console.log("◎")
 			$('#regist_fav').val('0');
 		}
 	});
-
 
 	$('#customer_regist_set').on('click',function () {
 		$.post({
@@ -1340,8 +1343,25 @@ console.log("VwBase:"+VwBase);
 		$('.log_list_del_name').text($(this).next().next().next().next().children('.item_name').val());
 		$('.log_list_del_price').text($(this).next().next().next().next().next().children('.item_price').val());
 		$('.log_list_del_item').css({'color':$(this).next().next().next().css('color'),'border-color':$(this).next().next().next().css('color')});
+	});
 
-		console.log($(this).next().next().next().next().children('.item_name').val());
+
+	$('.mail_detail_btn_send').on('click',function(){
+		$.post({
+			url:Dir + "/post/easytalk_send.php",
+			data:{
+				'log'		:$('.mail_write_text').val(),
+				'cast_id'	:CastId,
+				'send'		:'1',
+				'img'		:$('#img').val(),
+			},
+		}).done(function(data, textStatus, jqXHR){
+			$('.mail_detail_in').prepend(data)
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
 	});
 
 	$('#log_list_del_set').on('click',function () {
@@ -1750,6 +1770,21 @@ console.log("VwBase:"+VwBase);
 		}).done(function(data, textStatus, jqXHR){
 			console.log(Tmp)
 			console.log(data)
+		});
+	});
+
+	$('.log_item_set').on('change','.gp_name',function (){
+		Tmp=$(this).attr('id').replace('gp_name_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/gp_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
 		});
 	});
 

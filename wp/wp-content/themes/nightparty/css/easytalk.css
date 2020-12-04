@@ -246,19 +246,19 @@ ul {
 }
 
 .mail_box_log_1{
-	width			:66vw;
+	width			:64vw;
 	font-size		:3.5vw;
 	line-height		:6vw;
 	border-radius	:1vw 1vw 4vw 1vw;
-	padding			:2vw 2vw 7vw 2vw;
+	padding			:2vw;
 }
 
 .mail_box_log_2{
-	width			:66vw;
+	width			:64vw;
 	font-size		:3.5vw;
 	line-height		:6vw;
 	border-radius	:1vw 1vw 1vw 4vw;
-	padding			:2vw 2vw 7vw 2vw;
+	padding			:2vw
 }
 
 .main_sub{

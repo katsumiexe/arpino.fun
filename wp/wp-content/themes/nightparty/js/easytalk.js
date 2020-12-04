@@ -1,27 +1,18 @@
 $(function(){ 
-	$('#send_mail').on('click',function(){
-		Tmp=$('.main_mail')[0].scrollHeight;
-		Tmp1=$('.main_mail').scrollTop();
+	Tmp=$('.main_mail').height();
+	$('.main_mail').scrollTop(Tmp);
 
+	$('#send_mail').on('click',function(){
 		$.post({
 			url:Dir + "/post/easytalk_send.php",
 			data:{
+				'send'	:'2',
 				'log'	:$('#send_msg').val(),
 				'sid'	:$('#ssid').val(),
 				'img'	:$('#img').val(),
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$.when(
-				$('.main_mail').prepend(data)
-			).done(function(){
-				Tmp2=$('.main_mail')[0].scrollHeight - Tmp + Tmp1,
-				$('#send_msg').val('')
-				$('.main_mail').scrollTop(Tmp2);
-			});
-			$('.main_mail').animate({ scrollTop:0},500);
-
-//				.animate({ scrollTop:0},1000);
-//				$('.main_mail').animate({ scrollTop: $('.main_mail')[0].scrollHeight},300);
+			$('.main_mail').prepend(data)
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

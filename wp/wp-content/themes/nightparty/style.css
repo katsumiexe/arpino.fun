@@ -278,23 +278,27 @@ ul {
 }
 
 .main_b_title{
+	position		:relative;
 	display			:inline-block;
-	width			:863px;
+	width			:853px;
 	height			:40px;
 	line-height		:40px;
-	color			:#aa8020;
-	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	color			:#fafafa;
+	background		:#302520;
+	background		:linear-gradient(#c8b880 0%, #a89860 50% , #c8b880 100%);
 	margin			:10px auto;
 	font-size		:18px;
-	font-weight		:600;
-	padding-left	:5px;
+	font-weight		:400;
+	padding-left	:15px;
 	text-align		:left;
 	border			:1px solid #c8b880;
 	margin-block-start	:0;
 	margin-block-end	:0;
+	border-radius:10px 10px 0 0;
 }
 
 .main_b_title_l{
+	position		:relative;
 	display			:inline-block;
 	width			:600px;
 	height			:40px;
@@ -309,6 +313,7 @@ ul {
 	border			:1px solid #c8b880;
 	margin-block-start	:0;
 	margin-block-end	:0;
+	text-shadow		:1px 1px #e0d098 ;
 }
 
 .main_b_1{
@@ -446,7 +451,6 @@ ul {
 	text-align:right
 }
 
-
 .sub_blog_in{
 	display		:inline-block;
 	width		:300px;
@@ -456,8 +460,6 @@ ul {
 	padding		:0;
 	text-align	:center;
 }
-
-
 
 .main_c{
 	display		:inline-block;
@@ -653,28 +655,23 @@ ul {
 	background	:linear-gradient(#1a1a1a,#3a3a3a);
 }
 
+.access_table{
+	display		:flex;
+	width		:1120px;
+	margin		:5px auto;
+	height		:420px;
+	position	:relative;
+	margin-bottom:10px;
+}
+
 .access_map{
-	flex-basis	:650px;
-	height		:300px;
+	flex-basis	:800px;
+	height		:400px;
 	background	:#fafafa;
 	color		:#303030;
 	margin		:10px;
 }
 
-.access_map_in{
-	width:650px;
-	height:300px;
-}
-
-.access_table{
-	border		:1px solid #c8b880;
-	display		:flex;
-	width		:1020px;
-	margin		:5px auto;
-	height		:320px;
-	position	:relative;
-	background	:#302520;
-}
 
 .access_sig{
 	display		:inline-block;
@@ -742,10 +739,10 @@ ul {
 .sys_box_ttl{
     display			:inline-block;
 	font-size		:24px;
-	width			:1000px;
+	width			:1080px;
 	height			:30px;
 	line-height		:30px;
-	margin			:10px auto 10px 10px;
+	margin			:10px 30px;
 	font-weight		:800;
 	color			:#c8b880;
 	text-shadow		:1px 1px 0px rgba(30,30,30,0);
@@ -754,8 +751,8 @@ ul {
 }
 
 .sys_box_log{
-	width			:1180px;
-	margin			:0 auto;
+	width			:1160px;
+	margin			:0 20px 30px 20px;
     display			:inline-block;
 	padding			:5px 10px;
 	color			:#c8c8b8;
@@ -763,8 +760,8 @@ ul {
 
 .system_title{
 	display			:inline-block;
-	height			:32px;
-	line-height		:32px;
+	height			:24px;
+	line-height		:24px;
 	font-size		:20px;
 	font-weight		:800;
 	width			:780px;
@@ -1175,8 +1172,6 @@ ul {
 	position		:absolute;
 	bottom			:3px;
 	left			:0;
-	height			:18px;
-	width			:70px;
 	background		:#c8c0b0;
 	text-align		:right;
 	padding			:3px 10px;
@@ -1424,11 +1419,91 @@ ul {
 
 .main_blog_title{
 	width			:95vw;
+	height			:5vw;
+	line-height		:5vw;
+	margin			:0 auto;
+	font-size		:3vw;
+	padding-left	:1vw;
+}
+
+
+.page_box{
+	width			:96vw;
 	height			:10vw;
 	line-height		:10vw;
-	margin			:0 auto;
-	font-size		:4.5vw;
-	padding-left	:1vw;
+	margin			:0 auto 1vw auto;
+	border-radius	:0.5vw;
+}
+
+.blog_h1{
+	display			:inline-block;
+	width			:47vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+}
+
+.all_cast{
+	width			:47vw;
+	height			:10vw;
+	line-height		:10vw;
+}
+
+
+.all_cast_name{
+	bottom			:1vw;
+	left			:11vw;
+	width			:35vw;
+	height			:3vw;
+	line-height		:3vw;
+	font-size		:3vw;
+}
+
+.all_cast_img{
+	top				:1vw;
+	left			:1vw;
+	width			:8vw;
+	height			:8vw;
+}
+
+
+.all_cast_icon{
+	top				:1vw;
+	left			:11vw;
+	width			:2.5vw;
+	height			:2.5vw;
+	line-height		:2.5vw;
+	font-size		:2.5vw;
+}
+
+.all_cast_last{
+	top				:1vw;
+	left			:14vw;
+	width			:25vw;
+	width			:2.5vw;
+	height			:2.5vw;
+	line-height		:2.5vw;
+	font-size		:2.5vw;
+}
+
+.all_cast_count{
+	top				:1vw;
+	right			:1vw;
+	width			:8vw;
+	height			:3vw;
+	line-height		:3vw;
+	font-size		:2.5vw;
+	border-radius	:0.5vw;
+	padding-right	:0.5vw;
+}
+
+.page_n{
+	width		:8vw;
+	height		:6vw;
+	line-height	:6vw;
+	margin		:2vw auto ;
+	border		:1px solid #e8d8a0;
+	font-size	:4vw;
 }
 
 
@@ -1437,11 +1512,22 @@ ul {
 	text-align	:center
 }
 
+.sub_blog_pack{
+	display			:flex;
+	justify-content	:space-between;
+	width		:96vw;
+}
+
 
 .sub_blog_in{
-	width		:96vw;
-	margin-bottom:5vw;
+	border		:none;
+	width		:47vw;
+	flex-basis	:47vw;
+	margin-bottom:0;
+	margin		:1vw;
 }
+
+
 
 .menu-item {
 	width		:14%;
@@ -1516,7 +1602,7 @@ ul {
 }
 
 .main_e{
-	width			:88vw;
+	width			:92vw;
 	padding			:1vw 3vw;
 	margin			:1vw auto;
 }
@@ -1530,12 +1616,12 @@ ul {
 
 
 .main_d_title,.main_b_title{
-	width			:93vw;
+	width			:91.5vw;
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto;
 	font-size		:5vw;
-	padding-left	:1vw;
+	padding-left	:2.5vw;
 }
 
 .main_d_1,.main_b_1{
@@ -1564,6 +1650,7 @@ ul {
 	height		:5vw;
 	line-height	:5vw;
 	font-size	:4vw;
+	margin:1vw;
 }
 
 .main_d_1_2_sch,.main_b_1_2_sch{
@@ -1727,19 +1814,18 @@ ul {
 }
 
 .access_table{
-	width		:98vw;
-	margin		:1vw auto;
+	width		:92vw;
+	margin		:1vw auto 5vw auto;
 	height		:auto;
 	flex-wrap	:wrap;
 }
 
 .access_sig{
-	width			:90vw;
-	margin			:1vw auto;
+	width			:92vw;
+	margin			:1vw auto 2vw auto;
 	font-size		:0;
 	text-align		:center;
 	border-radius	:2vw;
-	margin			:1vw 2vw;
 }
 
 .access_tag{
@@ -1787,6 +1873,7 @@ ul {
 .sys_box_log{
 	width			:86vw;
 	padding			:1vw 2vw;
+	margin:0;
 }
 
 .system_title{
@@ -1969,15 +2056,22 @@ ul {
 	cursor			:pointer;
 }
 
+.sub_blog_pack{
+	display			:inline-block;
+}
+
+
 
 .access_map{
-	flex-basis	:98vw;
-	height		:90vw;
+	margin:0 0 2vw 0;
+	flex-basis	:92vw;
+	width		:92vw;
+	height		:92vw;
 }
 
 .access_map_in{
-	width:90vw;
-	height:90vw;
+	width		:92vw;
+	height		:92vw;
 }
 
 .access_table{
@@ -2000,6 +2094,10 @@ ul {
 	font-size	:5vw;
 }
 
+.sub_blog_in{
+	width		:96vw;
+	margin-bottom:5vw;
+}
 
 .blog_h1{
 	display		:inline-block;
@@ -2181,8 +2279,6 @@ ul {
 	margin		:1vw 2vw;
 }
 
-
-
 .blog_ttl_btm{
 	width		:90vw;
 	height		:10vw;
@@ -2191,9 +2287,11 @@ ul {
 
 .blog_ttl_tag{
 	bottom			:1vw;
-	height			:4vw;
-	width			:15vw;
+	line-height		:6vw;
+	width			:28vw;
 	border-radius	:1vw;
+	padding			:0.5vw 1vw;
+	text-align		:left;
 }
 
 .blog_ttl_date{

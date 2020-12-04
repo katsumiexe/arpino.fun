@@ -22,7 +22,6 @@ foreach($res as $a1){
 		$sort[$a1["id"]]=999999;
 }
 
-
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 
@@ -56,10 +55,6 @@ get_header();
 			<div id="dot4" class="slide_dot"></div>
 		</div>
 	</div>
-
-
-
-
 	<div class="main_b">
 		<div class="main_b_top">
 			<div class="main_b_notice"></div>
@@ -82,7 +77,7 @@ get_header();
 						<span class="main_b_1_2_f f_br">u</span>
 						<span class="main_b_1_2_f f_bl">u</span>
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
-						<span class="main_b_1_2_sch"></span>
+						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
 					<span class="main_b_1_3"></span>
 				</a>
