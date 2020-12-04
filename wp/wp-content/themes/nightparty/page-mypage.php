@@ -995,10 +995,6 @@ $(function(){
 			<div class="mail_detail_in"></div>
 		</div>
 	</div>
-	
-
-
-
 
 
 	<?}elseif($cast_page==4){?>
