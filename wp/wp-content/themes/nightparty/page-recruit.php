@@ -25,17 +25,24 @@ get_header();
 		<span class="footmark_text">RECRUIT</span>
 	</div>
 </div>
-<div class="main_b">
-<?for($n=0;$n<count($recruit);$n++){?>
-	<?if($recruit[$n]["post_content"]){?>
-	<div class="rec"><div class="rec_l"><?=$recruit[$n]["post_title"]?></div><div class="rec_r"><?=$recruit[$n]["post_content"]?></div></div>
+
+<div class="main_e">
+	<span class="sys_box_ttl">Recruit</span><br>
+	<?for($n=0;$n<count($recruit);$n++){?>
+		<?if($recruit[$n]["post_content"]){?>
+		<div class="rec">
+			<div class="rec_l"><?=$recruit[$n]["post_title"]?></div>
+			<div class="rec_r"><?=$recruit[$n]["post_content"]?></div>
+		</div>
+		<?}?>
 	<?}?>
-<?}?>
+	<?if(!$recruit){?>
+		<span class="sys_box_log">情報はまだありません</span><br>
+	<?}?>
+	<span class="main_e_f f_tr">o</span>
+	<span class="main_e_f f_tl">o</span>
+	<span class="main_e_f f_br">o</span>
+	<span class="main_e_f f_bl">o</span>
 </div>
 
-<?if(!$recruit){?>
-<div class="main_e">
-<span class="sys_box_log">情報はまだありません</span><br>
-</div>
-<?}?>
 <?php get_footer(); ?>
