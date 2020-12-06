@@ -5,10 +5,15 @@ EasyTalk_customer_send
 
 require_once ("./post_inc.php");
 
-$log	=$_POST['log'];
-$sid	=$_POST['sid'];
-$img	=$_POST['img'];
-$send	=$_POST['send'];
+$customer_id	=$_POST['customer_id'];
+$cast_id		=$_POST['cast_id'];
+$log			=$_POST['log'];
+$sid			=$_POST['sid'];
+$img			=$_POST['img'];
+$send			=$_POST['send'];
+$customer_name	=$_POST['customer_name'];
+$customer_mail	=$_POST['customer_mail'];
+
 $now	=date("Y-m-d H:i:s",$jst);
 $now_dat=date("Y.m.d H:i",$jst);
 
@@ -26,49 +31,43 @@ if($send==1){
 		$enc.=$a1["key"];
 	}
 
-	$sql	 ="INSERT INTO wp01_ssid";
-	$sql	.="(ssid,cast_id,customer_id,`date`,mail)";
+	$sql	 ="INSERT INTO wp01_0ssid";
+	$sql	.="(ssid,cast_id,customer_id,`date`,`mail`)";
 	$sql	.="VALUES";
-	$sql	.="('{$enc}','{$cast_id}','{$customer_id}','{$now}','{$mail}')";
+	$sql	.="('{$enc}','{$cast_id}','{$customer_id}','{$now}','{$customer_mail}')";
+
 	$wpdb->query($sql);
 
 
-	$mailer = new PHPMailer();
-	$mailer->IsSMTP();
+	$from	="counterpost2016@gmail.com";
+	$title	=$session["genji"]."より(EasyTalk)";
+	$to		=$customer_mail;
 
-	$mailer->Host		= $host;
-	$mailer->CharSet	= 'utf-8';
-	$mailer->SMTPAuth	= TRUE;
-	$mailer->Username	= $mail_from;
-	$mailer->Password	= $mail_pass;
-	$mailer->SMTPSecure = 'tls';
-	$mailer->Port		= 587;
-//	$mailer->SMTPDebug = 2;
-
-	$mailer->From     = $mail_from;
-	$mailer->FromName = mb_convert_encoding("写真名刺作成サイト★OnlyMe","UTF-8","AUTO");
-	$mailer->Subject  = mb_convert_encoding('会員登録確認',"UTF-8","AUTO");
-	$mailer->Body     = mb_convert_encoding($msg,"UTF-8","AUTO");
-	$mailer->AddAddress($me_mail);
-
-	if($mailer->Send()){
-	}else{
-		$sql="INSERT INTO mail_error_log (`date`,`log_no`,`to_mail`)";
-		$sql.=" VALUES('{$date}','regist.php','{$me_mail}');";
-		mysqli_query($mysqli,$sql);
+	if(!$customer_name){
+	$body	.=$customer_name."様\n\n";
 	}
 
+	$body	.=$session["genji"]."様からのメッセージが届いています\n";
+	$body	.="下記のURLから内容をご確認ください。\n";
+	$body	.="https://arpino.fun/wp/easytalk.php?ss=".$enc."\n\n\n";
 
+	$body	.="===========================";
+	$body	.="Piyo-Piyo.work";
+	$body	.="https:arpino.fun/wp";
+	$body	.="080-1111-1111";
+	$body	.="info@piyo-piyo.work";
 
-
+//	temp_mail($from, $from_name, $to, $title, $body);
 }
+
 
 $sql	 ="INSERT INTO wp01_0castmail";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
 $sql	.="VALUES";
-$sql	.="('{$now}','{$tmp["customer_id"]}','{$tmp["cast_id"]}','{$send}','{$log}','{$img}')";
-
+$sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img}')";
 $wpdb->query($sql);
+
+
 $log=str_replace("\n","<br>",$log);
 
 
@@ -80,5 +79,4 @@ $dat.="<span class=\"mail_box_date_b\"><span class=\"midoku\">未読</span>　{$
 $dat.="</div>";
 echo $dat;
 exit();
-
 ?>

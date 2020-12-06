@@ -286,13 +286,15 @@ $(function(){
 
 	$('.mail_hist').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
-		Tmp=$(this).attr('id').replace('mail_hist','');
-		Name=$(this).children('.mail_name').text();
+
+		Customer_id=$(this).attr('id').replace('mail_hist','');
+
+		Customer_Name=$(this).children('.mail_name').text();
 		$.post({
 			url:Dir + "/post/mail_hist.php",
 			data:{
 				'cast_id'	:CastId,
-				'c_id'		:Tmp
+				'c_id'		:Customer_id
 			},
 
 		}).done(function(data, textStatus, jqXHR){
@@ -308,7 +310,7 @@ $(function(){
 */
 				$('.mail_detail').scrollTop(TMP_H);
 
-				$('.head_mymenu_ttl').text(Name),
+				$('.head_mymenu_ttl').text(Customer_Name),
 				$('.head_mymenu_comm').addClass('arrow_mail')
 
 			});
@@ -1354,6 +1356,10 @@ console.log("VwBase:"+VwBase);
 				'cast_id'	:CastId,
 				'send'		:'1',
 				'img'		:$('#img').val(),
+
+				'customer_id'	:Customer_id,
+				'customer_name'	:Customer_Name,
+				'customer_mail'	:Customer_mail,
 			},
 		}).done(function(data, textStatus, jqXHR){
 			$('.mail_detail_in').prepend(data)
