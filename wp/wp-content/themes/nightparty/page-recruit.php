@@ -39,10 +39,10 @@ get_header();
 	<?if(!$recruit){?>
 		<span class="sys_box_log">情報はまだありません</span><br>
 	<?}?>
-	<span class="main_e_f f_tr">o</span>
-	<span class="main_e_f f_tl">o</span>
-	<span class="main_e_f f_br">o</span>
-	<span class="main_e_f f_bl">o</span>
+<span class="main_e_f f_tr"></span>
+<span class="main_e_f f_tl"></span>
+<span class="main_e_f f_br"></span>
+<span class="main_e_f f_bl"></span>
 </div>
 
 <?php get_footer(); ?>
