@@ -4,14 +4,14 @@ Template Name: castblog
 */
 
 $tag_icon[0]="";
-$tag_icon[1]="";
-$tag_icon[2]="";
-$tag_icon[3]="";
-$tag_icon[4]="";
-$tag_icon[5]="";
-$tag_icon[6]="";
-$tag_icon[7]="";
-$tag_icon[8]="";
+$tag_icon["tag1"]="";
+$tag_icon["tag2"]="";
+$tag_icon["tag3"]="";
+$tag_icon["tag4"]="";
+$tag_icon["tag5"]="";
+$tag_icon["tag6"]="";
+$tag_icon["tag7"]="";
+$tag_icon["tag8"]="";
 
 $pg=$_REQUEST["pg"];
 if($pg+0<1) $pg=1;
@@ -46,7 +46,7 @@ foreach($res as $a1){
 
 //■キャスト件数カウント
 $sql ="";
-$sql ="SELECT T.slug, C.genji, COUNT(T.term_id) AS cnt FROM wp01_posts AS P";
+$sql ="SELECT T.slug, MAX(P.post_date) AS last, C.genji, COUNT(T.term_id) AS cnt FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R on P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T on X.term_id=T.term_id";
@@ -57,11 +57,13 @@ $sql.=" AND post_status='publish'";
 $sql.=" AND post_date<='{$now}'";
 $sql.=" AND X.taxonomy='category'";
 $sql.=" GROUP BY slug";
+$sql.=" ORDER BY post_date ASC";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
-	$cast_name[$a1["slug"]]=$a1["genji"];
+	$cast_name[$a1["slug"]]	=$a1["genji"];
 	$cast_count[$a1["slug"]]=$a1["cnt"];
+	$last_date[$a1["slug"]]	=str_replace("-",".",substr($a1["last"],0,10));
 
 
 	if (file_exists(get_template_directory()."/img/page/{$a1["slug"]}/1.jpg")) {
@@ -69,9 +71,8 @@ foreach($res as $a1){
 	}else{
 		$cast_face[$a1["slug"]]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
-//	$all_cast[$n]["last"]=date("Y.m.d H:i",strtotime($all_cast[$n]["last"]));
-
 }
+
 ksort($cast_count);
 
 //■カテゴリ件数カウント
@@ -373,7 +374,7 @@ get_header();
 						<span class="all_cast_img"><img src="<?=$cast_face[$a1]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 						<span class="all_cast_name"><?=$cast_name[$a1]?></span>
 						<span class="all_cast_icon"></span>
-						<span class="all_cast_last"><?=$all_cast[$s]["last"]?></span>
+						<span class="all_cast_last">更新：<?=$last_date[$a1]?></span>
 						<span class="all_cast_count"><?=$a2?></span>
 					</a>
 				<?}?>
