@@ -1012,15 +1012,15 @@ ul {
 	height			:60px;
 	line-height		:60px;
 	font-size		:0;
-	background		:#fafafa;
-	border-bottom	:solid 1px #303030;
+//	background		:#fafafa;
+	border-bottom	:solid 1px #c8b880;
 }
 
 .all_cast_name{
 	position		:absolute;
 	bottom			:5px;
 	left			:65px;
-	color			:#303030;
+	color			:#c8b880;
 	width			:230px;
 	height			:25px;
 	line-height		:25px;
