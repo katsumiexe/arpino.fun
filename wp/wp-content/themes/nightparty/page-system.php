@@ -28,10 +28,10 @@ get_header();
 <div class="main_e">
 <span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
 <span class="sys_box_log"><?=$a1["post_content"]?></span><br>
-<span class="main_e_f f_tr">o</span>
-<span class="main_e_f f_tl">o</span>
-<span class="main_e_f f_br">o</span>
-<span class="main_e_f f_bl">o</span>
+<span class="main_e_f f_tr"></span>
+<span class="main_e_f f_tl"></span>
+<span class="main_e_f f_br"></span>
+<span class="main_e_f f_bl"></span>
 </div>
 <br>
 <?}?>
