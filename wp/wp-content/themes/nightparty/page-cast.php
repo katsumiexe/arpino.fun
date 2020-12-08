@@ -78,6 +78,12 @@ for($e=0;$e<7;$e++){
 
 		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
 		<span class="main_d_1_2">
+			<span class="main_b_1_2_h"></span>
+			<span class="main_b_1_2_f f_tr"></span>
+			<span class="main_b_1_2_f f_tl"></span>
+			<span class="main_b_1_2_f f_br"></span>
+			<span class="main_b_1_2_f f_bl"></span>
+
 			<span class="main_d_1_2_name"><?=$dat[$b1]["genji"]?></span>
 			<span class="main_d_1_2_sch"><?=$dat[$b1]["sch"]?></span>
 		</span>

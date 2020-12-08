@@ -165,6 +165,7 @@ get_header();
 	</div>
 
 	<div class="person_middle">
+		<div class="prof_title">Profile</div>
 		<table class="prof">
 			<tr>
 				<td class="prof_l">名前</td>
@@ -172,7 +173,7 @@ get_header();
 			</tr>
 			<?=$charm_list?>
 		</table>
-
+		<div class="sche_title">Schedule</div>
 		<table class="sche">
 			<?=$list?>
 		</table>
