@@ -41,9 +41,9 @@ Template Name: access
 			</div>
 		</div>
 	</div>
-	<span class="main_e_f f_tr">o</span>
-	<span class="main_e_f f_tl">o</span>
-	<span class="main_e_f f_br">o</span>
-	<span class="main_e_f f_bl">o</span>
+<span class="main_e_f f_tr"></span>
+<span class="main_e_f f_tl"></span>
+<span class="main_e_f f_br"></span>
+<span class="main_e_f f_bl"></span>
 </div>
 <?php get_footer(); ?>
