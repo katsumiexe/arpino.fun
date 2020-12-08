@@ -16,10 +16,12 @@
 }
 
 .person_middle{
+	font-size		:0;
 	display			:inline-block;
 	position		:relative;
 	flex			:1;
 	min-height		:500px;	
+	text-align:left;
 }
 
 .person_right{
@@ -58,8 +60,8 @@
 	top				:2px;
 	left			:90px;
 	width			:150px;
-	height			:22px;	
-	line-height		:22px;	
+	height			:22px;
+	line-height		:22px;
 	font-size		:12px;
 	text-align		:left;
 	font-weight		:700;
@@ -137,7 +139,7 @@
 
 .prof{
 	border-collapse: collapse;
-	margin:7px 0;
+	margin:0;
 }
 
 .prof_l{
@@ -198,7 +200,7 @@
 
 .sche{
 	border-collapse: collapse;
-	margin:10px 0;
+	margin:0;
 }
 
 .sche_l_1,

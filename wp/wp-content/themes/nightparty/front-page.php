@@ -70,7 +70,6 @@ get_header();
 					<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
 					<span class="main_b_1_2">
 						<span class="main_b_1_2_h"></span>
-						<span class="main_b_1_2_w"></span>
 
 						<span class="main_b_1_2_f f_tr"></span>
 						<span class="main_b_1_2_f f_tl"></span>
