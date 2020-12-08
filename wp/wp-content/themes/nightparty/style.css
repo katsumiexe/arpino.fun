@@ -325,7 +325,7 @@ ul {
 	position		:relative;
 	display			:inline-block;
 	width			:198px;	
-	height			:325px;
+	height			:330px;
 	background		:linear-gradient(135deg,#fafafa,#e0e0e0);
 	background		:linear-gradient(135deg,#FAEDDB,#cabdab);
 	background		:linear-gradient(135deg,#d8c890 0%, #e0d098 50% , #c8b880 100%);
@@ -360,7 +360,8 @@ ul {
 	right		:0;
 	margin		:auto;
 	width		:170px;
-	height		:40px;
+	height		:50px;
+	text-align	:center;
 	background	:linear-gradient(135deg,#FAEDDB,#cabdab);
 	padding:5px;
 	border-top		:2px solid #483800;
@@ -373,12 +374,13 @@ ul {
 .main_b_1_2_name{
 	display		:inline-block;
 	width		:150px;
-	height		:18px;
-	line-height	:18px;
-	color		:#606040;
-	font-size	:16px;
-	margin:5px 0 0 15px;
+	height		:20px;
+	line-height	:20px;
+	color		:#483800;
+	font-size	:20px;
+	margin:3px auto 10px auto;
 	font-weight:600;
+	text-align:center;
 }
 
 .main_b_1_2_sch{
@@ -386,9 +388,9 @@ ul {
 	width		:150px;
 	height		:16px;
 	line-height	:16px;
-	text-align	:right;
-	color		:#a0a060;
+	color		:#483800;
 	font-size	:14px;
+	text-align:center;
 }
 
 .main_b_1_2_f{
@@ -396,7 +398,9 @@ ul {
 	position	:absolute;
 	font-size	:20px;
 	color		:#302520;
+	color		:#483800;
 	font-family	:at_frame1;
+	font-weight:600;
 }
 
 .f_tr{
@@ -435,7 +439,7 @@ ul {
 	right			:0;
 	bottom			:0;
 	margin			:auto;
-	height			:40px;
+	height			:50px;
 	width			:140px;
 	border-top		:1px solid #302520;
 	border-bottom	:1px solid #302520;
@@ -1672,8 +1676,7 @@ ul {
 	height		:5vw;
 	line-height	:5vw;
 	font-size	:4vw;
-	margin-top	:1vw;
-	margin-left	:2vw;
+	margin		:1vw auto 1.5vw auto;
 
 }
 
@@ -1689,10 +1692,10 @@ ul {
 	font-size	:5vw;
 }
 
-.main_b_1_2_h,.main_b_1_2_w{
-	display:none;
+.main_b_1_2_h{
+	height			:11.5vw;
+	width			:24vw;
 }
-
 
 
 .main_d_1_3,.main_b_1_3{
