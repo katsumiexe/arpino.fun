@@ -988,13 +988,19 @@ $(function(){
 			</div>
 		<?}?>
 		<div class="mail_detail">
-			<div class="mail_write">
-				<textarea class="mail_write_text"></textarea>
-				<div class="mail_detail_btn"></div>
-			</div>
 			<div class="mail_detail_in"></div>
+			<div class="mail_write">
+				<textarea class="mail_write_text"></textarea><br>
+				<div class="mail_detail_btn_img">画像</div>
+				<div class="mail_detail_btn_send">送信</div>
+				<div class="mail_detail_btn_del">クリア</div>
+			</div>
 		</div>
 	</div>
+	
+
+
+
 
 
 	<?}elseif($cast_page==4){?>
@@ -1229,9 +1235,10 @@ $(function(){
 		</td>
 	</tr>
 </table>
+
 <div class="config_box">
 	<span class="config_tag1">USER_ID：</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
-	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="off"><br>
+	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="new-password"><br>
 	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
 	<span class="config_tag1">メール:</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
 	<span class="config_tag2">LINE連携:</span>
@@ -1284,7 +1291,42 @@ $(function(){
 
 </div>
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">顧客グループ設定</span></div></h2>
+<div class="config_box">
+<table class="log_item_set">
+<thead>
+	<tr>
+		<td></td>
+		<td class="log_td_top">順</td>
+		<td class="log_td_top">名前</td>
+		<td class="log_td_top">替</td>
+	</tr>
+</thead>
 
+<tbody id="gp_sort">
+	<?foreach($cus_group_sel as $a1 => $a2){?>
+		<tr id="gp<?=$a1?>">
+			<td class="log_td_del"><span class="gp_del_in"></span></td>
+			<td class="log_td_order"><?=$a1?></td>
+
+			<td class="log_td_name">
+				<input id="gp_name_<?=$a1?>" type="text" value="<?=$a2?>" class="gp_name">
+			</td>
+			<td class="log_td_handle"></td>
+		</tr>
+	<?}?>
+</tbody>
+	<tr>
+		<td colspan="4" style="height:5px;"></td>
+	</tr><tr>
+		<td class="log_td_order_new" colspan="2">追加</td>
+
+		<td class="log_td_name">
+			<input id="gp_new" type="text" value=" " class="item_name">
+		</td>
+		<td class="log_td_handle"><span id="gp_set"></span></td>
+	</tr>
+</table>
+</div>
 
 
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
@@ -1296,11 +1338,12 @@ $(function(){
 		<td class="log_td_top">順</td>
 		<td class="log_td_top">色</td>
 		<td class="log_td_top">絵</td>
-		<td class="log_td_top">名前(6文字)</td>
+		<td class="log_td_top">名前(8文字)</td>
 		<td class="log_td_top">金額(6桁)</td>
 		<td class="log_td_top">替</td>
 	</tr>
 </thead>
+
 <tbody id="item_sort">
 	<?foreach($log_item as $a1){?>
 		<tr id="i<?=$a1["sort"]?>">

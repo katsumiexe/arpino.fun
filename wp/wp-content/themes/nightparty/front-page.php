@@ -71,12 +71,11 @@ get_header();
 					<span class="main_b_1_2">
 						<span class="main_b_1_2_h"></span>
 						<span class="main_b_1_2_w"></span>
-<!--
-						<span class="main_b_1_2_f f_tr">u</span>
-						<span class="main_b_1_2_f f_tl">u</span>
-						<span class="main_b_1_2_f f_br">u</span>
-						<span class="main_b_1_2_f f_bl">u</span>
--->
+
+						<span class="main_b_1_2_f f_tr"></span>
+						<span class="main_b_1_2_f f_tl"></span>
+						<span class="main_b_1_2_f f_br"></span>
+						<span class="main_b_1_2_f f_bl"></span>
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
 						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
