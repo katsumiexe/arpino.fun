@@ -4,14 +4,14 @@ Template Name: castblog
 */
 
 $tag_icon[0]="";
-$tag_icon[1]="";
-$tag_icon[2]="";
-$tag_icon[3]="";
-$tag_icon[4]="";
-$tag_icon[5]="";
-$tag_icon[6]="";
-$tag_icon[7]="";
-$tag_icon[8]="";
+$tag_icon["tag1"]="";
+$tag_icon["tag2"]="";
+$tag_icon["tag3"]="";
+$tag_icon["tag4"]="";
+$tag_icon["tag5"]="";
+$tag_icon["tag6"]="";
+$tag_icon["tag7"]="";
+$tag_icon["tag8"]="";
 
 $pg=$_REQUEST["pg"];
 if($pg+0<1) $pg=1;
