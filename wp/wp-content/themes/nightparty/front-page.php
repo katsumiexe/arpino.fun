@@ -66,7 +66,8 @@ get_header();
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>
-				<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1 shine">
+				<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+				<span class="shine">
 					<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
 					<span class="main_b_1_2">
 						<span class="main_b_1_2_h"></span>
@@ -78,7 +79,7 @@ get_header();
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
 						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
-					<span class="main_b_1_3"></span>
+				</span>
 				</a>
 			<? } ?>
 		</div>

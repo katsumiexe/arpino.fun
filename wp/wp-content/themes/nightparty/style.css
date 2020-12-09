@@ -330,56 +330,50 @@ ul {
 	display			:inline-block;
 	width			:198px;	
 	height			:330px;
-	background		:linear-gradient(135deg,#fafafa,#e0e0e0);
-	background		:linear-gradient(135deg,#FAEDDB,#cabdab);
 	background		:linear-gradient(135deg,#d8c890 0%, #e0d098 50% , #c8b880 100%);
 	margin			:6px;
-	border			:0;
 	border-top		:2px solid #f8e8b0;
 	border-left		:2px solid #f8e8b0;
 	border-right	:2px solid #483800;
 	border-bottom	:2px solid #483800;
+	overflow		:hidden;	
 }
 
-.shine{
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
+.main_c_1{
+	position	:absolute;
+	display		:inline-block;
+	width		:200px;
+	height		:400px;
+	background	:#000090;
+	border		:2px solid transparent;
+	overflow	:hidden;	
+	
 }
 
 .shine:hover{
-	content: "";
-	animation: shine 30s cubic-bezier(0.25, 0, 0.25, 1) infinite;
-	background: #000090;
-	width: 140%;
-	height: 100%;
-	transform: skewX(-45deg);
-	top: 0;
-	left: -160%;
-	opacity: 0.5;
-	position: absolute;
+    animation-name		:effect;
+    animation-duration	: 5s;
+    animation-timing-function: linear;
 }
 
-@keyframes shine{
+@keyframes effect{
 	0% {
-		left: -160%;
+		left: -60%;
 		opacity: 0;
 	}
 	70% {
-		left: -160%;
+		left: -60%;
 		opacity: 0.5;
 	}
 	71% {
-		left: -160%;
+		left: -60%;
 		opacity: 1;
 	}
 	100% {
-		left: -20%;
+		left: 0%;
 		opacity: 0;
 	}
 }
-
-
 
 
 .main_b_1_1{
