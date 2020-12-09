@@ -37,8 +37,6 @@ foreach($res as $a1){
 		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_main\">";
 		$face_b="<img id=\"i1\" src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
 
-//		if($a1["face2"] > 0){
-
 		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/2.jpg")) {
 			$face_b.="<img id=\"i2\" src=\"{$link}/img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
 		}
@@ -87,13 +85,11 @@ $sql="SELECT id, charm,style FROM wp01_0charm_table WHERE del=0 ORDER BY sort AS
 $res3 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res3 as $a3){
 	if($a3["style"] == 1){
-	$charm_list.="<tr><td class=\"prof_l2\" colspan=\"2\">{$a3["charm"]}</td></tr><tr><td class=\"prof_r2\" colspan=\"2\">{$charm[$a3["id"]]}</td></tr>";
+	$charm_list.="<tr><td class=\"prof_0\" colspan=\"2\"></td></tr><tr><td class=\"prof_l2\" colspan=\"2\">{$a3["charm"]}</td></tr><tr><td class=\"prof_r2\" colspan=\"2\">{$charm[$a3["id"]]}</td></tr>";
 	}else{
-	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr><tr><td class=\"prof_0\" colspan=\"2\"></td></tr>";
+	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr>";
 	}
 }
-
-
 
 $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);

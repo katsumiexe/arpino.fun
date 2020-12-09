@@ -284,14 +284,14 @@ ul {
 .main_b_title,.main_b_title_l,.prof_title,.sche_title{
 	position		:relative;
 	display			:inline-block;
-	width			:853px;
+	width			:858px;
 	height			:40px;
 	line-height		:40px;
 	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
 	margin			:10px auto;
 	font-size		:18px;
 	font-weight		:600;
-	padding-left	:5px;
+	padding-left	:10px;
 	text-align		:left;
 	border			:1px solid #c8b880;
 	margin-block-start	:0;
@@ -1253,6 +1253,7 @@ ul {
 	background		:#fafafa;
 	background		:#302520;
 	margin-bottom	:20px;
+	border-radius	:10px 10px 0 0;
 }
 
 .blog_calendar_m{
@@ -1263,8 +1264,12 @@ ul {
 	border			:1px solid #c8b880;
 	background		:#c8b880;
 	color			:#786820;
-	font-weight		:800;
+	font-size		:20px;
+	font-weight		:600;
+	color			:#483800;
+	text-shadow		:1px 1px 0 #ffffff;
 }
+
 
 .blog_calendar_n{
 	text-align		:center;
@@ -1273,7 +1278,9 @@ ul {
 	font-size		:30px;
 	border			:1px solid #c8b880;
 	background		:#c8b880;
-	color			:#786820;
+	font-weight		:600;
+	color			:#483800;
+	text-shadow		:1px 1px 0 #ffffff;
 	font-family		:at_icon;
 	cursor			:pointer;
 }
@@ -1541,7 +1548,6 @@ ul {
 	font-size	:4vw;
 }
 
-
 .sub_blog{
 	width		:98vw;
 	text-align	:center
@@ -1554,15 +1560,12 @@ ul {
 	margin:0 auto;
 }
 
-
 .sub_blog_in{
 	border		:none;
 	width		:47vw;
 	flex-basis	:47vw;
 	margin-bottom:0;
 }
-
-
 
 .menu-item {
 	width		:14%;
@@ -1657,6 +1660,17 @@ ul {
 	margin			:0 auto;
 	font-size		:5vw;
 	padding-left	:2.5vw;
+	border-radius:2vw 2vw 0 0; 
+}
+
+.prof_title,.sche_title{
+	width			:92vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:0 auto;
+	font-size		:6vw;
+	padding-left	:3.5vw;
+	border-radius:2vw 2vw 0 0; 
 }
 
 .main_d_1,.main_b_1{
@@ -1669,7 +1683,6 @@ ul {
 	border-right	:0.5vw solid #483800;
 	border-bottom	:0.5vw solid #483800;
 }
-
 
 .main_d_1_1,.main_b_1_1{
 	width			:39vw;
