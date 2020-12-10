@@ -1779,6 +1779,25 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
+	$('.#gp_set').on('click',function (){
+
+		Tmp=$('#count_gp').val();
+		Cds=$(this).val();
+
+		$.post({
+			url:Dir + "/post/gp_set.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:$('#gp_new').val(),
+
+			},
+		}).done(function(data, textStatus, jqXHR){
+			$('.#gp_sort').prepend(data);
+		});
+	});
+
+
 	$('.log_item_set').on('change','.gp_name',function (){
 		Tmp=$(this).attr('id').replace('gp_name_','');
 		Cds=$(this).val();
@@ -1793,6 +1812,22 @@ console.log("VwBase:"+VwBase);
 			console.log(Cds)
 		});
 	});
+
+	$('.log_item_set').on('change','.gp_name',function (){
+		Tmp=$(this).attr('id').replace('gp_name_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/gp_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
+		});
+	});
+
 
 	$('.log_item_set').on('change','.item_name',function (){
 		Tmp=$(this).attr('id').replace('item_name_','');

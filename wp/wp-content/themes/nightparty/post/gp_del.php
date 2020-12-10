@@ -39,9 +39,6 @@ foreach($res as $row){
 	$html.="</tr>";
 	$n++;
 }
-
-
-
 echo $html;
 exit();
 ?>

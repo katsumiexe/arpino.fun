@@ -28,16 +28,16 @@ get_header();
 <?if($a1["post_content"]){?>
 <div class="main_e">
 <div class="main_e_in">
+<span class="main_e_f f_tr"></span>
+<span class="main_e_f f_tl"></span>
+<span class="main_e_f f_br"></span>
+<span class="main_e_f f_bl"></span>
 <div class="corner box_in_1"></div>
 <div class="corner box_in_2"></div>
 <div class="corner box_in_3"></div>
 <div class="corner box_in_4"></div>
 <span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
 <span class="sys_box_log"><?=$a1["post_content"]?></span><br>
-<span class="main_e_f f_tr"></span>
-<span class="main_e_f f_tl"></span>
-<span class="main_e_f f_br"></span>
-<span class="main_e_f f_bl"></span>
 </div>
 <div class="corner box_1"></div>
 <div class="corner box_2"></div>

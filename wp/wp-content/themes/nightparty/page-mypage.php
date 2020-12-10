@@ -855,7 +855,6 @@ $(function(){
 		<table id="tag_3_tbl" class="customer_memo"><tr><td></td></tr></table>
 	</div>
 
-
 	<div class="customer_detail">
 		<table class="customer_base">
 			<tr>
@@ -963,8 +962,6 @@ $(function(){
 		<input id="n_customer_line" type="hidden" value="">
 		<input id="n_customer_web" type="hidden" value="">
 	</div>
-
-
 
 	<?}elseif($cast_page==3){?>
 	<div class="main">
@@ -1079,6 +1076,7 @@ $(function(){
 				</div>
 				<input id="blog_chg" type="hidden" value="" >
 			</div>
+
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
@@ -1111,63 +1109,61 @@ $(function(){
 		</div>
 	<?}elseif($cast_page==5){?>
 <div class="main">
-<div class="config_box">
+	<div class="config_box">
+		<table class="ana">
+		<tr>
+			<td class="ana_top">日時</td>
+			<td class="ana_top">シフト時間</td>
+			<td class="ana_top" colspan="2">給与・歩合</td>
+		</tr>
 
-<table class="ana">
-<tr>
-	<td class="ana_top">日時</td>
-	<td class="ana_top">シフト時間</td>
-	<td class="ana_top" colspan="2">給与・歩合</td>
-</tr>
-<?for($n=1;$n<$now_count+1;$n++){?>
-<?$ana_week=($week_01+$n-1)%7?>
-<tr>
+	<?for($n=1;$n<$now_count+1;$n++){?>
+		<?$ana_week=($week_01+$n-1)%7?>
+		<tr>
+			<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
 
-	<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
-	<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
-	<td class="ana_pay <?=$ana_line[$ana_week]?>">
-		<span class="ana_icon"></span><span class="ana_pay1">12000</span>
-		<span class="ana_icon"></span><span class="ana_pay2">18000</span>
-		<span class="ana_icon"></span><span class="ana_pay3">20000</span>
-	</td>
-	<td id="ana_<?=$n?>" class="ana_detail <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
-</tr>
-<tr>
-	<td id="lana_<?=$n?>" class="ana_list" colspan="3">
-		<div id="dana_<?=$n?>" class="ana_list_div">
-		<span class="ana_list_c lc1">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">指名</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-		<span class="ana_list_c">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">ボトル</span>
-			<span class="ana_list_pts">15000</span>
-		</span>
-		<span class="ana_list_c lc1">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">指名</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-		<span class="ana_list_c">
-			<span class="ana_list_name">ゲスト</span>
-			<span class="ana_list_icon"></span>
-			<span class="ana_list_item">ドリンク</span>
-			<span class="ana_list_pts">150</span>
-		</span>
-	</div>
-	</td>
-</tr>
-<?}?>
-<tr><td colspan="4" style="padding: 0;"></td></tr>
-</table>
+			<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
+
+			<td class="ana_pay <?=$ana_line[$ana_week]?>">
+				<span class="ana_icon"></span><span class="ana_pay_all">18000</span>
+			</td>
+			<td id="ana_<?=$n?>" class="ana_detail <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
+		</tr>
+		<tr>
+			<td id="lana_<?=$n?>" class="ana_list" colspan="3">
+				<div id="dana_<?=$n?>" class="ana_list_div">
+					<span class="ana_list_c lc1">
+						<span class="ana_list_name">店舗</span>
+						<span class="ana_list_icon"></span>
+						<span class="ana_list_item">時給</span>
+						<span class="ana_list_pts">15000</span>
+					</span>
+					<span class="ana_list_c">
+						<span class="ana_list_name">やまちゃん</span>
+						<span class="ana_list_icon"></span>
+						<span class="ana_list_item">ボトル</span>
+						<span class="ana_list_pts">15000</span>
+					</span>
+					<span class="ana_list_c lc1">
+						<span class="ana_list_name">ゲスト</span>
+						<span class="ana_list_icon"></span>
+						<span class="ana_list_item">指名</span>
+						<span class="ana_list_pts">150</span>
+					</span>
+					<span class="ana_list_c">
+						<span class="ana_list_name">ゲスト</span>
+						<span class="ana_list_icon"></span>
+						<span class="ana_list_item">ドリンク</span>
+						<span class="ana_list_pts">150</span>
+					</span>
+				</div>
+			</td>
+		</tr>
+	<?}?>
+		<tr><td colspan="4" style="padding: 0;"></td></tr>
+	</table>
 </div>
 </div>
-
 	<?}elseif($cast_page==6){?>
 <div class="main">
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">基本情報</span></div></h2>
@@ -1237,12 +1233,13 @@ $(function(){
 </table>
 
 <div class="config_box">
-	<span class="config_tag1">USER_ID：</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
-	<span class="config_tag1">PASSWORD:</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="new-password"><br>
-	<span class="config_tag1">名前：</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
-	<span class="config_tag1">メール:</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
-	<span class="config_tag2">LINE連携:</span>
-	<span class="config_tag2">Twitter連携:</span>
+	<span class="config_tag1">USER_ID</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
+	<span class="config_tag1">PASSWORD</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="new-password"><br>
+	<span class="config_tag1">名前</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
+	<span class="config_tag1">メール</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
+	<span class="config_tag1">時給</span><input id="hourly" type="text" value="<?=$_SESSION["cast_hourly"]?>" class="config_text1"><br>
+	<span class="config_tag2">LINE連携</span>
+	<span class="config_tag2">Twitter連携</span>
 </div>
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">切替時間設定</span></div></h2>
 <div class="config_box">
@@ -1275,6 +1272,7 @@ $(function(){
 </select>
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
+
 <div class="config_tag3">
 <select id="config_week_start" class="config_tag3_sel">
 <option value="0"<?if($_SESSION["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
@@ -1287,9 +1285,9 @@ $(function(){
 </select>
 <span class="config_tag3_in">週の開始曜日</span>
 </div>
-
-
 </div>
+
+
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">顧客グループ設定</span></div></h2>
 <div class="config_box">
 <table class="log_item_set">
@@ -1315,6 +1313,7 @@ $(function(){
 		</tr>
 	<?}?>
 </tbody>
+
 	<tr>
 		<td colspan="4" style="height:5px;"></td>
 	</tr><tr>
@@ -1326,8 +1325,9 @@ $(function(){
 		<td class="log_td_handle"><span id="gp_set"></span></td>
 	</tr>
 </table>
-</div>
+<input id="count_gp" type="hidden" value="<?=$a1?>">
 
+</div>
 
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
 <div class="config_box">

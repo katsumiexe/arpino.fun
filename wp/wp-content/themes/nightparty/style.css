@@ -311,17 +311,17 @@ ul {
 	width			:498px;
 	height			:30px;
 	line-height		:30px;
-	font-family: at_font1;
+	font-family		: at_font1;
 
 }
 
 .sche_title{
-	margin-top:20px;
-	margin-left:0;
+	margin-top		:20px;
+	margin-left		:0;
 	width			:315px;
 	height			:30px;
 	line-height		:30px;
-	font-family: at_font1;
+	font-family		: at_font1;
 }
 
 
@@ -342,36 +342,25 @@ ul {
 .main_c_1{
 	position	:absolute;
 	display		:inline-block;
-	width		:200px;
-	height		:400px;
-	background	:#000090;
-	border		:2px solid transparent;
+	width		:100%;
+	height		:100%;
+	background	:#ffffff;
 	overflow	:hidden;	
-	
+	opacity		:0;
 }
 
-.shine:hover{
-    animation-name		:effect;
-    animation-duration	: 5s;
-    animation-timing-function: linear;
-}
+.main_c_1:hover{
+    animation-name: effect;
+    animation-duration: 5s;
 
+}
 @keyframes effect{
-	0% {
-		left: -60%;
-		opacity: 0;
-	}
-	70% {
-		left: -60%;
-		opacity: 0.5;
-	}
-	71% {
-		left: -60%;
-		opacity: 1;
+	30% {
+		opacity: .5;	
 	}
 	100% {
-		left: 0%;
-		opacity: 0;
+		left: -60%;
+		opacity: 0.1;
 	}
 }
 
@@ -450,7 +439,7 @@ ul {
 
 .f_tl{
 	top		:0;
-	left	:2px;
+	left	:2px;	
 	transform: rotatey(180deg);
 	transform-origin: center;
 }
@@ -463,8 +452,8 @@ ul {
 }
 
 .f_br{
-	bottom			:0;
-	right			:2px;
+	bottom	:0;
+	right	:2px;
 	transform: rotatex(180deg);
 	transform-origin:center;
 }
@@ -638,7 +627,7 @@ ul {
 	display			:inline-block;
 	width			:1160px;
 	border			:2px solid #c8b880;
-	text-align		:left;
+	text-align		:center;
 	background		:#302520;
 	margin			:10px auto;
 }
@@ -654,6 +643,7 @@ ul {
 	padding			:30px 40px;
 	font-size		:16px;
 	background		: linear-gradient(135deg, #FEE9A0 0%, #B67B03 70%, #d09020 100%); 
+	text-align		:left;
 
 }
 
@@ -662,7 +652,7 @@ ul {
 	position		:absolute;
 	width			:20px;
 	height			:20px;
-	background:#ffffff;
+	background		:#302520;
 }
 
 .box_1{
@@ -736,11 +726,11 @@ ul {
 .main_e_f{
 	display		:inline-block;
 	position	:absolute;
-	font-size	:50px;
+	font-size	:70px;
 	color		:#c8b880;
 	font-family	:at_frame1;
-	width		:60px;
-	height		:55px;
+	width		:70px;
+	height		:70px;
 	text-align	:center;
 }
 
@@ -895,7 +885,7 @@ ul {
 .sys_box_ttl{
     display			:inline-block;
 	font-size		:24px;
-	width			:1080px;
+	width			:1000px;
 	height			:30px;
 	line-height		:30px;
 	margin			:10px 30px;
@@ -970,16 +960,16 @@ ul {
 
 .footmark_box{
 	display			:inline-block;
-	height		:20px;
-	min-width	:80px;
-	margin		:0 3px;	
-	text-align	:left;
-	cursor		:pointer;
+	height			:20px;
+	min-width		:80px;
+	margin			:0 3px;	
+	text-align		:left;
+	cursor			:pointer;
 }
 
 .box_a{
-	text-decoration:none;
-	border-bottom:1px solid #c8b880;
+	text-decoration	:none;
+	border-bottom	:1px solid #c8b880;
 }
 
 .footmark_icon{
@@ -1045,7 +1035,7 @@ ul {
 	font-size		:17px;
 	font-weight		:700;
 	vertical-align	:top;
-	overflow:hidden;
+	overflow		:hidden;
 }
 
 .blog_list_tag{

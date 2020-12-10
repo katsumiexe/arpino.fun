@@ -3888,7 +3888,7 @@ input[type=range]::-moz-range-thumb{
 }
 
 .ana_pay{
-	width			:50vw;
+	width			:45vw;
 	height			:8vw;
 	padding			:0.5vw;
 	border			:1px solid #666666;
@@ -3897,23 +3897,21 @@ input[type=range]::-moz-range-thumb{
 
 .ana_icon{
 	display			:inline-block;
-	height			:6vw;
-	line-height		:7vw;
-	width			:3.5vw;
+	height			:8vw;
+	line-height		:8vw;
+	width			:6vw;
 	text-align		:center;
 	font-family		:at_icon;
-	text-align		:right;
-	border-bottom	:1px solid #303030;
+	font-size		:4vw;
 }
 
-.ana_pay1,.ana_pay2,.ana_pay3{
+.ana_pay_all{
 	display			:inline-block;
-	height			:6vw;
-	line-height		:7vw;
-	width			:11vw;
+	height			:8vw;
+	line-height		:8vw;
 	text-align		:right;
-	border-bottom	:1px solid #303030;
 	padding-right	:1vw;
+	font-size		:4vw;
 }
 
 .ana_detail,.ana_detail_n{
