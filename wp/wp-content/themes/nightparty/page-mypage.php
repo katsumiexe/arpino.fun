@@ -1320,8 +1320,9 @@ $(function(){
 		<td class="log_td_order_new" colspan="2">追加</td>
 
 		<td class="log_td_name">
-			<input id="gp_new" type="text" value=" " class="item_name">
+			<input id="gp_new" type="text" value="">
 		</td>
+
 		<td class="log_td_handle"><span id="gp_set"></span></td>
 	</tr>
 </table>

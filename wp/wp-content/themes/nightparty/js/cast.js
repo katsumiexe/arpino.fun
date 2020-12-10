@@ -1779,7 +1779,7 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
-	$('.#gp_set').on('click',function (){
+	$('#gp_set').on('click',function (){
 
 		Tmp=$('#count_gp').val();
 		Cds=$(this).val();
@@ -1793,7 +1793,10 @@ console.log("VwBase:"+VwBase);
 
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$('.#gp_sort').prepend(data);
+			$('#gp_sort').append(data);
+
+console.log(data);
+
 		});
 	});
 
