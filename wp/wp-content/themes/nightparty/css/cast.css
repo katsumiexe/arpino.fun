@@ -3310,7 +3310,7 @@ input[type=range]::-moz-range-thumb{
 	font-weight:800;
 }
 
-.log_td_color,.log_td_icon,.log_td_handle{
+.log_td_color,.log_td_icon,.log_td_handle,.gp_handle{
 	font-size	:5vw;
 	text-align	:center;
 	height		:7vw;

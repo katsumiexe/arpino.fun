@@ -1779,59 +1779,6 @@ console.log("VwBase:"+VwBase);
 		});
 	});
 
-	$('#gp_set').on('click',function (){
-
-		Tmp=$('#count_gp').val();
-		Cds=$(this).val();
-
-		$.post({
-			url:Dir + "/post/gp_set.php",
-			data:{
-			'sort'		:Tmp,
-			'cast_id'	:CastId,
-			'name'		:$('#gp_new').val(),
-
-			},
-		}).done(function(data, textStatus, jqXHR){
-			$('#gp_sort').append(data);
-
-console.log(data);
-
-		});
-	});
-
-
-	$('.log_item_set').on('change','.gp_name',function (){
-		Tmp=$(this).attr('id').replace('gp_name_','');
-		Cds=$(this).val();
-		$.post({
-			url:Dir + "/post/gp_chg.php",
-			data:{
-			'sort'		:Tmp,
-			'cast_id'	:CastId,
-			'name'		:Cds,
-			},
-		}).done(function(data, textStatus, jqXHR){
-			console.log(Cds)
-		});
-	});
-
-	$('.log_item_set').on('change','.gp_name',function (){
-		Tmp=$(this).attr('id').replace('gp_name_','');
-		Cds=$(this).val();
-		$.post({
-			url:Dir + "/post/gp_chg.php",
-			data:{
-			'sort'		:Tmp,
-			'cast_id'	:CastId,
-			'name'		:Cds,
-			},
-		}).done(function(data, textStatus, jqXHR){
-			console.log(Cds)
-		});
-	});
-
-
 	$('.log_item_set').on('change','.item_name',function (){
 		Tmp=$(this).attr('id').replace('item_name_','');
 		Cds=$(this).val();
@@ -1862,6 +1809,53 @@ console.log(data);
 		});
 	});
 
+	$('#gp_set').on('click',function (){
+		Tmp=$('#count_gp').val()-0+1;
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/gp_set.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:$('#gp_new').val(),
+
+			},
+		}).done(function(data, textStatus, jqXHR){
+			$('#gp_sort').append(data);
+			$('#count_gp').val(Tmp);
+			$('#gp_new').val('');
+		});
+	});
+
+	$('#gp_sort').on('change','.gp_name',function (){
+		Tmp=$(this).attr('id').replace('gp_name_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/gp_chg.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
+		});
+	});
+
+	$('#gp_sort').on('click','.gp_del_in',function (){
+		Tmp=$(this).attr('id').replace('gp_name_','');
+		Cds=$(this).val();
+		$.post({
+			url:Dir + "/post/gp_del.php",
+			data:{
+			'sort'		:Tmp,
+			'cast_id'	:CastId,
+			'name'		:Cds,
+			},
+		}).done(function(data, textStatus, jqXHR){
+			console.log(Cds)
+		});
+	});
 
 	$('#config_week_start').on('change',function (){
 		Tmp=String($(this).val());
@@ -1877,7 +1871,6 @@ console.log(data);
 		});
 	});
 
-
 	$('#config_day_start').on('change',function (){
 		Tmp=String($(this).val());
 		$.post({
@@ -1891,8 +1884,6 @@ console.log(data);
 			console.log(data)
 		});
 	});
-
-
 
 	$('.cal_days_memo').on('change',function (){
 		TmpLog=$('.cal_days_memo').val();
@@ -2041,6 +2032,52 @@ console.log(data);
 
         }
 	});
+
+	$('#gp_sort').sortable({
+		axis: 'y',
+        handle: '.gp_handle',
+		stop : function() {
+			ChgList=$(this).sortable("toArray");
+			var Cnt=ChgList.length;
+			console.log(ChgList);
+
+			var N=0;
+			var ItemName	=[];
+			var ItemPrice	=[];
+			var ItemIcon	=[];
+			var ItemColor	=[];
+
+
+			for(i=0;i<Cnt;i++){
+				ItemName[i]=$('#item_name_'+i).val();
+				ItemPrice[i]=$('#item_price_'+i).val();
+				ItemIcon[i]=$('#item_icon_hidden_'+i).val();
+				ItemColor[i]=$('#item_color_hidden_'+i).val();
+			}
+			$.post({
+				url:Dir + "/post/gp_sort.php",
+				data:{
+				'cast_id'		:CastId,
+				'chglist[]'		:ChgList,
+				'item_name[]'	:ItemName,
+				'item_price[]'	:ItemPrice,
+				'item_icon[]'	:ItemIcon,
+				'item_color[]'	:ItemColor,
+
+				},
+			}).done(function(data, textStatus, jqXHR){
+				$('#item_sort').html(data);
+				$('.icon_picker,.color_picker').hide();
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
+
+        }
+	});
+
+
 
 /*
 	$('#item_set').on('click',function(){

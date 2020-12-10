@@ -1290,6 +1290,7 @@ $(function(){
 
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">顧客グループ設定</span></div></h2>
 <div class="config_box">
+
 <table class="log_item_set">
 <thead>
 	<tr>
@@ -1309,7 +1310,7 @@ $(function(){
 			<td class="log_td_name">
 				<input id="gp_name_<?=$a1?>" type="text" value="<?=$a2?>" class="gp_name">
 			</td>
-			<td class="log_td_handle"></td>
+			<td class="gp_handle"></td>
 		</tr>
 	<?}?>
 </tbody>
@@ -1318,18 +1319,14 @@ $(function(){
 		<td colspan="4" style="height:5px;"></td>
 	</tr><tr>
 		<td class="log_td_order_new" colspan="2">追加</td>
-
 		<td class="log_td_name">
 			<input id="gp_new" type="text" value="" class="gp_name_new">
 		</td>
-
 		<td class="log_td_handle"><span id="gp_set"></span></td>
 	</tr>
 </table>
-<input id="count_gp" type="hidden" value="<?=$a1?>">
-
+<input id="count_gp" type="hidden" value="<?=count($cus_group_sel)?>">
 </div>
-
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
 <div class="config_box">
 <table class="log_item_set">
