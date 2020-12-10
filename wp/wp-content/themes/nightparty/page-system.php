@@ -23,9 +23,15 @@ get_header();
 		<span class="footmark_text">SYSTEM</span>
 	</div>
 </div>
+
 <?foreach($sys as $a1){?>
 <?if($a1["post_content"]){?>
 <div class="main_e">
+<div class="main_e_in">
+<div class="corner box_in_1"></div>
+<div class="corner box_in_2"></div>
+<div class="corner box_in_3"></div>
+<div class="corner box_in_4"></div>
 <span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
 <span class="sys_box_log"><?=$a1["post_content"]?></span><br>
 <span class="main_e_f f_tr"></span>
@@ -33,12 +39,19 @@ get_header();
 <span class="main_e_f f_br"></span>
 <span class="main_e_f f_bl"></span>
 </div>
-<br>
+<div class="corner box_1"></div>
+<div class="corner box_2"></div>
+<div class="corner box_3"></div>
+<div class="corner box_4"></div>
+</div>
 <?}?>
 <?}?>
+
+
 <?if(!$sys){?>
 <div class="main_e">
 <span class="sys_box_log">情報はまだありません</span><br>
 </div>
 <?}?>
+<br>
 <?php get_footer(); ?>
