@@ -3355,7 +3355,7 @@ input[type=range]::-moz-range-thumb{
 	vertical-align	:middle;
 }
 
-.item_name,.gp_name{
+.item_name,.item_name_new,.gp_name,.gp_name_new{
 	position		:absolute;
 	top				:0;
 	left			:1vw;
@@ -3367,8 +3367,8 @@ input[type=range]::-moz-range-thumb{
 	text-align		:left;	
 	border			:0.5vw solid #fafafa;
 	padding			:0;
-	transform		: scale(0.8,0.8);
-	transform-origin: center left;
+	transform		:scale(0.8,0.8);
+	transform-origin:center left;
 }
 
 .log_td_price{
@@ -3381,7 +3381,7 @@ input[type=range]::-moz-range-thumb{
 	text-align	:right;
 }
 
-.item_price{
+.item_price,.item_price_new{
 	position		:absolute;
 	top				:0;
 	right			:1vw;
@@ -3393,8 +3393,8 @@ input[type=range]::-moz-range-thumb{
 	text-align		:right;	
 	border			:0.5vw solid #fafafa;
 	padding			:0;
-	transform		: scale(0.8,0.8);
-	transform-origin: center right;
+	transform		:scale(0.8,0.8);
+	transform-origin:center right;
 }
 
 

@@ -7,7 +7,7 @@ require_once ("./post_inc.php");
 require_once ("./inc_code.php");
 
 $cast_id	=$_POST["cast_id"];
-$name		=$_POST["item_name"];
+$name		=$_POST["name"];
 $group_id	=$_POST["group_sort"]+1;
 
 $sql	 =" INSERT INTO wp01_0customer_group(`group_id`,`calst_id`,`sort`,`tag`)";
