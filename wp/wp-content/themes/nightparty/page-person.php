@@ -135,23 +135,20 @@ foreach($res as $a2){
 echo $_SERVER["REQUEST_URI"];
 get_header();
 ?>
-<div class="main_top">
-	<div class="footmark">
-		<a href="<?=home_url()?>" class="footmark_box box_a">
-			<span class="footmark_icon"></span>
-			<span class="footmark_text">TOP</span>
-		</a>
-		<span class="footmark_icon"></span>
-		<a href="<?=home_url()?>/cast/" class="footmark_box box_a">
-			<span class="footmark_icon"></span>
-			<span class="footmark_text">CAST</span>
-		</a>
-		<span class="footmark_icon"></span>
-		<span class="footmark_icon"></span>
-		<span class="footmark_text"><?=$a1["genji"]?></span>
-
-	</div>
-
+<div class="footmark">
+	<a href="<?=home_url()?>" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">TOP</span>
+	</a>
+	<span class="footmark_icon"></span>
+	<a href="<?=home_url()?>/cast/" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
+		<span class="footmark_text">CAST</span>
+	</a>
+	<span class="footmark_icon"></span>
+	<span class="footmark_icon"></span>
+	<span class="footmark_text"><?=$a1["genji"]?></span>
+</div>
 <div class="person_main">
 	<div class="person_left">
 			<?PHP ECHO $face_a?>
