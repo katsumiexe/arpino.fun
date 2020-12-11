@@ -68,10 +68,10 @@ $(document).ready(function () {
 
 	$(document).on({
 		'mouseenter': function() {	
-			$(this).children('.main_b_1_3').fadeIn(100);
+			$(this).children('.main_b_1_on').animate({'left':'240px'},400);
 		},
 		'mouseleave': function() {
-			$(this).children('.main_b_1_3').fadeOut(0);
+			$(this).children('.main_b_1_on').css({'left':'-150px'});
 		}
 	}, '.main_b_1');
 

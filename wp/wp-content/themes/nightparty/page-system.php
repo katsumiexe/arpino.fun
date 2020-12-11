@@ -28,10 +28,10 @@ get_header();
 <?if($a1["post_content"]){?>
 <div class="main_e">
 <div class="main_e_in">
-<span class="main_e_f f_tr"></span>
-<span class="main_e_f f_tl"></span>
-<span class="main_e_f f_br"></span>
-<span class="main_e_f f_bl"></span>
+<span class="main_e_f c_tr"></span>
+<span class="main_e_f c_tl"></span>
+<span class="main_e_f c_br"></span>
+<span class="main_e_f c_bl"></span>
 <div class="corner box_in_1"></div>
 <div class="corner box_in_2"></div>
 <div class="corner box_in_3"></div>
