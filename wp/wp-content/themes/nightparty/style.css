@@ -573,29 +573,28 @@ ul {
 	border-left		:2px solid #f8e8b0;
 	border-right	:2px solid #483800;
 	border-bottom	:2px solid #483800;
-//	overflow		:hidden;
+	overflow		:hidden;
 }
 
-.main_d_1:after{
+.main_b_1:before,.main_d_1:before{
+	content		:"";
 	position	:absolute;
-	top			:-50px;
+	top			:-40px;
 	left		:-150px;
-	top			:0px;
-	left		:0px;
-	width		:180px;
-	height		:400px;
-	transform	: rotate(20deg);
-	background	:linear-gradient(90deg,rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 1));
-	background	:#000090;
+	width		:80px;
+	height		:420px;
+	transform	:rotate(20deg);
+	background	:linear-gradient(90deg,rgba(255, 255, 240, 0.1),rgba(255, 255, 240, 1));
 }
 
-.main_d_1:hover:before{
-	animation: e_shine 5s linear 0s;
+.main_b_1:hover:before,.main_d_1:hover:before{
+	animation: e_shine .3s linear 0s;
 }
+
 
 @keyframes e_shine {
-	0% {top:-150px;}
-	100% {top:240px;}
+	0% {left:-150px;}
+	100% {left:280px;}
 }
 
 
