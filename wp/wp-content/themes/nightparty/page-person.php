@@ -174,16 +174,19 @@ get_header();
 
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
-		<?for($s=0;$s<count($blog);$s++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
-				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
-				<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-				<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
-				<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
-				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
-			</a>
-		<?}?>
-		<div class="person_blog_btm">一覧へ</div>
+			<?for($s=0;$s<count($blog);$s++){?>
+				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+					<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+					<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
+					<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
+				</a>
+			<?}?>
+			<?if(!$blog){?>
+					<span class="person_blog">まだありません</span>
+			<?}?>
+		</div>
 	</div>
 </div>
 <?php get_footer(); ?>

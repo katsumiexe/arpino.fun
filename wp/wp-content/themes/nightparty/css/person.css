@@ -39,9 +39,9 @@
 	position		:relative;
 	width			:300px;
 	height			:90px;	
-	background		:#fafafa;
-//	border			:1px solid #C8B880;
+//	background		:#fafafa;
 	border-bottom	:1px solid #C8B880;
+	color			:#C8B880;
 	
 }
 
@@ -70,32 +70,43 @@
 .person_blog_comm{
 	display			:inline-block;
 	position		:absolute;
-	top				:2px;
-	right			:2px;
-	width			:50px;
+	top				:5px;
+	right			:5px;
+	width			:60px;
 	height			:20px;	
 	line-height		:20px;	
 	text-align		:left;
-	color			:#C8B880;
-	background		:rgba(255,255,255,0.8);
+	color			:#f0f0c0;
+	background		:#C8B880;
 	border			:1px solid #C8B880;
+	border-radius	:5px;
 }
 
 .person_blog_i{
 	display			:inline-block;
+	position		:absolute;
+	top				:0px;
+	bottom			:0px;
+	left			:3px;
 	width			:16px;
-	height			:20px;
-	line-height		:20px;
-	font-size		:13px;
+	height			:20px;	
+	line-height		:20px;	
+	margin			:auto;
+	font-size		:14px;
 	text-align		:center;
 	font-family		:at_icon;
 }
 
 .person_blog_c{
 	display			:inline-block;
-	width			:32px;
-	height			:20px;
-	line-height		:20px;
+	position		:absolute;
+	top				:0px;
+	bottom			:0px;
+	right			:5px;
+	width			:30px;
+	height			:20px;	
+	line-height		:20px;	
+	overflow		:hidden;
 	font-size		:13px;
 	text-align		:right;
 }
@@ -501,7 +512,7 @@
 	top				:8vw;
 	left			:21vw;
 	width			:66vw;
-	height			:50px;	
+	height			:11vw;	
 	font-size		:4vw;
 	line-height		:5.5vw;	
 }
