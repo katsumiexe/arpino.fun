@@ -16,11 +16,19 @@ Template Name: access
 </div>
 
 <div class="main_e">
+<div class="main_e_in">
+<span class="main_e_f c_tr"></span>
+<span class="main_e_f c_tl"></span>
+<span class="main_e_f c_br"></span>
+<span class="main_e_f c_bl"></span>
+<div class="corner_in box_in_1"></div>
+<div class="corner_in box_in_2"></div>
+<div class="corner_in box_in_3"></div>
+<div class="corner_in box_in_4"></div>
 	<span class="sys_box_ttl">ACCESS</span><br>
 	<div class="access_table">
-
 		<div class="access_map">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d721.6854943560575!2d139.70315573035856!3d35.69525939181556!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd7751357e3fdec4b!2z44OX44Op44Km44OH44Kj44Ki!5e0!3m2!1sja!2sjp!4v1596258206301!5m2!1sja!2sjp" width="800" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="access_map_in"></iframe>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d721.6854943560575!2d139.70315573035856!3d35.69525939181556!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd7751357e3fdec4b!2z44OX44Op44Km44OH44Kj44Ki!5e0!3m2!1sja!2sjp!4v1596258206301!5m2!1sja!2sjp" width="600" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="access_map_in"></iframe>
 		</div>
 		<div class="access_sig">
 			<h1 class="access_h1">Piyo-Piyo.work</h1>
@@ -41,9 +49,11 @@ Template Name: access
 			</div>
 		</div>
 	</div>
-<span class="main_e_f c_tr"></span>
-<span class="main_e_f c_tl"></span>
-<span class="main_e_f c_br"></span>
-<span class="main_e_f c_bl"></span>
+</div>
+<div class="corner box_1"></div>
+<div class="corner box_2"></div>
+<div class="corner box_3"></div>
+<div class="corner box_4"></div>
+</div>
 </div>
 <?php get_footer(); ?>

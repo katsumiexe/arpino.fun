@@ -32,10 +32,10 @@ get_header();
 <span class="main_e_f c_tl"></span>
 <span class="main_e_f c_br"></span>
 <span class="main_e_f c_bl"></span>
-<div class="corner box_in_1"></div>
-<div class="corner box_in_2"></div>
-<div class="corner box_in_3"></div>
-<div class="corner box_in_4"></div>
+<div class="corner_in box_in_1"></div>
+<div class="corner_in box_in_2"></div>
+<div class="corner_in box_in_3"></div>
+<div class="corner_in box_in_4"></div>
 <span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
 <span class="sys_box_log"><?=$a1["post_content"]?></span><br>
 </div>

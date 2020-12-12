@@ -501,7 +501,7 @@ ul {
 	left		:-150px;
 	width		:80px;
 	height		:400px;
-	transform	: rotate(20deg);
+	transform	:rotate(20deg);
 	background	:linear-gradient(90deg,rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 1));
 }
 
@@ -573,17 +573,41 @@ ul {
 	border-left		:2px solid #f8e8b0;
 	border-right	:2px solid #483800;
 	border-bottom	:2px solid #483800;
+//	overflow		:hidden;
 }
 
-.main_d_1_1{
-	display		:inline-block;
-	width		:192px;
-	height		:256px;
+.main_d_1:after{
 	position	:absolute;
-	top			:10px;
-	left		:0;
-	right		:0;
-	margin		:auto;
+	top			:-50px;
+	left		:-150px;
+	top			:0px;
+	left		:0px;
+	width		:180px;
+	height		:400px;
+	transform	: rotate(20deg);
+	background	:linear-gradient(90deg,rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 1));
+	background	:#000090;
+}
+
+.main_d_1:hover:before{
+	animation: e_shine 5s linear 0s;
+}
+
+@keyframes e_shine {
+	0% {top:-150px;}
+	100% {top:240px;}
+}
+
+
+.main_d_1_1{
+	display			:inline-block;
+	width			:192px;
+	height			:256px;
+	position		:absolute;
+	top				:10px;
+	left			:0;
+	right			:0;
+	margin			:auto;
 	border-top		:2px solid #483800;
 	border-left		:2px solid #483800;
 	border-right	:2px solid #f8e8b0;
@@ -607,8 +631,8 @@ ul {
 	border-left		:2px solid #483800;
 	border-right	:2px solid #f8e8b0;
 	border-bottom	:2px solid #f8e8b0;
-
 }
+
 
 .main_d_1_2_name{
 	display		:inline-block;
@@ -622,6 +646,7 @@ ul {
 	text-align:center;
 }
 
+
 .main_d_1_2_sch{
 	display		:inline-block;
 	width		:150px;
@@ -631,8 +656,6 @@ ul {
 	font-size	:14px;
 	text-align:center;
 }
-
-
 
 .main_d_1_3{
 	position	:absolute;
@@ -664,10 +687,9 @@ ul {
 	min-height		:30px;
 	margin			:5px auto;
 	border			:1px solid #c8b880;
-	background		:#fafafa;
 	padding			:30px 40px;
 	font-size		:16px;
-	background		: linear-gradient(135deg, #FEE9A0 0%, #B67B03 70%, #d09020 100%); 
+//	background		: linear-gradient(135deg, #FEE9A0 0%, #B67B03 70%, #d09020 100%); 
 	text-align		:left;
 }
 
@@ -678,6 +700,29 @@ ul {
 	height			:20px;
 	background		:#101513;
 }
+
+
+.corner_in{
+	display			:inline-block;
+	position		:absolute;
+	width			:20px;
+	height			:20px;
+	background		:#302520;
+}
+
+.main_e_f{
+	display		:inline-block;
+	position	:absolute;
+	font-size	:70px;
+	color		:#685820;
+	color		:#c8b880;
+	font-family	:at_frame1;
+	width		:70px;
+	height		:70px;
+	text-align	:center;
+}
+
+
 
 .box_1{
 	top				:-2px;
@@ -744,20 +789,6 @@ ul {
 	border-right	:1px solid #c8b880;
 	border-radius	:0 21px 0 0;
 }
-
-
-
-.main_e_f{
-	display		:inline-block;
-	position	:absolute;
-	font-size	:70px;
-	color		:#685820;
-	font-family	:at_frame1;
-	width		:70px;
-	height		:70px;
-	text-align	:center;
-}
-
 
 .main_article_out{
 	display			:inline-block;
@@ -826,31 +857,31 @@ ul {
 }
 
 .access_table{
-	display		:flex;
-	width		:1120px;
-	margin		:5px auto;
-	height		:420px;
-	position	:relative;
-	margin-bottom:10px;
+	display			:flex;
+	justify-content	:space-between;
+	width			:1000px;
+	margin			:5px auto;
+	height			:420px;
+	position		:relative;
+	margin-bottom	:10px;
 }
 
 .access_map{
-	flex-basis	:800px;
+	flex-basis	:650px;
 	height		:400px;
 	background	:#fafafa;
 	color		:#303030;
-	margin		:10px;
 }
 
 
 .access_sig{
-	display		:inline-block;
-	flex		:1;
-	background	:#909090;
-	margin		:10px;
-	font-size	:0;
-	text-align	:center;
-	border-radius:10px;
+	display			:inline-block;
+	flex-basis		:300px;
+	height			:400px;
+	background		:#909090;
+	font-size		:0;
+	text-align		:center;
+	border-radius	:10px;
 }
 
 
@@ -905,9 +936,10 @@ ul {
 	margin			:10px 30px;
 	font-weight		:800;
 	color			:#685820;
+	color			:#c8b880;
 	text-shadow		:1px 1px 0px rgba(30,30,30,0);
 	padding			:5px 10px;
-	border-bottom	:double 2px #685820;
+	border-bottom	:double 2px #c8b880;
 }
 
 .sys_box_log{
@@ -915,7 +947,7 @@ ul {
 	margin			:0 20px 30px 20px;
     display			:inline-block;
 	padding			:5px 10px;
-	color			:#685820;
+	color			:#c8b880;
 }
 
 .system_title{
@@ -926,7 +958,7 @@ ul {
 	font-weight		:800;
 	width			:780px;
 	text-align		:left;
-	border-left		:10px solid #685820;
+	border-left		:10px solid #c8b880;
 	padding-left	:5px;
 }
 
