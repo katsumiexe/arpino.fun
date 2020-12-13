@@ -22,17 +22,29 @@
 	width		:80px;
 }
 
-.w80{
-	width:80px;
+td,th{
+	padding:0 !important;; 
+}
+
+.w40{
+	width:40px;
 }
 .w60{
 	width:60px;
 }
-.w40{
-	width:40px;
+.w80{
+	width:80px;
 }
 .w150{
 	width:150px;
+}
+
+.w200{
+	width:200px;
+}
+
+.w300{
+	width:300px;
 }
 
 .txt_box{
@@ -42,7 +54,7 @@
 	padding-right	:5px;
 }
 .txt_box_p{
-	width			:80%;
+	width			:120px;
 	height			:30px;
 	padding-left	:5px;
 	padding-right	:5px;
@@ -50,13 +62,15 @@
 
 .watch{
 	display			:inline-block;
-	width			:20%;
-	height			:28px;
-	line-height		:28px;
+	width			:35px;
+	height			:30px;
+	line-height		:30px;
 	text-align		:center;
-	font-sie		:20px;
-	border-radius	:3px;
-	background		:#e0f0ff;
+	font-size		:20px;
+	border-radius	:5px;
+	background		:#0000d0;
+	vertical-align	:bottom;
+	color			:#fafafa;
 }
 
 
@@ -143,7 +157,6 @@ console.log(Chg);
 		</a>
 		|
 	</li>
-
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=0" class="current" aria-current="page">
 			表示
@@ -151,8 +164,6 @@ console.log(Chg);
 		</a>
 		|
 	</li>
-
-
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=1" class="current" aria-current="page">
 			退職
@@ -160,7 +171,6 @@ console.log(Chg);
 		</a>
 		|
 	</li>
-
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=2" class="current" aria-current="page">
 			休職
@@ -168,7 +178,6 @@ console.log(Chg);
 		</a>
 		|
 	</li>
-
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=3" class="current" aria-current="page">
 			準備中
@@ -176,7 +185,6 @@ console.log(Chg);
 		</a>
 		|
 	</li>
-
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=4" class="current" aria-current="page">
 			非表示
@@ -184,7 +192,6 @@ console.log(Chg);
 		</a>
 		|
 	</li>
-
 	<li class='all'>
 		<a href="admin.php?page=cast_list&sort_del=5" class="current" aria-current="page">
 			利用停止
@@ -228,13 +235,13 @@ console.log(Chg);
 	</div>
 
 <h2 class='screen-reader-text'>固定ページリスト</h2>
-<table class="wp-list-table widefat striped posts">
+<table class="wp-list-table striped posts">
 <tr>
-<th class='manage-column column-author column-ttl w40'> </th>
+<th class='manage-column column-author column-ttl w40'></th>
 <th class='manage-column column-author column-ttl w80'></th>
-<th class='manage-column column-author column-ttl'>名前</th>
-<th class='manage-column column-author column-ttl w60'>SORT</th>
-<th class='manage-column column-author column-ttl w60'>ランク</th>
+<th class='manage-column column-author column-ttl w300'>名前</th>
+<th class='manage-column column-author column-ttl w40'>SORT</th>
+<th class='manage-column column-author column-ttl w40'>ランク</th>
 <th class='manage-column column-author column-ttl w150'>ID</th>
 <th class='manage-column column-author column-ttl w150'>PASS</th>
 <th class='manage-column column-author column-ttl w80'>ステータス</th>

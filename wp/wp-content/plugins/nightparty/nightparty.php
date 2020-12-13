@@ -99,11 +99,9 @@ add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
 	add_menu_page('スタッフ', 'スタッフ', 'manage_options', 'staff', 'staff', 'dashicons-businessman',6);
 	add_submenu_page('staff', 'スタッフ登録ページ', 'スタッフ登録', 'manage_options', 'staff_regist', 'staff_regist');
-	add_submenu_page('staff', 'スタッフ一覧ページ', 'スタッフ一覧', 'manage_options', 'staff_list', 'staff_list');
 
 	add_menu_page('キャスト','キャスト','manage_options','cast','cast','dashicons-businesswoman',5);
 	add_submenu_page('cast','キャスト登録ページ', 'キャスト登録','manage_options', 'cast_regist', 'cast_regist');
-	add_submenu_page('cast','キャスト一覧ページ', 'キャスト一覧', 'manage_options', 'cast_list', 'cast_list');
 	add_submenu_page('cast','スケジュール一覧ページ', 'スケジュール','manage_options','sche_list','sche_list');
 
 	add_menu_page('更新ページ', '更新', 'manage_options', 'write', 'write', 'dashicons-text-page', 7);
@@ -123,13 +121,11 @@ function custom_menu_page(){
 	add_submenu_page('manage', 'お客様一覧', 'お客様一覧', 'manage_options', 'customer_list', 'customer_list');
 }
 
-
 function cast_regist(){
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }
 
-
-function cast_list(){
+function cast(){
 	global $wpdb;
 	$updir = wp_upload_dir();
 	$sort_del=$_REQUEST["sort_del"];
@@ -158,7 +154,7 @@ function cast_list(){
 }
 
 
-function staff_list(){
+function staff(){
 	global $wpdb;
 	$n=0;
 	$sql	 ="SELECT * FROM wp01_0staff";

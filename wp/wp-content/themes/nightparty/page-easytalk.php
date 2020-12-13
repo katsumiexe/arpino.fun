@@ -3,60 +3,46 @@
 Template Name: easytalk
 */
 global $wpdb;
-if($_POST["log_out"] == 1){
-	$_POST="";
-	$_SESSION="";
-	session_destroy();
-}
+
 $jst=time();
 $now=date("Y-m-d H:i:s",time()+21600);
+$ss=$_REQUEST["ss"];
 
-if($_REQUEST["ss"]){
-//	session_destroy();
+if($ss){
 	$sql	 ="SELECT * FROM wp01_0ssid";
-	$sql	.=" WHERE ssid='{$_REQUEST["ss"]}'";
+	$sql	.=" WHERE ssid='{$ss}'";
 	$ssid = $wpdb->get_row($sql,ARRAY_A);
-	$_SESSION=$ssid;
 
 	if(!$ssid){
 		$err=1;
 
 	}else{
-		$_SESSION["time"]=$jst;
+
 		$sql	 ="UPDATE wp01_0ssid";
 		$sql	.=" cast_id='',";
 		$sql	.=" customer_id=''";
 		$sql	.=" WHERE ssid !='{$_REQUEST["ss"]}'";
-		$sql	.=" AND cast_id='{$session["cast_id"]}'";
-		$sql	.=" AND customer_id='{$session["customer_id"]}'";
+		$sql	.=" AND cast_id='{$ssid["cast_id"]}'";
+		$sql	.=" AND customer_id='{$ssid["customer_id"]}'";
 		$wpdb->query($sql);
-	}
-
-}elseif($_SESSION["ssid"]){
-	if($jst<$_SESSION["time"]+18000){
-		$_SESSION["time"]=$jst;
-	}else{
-		$_SESSION="";
-		session_destroy();
-		$err=2;
 	}
 }
 
-if($_SESSION){
-	if (file_exists(get_template_directory()."/img/page/{$_SESSION["cast_id"]}/1.jpg")) {
-		$face_link=get_template_directory_uri()."/img/page/".$_SESSION["cast_id"]."/1.jpg";			
+
+if($ssid){
+	if (file_exists(get_template_directory()."/img/page/{$ssid["cast_id"]}/1.jpg")) {
+		$face_link=get_template_directory_uri()."/img/page/{$ssid["cast_id"]}/1.jpg";			
 	}else{
 		$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
 
 	$sql	 ="SELECT * FROM wp01_0castmail";
-	$sql	.=" WHERE customer_id='{$_SESSION["customer_id"]}' AND cast_id='{$_SESSION["cast_id"]}'";
+	$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
 	$sql	.=" ORDER BY mail_id DESC";
 	$sql	.=" LIMIT 10";
-
 	$res = $wpdb->get_results($sql,ARRAY_A);
-	$n=count($res)-1;
 
+	$n=count($res)-1;
 	foreach($res as $a1){
 		$dat[$n]=$a1;
 		$dat[$n]["log"]=str_replace("\n","<br>",$dat[$n]["log"]);
@@ -74,9 +60,10 @@ if($_SESSION){
 
 	$sql	 ="UPDATE wp01_0castmail SET";
 	$sql	.=" watch_date='{$now}'";
-	$sql	.=" WHERE customer_id='{$_SESSION["customer_id"]}' AND cast_id='{$_SESSION["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
+	$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
 	$wpdb->query($sql);
 }
+
 
 ?>
 <html lang="ja">
@@ -144,7 +131,7 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 		<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy1.png" class="easytalk_img"></img>
 		<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy2.png" class="easytalk_img"></img>
 		<?if(!$er){?>
-		<input type="hidden" id="ssid" value="<?=$_SESSION["ssid"]?>">
+		<input type="hidden" id="ssid" name="ss" value="<?=$ss?>">
 		<textarea id="send_msg" class="easytalk_text"></textarea>
 		<button id="send_mail" type="button">送</button>
 		<button id="send_img" type="button">画</button>

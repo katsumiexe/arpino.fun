@@ -35,9 +35,7 @@ if($send==1){
 	$sql	.="(ssid,cast_id,customer_id,`date`,`mail`)";
 	$sql	.="VALUES";
 	$sql	.="('{$enc}','{$cast_id}','{$customer_id}','{$now}','{$customer_mail}')";
-
 	$wpdb->query($sql);
-
 
 	$from	="counterpost2016@gmail.com";
 	$title	=$session["genji"]."より(EasyTalk)";
@@ -58,8 +56,15 @@ if($send==1){
 	$body	.="info@piyo-piyo.work";
 
 //	temp_mail($from, $from_name, $to, $title, $body);
-}
+}else{
+	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
+	$sql	.=" WHERE ssid='{$sid}'";
+	$sql	.=" LIMIT 1";
+	$ssid		=$wpdb->get_row($sql,ARRAY_A);
 
+	$customer_id=$ssid["customer_id"];
+	$cast_id	=$ssid["cast_id"];
+}
 
 $sql	 ="INSERT INTO wp01_0castmail";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
@@ -67,9 +72,7 @@ $sql	.="VALUES";
 $sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img}')";
 $wpdb->query($sql);
 
-
 $log=str_replace("\n","<br>",$log);
-
 
 $dat="<div class=\"mail_box_b\">";		
 $dat.="<div class=\"mail_box_log_2 bg\">";		

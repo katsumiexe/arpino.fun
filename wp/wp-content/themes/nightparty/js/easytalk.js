@@ -12,7 +12,9 @@ $(function(){
 				'img'	:$('#img').val(),
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$('.main_mail').prepend(data)
+			$('.main_mail').append(data);
+			$('#send_msg').val('');
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
