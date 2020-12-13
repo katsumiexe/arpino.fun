@@ -664,19 +664,6 @@ ul {
 	text-align:center;
 }
 
-.main_d_1_3{
-	position	:absolute;
-	display		:none;
-	bottom		:22px;
-	left		:0;
-	right		:0;
-	width		:168px;
-	height		:232px;
-	margin:auto;
-	border		:2px solid #906000;
-	z-index		:11;	
-}	
-
 .main_e{
 	position		:relative;
 	display			:inline-block;
@@ -1854,9 +1841,11 @@ ul {
 	border-right	:0.5vw solid #483800;
 	border-bottom	:0.5vw solid #483800;
 }
-.main_b_1:before{
+.main_d_1:before,.main_b_1:before{
 	display:none;
 }
+
+
 
 .main_d_1_1,.main_b_1_1{
 	width			:39vw;
@@ -1903,15 +1892,6 @@ ul {
 	width			:24vw;
 }
 
-
-.main_d_1_3,.main_b_1_3{
-
-	bottom		:4vw;
-	width		:37vw;
-	height		:49vw;
-	border		:0.5vw solid #906000;
-	z-index		:11;	
-}	
 
 .main_c{
 	width		:94vw;
@@ -2096,14 +2076,13 @@ ul {
 
 .sys_box_ttl{
 	font-size		:5vw;
-	width			:70vw;
+	width			:82vw;
 	height			:7vw;
 	line-height		:7vw;
-	margin			:2vw auto 2vw 2vw;
+	margin			:2vw;
 	padding			:1vw 2vw;
 	border-bottom	:double 1vw #c8b880;
 }
-
 
 .c_tr{
 	top		:-1vw;
@@ -2128,9 +2107,9 @@ ul {
 
 
 .sys_box_log{
-	width			:86vw;
+	width			:82vw;
 	padding			:1vw 2vw;
-	margin:0;
+	margin:0 2vw;
 }
 
 .system_title{
@@ -2316,25 +2295,23 @@ ul {
 
 .sub_blog_pack{
 	display			:inline-block;
-
 }
 
-
-
 .access_map{
-	margin:0 0 2vw 0;
-	flex-basis	:92vw;
-	width		:92vw;
-	height		:92vw;
+	margin		:0 0 2vw 0;
+	flex-basis	:86vw;
+	width		:86vw;
+	height		:96vw;
 }
 
 .access_map_in{
-	width		:92vw;
-	height		:92vw;
+	width		:86vw;
+	height		:86vw;
 }
 
 .access_table{
 	flex-wrap	:wrap;
+	width		:86vw;
 }
 
 

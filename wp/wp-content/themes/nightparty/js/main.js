@@ -66,24 +66,6 @@ $(document).ready(function () {
 		$('.person_img_main').hide().fadeIn(300).attr('src',TMP);
 	});
 
-	$(document).on({
-		'mouseenter': function() {	
-			$(this).children('.main_b_1_on').animate({'left':'240px'},400);
-		},
-		'mouseleave': function() {
-			$(this).children('.main_b_1_on').css({'left':'-150px'});
-		}
-	}, '.main_b_1');
-
-	$(document).on({
-		'mouseenter': function() {	
-			$(this).children('.main_d_1_3').fadeIn(100);
-		},
-		'mouseleave': function() {
-			$(this).children('.main_d_1_3').fadeOut(0);
-		}
-	}, '.main_d_1');
-
 
 	$('.cast_tag_box').on('click',function(){
 		if(!$(this).hasClass('cast_tag_box_sel')){

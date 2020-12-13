@@ -18,7 +18,6 @@ $sql=" SELECT * FROM wp01_0cast";
 $sql.=" WHERE del=0";
 $res = $wpdb->get_results($sql,ARRAY_A);
 
-
 foreach($res as $a1){
 	$dat[$a1["id"]]=$a1;
 
@@ -54,10 +53,27 @@ foreach($sort as $b1=> $b2){
 $html.="<a href=\"{$link}/person/?cast={$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";
 $html.="<img src=\"{$dat[$b1]["face"]}\" class=\"main_d_1_1\">";
 $html.="<span class=\"main_d_1_2\">";
+$html.="<span class=\"main_b_1_2_h\"></span>";
+$html.="<span class=\"main_b_1_2_f f_tr\"></span>";
+$html.="<span class=\"main_b_1_2_f f_tl\"></span>";
+$html.="<span class=\"main_b_1_2_f f_br\"></span>";
+$html.="<span class=\"main_b_1_2_f f_bl\"></span>";
 $html.="<span class=\"main_d_1_2_name\">{$dat[$b1]["genji"]}</span>";
 $html.="<span class=\"main_d_1_2_sch\">{$dat[$b1]["sch"]}</span>";
-$html.="</span><span class=\"main_d_1_3\"></span></a>";
+$html.="</span></a>";
 }
 echo $html;
 exit();
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
