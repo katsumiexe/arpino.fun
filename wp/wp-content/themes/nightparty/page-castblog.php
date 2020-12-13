@@ -373,7 +373,6 @@ get_header();
 					<a href="<?=home_url('/castblog')?>/?cast_list=<?=$a1?>" class="all_cast">
 						<span class="all_cast_img"><img src="<?=$cast_face[$a1]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 						<span class="all_cast_name"><?=$cast_name[$a1]?></span>
-						<span class="all_cast_icon"></span>
 						<span class="all_cast_last">更新：<?=$last_date[$a1]?></span>
 						<span class="all_cast_count"><?=$a2?></span>
 					</a>

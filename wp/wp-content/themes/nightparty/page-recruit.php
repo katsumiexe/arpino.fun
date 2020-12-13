@@ -27,22 +27,33 @@ get_header();
 </div>
 
 <div class="main_e">
-	<span class="sys_box_ttl">Recruit</span><br>
-	<?for($n=0;$n<count($recruit);$n++){?>
-		<?if($recruit[$n]["post_content"]){?>
-		<div class="rec">
-			<div class="rec_l"><?=$recruit[$n]["post_title"]?></div>
-			<div class="rec_r"><?=$recruit[$n]["post_content"]?></div>
-		</div>
+	<div class="main_e_in">
+		<span class="main_e_f c_tr"></span>
+		<span class="main_e_f c_tl"></span>
+		<span class="main_e_f c_br"></span>
+		<span class="main_e_f c_bl"></span>
+		<div class="corner_in box_in_1"></div>
+		<div class="corner_in box_in_2"></div>
+		<div class="corner_in box_in_3"></div>
+		<div class="corner_in box_in_4"></div>
+
+		<span class="sys_box_ttl">Recruit</span><br>
+		<?for($n=0;$n<count($recruit);$n++){?>
+			<?if($recruit[$n]["post_content"]){?>
+			<div class="rec">
+				<div class="rec_l"><?=$recruit[$n]["post_title"]?></div>
+				<div class="rec_r"><?=$recruit[$n]["post_content"]?></div>
+			</div>
+			<?}?>
 		<?}?>
-	<?}?>
-	<?if(!$recruit){?>
-		<span class="sys_box_log">情報はまだありません</span><br>
-	<?}?>
-<span class="main_e_f f_tr"></span>
-<span class="main_e_f f_tl"></span>
-<span class="main_e_f f_br"></span>
-<span class="main_e_f f_bl"></span>
+		<?if(!$recruit){?>
+			<span class="sys_box_log">情報はまだありません</span><br>
+		<?}?>
+	</div>
+	<span class="main_e_f f_tr"></span>
+	<span class="main_e_f f_tl"></span>
+	<span class="main_e_f f_br"></span>
+	<span class="main_e_f f_bl"></span>
 </div>
 
 <?php get_footer(); ?>
