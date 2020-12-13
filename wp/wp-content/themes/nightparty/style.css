@@ -884,7 +884,6 @@ ul {
 .access_sig{
 	display			:inline-block;
 	flex-basis		:300px;
-	height			:400px;
 	background		:#909090;
 	font-size		:0;
 	text-align		:center;
@@ -1806,15 +1805,20 @@ ul {
 }
 
 .main_e{
-	width			:92vw;
-	padding			:3vw;
+	width			:98vw;
 	margin			:1vw auto;
 }
 
+.main_e_in{
+	width			:91vw;
+	padding			:3vw;
+	margin			:0.5vw auto;
+}
+
 .main_e_f{
-	font-size	:10vw;
-	width		:10vw;
-	height		:10vw;
+	font-size	:12vw;
+	width		:12vw;
+	height		:12vw;
 }
 
 
@@ -2050,7 +2054,8 @@ ul {
 }
 
 .access_sig{
-	width			:92vw;
+	width			:76vw;
+	flex-basis		:76vw;
 	margin			:1vw auto 2vw auto;
 	font-size		:0;
 	text-align		:center;
@@ -2059,7 +2064,7 @@ ul {
 
 .access_tag{
 	font-size		:4vw;
-	width			:80vw;
+	width			:70vw;
 	height			:8vw;
 	line-height		:8vw;
 	margin			:2vw auto 1vw auto;
@@ -2068,7 +2073,7 @@ ul {
 .access_box{
 	font-size		:3.5vw;
 	line-height		:5vw;
-	width			:80vw;
+	width			:70vw;
 	margin-bottom	:4vw;
 	margin			:1vw auto 2vw auto;
 }
@@ -2076,10 +2081,10 @@ ul {
 
 .access_h1{
 	font-size	:5vw;
-	width		:80vw;
+	width		:70vw;
 	height		:10vw;
 	line-height	:10vw;
-	margin		:1vw auto;
+	margin		:1vw auto 2vw auto;
 }
 
 
@@ -2091,13 +2096,36 @@ ul {
 
 .sys_box_ttl{
 	font-size		:5vw;
-	width			:80vw;
+	width			:70vw;
 	height			:7vw;
 	line-height		:7vw;
 	margin			:2vw auto 2vw 2vw;
 	padding			:1vw 2vw;
 	border-bottom	:double 1vw #c8b880;
 }
+
+
+.c_tr{
+	top		:-1vw;
+	right	:0;
+}
+
+.c_tl{
+	top		:-1vw;
+	left	:0;	
+}
+
+.c_bl{
+	bottom	:-1vw;
+	left	:0;
+}
+
+.c_br{
+	bottom	:-1vw;
+	right	:0;
+}
+
+
 
 .sys_box_log{
 	width			:86vw;

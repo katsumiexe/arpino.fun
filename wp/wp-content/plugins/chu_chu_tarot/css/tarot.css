@@ -39,12 +39,12 @@
 
 .chu_ans_box{
 	display		:none;
-	width		:520px;
-	position	:relative;
+	position	:absolute;
+	top			:0;
+	left		:0;
+	right		:0;
 	margin		:auto;
-	background	:#e0e0d0;
 	z-index		:49;
-	padding		:10px;
 
 }
 .chu_ans{
@@ -94,7 +94,7 @@
 .chu_ans_comm{
 	display			:inline-block;
 	position		:absolute;
-	top				:70px;
+	top				:75px;
 	left			:180px;
 	width			:300px;
 	height			:205px;
@@ -102,8 +102,6 @@
 	background		:#fafafa;
 	border-top		:3px solid #909090;
 	border-bottom	:3px solid #909090;
-	font-size		:14px;
-	color			:#303030;
 }
 
 .chu_guard{
@@ -162,14 +160,14 @@
 
 .chu_card_f{
 	background	:linear-gradient(#8040b0,#400080);
-	height		:75px;
-	width		:60px;
+	height		:95px;
+	width		:55px;
 	border		:5px solid #f5f5f5;
 }
 
 .chu_card_b{
-	height		:75px;
-	width		:60px;
+	height		:95px;
+	width		:55px;
 	border		:5px solid #f5f5f5;
 	background-size:contain;
 	transform		:rotateY(180deg);
@@ -178,8 +176,8 @@
 .chu_card_ps{
 	display			:inline-block;
 	position		:absolute;
-	height			:85px;
-	width			:70px;
+	height			:105px;
+	width			:65px;
 	background		:rgba(90,60,10,0.2);
 	border-radius	:5px;
 }
@@ -202,7 +200,6 @@
 .card_bk:hover{
 	top:290px;
 }
-
 
 #c0{
 	top:40px;
@@ -268,10 +265,6 @@
 	height		:19vw;
 	width		:12vw;
 	border-radius	:5px;
-}
-
-.chu_box{
-	width			:99vw;
 }
 
 .chu_ans{

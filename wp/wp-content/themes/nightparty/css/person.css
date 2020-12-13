@@ -33,16 +33,27 @@
 	text-align		:center;
 }
 
-
 .person_blog{
 	display			:inline-block;
 	position		:relative;
 	width			:300px;
 	height			:90px;	
-//	background		:#fafafa;
 	border-bottom	:1px solid #C8B880;
 	color			:#C8B880;
-	
+	background		:#323232;
+		
+}
+
+.person_blog_no{
+	display			:inline-block;
+	position		:relative;
+	margin			:10px auto;
+	width			:160px;
+	height			:40px;	
+	background		:#323232;
+	borde			:1px solid #C8B880;
+	color			:#C8B880;
+	font-size		:16px;	
 }
 
 .person_blog_img{
@@ -76,7 +87,7 @@
 	height			:20px;	
 	line-height		:20px;	
 	text-align		:left;
-	color			:#f0f0c0;
+	color			:#302520;
 	background		:#C8B880;
 	border			:1px solid #C8B880;
 	border-radius	:5px;
@@ -95,6 +106,7 @@
 	font-size		:14px;
 	text-align		:center;
 	font-family		:at_icon;
+	color:#323232
 }
 
 .person_blog_c{
@@ -109,6 +121,7 @@
 	overflow		:hidden;
 	font-size		:13px;
 	text-align		:right;
+	color:#323232
 }
 
 .person_blog_title{
@@ -154,15 +167,15 @@
 }
 
 .prof_l{
-	border-bottom:1px solid #C8B880;
-	padding		:0 5px;
-	height		:30px;
-	line-height	:30px;
-	width		:150px;
-	font-size	:16px;
-	background	:#323232;
-	color		:#C8B880;
-	vertical-align:top;
+	border-bottom	:1px solid #C8B880;
+	padding			:0 5px;
+	height			:30px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:16px;
+	background		:#323232;
+	color			:#C8B880;
+	vertical-align	:top;
 	}
 
 
@@ -384,8 +397,8 @@
 
 .prof_l{
 	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
+	height		:8vw;
+	line-height	:8vw;
 	width		:39vw;
 	font-size	:3.8vw;
 }
@@ -393,8 +406,8 @@
 
 .prof_r{
 	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
+	height		:8vw;
+	line-height	:8vw;
 	width		:54vw;
 	font-size	:3.8vw;
 }
@@ -402,16 +415,16 @@
 .prof_l2{
 	width		:96vw;
 	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
+	min-height	:8vw;
+	line-height	:6vw;
 	font-size	:3.8vw;
 }
 
 
 .prof_r2{
 	padding		:0 1vw;
-	height		:7vw;
-	line-height	:7vw;
+	height		:8vw;
+	line-height	:8vw;
 	font-size	:3.8vw;
 }
 
@@ -454,13 +467,6 @@
 }
 
 
-.person_blog_ttl{
-	width			:88vw;
-	height			:8vw;	
-	line-height		:8vw;	
-	font-size		:4vw;
-}
-
 .person_blog{
 	width			:96vw;
 	height			:20vw;
@@ -468,30 +474,46 @@
 	
 }
 
+.person_blog_ttl{
+	width			:88vw;
+	height			:8vw;	
+	line-height		:8vw;	
+	font-size		:4vw;
+}
+
+.person_blog_no{
+	width			:90vw;
+	height			:10vw;
+	line-height		:10vw;
+	margin			:2vw auto;
+	font-size		:4vw;	
+	text-align		:center;	
+	border			:1px solid #b8c880;
+}
+
 .person_blog_img{
-	top				:1vw;
-	left			:1vw;
-	width			:18vw;
-	height			:18vw;
+	top				:0;
+	left			:0;
+	width			:20vw;
+	height			:20vw;
 }
 
 .person_blog_date{
-	top				:2.5vw;
-	left			:20.5vw;
+	top				:2vw;
+	left			:22vw;
 	width			:50vw;
 	height			:4vw;	
 	line-height		:4vw;	
-	font-size		:4vw;
+	font-size		:3.5vw;
 }
 
 .person_blog_comm{
 	display			:inline-block;
 	position		:absolute;
 	top				:1vw;
-	right			:1vw;
-	width			:20vw;
-	height			:6vw;	
-	line-height		:8vw;
+	right			:2vw;
+	width			:16vw;
+	height			:5vw;	
 }
 
 .person_blog_i{
@@ -510,8 +532,8 @@
 
 .person_blog_title{
 	top				:8vw;
-	left			:21vw;
-	width			:66vw;
+	left			:22vw;
+	width			:73vw;
 	height			:11vw;	
 	font-size		:4vw;
 	line-height		:5.5vw;	

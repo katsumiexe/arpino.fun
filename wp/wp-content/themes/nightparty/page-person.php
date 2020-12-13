@@ -184,7 +184,7 @@ get_header();
 				</a>
 			<?}?>
 			<?if(!$blog){?>
-					<span class="person_blog">まだありません</span>
+					<span class="person_blog_no">まだありません</span>
 			<?}?>
 		</div>
 	</div>
