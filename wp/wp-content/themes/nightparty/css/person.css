@@ -40,7 +40,7 @@
 	height			:90px;	
 	border-bottom	:1px solid #C8B880;
 	color			:#C8B880;
-	background		:#323232;
+	background		:#302520;
 		
 }
 
@@ -106,7 +106,7 @@
 	font-size		:14px;
 	text-align		:center;
 	font-family		:at_icon;
-	color:#323232
+	color			:#302520;
 }
 
 .person_blog_c{
@@ -121,7 +121,7 @@
 	overflow		:hidden;
 	font-size		:13px;
 	text-align		:right;
-	color:#323232
+	color			:#302520;
 }
 
 .person_blog_title{
@@ -337,20 +337,20 @@
 
 .prof{
 	border-spacing: 0px 1vw;
-	margin:1vw auto 5vw auto;
+	margin:0vw auto 5vw auto;
 }
 
 .prof_l{
-	padding-left:1vw;
+	padding		:0 1vw;
 	height		:8vw;
 	line-height	:8vw;
-	width		:39vw;
+	width		:34vw;
 	font-size	:3.8vw;
 }
 
 
 .prof_r{
-	padding-left:1vw;
+	padding		:0 1vw;
 	height		:8vw;
 	line-height	:8vw;
 	width		:54vw;
@@ -358,7 +358,7 @@
 }
 
 .prof_l2{
-	width		:96vw;
+	width		:94.5vw;
 	padding-left:1vw;
 	min-height	:8vw;
 	line-height	:6vw;
@@ -373,6 +373,36 @@
 	font-size	:3.8vw;
 }
 
+.sche_l_0,
+.sche_l_1,
+.sche_l_2,
+.sche_l_3,
+.sche_l_4,
+.sche_l_5,
+.sche_l_6
+{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:39vw;
+	font-size	:3.8vw;
+}
+
+
+.sche_r_0,
+.sche_r_1,
+.sche_r_2,
+.sche_r_3,
+.sche_r_4,
+.sche_r_5,
+.sche_r_6
+{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:54vw;
+	font-size	:3.8vw;
+}
 
 
 
@@ -437,36 +467,6 @@
 	margin:1vw auto;
 }
 
-.sche_l_0,
-.sche_l_1,
-.sche_l_2,
-.sche_l_3,
-.sche_l_4,
-.sche_l_5,
-.sche_l_6
-{
-	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
-	width		:39vw;
-	font-size	:3.8vw;
-}
-
-
-.sche_r_0,
-.sche_r_1,
-.sche_r_2,
-.sche_r_3,
-.sche_r_4,
-.sche_r_5,
-.sche_r_6
-{
-	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
-	width		:54vw;
-	font-size	:3.8vw;
-}
 
 
 .person_blog{

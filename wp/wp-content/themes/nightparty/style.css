@@ -682,8 +682,8 @@ ul {
 	border			:1px solid #c8b880;
 	padding			:30px 40px;
 	font-size		:16px;
-//	background		: linear-gradient(135deg, #FEE9A0 0%, #B67B03 70%, #d09020 100%); 
-	text-align		:left;
+//	background		:linear-gradient(135deg, #FEE9A0 0%, #B67B03 70%, #d09020 100%); 
+	text-align		:center;
 }
 
 .corner{
@@ -940,6 +940,7 @@ ul {
     display			:inline-block;
 	padding			:5px 10px;
 	color			:#c8b880;
+	text-align:left;
 }
 
 .system_title{
@@ -2054,6 +2055,18 @@ ul {
 	flex-wrap	:wrap;
 }
 
+.access_map{
+	margin		:0 auto 2vw auto;
+	flex-basis	:86vw;
+	width		:86vw;
+	height		:96vw;
+}
+
+.access_map_in{
+	width		:86vw;
+	height		:96vw;
+}
+
 .access_sig{
 	width			:76vw;
 	flex-basis		:76vw;
@@ -2100,7 +2113,7 @@ ul {
 	width			:82vw;
 	height			:7vw;
 	line-height		:7vw;
-	margin			:2vw;
+	margin			:2vw auto;
 	padding			:1vw 2vw;
 	border-bottom	:double 1vw #c8b880;
 }
@@ -2318,17 +2331,6 @@ ul {
 	display			:inline-block;
 }
 
-.access_map{
-	margin		:0 0 2vw 0;
-	flex-basis	:86vw;
-	width		:86vw;
-	height		:96vw;
-}
-
-.access_map_in{
-	width		:86vw;
-	height		:86vw;
-}
 
 .access_table{
 	flex-wrap	:wrap;
@@ -2371,7 +2373,7 @@ ul {
 }
 
 .all_tag_name{
-	width			:70vw;
+	width			:73vw;
 	height			:10vw;
 	line-height		:10vw;
 	font-size		:4vw;
@@ -2438,9 +2440,9 @@ ul {
 	top				:1vw;
 	right			:1vw;
 
-	width			:20vw;
-	height			:8vw;
-	line-height		:8vw;
+	width			:16vw;
+	height			:6vw;
+	line-height		:6vw;
 	font-size		:4vw;
 	border-radius	:1vw;
 	padding-right	:1vw;
@@ -2587,7 +2589,7 @@ ul {
 
 .blog_img{
 	margin		:2vw auto;
-	width		:50vw;
+	width		:80vw;
 }
 
 
