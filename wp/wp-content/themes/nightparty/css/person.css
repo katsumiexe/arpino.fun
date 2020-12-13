@@ -75,7 +75,7 @@
 	line-height		:22px;
 	font-size		:12px;
 	text-align		:left;
-	font-weight		:700;
+	color			:#e0e0e0;
 }
 
 .person_blog_comm{
@@ -499,12 +499,12 @@
 }
 
 .person_blog_date{
-	top				:2vw;
-	left			:22vw;
+	top				:1vw;
+	left			:21vw;
 	width			:50vw;
 	height			:4vw;	
 	line-height		:4vw;	
-	font-size		:3.5vw;
+	font-size		:3.2vw;
 }
 
 .person_blog_comm{
