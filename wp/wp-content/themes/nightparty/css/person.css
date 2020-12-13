@@ -224,7 +224,7 @@
 
 .sche{
 	border-collapse: collapse;
-	margin:0;
+	margin:0 auto;
 }
 
 .sche_l_1,
@@ -360,16 +360,16 @@
 .prof_l2{
 	width		:94.5vw;
 	padding-left:1vw;
-	min-height	:8vw;
-	line-height	:6vw;
+	height		:8vw;
+	line-height	:8vw;
 	font-size	:3.8vw;
 }
 
 
 .prof_r2{
 	padding		:0 1vw;
-	height		:8vw;
-	line-height	:8vw;
+	min-height	:8vw;
+	line-height	:6vw;
 	font-size	:3.8vw;
 }
 
@@ -460,14 +460,6 @@
 	margin-right	:0;
 	margin-bottom	:1.3vw;
 }
-
-
-.sche{
-	border-collapse: collapse;
-	margin:1vw auto;
-}
-
-
 
 .person_blog{
 	width			:96vw;

@@ -1043,7 +1043,7 @@ ul {
 	margin			:0;
 	text-align		:left;
 	text-decoration	:none;
-	background		:#fafafa;
+	background		:#302520;
 	border-left		:1px solid #c8b880;
 	border-bottom	:1px solid #c8b880;
 }
@@ -1075,6 +1075,7 @@ ul {
 	font-weight		:700;
 	vertical-align	:top;
 	overflow		:hidden;
+	color			:#C8b880;
 }
 
 .blog_list_tag{
@@ -1123,7 +1124,7 @@ ul {
 	margin			:0 auto;
 	text-align		:left;
 	font-size		:0;
-	border-radius:25px 0 0 0;
+	border-radius	:25px 0 0 0;
 }
 
 
@@ -1145,7 +1146,7 @@ ul {
 	overflow	:hidden;
 	border-radius:50%;
 	background:#ff80a0;
-	border:1px solid #ff90a0;
+	border:2px solid #c8b880;
 }
 
 
@@ -1154,7 +1155,8 @@ ul {
 	right		:65px;
 	bottom		:5px;
 	font-size	:13px;
-	text-align	:right
+	text-align	:right;
+	color		:#e0e0e0;
 }
 
 .blog_list_castname{
@@ -1163,7 +1165,7 @@ ul {
 	bottom		:25px;
 	font-size	:16px;
 	text-align	:right;
-	color		:#606040;
+	color		:#d8c890;
 }
 
 .blog_h1{
@@ -1613,10 +1615,10 @@ ul {
 
 .main_blog_title{
 	width			:95vw;
-	height			:8vw;
-	line-height		:8vw;
+	height			:4vw;
+	line-height		:4vw;
 	margin			:0 auto;
-	font-size		:4vw;
+	font-size		:3vw;
 	padding-left	:1vw;
 }
 
@@ -2338,6 +2340,15 @@ ul {
 }
 
 
+.main_blog_title{
+	width			:95vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:0 auto;
+	font-size		:4vw;
+	padding-left	:1vw;
+}
+
 .page_box{
 	width			:96vw;
 	height			:12vw;
@@ -2464,7 +2475,7 @@ ul {
 .blog_list_title{
 	top				:1vw;
 	left			:25vw;
-	width			:64vw;
+	width			:70vw;
 	height			:11vw;
 	line-height		:5.5vw;
 	font-size		:4vw;
@@ -2499,7 +2510,7 @@ ul {
 
 .blog_list_castname{
 	right		:15vw;
-	bottom		:6vw;
+	bottom		:5vw;
 	font-size	:4.5vw;
 }
 
