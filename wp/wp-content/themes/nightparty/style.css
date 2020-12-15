@@ -253,7 +253,7 @@ ul {
 
 .main_b_notice{
 	display			:inline-block;
-	width			:840px;
+	width			:850px;
 	height			:60px;
 	text-align		:left;
 	vertical-align	:top;
@@ -866,10 +866,16 @@ ul {
 	color		:#303030;
 }
 
+.access_map_in{
+	width		:650px;
+	height		:400px;
+}
+
 
 .access_sig{
 	display			:inline-block;
 	flex-basis		:300px;
+	height			:400px;
 	background		:#909090;
 	font-size		:0;
 	text-align		:center;
