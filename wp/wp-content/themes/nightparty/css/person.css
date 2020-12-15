@@ -173,7 +173,7 @@
 	line-height		:30px;
 	width			:150px;
 	font-size		:16px;
-	background		:#323232;
+	background		:#404040;
 	color			:#C8B880;
 	vertical-align	:top;
 	}
@@ -186,8 +186,9 @@
 	line-height		:30px;
 	width			:325px;
 	font-size		:16px;
-	background		:#272727;
+	background		:#282828;
 	color			:#C8B880;
+	color			:#ffefc0;
 }
 
 
@@ -224,7 +225,6 @@
 
 .sche{
 	border-collapse: collapse;
-	margin:0 auto;
 }
 
 .sche_l_1,
@@ -280,7 +280,7 @@
 	padding-left:10px;
 	height		:28px;
 	line-height	:28px;
-	width		:150px;
+	width		:250px;
 	font-size	:14px;
 	background	:#272727;
 	color		:#C8B880;
@@ -293,7 +293,7 @@
 	padding-left:10px;
 	height		:28px;
 	line-height	:28px;
-	width		:150px;
+	width		:250px;
 	font-size	:14px;
 	background	:#272727;
 	color		:#f0a080;
@@ -306,7 +306,7 @@
 	padding-left:10px;
 	height		:28px;
 	line-height	:28px;
-	width		:150px;
+	width		:250px;
 	font-size	:14px;
 	background	:#272727;
 	color		:#90b8c0;

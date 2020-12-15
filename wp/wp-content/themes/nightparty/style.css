@@ -315,7 +315,7 @@ ul {
 .sche_title{
 	margin-top		:20px;
 	margin-left		:0;
-	width			:310px;
+	width			:410px;
 	height			:30px;
 	line-height		:30px;
 	font-family		: at_font1;
@@ -927,11 +927,11 @@ ul {
 	line-height		:30px;
 	margin			:10px 30px;
 	font-weight		:800;
-	color			:#685820;
 	color			:#c8b880;
 	text-shadow		:1px 1px 0px rgba(30,30,30,0);
 	padding			:5px 10px;
 	border-bottom	:double 2px #c8b880;
+	text-align:left;
 }
 
 .sys_box_log{
