@@ -1,18 +1,27 @@
 <?
 session_start();
 global $wpdb;
-if($_POST["log_out"] == 1){
+ini_set('display_errors',1);
+//require_once ("./../../../wp-load.php");
+require_once ("post/inc_code.php");
+
+$jst=time()+32400;
+$now_8=date("Ymd",$jst-($start_time*3600));
+$link=get_template_directory_uri();
+
+
+if($_REQUEST["log_out"] == 1){
 	$_POST="";
 	$_SESSION="";
 	session_destroy();
 }
-require_once ("post/inc_code.php");
 
-if($_SESSION){
-	if($jst<$_SESSION["time"]+32400){
+if($_SESSION["cast_time"]){
+	if($jst<$_SESSION["cast_time"]+3600){
+
 		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
 		$_SESSION=$rows;
-		$_SESSION["time"]=$jst;
+		$_SESSION["cast_time"]=$jst;
 
 	}else{
 		$_SESSION="";
@@ -20,17 +29,20 @@ if($_SESSION){
 	}
 
 }elseif($_POST["log_in_set"] && $_POST["log_pass_set"]){
-	$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_POST["log_in_set"]."' AND cast_pass='".$_POST["log_pass_set"]."'",ARRAY_A );
+	$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='{$_POST["log_in_set"]}' AND cast_pass='{$_POST["log_pass_set"]}'",ARRAY_A);
 	if($rows){
 		$_SESSION=$rows;
-		$_SESSION["time"]=$jst;
+		$_SESSION["cast_time"]=$jst;
 
 	}else{
 		$err="IDもしくはパスワードが違います";
+		$_SESSION="";
+		session_destroy();
 	}
 }
 
-if($_SESSION){
+if($_SESSION["cast_time"]){
+
 /*--■祝日カレンダー--*/
 $holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
 $ob_holiday = json_decode($holiday,true);
@@ -100,6 +112,9 @@ foreach($enc0 as $row){
 
 $id_8=substr("00000000".$_SESSION["id"],-8);
 $id_0	=$_SESSION["id"] % 20;
+
+
+
 
 for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
@@ -346,10 +361,11 @@ for($n=0;$n<8;$n++){
 			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 		}
 	}
-
-	foreach($birth_hidden as $a1 => $a2){
-		foreach($birth_hidden[$a1] as $a3 => $a4){
-			$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+	if($birth_hidden){
+		foreach($birth_hidden as $a1 => $a2){
+			foreach($birth_hidden[$a1] as $a3 => $a4){
+				$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+			}
 		}
 	}
 
@@ -610,6 +626,8 @@ for($n=0;$n<8;$n++){
 	$log_list_cnt=substr($log_list_cnt,0,-1);
 }
 
+
+
 ?>
 <html lang="ja">
 <head>
@@ -621,8 +639,6 @@ for($n=0;$n<8;$n++){
 	font-family: at_icon;
 	src: url(<?php echo get_template_directory_uri(); ?>/font/font_0/fonts/icomoon.ttf) format('truetype');
 }
-
-
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
@@ -659,9 +675,8 @@ $(function(){
 });
 </script>
 </head>
-
 <body class="body">
-<? if(!$_SESSION){ ?>
+<? if(!$_SESSION["cast_time"]){ ?>
 	<div class="login_box">
 		<form action="<?php the_permalink();?>" method="post">
 			<span class="login_name">IDCODE</span>
@@ -709,7 +724,6 @@ $(function(){
 			<span class="regist_icon"></span>
 			<span class="regist_txt">作成</span>
 		</div>
-
 
 	<?}elseif($cast_page==4){?>
 		<div id="regist_blog_fix" class="regist_btn">
@@ -1286,8 +1300,6 @@ $(function(){
 <span class="config_tag3_in">週の開始曜日</span>
 </div>
 </div>
-
-
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">顧客グループ設定</span></div></h2>
 <div class="config_box">
 
@@ -1447,7 +1459,7 @@ $(function(){
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 
 		<div class="notice_list">
-			<?foreach($notice as $n =>$a2){?>
+			<?foreach((array)$notice as $n =>$a2){?>
 				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>">
 					<span class="notice_d"><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日</span>
 					<span class="notice_t"><?=$notice[$n]["title"]?></span>
