@@ -2047,7 +2047,6 @@ console.log("VwBase:"+VwBase);
 			var ItemIcon	=[];
 			var ItemColor	=[];
 
-
 			for(i=0;i<Cnt;i++){
 				ItemName[i]=$('#item_name_'+i).val();
 				ItemPrice[i]=$('#item_price_'+i).val();
@@ -2073,11 +2072,8 @@ console.log("VwBase:"+VwBase);
 				console.log(textStatus);
 				console.log(errorThrown);
 			});
-
         }
 	});
-
-
 
 /*
 	$('#item_set').on('click',function(){
@@ -2359,7 +2355,6 @@ console.log("VwBase:"+VwBase);
 			}
 		});
 	});
-
 
 	$('.ana_detail').on('click',function () {
 		TMP=$(this).attr('id');

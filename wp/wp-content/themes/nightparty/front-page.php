@@ -35,33 +35,85 @@ foreach($res2 as $a2){
 		$sort[$a1["id"]]=999999;
 	}
 }
+
+$sql	 ="SELECT meta_id, meta_value, post_type FROM wp01_postmeta AS M";
+$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
+$sql	.=" WHERE meta_key='_top_slide'";
+$sql	.=" AND meta_value>0";
+$sql	.=" ORDER BY meta_value ASC";
+$res2 = $wpdb->get_results($sql,ARRAY_A);
+foreach($res2 as $a2){
+	$slide[]=$a2;
+}
 get_header();
 ?>
+
+<style>
+.slide_img{
+	width		:calc( 1200px * <?=count($slide)?>);
+}
+
+.slide_point{
+	width		:calc( 70px + 30px * <?=count($slide)?>);
+}
+
+@media screen and (max-width: 959px){
+	.slide_img{
+		width		:calc( 98vw * <?=count($slide)?>);
+	}
+
+	.slide_point{
+		width		:calc( 25vw + 5vw * <?=count($slide)?>);
+	}
+}
+</style>
+<script>
+var Cnt=<?=(count($slide)-1)?>;
+</script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
+<?if(count($slide) ==1){?>
 	<div class="slide">
 		<div class="slide_img">
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top1.jpg" class="top_img">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top2.jpg" class="top_img">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top3.jpg" class="top_img">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top4.jpg" class="top_img">;
-		<img src="<?=get_template_directory_uri()?>/img/page/top/top5.jpg" class="top_img">;
-		</div>
-		<div class="slide_point">
-			<div id="dot0" class="slide_dot dot_on"></div>
-			<div id="dot1" class="slide_dot"></div>
-			<div id="dot2" class="slide_dot"></div>
-			<div id="dot3" class="slide_dot"></div>
-			<div id="dot4" class="slide_dot"></div>
+			<?if($slide[0]["post_type"]=="nonlink"){?>
+				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img">;
+			<?}else{?>	
+				<a href="<?=home_url('/event')?>/?code=<?=$slide[0]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img"></a>;
+			<?}?>	
 		</div>
 	</div>
+<?}elseif(count($slide) >1){?>
+	<div class="slide">
+		<div class="slide_img">
+			<?for($n=0;$n<count($slide);$n++){?>
+				<?if($slide[$n]["post_type"]=="nonlink"){?>
+					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
+				<?}else{?>	
+					<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
+				<?}?>	
+			<?}?>	
+		</div>
+
+		<div class="slide_point">
+			<?for($n=0;$n<count($slide);$n++){?>
+				<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
+			<?}?>
+		</div>
+	</div>
+<?}?>
 
 	<div class="main_b">
+		<div class="main_b_title">新着情報</div>
 		<div class="main_b_top">
-			<div class="main_b_notice"></div>
-			<div class="main_b_notice"></div>
-			<div class="main_b_notice"></div>
-			<div class="main_b_notice"></div>
+			<?for($n=0;$n<count($news);$n++){?>
+				<div class="main_b_notice">
+					<span class="main_b_notice_date"><?=$news[$n]["date"]?>"></span>
+					<span class="main_b_notice_title"><?=$news[$n]["post_title"]?>"></span>
+			<?if($news[$n]["post_type"]=="nlink"){?>
+					<span class="main_b_notice_arrow">▼</span>
+			<?}?>
+				</div>
+			<?}?>
 		</div>
 
 		<div class="main_b_title">本日の出勤キャスト</div>

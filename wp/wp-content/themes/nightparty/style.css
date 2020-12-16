@@ -149,7 +149,6 @@ ul {
 	top			:0;
 	left		:0;
 	right		:0;
-	width		:6000px;
 	height		:480px;
 	background	:#fafafa;
 	margin		:auto;
@@ -169,7 +168,6 @@ ul {
 	bottom			:30px;
 	left			:0;
 	right			:0;
-	width			:290px;
 	height			:40px;
 	line-height		:40px;
 	background		:#303538;
@@ -248,17 +246,60 @@ ul {
 	margin			:0 auto 20px auto;
 	background		:#302520;
 	padding			:10px;
-	border-radius:5px;
+	border-radius	:0 0 10px 10px;
 }
 
 .main_b_notice{
 	display			:inline-block;
+	position		:relative;
 	width			:840px;
-	height			:60px;
+	height			:50px;
 	text-align		:left;
 	vertical-align	:top;
 	border-bottom	:1px dashed #fafafa;
-	margin			: 0 auto;
+	margin			:0 auto;
+}
+
+
+.main_b_notice_date{
+	display			:inline-block;
+	position		:absolute;
+	top				:5px;
+	left			:5px;
+	width			:200px;
+	height			:15px;
+	text-align		:left;
+	color			:#fafafa;
+	fpnt-size		:13px
+}
+
+.main_b_notice_name{
+	display				:inline-block;
+	position			:absolute;
+	bottom				:5px;
+	left				:5px;
+	width				:760px;
+	height				:30px;
+	text-align			:left;
+	color				:#302520;
+	fpnt-size			:18px
+}
+
+.main_b_notice_arrow{
+	display				:inline-block;
+	position			:absolute;
+	top					:0px;
+	bottom				:0px;
+	right				:5px;
+	width				:40px;
+	height				:40px;
+	line-height			:40px;
+	text-align			:center;
+	color				:#302520;
+	font-size			:30px;
+	background			:#fafafa;
+	transform			:rotate(-90deg);
+	border-radius		:50%;
 }
 
 .main_b_in{
@@ -329,9 +370,6 @@ ul {
 	font-family		: at_font1;
 }
 
-
-
-
 .main_b_1{
 	position		:relative;
 	display			:inline-block;
@@ -352,15 +390,15 @@ ul {
 	width		:100%;
 	height		:100%;
 	background	:#ffffff;
-	overflow	:hidden;	
+	overflow	:hidden;
 	opacity		:0;
 }
 
 .main_c_1:hover{
     animation-name: effect;
     animation-duration: 5s;
-
 }
+
 @keyframes effect{
 	30% {
 		opacity: .5;	
@@ -1577,9 +1615,6 @@ ul {
 	line-height	:20px;
 }
 
-
-
-
 @media screen and (max-width: 959px){
 .pc_only{
 	display		:none;
@@ -1754,16 +1789,16 @@ ul {
 }
 
 .slide_img{
-	width		:490vw;
 	height		:39.2vw;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
 }
 
+
+
 .slide_point{
 	bottom			:3vw;
-	width			:50vw;
 	height			:8vw;
 	line-height		:8vw;
 	border-radius	:2vw;
@@ -1797,7 +1832,7 @@ ul {
 
 .main_b_top{
 	width			:90vw;
-	margin			:2vw auto 4vw auto;
+	margin			:0vw auto 4vw auto;
 	padding			:2vw;
 	border-radius:1vw;
 }

@@ -20,7 +20,7 @@ $(function(){
 
 		drag: function( event, ui ) {
 			if($('.dot_on').attr('id').replace('dot','')==0 && ui.position.left>0) ui.position.left = 0;
-			if($('.dot_on').attr('id').replace('dot','')==4 && ui.position.left>TopW*4) ui.position.left = TopW*4;
+			if($('.dot_on').attr('id').replace('dot','')==Cnt && ui.position.left>TopW*Cnt) ui.position.left = TopW*Cnt;
 		},
 
 		stop: function( event, ui ) {
@@ -68,7 +68,7 @@ $(function(){
 
 function Fnc_s() {
 	TopCnt++;
-	if(TopCnt>4){
+	if(TopCnt>Cnt){
 		TopCnt=0;
 //		clearInterval(timerId);
 //		timerId = setInterval(Fnc_s,TMR);
