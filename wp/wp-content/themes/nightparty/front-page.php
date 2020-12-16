@@ -109,11 +109,34 @@ var Cnt=<?=(count($slide)-1)?>;
 				<div class="main_b_notice">
 					<span class="main_b_notice_date"><?=$news[$n]["date"]?>"></span>
 					<span class="main_b_notice_title"><?=$news[$n]["post_title"]?>"></span>
-			<?if($news[$n]["post_type"]=="nlink"){?>
+			<?if($news[$n]["post_type"]=="nolink"){?>
 					<span class="main_b_notice_arrow">▼</span>
 			<?}?>
 				</div>
 			<?}?>
+
+				<div class="main_b_notice">
+					<span class="main_b_notice_date">2020.12.16</span>
+					<span class="main_b_notice_tag">入店情報</span>
+					<span class="main_b_notice_title">ひとみちゃんが入店しました</span>
+					<span class="main_b_notice_arrow">▼</span>
+				</div>
+
+				<div class="main_b_notice">
+					<span class="main_b_notice_date">2020.12.16</span>
+					<span class="main_b_notice_tag">入店情報</span>
+					<span class="main_b_notice_title">ひとみちゃんが入店しました</span>
+					<span class="main_b_notice_arrow">▼</span>
+				</div>
+
+				<div class="main_b_notice">
+					<span class="main_b_notice_date">2020.12.16</span>
+					<span class="main_b_notice_tag">入店情報</span>
+					<span class="main_b_notice_title">ひとみちゃんが入店しました</span>
+					<span class="main_b_notice_arrow">▼</span>
+				</div>
+
+
 		</div>
 
 		<div class="main_b_title">本日の出勤キャスト</div>
@@ -136,6 +159,9 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 
 	<div class="main_c">
+		<div class="side_img_out"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="side_img"></div>;
+		<div class="side_img_out"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side2.png" class="side_img"></div>;
+
 		<a class="twitter-timeline" data-width="310" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>

@@ -149,6 +149,7 @@ ul {
 	top			:0;
 	left		:0;
 	right		:0;
+	width		:6000px;
 	height		:480px;
 	background	:#fafafa;
 	margin		:auto;
@@ -161,6 +162,36 @@ ul {
 	
 }
 
+.side_img_out{
+	position		:relative;
+	width			:310px;
+	height			:100px;
+	margin-bottom	:2px;
+	overflow		:hidden;
+}
+
+.side_img{
+	width			:310px;
+	height			:100px;
+}
+
+.side_img_out:before{
+	content		:"";
+	position	:absolute;
+	top			:-60px;
+	left		:-350px;
+	width		:280px;
+	height		:420px;
+	transform	:rotate(20deg);
+	background	:linear-gradient(90deg,rgba(255, 255, 240, 0.1),rgba(255, 255, 240,0.4) 80%,rgba(255, 255, 240,0.2) 100%);
+}
+
+.side_img_out:hover:before{
+	animation: e_shine .2s linear 0s;
+}
+
+
+
 .slide_point{
 	position		:absolute;
 	display			:inline-flex;
@@ -168,6 +199,7 @@ ul {
 	bottom			:30px;
 	left			:0;
 	right			:0;
+	width			:290px;
 	height			:40px;
 	line-height		:40px;
 	background		:#303538;
@@ -242,65 +274,72 @@ ul {
 
 .main_b_top{
 	display			:inline-block;
-	width			:840px;
+	width			:860px;
 	margin			:0 auto 20px auto;
 	background		:#302520;
-	padding			:10px;
-	border-radius	:0 0 10px 10px;
+	border-radius	:5px;
+	padding-bottom	:10px
 }
 
 .main_b_notice{
 	display			:inline-block;
-	position		:relative;
-	width			:840px;
-	height			:50px;
+	width			:830px;
+	height			:40px;
 	text-align		:left;
 	vertical-align	:top;
 	border-bottom	:1px dashed #fafafa;
-	margin			:0 auto;
+	margin			: 0 auto;
 }
-
 
 .main_b_notice_date{
 	display			:inline-block;
-	position		:absolute;
-	top				:5px;
-	left			:5px;
-	width			:200px;
-	height			:15px;
-	text-align		:left;
+	width			:100px;
+	height			:40px;
+	line-height		:40px;
+	text-align		:center;
+	font-size		:16px;
 	color			:#fafafa;
-	fpnt-size		:13px
 }
 
-.main_b_notice_name{
-	display				:inline-block;
-	position			:absolute;
-	bottom				:5px;
-	left				:5px;
-	width				:760px;
-	height				:30px;
-	text-align			:left;
-	color				:#302520;
-	fpnt-size			:18px
+.main_b_notice_tag{
+	display			:inline-block;
+	width			:100px;
+	height			:30px;
+	line-height		:30px;
+	text-align		:center;
+	margin			:5px;
+	background		:#c8b880;
+	font-size		:14px;
+	color			:#fafafa;
+}
+
+.main_b_notice_title{
+	display			:inline-block;
+	width			:540px;
+	height			:40px;
+	line-height		:40px;
+	text-align		:left;
+	padding-left	:10px;
+	font-size		:18px;
+	color			:#fafafa;
 }
 
 .main_b_notice_arrow{
-	display				:inline-block;
-	position			:absolute;
-	top					:0px;
-	bottom				:0px;
-	right				:5px;
-	width				:40px;
-	height				:40px;
-	line-height			:40px;
-	text-align			:center;
-	color				:#302520;
-	font-size			:30px;
-	background			:#fafafa;
-	transform			:rotate(-90deg);
-	border-radius		:50%;
+	display			:inline-block;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
+	text-align		:center;
+	font-sie		:30px;
+	margin			:15px;
+	border-radius	:15px;
+	background		:#c8b880;
+	font-size		:20px;
+	color			:#fafafa;
 }
+
+
+
 
 .main_b_in{
 	display			:inline-block;
@@ -356,7 +395,7 @@ ul {
 .sche_title{
 	margin-top		:20px;
 	margin-left		:0;
-	width			:310px;
+	width			:410px;
 	height			:30px;
 	line-height		:30px;
 	font-family		: at_font1;
@@ -369,6 +408,9 @@ ul {
 	line-height		:30px;
 	font-family		: at_font1;
 }
+
+
+
 
 .main_b_1{
 	position		:relative;
@@ -390,15 +432,15 @@ ul {
 	width		:100%;
 	height		:100%;
 	background	:#ffffff;
-	overflow	:hidden;
+	overflow	:hidden;	
 	opacity		:0;
 }
 
 .main_c_1:hover{
     animation-name: effect;
     animation-duration: 5s;
-}
 
+}
 @keyframes effect{
 	30% {
 		opacity: .5;	
@@ -904,10 +946,16 @@ ul {
 	color		:#303030;
 }
 
+.access_map_in{
+	width		:650px;
+	height		:400px;
+}
+
 
 .access_sig{
 	display			:inline-block;
 	flex-basis		:300px;
+	height			:400px;
 	background		:#909090;
 	font-size		:0;
 	text-align		:center;
@@ -965,11 +1013,11 @@ ul {
 	line-height		:30px;
 	margin			:10px 30px;
 	font-weight		:800;
-	color			:#685820;
 	color			:#c8b880;
 	text-shadow		:1px 1px 0px rgba(30,30,30,0);
 	padding			:5px 10px;
 	border-bottom	:double 2px #c8b880;
+	text-align:left;
 }
 
 .sys_box_log{
@@ -1615,6 +1663,9 @@ ul {
 	line-height	:20px;
 }
 
+
+
+
 @media screen and (max-width: 959px){
 .pc_only{
 	display		:none;
@@ -1789,16 +1840,16 @@ ul {
 }
 
 .slide_img{
+	width		:490vw;
 	height		:39.2vw;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
 }
 
-
-
 .slide_point{
 	bottom			:3vw;
+	width			:50vw;
 	height			:8vw;
 	line-height		:8vw;
 	border-radius	:2vw;
@@ -1832,7 +1883,7 @@ ul {
 
 .main_b_top{
 	width			:90vw;
-	margin			:0vw auto 4vw auto;
+	margin			:2vw auto 4vw auto;
 	padding			:2vw;
 	border-radius:1vw;
 }

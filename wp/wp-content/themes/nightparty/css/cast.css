@@ -2839,7 +2839,7 @@ input[type=range]::-moz-range-thumb{
 	line-height		: 8vw;
 	border			: 1vw solid #ffffff;
 	cursor			: pointer;
-	padding			:0;
+	padding:0;
 }
 
 .btn:active {
