@@ -1,6 +1,5 @@
 $(function(){ 
 
-
 	var VwBase	=screen.availWidth/100;
 	var VhBase	=screen.availHeight/100;
 	var VwBase	=$(window).width()/100;
@@ -10,6 +9,7 @@ $(function(){
 	var cvs_A		=0;
 	var Rote		=0;
 	var ImgZoom		=100;
+	var Zoom		=100;
 	var Chg			='';
 
 	$('.color_picker,.icon_picker').hide();
@@ -506,7 +506,6 @@ $(function(){
 	$('#upd').on('change', function(e){
 		var file = e.target.files[0];	
 		var reader = new FileReader();
-console.log(e);
 
 		if(file.type.indexOf("image") < 0){
 			alert("NO IMAGE FILES");
@@ -521,10 +520,15 @@ console.log(e);
 			return function(e){
 
 				img.src = e.target.result;
+console.log(e.target.result);
+
 				$("#view").attr("src", e.target.result);
 				$("#view").attr("title", file.name);
 
 				img.onload = function() {
+console.log(img.width);
+
+
 					img_W=img.width;
 					img_H=img.height;
 

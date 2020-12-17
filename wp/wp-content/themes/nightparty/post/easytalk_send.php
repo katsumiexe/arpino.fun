@@ -1,10 +1,7 @@
 <?
-/*
-EasyTalk_customer_send
-*/
+
 
 require_once ("./post_inc.php");
-
 $customer_id	=$_POST['customer_id'];
 $cast_id		=$_POST['cast_id'];
 $log			=$_POST['log'];
