@@ -14,6 +14,7 @@ ul {
 }
 .body{
 	background	:#101513;
+	background	:#000000;
 	text-align	:center;
 	margin		:0;
 	padding		:0;
@@ -22,7 +23,7 @@ ul {
 	font-size	:0;
 	font-family: "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
 	text-align	:center;
-	width		:99vw;
+	width		:100vw;
 }
 
 .blog_icon{
@@ -56,6 +57,7 @@ ul {
 	display		:none;
 	background	:#051010;
 	background	:#101513;
+	background	:#000000;
 	text-align	:center;
 	width		:1200px;
 	min-height	:90vh;
@@ -187,10 +189,8 @@ ul {
 }
 
 .side_img_out:hover:before{
-	animation: e_shine .2s linear 0s;
+	animation: e_shine .3s cubic-bezier(.11,.7,.49,.94) 0s;
 }
-
-
 
 .slide_point{
 	position		:absolute;
@@ -261,8 +261,8 @@ ul {
 
 .tag_sp{
 	display:none;
-
 }
+
 
 .main_b{
 	display			:inline-block;
@@ -271,75 +271,89 @@ ul {
 	vertical-align	:top;
 }
 
-
 .main_b_top{
 	display			:inline-block;
-	width			:860px;
+	width			:870px;
 	margin			:0 auto 20px auto;
 	background		:#302520;
-	border-radius	:5px;
+	border-radius	:0 0 5px 5px;
 	padding-bottom	:10px
 }
 
 .main_b_notice{
+	position		:relative;
 	display			:inline-block;
 	width			:830px;
 	height			:40px;
 	text-align		:left;
 	vertical-align	:top;
 	border-bottom	:1px dashed #fafafa;
-	margin			: 0 auto;
+	margin			:0 auto;
 }
 
 .main_b_notice_date{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+
+	left			:5px;
 	display			:inline-block;
 	width			:100px;
-	height			:40px;
-	line-height		:40px;
+	height			:30px;
+	line-height		:30px;
 	text-align		:center;
-	font-size		:16px;
+	font-size		:15px;
 	color			:#fafafa;
 }
 
 .main_b_notice_tag{
 	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+
+	left			:110px;
 	width			:100px;
-	height			:30px;
-	line-height		:30px;
+	height			:24px;
+	line-height		:24px;
 	text-align		:center;
-	margin			:5px;
 	background		:#c8b880;
-	font-size		:14px;
-	color			:#fafafa;
+	font-size		:13px;
+	color			:#302520;
 }
 
 .main_b_notice_title{
 	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	left			:220px;
 	width			:540px;
-	height			:40px;
-	line-height		:40px;
+	height			:30px;
+	line-height		:30px;
 	text-align		:left;
-	padding-left	:10px;
-	font-size		:18px;
+	font-size		:15px;
 	color			:#fafafa;
 }
 
 .main_b_notice_arrow{
 	display			:inline-block;
-	width			:30px;
-	height			:30px;
-	line-height		:30px;
-	text-align		:center;
-	font-sie		:30px;
-	margin			:15px;
-	border-radius	:15px;
-	background		:#c8b880;
-	font-size		:20px;
-	color			:#fafafa;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:15px;
+	margin			:auto;
+	width			:10px;
+	height			:10px;
+
+	border-top		:3px solid #c8b880;
+	border-right	:3px solid #c8b880;
+	transform		:rotate(45deg);
+	transform-origin:center;
 }
-
-
-
 
 .main_b_in{
 	display			:inline-block;
@@ -411,6 +425,25 @@ ul {
 
 
 
+.main_b_1_ribbon{
+	position		:absolute;
+	display			:inline-block;
+	left			:142px;
+	top				:142px;
+	width			:200px;
+	height			:50px;
+	line-height		:50px;
+	font-size		:20px;
+	font-weight		:600;
+	text-align:center;
+	background		:#d00000;
+	color			:#fafafa;
+	border			:2px solid #fafafa;
+	box-shadow		:0 2px 0 #d00000,0 -2px 0 #d00000;
+	transform		:rotate(-45deg);
+	transform-origin:top left;
+
+}
 
 .main_b_1{
 	position		:relative;
@@ -1882,16 +1915,60 @@ ul {
 }
 
 .main_b_top{
-	width			:90vw;
-	margin			:2vw auto 4vw auto;
-	padding			:2vw;
-	border-radius:1vw;
+	width			:94vw;
+	margin			:0 auto 4vw auto;
+	border-radius	:0 0 1vw 1vw;
+	padding-bottom	:1vw;
 }
 
 .main_b_notice{
 	width			:90vw;
-	height			:9vw;
+	height			:10vw;
 }
+
+
+
+.main_b_notice_date{
+	top				:1vw;
+	left			:0.5vw;
+	bottom			:auto;
+	width			:17vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+}
+
+.main_b_notice_tag{
+	top				:auto;
+	left			:0.5vw;
+	bottom			:1vw;
+	width			:17vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:3vw;
+}
+
+.main_b_notice_title{
+	top				:0.5vw;
+	left			:19vw;
+	width			:40vw;
+	height			:7vw;
+	line-height		:7vw;
+	padding-left	:1vw;
+	font-size		:3vw;
+}
+
+.main_b_notice_arrow{
+	right			:1.5vw;
+	width			:2vw;
+	height			:2vw;
+	border-top		:1vw solid #c8b880;
+	border-right	:1vw solid #c8b880;
+}
+
+
+
+
 
 .main_d,.main_b_in{
 	width			:92vw;
@@ -2000,6 +2077,18 @@ ul {
 	height			:11vw;
 	width			:24vw;
 }
+
+.main_b_1_ribbon{
+	left			:-5vw;
+	top				:12vw;
+	width			:24vw;
+	height			:5vw;
+	line-height		:5vw;
+	font-size		:3vw;
+	border			:1px solid #fafafa;
+	box-shadow		:0 1vw 0 #d00000,0 -1vw 0 #d00000;
+}
+
 
 
 .main_c{

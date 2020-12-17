@@ -45,9 +45,22 @@ $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
 	$slide[]=$a2;
 }
+
+
+$sql	 ="SELECT meta_id, meta_value, post_type, post_date_gmt FROM wp01_postmeta AS M";
+$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
+$sql	.=" WHERE meta_key='_top_news'";
+$sql	.=" AND meta_value>0";
+$sql	.=" ORDER BY post_date_gmt DESC";
+$sql	.=" LIMIT 5";
+$res2 = $wpdb->get_results($sql,ARRAY_A);
+foreach($res2 as $a2){
+	$a2["news_date"]=substr($a2["post_date_gmt"],0,4).".".substr($a2["post_date_gmt"],5,2).".".substr($a2["post_date_gmt"],8,2);
+	$news[]=$a2;
+}
+
 get_header();
 ?>
-
 <style>
 .slide_img{
 	width		:calc( 1200px * <?=count($slide)?>);
@@ -61,7 +74,6 @@ get_header();
 	.slide_img{
 		width		:calc( 98vw * <?=count($slide)?>);
 	}
-
 	.slide_point{
 		width		:calc( 25vw + 5vw * <?=count($slide)?>);
 	}
@@ -105,15 +117,23 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="main_b">
 		<div class="main_b_title">新着情報</div>
 		<div class="main_b_top">
+
 			<?for($n=0;$n<count($news);$n++){?>
-				<div class="main_b_notice">
-					<span class="main_b_notice_date"><?=$news[$n]["date"]?>"></span>
-					<span class="main_b_notice_title"><?=$news[$n]["post_title"]?>"></span>
-			<?if($news[$n]["post_type"]=="nolink"){?>
-					<span class="main_b_notice_arrow">▼</span>
+				<?if($news[$n]["post_type"]=="nolink"){?>
+					<div class="main_b_notice">
+						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?>"></span>
+						<span class="main_b_notice_tag">入店情報</span>
+						<span class="main_b_notice_title"><?=$news[$n]["post_title"]?>"></span>
+					</div>
+				<?}else{?>
+					<div class="main_b_notice">
+						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?>"></span>
+						<span class="main_b_notice_tag">入店情報</span>
+						<span class="main_b_notice_title"><?=$news[$n]["post_title"]?>"></span>
+						<span class="main_b_notice_arrow">▼</span>
+					</div>
+				<?}?>
 			<?}?>
-				</div>
-			<?}?>
 
 				<div class="main_b_notice">
 					<span class="main_b_notice_date">2020.12.16</span>
@@ -135,8 +155,6 @@ var Cnt=<?=(count($slide)-1)?>;
 					<span class="main_b_notice_title">ひとみちゃんが入店しました</span>
 					<span class="main_b_notice_arrow">▼</span>
 				</div>
-
-
 		</div>
 
 		<div class="main_b_title">本日の出勤キャスト</div>
@@ -153,6 +171,7 @@ var Cnt=<?=(count($slide)-1)?>;
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
 						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
+					<span class="main_b_1_ribbon">人気！</span>
 				</a>
 			<? } ?>
 		</div>
