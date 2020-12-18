@@ -77,6 +77,10 @@ ul {
 	vertical-align:top;
 }
 
+.main_b_top2{
+	display:none;
+}
+
 .main_top_flex{
 	display		:inline-flex;
 	justify-content: space-between;
@@ -166,14 +170,14 @@ ul {
 
 .side_img_out{
 	position		:relative;
-	width			:310px;
+	width			:300px;
 	height			:100px;
 	margin-bottom	:2px;
 	overflow		:hidden;
 }
 
 .side_img{
-	width			:310px;
+	width			:300px;
 	height			:100px;
 }
 
@@ -273,11 +277,12 @@ ul {
 
 .main_b_top{
 	display			:inline-block;
-	width			:870px;
+	width			:868px;
 	margin			:0 auto 20px auto;
 	background		:#302520;
-	border-radius	:0 0 5px 5px;
-	padding-bottom	:10px
+	border-radius	:0 0 10px 10px;
+	padding-bottom	:10px;
+	border:1px solid #c8b880;
 }
 
 .main_b_notice{
@@ -648,18 +653,17 @@ ul {
 .main_c{
 
 	display		:inline-block;
-	
-	width		:310px;
+	width		:300px;
 	background	:#302520;
 	border		:1px solid #c8b880;
-	margin		:0 5px auto 10px;
+	margin		:0 0 auto 28px;
 	padding		:0;
 	text-align	:center;
 }
 
 .main_c_1{
 	display		:inline-block;
-	width		:310px;
+	width		:300px;
 	background	:#fafafa;
 	margin		:5px auto;
 	padding		:0;
@@ -795,8 +799,8 @@ ul {
 	border			:1px solid #c8b880;
 	padding			:30px 40px;
 	font-size		:16px;
-//	background		:linear-gradient(135deg, #FEE9A0 0%, #B67B03 70%, #d09020 100%); 
 	text-align		:center;
+	min-height:100px;
 }
 
 .corner{
@@ -927,29 +931,6 @@ ul {
 	margin-block-start	:0;
 	margin-block-end	:0;
 	border-radius		:10px 10px 0 0;
-}
-
-.main_c{
-	display		:inline-block;
-	width		:310px;
-	background	:#302520;
-	border		:1px solid #c8b880;
-	margin		:0 5px auto 10px;
-	padding		:0;
-	text-align	:center;
-}
-
-.main_c_1{
-	display		:inline-block;
-	width		:310px;
-	background	:#fafafa;
-	margin		:5px auto;
-	padding		:0;
-	border-bottom:2px solid #9060ff;
-	font-size	:14px;
-	text-align	:left;
-	box-shadow	:5px 5px 10px 10px rgba(200,200,200,0.4) inset,-5px -5px 10px 10px rgba(200,200,200,0.4) inset;
-	color		:#606060;
 }
 
 .foot{
@@ -1284,7 +1265,7 @@ ul {
 	bottom		:25px;
 	font-size	:16px;
 	text-align	:right;
-	color		:#d8c890;
+	color		:#e0e0e0;
 }
 
 .blog_h1{
@@ -1377,7 +1358,7 @@ ul {
 	font-size		:13px;
 	font-weight		:600;
 	text-align		:right;
-	color			:#fafafa;
+	color			:#302520;
 	background		:#c8b880;
 	border-radius	:5px;
 	padding-right	:5px;
@@ -1717,6 +1698,19 @@ ul {
 	width		:98vw;
 }
 
+.main_b_top2{
+	display		:flex;
+	justify-content: space-between;
+	width		:94vw;
+	margin:2vw auto;
+}
+
+.top2_img{
+	width:46vw;
+	flex-basis:46vw;
+}
+
+
 .main_top_flex{
 	width		:98vw;
 	flex-wrap	:wrap;
@@ -1986,6 +1980,7 @@ ul {
 	width			:91vw;
 	padding			:3vw;
 	margin			:0.5vw auto;
+	min-height:20vw;
 }
 
 .main_e_f{
@@ -2109,6 +2104,7 @@ ul {
 .blog_list{
 	width			:calc(48vw - 2px);
 	height			:12vw;
+	border-left:none;
 }
 
 .blog_list_img{
@@ -2626,7 +2622,7 @@ ul {
 	top				:1vw;
 	right			:1vw;
 
-	width			:16vw;
+	width			:11vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;

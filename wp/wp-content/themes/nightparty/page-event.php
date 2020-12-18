@@ -2,7 +2,8 @@
 /*
 Template Name: event
 */
-$sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title, FROM wp01_postmeta AS M";
+$code=$_REQUEST["code"];
+$sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_id='{$code}'";
 $sql	.=" AND psot_status='publish'";
@@ -23,6 +24,7 @@ get_header();
 </div>
 
 <img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$dat["meta_id"]?>.jpg" class="top_img">;
+<?=$sql?>
 <?if(!$dat){?>
 <div class="main_e">
 <div class="main_e_in">

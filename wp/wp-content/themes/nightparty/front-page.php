@@ -156,7 +156,10 @@ var Cnt=<?=(count($slide)-1)?>;
 					<span class="main_b_notice_arrow">▼</span>
 				</div>
 		</div>
-
+		<div class="main_b_top2">
+			<img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="top2_img">
+			<img src="<?=get_template_directory_uri()?>/img/page/top/top_side2.png" class="top2_img">
+		</div>
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>
@@ -178,10 +181,10 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 
 	<div class="main_c">
-		<div class="side_img_out"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="side_img"></div>;
-		<div class="side_img_out"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side2.png" class="side_img"></div>;
+		<div class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="side_img"></div>;
+		<div class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side2.png" class="side_img"></div>;
 
-		<a class="twitter-timeline" data-width="310" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
 <?php get_footer(); ?>
