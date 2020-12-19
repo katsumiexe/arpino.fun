@@ -21,13 +21,13 @@ foreach($res as $a1){
 		$dat[$a1["id"]]["sch"]="休み";
 		$sort[$a1["id"]]=999999;
 
-	if($now < $a1["stime"]){
+	if($now_8 < $a1["stime"]){
 		$dat[$a1["id"]]["new"]=1;
 
-	}elseif($now < $a1["stime"]){
+	}elseif($now_8 == $a1["stime"]){
 		$dat[$a1["id"]]["new"]=2;
 
-	}elseif(strtotime($now) - strtotime($a1["stime"])<=2592000){
+	}elseif(strtotime($now_8) - strtotime($a1["stime"])<=2592000){
 		$dat[$a1["id"]]["new"]=3;
 	}
 }
@@ -131,7 +131,6 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>?>" class="new_all">一覧≫</a></div>
 
 		<div class="main_b_top">
-
 			<?for($n=0;$n<count($news);$n++){?>
 				<?if($news[$n]["post_type"]=="nolink"){?>
 					<div class="main_b_notice">
@@ -189,7 +188,11 @@ var Cnt=<?=(count($slide)-1)?>;
 						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
 					<?if($dat[$b1]["new"] == 1){?>
-					<span class="main_b_1_ribbon">人気！</span>
+					<span class="main_b_1_ribbon">近日入店</span>
+					<?}elseif($dat[$b1]["new"] == 2){?>
+					<span class="main_b_1_ribbon">本日入店</span>
+					<?}elseif($dat[$b1]["new"] == 3){?>
+					<span class="main_b_1_ribbon">新人</span>
 					<?}?>
 				</a>
 			<? } ?>
