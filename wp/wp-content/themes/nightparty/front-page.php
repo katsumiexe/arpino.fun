@@ -1,5 +1,5 @@
 <?php
-$now=date("Ymd",time()+32400);
+$now_8=date("Ymd",time()+32400);
 
 $sql=" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
@@ -20,9 +20,22 @@ foreach($res as $a1){
 	}
 		$dat[$a1["id"]]["sch"]="休み";
 		$sort[$a1["id"]]=999999;
+
+	if($now < $a1["stime"]){
+		$dat[$a1["id"]]["new"]=1;
+
+	}elseif($now < $a1["stime"]){
+		$dat[$a1["id"]]["new"]=2;
+
+	}elseif(strtotime($now) - strtotime($a1["stime"])<=2592000){
+		$dat[$a1["id"]]["new"]=3;
+	}
 }
 
-$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now}' ORDER BY schedule_id ASC";
+
+
+
+$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_8}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res2 as $a2){
@@ -87,7 +100,7 @@ var Cnt=<?=(count($slide)-1)?>;
 <?if(count($slide) ==1){?>
 	<div class="slide">
 		<div class="slide_img">
-			<?if($slide[0]["post_type"]=="nonlink"){?>
+			<?if($slide[0]["post_type"]=="nolink"){?>
 				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img">;
 			<?}else{?>	
 				<a href="<?=home_url('/event')?>/?code=<?=$slide[0]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img"></a>;
@@ -98,7 +111,7 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="slide">
 		<div class="slide_img">
 			<?for($n=0;$n<count($slide);$n++){?>
-				<?if($slide[$n]["post_type"]=="nonlink"){?>
+				<?if($slide[$n]["post_type"]=="nolink"){?>
 					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
 				<?}else{?>	
 					<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
@@ -115,7 +128,8 @@ var Cnt=<?=(count($slide)-1)?>;
 <?}?>
 
 	<div class="main_b">
-		<div class="main_b_title">新着情報</div>
+		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>?>" class="new_all">一覧≫</a></div>
+
 		<div class="main_b_top">
 
 			<?for($n=0;$n<count($news);$n++){?>
@@ -152,7 +166,7 @@ var Cnt=<?=(count($slide)-1)?>;
 				<div class="main_b_notice">
 					<span class="main_b_notice_date">2020.12.16</span>
 					<span class="main_b_notice_tag">入店情報</span>
-					<span class="main_b_notice_title">ひとみちゃんが入店しました</span>
+					<span class="main_b_notice_title">ひとみちゃんが入店しました<br>本日指名料無料です</span>
 					<span class="main_b_notice_arrow">▼</span>
 				</div>
 		</div>
@@ -174,7 +188,9 @@ var Cnt=<?=(count($slide)-1)?>;
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
 						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
+					<?if($dat[$b1]["new"] == 1){?>
 					<span class="main_b_1_ribbon">人気！</span>
+					<?}?>
 				</a>
 			<? } ?>
 		</div>

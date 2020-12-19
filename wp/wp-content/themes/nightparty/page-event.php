@@ -6,9 +6,12 @@ $code=$_REQUEST["code"];
 $sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_id='{$code}'";
-$sql	.=" AND psot_status='publish'";
+$sql	.=" AND post_status='publish'";
 $sql	.=" ORDER BY meta_value ASC";
 $dat = $wpdb->get_row($sql,ARRAY_A);
+
+$dat["post_content"]=str_replace("\n","<br>",$dat["post_content"]);
+
 get_header();
 ?>
 <div class="footmark">
@@ -54,6 +57,7 @@ get_header();
 <div class="corner_in box_in_2"></div>
 <div class="corner_in box_in_3"></div>
 <div class="corner_in box_in_4"></div>
+<span class="sys_box_ttl"><?=$dat["post_title"]?></span><br>
 <span class="sys_box_log"><?=$dat["post_content"]?></span><br>
 </div>
 <div class="corner box_1"></div>

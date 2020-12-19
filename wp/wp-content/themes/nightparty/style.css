@@ -338,10 +338,10 @@ ul {
 	left			:220px;
 	width			:540px;
 	height			:30px;
-	line-height		:30px;
 	text-align		:left;
 	font-size		:15px;
 	color			:#fafafa;
+	vertical-align:middle;
 }
 
 .main_b_notice_arrow{
@@ -400,6 +400,15 @@ ul {
 
 .main_b_title_l{
 	width			:600px;
+}
+
+.new_all{
+	position		:absolute;
+	top				:0px;
+	bottom			:0px;
+	right			:10px;
+	font-size		:14px;
+	color			:#483800;
 }
 
 .prof_title{
@@ -1035,9 +1044,8 @@ ul {
 }
 
 .sys_box_log{
-	width			:1160px;
 	margin			:0 20px 30px 20px;
-    display			:inline-block;
+    display			:block;
 	padding			:5px 10px;
 	color			:#c8b880;
 	text-align:left;
@@ -1947,7 +1955,6 @@ ul {
 	left			:19vw;
 	width			:40vw;
 	height			:7vw;
-	line-height		:7vw;
 	padding-left	:1vw;
 	font-size		:3vw;
 }
@@ -1978,9 +1985,9 @@ ul {
 
 .main_e_in{
 	width			:91vw;
-	padding			:3vw;
+	padding			: 3vw;
 	margin			:0.5vw auto;
-	min-height:20vw;
+	min-height		:20vw;
 }
 
 .main_e_f{
@@ -2361,8 +2368,8 @@ ul {
 }
 
 .cast_tag_box{
-	flex-basis		:1;
-	height			:9vw;
+	flex			:1;
+	height			:10vw;
 	text-align		:left;
 	border-radius	:0;
 	font-weight		:400;
@@ -2372,7 +2379,8 @@ ul {
 
 .cast_tag_box_sel{
 	background		:#c8b880;
-	color			:#fafafa;
+//	color			:#fafafa;
+	font-weight		:600;
 }
 
 .tag_pc{
@@ -2382,7 +2390,7 @@ ul {
 .tag_sp{
 	display			:inline-block;
 	position		:absolute;
-	top				:1vw
+	top				:1vw;
 	left			:0;
 	right			:0;
 	margin			:auto;
