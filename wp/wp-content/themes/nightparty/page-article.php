@@ -142,9 +142,7 @@ get_header();
 		<div class="sub_blog_in">
 			<div class="blog_h1"><?=$res0["name"]?></div>
 			<img src="<?=$cast_face?>" class="blog_cast_img">
-
 			<a href="<?=home_url('/person')?>/?cast=<?=$res0["slug"]?>" class="blog_cast_link">プロフィール</a>
-
 		</div>
 
 		<!--table class="blog_calender">

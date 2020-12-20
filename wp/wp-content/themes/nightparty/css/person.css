@@ -21,7 +21,7 @@
 	position		:relative;
 	flex			:1;
 	min-height		:500px;	
-	text-align:left;
+	text-align		:left;
 }
 
 .person_right{
@@ -174,10 +174,10 @@
 	width			:150px;
 	font-size		:16px;
 	background		:#404040;
-	color			:#C8B880;
-
+	color			:#f0d8a8;
 	vertical-align	:top;
 }
+
 
 
 .prof_r{
@@ -188,22 +188,21 @@
 	width			:325px;
 	font-size		:16px;
 	background		:#282828;
-	color			:#e8d8a0;
+	color			:#c0b890;
+
 }
 
 
 .prof_l2{
-	padding		:0 5px;
-	width		:495px;
-	height		:30px;
-	line-height	:30px;
-	font-size	:16px;
-	background	:#323232;
-	color		:#C8B880;
-
+	padding			:0 5px;
+	width			:495px;
+	height			:30px;
+	line-height		:30px;
+	font-size		:16px;
+	background		:#404040;
+	color			:#f0d8a8;
 	border-spacing: 0;
-
-	}
+}
 
 
 .prof_r2{
@@ -212,8 +211,8 @@
 	padding			:0 5px;
 	line-height		:30px;
 	font-size		:16px;
-	background		:#272727;
-	color			:#C8B880;
+	background		:#282828;
+	color			:#c0b890;
 	border-spacing	: 0;
 
 }
@@ -233,39 +232,36 @@
 .sche_l_4,
 .sche_l_5
 {
-//	border		:2px solid #303030;
-	border-bottom:2px solid #202020;
-	padding-left:10px;
-	height		:26px;
-	line-height	:30px;
-	width		:150px;
-	font-size	:14px;
-	background	:#444444;
-	color		:#C8B880;
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#404040;
+	color			:#f0d8a8;
 }
 
 .sche_l_0{
-//	border		:2px solid #303030;
-	border-bottom:2px solid #202020;
-	padding-left:10px;
-	height		:26px;
-	line-height	:30px;
-	width		:150px;
-	font-size	:14px;
-	background	:#444444;
-	color		:#f0a080;
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#444444;
+	color			:#f0a080;
 }
 
 .sche_l_6{
-//	border		:2px solid #303030;
-	border-bottom:2px solid #202020;
-	padding-left:10px;
-	height		:26px;
-	line-height	:30px;
-	width		:150px;
-	font-size	:14px;
-	background	:#444444;
-	color		:#90b8c0;
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#444444;
+	color			:#90b8c0;
 }
 
 
@@ -275,70 +271,66 @@
 .sche_r_4,
 .sche_r_5
 {
-//	border		:2px solid #303030;
-	border-bottom:2px solid #202020;
-	padding-left:10px;
-	height		:28px;
-	line-height	:28px;
-	width		:250px;
-	font-size	:14px;
-	background	:#272727;
-	color		:#C8B880;
+//	border			:2px solid #303030;
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	width			:250px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#c0b890;
 }
 
 .sche_r_0
 {
-//	border		:2px solid #303030;
-	border-bottom:2px solid #202020;
-	padding-left:10px;
-	height		:28px;
-	line-height	:28px;
-	width		:250px;
-	font-size	:14px;
-	background	:#272727;
-	color		:#f0a080;
+//	border			:2px solid #303030;
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	width			:250px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#f0a080;
 }
 
 .sche_r_6
 {
-//	border		:2px solid #303030;
-	border-bottom:2px solid #202020;
-	padding-left:10px;
-	height		:28px;
-	line-height	:28px;
-	width		:250px;
-	font-size	:14px;
-	background	:#272727;
-	color		:#90b8c0;
+//	border			:2px solid #303030;
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	width			:250px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#90b8c0;
 }
 @media screen and (max-width: 959px){
-.person_main{
-	flex-wrap	:wrap;
-}
-
 
 .person_main{
+	display		:block;
 	width		:98vw;
-}
-.person_left{
-	width		:380px;
-	flex-basis	:380px;
-	min-height	:600px;	
+	margin		:0 auto;
 }
 
-.person_middle{
-	flex-basis:calc(100% - 400px);
+.person_left,.person_middle,.person_right{
+	display		:block
+	text-align		:center;
 }
-
-.person_right{
-	flex:1;
-}
-
 
 .prof{
 	border-spacing: 0px 1vw;
-	margin:0vw auto 5vw auto;
+	margin:0vw auto 3vw auto;
 }
+
+.sche{
+	margin:0vw auto 3vw auto;
+}
+
+
+
 
 .prof_l{
 	padding		:0 1vw;
@@ -353,20 +345,21 @@
 	padding		:0 1vw;
 	height		:8vw;
 	line-height	:8vw;
-	width		:54vw;
+	width		:56.5vw;
 	font-size	:3.8vw;
 }
 
 .prof_l2{
-	width		:94.5vw;
-	padding-left:1vw;
-	height		:8vw;
-	line-height	:8vw;
+	width		:93.5vw;
+	padding		:1vw;
+	height		:7vw;
+	line-height	:7vw;
 	font-size	:3.8vw;
 }
 
 
 .prof_r2{
+	width		:93.5vw;
 	padding		:0 1vw;
 	min-height	:8vw;
 	line-height	:6vw;
@@ -381,10 +374,11 @@
 .sche_l_5,
 .sche_l_6
 {
-	padding-left:1vw;
+
+	padding		:0 1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:39vw;
+	width		:34vw;
 	font-size	:3.8vw;
 }
 
@@ -397,14 +391,81 @@
 .sche_r_5,
 .sche_r_6
 {
-	padding-left:1vw;
+	padding		:0 1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:54vw;
+	width		:57.5vw;
 	font-size	:3.8vw;
 }
 
 
+
+.person_blog{
+	width			:48vw;
+	height			:12vw;	
+}
+
+.person_blog_no{
+	width			:300px;
+	height			:90px;	
+	line-height		:90px;	
+	border-bottom	:1px solid #C8B880;
+	color			:#C8B880;
+	background		:#323232;
+	font-size		:16px;	
+}
+
+.person_blog_img{
+	top				:0vw;
+	left			:0vw;
+	width			:12vw;
+	height			:12vw;	
+}
+
+.person_blog_date{
+	top				:0.5vw;
+	left			:12.5vw;
+	width			:23vw;
+	height			:3vw;
+	line-height		:3vw;
+	font-size		:2.5vw;
+}
+
+.person_blog_comm{
+	top				:0.5vw;
+	right			:0.5vw;
+	width			:9vw;
+	height			:3.5vw;	
+	line-height		:3.5vw;	
+	border			:1px solid #C8B880;
+	border-radius	:0.5vw;
+}
+
+.person_blog_i{
+	left			:0.5vw;
+	width			:3vw;
+	height			:3vw;	
+	line-height		:3vw;	
+	font-size		:3vw;
+}
+
+.person_blog_c{
+	right			:0.5vw;
+	width			:4vw;
+	height			:3.5vw;	
+	line-height		:3.5vw;	
+	overflow		:hidden;
+	font-size		:2.5vw;
+}
+
+.person_blog_title{
+	top				:5vw;
+	left			:13vw;
+	width			:34vw;
+	height			:6vw;	
+	line-height		:3.5vw;	
+	font-size		:2.5vw;
+}
 
 }
 @media screen and (max-width: 559px){
@@ -425,7 +486,6 @@
 .person_middle{
 	width		:96vw;
 	flex-basis	:96vw;
-	text-align	:center;
 	min-height	:0;	
 	margin		:2vw auto;
 }
@@ -504,22 +564,22 @@
 	position		:absolute;
 	top				:1vw;
 	right			:2vw;
-	width			:16vw;
+	width			:14vw;
 	height			:5vw;	
 }
 
 .person_blog_i{
 	width			:5vw;
-	height			:6vw;
-	line-height		:6vw;	
-	font-size		:4vw;
+	height			:5vw;
+	line-height		:5vw;	
+	font-size		:3vw;
 }
 
 .person_blog_c{
-	width			:14vw;
-	height			:6vw;
-	line-height		:6vw;
-	font-size		:4vw;
+	width			:8vw;
+	height			:5vw;
+	line-height		:5vw;
+	font-size		:3vw;
 }
 
 .person_blog_title{
