@@ -50,10 +50,13 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 	 );
 wp_nav_menu($args);
 ?>
+<img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo2.png" class="head_logo">
 <div class="head_menu">
 	<div class="menu_a"></div>
 	<div class="menu_b"></div>
 	<div class="menu_c"></div>
-</div>	
+</div>
+<div class="head_tel"></div>
+
 </div>
 <div class="main">
