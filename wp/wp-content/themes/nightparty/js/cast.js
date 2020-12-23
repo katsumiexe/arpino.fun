@@ -1374,7 +1374,8 @@ console.log("VwBase:"+VwBase);
 			},
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$('.mail_detail_in').prepend(data)
+			$('.mail_write_text').val('');
+			$('.mail_detail_in').append(data);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
