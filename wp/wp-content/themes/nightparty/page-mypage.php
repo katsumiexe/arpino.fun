@@ -113,9 +113,6 @@ foreach($enc0 as $row){
 $id_8=substr("00000000".$_SESSION["id"],-8);
 $id_0	=$_SESSION["id"] % 20;
 
-
-
-
 for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$box_no.=$dec[$id_0][$tmp_id];

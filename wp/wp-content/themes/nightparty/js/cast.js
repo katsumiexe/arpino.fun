@@ -289,7 +289,7 @@ $(function(){
 
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
-		Customer_mail=$(this).children('.mail_addres').val();
+		Customer_mail=$(this).children('.mail_address').val();
 
 
 		$.post({
@@ -1371,6 +1371,7 @@ console.log("VwBase:"+VwBase);
 				'customer_mail'	:Customer_mail,
 			},
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			$('.mail_detail_in').prepend(data)
 
 		}).fail(function(jqXHR, textStatus, errorThrown){

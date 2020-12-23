@@ -22,9 +22,9 @@ if($send==1){
 	$n3=rand(1, 720);
 	$n4=($customer_id % 720)+1;
 
-	$sql	 ="SELECT key FROM wp01_0encode";
+	$sql	 ="SELECT `key` FROM wp01_0encode";
 	$sql	.=" WHERE id IN('{$n0}','{$n1}','{$n2}','{$n3}','{$n4}')";
-	$tmp	 = $wpdb->get_row($sql,ARRAY_A);
+	$tmp	 = $wpdb->get_results($sql,ARRAY_A);
 	foreach($tmp as $a1){
 		$enc.=$a1["key"];
 	}
@@ -35,15 +35,20 @@ if($send==1){
 	$sql	.="('{$enc}','{$cast_id}','{$customer_id}','{$now}','{$customer_mail}')";
 	$wpdb->query($sql);
 
-	$from	="counterpost2016@gmail.com";
+//------------------------------------------------
+	mb_language("Japanese"); 
+	mb_internal_encoding("UTF-8");
+
+	$from	="From: counterpost2016@gmail.com";
 	$title	=$session["genji"]."より(EasyTalk)";
 	$to		=$customer_mail;
-
+	$header	= "From: info@piyo-piyo.work";
+	
 	if(!$customer_name){
 	$body	.=$customer_name."様\n\n";
 	}
 
-	$body	.=$session["genji"]."様からのメッセージが届いています\n";
+	$body	.=$session["genji"]."さんからのメッセージが届いています\n";
 	$body	.="下記のURLから内容をご確認ください。\n";
 	$body	.="https://arpino.fun/wp/easytalk.php?ss=".$enc."\n\n\n";
 
@@ -53,7 +58,9 @@ if($send==1){
 	$body	.="080-1111-1111\n";
 	$body	.="info@piyo-piyo.work\n";
 
-//	temp_mail($from, $from_name, $to, $title, $body);
+	mb_send_mail($to, $title, $body, $header);
+
+//------------------------------------------------
 
 }else{
 	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
@@ -73,12 +80,13 @@ $wpdb->query($sql);
 
 $log=str_replace("\n","<br>",$log);
 
-$dat="<div class=\"mail_box_b\">";		
+$dat.="<div class=\"mail_box_b\">";		
 $dat.="<div class=\"mail_box_log_2 bg\">";		
 $dat.=$log;		
 $dat.="</div>";
 $dat.="<span class=\"mail_box_date_b\"><span class=\"midoku\">未読</span>　{$now_dat}</span>";		
 $dat.="</div>";
+
 echo $dat;
 exit();
 ?>
