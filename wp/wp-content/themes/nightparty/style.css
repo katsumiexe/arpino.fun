@@ -45,7 +45,7 @@ ul {
 }
 
 .menu{
-	display		:block;
+	display		:inline-block;
 	text-align	:center;
 	width		:950px;
 	margin		:0 auto;
@@ -107,19 +107,21 @@ ul {
 	padding:0;
 }
 
+.head_in{
+	display			:inline-block;
+	position:relative;
+	width			:1200px;
+	height			:70px;
+	margin			:0 auto;
+	vertical-align	:middle;
+}
 .head_logo{
-	display		:none;
 	width		:240px;
 	height		:60px;
-	margin		:5px;
 }
 
 .head_tel{
 	display		:none;
-	width		:60px;
-	height		:60px;
-	margin		:5px;
-	border-radius:20px;
 }
 
 
@@ -127,8 +129,8 @@ ul {
 .menu-item{
 	display		:inline-block;
 	height		:50px;
-	width		:150px;
-	flex-basis	:150px;
+	width		:130px;
+	flex-basis	:130px;
 	line-height	:50px;
 	background	:#252018;
 	border		:1px solid #c8b880;
@@ -834,7 +836,7 @@ ul {
 	position		:absolute;
 	width			:20px;
 	height			:20px;
-	background		:#101513;
+	background		:#000000;
 }
 
 
@@ -1732,7 +1734,7 @@ ul {
 	display		:flex;
 	justify-content: space-between;
 	width		:94vw;
-	margin:2vw auto;
+	margin:0 auto 2vw auto;
 }
 
 .top2_img{
@@ -1940,7 +1942,7 @@ ul {
 
 .main_b_top{
 	width			:94vw;
-	margin			:0 auto 4vw auto;
+	margin			:0 auto 2vw auto;
 	border-radius	:0 0 1vw 1vw;
 	padding-bottom	:1vw;
 }
@@ -2010,7 +2012,7 @@ ul {
 
 .main_e_in{
 	width			:91vw;
-	padding			: 3vw;
+	padding			:3vw 3vw 8vw 3vw;
 	margin			:0.5vw auto;
 	min-height		:20vw;
 }
@@ -2457,6 +2459,32 @@ ul {
 	background	:#303030;
 	border		:1vw solid #303030;
 }
+
+.head_logo{
+	width		:36vw;
+	height		:12vw;
+	margin		:1vw auto;;
+}
+.head_in{
+	width		:100vw;
+	height		:14vw;
+}
+
+.head_tel{
+	position	:absolute;
+	display		:inline-block;
+	top			:2vw;
+	right		:2vw;
+	height		:10w;
+	line-height	:10vw;
+	width		:10vw;
+	border-radius:3vw;
+	text-align	:center;
+	font-size	:8vw;
+	color		:#c8b880;
+	font-family:at_icon;
+}
+
 
 
 .menu-item {

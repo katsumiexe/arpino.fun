@@ -50,10 +50,10 @@ get_header();
 			<span class="sys_box_log">情報はまだありません</span><br>
 		<?}?>
 	</div>
-	<span class="main_e_f f_tr"></span>
-	<span class="main_e_f f_tl"></span>
-	<span class="main_e_f f_br"></span>
-	<span class="main_e_f f_bl"></span>
+<div class="corner box_1"></div>
+<div class="corner box_2"></div>
+<div class="corner box_3"></div>
+<div class="corner box_4"></div>
 </div>
 
 <?php get_footer(); ?>

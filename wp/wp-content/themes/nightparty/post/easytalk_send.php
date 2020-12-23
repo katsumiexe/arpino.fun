@@ -2,12 +2,13 @@
 
 
 require_once ("./post_inc.php");
-$customer_id	=$_POST['customer_id'];
 $cast_id		=$_POST['cast_id'];
 $log			=$_POST['log'];
 $sid			=$_POST['sid'];
 $img			=$_POST['img'];
 $send			=$_POST['send'];
+
+$customer_id	=$_POST['customer_id'];
 $customer_name	=$_POST['customer_name'];
 $customer_mail	=$_POST['customer_mail'];
 
@@ -46,13 +47,14 @@ if($send==1){
 	$body	.="下記のURLから内容をご確認ください。\n";
 	$body	.="https://arpino.fun/wp/easytalk.php?ss=".$enc."\n\n\n";
 
-	$body	.="===========================";
-	$body	.="Piyo-Piyo.work";
-	$body	.="https:arpino.fun/wp";
-	$body	.="080-1111-1111";
-	$body	.="info@piyo-piyo.work";
+	$body	.="===========================\n";
+	$body	.="Piyo-Piyo.work\n";
+	$body	.="https:arpino.fun/wp\n";
+	$body	.="080-1111-1111\n";
+	$body	.="info@piyo-piyo.work\n";
 
 //	temp_mail($from, $from_name, $to, $title, $body);
+
 }else{
 	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$sid}'";

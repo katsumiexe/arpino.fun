@@ -166,7 +166,7 @@ for($n=0;$n<8;$n++){
 		$n++;
 	}
 */
-	$sql	 ="SELECT nickname, M.customer_id,M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
+	$sql	 ="SELECT nickname, M.customer_id, C.mail, M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
 	$sql	.=" FROM wp01_0castmail AS M";
 	$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 	$sql	.=" LEFT JOIN wp01_0castmail AS M2 ON (M.customer_id = M2.customer_id AND M.send_date < M2.send_date)";
@@ -993,6 +993,8 @@ $(function(){
 					<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
 				<?}?>
 
+				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
+
 				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
 				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
 				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
@@ -1000,12 +1002,14 @@ $(function(){
 		<?}?>
 		<div class="mail_detail">
 			<div class="mail_detail_in"></div>
+
 			<div class="mail_write">
 				<textarea class="mail_write_text"></textarea><br>
-				<div class="mail_detail_btn_img">画像</div>
+				<div class="mail_detail_btn_img"></div>
 				<div class="mail_detail_btn_send">送信</div>
-				<div class="mail_detail_btn_del">クリア</div>
+				<div class="mail_detail_btn_del"></div>
 			</div>
+
 		</div>
 	</div>
 	

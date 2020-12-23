@@ -288,10 +288,12 @@ $(function(){
 		$('.mail_detail').animate({'right':'0'},150);
 
 		Customer_id=$(this).attr('id').replace('mail_hist','');
-
 		Customer_Name=$(this).children('.mail_name').text();
+		Customer_mail=$(this).children('.mail_addres').val();
+
+
 		$.post({
-			url:Dir + "/post/mail_hist.php",
+			url:Dir + "/post/easytalk_hist.php",
 			data:{
 				'cast_id'	:CastId,
 				'c_id'		:Customer_id
@@ -1354,6 +1356,8 @@ console.log("VwBase:"+VwBase);
 
 
 	$('.mail_detail_btn_send').on('click',function(){
+
+
 		$.post({
 			url:Dir + "/post/easytalk_send.php",
 			data:{

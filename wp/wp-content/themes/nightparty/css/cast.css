@@ -2917,7 +2917,7 @@ input[type=range]::-moz-range-thumb{
 .mail_detail_in{
 	display			:inline-block;
 	width			:98vw;
-	min-height		:calc(100vh - 14vw);
+//	min-height		:calc(100vh - 14vw);
 	background		:#f0f0f0;
 	text-align		:center;
 	font-size		:0;
@@ -3052,6 +3052,7 @@ input[type=range]::-moz-range-thumb{
     width			: 94vw;
     margin			: 0 auto 16vw auto;;
 	text-align		:right;
+	font-size:0;
 }
 
 .mail_write_text{
@@ -3080,20 +3081,23 @@ input[type=range]::-moz-range-thumb{
 	display		:inline-block;
 	height		:8vw;
 	line-height	:8vw;
-	background	:linear-gradient(#e8e8ff,#d8d8ff);
+	background	:linear-gradient(#2020c0,#0000a0);
 	text-align	:center;
 	position	:relative;
 	font-size	:4vw;
+	color:#fafafa;
 }
 
 .mail_detail_btn_img{
 	width:12vw;
+	font-family:at_icon;
 }
 .mail_detail_btn_send{
 	width:40vw;
 }
 .mail_detail_btn_del{
 	width:12vw;
+	font-family:at_icon;
 }
 
 
