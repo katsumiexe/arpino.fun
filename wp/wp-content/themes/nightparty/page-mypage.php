@@ -1008,14 +1008,8 @@ $(function(){
 				<div class="mail_detail_btn_send">送信</div>
 				<div class="mail_detail_btn_del"></div>
 			</div>
-
 		</div>
 	</div>
-	
-
-
-
-
 
 	<?}elseif($cast_page==4){?>
 		<div class="main">
