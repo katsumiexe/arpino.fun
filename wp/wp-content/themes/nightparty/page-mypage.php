@@ -652,6 +652,8 @@ for($n=0;$n<8;$n++){
 <script>
 const Dir='<?php echo get_template_directory_uri(); ?>'; 
 const CastId='<?=$_SESSION["id"] ?>'; 
+const CastName='<?=$_SESSION["genji"] ?>'; 
+
 const Now_md=<?=date("md",$jst)+0?>;
 const Now_Y	=<?=date("Y",$jst)+0?>;
 var C_Id=0;

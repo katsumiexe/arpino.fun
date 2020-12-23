@@ -1362,9 +1362,11 @@ console.log("VwBase:"+VwBase);
 			url:Dir + "/post/easytalk_send.php",
 			data:{
 				'log'		:$('.mail_write_text').val(),
-				'cast_id'	:CastId,
 				'send'		:'1',
 				'img'		:$('#img').val(),
+
+				'cast_id'		:CastId,
+				'cast_name'		:CastName,
 
 				'customer_id'	:Customer_id,
 				'customer_name'	:Customer_Name,

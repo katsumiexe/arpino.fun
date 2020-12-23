@@ -3,6 +3,7 @@
 
 require_once ("./post_inc.php");
 $cast_id		=$_POST['cast_id'];
+$cast_name		=$_POST['genji'];
 $log			=$_POST['log'];
 $sid			=$_POST['sid'];
 $img			=$_POST['img'];
@@ -40,7 +41,7 @@ if($send==1){
 	mb_internal_encoding("UTF-8");
 
 	$from	="From: counterpost2016@gmail.com";
-	$title	=$session["genji"]."より(EasyTalk)";
+	$title	=$cast_name."より(EasyTalk)";
 	$to		=$customer_mail;
 	$header	= "From: info@piyo-piyo.work";
 	
@@ -48,9 +49,9 @@ if($send==1){
 	$body	.=$customer_name."様\n\n";
 	}
 
-	$body	.=$session["genji"]."さんからのメッセージが届いています\n";
+	$body	.=$cast_name."さんからのメッセージが届いています\n";
 	$body	.="下記のURLから内容をご確認ください。\n";
-	$body	.="https://arpino.fun/wp/easytalk.php?ss=".$enc."\n\n\n";
+	$body	.="https://arpino.fun/wp/easytalk/?ss=".$enc."\n\n\n";
 
 	$body	.="===========================\n";
 	$body	.="Piyo-Piyo.work\n";
@@ -90,3 +91,4 @@ $dat.="</div>";
 echo $dat;
 exit();
 ?>
+
