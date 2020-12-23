@@ -3052,8 +3052,19 @@ input[type=range]::-moz-range-thumb{
     width			: 94vw;
     margin			: 0 auto 16vw auto;;
 	text-align		:right;
-	font-size:0;
+	font-size		:0;
 }
+
+.mail_write_in{
+    display			:inline-flex;
+	justify-content: space-between;
+	padding			:0;
+    margin			:2vw 1vw;
+    width			:68vw;
+	height			:8vw;
+	font-size		:0;
+}
+
 
 .mail_write_text{
     display			:inline-block;
@@ -3077,27 +3088,32 @@ input[type=range]::-moz-range-thumb{
 }
 
 .mail_detail_btn_img,.mail_detail_btn_send,.mail_detail_btn_del{
-	margin		:2vw 0 2vw 3vw;
 	display		:inline-block;
 	height		:8vw;
 	line-height	:8vw;
 	background	:linear-gradient(#2020c0,#0000a0);
 	text-align	:center;
 	position	:relative;
-	font-size	:4vw;
-	color:#fafafa;
+	color		:#fafafa;
 }
 
 .mail_detail_btn_img{
-	width:12vw;
-	font-family:at_icon;
+	width			:12vw;
+	flex-basis		:12vw;
+	font-family		:at_icon;
+	font-size		:6vw;
 }
 .mail_detail_btn_send{
-	width:40vw;
+	width			:40vw;
+	flex-basis		:40vw;
+	font-size		:4vw;
 }
+
 .mail_detail_btn_del{
-	width:12vw;
-	font-family:at_icon;
+	width			:12vw;
+	flex-basis		:12vw;
+	font-family		:at_icon;
+	font-size		:6vw;
 }
 
 
