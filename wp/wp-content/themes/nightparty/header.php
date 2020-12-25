@@ -39,6 +39,8 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 </head>
 <body class="body">
 <div class="head">
+<div class="head_in">
+<img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo.png" class="head_logo">
 <?php
 	$args = array(
 		'theme_location'	=>'global', 
@@ -50,13 +52,12 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 	 );
 wp_nav_menu($args);
 ?>
-<img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo2.png" class="head_logo">
 <div class="head_menu">
 	<div class="menu_a"></div>
 	<div class="menu_b"></div>
 	<div class="menu_c"></div>
 </div>
-<div class="head_tel"></div>
-
+<div class="head_tel"></div>
+</div>
 </div>
 <div class="main">
