@@ -2695,6 +2695,9 @@ ul {
 	width			:96vw;
 	height			:25vw;
 	margin			:0;
+	border			:none;
+	border-bottom	:1px solid #c8b880;
+
 }
 
 .blog_list_img{

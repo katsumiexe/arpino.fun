@@ -3,6 +3,7 @@
 Template Name: event
 */
 $code=$_REQUEST["code"];
+
 $sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_id='{$code}'";
@@ -11,6 +12,7 @@ $sql	.=" ORDER BY meta_value ASC";
 $dat = $wpdb->get_row($sql,ARRAY_A);
 
 $dat["post_content"]=str_replace("\n","<br>",$dat["post_content"]);
+
 get_header();
 ?>
 <div class="footmark">
@@ -24,6 +26,7 @@ get_header();
 		<span class="footmark_text">NEWS</span>
 	</div>
 </div>
+
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
