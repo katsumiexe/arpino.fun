@@ -52,6 +52,7 @@ if($send==1){
 	$body	.=$cast_name."さんからのメッセージが届いています\n";
 	$body	.="下記のURLから内容をご確認ください。\n";
 	$body	.="https://arpino.fun/wp/easytalk/?ss=".$enc."\n\n\n";
+<<<<<<< HEAD
 
 	$body	.="===========================\n";
 	$body	.="Piyo-Piyo.work\n";
@@ -59,6 +60,15 @@ if($send==1){
 	$body	.="080-1111-1111\n";
 	$body	.="info@piyo-piyo.work\n";
 
+=======
+
+	$body	.="===========================\n";
+	$body	.="Piyo-Piyo.work\n";
+	$body	.="https:arpino.fun/wp\n";
+	$body	.="080-1111-1111\n";
+	$body	.="info@piyo-piyo.work\n";
+
+>>>>>>> 68c3f22e8a737c90e58aa855169537bf0568fbee
 	mb_send_mail($to, $title, $body, $header);
 
 //------------------------------------------------
