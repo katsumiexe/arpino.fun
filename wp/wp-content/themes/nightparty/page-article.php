@@ -118,6 +118,7 @@ get_header();
 </div>
 
 <div class="main_top_flex">
+
 	<div class="main_article">
 		<h1 class="blog_ttl">
 			<?=$res0["post_title"]?>
@@ -129,9 +130,7 @@ get_header();
 		</div>
 		<div class="blog_ttl_border">　</div>
 		<?if($blog_img){?>
-		<div class="blog_top_img">
-		<img src="<?=$blog_img?>" class="blog_img">
-		</div>
+		<div class="blog_top_img"><img src="<?=$blog_img?>" class="blog_img"></div>
 		<?}?>
 		<div class="blog_log">
 			<?=$res0["post_content"]?>
@@ -139,48 +138,23 @@ get_header();
 	</div>
 
 	<div class="sub_blog">
+		<div class="blog_h1"><?=$res0["name"]?></div>
 		<div class="sub_blog_in">
-			<div class="blog_h1"><?=$res0["name"]?></div>
 			<img src="<?=$cast_face?>" class="blog_cast_img">
 			<a href="<?=home_url('/person')?>/?cast=<?=$res0["slug"]?>" class="blog_cast_link">プロフィール</a>
 		</div>
-
-		<!--table class="blog_calender">
-			<tr>
-				<td class="blog_calender_m" colspan="7"><?=$c_month?></td>
-			</tr>
-			<tr>
-				<td class="blog_calender_w">日</td>
-				<td class="blog_calender_w">月</td>
-				<td class="blog_calender_w">火</td>
-				<td class="blog_calender_w">水</td>
-				<td class="blog_calender_w">木</td>
-				<td class="blog_calender_w">金</td>
-				<td class="blog_calender_w">土</td>
-				<?=$c_inc?>
-			</tr>
-		</table-->
-
-		<div class="sub_blog_in">
 		<div class="blog_h1">新着</div>
-
+		<div class="sub_blog_in">
 		<?for($s=0;$s<count($blog);$s++){?>
 			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
 				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
 				<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
 				<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
-				<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
-				<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
+				<!--span class="person_blog_tag"><span class="hist_watch_c">0</span></span-->
+				<!--span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span-->
 			</a>
 		<?}?>
 		</div>
-
-
-
-		<div class="sub_blog_in">
-		<div class="blog_h1">カテゴリー</div>
-		</div>
-
 	</div>
 </div>
 <?php get_footer(); ?>

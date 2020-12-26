@@ -175,11 +175,11 @@ var Cnt=<?=(count($slide)-1)?>;
 						<span class="main_b_1_2_sch">OPEN-LAST</span>
 					</span>
 					<?if($dat[$b1]["new"] == 1){?>
-					<span class="main_b_1_ribbon">近日入店</span>
+					<span class="main_b_1_ribbon ribbon1">近日入店</span>
 					<?}elseif($dat[$b1]["new"] == 2){?>
-					<span class="main_b_1_ribbon">本日入店</span>
+					<span class="main_b_1_ribbon ribbon2">本日入店</span>
 					<?}elseif($dat[$b1]["new"] == 3){?>
-					<span class="main_b_1_ribbon">新人</span>
+					<span class="main_b_1_ribbon ribbon3">新人</span>
 					<?}?>
 				</a>
 			<? } ?>
