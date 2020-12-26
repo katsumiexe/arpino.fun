@@ -117,7 +117,7 @@ ul {
 	vertical-align	:middle;
 }
 .head_logo{
-	width		:240px;
+	width		:150px;
 }
 
 .head_tel{
@@ -974,14 +974,57 @@ ul {
 }
 
 .foot{
-	display		:inline-block;
-	width		:100%;
+	display		:block;
+	width		:100vw;
 	height		:100px;
 	margin		:10px auto 0 auto;
 	border-top	:5px solid #302520;
 	background	:#051010;
 	background	:linear-gradient(#302520,#101513);
+	text-align:center;
 }
+
+.foot_in{
+	display		:inline-flex;
+	width		:1200px;
+	margin		:0 auto;
+	font-size	:0;
+}
+
+.foot_left{
+	flex-basis	:420px;
+	text-align:right;
+}
+
+.foot_logo{
+	width		:240px;
+}
+
+.foot_middle{
+	display		:block;
+	width		:200px;
+	text-align	:left;
+	font-size	:15px;;
+	color		:#c8b880;
+	margin		:0 10px;
+	padding		:5px;
+	line-height	:24px;
+}
+
+.foot_right{
+	flex-basis	:410px;
+	text-align	:left;
+	font-size	:14px;
+	color		:#fafafa;
+}
+
+.foot_right_in{
+	display		:inline-block;
+	width		:200px;
+	height		:18px;
+	line-height	:18px;
+}
+
 
 .access_table{
 	display			:flex;
