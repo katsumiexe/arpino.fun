@@ -94,15 +94,12 @@ td,th{
 	margin:2px !important;
 }
 </style>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(function(){ 
 	$('.watch').on('click',function () {
 		Chg=$(this).attr('id').replace('w','');
 		$('#cast_pass'+Chg).attr('type','text');
-
-console.log(Chg);
 	});
 
 

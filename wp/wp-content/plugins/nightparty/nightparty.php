@@ -98,21 +98,23 @@ if($_POST["staff_set"]){
 add_action('admin_menu', 'custom_menu_page');
 function custom_menu_page(){
 	add_menu_page('スタッフ', 'スタッフ', 'manage_options', 'staff', 'staff', 'dashicons-businessman',6);
-	add_submenu_page('staff', 'スタッフ登録ページ', 'スタッフ登録', 'manage_options', 'staff_regist', 'staff_regist');
+	add_submenu_page('staff', 'スタッフ登録', 'スタッフ登録', 'manage_options', 'staff_regist', 'staff_regist');
 
 	add_menu_page('キャスト','キャスト','manage_options','cast','cast','dashicons-businesswoman',5);
-	add_submenu_page('cast','キャスト登録ページ', 'キャスト登録','manage_options', 'cast_regist', 'cast_regist');
-	add_submenu_page('cast','スケジュール一覧ページ', 'スケジュール','manage_options','sche_list','sche_list');
+	add_submenu_page('cast','キャスト登録', 'キャスト登録','manage_options', 'cast_regist', 'cast_regist');
+	add_submenu_page('cast','スケジュール一覧', 'スケジュール','manage_options','sche_list','sche_list');
 
 	add_menu_page('更新ページ', '更新', 'manage_options', 'write', 'write', 'dashicons-text-page', 7);
 	add_submenu_page('write', 'キャストブログ', 'キャストブログ', 'manage_options', 'cast_blog', 'cast_blog' );
-	add_submenu_page('write', 'イベント', 'イベント', 'manage_options', 'event', 'event');
-	add_submenu_page('write', 'お知らせ', 'お知らせ', 'manage_options', 'notce', 'notce' );
-	add_submenu_page('write', '固定ページ', '固定ページ', 'manage_options', 'set_page', 'set_page' );
-	add_submenu_page('write', 'TOP画像', 'TOP画像', 'manage_options', 'set_top_img', 'set_top_img' );
+	add_submenu_page('write', 'TOPイベント', 'TOPイベント', 'manage_options', 'top_event', 'top_event');
+	add_submenu_page('write', '新着情報', '新着', 'manage_options', 'notce', 'notce' );
+	add_submenu_page('write', 'サブイベント', 'サブイベント', 'manage_options', 'sub_event', 'sub_event' );
 
 	add_menu_page('各種設定', '各種設定', 'manage_options', 'config','config', 'dashicons-admin-tools', 8);
 	add_submenu_page('config', '時計/カレンダー', '時計/カレンダー', 'manage_options', 'config_page', 'config_page');
+	add_submenu_page('config', 'プロフィール', 'プロフィール', 'manage_options', 'config_prof', 'config_prof');
+	add_submenu_page('config', 'オプション', 'オプション', 'manage_options', 'config_option', 'config_option');
+	add_submenu_page('config', 'ブログタグ', 'ブログタグ', 'manage_options', 'config_brog', 'config_brog');
 	add_submenu_page('config', 'アイテム', 'アイテム', 'manage_options', 'config_item', 'config_item');
 
 	add_menu_page('情報', '情報', 'manage_options', 'manage','manage', 'dashicons-admin-tools', 9);
@@ -185,3 +187,29 @@ function staff_regist(){
 
     esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }
+
+
+
+
+function config_option(){
+	global $wpdb;
+	$updir = wp_upload_dir();
+
+	$n=0;
+	$sql	 ="SELECT * FROM wp01_0termmeta AS M";
+
+	$sql	.=" LEFT JOIN terms AS T USING(term_id)";
+	$sql	.=" WHERE meta_key='_options'";
+
+	$sql	.=" ORDER BY id DESC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$options[$res["meta_id"]]=$res;
+	}
+    esc_html_e( include_once('config_option.php'), 'textdomain' );  
+}
+
+
+
+
