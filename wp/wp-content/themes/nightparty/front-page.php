@@ -71,6 +71,38 @@ foreach($res2 as $a2){
 	$a2["news_date"]=substr($a2["post_date_gmt"],0,4).".".substr($a2["post_date_gmt"],5,2).".".substr($a2["post_date_gmt"],8,2);
 	$news[]=$a2;
 }
+/*
+$stime[1]="open";
+$stime[2]="open";
+$stime[3]="open";
+$stime[4]="open";
+$stime[5]="19:30";
+$stime[6]="open";
+
+$etime[1]="last";
+$etime[2]="last";
+$etime[3]="23:30";
+$etime[4]="last";
+$etime[5]="last";
+$etime[6]="last";
+
+$date=date("Y-m-d H:i:s");
+$app="INSERT INTO wp01_0schedule (`date`,sche_date,cast_id,stime,etime) VALUES";
+for($s=0;$s<20;$s++){
+	$ymd=date("Ymd",time()+86400*$s);
+	for($cast=100;$cast<115;$cast++){
+		$rnd=rand(0,5);
+		if($rnd>0){
+			$list.="('{$date}','{$ymd}','{$cast}','{$stime[$rnd]}','{$etime[$rnd]}'),";
+		}
+	}
+}
+
+$list=substr($list,0,-1);
+$app.=$list;
+$wpdb->query($app);
+
+*/
 
 get_header();
 ?>

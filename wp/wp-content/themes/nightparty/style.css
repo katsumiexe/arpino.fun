@@ -805,11 +805,11 @@ ul {
 .main_d_1_2_name{
 	display		:inline-block;
 	width		:150px;
-	height		:20px;
-	line-height	:20px;
+	height		:30px;
+	line-height	:30px;
 	color		:#483800;
 	font-size	:20px;
-	margin:3px auto 10px auto;
+	margin:0 auto 3px auto;
 	font-weight:600;
 	text-align:center;
 }
@@ -2203,8 +2203,8 @@ ul {
 	width		:36vw;
 	height		:5vw;
 	line-height	:5vw;
-	font-size	:4vw;
-	margin		:1vw auto 1vw auto;
+	font-size	:4.5vw;
+	margin		:1vw auto 0.5vw auto;
 }
 
 .main_d_1_2_sch,.main_b_1_2_sch{
@@ -2216,7 +2216,7 @@ ul {
 
 
 .main_b_1_2_f{
-	font-size	:5vw;
+	font-size	:5vw;	
 }
 
 .main_b_1_2_h{
@@ -2631,14 +2631,14 @@ ul {
 }
 
 .foot_right{
-	flex-basis	:90%;
+	flex-basis	:95%;
 	text-align	:center;
-	font-size	:4vw;
+	font-size	:3.5vw;
 }
 
 .foot_right_in{
 	display		:inline-block;
-	width		:80%;
+	width		:45%;
 	height		:5vw;
 	line-height	:5vw;
 }
