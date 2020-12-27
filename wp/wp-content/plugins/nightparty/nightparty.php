@@ -188,28 +188,18 @@ function staff_regist(){
     esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }
 
-
-
-
 function config_option(){
 	global $wpdb;
 	$updir = wp_upload_dir();
 
 	$n=0;
-	$sql	 ="SELECT * FROM wp01_0termmeta AS M";
-
-	$sql	.=" LEFT JOIN terms AS T USING(term_id)";
+	$sql	 ="SELECT * FROM wp01_termmeta AS M";
+	$sql	.=" LEFT JOIN wp01_terms AS T USING(term_id)";
 	$sql	.=" WHERE meta_key='_options'";
-
-	$sql	.=" ORDER BY id DESC";
 	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
 
 	foreach($tmp_list as $res){
-		$options[$res["meta_id"]]=$res;
+		$options[$res["meta_value"]][$res["term_id"]]=$res;
 	}
     esc_html_e( include_once('config_option.php'), 'textdomain' );  
 }
-
-
-
-

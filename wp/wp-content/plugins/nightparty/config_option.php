@@ -4,8 +4,14 @@ input[type=text]{
 	height:30px;
 }
 
+.w300{
+	width:300px;
+}
 .w200{
 	width:200px;
+}
+.w150{
+	width:150px;
 }
 
 .w100{
@@ -26,17 +32,16 @@ input[type=text]{
 
 .box{
 	display			:inline-flex;
-	width			:200px;
+	width			:360px;
 	text-align		:center;
-	padding			:5px;
+	padding			:10px;
 	margin			:5px;
-	background		:#906000;
+	background		:#c0c0c0;
 }
 
 td{
 	vertical-align:top;
 }
-
 
 .img_up_box{
 	display		:flex;
@@ -107,7 +112,6 @@ td{
 	color				:#fafafa;
 }
 
-
 .on_1{
 	background:#0000c0;
 }
@@ -115,7 +119,6 @@ td{
 .on_2{
 	background:#c00000;
 }
-
 
 -->
 </style>
@@ -125,23 +128,29 @@ td{
 
 <?foreach($options as $a1 => $a2){?>
 <form action="" method='post' id="config_option<?=$a1?>">
-	<button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
-	<button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
 	<table>
 		<tr>
 			<td>
-				<input type="text" name="option_group" class="w200" autocomplete="off" value="">
+				<input type="text" name="option_group" class="w300" autocomplete="off" value="<?=$a1?>">
 				<select name="option_v<?=$a2["meta_value"]?>" id="option_v<?=$a2["meta_value"]?>">
 					<option value="100">未選択表示</option>
 					<option <?if($a2["term_group"] == 101){?> selected='selected'<?}?> value="101">未選択非表示</option>
 				</select>
+				<button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
+				<button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
 			</td>
-
+		</tr><tr>
 			<td>
 				<?foreach($a2 as $b1){?>
 				<div class="box">
-					<input type="text" name="option_name[<?=$a1?>][<?=$b1["term_id"]?>]" value="<?=$b1["name"]?>" class="w100" autocomplete="off">
-					<input type="text" name="option_slug[<?=$a1?>][<?=$b1["term_id"]?>]" value="<?=$b1["slug"]?>" class="w80" autocomplete="off">
+					<input type="text" name="option_name[<?=$b1["term_id"]?>]" value="<?=$b1["name"]?>" class="w200" autocomplete="off">
+					<input type="text" name="option_slug[<?=$b1["term_id"]?>]" value="<?=$b1["slug"]?>" class="w150" autocomplete="off">
+				</div>
+				<? } ?>
+					<?for($n=0;$n<(20-count($a2));$n++){?>
+				<div class="box">
+					<input type="text" name="new_option_name[<?=$n?>]" value="" class="w200" autocomplete="off">
+					<input type="text" name="new_option_slug[<?=$n?>]" value="" class="w150" autocomplete="off">
 				</div>
 				<? } ?>
 			</td>
@@ -149,5 +158,6 @@ td{
 	</table>
 </form>
 <?}?>
-</div> 
 
+
+</div> 
