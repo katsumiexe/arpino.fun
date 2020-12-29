@@ -307,6 +307,21 @@
 	background		:#282828;
 	color			:#90b8c0;
 }
+
+
+.sche_block1{
+	display:inline-block;
+	width:42px;
+	text-align:center;
+
+}
+.sche_block2{
+	display:inline-block;
+	width:100px;
+	text-align:center;
+
+}
+
 @media screen and (max-width: 959px){
 
 .person_main{
@@ -466,6 +481,23 @@
 	line-height		:3.5vw;	
 	font-size		:2.5vw;
 }
+
+
+.sche_block1{
+	display:inline-block;
+	width:12vw;
+	text-align:center;
+
+}
+.sche_block2{
+	display:inline-block;
+	width:28vw;
+	text-align:center;
+
+}
+
+
+
 
 }
 @media screen and (max-width: 559px){

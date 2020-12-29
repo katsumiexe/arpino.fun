@@ -1836,13 +1836,63 @@ ul {
 
 .head{
 	min-width	:100vw;
-	height		:7vw;
+	height		:12vw;
 }
 
 .head_logo{
-	width		:15vw;
-	margin		:1vw 0.5vw;
+	width		:18vw;
+	height		:6vw;
 }
+
+.head_top{
+	width			:100vw;
+	height			:7vw;
+}
+
+.head_b{
+	height			:6vw;
+	width			:81vw;
+	text-align		:right;
+	vertical-align	:top;
+}
+
+
+.head_in{
+	width			:100vw;
+	height			:5vw;
+}
+
+.head_tel{
+	display		:none;
+}
+
+.head_b_ttl{
+	font-size		:2.5vw;
+	height			:3vw;
+	line-height		:3vw;
+	width			:10vw;
+}
+
+.head_b_0,.head_b_1{
+	display			:none;
+}
+
+.head_b_2{
+	font-size		:2.5vw;
+	height			:3.5vw;
+	line-height		:3.5vw;
+	width			:32vw;
+}
+
+.head_b_3{
+	font-size		:2.5vw;
+	height			:3.5vw;
+	line-height		:3.5vw;
+	width			:32vw;
+}
+
+
+
 
 .foot{
 	height		:100px;
@@ -1883,18 +1933,16 @@ ul {
 }
 
 .menu-item {
-	width		:14%;
-	flex-basis	:14%;
-	height		:5vw;
-	line-height	:5vw;
+	height		:4vw;
+	line-height	:4vw;
 	border		:1px solid #c8b880;
 	margin		:0.5vw;
 }
 
 .menu-item a{
 	font-size	:2.5vw;
-	height		:5vw;	
-	line-height	:5vw;
+	height		:4vw;	
+	line-height	:4vw;
 }
 
 .footmark{
