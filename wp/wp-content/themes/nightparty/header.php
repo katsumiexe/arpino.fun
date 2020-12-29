@@ -39,8 +39,16 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 </head>
 <body class="body">
 <div class="head">
+<div class="head_top">
+<img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo.png?t=<?=time()?>" class="head_logo">
+<div class="head_b">
+<span class="head_b_0">西武新宿駅徒歩5分</span><br>
+<span class="head_b_1">誰もが落ち着ける新スタイルのNew Club</span><br>
+<span class="head_b_2"><span class="head_b_ttl">営業時間</span>19：00～LAST</span><br>
+<span class="head_b_3"><span class="head_b_ttl">電話番号</span>03<span>-</span>1234<span>-</span>5678</span><br>
+</div>
+</div>
 <div class="head_in">
-<img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo.png" class="head_logo">
 <?php
 	$args = array(
 		'theme_location'	=>'global', 

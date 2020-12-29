@@ -45,9 +45,9 @@ ul {
 }
 
 .menu{
-	display		:inline-block;
+	display		:inline-flex;
 	text-align	:center;
-	width		:950px;
+	width		:1210px;
 	margin		:0 auto;
 	font-size	:0;
 	padding:0;
@@ -55,14 +55,12 @@ ul {
 
 .main{
 	display		:none;
-	background	:#051010;
-	background	:#101513;
 	background	:#000000;
 	text-align	:center;
 	width		:1200px;
 	min-height	:90vh;
 	margin		:0 auto;
-	padding-top	:70px;
+	padding-top	:175px;
 	font-size	:0;
 	vertical-align:top;
 }
@@ -93,45 +91,116 @@ ul {
 }
 
 .head{
-	position	:fixed;
+	position	:absolute;
 	top			:0;
 	left		:0;
 	right		:0;
-	display		:flex;
+	display		:block;
 	width		:100vw;
 	min-width	:1200px;
-	height		:70px;
+	height		:170px;
 	margin		:auto;
 	background	:linear-gradient(#3a3a3a,#1a1a1a);
 	text-align	:center;
 	z-index		:120;
-	padding:0;
+	padding		:0;
 }
 
-.head_in{
-	display			:inline-block;
-	position:relative;
+.head_top{
+	display			:block;
+	position		:relative;
 	width			:1200px;
+	height			:100px;
+	margin			:0 auto;
+	text-align		:left;
+	font-size		:0;
+}
+
+.head_logo{
+	height		:100px;
+	width		:300px;
+}
+
+.head_b{
+	display			:inline-block;
+	height			:100px;
+	width			:900px;
+	text-align		:right;
+	vertical-align	:top;
+}
+
+
+.head_in{
+	display			:block;
+	position		:relative;
+	width			:1210px;
 	height			:70px;
 	margin			:0 auto;
-	vertical-align	:middle;
-}
-.head_logo{
-	width		:150px;
+
 }
 
 .head_tel{
 	display		:none;
 }
 
+.head_b_ttl{
+	color			:#c8b880;
+	font-size		:20px;
+	display			:inline-block;
+	height			:30px;
+	line-height		:30px;
+	width			:100px;
+	margin			:2px;
+}
+
+.head_b_0{
+	color			:#e0e0e0;
+	font-size		:15px;
+	display			:inline-block;
+	height			:20px;
+	line-height		:20px;
+	width			:400px;
+	margin-top		:6px;
+}
+
+.head_b_1{
+	color			:#e0e0e0;
+	font-size		:15px;
+	display			:inline-block;
+	height			:20px;
+	line-height		:20px;
+	width			:400px;
+}
+
+.head_b_2{
+	color			:#e8d8a0;
+	font-size		:22px;
+	font-weight		:600;
+	display			:inline-block;
+	height			:27px;
+	line-height		:27px;
+	width			:300px;
+	text-align		:left;
+}
+
+.head_b_3{
+	color			:#e8d8a0;
+	font-size		:22px;
+	font-weight		:600;
+	display			:inline-block;
+	height			:27px;
+	line-height		:27px;
+	width			:300px;
+	text-align		:left;
+}
 
 
 .menu-item{
 	display		:inline-block;
 	height		:50px;
-	width		:130px;
-	flex-basis	:130px;
 	line-height	:50px;
+	width		:130px;
+	flex		:1;
 	background	:#252018;
 	border		:1px solid #c8b880;
 	margin		:10px 5px;
@@ -976,12 +1045,12 @@ ul {
 .foot{
 	display		:block;
 	width		:100vw;
-	height		:100px;
 	margin		:10px auto 0 auto;
 	border-top	:5px solid #302520;
 	background	:#051010;
 	background	:linear-gradient(#302520,#101513);
 	text-align:center;
+	padding-bottom:20px;
 }
 
 .foot_in{
@@ -994,37 +1063,26 @@ ul {
 }
 
 .foot_left{
-	flex-basis	:30%;
-	text-align:right;
+	flex-basis	:40%;
+	text-align	:left;
 }
 
 .foot_logo{
-	width		:50%;
-}
-
-.foot_middle{
-	display		:block;
-	width		:30%;
-	text-align	:left;
-	font-size	:20px;
-	color		:#c8b880;
-	margin		:0 10px;
-	padding		:5px;
-	line-height	:30px;
+	width		:60%;
 }
 
 .foot_right{
-	flex-basis	:30%;
+	flex-basis	:60%;
 	text-align	:left;
-	font-size	:14px;
+	font-size	:16px;
 	color		:#fafafa;
 }
 
 .foot_right_in{
 	display		:inline-block;
 	width		:45%;
-	height		:18px;
-	line-height	:18px;
+	height		:24px;
+	line-height	:24px;
 	text-align	:left;
 }
 
