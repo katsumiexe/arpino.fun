@@ -4,64 +4,68 @@ Template Name: easytalk
 */
 global $wpdb;
 
-$jst=time();
-$now=date("Y-m-d H:i:s",time()+21600);
+$jst=time()+32400;
+$now=date("Y-m-d H:i:s",$jst);
 $ss=$_REQUEST["ss"];
 
 if($ss){
 	$sql	 ="SELECT * FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$ss}'";
+	$sql	.=" AND del='0'";
 	$ssid = $wpdb->get_row($sql,ARRAY_A);
 
 	if(!$ssid){
 		$err=1;
 
 	}else{
-
-		$sql	 ="UPDATE wp01_0ssid";
-		$sql	.=" cast_id='',";
-		$sql	.=" customer_id=''";
-		$sql	.=" WHERE ssid !='{$_REQUEST["ss"]}'";
+		$sql	 ="UPDATE wp01_0ssid SET";
+		$sql	.=" del='1'";
+		$sql	.=" WHERE id <'{$ssid["id"]}'";
 		$sql	.=" AND cast_id='{$ssid["cast_id"]}'";
 		$sql	.=" AND customer_id='{$ssid["customer_id"]}'";
 		$wpdb->query($sql);
-	}
-}
 
-
-if($ssid){
-	if (file_exists(get_template_directory()."/img/page/{$ssid["cast_id"]}/1.jpg")) {
-		$face_link=get_template_directory_uri()."/img/page/{$ssid["cast_id"]}/1.jpg";			
-	}else{
-		$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
-	}
-
-	$sql	 ="SELECT * FROM wp01_0castmail";
-	$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
-	$sql	.=" ORDER BY mail_id DESC";
-	$sql	.=" LIMIT 10";
-	$res = $wpdb->get_results($sql,ARRAY_A);
-
-	$n=count($res)-1;
-	foreach($res as $a1){
-		$dat[$n]=$a1;
-		$dat[$n]["log"]=str_replace("\n","<br>",$dat[$n]["log"]);
-		$dat[$n]["send_date"]=str_replace("-",".",$dat[$n]["send_date"]);
-		$dat[$n]["send_date"]=substr($dat[$n]["send_date"],0,16);
-
-		if($dat[$n]["watch_date"] =='0000-00-00 00:00:00'){
-			$dat[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
+		if (file_exists(get_template_directory()."/img/page/{$ssid["cast_id"]}/1.jpg")) {
+			$face_link=get_template_directory_uri()."/img/page/{$ssid["cast_id"]}/1.jpg";			
 		}else{
-			$dat[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
-			$dat[$n]["bg"]=1;
+			$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
 		}
-		$n--;
-	}
 
-	$sql	 ="UPDATE wp01_0castmail SET";
-	$sql	.=" watch_date='{$now}'";
-	$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
-	$wpdb->query($sql);
+		$sql	 ="SELECT * FROM wp01_0castmail";
+		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
+		$sql	.=" ORDER BY mail_id DESC";
+		$sql	.=" LIMIT 10";
+		$res = $wpdb->get_results($sql,ARRAY_A);
+
+		$n=count($res)-1;
+		foreach($res as $a1){
+			$dat[$n]=$a1;
+			$dat[$n]["log"]=str_replace("\n","<br>",$dat[$n]["log"]);
+			$dat[$n]["send_date"]=str_replace("-",".",$dat[$n]["send_date"]);
+			$dat[$n]["send_date"]=substr($dat[$n]["send_date"],0,16);
+
+			if($dat[$n]["watch_date"] =='0000-00-00 00:00:00'){
+				$dat[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
+			}else{
+				$dat[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
+				$dat[$n]["bg"]=1;
+			}
+
+			if($dat[$n+1]["watch_date"] =='0000-00-00 00:00:00' && $dat[$n]["watch_date"] !='0000-00-00 00:00:00'){
+				$dat[$n]["border"]="<div class=\"mail_border\">----------ここから新着--------------</div>";
+				$html=$dat[$n]["watch_date"];
+			}
+			$n--;
+		}
+
+		$sql	 ="UPDATE wp01_0castmail SET";
+		$sql	.=" watch_date='{$now}'";
+		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
+		$wpdb->query($sql);
+	}
+}else{
+	$err=2;
+
 }
 
 
@@ -87,25 +91,21 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 
 <div class="main_easytalk">
 	<div class="main_mail">
-		<?if($err==1){?>
+		<?if($err==2){?>
 			<div class="err_msg">
 				タイムアウトしました<br>
 				再度メールからログインしてください。<br>
 			</div>
-		<?}elseif($err==2){?>
+		<?}elseif($err==1){?>
 			<div class="err_msg">
 				ログインコードが無効です。<br>
 				最新のメールからログインしてください。<br>
 			</div>
 
-		<?}elseif($err==3){?>
-			<div class="err_msg">
-				SESSIONが拾えません。<br>
-			</div>
-
 		<?}else{?>
 			<?for($n=0;$n<count($dat);$n++){?>
 				<?if($dat[$n]["send_flg"] == 1){?>
+					<?=$dat[$n]["border"]?>
 					<div class="mail_box_a">		
 						<div class="mail_box_face">
 							<img src="<?=$face_link?>" class="mail_box_img">

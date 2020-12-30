@@ -33,7 +33,6 @@ ul {
 	border-radius:2px;
 }
 
-
 .main_easytalk{
 	background	:#ffe0f0;
 	text-align	:center;
@@ -83,7 +82,7 @@ ul {
 }
 
 .mail_box_a{
-	padding-top:20px;
+	padding-top	:20px;
 	position	:relative;
 	display		:inline-block;
 	width		:850px;
@@ -92,7 +91,7 @@ ul {
 }
 
 .mail_box_b{
-	padding-top:20px;
+	padding-top	:20px;
 	position	:relative;
 	display		:inline-block;
 	width		:850px;
@@ -179,7 +178,18 @@ ul {
 	margin-top	:10px;
 }
 
-
+.err_msg{
+	display:block;
+	margin		:10px auto;
+	width		:80%;
+	border		:2px solid #d00000;
+	background	:#ffffd0;
+	font-size	:14px;
+	line-height	:20px;
+	color		:#202020;
+	padding:10px;
+	text-align:left;
+}
 
 @media screen and (max-width: 559px){
 

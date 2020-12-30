@@ -35,7 +35,7 @@ $n=count($res)-1;
 foreach($res as $a1){
 	$dat[$n]=$a1;
 	$dat[$n]["log"]=str_replace("\n","<br>",$dat[$n]["log"]);
-	$dat[$n]["send_date"]=str_replace("-",".",$dat[$n]["send_date"]);
+	$dat[$n]["send_date"]=substr(str_replace("-",".",$dat[$n]["send_date"]),0,16);
 
 	if($dat[$n]["watch_date"] =='0000-00-00 00:00:00'){
 		$dat[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
@@ -47,7 +47,7 @@ foreach($res as $a1){
 
 	if($dat[$n+1]["watch_date"] =='0000-00-00 00:00:00' && $dat[$n]["watch_date"] !='0000-00-00 00:00:00'){
 		$dat[$n]["border"]="<div class=\"mail_border\">----------ここから新着--------------</div>";
-		$html=$dat[$n]["watch_date"];
+//		$html=$dat[$n]["watch_date"];
 	}
 
 	$n--;
@@ -70,6 +70,8 @@ $face=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
 
 for($n=0;$n<count($dat);$n++){
 	if($dat[$n]["send_flg"] == 2){
+
+		$html.=$dat[$n]["border"];		
 		$html.="<div class=\"mail_box_a\">";		
 		$html.="<div class=\"mail_box_face\">";
 		$html.="<img src=\"{$face}\" class=\"mail_box_img\">";

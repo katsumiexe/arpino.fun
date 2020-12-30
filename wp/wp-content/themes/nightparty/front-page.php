@@ -72,19 +72,19 @@ foreach($res2 as $a2){
 	$news[]=$a2;
 }
 /*
-$stime[1]="open";
-$stime[2]="open";
-$stime[3]="open";
-$stime[4]="open";
+$stime[1]="OPEN";
+$stime[2]="OPEN";
+$stime[3]="OPEN";
+$stime[4]="OPEN";
 $stime[5]="19:30";
-$stime[6]="open";
+$stime[6]="OPEN";
 
-$etime[1]="last";
-$etime[2]="last";
+$etime[1]="LAST";
+$etime[2]="LAST";
 $etime[3]="23:30";
-$etime[4]="last";
-$etime[5]="last";
-$etime[6]="last";
+$etime[4]="LAST";
+$etime[5]="LAST";
+$etime[6]="LAST";
 
 $date=date("Y-m-d H:i:s");
 $app="INSERT INTO wp01_0schedule (`date`,sche_date,cast_id,stime,etime) VALUES";

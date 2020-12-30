@@ -69,12 +69,6 @@ for($n=0;$n<7;$n++){
 	$list_week=date("w",strtotime($t_sch));
 
 	if($tmp_s && $tmp_e){
-		$tmp_date=$tmp_s."～".$tmp_e;
-	}else{
-		$tmp_date="";
-	}
-
-	if($tmp_s && $tmp_e){
 		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
 	}else{
 		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block2\">休み</span></td>";

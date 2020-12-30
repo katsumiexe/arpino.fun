@@ -745,8 +745,6 @@ ul {
 }
 
 
-
-
 .sub_blog{
 	display		:inline-block;
 	width		:302px;
@@ -765,7 +763,6 @@ ul {
 }
 
 .main_c{
-
 	display		:inline-block;
 	width		:300px;
 	background	:#302520;
@@ -1836,27 +1833,27 @@ ul {
 
 .head{
 	min-width	:100vw;
-	height		:12vw;
+	height		:13.5vw;
 }
 
 .head_logo{
-	width		:18vw;
-	height		:6vw;
+	width		:24vw;
+	height		:8vw;
 }
 
 .head_top{
-	width			:100vw;
-	height			:7vw;
+	width			:98vw;
+	height			:8vw;
 }
 
 .head_b{
-	height			:6vw;
-	width			:81vw;
+	height			:8vw;
+	width			:73vw;
 	text-align		:right;
 	vertical-align	:top;
 }
 
-
+	
 .head_in{
 	width			:100vw;
 	height			:5vw;
@@ -1929,7 +1926,7 @@ ul {
 }
 
 .menu{
-	width		:84vw;
+	width		:98vw;
 }
 
 .menu-item {
@@ -1952,6 +1949,7 @@ ul {
 .main{
 	display		:block;
 	width		:100vw;
+	padding-top	:14vw;;
 }
 
 .main_top{
@@ -2672,6 +2670,8 @@ ul {
 @media screen and (max-width: 559px){
 
 .menu{
+	justify-content: flex-start;
+	flex-wrap	:wrap;
 	position	:absolute;
 	top			:14vw;
 	left		:-46vw;
@@ -2681,14 +2681,32 @@ ul {
 	border		:1vw solid #303030;
 }
 
-.head_logo{
-	width		:36vw;
-	height		:12vw;
-	margin		:1vw auto;;
+.head_b{
+	position	:fixed;
 }
+
+.head_b{
+	display		:none;
+}
+
 .head_in{
 	width		:100vw;
 	height		:14vw;
+}
+
+.head_top{
+	position	:absolute;
+	top			:1vw;
+	left		:0vw;
+	right		:0vw;
+	margin		:auto;
+	width		:36vw;
+	height		:12vw;
+}
+
+.head_logo{
+	width		:36vw;
+	height		:12vw;
 }
 
 .head_tel{
