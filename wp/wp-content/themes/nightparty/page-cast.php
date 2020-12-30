@@ -32,7 +32,7 @@ $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_ymd}' ORDER BY schedul
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
 	if($a2["stime"] && $a2["etime"]){
-		$dat[$a2["cast_id"]]["sch"]	="{$a2["stime"]} - {$a2["etime"]}";
+		$dat[$a2["cast_id"]]["sch"]	="{$a2["stime"]} － {$a2["etime"]}";
 		$sort[$a2["cast_id"]]=$sch_table["in"][$a2["stime"]];
 	}else{
 		$sch[$a2["cast_id"]]	="休み";
