@@ -5,6 +5,8 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 
+	console.log(VwBase);
+	
 	var Fav			=0;
 	var cvs_A		=0;
 	var Rote		=0;

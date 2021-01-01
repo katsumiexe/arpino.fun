@@ -1098,19 +1098,24 @@ ul {
 
 
 
-.to_top_in{
+.to_top_in, .to_top_in2{
 	display			:block;
 	position		:absolute;
-	bottom			:5px;
+	bottom			:0px;
 	right			:0;
 	left			:0;
 	height			:20px;
 	width			:20px;
-	border-top		:10px solid #101510;
-	border-right	:10px solid #101510;
+	border-top		:5px solid #101510;
+	border-right	:5px solid #101510;
 	transform-origin:center;
 	transform		:rotate(-45deg);
-	margin:auto;
+	margin			:auto;
+}
+
+
+.to_top_in2{
+	bottom			:13px;
 }
 
 

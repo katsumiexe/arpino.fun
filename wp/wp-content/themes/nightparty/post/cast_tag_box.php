@@ -2,9 +2,13 @@
 /*
 通常ページ　CAST読み込み
 */
-require_once ("./post_inc.php");
+global $wpdb;
+require_once ("../../../../wp-load.php");
+$jst=time()+32400;
+$link=get_template_directory_uri();
 $now=date("Y-m-d H:i:s",$jst);
 $date		=$_POST['date'];
+
 
 $sql=" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
@@ -24,6 +28,7 @@ foreach($res as $a1){
 	$sql.=" AND cast_id='{$a1["id"]}'";
 	$res2 = $wpdb->get_results($sql,ARRAY_A);
 
+$html.=$sql."■";
 	foreach($res2 as $a2){
 		if($a2["stime"] && $a2["etime"]){
 			$dat[$a1["id"]]["sch"]="{$a2["stime"]}-{$a2["etime"]}";
@@ -44,6 +49,18 @@ foreach($res as $a1){
 	}else{
 		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
 	}
+
+	if($sch_8 < $a1["ctime"]){
+		$dat[$a1["id"]]["new"]=1;
+
+	}elseif($sch_8 == $a1["ctime"]){
+		$dat[$a1["id"]]["new"]=2;
+
+	}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+		$dat[$a1["id"]]["new"]=3;
+	}
+
+
 }
 asort($sort);
 

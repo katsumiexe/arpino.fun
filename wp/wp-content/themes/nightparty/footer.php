@@ -12,8 +12,8 @@
 		</div>
 	</div>
 	<div class="to_top">
-		<div class="to_top_in">
-		</div>
+		<div class="to_top_in"></div>
+		<div class="to_top_in2"></div>
 	</div>
 </footer>
 <?php wp_footer(); ?>

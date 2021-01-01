@@ -21,23 +21,21 @@ $sql.=" ORDER BY schedule_id ASC";
 $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
 
-	if(!$a1["stime"] || !$a1["etime"]){
-		$a1["sc"]="休み";
-		$sort[$a1["id"]]=999999;
-
-	}else{
+	if($a1["stime"] && $a1["etime"]){
 		$a1["sc"]="{$a1["stime"]} － {$a1["etime"]}";
 		$sort[$a1["id"]]=$a1["sort"];
-	}
 
-	if($sch_8 < $a1["ctime"]){
-		$a1["new"]=1;
+		if($sch_8 < $a1["ctime"]){
+			$a1["new"]=1;
 
-	}elseif($sch_8 == $a1["ctime"]){
-		$a1["new"]=2;
+		}elseif($sch_8 == $a1["ctime"]){
+			$a1["new"]=2;
 
-	}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
-		$a1["new"]=3;
+		}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+			$a1["new"]=3;
+		}
+	}else{
+		$sort[$a1["id"]]=9999;
 	}
 
 	$dat[$a1["cast_id"]]=$a1;
@@ -199,25 +197,27 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>
-				<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
-					<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
-					<span class="main_b_1_2">
-						<span class="main_b_1_2_h"></span>
-						<span class="main_b_1_2_f f_tr"></span>
-						<span class="main_b_1_2_f f_tl"></span>
-						<span class="main_b_1_2_f f_br"></span>
-						<span class="main_b_1_2_f f_bl"></span>
-						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
-						<span class="main_b_1_2_sch"><?=$dat[$b1]["sc"]?></span>
-					</span>
-					<?if($dat[$b1]["new"] == 1){?>
-					<span class="main_b_1_ribbon ribbon1">近日入店</span>
-					<?}elseif($dat[$b1]["new"] == 2){?>
-					<span class="main_b_1_ribbon ribbon2">本日入店</span>
-					<?}elseif($dat[$b1]["new"] == 3){?>
-					<span class="main_b_1_ribbon ribbon3">新人</span>
-					<?}?>
-				</a>
+				<? if($b2 !='9999'){?>
+					<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+						<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
+						<span class="main_b_1_2">
+							<span class="main_b_1_2_h"></span>
+							<span class="main_b_1_2_f f_tr"></span>
+							<span class="main_b_1_2_f f_tl"></span>
+							<span class="main_b_1_2_f f_br"></span>
+							<span class="main_b_1_2_f f_bl"></span>
+							<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
+							<span class="main_b_1_2_sch"><?=$dat[$b1]["sc"]?></span>
+						</span>
+						<?if($dat[$b1]["new"] == 1){?>
+						<span class="main_b_1_ribbon ribbon1">近日入店</span>
+						<?}elseif($dat[$b1]["new"] == 2){?>
+						<span class="main_b_1_ribbon ribbon2">本日入店</span>
+						<?}elseif($dat[$b1]["new"] == 3){?>
+						<span class="main_b_1_ribbon ribbon3">新人</span>
+						<?}?>
+					</a>
+				<? } ?>
 			<? } ?>
 		</div>
 	</div>

@@ -98,7 +98,6 @@ $week_01		=date("w",strtotime($c_month));
 $ana_line[$week_start]=" ana_line";
 
 
-
 $sql ="SELECT term_id FROM wp01_terms"; 
 $sql .=" WHERE slug='{$_SESSION["id"]}'"; 
 $cate_id = $wpdb->get_var($sql);
@@ -368,20 +367,25 @@ for($n=0;$n<8;$n++){
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
+		$now_ym=date("ym",strtotime($calendar[$n]));
 		$t=date("t",strtotime($calendar[$n]));
 
 		$wk=$week_start-date("w",strtotime($calendar[$n]));
 		if($wk>0) $wk-=7;
 
 		$st=strtotime($calendar[$n])+($wk*86400);
+
 		$v_year[$n]	=substr($calendar[$n],0,4)."年";
 		$v_month[$n]=substr($calendar[$n],5,2)."月";
 
 		for($m=0; $m<42;$m++){
+
 			$tmp_ymd	=date("Ymd",$st+($m*86400));
+			$tmp_ym		=date("ym",$st+($m*86400));
 			$tmp_month	=date("m",$st+($m*86400));
 			$tmp_day	=date("d",$st+($m*86400));
 			$tmp_week	=date("w",$st+($m*86400));
+
 
 			$app_n1="";
 			$app_n2="";
@@ -390,7 +394,7 @@ for($n=0;$n<8;$n++){
 	
 			$tmp_w	=$m % 7;
 			if($tmp_w==0){
-				if($now_month<$tmp_month){
+				if($now_ym<$tmp_ym){
 					break 1;
 				}else{
 					$cal[$n].="</tr><tr>";
@@ -432,6 +436,7 @@ for($n=0;$n<8;$n++){
 			$cal[$n].="</td>";
 		}
 	}
+
 
 	if($_POST["cus_set"]){
 		$cast_page=2;
@@ -625,8 +630,6 @@ for($n=0;$n<8;$n++){
 	}
 }
 
-
-
 ?>
 <html lang="ja">
 <head>
@@ -755,6 +758,8 @@ $(function(){
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
+
+
 	<?if($cast_page==1){?>
 	<div class="main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
@@ -793,6 +798,7 @@ $(function(){
 				</table>
 			<?}?>
 		</div>
+
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
