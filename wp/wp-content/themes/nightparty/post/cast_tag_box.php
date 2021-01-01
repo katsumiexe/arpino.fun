@@ -65,15 +65,3 @@ $html.="</span></a>";
 echo $html;
 exit();
 ?>
-
-
-
-
-
-
-
-
-
-
-
-

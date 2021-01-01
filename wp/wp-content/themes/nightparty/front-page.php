@@ -1,12 +1,55 @@
 <?php
-$now_8=date("Ymd",time()+32400);
+//---------------------------------------
+//require_once ("../../../wp-load.php");
+global $wpdb;
 
-$sql=" SELECT * FROM wp01_0sch_table";
+$sql=" SELECT meta_value, meta_key FROM wp01_usermeta";
+$sql.=" WHERE meta_key IN('start_time','start_week')";
+$admin	= $wpdb->get_results($sql,ARRAY_A);
+$jst=time()+32400;
+$sch_8=date("Ymd",$jst-($admin["start_time"]*3600));
+//$link=get_template_directory_uri();
+//-------------------------------------------
+
+$sql=" SELECT sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
+$sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
+$sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
+$sql.=" WHERE sche_date='{$sch_8}'";
+$sql.=" AND del='0'";
+$sql.=" ORDER BY schedule_id ASC";
+
 $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
-	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
+
+	if(!$a1["stime"] || !$a1["etime"]){
+		$a1["sc"]="休み";
+		$sort[$a1["id"]]=999999;
+
+	}else{
+		$a1["sc"]="{$a1["stime"]} － {$a1["etime"]}";
+		$sort[$a1["id"]]=$a1["sort"];
+	}
+
+	if($sch_8 < $a1["ctime"]){
+		$a1["new"]=1;
+
+	}elseif($sch_8 == $a1["ctime"]){
+		$a1["new"]=2;
+
+	}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+		$a1["new"]=3;
+	}
+
+	$dat[$a1["cast_id"]]=$a1;
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
+		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/1.jpg";			
+	}else{
+		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
+	}
 }
 
+
+/*
 $sql="SELECT * FROM wp01_0cast";
 $sql.=" WHERE del=0";
 $res= $wpdb->get_results($sql,ARRAY_A);
@@ -31,7 +74,9 @@ foreach($res as $a1){
 		$dat[$a1["id"]]["new"]=3;
 	}
 }
+*/
 
+/*
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_8}' ORDER BY schedule_id ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 
@@ -45,6 +90,8 @@ foreach($res2 as $a2){
 		$sort[$a1["id"]]=999999;
 	}
 }
+*/
+
 
 $sql	 ="SELECT meta_id, meta_value, post_type FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
@@ -71,6 +118,8 @@ foreach($res2 as $a2){
 	$a2["news_date"]=substr($a2["post_date_gmt"],0,4).".".substr($a2["post_date_gmt"],5,2).".".substr($a2["post_date_gmt"],8,2);
 	$news[]=$a2;
 }
+
+
 /*
 $stime[1]="OPEN";
 $stime[2]="OPEN";
@@ -103,7 +152,6 @@ $app.=$list;
 $wpdb->query($app);
 
 */
-
 get_header();
 ?>
 <style>
@@ -204,7 +252,7 @@ var Cnt=<?=(count($slide)-1)?>;
 						<span class="main_b_1_2_f f_br"></span>
 						<span class="main_b_1_2_f f_bl"></span>
 						<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
-						<span class="main_b_1_2_sch">OPEN-LAST</span>
+						<span class="main_b_1_2_sch"><?=$dat[$b1]["sc"]?></span>
 					</span>
 					<?if($dat[$b1]["new"] == 1){?>
 					<span class="main_b_1_ribbon ribbon1">近日入店</span>
@@ -226,3 +274,4 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 </div>
 <?php get_footer(); ?>
+

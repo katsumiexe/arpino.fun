@@ -2,6 +2,7 @@ var TopCnt=0;
 var Vw	=$(window).width();
 var Vh	=$(window).height();
 var TMR=4000;
+	TMR=4000;
 
 $(function(){ 
 	timerId = setInterval(Fnc_s,TMR);
@@ -80,6 +81,4 @@ function Fnc_s() {
 
 console.log(Left)
 }
-
-
 

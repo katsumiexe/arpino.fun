@@ -85,11 +85,13 @@ if($img_code){
 
 	$img2 		= imagecreatetruecolor(300,300);
 
+/*
 	$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 	$tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
 
 	$tmp_width	=floor(600/($img_zoom/100));
 	$tmp_height	=floor(600/($img_zoom/100));
+*/
 
 	if($img_rote ==90){
 		$new_img = imagecreatefromstring(base64_decode($img_code));	
@@ -102,7 +104,7 @@ if($img_code){
 	}else{
 		$img = imagecreatefromstring(base64_decode($img_code));
 	}
-	ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 300, 300, $tmp_width, $tmp_height);
+	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 300, 300, 300, 300);
 	imagepng($img2,$link);
 
 	$sql_log ="UPDATE wp01_0customer SET";
@@ -110,9 +112,9 @@ if($img_code){
 	$sql_log .=" WHERE id='{$tmp_auto}'";
 	$wpdb->query($sql_log);
 
-
 	$html_img ="<img src=\"{$res}\" class=\"mail_img\">";
 	$html_img.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$clist}\">";
+
 }else{
 //	$html_img="<img src=\"{php echo get_template_directory_uri();}/img/customer_no_img.jpg\" class=\"mail_img\">";
 }

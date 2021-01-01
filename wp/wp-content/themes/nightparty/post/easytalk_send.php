@@ -39,7 +39,7 @@ if($send==1){
 	mb_internal_encoding("UTF-8");
 
 	$from	="From: counterpost2016@gmail.com";
-	$title	=$cast_name."より(EasyTalk)";
+	$title	="[Night Party]".$cast_name."さんより(EasyTalk)";
 	$to		=$customer_mail;
 	$header	= "From: info@piyo-piyo.work";
 	
@@ -52,7 +52,7 @@ if($send==1){
 	$body	.="https://arpino.fun/wp/easytalk/?ss=".$enc."\n\n\n";
 
 	$body	.="===========================\n";
-	$body	.="Piyo-Piyo.work\n";
+	$body	.="Night Party\n";
 	$body	.="https://arpino.fun/wp\n";
 	$body	.="080-1111-1111\n";
 	$body	.="info@piyo-piyo.work\n";

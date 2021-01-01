@@ -2227,12 +2227,12 @@ ul {
 }
 
 .main_e{
-	width			:98vw;
+	width			:96vw;
 	margin			:1vw auto;
 }
 
 .main_e_in{
-	width			:91vw;
+	width			:89vw;
 	padding			:3vw 3vw 8vw 3vw;
 	margin			:0.5vw auto;
 	min-height		:20vw;
@@ -2536,7 +2536,7 @@ ul {
 
 .sys_box_ttl{
 	font-size		:5vw;
-	width			:82vw;
+	width			:80vw;
 	height			:7vw;
 	line-height		:7vw;
 	margin			:2vw auto;
@@ -2670,7 +2670,7 @@ ul {
 @media screen and (max-width: 559px){
 
 .menu{
-	justify-content: flex-start;
+	align-content: flex-start;
 	flex-wrap	:wrap;
 	position	:absolute;
 	top			:14vw;
@@ -2680,6 +2680,30 @@ ul {
 	background	:#303030;
 	border		:1vw solid #303030;
 }
+
+.head{
+	width			:100vw;
+	height			:14vw;
+	background		:#302520;
+	position		:fixed;
+}
+
+.head_menu{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:2vw;
+	bottom			:0; 
+	margin			:auto;
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
+	text-align		:center;
+	border			:1px solid #c8b880;
+	border-radius	:1vw;
+	cursor			:pointer;
+}
+
 
 .head_b{
 	position	:fixed;
@@ -2819,27 +2843,6 @@ ul {
 
 }
 
-.head{
-	width			:100vw;
-	height			:14vw;
-	background		:#302520;
-}
-
-.head_menu{
-	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	left			:2vw;
-	bottom			:0; 
-	margin			:auto;
-	width			:10vw;
-	height			:10vw;
-	line-height		:10vw;
-	text-align		:center;
-	border			:1px solid #c8b880;
-	border-radius	:1vw;
-	cursor			:pointer;
-}
 
 .sub_blog_pack{
 	display			:inline-block;

@@ -612,15 +612,17 @@ for($n=0;$n<8;$n++){
 	$sql ="SELECT * FROM wp01_0cast_log_table";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $a1){
-		$log_item[$a1["sort"]]=$a1;
-	}
-	ksort($log_item);
+	if($dat){
+		foreach($dat as $a1){
+			$log_item[$a1["sort"]]=$a1;
+		}
+		ksort($log_item);
 
-	foreach($log_item as $a1 => $a2){
-		$log_list_cnt.='"i'.$a1.'",';
+		foreach($log_item as $a1 => $a2){
+			$log_list_cnt.='"i'.$a1.'",';
+		}
+		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
-	$log_list_cnt=substr($log_list_cnt,0,-1);
 }
 
 
@@ -879,7 +881,7 @@ $(function(){
 				<td id="" class="customer_base_item">
 				<select id="customer_group" name="cus_group" value="" class="item_group cas_set">
 				<option value="0">通常</option>
-				<?foreach($cus_group_sel as $a1=>$a2){?>
+				<?foreach((array)$cus_group_sel as $a1=>$a2){?>
 				<option value="<?=$a1?>"><?=$a2?></option>
 				<?}?>
 				</select>

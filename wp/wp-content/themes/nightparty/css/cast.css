@@ -1034,8 +1034,9 @@ input:focus{
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:43vw;
+	width			:44vw;
 	background		:#fafafa;
+	padding			:0 1vw;
 }
 
 .item_basebox{
@@ -1043,9 +1044,9 @@ input:focus{
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:50vw;
+	width			:44vw;
 	border-color	:#f17766;
-	padding:0 0.5vw;
+	padding			:0 1vw;
 }
 
 .item_basebox_yy{
@@ -1286,8 +1287,6 @@ input:focus{
 	cursor			:pointer;
 }
 
-
-
 .cousomer_marrige{
 	display			:inline-block;
 	width			:14vw;
@@ -1333,7 +1332,7 @@ input:focus{
 
 .detail_age{
 	position		:absolute;
-	right			:0.5vw;
+	right			:1vw;
 	top				:0vw;
 	bottom			:0;
 	margin			:auto;
@@ -1372,7 +1371,7 @@ input:focus{
 }
 
 .customer_base,.customer_regist_base{
-	width			:98vw;
+	width			:96vw;
 	border-collapse	:separate;
 	border-spacing	:1vw 0;
 	margin			:15.5vw auto 2vw auto;
@@ -1386,7 +1385,9 @@ input:focus{
 
 .customer_base_img{
 	position		:relative;
-	width			:28vw;
+	width			:30vw;
+	height			:30vw;
+	background		:#f17766;
 }
 
 .customer_detail_img{
@@ -1395,8 +1396,8 @@ input:focus{
 	left			:0vw;
 	bottom			:0vw;
 	right			:0vw;
-	width			:25vw;
-	height			:25vw;
+	width			:27vw;
+	height			:27vw;
 	margin			:auto;
 }
 
@@ -1419,8 +1420,6 @@ input:focus{
 	width			:25vw;
 	height			:25vw;
 }
-
-
 .customer_camera{
 	display			:inline-block;
 	position		:absolute;
@@ -1451,7 +1450,7 @@ input:focus{
 	border-bottom	:0.5vw solid #f0d0e0;
 	padding-left	:1vw;
 	font-size		:4vw;
-	height			:9vw;
+	height			:10.5vw;
 }
 
 .customer_base_fav,.regist_fav{
@@ -1966,7 +1965,7 @@ input:focus{
 }
 
 .pg3{
-	margin-top		:76vw;
+	margin-top		:83vw;
 }
 
 .main_sch{

@@ -17,9 +17,9 @@ $vw_base	=$_POST["vw_base"];
 $img_rote	=$_POST["img_rote"]+0;
 $c_id		=$_POST["c_id"]+0;
 $img_url	=$_POST["img_url"];
-$page		=$_POST["page"];
+$task		=$_POST["task"];
 
-if($page == 2){
+if($task=="regist" or $task=="chg"){
 	$size=300;
 
 }else{
@@ -62,7 +62,6 @@ $res=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$clist;
 $link="../img/cast/".$tmp_dir."/c/".$clist;
 
 $img2 		= imagecreatetruecolor($size,$size);
-
 $tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
 $tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
 
@@ -82,8 +81,15 @@ if($img_rote ==90){
 }
 
 ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, $size, $size, $tmp_width, $tmp_height);
-imagepng($img2,$link);
 
-echo($res);
+//imagepng($img2,$link);
+
+$tmpfname = tempnam('tmp', 'pngtmp_');
+$tmp=imagepng($img2, $tmpfname);
+$data = @file_get_contents($tmpfname);
+unlink($tmpfname);
+if ($data) $img_64 = base64_encode($data);
+
+echo $img_64;
 exit()
 ?>

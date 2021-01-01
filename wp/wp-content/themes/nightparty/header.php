@@ -38,7 +38,7 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 <?php wp_head(); ?>
 </head>
 <body class="body">
-<div class="head">
+<header class="head">
 <div class="head_top">
 <img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo.png?t=<?=time()?>" class="head_logo">
 <div class="head_b">
@@ -67,5 +67,5 @@ wp_nav_menu($args);
 </div>
 <div class="head_tel"></div>
 </div>
-</div>
+</header>
 <div class="main">
