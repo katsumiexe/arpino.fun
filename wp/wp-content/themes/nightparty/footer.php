@@ -11,6 +11,10 @@
 			<span class="foot_right_in">・プライバシーポリシー</span><span class="foot_right_in">・サイトマップ</span><br>
 		</div>
 	</div>
+	<div class="to_top">
+		<div class="to_top_in">
+		</div>
+	</div>
 </footer>
 <?php wp_footer(); ?>
 </body>
