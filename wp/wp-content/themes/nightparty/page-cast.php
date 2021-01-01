@@ -6,7 +6,7 @@ get_header();
 
 $now=time()+32400+$chg_time*86400;
 $now_ymd=date("Ymd",$now);
-
+/*
 $sql	 =" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
@@ -39,6 +39,49 @@ foreach($res2 as $a2){
 		$sort[$a2["cast_id"]]	=999999;
 	}
 }
+*/
+
+$sql=" SELECT in_out, `name`, `sort` FROM wp01_0sch_table";
+$res0= $wpdb->get_results($sql,ARRAY_A);
+foreach($res0 as $a1){
+	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
+}
+
+$sql=" SELECT genji,ctime FROM wp01_0cast";
+$sql.=" WHERE del=0";
+$res = $wpdb->get_results($sql,ARRAY_A);
+
+foreach($res as $a1){
+	$dat[$a1["id"]]=$a1;
+
+	$sql =" SELECT * FROM wp01_0schedule";
+	$sql.=" WHERE sche_date='{$now_ymd}'";
+	$sql.=" AND cast_id='{$a1["id"]}'";
+	$sql.=" ORDER BY schedule_id DESC";
+	$sql.=" LIMIT 1";
+	$res2 = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($res2 as $a2){
+		if($a2["stime"] && $a2["etime"]){
+			$dat[$a1["id"]]["sch"]="{$a2["stime"]} － {$a2["etime"]}";
+			$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
+		}else{
+			$dat[$a1["id"]]["sch"]="休み";
+			$sort[$a1["id"]]=999999;
+		}
+	}
+
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
+		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/1.jpg";		
+	}else{
+		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
+	}
+}
+asort($sort);
+
+
+
+
 
 $week[0]="(日)";
 $week[1]="(月)";

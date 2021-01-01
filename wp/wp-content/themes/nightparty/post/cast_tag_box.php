@@ -4,7 +4,6 @@
 */
 require_once ("./post_inc.php");
 $now=date("Y-m-d H:i:s",$jst);
-
 $date		=$_POST['date'];
 
 $sql=" SELECT * FROM wp01_0sch_table";
@@ -12,7 +11,6 @@ $res0= $wpdb->get_results($sql,ARRAY_A);
 foreach($res0 as $a1){
 	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
 }
-
 
 $sql=" SELECT * FROM wp01_0cast";
 $sql.=" WHERE del=0";

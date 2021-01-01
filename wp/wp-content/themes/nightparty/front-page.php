@@ -49,50 +49,6 @@ foreach($res0 as $a1){
 }
 
 
-/*
-$sql="SELECT * FROM wp01_0cast";
-$sql.=" WHERE del=0";
-$res= $wpdb->get_results($sql,ARRAY_A);
-
-foreach($res as $a1){
-	$dat[$a1["id"]]	=$a1;
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/1.jpg";			
-	}else{
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
-	}
-		$dat[$a1["id"]]["sch"]="休み";
-		$sort[$a1["id"]]=999999;
-
-	if($now_8 < $a1["stime"]){
-		$dat[$a1["id"]]["new"]=1;
-
-	}elseif($now_8 == $a1["stime"]){
-		$dat[$a1["id"]]["new"]=2;
-
-	}elseif(strtotime($now_8) - strtotime($a1["stime"])<=2592000){
-		$dat[$a1["id"]]["new"]=3;
-	}
-}
-*/
-
-/*
-$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_8}' ORDER BY schedule_id ASC";
-$res2 = $wpdb->get_results($sql,ARRAY_A);
-
-foreach($res2 as $a2){
-	if($a2["stime"] && $a2["etime"]){
-		$dat[$a1["id"]]["sch"]	="{$a2["stime"]} - {$a2["etime"]}";
-		$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
-
-	}else{
-		$sch[$a2["cast_id"]]	="休み";
-		$sort[$a1["id"]]=999999;
-	}
-}
-*/
-
-
 $sql	 ="SELECT meta_id, meta_value, post_type FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_key='_top_slide'";
@@ -150,8 +106,8 @@ for($s=0;$s<20;$s++){
 $list=substr($list,0,-1);
 $app.=$list;
 $wpdb->query($app);
-
 */
+
 get_header();
 ?>
 <style>
