@@ -3,12 +3,8 @@
 mail_hist
 */
 require_once ("./post_inc.php");
-$c_id		=$_POST['c_id'];
+$c_id	=$_POST['c_id'];
 $cast_id	=$_POST['cast_id'];
-$st			=($_POST['pg']+0)*10;
-
-$st=0;
-
 $now=date("Y-m-d H:i:s",$jst);
 
 $sql ="SELECT * FROM wp01_0encode"; 
@@ -23,8 +19,7 @@ $id_0	=$_SESSION["id"] % 20;
 
 for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
-	$tmp_dir.=$dec[$id_0][$tmp_id];
-
+	$box_no.=$dec[$id_0][$tmp_id];
 }
 
 $sql	 ="SELECT * FROM wp01_0castmail AS M";
@@ -32,12 +27,10 @@ $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 $sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_id}'";
 $sql	.=" AND M.del='0'";
 $sql	.=" ORDER BY mail_id DESC";
-$sql	.=" LIMIT {$st},10";
+$sql	.=" LIMIT 10";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 $n=count($res)-1;
-
-$tmp_sql=$sql;
 
 foreach($res as $a1){
 	$dat[$n]=$a1;
@@ -52,8 +45,12 @@ foreach($res as $a1){
 		$dat[$n]["bg"]=1;
 	}
 
-	$dat[$n]["stamp"]=get_template_directory_uri()."/img/cast/".$tmp_dir."/m/".$dat[$n]["img_1"].".png";
-	
+	if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n1]["watch_date"] !="0000-00-00 00:00:00" && $dat[$n1]["watch_date"]){
+//		$dat[$n]["border"]="<div class=\"mail_border\">----------ここから新着--------------</div>";
+	}
+
+//		$dat[$n]["border"]="<div class=\"mail_border\">{$dat[$n]["watch_date"]}■{$dat[$n1]["watch_date"]}■{$dat[$n+1]["watch_date"]}■</div>";
+
 	$n--;
 }
 
@@ -67,12 +64,11 @@ $sql	.=" AND send_flg=2";
 $wpdb->query($sql);
 
 if($a1["face"]){
-$face=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$a1["face"]."?t_".time();
+$face=get_template_directory_uri()."/img/cast/".$box_no."/c/".$a1["face"]."?t_".time();
 }else{
 $face=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
 }
 
-//$html=$tmp_sql;
 for($n=0;$n<count($dat);$n++){
 	if($dat[$n]["send_flg"] == 2){
 
@@ -87,14 +83,7 @@ if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !=
 		$html.="<img src=\"{$face}\" class=\"mail_box_img\">";
 		$html.="</div>";
 		$html.="<div class=\"mail_box_log_1\">";
-		$html.="<div class=\"mail_box_log_in\">";
 		$html.=$dat[$n]["log"];
-		$html.="</div>";
-
-		if($dat[$n]["img_1"]){
-			$html.="<img src=\"../img/cast/{$tmp_dir}/m/{$dat[$n]["img_1"]}.png\" class=\"mail_box_stamp\">";		
-		}
-
 		$html.="</div>";
 		$html.="<span class=\"mail_box_date_a\">{$dat[$n]["send_date"]}　{$dat[$n]["new"]}</span>";
 		$html.="</div>";
@@ -102,19 +91,13 @@ if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !=
 	}else{
 		$html.="<div class=\"mail_box_b\">";
 		$html.="<div class=\"mail_box_log_2 bg{$dat[$n]["bg"]}\">";
-		$html.="<div class=\"mail_box_log_in\">";
 		$html.=$dat[$n]["log"];
-		$html.="</div>";
-		if($dat[$n]["img_1"]){
-			$html.="<img src=\"{$dat[$n]["stamp"]}\" class=\"mail_box_stamp\">";		
-		}
-
-
 		$html.="</div>";
 		$html.="<span class=\"mail_box_date_b\">{$dat[$n]["kidoku"]}　{$dat[$n]["send_date"]}</span>";
 		$html.="</div>";
 	}
 }
+$html.="<div class=\"mail_border\" style=\"padding:0\"></div>";
 echo $html;
 exit();
 ?>

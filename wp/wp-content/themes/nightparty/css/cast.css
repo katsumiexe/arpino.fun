@@ -1096,14 +1096,14 @@ input:focus{
 	right			:0;
 	margin			:auto;
 	width			:96vw;
-	height			:58vw;
+	height			:64vw;
 	text-align		:center;
 	background		:#ffe0f0;
 	padding			:1vw;
 }
 
 .customer_regist_no{
-	display		:inline-block;
+	display			:inline-block;
 	position		:absolute;
 	top				:2vw;
 	right			:1.5vw;
@@ -1111,6 +1111,7 @@ input:focus{
 	width			:6vw;
 	height			:6vw;
 	line-height		:6vw;
+	font-size		:4vw;
 	text-align		:center;
 	background		:#fafafa;
 	color			:#f010a0;
@@ -3044,6 +3045,18 @@ input[type=range]::-moz-range-thumb{
 	left			:19vw;
 }
 
+.mail_img_in{
+    display			: inline-block;
+    width			: 20vw;
+	text-align		:left;
+}
+
+.mail_img_view{
+	display:none;
+    width			:18vw;
+    height			:18vw;
+}
+
 
 .mail_write{
     display			: inline-block;
@@ -3058,7 +3071,7 @@ input[type=range]::-moz-range-thumb{
     display			:inline-flex;
 	justify-content: space-between;
 	padding			:0;
-    margin			:2vw 1vw;
+    margin			:2vw 1vw 2vw 22vw ;
     width			:68vw;
 	height			:8vw;
 	font-size		:0;
@@ -3083,7 +3096,7 @@ input[type=range]::-moz-range-thumb{
 	font-size	:3.5vw;
 	text-align	:center;
 	color		:#0000d0;
-	padding-top:14vw;
+	padding-top:8vw;
 }
 
 .mail_detail_btn_img,.mail_detail_btn_send,.mail_detail_btn_del{

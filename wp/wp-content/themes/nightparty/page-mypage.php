@@ -985,6 +985,7 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/easytalk_cast.js?t=<?=time()?>"></script>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
@@ -1011,6 +1012,9 @@ $(function(){
 			<div class="mail_detail_in"></div>
 
 			<div class="mail_write">
+				<div class="mail_img_in">
+				<img src="" class="mail_img_view">
+				</div>
 				<textarea class="mail_write_text"></textarea><br>
 				<div class="mail_write_in">
 					<div class="mail_detail_btn_img"></div>
@@ -1766,6 +1770,7 @@ $(function(){
 <input id="h_blog_img" type="hidden" value="">
 <input id="memo_chg_id" type="hidden">
 
+<input id="easytalk_page" type="hidden" value="1">
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
 <input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">

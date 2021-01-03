@@ -31,6 +31,22 @@ if($ss){
 			$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
 		}
 
+
+$sql ="SELECT * FROM wp01_0encode"; 
+$enc0 = $wpdb->get_results($sql,ARRAY_A );
+foreach($enc0 as $row){
+	$enc[$row["key"]]				=$row["value"];
+	$dec[$row["gp"]][$row["value"]]	=$row["key"];
+}
+
+$id_8=substr("00000000".$ssid["cast_id"],-8);
+$id_0	=$ssid["cast_id"] % 20;
+
+for($n=0;$n<8;$n++){
+	$tmp_id=substr($id_8,$n,1);
+	$tmp_dir.=$dec[$id_0][$tmp_id];
+}
+
 		$sql	 ="SELECT * FROM wp01_0castmail";
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
 		$sql	.=" ORDER BY mail_id DESC";
@@ -55,6 +71,8 @@ if($ss){
 				$dat[$n]["border"]="<div class=\"mail_border\">----------ここから新着--------------</div>";
 				$html=$dat[$n]["watch_date"];
 			}
+
+			$dat[$n]["stamp"]=get_template_directory_uri()."/img/cast/".$tmp_dir."/m/".$dat[$n]["img_1"].".png";
 			$n--;
 		}
 
@@ -81,14 +99,17 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/easytalk.js?t=<?=time()?>"></script>
+
+
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
 </head>
 <body class="body">
-<div class="head_easytalk"></div>
-
+<header class="head_easytalk"></header>
 <div class="main_easytalk">
 	<div class="main_mail">
 		<?if($err==2){?>
@@ -111,7 +132,12 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 							<img src="<?=$face_link?>" class="mail_box_img">
 						</div>
 						<div class="mail_box_log_1">
-							<?=$dat[$n]["log"]?>
+							<div class="mail_box_log_in">
+								<?=$dat[$n]["log"]?>
+							</div>
+							<?if($dat[$n]["img_1"]){?>
+								<img src="<?=$dat[$n]["stamp"]?>" class="mail_box_stamp">		
+							<?}?>
 						</div>
 						<span class="mail_box_date_a"><?=$dat[$n]["send_date"]?></span>
 					</div>
@@ -119,11 +145,17 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 				<?}else{?>
 					<div class="mail_box_b">		
 						<div class="mail_box_log_2 bg<?=$dat[$n]["bg"]?>">
-							<?=$dat[$n]["log"]?>
+							<div class="mail_box_log_in">
+								<?=$dat[$n]["log"]?>
+							</div>
+							<?if($dat[$n]["img_1"]){?>
+								<img src="<?=$dat[$n]["stamp"]?>" class="mail_box_stamp">		
+							<?}?>
 						</div>
 						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
 					</div>
 				<? } ?>
+
 			<? } ?>
 		<? } ?>
 	</div>
@@ -138,7 +170,37 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 		<? } ?>
 	</div>
 </div>
-<div class="foot_easytalk">
+<footer class="foot_easytalk"></footer>
+<div class="img_box">
+	<div class="img_box_in">
+		<canvas id="cvs1" width="800px" height="800px;"></canvas>
+		<div class="img_box_out1"></div>
+		<div class="img_box_out2"></div>
+		<div class="img_box_out3"></div>
+		<div class="img_box_out4"></div>
+		<div class="img_box_out5"></div>
+		<div class="img_box_out6"></div>
+		<div class="img_box_out7"></div>
+		<div class="img_box_out8"></div>
+	</div>
+
+	<div class="img_box_in2">
+		<label for="upd" class="upload_btn"><span class="upload_icon_p"></span><span class="upload_txt">画像選択</span></label>
+		<span class="upload_icon upload_rote"></span>
+		<span class="upload_icon upload_trush"></span>
+	</div>
+	<div class="img_box_in3">
+		<div class="zoom_mi">-</div>
+		<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
+		<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+	</div>
+
+	<div class="img_box_in4">
+		<div id="img_set" class="btn btn_c2">登録</div>　
+		<div id="img_close" class="btn btn_c1">戻る</div>　
+		<div id="img_reset" class="btn btn_c3">リセット</div>
+	</div>
+	<input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
 </body>	
 </html>

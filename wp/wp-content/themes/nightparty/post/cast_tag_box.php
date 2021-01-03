@@ -28,7 +28,6 @@ foreach($res as $a1){
 	$sql.=" AND cast_id='{$a1["id"]}'";
 	$res2 = $wpdb->get_results($sql,ARRAY_A);
 
-$html.=$sql."■";
 	foreach($res2 as $a2){
 		if($a2["stime"] && $a2["etime"]){
 			$dat[$a1["id"]]["sch"]="{$a2["stime"]}-{$a2["etime"]}";
@@ -50,13 +49,13 @@ $html.=$sql."■";
 		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
 	}
 
-	if($sch_8 < $a1["ctime"]){
+	if($date < $a1["ctime"]){
 		$dat[$a1["id"]]["new"]=1;
 
-	}elseif($sch_8 == $a1["ctime"]){
+	}elseif($date == $a1["ctime"]){
 		$dat[$a1["id"]]["new"]=2;
 
-	}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+	}elseif(strtotime($date) - strtotime($a1["ctime"])<=2592000){
 		$dat[$a1["id"]]["new"]=3;
 	}
 
@@ -75,7 +74,18 @@ $html.="<span class=\"main_b_1_2_f f_br\"></span>";
 $html.="<span class=\"main_b_1_2_f f_bl\"></span>";
 $html.="<span class=\"main_d_1_2_name\">{$dat[$b1]["genji"]}</span>";
 $html.="<span class=\"main_d_1_2_sch\">{$dat[$b1]["sch"]}</span>";
-$html.="</span></a>";
+	$html.="</span>";
+
+	if($dat[$b1]["new"] == 1){
+		$html.="<span class=\"main_b_1_ribbon ribbon1\">近日入店</span>";
+
+	}elseif($dat[$b1]["new"] == 2){
+		$html.="<span class=\"main_b_1_ribbon ribbon2\">本日入店</span>";
+
+	}elseif($dat[$b1]["new"] == 3){
+		$html.="<span class=\"main_b_1_ribbon ribbon3\">新人</span>";
+	}
+	$html.="</a>";
 }
 echo $html;
 exit();

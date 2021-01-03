@@ -81,6 +81,12 @@ foreach($res as $a1){
 		}
 	}
 
+	if(!$res2){
+		$dat[$a1["id"]]["sch"]="休み";
+		$sort[$a1["id"]]=999999;
+	}
+
+
 	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
 		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/1.jpg";		
 
