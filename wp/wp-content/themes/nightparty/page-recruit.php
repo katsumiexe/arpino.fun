@@ -36,7 +36,6 @@ get_header();
 		<div class="corner_in box_in_2"></div>
 		<div class="corner_in box_in_3"></div>
 		<div class="corner_in box_in_4"></div>
-
 		<span class="sys_box_ttl">Recruit</span><br>
 		<?for($n=0;$n<count($recruit);$n++){?>
 			<?if($recruit[$n]["post_content"]){?>

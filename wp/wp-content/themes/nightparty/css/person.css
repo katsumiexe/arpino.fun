@@ -330,9 +330,9 @@
 	margin		:0 auto;
 }
 
-.person_left,.person_middle,.person_right{
-	display		:block
-	text-align		:center;
+.person_middle,.person_right{
+	display		:block;
+	text-align	:center;
 }
 
 .prof{
@@ -494,6 +494,21 @@
 	width:28vw;
 	text-align:center;
 
+}
+
+
+.person_left{
+	width:500px;
+	margin:0 auto;
+}
+
+.person_img_list{
+	align-content	:flex-start;
+	flex-wrap		:wrap;
+	top				:0;
+	left			:370px;
+	width			:84px;
+	height			:480px;
 }
 
 
