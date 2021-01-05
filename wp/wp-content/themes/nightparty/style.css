@@ -481,7 +481,7 @@ ul {
 	border			:1px solid #c8b880;
 	margin-block-start	:0;
 	margin-block-end	:0;
-	border-radius:10px 10px 0 0;
+	border-radius:5px 5px 0 0;
 	color			:#483800;
 	text-shadow	:1px 1px 0 #ffffff;
 }
@@ -499,14 +499,7 @@ ul {
 	color			:#483800;
 }
 
-.prof_title{
-	margin-top		:7px;
-	margin-left		:0;
-	width			:493px;
-	height			:30px;
-	line-height		:30px;
-	font-family		: at_font1;
-}
+
 
 .sche_title{
 	margin-top		:20px;
@@ -2288,16 +2281,6 @@ ul {
 	margin			:0 auto;
 	font-size		:5vw;
 	padding-left	:2.5vw;
-	border-radius:2vw 2vw 0 0; 
-}
-
-.prof_title,.sche_title,.blog_title{
-	width			:92vw;
-	height			:8vw;
-	line-height		:8vw;
-	margin			:0 auto;
-	font-size		:6vw;
-	padding-left	:3.5vw;
 	border-radius:2vw 2vw 0 0; 
 }
 
