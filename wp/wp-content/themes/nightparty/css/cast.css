@@ -52,7 +52,7 @@ input:focus{
 	top			:0;
 	padding-top	:10vw;
 	height		:120vh;
-	width		:70vw;
+	width		:44vw;
 	background	:#606060;
 	box-shadow	:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.5);
 	z-index		:100;
@@ -60,10 +60,31 @@ input:focus{
 
 .menu{
 	position	:absolute;
-	top			:16vw;
+	top			:58vw;
 	left		:0;
-	width		:70vw;
+	width		:44vw;
 	padding		:0;
+}
+
+.slide_img{
+	position	:absolute;
+	top			:17vw;
+	left		:7vw;
+	width		:30vw;
+	height		:40vw;
+}
+
+.slide_name{
+	position	:absolute;
+	top			:50vw;
+	left		:7vw;
+	width		:30vw;
+	height		:7vw;
+	line-height	:7vw;
+	background	:rgba(30,30,30,0.8);
+	font-size	:4vw;
+	color		:#fafafa;
+	text-align	:center;
 }
 
 .box{
@@ -86,18 +107,18 @@ input:focus{
 }
 
 .head_mymenu_comm{
-	position	:absolute;
-	top			:0;
-	bottom		:0;
-	left		:0;
-	right		:0;
-	margin		:auto;	
-	display		:inline-block;
-	height		:10vw;
-	width		:65vw;
-	background	:#fafafa;
-	border-radius:5vw;
-	box-shadow:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.6) inset;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:0;
+	right			:0;
+	margin			:auto;	
+	display			:inline-block;
+	height			:10vw;
+	width			:65vw;
+	background		:#fafafa;
+	border-radius	:5vw;
+	box-shadow		:0.5vw 0.5vw 0.5vw rgba(30,30,30,0.6) inset;
 }
 
 .regist_btn{
@@ -188,7 +209,6 @@ input:focus{
 	background		:#f17766;
 	color			:#fafafa;
 }
-
 
 .notice_ttl_day{
 	display			:inline-block;
@@ -690,7 +710,7 @@ input:focus{
 	display			:block;
 	position		:relative;
 	margin			:0 auto;
-	width			:70vw;
+	width			:44vw;
 	height			:10vw;
 	text-align		:left;
 	font-size		:0;
@@ -769,8 +789,6 @@ input:focus{
 	margin			:auto;
 	color	:#600090;
 }
-
-
 
 .cal_set_btn{
 	position		:fixed;

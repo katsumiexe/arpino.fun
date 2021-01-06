@@ -747,6 +747,9 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
+		<img src="" class="slide_img">
+		<div class="slide_name"><?=$_SESSION["genji"]?></div>
+
 		<ul class="menu">
 			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップページ</span></li>
 			<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
