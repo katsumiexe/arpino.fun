@@ -172,7 +172,6 @@ for($n=0;$n<8;$n++){
 	$sql	.=" GROUP BY M.customer_id";
 	$sql	.=" ORDER BY last_date DESC";
 	$n=0;
-
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 
 	foreach($mail_data0 AS $tmp){
@@ -184,6 +183,10 @@ for($n=0;$n<8;$n++){
 		$tmp["last_date"]=date("m.d H:i",strtotime($tmp["last_date"]));
 		$mail_data[]=$tmp;
 
+	}
+
+	for($n=0;$n<5;$n++){
+		$mail_tmpl[$n]["title"]="テンプレート_".$n;
 	}
 
 	$sql ="SELECT * FROM wp01_0cast_config";
@@ -876,8 +879,9 @@ $(function(){
 		</div>
 
 
-<button type="button" class="tmpl_btn">[本名]</button>
-<button type="button" class="tmpl_btn">[呼名]</button>
+
+<button type="button" class="tmpl_btn">本名</button>
+<button type="button" class="tmpl_btn">よび名</button>
 <select class="tmpl_sel">
 <?for($n=0;$n<5;$n++){?>
 <option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
