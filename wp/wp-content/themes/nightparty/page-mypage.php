@@ -747,7 +747,7 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
-		<img src="" class="slide_img">
+		<img src="<?php echo get_template_directory_uri(); ?>/img/page/<?=$_SESSION["id"]?>/1.jpg?t_<?=time()?>" class="slide_img">
 		<div class="slide_name"><?=$_SESSION["genji"]?></div>
 
 		<ul class="menu">
@@ -761,7 +761,6 @@ $(function(){
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
-
 
 	<?if($cast_page==1){?>
 	<div class="main_sch">
@@ -839,38 +838,61 @@ $(function(){
 
 	<div class="main pg2">
 		<div class="sort_alert">非表示になっている顧客がいます</div>
-		<?for($n=0;$n<count($customer);$n++){?>
-			<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
-				<?if($customer[$n]["face"]){?>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
-					<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
-				<?}else{?>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
-				<? } ?>
-				<div class="customer_list_fav">
-					<?for($s=1;$s<6;$s++){?>
-						<span id="fav_<?=$customer[$n]["id"]?>_<?=$s?>" class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
-					<?}?>
-				</div>
-				<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
-				<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
-				<span class="mail_al"></span>
-				<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
-				<input type="hidden" class="customer_hidden_yy" value="<?=$customer[$n]["yy"]?>">
-				<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
-				<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
-				<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
-				<input type="hidden" class="customer_hidden_group" value="<?=$customer[$n]["c_group"]?>">
+		<div class="customer_all_in">
+			<?if (is_array($customer)) {?>
+				<?for($n=0;$n<count($customer);$n++){?>
+					<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
+						<?if($customer[$n]["face"]){?>
+							<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
+						<?}else{?>
+							<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+						<? } ?>
+						<div class="customer_list_fav">
+							<?for($s=1;$s<6;$s++){?>
+								<span id="fav_<?=$customer[$n]["id"]?>_<?=$s?>" class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>
+							<?}?>
+						</div>
+						<div class="customer_list_name"><?=$customer[$n]["name"]?> 様</div>
+						<div class="customer_list_nickname"><?=$customer[$n]["nickname"]?></div>
+						<span class="mail_al"></span>
+						<input type="hidden" class="customer_hidden_fav" value="<?=$customer[$n]["fav"]?>">
+						<input type="hidden" class="customer_hidden_yy" value="<?=$customer[$n]["yy"]?>">
+						<input type="hidden" class="customer_hidden_mm" value="<?=$customer[$n]["mm"]?>">
+						<input type="hidden" class="customer_hidden_dd" value="<?=$customer[$n]["dd"]?>">
+						<input type="hidden" class="customer_hidden_ag" value="<?=$customer[$n]["ag"]?>">
+						<input type="hidden" class="customer_hidden_group" value="<?=$customer[$n]["c_group"]?>">
 
-				<input type="hidden" class="customer_hidden_mail" value="<?=$customer[$n]["mail"]?>">
-				<input type="hidden" class="customer_hidden_tel" value="<?=$customer[$n]["tel"]?>">
-				<input type="hidden" class="customer_hidden_twitter" value="<?=$customer[$n]["twitter"]?>">
-				<input type="hidden" class="customer_hidden_facebook" value="<?=$customer[$n]["facebook"]?>">
-				<input type="hidden" class="customer_hidden_insta" value="<?=$customer[$n]["insta"]?>">
-				<input type="hidden" class="customer_hidden_line" value="<?=$customer[$n]["line"]?>">
-				<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
-			</div>
-		<?}?>
+						<input type="hidden" class="customer_hidden_mail" value="<?=$customer[$n]["mail"]?>">
+						<input type="hidden" class="customer_hidden_tel" value="<?=$customer[$n]["tel"]?>">
+						<input type="hidden" class="customer_hidden_twitter" value="<?=$customer[$n]["twitter"]?>">
+						<input type="hidden" class="customer_hidden_facebook" value="<?=$customer[$n]["facebook"]?>">
+						<input type="hidden" class="customer_hidden_insta" value="<?=$customer[$n]["insta"]?>">
+						<input type="hidden" class="customer_hidden_line" value="<?=$customer[$n]["line"]?>">
+						<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
+					</div>
+				<?}?>
+			<?}?>	
+		</div>
+
+
+<button type="button" class="tmpl_btn">[本名]</button>
+<button type="button" class="tmpl_btn">[呼名]</button>
+<select class="tmpl_sel">
+<?for($n=0;$n<5;$n++){?>
+<option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
+<?}?>
+</select>
+<textarea class="tmpl_send"></textarea>
+<div class="tmpl_list">
+<?for($n=0;$n<5;$n++){?>
+<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><div class="tmpl_set">選択</div>
+<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>"></div>
+<?}?>
+</div>
+
+
+
 	</div>
 
 	<div class="main pg3">
@@ -1529,7 +1551,7 @@ $(function(){
 		</div>
 		<div class="sch_set">登録</div>
 		<div id="sch_set_trush" class="sch_set_btn"></div>
-		<div id="sch_set_copy" class="sch_set_btn"></div>
+		<!--div id="sch_set_copy" class="sch_set_btn"></div-->
 	</div>
 
 	<div class="customer_memo_del_back_in">

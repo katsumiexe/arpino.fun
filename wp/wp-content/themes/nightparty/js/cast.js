@@ -391,7 +391,7 @@ $(function(){
 /*			dataType: 'json',*/
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.main').append(data);
+			$('.customer_all_in').append(data);
 			$('.customer_regist').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
 
@@ -2385,7 +2385,7 @@ $(function(){
 			'cast_id'	:CastId,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$('.main').html(data);
+			$('.customer_all_in').html(data);
 			$('#customer_sort_ext').val(CastId);
 			console.log(CastId)
 			if($('#customer_sort_fil').val() > 0){
@@ -2413,7 +2413,7 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.main').html(data);
+			$('.customer_all_in').html(data);
 			$('#customer_sort_ext').val(CastId);
 			if($('#customer_sort_fil').val() > 0){
 				$('.sort_alert').show();
@@ -2439,7 +2439,7 @@ $(function(){
 			'cast_id'	:CastId,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			$('.main').html(data);
+			$('.customer_all_in').html(data);
 			$('#customer_sort_ext').val(CastId);
 			if($('#customer_sort_fil').val() > 0){
 				$('.sort_alert').show();

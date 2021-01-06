@@ -209,6 +209,7 @@ ul {
 
 
 /*/-----------------------------------------------*/
+/*
 .img_box{
 	position		:fixed;
 	top				:10vh;
@@ -586,6 +587,8 @@ input[type=range]::-moz-range-thumb{
 	text-align		:center;
 	cursor			:pointer;
 }
+*/
+
 
 /*/-----------------------------------------------*/
 
@@ -594,6 +597,7 @@ input[type=range]::-moz-range-thumb{
 
 
 /*/-----------------------------------------------*/
+/*
 .img_box{
 	top				:10vh;
 	width			:90vw;
@@ -670,8 +674,7 @@ input[type=range]::-moz-range-thumb{
 	height		:10vw;
 }
 
-#cvs1{
-}
+*/
 
 
 .btn {

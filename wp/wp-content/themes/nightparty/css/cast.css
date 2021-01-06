@@ -2435,8 +2435,6 @@ input:focus{
 	color			:#303030;	
 }
 
-
-
 .hist_title{
 	display			:inline-block;
 	position		:absolute;
@@ -3567,6 +3565,7 @@ input[type=range]::-moz-range-thumb{
 	width			:20vw;
 	border-radius	:10px;
 	background		:linear-gradient(#f0f0e0,#e0e0d0);
+	cursor:pointer;
 }
 
 .sort_btn_on0,.sort_btn_on1{
@@ -4088,6 +4087,46 @@ input[type=range]::-moz-range-thumb{
 	border-top	:3px solid #ff3030;
 
 }
+
+.tmpl_btn{
+	width		:10vw;
+	height		:5vw;
+	font-size	:3vw;
+	margin		:0 1vw;
+}
+
+.tmpl_sel{
+	width		:60vw;
+	height		:5vw;
+	font-size	:3vw;
+	margin		:0 1vw;
+}
+
+.tmpl_send{
+	width		:88vw;
+	height		:30vw;
+	font-size	:3vw;
+	margin		:0 1vw;
+	padding		:1vw;
+	resize		:none;
+}
+
+
+.tmpl_title{
+	width		:60vw;
+	height		:5vw;
+	font-size	:3vw;
+	margin		:0 1vw;
+}
+
+.tmpl_set{
+	width		:10vw;
+	height		:5vw;
+	font-size	:3vw;
+	margin		:0 1vw;
+}
+
+
 
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
