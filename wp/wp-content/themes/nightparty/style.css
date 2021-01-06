@@ -97,7 +97,7 @@ ul {
 	right		:0;
 	display		:block;
 	width		:100vw;
-	min-width	:1200px;
+	max-width	:1200px;
 	height		:170px;
 	margin		:auto;
 	background	:linear-gradient(#3a3a3a,#1a1a1a);
@@ -1036,6 +1036,7 @@ ul {
 	display		:block;
 	position	:relative;
 	width		:100vw;
+	max-width	:1200px;
 	margin		:10px auto 0 auto;
 	border-top	:5px solid #302520;
 	background	:#051010;
