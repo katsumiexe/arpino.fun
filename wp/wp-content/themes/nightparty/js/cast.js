@@ -1433,6 +1433,15 @@ $(function(){
 		$('.log_list_del_item').css({'color':$(this).next().next().next().css('color'),'border-color':$(this).next().next().next().css('color')});
 	});
 
+	$('.tmpl_sel').on('change',function (){
+		Tmp=$(this).val();
+		Tmp_2=$('#tmpl_hidden'+Tmp).val()
+		$('#tmpl_send').val(Tmp_2)
+	});
+
+
+
+
 	$('.mail_detail_btn_send').on('click',function(){
 		$.post({
 			url:Dir + "/post/easytalk_send.php",

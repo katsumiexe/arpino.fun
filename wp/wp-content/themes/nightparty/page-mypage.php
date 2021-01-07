@@ -178,15 +178,25 @@ for($n=0;$n<8;$n++){
 		$tmp["log_p"]=mb_substr($tmp["log"],0,39);
 		if(mb_strlen($tmp["log"])>39){
 			$tmp["log_p"].="...";
-
 		}
 		$tmp["last_date"]=date("m.d H:i",strtotime($tmp["last_date"]));
 		$mail_data[]=$tmp;
-
 	}
 
-	for($n=0;$n<5;$n++){
-		$mail_tmpl[$n]["title"]="テンプレート_".$n;
+
+	for($n=1;$n<6;$n++){
+		$mail_tmpl[$n]["title"]	="テンプレート_".$n;
+		$mail_tmpl[$n]["log"]	="【テンプレート_".$n."】";
+	}
+
+
+	$sql ="SELECT * FROM wp01_0mailbase";
+	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$res_tmpl = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($res_tmpl as $a1){
+		$mail_tmpl[$a1["sort"]]["title"]=$a1["title"];
+		$mail_tmpl[$a1["sort"]]["log"]	=$a1["log"];
 	}
 
 	$sql ="SELECT * FROM wp01_0cast_config";
@@ -200,7 +210,7 @@ for($n=0;$n<8;$n++){
 	if($c_sort["c_sort_main"]==1){
 		$app2	=" `date`, `stime`, `etime`";
 		$app2	=" `date`";
-		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
+		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_	id";
 		$app5	=" ,MAX(`date`) AS log_date"; 
 
 		if($c_sort["c_sort_asc"]==1){
@@ -878,23 +888,55 @@ $(function(){
 			<?}?>	
 		</div>
 
-
-
-<button type="button" class="tmpl_btn">本名</button>
-<button type="button" class="tmpl_btn">よび名</button>
+<button id="ins_name" type="button" class="tmpl_btn">本名</button>
+<button id="ins_nick" type="button" class="tmpl_btn">よび名</button>
 <select class="tmpl_sel">
-<?for($n=0;$n<5;$n++){?>
+<option value="0" >テンプレート選択</option>
+<?for($n=1;$n<6;$n++){?>
 <option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
 <?}?>
 </select>
-<textarea class="tmpl_send"></textarea>
+<textarea id="tmpl_send" class="tmpl_send"></textarea>
 <div class="tmpl_list">
-<?for($n=0;$n<5;$n++){?>
-<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><div class="tmpl_set">選択</div>
-<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>"></div>
+<?for($n=1;$n<6;$n++){?>
+<div class="tmpl_box">
+<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><button type="button" class="tmpl_set">選択</button>
+<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>">
+</div>
 <?}?>
 </div>
 
+<div class="filter_main">
+	<div class="filter_flex">
+		<input type="checkbox" id="filter_1" class="filter_check" value="1"><label for="filter_1" class="mail_filter"><span class="filter_icon"></span>本日未送信</label>
+		<input type="checkbox" id="filter_2" class="filter_check" value="1"><label for="filter_2" class="mail_filter"><span class="filter_icon"></span>本日ユーザー登録</label>
+		<input type="checkbox" id="filter_3" class="filter_check" value="1"><label for="filter_3" class="mail_filter"><span class="filter_icon"></span>本日誕生日</label>
+		<input type="checkbox" id="filter_4" class="filter_check" value="1"><label for="filter_4" class="mail_filter"><span class="filter_icon"></span>本日メモ登録</label>
+	</div>
+
+	<div class="filter_flex">
+		<div class="filter_box">
+			<div class="filter_fav_label"></div>
+			<div class="filter_fav">
+				<span id="filter_fav_6" class="filter_fav_in"></span>
+				<span id="filter_fav_5" class="filter_fav_in"></span>
+				<span id="filter_fav_4" class="filter_fav_in"></span>
+				<span id="filter_fav_3" class="filter_fav_in"></span>
+				<span id="filter_fav_2" class="filter_fav_in"></span>
+				<span id="filter_fav_1" class="filter_fav_in"></span>
+				<span id="filter_fav_0" class="filter_fav_in"></span>
+			</div>
+		</div>
+		<div class="filter_box">
+			<div class="filter_tag_label">タグ</div>
+			<div class="filter_tag">
+				<span id="filter_tag_99" class="filter_tag_in">全て</span>
+				<?foreach((array)$cus_group_sel as $a1=>$a2){?><span id="filter_tag_<?=$a1?>" class="filter_tag_in"><?=$a2?></span>
+				<?}?>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 	</div>

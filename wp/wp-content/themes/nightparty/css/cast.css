@@ -4095,8 +4095,18 @@ input[type=range]::-moz-range-thumb{
 	margin		:1vw;
 }
 
+.btn_1{
+	background	:linear-gradient(#fafaff,#e0e0ff);
+
+}
+
+.btn_2{
+	background	:linear-gradient(#fffafa,#ffe0e0);
+
+}
+
 .tmpl_sel{
-	width		:40vw;
+	width		:50vw;
 	height		:8vw;
 	font-size	:4vw;
 	margin		:1vw;
@@ -4104,40 +4114,140 @@ input[type=range]::-moz-range-thumb{
 }
 
 .tmpl_send{
-	width		:88vw;
+	width		:90vw;
 	height		:30vw;
 	font-size	:3vw;
-	margin		:0 1vw;
+	margin		:1vw auto;;
 	padding		:1vw;
 	resize		:none;
 }
 
+.tmpl_box{
+	position	:relative;
+	display		:block;
+	width		:90vw;
+	height		:10vw;
+	background	:#c0c0c0;
+	font-size	:0;
+}
+
+.tmpl_list{
+	display		:block;
+	margin		:0 auto;
+	width		:90vw;
+}
 
 .tmpl_title{
-	width		:50vw;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	left		:1vw;
+	width		:70vw;
 	height		:8vw;
-	font-size	:5vw;
-	margin		:1vw;
+	font-size	:4.5vw;
+	margin		:auto;
 	padding		:1vw;
+	box-shadow	:none;
+	border		:1px;solid #303030;
+	border-radius:1vw 0 0 1vw;
 }
 
 .tmpl_set{
-	display		:inline-block;
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	right		:1vw;
 	width		:14vw;
 	height		:8vw;
 	line-height	:8vw;
 	font-size	:5vw;
 	margin		:1vw;
 	border		:1px solid #303030;
+	background	:linear-gradient(135deg,#fafafa,#e0e0e0);
+
+}
+
+
+
+.filter_main{
+	display:block;
+	width:96vw;
+}
+
+.filter_box{
+	display:inline-block;
+	width:44vw;
+}
+
+.filter_flex{
+	display		:flex;
+	width		:96vw;
+	flex-wrap	:wrap;
+	justify-content:space-between;
+}
+
+.mail_filter{
+	display		:inline-block;
+	width		:42vw;
+	font-size	:3vw;
+	text-align	:left;
+	color		:#ffffff;
+	font-weight	:600;
+	background	:#cccccc;	
+	height		:4vw;
+	line-height	:4vw;
+	margin		:0.5vw;
+	padding-left	:1vw;
+	padding		:1vw;
+}
+
+.filter_check{
+	display:none;
+}
+
+.filter_check:checked + label{
+	background:	linear-gradient(#ff0000,#dd0000);	
+}
+
+
+.filter_fav_label{
+	display		:inline-block;
+	width		:35vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:4vw;
+}
+
+
+.filter_fav_ans{
+	display		:inline-block;
+	width		:35vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:4.5vw;
+	background	:#fafafa;
+	border		:1px solid #303030;
+}
+
+.filter_fav{
+	display		:none;
+	width		:35vw;
+}
+
+.filter_fav_in{
+	display		:inline-block;
+	width		:35vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:4vw;
+	
 }
 
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 560px) {
 
-
-
-
 }
+
 /*-------------------------------------------------------------------*/
 @media screen and (min-width: 960px) {
 .head_mymenu{
@@ -4186,6 +4296,7 @@ input[type=range]::-moz-range-thumb{
 	border			:2px solid #fafafa;
 	padding-left	:10px;
 }
+
 
 }
 /*-------------------------------------------------------------------*/
