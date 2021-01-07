@@ -69,7 +69,6 @@ function set_tarot_card(){
 	esc_html_e(include_once('chu_chu_tarot_card.php'),'textdomain');  
 }
 
-
 //------------------------------------------------------
 function chu_chu_fanc($num) {
 	$gp=$num[0];
@@ -79,7 +78,7 @@ function chu_chu_fanc($num) {
 	$jst	=time()+32400;
 
 	$sql	="SELECT * FROM tarot_group";
-	$sql	.=" WHERE group_id='{$gp}'";
+	$sql	.=" WHERE id='{$gp}'";
 	$sql	.=" LIMIT 1";
 	$group	= $wpdb->get_row($sql,ARRAY_A);
 
@@ -102,6 +101,9 @@ $str=<<<EOF
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/tarot.js?_{$jst}"></script>
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/jquery.ui.touch-punch.min.js?_{$jst}"></script>
 <script>
+
+console.log({$group});
+
 var Oc={$group["oracle"]};
 var Gp={$gp};
 </script>
