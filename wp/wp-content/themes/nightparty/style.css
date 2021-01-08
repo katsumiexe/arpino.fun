@@ -57,7 +57,7 @@ ul {
 	display		:none;
 	background	:#000000;
 	text-align	:center;
-	width		:1200px;
+	width		:1260px;
 	min-height	:90vh;
 	margin		:0 auto;
 	padding-top	:175px;
@@ -96,9 +96,10 @@ ul {
 	left		:0;
 	right		:0;
 	display		:block;
-	width		:100vw;
+	width		:100%;
+	min-width	:1260px;
 	height		:170px;
-	margin		:auto;
+	margin		:0 auto;
 	background	:linear-gradient(#3a3a3a,#1a1a1a);
 	text-align	:center;
 	z-index		:120;
@@ -132,7 +133,7 @@ ul {
 .head_in{
 	display			:block;
 	position		:relative;
-	width			:1210px;
+	width			:1200px;
 	height			:70px;
 	margin			:0 auto;
 
@@ -1447,7 +1448,6 @@ ul {
 	font-weight		:600;
 	color			:#483800;
 	text-shadow		:1px 1px 0 #ffffff;
-	border			:1px solid #c8b880;
 	padding-left	:10px;
 }
 
@@ -1534,20 +1534,19 @@ ul {
 }
 
 .all_tag{
-	display			:inline-block;
+	display			:inline-flex;
 	width			:300px;
 	height			:40px;
 	line-height		:40px;
 	font-size		:0;
 	border-bottom	:1px solid #c8b880;
 	color			:#c8b880;
-	text-align		:left;
 }
 
 .all_tag_name{
 	display			:inline-block;
 	color			:#c8b880;
-	width			:200px;
+	flex-basis		:200px;
 	height			:40px;
 	line-height		:40px;
 	font-size		:16px;
@@ -1560,17 +1559,18 @@ ul {
 .all_tag_icon{
 	display			:inline-block;
 	width			:40px;
+	flex-basis		:40px;
 	height			:40px;
 	line-height		:40px;
 	font-size		:24px;
 	font-family		:at_icon;	
 	text-align		:center;
-	vertical-align	:top;
 }
 
 .all_tag_count{
 	display			:inline-block;
 	width			:40px;
+	flex-basis		:40px;
 	height			:24px;
 	line-height		:24px;
 	font-size		:14px;
@@ -2086,21 +2086,21 @@ ul {
 }
 
 .all_tag_name{
-	width			:32vw;
+	flex-basis		:35vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:3vw;
 }
 
 .all_tag_icon{
-	width			:6vw;
+	flex-basis		:6vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;
 }
 
 .all_tag_count{
-	width			:6vw;
+	flex-basis		:6vw;
 	height			:4vw;
 	line-height		:4vw;
 	font-size		:2.5vw;
@@ -2917,6 +2917,7 @@ ul {
 }
 
 .all_tag_name{
+	flex-basis		:70vw;
 	width			:70vw;
 	height			:10vw;
 	line-height		:10vw;
@@ -2925,6 +2926,7 @@ ul {
 
 .all_tag_icon{
 	width			:10vw;
+	flex-basis		:10vw;
 	height			:10vw;
 	line-height		:10vw;
 	font-size		:6vw;
@@ -2932,6 +2934,7 @@ ul {
 
 .all_tag_count{
 	width			:11vw;
+	flex-basis		:11vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;
