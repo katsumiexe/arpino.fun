@@ -46,8 +46,7 @@ foreach($res0 as $a1){
 	}
 }
 
-
-$sql	 ="SELECT meta_id, meta_value, post_type FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type, post_content FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_key='_top_slide'";
 $sql	.=" AND meta_value>0";
@@ -57,7 +56,7 @@ foreach($res2 as $a2){
 	$slide[]=$a2;
 }
 
-$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_date_gmt, T.name, slug FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date_gmt, T.name, slug FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" LEFT JOIN wp01_terms AS T on M.meta_value=T.term_id";
 
@@ -70,6 +69,7 @@ $sql	.=" LIMIT 5";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
 	$a2["news_date"]=substr($a2["post_date_gmt"],0,4).".".substr($a2["post_date_gmt"],5,2).".".substr($a2["post_date_gmt"],8,2);
+	$a2["post_title"]=str_replace("\n","<br>",$a2["post_title"]);
 	$news[]=$a2;
 }
 
@@ -146,10 +146,10 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="slide">
 		<div class="slide_img">
 			<?for($n=0;$n<count($slide);$n++){?>
-				<?if($slide[$n]["post_type"]=="nolink"){?>
-					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
-				<?}else{?>	
+				<?if($slide[$n]["post_content"]){?>
 					<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
+				<?}else{?>	
+					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
 				<?}?>	
 			<?}?>	
 		</div>
@@ -166,29 +166,37 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
 			<?for($n=0;$n<count($news);$n++){?>
-				<?if($news[$n]["post_type"]=="nolink"){?>
-					<div class="main_b_notice">
+				<?if($news[$n]["post_content"]){?>
+					<table  class="main_b_notice" colspan="3">
+					<tr>
+					<td  class="main_b_td_1">
 						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
 						<span class="main_b_notice_tag notice" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
-						<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
-					</div>
+					</td>
+					<td  class="main_b_td_2">
+						<a href="<?=home_url('/news')?>/?code=<?=$news[$n]["meta_id"]?>" class="main_b_notice_link">
+							<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
+						</a>
+					</td>
+					<td  class="main_b_td_3">
+						<span class="main_b_notice_arrow"><a href="<?=home_url('/news')?>/?code=<?=$news[$n]["meta_id"]?>" class="main_b_notice_alink">	</a></span>
+					</td>
+					</tr>
+					</table>
 				<?}else{?>
-					<a href="<?=home_url('/news')?>/?code=<?=$news[$n]["meta_id"]?>" class="main_b_notice">
+					<table class="main_b_notice" colspan="2">
+					<tr>
+					<td  class="main_b_td_1">
 						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
 						<span class="main_b_notice_tag notice" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
+					</td>
+					<td  class="main_b_td_2">
 						<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
-						<span class="main_b_notice_arrow">▼</span>
-					</a>
+					</td>
+					</tr>
+					</table>
 				<?}?>
 			<?}?>
-
-				<div class="main_b_notice">
-					<span class="main_b_notice_date">2020.12.16</span>
-					<span class="main_b_notice_tag">入店情報</span>
-					<span class="main_b_notice_title">ひとみちゃんが入店しました<br>本日指名料無料です</span>
-					<span class="main_b_notice_arrow">▼</span>
-				</div>
-
 		</div>
 		<div class="main_b_top2">
 			<img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="top2_img">

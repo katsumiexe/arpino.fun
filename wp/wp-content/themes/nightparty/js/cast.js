@@ -14,7 +14,7 @@ $(function(){
 	var Zoom		=100;
 	var Chg			='';
 	var base_64		='';
-	
+
 	$('.color_picker,.icon_picker').hide();
 	$('.head_mymenu').on('click',function(){
 		if($(this).hasClass('on')){
@@ -289,7 +289,6 @@ $(function(){
 
 	$('.mail_hist').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
-
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
 		Customer_mail=$(this).children('.mail_address').val();
@@ -891,6 +890,7 @@ $(function(){
 	});
 
 	$('.customer_sns_btn').on('click',function(){
+
 		if($('.customer_sns_box').css('display') !== 'none'){
 			$('.customer_detail').animate({'height':'82vw'},100);
 			$('.pg3').animate({'margin-top':'83vw'},200);
@@ -915,8 +915,19 @@ $(function(){
 				$('.sns_text').val($('#h_'+Tmp).val());
 				$('#a_'+Tmp).addClass('c_'+Tmp);
 				$('.customer_sns_box').addClass('c1_'+Tmp);
-				$('.sns_jump').addClass('jump_on c2_'+Tmp).attr('href',"https://twitter.com/"+$('#h_'+Tmp).val());
 
+
+				if(Tmp == 'customer_mail'){
+					$('.sns_jump').addClass('jump_on c2_'+Tmp).attr('href',SNS_LINK[Tmp]);
+
+					$('#sns_form').attr('action',SNS_LINK[Tmp]);
+					$('#sns_form_hidden').val('3');
+					$('#sns_form_customer').val(C_Id);
+
+				}else{
+					$('.sns_jump').addClass('jump_on c2_'+Tmp);
+					$('#sns_form').attr('action',SNS_LINK[Tmp]+$('#h_'+Tmp).val());
+				}
 
 				$('.customer_sns_ttl').css('color',SnsColor).text($('#n_'+Tmp).val());
 			}
@@ -929,6 +940,11 @@ $(function(){
 		}else{
 			Tmp='';
 		}
+	});
+
+
+	$('.customer_detail').on('click','.jump_on',function(){
+		$('#sns_form').submit();
 	});
 
 	$('.blog_td_img').on('click',function(){

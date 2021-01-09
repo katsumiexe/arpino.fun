@@ -11,6 +11,8 @@
 			<span class="foot_right_in">・プライバシーポリシー</span><span class="foot_right_in">・サイトマップ</span><br>
 		</div>
 	</div>
+	<div class="signet">copyright 2020 Night Party all right reserved.</div>
+
 	<div class="to_top">
 		<div class="to_top_in"></div>
 		<div class="to_top_in2"></div>
@@ -19,3 +21,5 @@
 <?php wp_footer(); ?>
 </body>
 </html>
+
+

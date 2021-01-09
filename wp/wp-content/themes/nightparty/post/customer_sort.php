@@ -126,10 +126,11 @@ foreach($dat as $tmp){
 	}
 	$s++;
 }
-
+/*
 if($fil>0){
 	$html.="<div class=\"sort_alert\">非表示になっている顧客がいます</div>";
 }
+*/
 for($n=0;$n<$s;$n++){
 	$html.="<div id=\"clist{$customer[$n]["id"]}\" class=\"customer_list\">";
 	if($customer[$n]["face"]){

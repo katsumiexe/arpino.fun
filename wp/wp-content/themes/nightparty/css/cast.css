@@ -1244,6 +1244,7 @@ input:focus{
 	color			:#fafafa;
 	font-size		:6vw;
 	font-family		:at_icon;
+	cursor			:pointer;
 }
 
 .sns_btn{
@@ -4088,11 +4089,28 @@ input[type=range]::-moz-range-thumb{
 
 }
 
+#ins_name{
+	left:1vw;	
+	background	:linear-gradient(#e0e0ff,#d0d0ff);
+}
+
+#ins_nick{
+	left:22vw;	
+	background	:linear-gradient(#ffe0e0,#ffd0d0);
+}
+
+
+
 .tmpl_btn{
-	width		:17vw;
-	height		:7vw;
-	font-size	:3vw;
-	margin		:1vw;
+	position		:absolute;
+	top				:1vw;
+	width			:19vw;
+	height			:8vw;
+	font-size		:3.5vw;
+	border-radius	:1vw;
+	font-weight		:700;
+	text-shadow:1px 1px 0 #fafafa;
+	color:#303030
 }
 
 .btn_1{
@@ -4105,26 +4123,39 @@ input[type=range]::-moz-range-thumb{
 
 }
 
+.tmpl_send_box{
+	position	:relative;
+	width		:90vw;
+	height		:48vw;
+	font-size	:0;
+	margin		:1vw auto;;
+}
+
 .tmpl_sel{
-	width		:50vw;
+	position	:absolute;
+	top			:1vw;
+	left		:43vw;	
+	width		:46vw;
 	height		:8vw;
 	font-size	:4vw;
-	margin		:1vw;
 	padding-left:1.5vw;
 }
 
 .tmpl_send{
-	width		:90vw;
+	position	:absolute;
+	top			:8vw;
+	left		:-10vw;
+	width		:110vw;
 	height		:30vw;
-	font-size	:3vw;
-	margin		:1vw auto;;
+	transform	:scale(0.8,0.8);
+	font-size	:5vw;
 	padding		:1vw;
 	resize		:none;
+
 }
 
 .tmpl_box{
-	position	:relative;
-	display		:block;
+	position	:relative;;
 	width		:90vw;
 	height		:10vw;
 	background	:#c0c0c0;
@@ -4132,23 +4163,28 @@ input[type=range]::-moz-range-thumb{
 }
 
 .tmpl_list{
-	display		:block;
+	position	:absolute;
+	top			:40vw;
+	left		:0;
+	right		:0;
 	margin		:0 auto;
 	width		:90vw;
+
 }
 
 .tmpl_title{
 	position	:absolute;
 	top			:0;
 	bottom		:0;
-	left		:1vw;
+	left		:2vw;
+	margin		:auto;
+
 	width		:70vw;
 	height		:8vw;
 	font-size	:4.5vw;
-	margin		:auto;
 	padding		:1vw;
 	box-shadow	:none;
-	border		:1px;solid #303030;
+	border		:1px solid #303030;
 	border-radius:1vw 0 0 1vw;
 }
 
@@ -4157,6 +4193,8 @@ input[type=range]::-moz-range-thumb{
 	top			:0;
 	bottom		:0;
 	right		:1vw;
+	margin		:auto;
+
 	width		:14vw;
 	height		:8vw;
 	line-height	:8vw;
@@ -4171,7 +4209,7 @@ input[type=range]::-moz-range-thumb{
 
 .filter_main{
 	display:block;
-	width:96vw;
+	width:88vw;
 }
 
 .filter_box{
@@ -4181,14 +4219,14 @@ input[type=range]::-moz-range-thumb{
 
 .filter_flex{
 	display		:flex;
-	width		:96vw;
+	width		:88vw;
 	flex-wrap	:wrap;
 	justify-content:space-between;
 }
 
 .mail_filter{
 	display		:inline-block;
-	width		:42vw;
+	width		:39vw;
 	font-size	:3vw;
 	text-align	:left;
 	color		:#ffffff;
@@ -4197,7 +4235,7 @@ input[type=range]::-moz-range-thumb{
 	height		:4vw;
 	line-height	:4vw;
 	margin		:0.5vw;
-	padding-left	:1vw;
+	padding-left:1vw;
 	padding		:1vw;
 }
 
@@ -4547,6 +4585,7 @@ input[type=range]::-moz-range-thumb{
 
 .jump_on{
 	color:#fafafa;
+	
 }
 
 .color_1{background:#303030;}

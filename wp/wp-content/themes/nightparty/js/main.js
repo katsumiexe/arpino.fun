@@ -65,7 +65,6 @@ $(document).ready(function () {
 		$('.person_img_main').hide().fadeIn(300).attr('src',TMP);
 	});
 
-
 	$('.cast_tag_box').on('click',function(){
 		if(!$(this).hasClass('cast_tag_box_sel')){
 			$('.cast_tag_box_sel').removeClass('cast_tag_box_sel');		
@@ -82,12 +81,11 @@ $(document).ready(function () {
 		};
 	});
 
-
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 100) {
-			$('.to_top').fadeIn();
+			$('.to_top').slideDown(100);
 		} else {
-			$('.to_top').fadeOut();
+			$('.to_top').slideUp(100);
 		}
 	});
 

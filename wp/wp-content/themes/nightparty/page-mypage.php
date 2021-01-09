@@ -183,7 +183,6 @@ for($n=0;$n<8;$n++){
 		$mail_data[]=$tmp;
 	}
 
-
 	for($n=1;$n<6;$n++){
 		$mail_tmpl[$n]["title"]	="テンプレート_".$n;
 		$mail_tmpl[$n]["log"]	="【テンプレート_".$n."】";
@@ -324,6 +323,13 @@ for($n=0;$n<8;$n++){
 		}
 	}
 
+	if($_REQUEST["c_id"]){
+		$sql	 ="SELECT id, nickname, name, mail FROM wp01_0customer";
+		$sql	.=" WHERE id='{$_REQUEST["c_id"]}'";
+		$easy_cas = $wpdb->get_row($sql,ARRAY_A );
+	}
+	
+
 	$n=0;
 	$sql	 ="SELECT *{$app5} FROM wp01_0customer";
 	$sql	.=$app4;
@@ -334,6 +340,8 @@ for($n=0;$n<8;$n++){
 	$sql	.=$app2;
 	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
+
+	echo $sql;
 
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
@@ -541,6 +549,9 @@ for($n=0;$n<8;$n++){
 		$cus_group_sel[$cus2["sort"]]=$cus2["tag"];
 	}
 
+
+
+
 //■Blog------------------
 	$sql ="SELECT * FROM wp01_posts";
 	$sql.=" LEFT JOIN wp01_term_relationships ON wp01_posts.ID=wp01_term_relationships.object_id";
@@ -678,10 +689,48 @@ var C_Id=0;
 var C_Id_tmp=0;
 var ChgList=[<?=$log_list_cnt?>];
 
+const SNS_LINK={
+	customer_line:"https://line_me/",
+	customer_twitter:"https://twitter.com/",
+	customer_insta:"https://instagram.com/",
+	customer_facebook:"https://facebook.com/",
+	customer_mail:"<?php the_permalink();?>",
+	customer_tel:"tel",
+};
+
 $(function(){ 
 <?if($c_sort["c_sort_group"] >0){?> 
 	$('.sort_alert').show();
 <?}?>
+
+
+<?if($easy_cas["id"]){?>
+	$('.mail_detail').css({'right':'0'});
+	Customer_id='<?=$easy_cas["id"]?>';
+	
+	Customer_Name='<?=$easy_cas["name"]?>';
+	Customer_mail='<?=$easy_cas["mail"]?>';
+
+	$.post({
+		url:Dir + "/post/easytalk_hist.php",
+		data:{
+			'cast_id'	:CastId,
+			'c_id'		:Customer_id
+		},
+
+	}).done(function(data, textStatus, jqXHR){
+		$.when(
+			$('.mail_detail_in').html(data),
+
+		).done(function(){
+			TMP_H=$('.mail_write').offset().top;
+			$('.mail_detail').scrollTop(TMP_H);
+			$('.head_mymenu_ttl').text(Customer_Name),
+			$('.head_mymenu_comm').addClass('arrow_mail')
+		});
+	});
+<?}?>
+
 
 <?if($c_sort["c_sort_asc"] ==1){?> 
 	$('.sort_circle').css({'left':'10vw','border-radius':'0 10px 10px 0'});
@@ -888,22 +937,25 @@ $(function(){
 			<?}?>	
 		</div>
 
-<button id="ins_name" type="button" class="tmpl_btn">本名</button>
-<button id="ins_nick" type="button" class="tmpl_btn">よび名</button>
-<select class="tmpl_sel">
-<option value="0" >テンプレート選択</option>
-<?for($n=1;$n<6;$n++){?>
-<option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
-<?}?>
-</select>
-<textarea id="tmpl_send" class="tmpl_send"></textarea>
-<div class="tmpl_list">
-<?for($n=1;$n<6;$n++){?>
-<div class="tmpl_box">
-<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><button type="button" class="tmpl_set">選択</button>
-<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>">
-</div>
-<?}?>
+<div class="tmpl_send_box">
+	<button id="ins_name" type="button" class="tmpl_btn">本名</button>
+	<button id="ins_nick" type="button" class="tmpl_btn">よび名</button>
+	<select class="tmpl_sel">
+	<option value="0" >テンプレート選択</option>
+	<?for($n=1;$n<6;$n++){?>
+	<option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
+	<?}?>
+	</select>
+
+	<textarea id="tmpl_send" class="tmpl_send"></textarea>
+	<div class="tmpl_list">
+		<?for($n=1;$n<6;$n++){?>
+			<div class="tmpl_box">
+				<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><button type="button" class="tmpl_set">選択</button>
+				<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>">
+			</div>
+		<?}?>
+	</div>
 </div>
 
 <div class="filter_main">
@@ -938,9 +990,7 @@ $(function(){
 	</div>
 </div>
 
-
 	</div>
-
 	<div class="main pg3">
 		<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
 		<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>
@@ -1850,7 +1900,11 @@ $(function(){
 </form>
 <form id="menu_sel" action="<?php the_permalink();?>" method="post">
 	<input id="cast_page" type="hidden" value="" name="cast_page">
-	<input type="hidden" value="<?PHP ECHO $c_month?>" name="c_month">
+	<input type="hidden" value="<?=$c_month?>" name="c_month">
+</form>
+<form id="sns_form" action="" method="post">
+	<input id="sns_form_hidden" type="hidden" name="cast_page" value="">
+	<input id="sns_form_customer" type="hidden" name="c_id" value="">
 </form>
 <? }?>
 </body>

@@ -71,7 +71,7 @@ $sql.=" AND X.taxonomy='category'";
 $sql.=" AND T.slug='{$res0["slug"]}'";
 
 $sql.=" ORDER BY P.post_date DESC";
-$sql.=" LIMIT 5";
+$sql.=" LIMIT 4";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 
@@ -138,22 +138,25 @@ get_header();
 	</div>
 
 	<div class="sub_blog">
-		<div class="blog_h1"><?=$res0["name"]?></div>
-		<div class="sub_blog_in">
-			<img src="<?=$cast_face?>" class="blog_cast_img">
-			<a href="<?=home_url('/person')?>/?cast=<?=$res0["slug"]?>" class="blog_cast_link">プロフィール</a>
-		</div>
-		<div class="blog_h1">新着</div>
-		<div class="sub_blog_in">
-		<?for($s=0;$s<count($blog);$s++){?>
-			<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
-				<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
-				<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-				<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
-				<!--span class="person_blog_tag"><span class="hist_watch_c">0</span></span-->
-				<!--span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span-->
-			</a>
-		<?}?>
+		<div class="sub_blog_pack">
+			<div class="sub_blog_in">
+			<div class="blog_h1"><?=$res0["name"]?></div>
+				<img src="<?=$cast_face?>" class="blog_cast_img">
+				<a href="<?=home_url('/person')?>/?cast=<?=$res0["slug"]?>" class="blog_cast_link">プロフィール</a>
+			</div>
+
+			<div class="sub_blog_in">
+			<div class="blog_h1">新着</div>
+			<?for($s=0;$s<count($blog);$s++){?>
+				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+					<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+					<!--span class="person_blog_tag"><span class="hist_watch_c">0</span></span-->
+					<!--span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span-->
+				</a>
+			<?}?>
+			</div>
 		</div>
 	</div>
 </div>
