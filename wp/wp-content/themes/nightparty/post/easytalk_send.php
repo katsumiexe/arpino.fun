@@ -2,10 +2,11 @@
 require_once ("./post_inc.php");
 $cast_id		=$_POST['cast_id'];
 $cast_name		=$_POST['cast_name'];
+
+$send			=$_POST['send'];
 $log			=$_POST['log'];
 $sid			=$_POST['sid'];
 $img_code		=$_POST['img_code'];
-$send			=$_POST['send'];
 
 $customer_id	=$_POST['customer_id'];
 $customer_name	=$_POST['customer_name'];
@@ -46,7 +47,9 @@ if($send==1){
 	$sql	.="VALUES";
 	$sql	.="('{$ssid_key}','{$cast_id}','{$customer_id}','{$now}','{$customer_mail}')";
 	$wpdb->query($sql);
+
 //------------------------------------------------
+
 	mb_language("Japanese"); 
 	mb_internal_encoding("UTF-8");
 
@@ -89,12 +92,12 @@ if($send==1){
 
 	$customer_id=$ssid["customer_id"];
 	$cast_id	=$ssid["cast_id"];
-
 }
 
+
 if($img_code){
-	$link="../img/cast/".$tmp_dir."/m/".$ssid_key.".png";
-	$res=get_template_directory_uri()."/img/cast/".$tmp_dir."/m/".$ssid_key.".png";
+	$link	="../img/cast/".$tmp_dir."/m/".$ssid_key.".png";
+	$res	=get_template_directory_uri()."/img/cast/".$tmp_dir."/m/".$ssid_key.".png";
 
 	$img2	=imagecreatetruecolor(600,600);
 	$img	=imagecreatefromstring(base64_decode($img_code));
@@ -103,14 +106,13 @@ if($img_code){
 	$img_key=$ssid_key;
 }
 
-
 $sql	 ="INSERT INTO wp01_0castmail";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
 $sql	.="VALUES";
 $sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img_key}')";
 $wpdb->query($sql);
 
-$log=str_replace("\n","<br>",$log);
+	$log=str_replace("\n","<br>",$log);
 
 $dat.="<div class=\"mail_box_b\">";		
 $dat.="<div class=\"mail_box_log_{$send} bg\">";		
@@ -119,12 +121,13 @@ $dat.=$log;
 $dat.="</div>";
 
 if($img_code){
+$dat.=$link;		
+
 $dat.="<img src=\"{$res}\" class=\"mail_box_stamp\">";		
 }
 $dat.="</div>";
 $dat.="<span class=\"mail_box_date_b\"><span class=\"midoku\">未読</span>　{$now_dat}</span>";		
 $dat.="</div>";
-
 echo $dat;
 exit();
 ?>

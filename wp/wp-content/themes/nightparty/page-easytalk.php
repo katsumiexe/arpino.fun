@@ -94,6 +94,8 @@ if($ss){
 <script>
 const Dir='<?=get_template_directory_uri(); ?>'; 
 const ImgSrc="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>";
+const CastId="<?=$ssid["cast_id"]?>";
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -102,9 +104,14 @@ const ImgSrc="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=t
 <script src="<?=get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 <script src="<?=get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?=get_template_directory_uri(); ?>/js/easytalk.js?t=<?=time()?>"></script>
-
 <link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
 <link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk_guest.css?t=<?=time()?>">
+<style>
+@font-face {
+	font-family: at_icon;
+	src: url(<?php echo get_template_directory_uri(); ?>/font/font_1/fonts/icomoon.ttf) format('truetype');
+}
+</style>
 
 
 
@@ -158,9 +165,6 @@ const ImgSrc="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=t
 			<? } ?>
 		<? } ?>
 	</div>
-
-
-
 	<div class="main_sub">
 		<img src="<?=get_template_directory_uri(); ?>/img/ad/dummy1.png" class="easytalk_img">
 		<img src="<?=get_template_directory_uri(); ?>/img/ad/dummy2.png" class="easytalk_img">
@@ -178,12 +182,13 @@ const ImgSrc="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=t
 		<button id="send_mail" type="button" class="send_btn">メールを返信する</button>
 		<input type="hidden" id="ssid" name="ss" value="<?=$ss?>">
 		<input type="hidden" id="img_code">
-
 		<? } ?>
 	</div>
 </div>
 <footer class="foot_easytalk"></footer>
 <div class="img_box">
+	<div id="img_close" class="btn_c2">×</div>　
+
 	<div class="img_box_in">
 		<canvas id="cvs1" width="800px" height="800px;"></canvas>
 		<div class="img_box_out1"></div>
@@ -200,20 +205,15 @@ const ImgSrc="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=t
 		<label for="upd" class="upload_btn"><span class="upload_icon_p"></span><span class="upload_txt">画像選択</span></label>
 		<span class="upload_icon upload_rote"></span>
 		<span class="upload_icon upload_trush"></span>
+		<div class="img_box_in3">
+			<div class="zoom_mi">-</div>
+			<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
+			<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+		</div>
+		<div id="img_set" class="btn_c1">登録</div>　
+		<div id="img_reset" class="btn_c3">リセット</div>
 	</div>
 
-	<div class="img_box_in3">
-		<div class="zoom_mi">-</div>
-		<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
-		<div class="zoom_pu">+</div><div class="zoom_box">100</div>
-	</div>
-
-
-	<div class="img_box_in4">
-		<div id="img_set" class="btn btn_c2">登録</div>　
-		<div id="img_close" class="btn btn_c1">戻る</div>　
-		<div id="img_reset" class="btn btn_c3">リセット</div>
-	</div>
 	<input id="upd" type="file" accept="image/*" style="display:none;">
 </div>
 </body>	

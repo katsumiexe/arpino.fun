@@ -18,15 +18,15 @@ $(function(){
 			url:Dir + "/post/easytalk_send.php",
 			data:{
 				'send'		:'2',
+				'cast_id'	:CastId,
 				'log'		:$('#send_msg').val(),
 				'sid'		:$('#ssid').val(),
 				'img_code'	:$('#img_code').val(),
-				
 			},
+
 		}).done(function(data, textStatus, jqXHR){
 			$('.main_mail').append(data);
 			$('#send_msg').val('');
-
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -191,9 +191,12 @@ $(function(){
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 				if(base_64){
 					$('.mail_img_view').attr('src',"data:image/jpg;base64,"+base_64);
-					$('#img_code').val();
+					$('#img_code').val(base_64);
+
 				}else{
 					$('.mail_img_view').attr('src',ImgSrc);
+					$('#img_code').val();
+
 				}
 				$('.set_back').fadeOut(200);	
 
