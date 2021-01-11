@@ -12,14 +12,16 @@ $(function(){
 
 	Tmp=$('.main_mail').height();
 	$('.main_mail').scrollTop(Tmp);
+
 	$('#send_mail').on('click',function(){
 		$.post({
 			url:Dir + "/post/easytalk_send.php",
 			data:{
-				'send'	:'2',
-				'log'	:$('#send_msg').val(),
-				'sid'	:$('#ssid').val(),
-				'img'	:$('#img').val(),
+				'send'		:'2',
+				'log'		:$('#send_msg').val(),
+				'sid'		:$('#ssid').val(),
+				'img_code'	:$('#img_code').val(),
+				
 			},
 		}).done(function(data, textStatus, jqXHR){
 			$('.main_mail').append(data);
@@ -57,9 +59,6 @@ $(function(){
 		}
 		Base_l=$(".img_box_out2").width();
 		Base_s=$(".img_box_out1").width();
-
-console.log(Base_l);
-console.log(Base_s);
 
 		var img = new Image();
 		var cvs = document.getElementById('cvs1');
@@ -168,8 +167,10 @@ console.log(Base_s);
 
 
 	$('#img_set').on('click',function(){	
-
 		if(ImgCode){
+
+			console.log(Rote);
+			
 			$('#wait').show();
 			$.post({
 				url:Dir + "/post/img_set.php",
@@ -177,9 +178,9 @@ console.log(Base_s);
 					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
 					'img_top'	:ImgTop,
 					'img_left'	:ImgLeft,
-					'img_zoom'	:Zoom,
+					'img_zoom'	:$('.zoom_box').text(),
 					'img_rote'	:Rote,
-					'VwBase'	:Base_s/10,
+					'vw_base'	:Base_s/10,
 				},
 
 			}).done(function(data, textStatus, jqXHR){
@@ -189,48 +190,31 @@ console.log(Base_s);
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 				if(base_64){
-					$('.mail_img_view').show().attr('src',"data:image/jpg;base64,"+base_64);
+					$('.mail_img_view').attr('src',"data:image/jpg;base64,"+base_64);
+					$('#img_code').val();
 				}else{
-					$('.mail_img_view').hide().attr('src',"");
+					$('.mail_img_view').attr('src',ImgSrc);
 				}
-				$('.set_back').fadeOut(200);
+				$('.set_back').fadeOut(200);	
 
+				$('#wait').hide();
+				$('.zoom_box').text('100');
+				$('#input_zoom').val('100');
+				Rote=0;
 
-		$('#wait').hide();
-		$('.zoom_box').text('100');
-		$('#img_zoom').val('100');
-		$('#input_zoom').val('100');
-		Rote=0;
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-
-		console.log("cvs_w:"+cvs_W);
-		console.log("cvs_h:"+cvs_H);
-		console.log("css_A:"+css_A);
-		console.log("css_B:"+css_B);	
-/*
-		console.log("Tmp_w:"+Tmp_w);
-		console.log("Tmp_h:"+Tmp_h);
-
-		console.log("Tmp_t:"+Tmp_t);
-		console.log("Tmp_l:"+Tmp_l);
-*/
-		console.log("ImgTop:"+ImgTop);
-		console.log("ImgLeft:"+ImgLeft);	
-		console.log("VwBase:"+VwBase);
-		console.log("Zoom:"+Zoom);
-		$('#img_code').val(ImgCode)
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
 
 		}else{
-			$('#img_code').val('')
 			$('.img_box').animate({'top':'120vh'},200);
 			var cvs = document.getElementById('cvs1');
 			var ctx = cvs.getContext('2d');
 			ctx.clearRect(0, 0, cvs_A,cvs_A);
 			$('.set_back').fadeOut(200);
+			$('#img_code').val('');
+
 		}
 	});
 
@@ -246,7 +230,7 @@ console.log(Base_s);
 
 	$('#img_close').on('click',function(){	
 		$('.set_back').fadeOut(200);
-		$('.img_box	').animate({'top':'100vh'},200);
+		$('.img_box	').animate({'top':'120vh'},200);
 
 		var cvs = document.getElementById('cvs1');
 		var ctx = cvs.getContext('2d');
@@ -328,6 +312,18 @@ console.log(Base_s);
 		$('.back').fadeIn(500);
 	});
 
+	$('#send_img').on('click',function(){
+		$('.img_box').animate({'top':'10vw'},200);
+		$('.set_back').fadeIn(100);
+		$('#img_code').val('');
+	});
 
-
+	$('#img_close').on('click',function(){
+		$('#img_code').val('')
+		$('.img_box').animate({'top':'120vh'},200);
+		var cvs = document.getElementById('cvs1');
+		var ctx = cvs.getContext('2d');
+		ctx.clearRect(0, 0, cvs_A,cvs_A);
+		$('.set_back').fadeOut(200);
+	});
 });

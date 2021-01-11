@@ -2913,7 +2913,7 @@ input[type=range]::-moz-range-thumb{
 	width			:96vw;
 	margin			:1vw auto;
 	border			:0.5vw solid #cccccc;
-	background:#fafafa;
+	background		:#fafafa;
 }
 
 .mail_detail{

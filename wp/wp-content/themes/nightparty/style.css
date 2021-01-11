@@ -1945,6 +1945,14 @@ ul {
 }
 
 
+.main_b_td_1{
+	width:18vw;
+}
+
+.main_b_td_3{
+	width:5vw;
+}
+
 
 
 .foot{
@@ -2227,7 +2235,7 @@ ul {
 
 .main_b_notice{
 	width			:90vw;
-	height			:10vw;
+	height			:11vw;
 }
 
 
@@ -2256,8 +2264,6 @@ ul {
 	top				:0.5vw;
 	left			:19vw;
 	width			:64vw;
-	height			:8vw;
-	line-height		:4.5vw;
 	padding-left	:1vw;
 	font-size		:3.5vw;
 	overflow		:hidden;
@@ -2795,16 +2801,6 @@ ul {
 	font-family:at_icon;
 }
 
-.main_b_td_1{
-	width:18vw;
-}
-
-.main_b_td_3{
-	width:8vw;
-}
-
-
-
 
 .foot{
 	width		:100vw;
@@ -2897,9 +2893,7 @@ ul {
 
 .main{
 	padding-top		:14vw;
-
 }
-
 
 .sub_blog_pack{
 	display			:inline-block;

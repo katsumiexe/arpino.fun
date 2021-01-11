@@ -27,25 +27,25 @@ if($ss){
 
 		if (file_exists(get_template_directory()."/img/page/{$ssid["cast_id"]}/1.jpg")) {
 			$face_link=get_template_directory_uri()."/img/page/{$ssid["cast_id"]}/1.jpg";			
+
 		}else{
 			$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
 		}
 
+		$sql ="SELECT * FROM wp01_0encode"; 
+		$enc0 = $wpdb->get_results($sql,ARRAY_A );
+		foreach($enc0 as $row){
+			$enc[$row["key"]]				=$row["value"];
+			$dec[$row["gp"]][$row["value"]]	=$row["key"];
+		}
 
-$sql ="SELECT * FROM wp01_0encode"; 
-$enc0 = $wpdb->get_results($sql,ARRAY_A );
-foreach($enc0 as $row){
-	$enc[$row["key"]]				=$row["value"];
-	$dec[$row["gp"]][$row["value"]]	=$row["key"];
-}
+		$id_8=substr("00000000".$ssid["cast_id"],-8);
+		$id_0	=$ssid["cast_id"] % 20;
 
-$id_8=substr("00000000".$ssid["cast_id"],-8);
-$id_0	=$ssid["cast_id"] % 20;
-
-for($n=0;$n<8;$n++){
-	$tmp_id=substr($id_8,$n,1);
-	$tmp_dir.=$dec[$id_0][$tmp_id];
-}
+		for($n=0;$n<8;$n++){
+			$tmp_id=substr($id_8,$n,1);
+			$tmp_dir.=$dec[$id_0][$tmp_id];
+		}
 
 		$sql	 ="SELECT * FROM wp01_0castmail";
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
@@ -83,10 +83,7 @@ for($n=0;$n<8;$n++){
 	}
 }else{
 	$err=2;
-
 }
-
-
 ?>
 <html lang="ja">
 <head>
@@ -95,18 +92,22 @@ for($n=0;$n<8;$n++){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Easy-Talk</title>
 <script>
-const Dir='<?php echo get_template_directory_uri(); ?>'; 
+const Dir='<?=get_template_directory_uri(); ?>'; 
+const ImgSrc="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>";
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/easytalk.js?t=<?=time()?>"></script>
+<script src="<?=get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="<?=get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
+<script src="<?=get_template_directory_uri(); ?>/js/easytalk.js?t=<?=time()?>"></script>
+
+<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk_guest.css?t=<?=time()?>">
 
 
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
+
 </head>
 <body class="body">
 <header class="head_easytalk"></header>
@@ -122,7 +123,6 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 				ログインコードが無効です。<br>
 				最新のメールからログインしてください。<br>
 			</div>
-
 		<?}else{?>
 			<?for($n=0;$n<count($dat);$n++){?>
 				<?if($dat[$n]["send_flg"] == 1){?>
@@ -155,18 +155,30 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
 					</div>
 				<? } ?>
-
 			<? } ?>
 		<? } ?>
 	</div>
+
+
+
 	<div class="main_sub">
-		<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy1.png" class="easytalk_img"></img>
-		<img src="<?php echo get_template_directory_uri(); ?>/img/ad/dummy2.png" class="easytalk_img"></img>
+		<img src="<?=get_template_directory_uri(); ?>/img/ad/dummy1.png" class="easytalk_img">
+		<img src="<?=get_template_directory_uri(); ?>/img/ad/dummy2.png" class="easytalk_img">
 		<?if(!$er){?>
+		<table class="send_img_table">
+			<tr>
+				<td class="send_img_td">
+					<img id="send_img" src="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img_view">
+				</td>
+				<td>
+					<textarea id="send_msg" class="easytalk_text"></textarea>
+				</td>
+			</tr>
+		</table>
+		<button id="send_mail" type="button" class="send_btn">メールを返信する</button>
 		<input type="hidden" id="ssid" name="ss" value="<?=$ss?>">
-		<textarea id="send_msg" class="easytalk_text"></textarea>
-		<button id="send_mail" type="button">送</button>
-		<button id="send_img" type="button">画</button>
+		<input type="hidden" id="img_code">
+
 		<? } ?>
 	</div>
 </div>
@@ -189,11 +201,13 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 		<span class="upload_icon upload_rote"></span>
 		<span class="upload_icon upload_trush"></span>
 	</div>
+
 	<div class="img_box_in3">
 		<div class="zoom_mi">-</div>
 		<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
 		<div class="zoom_pu">+</div><div class="zoom_box">100</div>
 	</div>
+
 
 	<div class="img_box_in4">
 		<div id="img_set" class="btn btn_c2">登録</div>　

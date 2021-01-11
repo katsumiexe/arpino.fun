@@ -89,9 +89,8 @@ if($send==1){
 
 	$customer_id=$ssid["customer_id"];
 	$cast_id	=$ssid["cast_id"];
+
 }
-
-
 
 if($img_code){
 	$link="../img/cast/".$tmp_dir."/m/".$ssid_key.".png";

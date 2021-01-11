@@ -105,7 +105,6 @@ if($img_code){
 		$img = imagecreatefromstring(base64_decode($img_code));
 	}
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 300, 300, 300, 300);
-
 	imagepng($img2,$link);
 
 	$sql_log ="UPDATE wp01_0customer SET";
