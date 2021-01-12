@@ -350,6 +350,7 @@ get_header();
 				<?=$c_inc?>
 			</tr>
 		</table>
+
 		<div class="sub_blog_pack">
 			<div class="sub_blog_in">
 				<div class="blog_h1">カテゴリー</div>
@@ -366,6 +367,7 @@ get_header();
 				</a>
 				<? } ?>
 			</div>
+
 
 			<div class="sub_blog_in">
 				<div class="blog_h1">CAST一覧</div>
