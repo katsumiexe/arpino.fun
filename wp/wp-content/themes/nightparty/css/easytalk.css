@@ -38,6 +38,16 @@ ul {
 	padding		:1px 3px;
 }
 
+.mail_write_text{
+    display			:inline-block;
+	height			:160px;
+    border			:2px solid #30e020;
+    width			:100%;
+    font-size		:16px;
+    line-height		:30px;
+    border-radius	:5px;
+    padding			:5px;
+}
 
 .main_easytalk{
 	background	:#ffe0f0;
@@ -185,14 +195,6 @@ ul {
 	width	:300px;
 	height	:100px;
 }
-.easytalk_text{
-	width		:100%;
-	height		:160px;
-	resize		:none;
-	font-size	:16px;
-	padding		:5px;
-	resize		:none;
-}
 
 .mail_img_view{
 	width:80px;
@@ -202,7 +204,7 @@ ul {
 	width:300px;
 }
 
-.send_img_td{
+.q_td{
 	width:80px;
 	height:80px;
 	vertical-align:bottom;
@@ -607,7 +609,7 @@ input[type=range]::-moz-range-thumb{
 /*/-----------------------------------------------*/
 
 
-@media screen and (max-width: 559px){
+@media screen and (max-width: 768px){
 
 
 /*/-----------------------------------------------*/
@@ -841,7 +843,13 @@ input[type=range]::-moz-range-thumb{
 
 /*/-----------------------------------------------*/
 
+.send_img_table{
+	width:74vw;
+}
 
+.send_img_td{
+	width:9vw;
+}
 
 .main_easytalk{
 	width		:98vw;
@@ -859,6 +867,16 @@ input[type=range]::-moz-range-thumb{
 }
 
 
+
+.mail_write_text{
+	height			:50vw;
+    border			:2px solid #30e020;
+    width			:64vw;
+    font-size		:4.5vw;
+    line-height		:6vw;
+    border-radius	:1vw;
+    padding			:1vw;
+}
 
 
 
@@ -932,7 +950,7 @@ input[type=range]::-moz-range-thumb{
 .main_sub{
 	width		:98vw;
 	height		:auto;
-
+	text-align	:right;
 }
 
 
@@ -940,15 +958,6 @@ input[type=range]::-moz-range-thumb{
 	width	:96vw;
 	height:auto;
 }
-
-.easytalk_text{
-	width		:96vw;
-	height		:40vw;
-	font-size	:4.5vw;
-	padding		:1vw;
-	margin-top	:3vw;
-}
-
 
 .easytalk_img{
 	display:none;

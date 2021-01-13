@@ -104,6 +104,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 <script src="<?=get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 <script src="<?=get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
 <script src="<?=get_template_directory_uri(); ?>/js/easytalk.js?t=<?=time()?>"></script>
+<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
 <link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk_guest.css?t=<?=time()?>">
 <style>
 @font-face {
@@ -174,7 +175,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 					<img id="send_img" src="<?=get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img_view">
 				</td>
 				<td>
-					<textarea id="send_msg" class="easytalk_text"></textarea>
+					<textarea id="send_msg" class="mail_write_text"></textarea>
 				</td>
 			</tr>
 		</table>
