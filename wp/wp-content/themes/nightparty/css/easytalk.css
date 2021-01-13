@@ -866,8 +866,6 @@ input[type=range]::-moz-range-thumb{
 	height		:8vw;
 }
 
-
-
 .mail_write_text{
 	height			:50vw;
     border			:2px solid #30e020;
@@ -877,8 +875,6 @@ input[type=range]::-moz-range-thumb{
     border-radius	:1vw;
     padding			:1vw;
 }
-
-
 
 .main_mail{
 	width			:96vw;
