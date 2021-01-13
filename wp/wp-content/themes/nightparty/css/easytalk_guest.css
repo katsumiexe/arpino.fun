@@ -656,17 +656,19 @@ input[type=range]::-moz-range-thumb{
 
 .mail_box_date_a{
 	top			:1vw;
-	left		:18vw;
+	left		:16vw;
 	height		:4vw;
 	line-height	:4vw;
 	font-size	:2.8vw;
 }
 .mail_box_date_b{
-	top			:1vw;
-	right		:18vw;
-	height		:4vw;
-	line-height	:4vw;
-	font-size	:2.8vw;
+
+	top			: 1vw;
+    right		: 2vw;
+    height		: 4vw;
+    line-height	: 4vw;
+    font-size	: 3vw;
+    
 }
 
 .mail_box_face{

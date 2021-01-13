@@ -92,7 +92,7 @@ if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !=
 		$html.="</div>";
 
 		if($dat[$n]["img_1"]){
-			$html.="<img src=\"../img/cast/{$tmp_dir}/m/{$dat[$n]["img_1"]}.png\" class=\"mail_box_stamp\">";		
+			$html.="<img src=\"".get_template_directory_uri()."/img/cast/{$tmp_dir}/m/{$dat[$n]["img_1"]}.png\" class=\"mail_box_stamp\">";		
 		}
 
 		$html.="</div>";
