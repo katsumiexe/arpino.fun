@@ -97,6 +97,8 @@ ul {
 	right		:0;
 	display		:block;
 	width		:100vw;
+	min-width	:1200px;
+
     margin		:10px auto 0 auto;
 	height		:170px;
 	margin		:auto;
@@ -2844,8 +2846,8 @@ ul {
 }
 
 .to_top{
-	bottom			:6.5vw;
-	right			:1vw;
+	bottom			:3vw;
+	right			:2vw;
 	height			:10vw;
 	width			:10vw;
 	border-radius	:1vw;
