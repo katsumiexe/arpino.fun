@@ -56,6 +56,17 @@ foreach($res2 as $a2){
 	$slide[]=$a2;
 }
 
+$sql	 ="SELECT meta_id, meta_value, post_type, post_content FROM wp01_postmeta AS M";
+$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
+$sql	.=" WHERE meta_key='_top_info'";
+$sql	.=" AND meta_value>0";
+$sql	.=" ORDER BY meta_value ASC";
+$res2 = $wpdb->get_results($sql,ARRAY_A);
+foreach($res2 as $a2){
+	$info[]=$a2;
+}
+
+
 $sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date_gmt, T.name, slug FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" LEFT JOIN wp01_terms AS T on M.meta_value=T.term_id";
@@ -134,10 +145,10 @@ var Cnt=<?=(count($slide)-1)?>;
 <?if(count($slide) ==1){?>
 	<div class="slide">
 		<div class="slide_img">
-			<?if($slide[0]["post_type"]=="nolink"){?>
-				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img">;
-			<?}else{?>	
+			<?if($slide[0]["post_content"]){?>
 				<a href="<?=home_url('/event')?>/?code=<?=$slide[0]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img"></a>;
+			<?}else{?>	
+				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img">;
 			<?}?>	
 		</div>
 	</div>
@@ -230,8 +241,14 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 
 	<div class="main_c">
-		<div class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="side_img"></div>;
-		<div class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side2.png" class="side_img"></div>;
+
+		<?for($n=0;$n<count($info);$n++){?>
+			<?if($info[$n]["post_content"]){?>
+				<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>" class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side{$n}.png" class="side_img"></a>;
+			<?}else{?>
+				<div class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side{$n}.png" class="side_img"></div>;
+			<?}?>	
+		<?}?>	
 
 		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
