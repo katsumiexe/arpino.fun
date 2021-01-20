@@ -100,7 +100,6 @@ td{
 	color				:#fafafa;
 }
 
-
 .on_1{
 	background:#0000c0;
 }
@@ -109,6 +108,24 @@ td{
 	background:#c00000;
 }
 
+.ck_off{
+	display:none
+}
+
+.ck_off:cheked + label{
+	background		:linear-gradient(#a0a0d0,#c0c0f0);
+}
+
+.ck_box{
+	display			:inline-block;
+	margin			:5px;
+	padding			:5px;
+	border-radius	:5px;
+	background		:#dddddd;
+	color			:#fafafa;
+	font-size		:14px;
+	text-align		:left;
+}
 
 -->
 </style>
@@ -209,6 +226,20 @@ CAST情報
 	<? } ?>
 </tr>
 </table>
+
+<?for$n=0;$n<count($ck_main);$n++){?>
+<?=$ck_main[$n]["title"]?>
+<table style="width:720px;">
+	<tr>
+	<td>
+		<?foreach($ck_list[$ck_main[$n]["id"]] as $a1 => $a2){?>
+		<input type="checkbox" id="sel_<?=$a2[$ck_main[$n]["id"]]?>_<?=$a1?>" name="sel_<?=$a2[$ck_main[$n]["id"]]?>_<?=$a1?>" class="ck_off" autocomplete="off">
+		<label for="sel_<?=$a2[$ck_main[$n]["id"]]?>_<?=$a1?>" class="ck_box"><?=$a2["list_title"]?></label>
+		<?}?>
+	</td>
+	</tr>
+</table>
+<? } ?>
 
 </td><td>
 	<div class"up_box">

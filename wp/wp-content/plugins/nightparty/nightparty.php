@@ -181,9 +181,30 @@ function staff_regist(){
 		$cast_table[$res["sort"]]=$res;
 	}
 
+	$sql	 ="SELECT * FROM wp01_0check_main";
+	$sql	.=" WHERE del=0";
+	$sql	.=" ORDER BY sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$ck_main[$res["sort"]]=$res;
+	}
+
+	$sql	 ="SELECT * FROM wp01_0check_list";
+	$sql	.=" WHERE del=0";
+	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$ck_list[$res["host_id"]][$res["list_sort"]]=$res;
+	}
+	
+
+
 	$sql		="SELECT MAX(id) AS id_max FROM wp01_0staff";
 	$tmp_list	= $wpdb->get_row($sql,ARRAY_A);
 	$new_id		=$tmp_list["id_max"]+1;
+
 
     esc_html_e(include_once('staff_regist.php'),'textdomain');  
 }

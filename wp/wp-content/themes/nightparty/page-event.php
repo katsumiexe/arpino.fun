@@ -3,7 +3,7 @@
 Template Name: event
 */
 $code=$_REQUEST["code"];
-$sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_key, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_id='{$code}'";
 $sql	.=" AND post_status='publish'";
