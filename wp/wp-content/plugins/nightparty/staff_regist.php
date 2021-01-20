@@ -74,6 +74,7 @@ td{
 #staff_l{
 	border-radius:10px 0 0 10px;
 }
+
 #cast_l{
 	border-radius:0 10px 10px 0;
 }
@@ -108,12 +109,8 @@ td{
 	background:#c00000;
 }
 
-.ck_off{
-	display:none;
-}
-
-.ck_off:cheked + label{
-	background		:linear-gradient(#a0a0d0,#c0c0f0);
+.ck_off:checked + label{
+	background		:linear-gradient(#c0c0f0,#8080ff);
 }
 
 .ck_box{
@@ -127,9 +124,35 @@ td{
 	font-size		:14px;
 	text-align		:left;
 }
+.table_title{
+	background		:linear-gradient(#e0e0e0,#c0c0c0);
+	padding:5px;
+	font-size:14px;
+}
 
 -->
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(function(){ 
+	$('#staff_l').on('click',function () {
+		$(this).addClass('on_1');
+		$('#cast_l').removeClass('on_2');
+		$('.cast_table').fadeOut(100);
+
+	});
+
+	$('#cast_l').on('click',function () {
+		$(this).addClass('on_2');
+		$('#staff_l').removeClass('on_1');
+		$('.cast_table').fadeIn(100);
+	});
+
+
+});
+</script>
+
+
 <div class="wrap">
 <h2>スタッフ登録</h2>
 <form action="" method='post' id="my-submenu-form">
@@ -137,14 +160,13 @@ td{
 <button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
 <input type="hidden" value="1" name="staff_set">
 <div class="c_s_box">
-　<input id="staff" value="1" type="radio" name="c_s"><label id="staff_l" for"staff" class="c_s_btn on_1">STAFF</label>
-　<input id="cast" value="2" type="radio" name="c_s"><label for"staff" id="cast_l" class="c_s_btn">CAST</label>
+　<input id="staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
+　<input id="cast" value="2" type="radio" name="c_s"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
 
 
 <table>
 <tr><td>
-
 <table style="width:720px;">
 <tr>
 <td colspan="3">
@@ -186,9 +208,10 @@ STAFF情報
 </tr>
 </table>
 
-<table style="width:720px;">
+
+<table style="width:720px;" class="cast_table">
 <tr>
-<td colspan="3">
+<td class="table_title" colspan="3">
 CAST情報
 </td>
 </tr><tr>
@@ -208,8 +231,7 @@ CAST情報
 </td>
 </tr>
 </table>
-
-<table style="width:720px;">
+<table style="width:720px;" class="cast_table">
 <tr>
 	<?foreach($cast_table as $a1 => $a2){?>
 <td>
@@ -229,26 +251,29 @@ CAST情報
 </table>
 
 <?for($n=0;$n<count($ck_main);$n++){?>
-<?=$ck_main[$n]["title"]?>
-<table style="width:720px;">
+<table style="width:720px;" class="cast_table">
+	<tr>
+	<td class="table_title">
+<span class="table_title cast_table"><?=$ck_main[$n]["title"]?></span>
+</td></tr>
 	<tr>
 	<td>
 		<?foreach($ck_list[$ck_main[$n]["id"]] as $a1 => $a2){?>
-		<input type="checkbox" id="sel_<?=$a2[$ck_main[$n]["id"]]?>_<?=$a1?>" name="sel_<?=$a2[$ck_main[$n]["id"]]?>_<?=$a1?>" class="ck_off" autocomplete="off">
-		<label for="sel_<?=$a2[$ck_main[$n]["id"]]?>_<?=$a1?>" class="ck_box"><?=$a2["list_title"]?></label>
+		<input type="checkbox" id="sel_<?=$ck_main[$n]["id"]?>_<?=$a1?>" name="sel_<?=$ck_main[$n]["id"]?>_<?=$a1?>" class="ck_off" autocomplete="off" style="display:none;">
+		<label for="sel_<?=$ck_main[$n]["id"]?>_<?=$a1?>" class="ck_box"><?=$a2["list_title"]?></label>
 		<?}?>
 	</td>
 	</tr>
 </table>
 <? } ?>
 
-</td><td>
+</td><td class="cast_table">
 	<div class"up_box">
 	画像の推奨は縦800px×横600pxです。<br>
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
 
-	<div class="img_up_box">
+	<div class="img_up_box"">
 	<?for($n=0;$n<4;$n++){?>
 		<div class="img_up_box_in">
 			<div class="img_up_img">
@@ -262,6 +287,5 @@ CAST情報
 </td>
 </tr>
 </table>
-
 </form>
 </div> 
