@@ -109,7 +109,7 @@ td{
 }
 
 .ck_off{
-	display:none
+	display:none;
 }
 
 .ck_off:cheked + label{
@@ -118,6 +118,7 @@ td{
 
 .ck_box{
 	display			:inline-block;
+	width			:100px;
 	margin			:5px;
 	padding			:5px;
 	border-radius	:5px;
@@ -227,7 +228,7 @@ CAST情報
 </tr>
 </table>
 
-<?for$n=0;$n<count($ck_main);$n++){?>
+<?for($n=0;$n<count($ck_main);$n++){?>
 <?=$ck_main[$n]["title"]?>
 <table style="width:720px;">
 	<tr>

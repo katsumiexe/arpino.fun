@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: event
+Template Name: news
 */
 $code=$_REQUEST["code"];
 
