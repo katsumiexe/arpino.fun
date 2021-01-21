@@ -36,14 +36,15 @@ td{
 	flex-wrap	:wrap;
 	background	:#0000f0;
 	width		:400px;
-	height		:600px;
+	height		:650px;
+	margin		:10px;
 }
 
 .img_up_box_in{
 	display:block;
 	background	:#900000;
 	width		:190px;
-	height		:290px;
+	height		:315px;
 	position	:relative;
 }
 
@@ -61,10 +62,57 @@ td{
 	display		:inline-block;
 	position	:absolute;
 	top			:240px;
-	left		:20px;
-	background	:#900090;
-	width		:150px;
-	height		:40px;
+	left		:10px;
+	background	:#fafafa;
+	width		:170px;
+	height		:65px;
+}
+
+.img_up_file{
+	display		:inline-block;
+	background	:linear-gradient(#c0c0c0,#909090);
+	position	:absolute;
+	top			:5px;
+	left		:5px;
+	height		:25px;
+	line-height	:25px;
+	width		:100px;
+	font-size	:16px;
+	text-align	:center;
+	color		:#fafafa;
+	overflow	:hidden;
+	padding		:0 5px;
+	border-radius:3px;
+}
+
+.img_up_rote{
+	display		:inline-block;
+	background	:linear-gradient(#c0c0c0,#909090);
+	position	:absolute;
+	top			:5px;
+	left		:120px;
+	height		:25px;
+	line-height	:25px;
+	width		:20px;
+	text-align	:center;
+	color		:#fafafa;
+	border-radius:3px;
+	cursor		:pointer;
+}
+
+.img_up_del{
+	display		:inline-block;
+	background	:linear-gradient(#c0c0c0,#909090);
+	position	:absolute;
+	top			:5px;
+	left		:145px;
+	height		:25px;
+	line-height	:25px;
+	width		:20px;
+	text-align	:center;
+	color		:#fafafa;
+	border-radius:3px;
+	cursor		:pointer;
 }
 
 #staff,#cast{
@@ -116,19 +164,246 @@ td{
 .ck_box{
 	display			:inline-block;
 	width			:100px;
-	margin			:5px;
+	margin			:3px;
 	padding			:5px;
 	border-radius	:5px;
-	background		:#dddddd;
+	background		:#c0c0c0;
 	color			:#fafafa;
 	font-size		:14px;
 	text-align		:left;
 }
 .table_title{
-	background		:linear-gradient(#e0e0e0,#c0c0c0);
-	padding:5px;
-	font-size:14px;
+	background		:linear-gradient(#e0e0e0,#d0d0d0);
+	padding			:5px;
+	font-size		:14px;
 }
+
+
+
+
+.img_box_out1{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	left		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:27;
+}
+
+.img_box_out2{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	left		:20px;
+	width		:150px;
+	height		:20px;
+	border-bottom:1px solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out3{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	right		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:27;
+}
+
+.img_box_out4{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:20px;
+	left		:0;
+	width		:20px;
+	height		:200px;
+	border-right:1px solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out5{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:20px;
+	right		:0;
+	width		:20px;
+	height		:200px;
+	border-left	:1px solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out6{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	left		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:27;
+}
+
+.img_box_out7{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	left		:20px;
+	width		:150px;
+	height		:20px;
+	border-top	:0.2vw solid #ff0000;
+	z-index		:27;
+}
+
+.img_box_out8{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	right		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:27;
+}
+
+#cvs1{
+	position	:absolute;
+	background	:#f0f0f0;
+}
+
+input[type=range] {
+	-webkit-appearance:none;
+	background		:#ffffff;
+	height			:10px;
+	width			:100%;
+	display			:inline-block;
+	border			:none;
+	margin			:5px;
+	border-radius	:0;
+}
+
+input[type=range]::-webkit-slider-thumb{
+	-webkit-appearance	:none;
+	background			:#f17766;
+	height				:14px;
+	width				:14px;
+	border-radius		:50%;
+	border				:2px solid #ffffff;
+}
+
+input[type=range]::-ms-tooltip{
+	display:none;
+}
+
+input[type=range]::-moz-range-track{
+	height:0;
+}
+
+input[type=range]::-moz-range-thumb{
+	background		:#f17766;
+	height			:14px;
+	width			:14px;
+	border-radius	:50%;
+	border			:2px solid #ffffff;
+}
+
+.zoom_mi{
+	display				:inline-block;
+	height				:20px;
+	flex-basis			:15px;
+	border				:1px solid #f17766;
+	border-radius		:5px 0 0 5px;
+	line-height			:20px;
+	text-align			:center;
+	cursor				:pointer;
+	background			:#ffe0f0;
+	color				:#f17766;
+	font-size			:14px;
+	font-weight			:600;
+}		
+
+.zoom_pu{
+	display				:inline-block;
+	height				:20px;
+	flex-basis			:15px;
+	border				:1px solid #f17766;
+	border-radius		:0 5px 5px 0;
+	line-height			:20px;
+	text-align			:center;
+	cursor				:pointer;
+	background			:#ffe0f0;
+	color				:#f17766;
+	font-size			:14px;
+	font-weight			:600;
+}
+
+.zoom_rg{
+	display				:inline-block;
+	height				:20px;
+	line-height			:20px;
+	flex				:1;
+	border				:1px solid #f17766;
+	background			:#ffe0f0
+}
+
+.zoom_box{
+	border				:1px solid #f17766;
+	color				:#f17766;
+	display				:inline-block;
+	height				:20px;
+	flex-basis			:35px;
+	line-height			:20px;
+	text-align			:center;
+	margin-left			:5px;
+	background			:#ffffff;
+	font-weight			:600;
+	font-size			:14px;
+}
+
+.img_box_in{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	width			:190px;
+	height			:240px;
+}
+.img_box_in3{
+	display			:flex;
+	flex-wrap		:nowrap;
+	font-size		:0;
+	position		:absolute;
+	top				:35px;
+	left			:5px;
+	width			:160px;
+	height			:25px;
+}
+
+.sex_box{
+	position		:relative;
+	display			:inline-block;
+	height			:30px;
+	width			:70px;
+}
+
+.sex_box_ck{
+	position:absolute;
+	top:0;
+	left:3px;
+	bottom:0;
+	margin:auto !important; 
+}
+
+.sex_box_txt{
+	position:absolute;
+	display	:inline-block;
+	top		:0px;
+	left	:25px;
+	bottom	:0;
+	margin	:auto;
+	height:30px;
+	line-height:30px;
+
+}
+
 
 -->
 </style>
@@ -139,7 +414,6 @@ $(function(){
 		$(this).addClass('on_1');
 		$('#cast_l').removeClass('on_2');
 		$('.cast_table').fadeOut(100);
-
 	});
 
 	$('#cast_l').on('click',function () {
@@ -147,12 +421,8 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
-
-
 });
 </script>
-
-
 <div class="wrap">
 <h2>スタッフ登録</h2>
 <form action="" method='post' id="my-submenu-form">
@@ -161,15 +431,14 @@ $(function(){
 <input type="hidden" value="1" name="staff_set">
 <div class="c_s_box">
 　<input id="staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
-　<input id="cast" value="2" type="radio" name="c_s"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
+　<input id="cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
-
 
 <table>
 <tr><td>
-<table style="width:720px;">
+<table style="width:720px; table-layout: fixed;">
 <tr>
-<td colspan="3">
+<td class="table_title" colspan="3">
 STAFF情報
 </td>
 </tr><tr>
@@ -183,11 +452,11 @@ STAFF情報
 </tr><tr>
 <td colspan="2">
 	<div>住所			</div><input type="text" name="staff_address" class="w000" autocomplete="off">
-</td><td>
+</td><td >
 	<div>性別			</div>
-	<input id="sex1" type="radio" name="staff_sex" value="1"><label for="sex1">男性</label>
-	<input id="sex2" type="radio" name="staff_sex" value="2"><label for="sex2">女性</label> 
-	<input id="sex3" type="radio" name="staff_sex" value="3"><label for="sex3">他</label> 
+<span class="sex_box"><input id="sex1" type="radio" name="staff_sex" value="1" class="sex_box_ck"><label for="sex1" class="sex_box_txt">男性</label></span>
+<span class="sex_box"><input id="sex2" type="radio" name="staff_sex" value="2" class="sex_box_ck"><label for="sex2" class="sex_box_txt">女性</label></span>
+<span class="sex_box"><input id="sex3" type="radio" name="staff_sex" value="3" class="sex_box_ck"><label for="sex3" class="sex_box_txt">他</label></span>
 </td>
 </tr><tr>
 <td>
@@ -208,8 +477,7 @@ STAFF情報
 </tr>
 </table>
 
-
-<table style="width:720px;" class="cast_table">
+<table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
 <td class="table_title" colspan="3">
 CAST情報
@@ -220,7 +488,7 @@ CAST情報
 </td><td>
 	<div>フリガナ		</div><input type="text" name="genji_kana" class="w000" autocomplete="off">
 </td><td>
-	<div>表示順			</div><input type="text" name="castmail_pass" class="w000" autocomplete="off">
+	<div>入店日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_dd" value="01" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td>
@@ -228,18 +496,19 @@ CAST情報
 </td><td>
 	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="off">
 </td><td>
+	<div>ランク		</div><input type="text" name="cast_rank" class="w000" autocomplete="off">
 </td>
 </tr>
 </table>
-<table style="width:720px;" class="cast_table">
+<table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
-	<?foreach($cast_table as $a1 => $a2){?>
+	<?foreach($charm_table as $a1 => $a2){?>
 <td>
 	<div><?=$a2["charm"]?></div>
 	<?if($a2["style"] == 1){?>
-		<textarea name="cast_table_<?=$a2["id"]?>" class="w000 tbox" autocomplete="off"></textarea>
+		<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
 	<? }else{ ?>
-		<input type="text" name="cast_table_<?=$a2["id"]?>" class="w000" autocomplete="off">
+		<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" autocomplete="off">
 	<? } ?>
 </td>
 <?if(($cnt+0) % 2 ==1){?>
@@ -259,8 +528,8 @@ CAST情報
 	<tr>
 	<td>
 		<?foreach($ck_list[$ck_main[$n]["id"]] as $a1 => $a2){?>
-		<input type="checkbox" id="sel_<?=$ck_main[$n]["id"]?>_<?=$a1?>" name="sel_<?=$ck_main[$n]["id"]?>_<?=$a1?>" class="ck_off" autocomplete="off" style="display:none;">
-		<label for="sel_<?=$ck_main[$n]["id"]?>_<?=$a1?>" class="ck_box"><?=$a2["list_title"]?></label>
+		<input type="checkbox" id="sel_<?=$a1?>" name="options[<?=$a1?>]" class="ck_off" autocomplete="off" style="display:none; value="1">
+		<label for="sel_<?=$a1?>" class="ck_box"><?=$a2?></label>
 		<?}?>
 	</td>
 	</tr>
@@ -272,14 +541,29 @@ CAST情報
 	画像の推奨は縦800px×横600pxです。<br>
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
-
-	<div class="img_up_box"">
+	<div class="img_up_box">
 	<?for($n=0;$n<4;$n++){?>
 		<div class="img_up_box_in">
-			<div class="img_up_img">
+			<div class="img_box_in">
+			<canvas id="cvs1" width="800px" height="800px;"></canvas>
+			<div class="img_box_out1"></div>
+			<div class="img_box_out2"></div>
+			<div class="img_box_out3"></div>
+			<div class="img_box_out4"></div>
+			<div class="img_box_out5"></div>
+			<div class="img_box_out6"></div>
+			<div class="img_box_out7"></div>
+			<div class="img_box_out8"></div>
 			</div>
 			<div class="img_up_comm">
-
+				<label for="upd<?=$n?>" class="img_up_file">UPLOAD</label>
+				<span type="button" class="img_up_rote">■</span>
+				<span type="button" class="img_up_del">■</span>
+				<div class="img_box_in3">
+					<div class="zoom_mi">-</div>
+					<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
+					<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+				</div>
 			</div>
 		</div>
 	<?}?>
@@ -288,4 +572,8 @@ CAST情報
 </tr>
 </table>
 </form>
+<input id="upd1" type="file" accept="image/*" style="display:none;">
+<input id="upd2" type="file" accept="image/*" style="display:none;">
+<input id="upd3" type="file" accept="image/*" style="display:none;">
+<input id="upd4" type="file" accept="image/*" style="display:none;">
 </div> 

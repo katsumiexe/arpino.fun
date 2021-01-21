@@ -51,8 +51,6 @@ foreach($res as $a1){
 		$face_a="<img src=\"{$link}/img/page/noimage.jpg\" class=\"person_img_main\">";
 	}
 }
-
-
 $sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
@@ -126,7 +124,36 @@ foreach($res as $a2){
 	$n++;
 }
 
-echo $_SERVER["REQUEST_URI"];
+	$sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
+	$sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
+	$sql.=" WHERE wp01_0charm_table.del='0'";
+	$sql.=" AND (wp01_0charm_sel.cast_id='{$a2["ID"]}' OR wp01_0charm_sel.cast_id='')";
+	$sql.=" ORDER BY sort ASC";
+
+	$res = $wpdb->get_results($sql,ARRAY_A);
+	foreach($res as $a1){
+		$cast_table[]=$a1;
+	}
+
+
+	$sql ="SELECT id,title,style FROM wp01_0check_main";
+	$sql.=" WHERE del='0'";
+	$sql.=" ORDER BY sort ASC";
+
+	$res = $wpdb->get_results($sql,ARRAY_A);
+	foreach($res as $a1){
+
+		$sql ="SELECT id,title,style FROM wp01_0check_list";
+		$sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
+		$sql.=" WHERE del='0'";
+		$sql.=" (AND cast_id='' OR cast_id='{$a2["ID"]}')";
+
+		$sql.=" ORDER BY sort ASC";
+
+		if($a1["style"] ==1 && )
+		$cast_table[]=$a1;
+	}
+
 get_header();
 ?>
 <div class="footmark">
@@ -158,7 +185,20 @@ get_header();
 				<td class="prof_l">名前</td>
 				<td class="prof_r"><?PHP ECHO $a1["genji"]?></td>
 			</tr>
-			<?=$charm_list?>
+
+
+	<?for($n=0;$n<count($cast_table);$n++){?>
+		<?if($cast_table[$n]["style"] == 1){?>
+			<tr><td class="prof_0" colspan="2"></td></tr>
+			<tr><td class="prof_l2" colspan="2"><?=$cast_table[$n]["charm"]?></td></tr>
+			<tr><td class="prof_r2" colspan="2"><?=$cast_table[$n]["log"]?></td></tr>
+		<?}else{?>
+			<tr>
+			<td class="prof_l"><?=$cast_table[$n]["charm"]?></td>
+			<td class="prof_r"><?=$cast_table[$n]["log"]?></td>
+			</tr>
+		<?}?>
+	<?}?>
 		</table>
 		<div class="sche_title">Schedule</div>
 		<table class="sche">

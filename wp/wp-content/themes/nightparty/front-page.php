@@ -84,7 +84,6 @@ foreach($res2 as $a2){
 	$news[]=$a2;
 }
 
-
 /*
 $stime[1]="OPEN";
 $stime[2]="OPEN";
@@ -116,6 +115,7 @@ $list=substr($list,0,-1);
 $app.=$list;
 $wpdb->query($app);
 */
+
 
 get_header();
 ?>
