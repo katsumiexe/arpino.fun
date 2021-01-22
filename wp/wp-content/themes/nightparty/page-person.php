@@ -112,7 +112,7 @@ foreach($res as $a2){
 
 	$sql ="SELECT guid FROM wp01_postmeta";
 	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
-	$sql.=" WHERE post_id='{$a2["ID"]}'";
+	$sql.=" WHERE post_id='{$val}'";
 	$sql.=" AND meta_key='_thumbnail_id'";
 	$thumb = $wpdb->get_var($sql);
 
@@ -124,35 +124,50 @@ foreach($res as $a2){
 	$n++;
 }
 
-	$sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
-	$sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
-	$sql.=" WHERE wp01_0charm_table.del='0'";
-	$sql.=" AND (wp01_0charm_sel.cast_id='{$a2["ID"]}' OR wp01_0charm_sel.cast_id='')";
-	$sql.=" ORDER BY sort ASC";
+$sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
+$sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
+$sql.=" WHERE wp01_0charm_table.del='0'";
+$sql.=" AND (wp01_0charm_sel.cast_id='{$val}' OR wp01_0charm_sel.cast_id='')";
+$sql.=" ORDER BY sort ASC";
+echo $sql;
+$res = $wpdb->get_results($sql,ARRAY_A);
+foreach($res as $a0){
+	$a0["log"]=str_replace("\n","<br>",$a0["log"]);
+	$cast_table[]=$a0;
 
-	$res = $wpdb->get_results($sql,ARRAY_A);
-	foreach($res as $a1){
-		$cast_table[]=$a1;
+}
+
+$sql ="SELECT id,title,style FROM wp01_0check_main";
+$sql.=" WHERE del='0'";
+$sql.=" ORDER BY sort ASC";
+
+$res = $wpdb->get_results($sql,ARRAY_A);
+foreach($res as $a0){
+	$check_main[]=$a0;
+}
+
+$sql ="SELECT id,title,style FROM wp01_0check_list";
+$sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
+$sql.=" WHERE del='0'";
+$sql.=" (AND cast_id='' OR cast_id='{$val}')";
+$sql.=" ORDER BY sort ASC";
+
+$res = $wpdb->get_results($sql,ARRAY_A);
+
+foreach($res as $a0){
+	if($a0["style"] ==0 || $a0["sel"] ==0 ){
+		$check_list[$a0["host_id"]][$a0["list_sort"]]=$a0;
 	}
+}
 
+for($n1=0;$n1<count($check_main);$n1++){
+echo "□".$check_main[$n1]["title"]."<br>\n";
+	for($n2=0;$n2<count($check_main);$n2++){
+		echo $check_list[$n1][$n2]["list_title"]."■" .$check_list[$n1][$n2]["list_sel"]."<br>\n";
 
-	$sql ="SELECT id,title,style FROM wp01_0check_main";
-	$sql.=" WHERE del='0'";
-	$sql.=" ORDER BY sort ASC";
-
-	$res = $wpdb->get_results($sql,ARRAY_A);
-	foreach($res as $a1){
-
-		$sql ="SELECT id,title,style FROM wp01_0check_list";
-		$sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
-		$sql.=" WHERE del='0'";
-		$sql.=" (AND cast_id='' OR cast_id='{$a2["ID"]}')";
-
-		$sql.=" ORDER BY sort ASC";
-
-		if($a1["style"] ==1 && )
-		$cast_table[]=$a1;
 	}
+}
+
 
 get_header();
 ?>
@@ -172,9 +187,9 @@ get_header();
 </div>
 <div class="person_main">
 	<div class="person_left">
-			<?PHP ECHO $face_a?>
+			<?=$face_a?>
 		<div class="person_img_list">
-			<?PHP ECHO $face_b?>
+			<?=$face_b?>
 		</div>
 	</div>
 
@@ -183,7 +198,7 @@ get_header();
 		<table class="prof">
 			<tr>
 				<td class="prof_l">名前</td>
-				<td class="prof_r"><?PHP ECHO $a1["genji"]?></td>
+				<td class="prof_r"><?=$a1["genji"]?></td>
 			</tr>
 
 
