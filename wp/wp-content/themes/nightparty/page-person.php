@@ -129,7 +129,6 @@ $sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
 $sql.=" WHERE wp01_0charm_table.del='0'";
 $sql.=" AND (wp01_0charm_sel.cast_id='{$val}' OR wp01_0charm_sel.cast_id='')";
 $sql.=" ORDER BY sort ASC";
-echo $sql;
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a0){
 	$a0["log"]=str_replace("\n","<br>",$a0["log"]);
@@ -146,23 +145,28 @@ foreach($res as $a0){
 	$check_main[]=$a0;
 }
 
-$sql ="SELECT id,title,style FROM wp01_0check_list";
+
+$sql ="SELECT * FROM wp01_0check_list";
 $sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
 $sql.=" WHERE del='0'";
-$sql.=" (AND cast_id='' OR cast_id='{$val}')";
-$sql.=" ORDER BY sort ASC";
+$sql.=" AND (cast_id='' OR cast_id='{$val}')";
+$sql.=" ORDER BY list_sort ASC";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 
+echo $sql;
+
 foreach($res as $a0){
-	if($a0["style"] ==0 || $a0["sel"] ==0 ){
+	if($a0["sel"] ==1 ){
 		$check_list[$a0["host_id"]][$a0["list_sort"]]=$a0;
 	}
 }
 
 for($n1=0;$n1<count($check_main);$n1++){
-echo "□".$check_main[$n1]["title"]."<br>\n";
-	for($n2=0;$n2<count($check_main);$n2++){
+
+echo "▼".$check_main[$n1]["title"]."<br>\n";
+
+	for($n2=0;$n2<count($check_list[$n1]);$n2++){
 		echo $check_list[$n1][$n2]["list_title"]."■" .$check_list[$n1][$n2]["list_sel"]."<br>\n";
 
 	}
