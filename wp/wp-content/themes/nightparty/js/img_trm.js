@@ -57,6 +57,7 @@ $(function(){
 			alert("NO IMAGE FILES");
 			return false;
 		}
+
 		Base_l=$(".img_box_out2").width();
 		Base_s=$(".img_box_out1").width();
 
@@ -76,12 +77,16 @@ $(function(){
 					img_S2=Base_l;
 
 					if(img_H > img_W){
+
+						css_K=img_W/Base_l;
+
 						cvs_W=600;
 						cvs_H=img_H*(cvs_W/img_W);
-						cvs_A=Math.ceil(cvs_H);
+						cvs_A=Math.ceil(cvs_H);//■最大値
 
-						cvs_X=(cvs_H-cvs_W)/2;
+						cvs_X=(cvs_H-cvs_W)/2;//■横の余白
 						cvs_Y=0;
+
 
 						css_W=Base_l;
 						css_H=img_H*(css_W/img_W);
@@ -90,6 +95,8 @@ $(function(){
 						css_B=Base_s-(css_A-Base_l)/2;
 
 					}else{
+						css_K=img_H/Base_l;
+
 						cvs_H=600;
 						cvs_W=img_W*(cvs_H/img_H);
 						cvs_A=Math.ceil(cvs_W);
@@ -106,15 +113,18 @@ $(function(){
 					}				
 
 					$("#cvs1").attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
-
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
-					ImgCode = cvs.toDataURL("image/jpeg");
-
+					ImgCanvas = cvs.toDataURL("image/jpeg");
+/*
 					$('#img_top').val(css_B);
 					$('#img_left').val(css_B);
-
+*/
+/*
 						ImgWidth	=css_A;
 						ImgHeight	=css_A;
+
+*/
+
 						ImgTop		=css_B;
 						ImgLeft		=css_B;
 						Rote		=0;
@@ -122,10 +132,9 @@ $(function(){
 				}
 			};
 		})(file);
+
 		reader.readAsDataURL(file);
-
 		$('#upd').fileExif(function(exif) {
-
 			if (exif['Orientation']) {
 
 				switch (exif['Orientation']) {
@@ -160,65 +169,30 @@ $(function(){
 
 		ImgLeft = $("#cvs1").css("left");
 		ImgTop = $("#cvs1").css("top");
-
+/*
 		$('#img_top').val(ImgTop);
 		$('#img_left').val(ImgLeft);
+*/
 	});
 
-
 	$('#img_set').on('click',function(){	
-		if(ImgCode){
 
-			console.log(Rote);
-			
-			$('#wait').show();
-			$.post({
-				url:Dir + "/post/img_set.php",
-				data:{
-					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
-					'img_top'	:ImgTop,
-					'img_left'	:ImgLeft,
-					'img_zoom'	:$('.zoom_box').text(),
-					'img_rote'	:Rote,
-					'vw_base'	:Base_s/10,
-				},
+		SetTop	=$("#cvs1").attr("top");
+		SetLeft	=$("#cvs1").attr("left");
 
-			}).done(function(data, textStatus, jqXHR){
-				base_64=data;
-				$('.img_box').animate({'top':'120vh'},200);
-				var cvs = document.getElementById('cvs1');
-				var ctx = cvs.getContext('2d');
-				ctx.clearRect(0, 0, cvs_A,cvs_A);
-				if(base_64){
-					$('.mail_img_view').attr('src',"data:image/jpg;base64,"+base_64);
-					$('#img_code').val(base_64);
+		T_Top	=(SetTop+Base_s)*css_K*100/$('.zoom_box').text();
+		T_left	=(SetLeft+Base_s)*css_K*100/$('.zoom_box').text();
 
-				}else{
-					$('.mail_img_view').attr('src',ImgSrc);
-					$('#img_code').val();
+		T_Width	=img_W/(Zoom/100);
+		T_Height=img_H/(Zoom/100);
 
-				}
-				$('.set_back').fadeOut(200);	
+		var cvs = document.getElementById('cvs1');
+		var ctx = cvs.getContext('2d');
 
-				$('#wait').hide();
-				$('.zoom_box').text('100');
-				$('#input_zoom').val('100');
-				Rote=0;
+		ctx.drawImage(ImgCanvas, T_Top, T_left, T_Width, T_Height, 0, 0, 600, 600);
+		ImgCode = cvs.toDataURL("image/jpeg");
+/*		ctx.clearRect(0, 0, 600,600);*/
 
-			}).fail(function(jqXHR, textStatus, errorThrown){
-				console.log(textStatus);
-				console.log(errorThrown);
-			});
-
-		}else{
-			$('.img_box').animate({'top':'120vh'},200);
-			var cvs = document.getElementById('cvs1');
-			var ctx = cvs.getContext('2d');
-			ctx.clearRect(0, 0, cvs_A,cvs_A);
-			$('.set_back').fadeOut(200);
-			$('#img_code').val('');
-
-		}
 	});
 
 

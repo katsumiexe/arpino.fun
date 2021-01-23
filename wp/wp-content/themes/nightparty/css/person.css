@@ -316,16 +316,10 @@
 
 
 .sche_block1{
-	display:inline-block;
-	width:42px;
-	text-align:center;
-
-}
-.sche_block2{
-	display:inline-block;
-	width:100px;
-	text-align:center;
-
+	display			:inline-block;
+	width			:42px;
+	padding-left	:10px;
+	text-align		:left;
 }
 
 @media screen and (max-width: 959px){
@@ -502,16 +496,8 @@
 
 
 .sche_block1{
-	display:inline-block;
 	width:12vw;
-	text-align:center;
-
-}
-.sche_block2{
-	display:inline-block;
-	width:28vw;
-	text-align:center;
-
+	padding-left:1vw;
 }
 
 

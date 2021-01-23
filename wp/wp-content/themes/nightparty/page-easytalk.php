@@ -213,8 +213,9 @@ const CastId="<?=$ssid["cast_id"]?>";
 		<div id="img_set" class="btn_c1">登録</div>　
 		<div id="img_reset" class="btn_c3">リセット</div>
 	</div>
-
 	<input id="upd" type="file" accept="image/*" style="display:none;">
+	<canvas id="cvs2" width="800px" height="800px;"></canvas>
+
 </div>
 </body>	
 </html>

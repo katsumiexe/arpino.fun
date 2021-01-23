@@ -5,6 +5,7 @@ BlogSet
 require_once ("./post_inc.php");
 $date_gmt=date("Y-m-d H:i:s");
 $now=date("Y-m-d H:i:s",$jst);
+$updir = wp_upload_dir();
 
 $yy=$_POST["yy"];
 $mm=$_POST["mm"];
@@ -57,25 +58,16 @@ $blog_st[2]="<span class=\"hist_status hist_2\">非公開</span>";
 if($open<=1 && $now < $date_jst){
 	$open=1;
 }
+
 if($open == 2){
 	$status="draft";
 }else{
 	$status="publish";
 }
 
-$updir = wp_upload_dir();
 $blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$tmp["ID"]}.png";
 
 if($chg){
-/*
-	$sql="INSERT INTO wp01_posts ";
-	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
-	$sql.="VALUES";
-	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','publish','{$date_jst}','{$date_gmt}'";
-	$sql.=",'closed','closed','{$chg}-revision-v1','blog/{$cast_id}/{$chg}-revision-v1/','revision','{$chg}')";
-	$wpdb->query($sql);
-	$tmp_auto=$wpdb->insert_id;
-*/
 	$sql="UPDATE wp01_posts SET";
 	$sql.=" post_author='{$cast_id}',";
 	$sql.=" post_date='{$date_jst}',";
@@ -95,44 +87,51 @@ if($chg){
 	$sql.=",'closed','closed','{$chg}-revision-v1','blog/{$cast_id}/{$chg}-revision-v1/','revision','{$chg}')";
 	$wpdb->query($sql);
 
+
+	$sql ="UPDATE `wp01_term_relationships` SET";
+	$sql.=" term_taxonomy_id='{$tag}'";
+
+	$sql.=" WHERE object_id='{$chg}'";
+//	$sql.=" AND term_taxonomy_id='{$tag}'";
+	$wpdb->query($sql);
+
 }else{
-
-
 	$sql="INSERT INTO wp01_posts ";
-	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_password, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
+	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
-	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','publish','{$cast_id}','{$date_jst}','{$date_gmt}'";
+	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','publish','{$date_jst}','{$date_gmt}'";
 	$sql.=",'open','open','post','{$updir['baseurl']}/{$cast_id}/','post','0')";
 	$wpdb->query($sql);
 	$tmp_auto=$wpdb->insert_id;
-
-	$sql="INSERT INTO wp01_term_relationships";
-	$sql.="(object_id,term_taxonomy_id)";
+	$tmp_auto2=$tmp_auto++;
+/*
+	$sql="INSERT INTO wp01_posts ";
+	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
-	$sql.="('{$tmp_auto}','{$term[0]}'),";
-	$sql.="('{$tmp_auto}','{$term[1]}')";
+	$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','{$log}','{$ttl}','inherit','{$date_jst}','{$date_gmt}'";
+	$sql.=",'closed','closed','{$tmp_auto}-revision-v1','{$updir['baseurl']}/{$cast_id}/{$tmp_auto}-revision-v1/','revision','{$tmp_auto}')";
 	$wpdb->query($sql);
-
-	$tmp_auto_n=$tmp_auto+1;
+*/
 	if($img_code){
 		$sql="INSERT INTO wp01_posts ";
-		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type,post_parent)";
+		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type";
 		$sql.="VALUES";
 		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto2}','inherit','{$date_jst}','{$date_gmt}'";
-		$sql.=",'open','closed','img_{$tmp_auto_n}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto_n}.png','attachment','image/png','{$tmp_auto}')";
+		$sql.=",'open','closed','img_{$tmp_auto2}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png','attachment','image/png')";
 		$wpdb->query($sql);
-		$tmp_auto2=$wpdb->insert_id;
+
+//		$tmp_auto2=$wpdb->insert_id;
 
 		$img_origin			="img_{$tmp_auto2}.png";
 		$img_origin_cnt		=mb_strlen($img_origin);
 		$tmp_in="a:5:{s:5:\"width\";i:600;s:6:\"height\";i:600;s:4:\"file\";s:{$img_origin_cnt}:\"{$img_origin}\";s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}";
 
 		$sql	 ="INSERT INTO wp01_postmeta(post_id,meta_key,meta_value)";
-		$sql	.="VALUES('{$tmp_auto}','_thumbnail_id','{$tmp_auto2}'),";
-		$sql	.="('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
+		$sql	.="VALUES('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
 		$sql	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
 		$sql	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
 		$wpdb->query($sql);
+
 
 		$mk_dir="../../../../wp-content/uploads/np{$cast_id}/";
 		if(!is_dir($mk_dir)) {
@@ -164,6 +163,26 @@ if($chg){
 		imagepng($img2,$link2);
 	}
 
+	if($album){
+		$tmp_img=$album;
+
+	}elseif($img_code){
+		$tmp_img=$tmp_auto2;
+	}
+
+	$sql="INSERT INTO wp01_postmeta";
+	$sql.="(post_id, meta_key, meta_value)";
+	$sql.="VALUES";
+	$sql.="('{$tmp_auto}','_thumbnail_id','{$tmp_img}')";
+	$wpdb->query($sql);
+
+	$sql="INSERT INTO wp01_term_relationships";
+	$sql.="(object_id,term_taxonomy_id)";
+	$sql.="VALUES";
+	$sql.="('{$tmp_auto}','{$term[0]}'),";
+	$sql.="('{$tmp_auto}','{$term[1]}')";
+	$wpdb->query($sql);
+
 	$sql="INSERT INTO wp01_posts ";
 	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
@@ -172,12 +191,18 @@ if($chg){
 	$wpdb->query($sql);
 }
 
+
 if($img_code){
 	$tmp_img="{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png";
 
 }else{
 	$tmp_img="{get_template_directory_uri()}/img/customer_no_img.jpg";
 }
+
+
+
+
+
 
 $log=str_replace("\n","<br>",$log);
 
