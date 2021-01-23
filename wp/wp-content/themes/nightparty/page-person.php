@@ -23,6 +23,15 @@ $val=$_REQUEST["cast"];
 $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
+	$charm[1]=$a1["charm01"];
+	$charm[2]=$a1["charm02"];
+	$charm[3]=$a1["charm03"];
+	$charm[4]=$a1["charm04"];
+	$charm[5]=$a1["charm05"];
+	$charm[6]=$a1["charm06"];
+	$charm[7]=$a1["charm07"];
+	$charm[8]=$a1["charm08"];
+	$charm[9]=$a1["charm09"];
 
 	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
 		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_main\">";
@@ -60,7 +69,7 @@ for($n=0;$n<7;$n++){
 	if($tmp_s && $tmp_e){
 		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
 	}else{
-		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
+		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block2\">休み</span></td>";
 	}
 }
 
@@ -97,22 +106,22 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
 
 foreach($res as $a2){
-
-	$a2["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
+	$blog[$n]=$a2;
+	$img_tmp=$a2["ID"]+2;
+	$blog[$n]["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
 
 	$sql ="SELECT guid FROM wp01_postmeta";
-	$sql.=" LEFT JOIN wp01_posts ON meta_value=ID";
-	$sql.=" WHERE meta_key='_thumbnail_id'";
-	$sql.=" AND meta_value='{$a2["ID"]}'";
+	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
+	$sql.=" WHERE post_id='{$val}'";
+	$sql.=" AND meta_key='_thumbnail_id'";
 	$thumb = $wpdb->get_var($sql);
-	if($thumb){
-		$a2["img"]=$thumb."?t=".time();
-	}else{
-		$a2["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
-	}
-	$blog[]=$a2;
 
-	echo $sql;
+	if($thumb){
+		$blog[$n]["img"]=$thumb."?t=".time();
+	}else{
+		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
+	}
+	$n++;
 }
 
 $sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
@@ -144,6 +153,8 @@ $sql.=" AND (cast_id='' OR cast_id='{$val}')";
 $sql.=" ORDER BY list_sort ASC";
 
 $res = $wpdb->get_results($sql,ARRAY_A);
+
+echo $sql;
 
 foreach($res as $a0){
 	if($a0["sel"] ==1 ){
