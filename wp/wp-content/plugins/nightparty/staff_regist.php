@@ -265,7 +265,7 @@ td{
 	z-index		:27;
 }
 
-#cvs1{
+.cvw_0{
 	position	:absolute;
 	background	:#f0f0f0;
 }
@@ -365,7 +365,10 @@ input[type=range]::-moz-range-thumb{
 	left			:0;
 	width			:190px;
 	height			:240px;
+	overflow		:hidden;
 }
+
+
 .img_box_in3{
 	display			:flex;
 	flex-wrap		:nowrap;
@@ -404,10 +407,18 @@ input[type=range]::-moz-range-thumb{
 
 }
 
+.cvs0{
+	width:150px;
+	height:200px;
+
+}
 
 -->
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="../../../../wp/wp-content/plugins/nightparty/js/jquery.ui.touch-punch.min.js?_{$jst}"></script>
+<script src="../../../../wp/wp-content/plugins/nightparty/js/image.js?_{$jst}"></script>
 <script>
 $(function(){ 
 	$('#staff_l').on('click',function () {
@@ -542,10 +553,11 @@ CAST情報
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
 	<div class="img_up_box">
-	<?for($n=0;$n<4;$n++){?>
+	<?for($n=1;$n<5;$n++){?>
 		<div class="img_up_box_in">
 			<div class="img_box_in">
-			<canvas id="cvs1" width="800px" height="800px;"></canvas>
+
+			<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
 			<div class="img_box_out1"></div>
 			<div class="img_box_out2"></div>
 			<div class="img_box_out3"></div>
@@ -572,8 +584,8 @@ CAST情報
 </tr>
 </table>
 </form>
-<input id="upd1" type="file" accept="image/*" style="display:none;">
-<input id="upd2" type="file" accept="image/*" style="display:none;">
-<input id="upd3" type="file" accept="image/*" style="display:none;">
-<input id="upd4" type="file" accept="image/*" style="display:none;">
+<input id="upd1" class="img_upd" type="file" accept="image/*" style="display:none;">
+<input id="upd2" class="img_upd" type="file" accept="image/*" style="display:none;">
+<input id="upd3" class="img_upd" type="file" accept="image/*" style="display:none;">
+<input id="upd4" class="img_upd" type="file" accept="image/*" style="display:none;">
 </div> 

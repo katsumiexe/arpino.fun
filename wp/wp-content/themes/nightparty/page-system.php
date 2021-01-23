@@ -3,7 +3,7 @@
 Template Name: System
 */
 
-$sql="SELECT * FROM wp01_posts WHERE post_name LIKE 'SYSTEM-%' ORDER BY post_name DESC";
+$sql="SELECT * FROM wp01_posts WHERE post_name LIKE 'SYSTEM-%' AND post_status='publish' ORDER BY post_name DESC";
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
 	$sort=str_replace("SYSTEM-","",$a1["post_name"]);
