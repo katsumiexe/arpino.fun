@@ -2,11 +2,10 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 	
-	var Fav			=0;
-	var cvs_A		=0;
-	var Rote		=0;
-	var Zoom		=100;
-	var Zoom		=100;
+	var Fav			=[];
+	var cvs_A		=[];
+	var Rote		=[];
+	var Zoom		=[100,100,100,100,100];
 	var Chg			='';
 
 	var ImgTop	=[];
@@ -73,11 +72,9 @@ $(function(){
 
 						css_A=css_W;
 						css_B=Base_s-(css_A-Base_l)/2;
-
 					}				
 
 					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
-
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
 					ImgCode = cvs.toDataURL("image/jpeg");
 
@@ -89,7 +86,7 @@ $(function(){
 						ImgTop		=css_B;
 						ImgLeft		=css_B;
 						Rote		=0;
-						Zoom		=100;
+						Zoom		=[100,100,100,100,100];
 				}
 			};
 		})(file);
@@ -158,7 +155,7 @@ $(function(){
 			}).done(function(data, textStatus, jqXHR){
 				base_64=data;
 				$('.img_box').animate({'top':'120vh'},200);
-				var cvs = document.getElementById('cvs1');
+				var cvs = document.getElementById('cvs'+Tmp);
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 				if(base_64){
@@ -228,47 +225,49 @@ $(function(){
 	});
 
 	$('.zoom_mi').on( 'click', function () {
-		Zoom--;
-		if(Zoom <100){
-			Zoom=100;
+		Tmp=$(this).attr("id").replace('mi','');
+		Zoom[Tmp]--;
+		if(Zoom[Tmp] <100){
+			Zoom[Tmp]=100;
 		}
 
-		var css_An	=Math.floor(Zoom*css_A/100);
-		$("#cvs1").css({'width':css_An,'height':css_An});
+		var css_An	=Math.floor(Zoom[Tmp]*css_A/100);
+		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
-		$('.zoom_box').text(Zoom);
-		$('#img_zoom').val(Zoom);
-		$('#input_zoom').val(Zoom);
+		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
+		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
 	$( '.zoom_pu' ).on( 'click', function () {
-		Zoom++;
-		if(Zoom >300){
-			Zoom=300;
+		Tmp=$(this).attr("id").replace('pu','');
+		Zoom[Tmp]++;
+		if(Zoom[Tmp]>200){
+			Zoom[Tmp]=200;
 		}
 
-		var css_An	=Math.floor(Zoom*css_A/100);
-		$("#cvs1").css({'width':css_An,'height':css_An});
+		var css_An	=Math.floor(Zoom[Tmp]*css_A/100);
+		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
-		$('.zoom_box').text(Zoom);
-		$('#img_zoom').val(Zoom);
-		$('#input_zoom').val(Zoom);
+		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
+		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
-	$( '#input_zoom' ).on( 'input', function () {
-		Zoom=$(this).val();
-		if(Zoom > 300){
-			Zoom=300;
+	$( '.range_bar' ).on( 'input', function () {
+
+		Tmp=$(this).attr("id").replace('zoom','');
+		Zoom[Tmp]=$(this).val();
+		if(Zoom[Tmp] > 200){
+			Zoom[Tmp]=200;
 		}
-		if(Zoom < 100){
-			Zoom=100;	
+		if(Zoom[Tmp] < 100){
+			Zoom[Tmp]=100;	
 		}
 
-		var css_An	=Math.floor(Zoom*css_A/100);
-		$("#cvs1").css({'width':css_An,'height':css_An});
+		var css_An	=Math.floor(Zoom[Tmp]*css_A/100);
+		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
-		$('.zoom_box').text(Zoom);
-		$('#img_zoom').val(Zoom);
+		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
+		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
 	$('#img_reset').on( 'click', function () {

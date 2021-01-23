@@ -42,7 +42,7 @@ td{
 
 .img_up_box_in{
 	display:block;
-	background	:#900000;
+	background	:#fafafa;
 	width		:190px;
 	height		:315px;
 	position	:relative;
@@ -553,10 +553,9 @@ CAST情報
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
 	<div class="img_up_box">
-	<?for($n=1;$n<5;$n++){?>
+	<?for($n=0;$n<4;$n++){?>
 		<div class="img_up_box_in">
 			<div class="img_box_in">
-
 			<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
 			<div class="img_box_out1"></div>
 			<div class="img_box_out2"></div>
@@ -569,12 +568,12 @@ CAST情報
 			</div>
 			<div class="img_up_comm">
 				<label for="upd<?=$n?>" class="img_up_file">UPLOAD</label>
-				<span type="button" class="img_up_rote">■</span>
-				<span type="button" class="img_up_del">■</span>
+				<span id="rote<?=$n?>" type="button" class="img_up_rote">■</span>
+				<span id="del<?=$n?>" type="button" class="img_up_del">■</span>
 				<div class="img_box_in3">
-					<div class="zoom_mi">-</div>
-					<div class="zoom_rg"><input id="input_zoom" type="range" name="num" min="100" max="300" step="1" value="100" class="range_bar"></div>
-					<div class="zoom_pu">+</div><div class="zoom_box">100</div>
+					<div id="mi<?=$n?>" class="zoom_mi">-</div>
+					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="num" min="100" max="200" step="1" value="100" class="range_bar"></div>
+					<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
 				</div>
 			</div>
 		</div>
