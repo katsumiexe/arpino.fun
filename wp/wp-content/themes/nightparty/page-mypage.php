@@ -341,8 +341,6 @@ for($n=0;$n<8;$n++){
 	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 
-	echo $sql;
-
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
 
@@ -565,6 +563,8 @@ for($n=0;$n<8;$n++){
 	$sql.=" ORDER BY post_date DESC";
 	$sql.=" LIMIT 11";
 
+echo $sql;
+
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 
 	$blog_max=count($dat);
@@ -635,7 +635,7 @@ for($n=0;$n<8;$n++){
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 
 	foreach($dat as $a1){
-		$tag_list[$a1["slug"]]=$a1["name"];
+		$tag_list[$a1["term_id"]]=$a1["name"];
 	}
 
 	$sql ="SELECT * FROM wp01_0cast_log_table";

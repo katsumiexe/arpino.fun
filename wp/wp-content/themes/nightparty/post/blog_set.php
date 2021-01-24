@@ -131,7 +131,7 @@ if($chg){
 
 		$app	.="('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
 		$app	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
-		$app	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}')";
+		$app	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}'),";
 
 		$mk_dir="../../../../wp-content/uploads/np{$cast_id}/";
 		if(!is_dir($mk_dir)) {
