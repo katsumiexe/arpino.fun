@@ -71,6 +71,7 @@ $(function(){
 	});
 
 	$('.tag_set').on('click',function () {
+
 		if($(this).hasClass('tag_set_ck')!='true'){
 
 			Tmp_tr=$(this).attr('id')+"_tbl";
@@ -127,7 +128,6 @@ $(function(){
 		}
 	});
 
-/*not(:this).css("background-color", "yellow");*/
 
 	$('.blog_list').on('click','.blog_hist_in',function () {
 		if($(this).next('.hist_log').css('display')=='none'){

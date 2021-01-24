@@ -40,7 +40,7 @@ global $wpdb;
 function set_tarot_base(){
 	global $wpdb;
 	$n=0;
-	$sql	 ="SELECT * FROM tarot_base";
+	$sql	 ="SELECT * FROM zz_tarot_base";
 	$sql	.=" ORDER BY id ASC";
 	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
 
@@ -58,7 +58,7 @@ function set_tarot_detail(){
 function set_tarot_card(){
 	global $wpdb;
 	$n=0;
-	$sql	 ="SELECT * FROM tarot_base";
+	$sql	 ="SELECT * FROM zz_tarot_base";
 	$sql	.=" ORDER BY id ASC";
 	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
 
@@ -77,12 +77,12 @@ function chu_chu_fanc($num) {
 	global $wpdb;
 	$jst	=time()+32400;
 
-	$sql	="SELECT * FROM tarot_group";
+	$sql	="SELECT * FROM zz_tarot_group";
 	$sql	.=" WHERE id='{$gp}'";
 	$sql	.=" LIMIT 1";
 	$group	= $wpdb->get_row($sql,ARRAY_A);
 
-	$sql	="SELECT * FROM tarot_base";
+	$sql	="SELECT * FROM zz_tarot_base";
 	$sql1	= $wpdb->get_results($sql,ARRAY_A);
 	foreach($sql1 as $nn){
 		$tarot_base[$nn["id"]]=$nn;

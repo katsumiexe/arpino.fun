@@ -9,7 +9,7 @@ $position[1]="正";
 $position[0]="逆";
 $rev[0]		="chu_img_rev";
 
-$sql	 ="SELECT * FROM tarot_group";
+$sql	 ="SELECT * FROM zz_tarot_group";
 $sql	 .=" WHERE id='{$gp}'";
 $sql	 .=" AND del=0";
 $group = $wpdb->get_row($sql,ARRAY_A);
@@ -21,14 +21,14 @@ $apps=substr($apps,0,-2);
 
 
 
-$sql	 ="SELECT sort, oracle_name FROM tarot_oracle";
+$sql	 ="SELECT sort, oracle_name FROM zz_tarot_oracle";
 $sql	 .=" WHERE oracle_id='{$gp}'";
 $sql0 = $wpdb->get_results($sql,ARRAY_A);
 foreach($sql0 as $a1){
 	$ttl[$a1["sort"]]=$a1["oracle_name"];
 }
 
-$sql	 ="SELECT * FROM tarot_data";
+$sql	 ="SELECT * FROM zz_tarot_data";
 $sql	 .=" WHERE group_id='{$gp}'";
 $sql	 .=" AND(";
 $sql	 .= $apps;
@@ -49,7 +49,7 @@ for($n=1;$n<$group["oracle"];$n++){
 	$app.=" OR id='{$tarot_id[$n]}'";
 }
 
-$sql	 ="SELECT * FROM tarot_base";
+$sql	 ="SELECT * FROM zz_tarot_base";
 $sql	 .=" WHERE id='{$tarot_id[0]}'";
 $sql	 .=$app;
 
