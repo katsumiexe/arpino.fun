@@ -341,6 +341,8 @@ for($n=0;$n<8;$n++){
 	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 
+	echo $sql;
+
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
 
