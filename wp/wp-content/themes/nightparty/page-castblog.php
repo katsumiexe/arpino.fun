@@ -47,6 +47,7 @@ foreach($res as $a1){
 //■キャスト件数カウント
 $sql ="";
 $sql ="SELECT T.slug, MAX(P.post_date) AS last, C.genji, COUNT(T.term_id) AS cnt FROM wp01_posts AS P";
+
 $sql.=" LEFT JOIN wp01_term_relationships AS R on P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X on R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T on X.term_id=T.term_id";
@@ -145,6 +146,7 @@ $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
 $sql.=" LEFT JOIN wp01_term_relationships AS R2 ON P.ID=R2.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X2 ON R2.term_taxonomy_id=X2.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T2 ON R2.term_taxonomy_id=T2.term_id";
+
 $sql.=" INNER JOIN wp01_0cast AS C ON T.slug=C.id";
 
 $sql.=" WHERE P.post_type='post'";
@@ -169,7 +171,6 @@ $sql.=" LIMIT {$pg_st},16";
 $res = $wpdb->get_results($sql,ARRAY_A);
 $updir = wp_upload_dir();
 
-
 foreach($res as $a2){
 	$blog[$n]=$a2;
 	$blog[$n]["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
@@ -177,8 +178,10 @@ foreach($res as $a2){
 
 	$sql ="SELECT guid FROM wp01_postmeta";
 	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
-	$sql.=" WHERE post_id='{$a2["ID"]}'";
-	$sql.=" AND meta_key='_thumbnail_id'";
+	$sql.=" WHERE meta_key='_thumbnail_id'";
+	$sql.=" AND post_id='{$a2["ID"]}'";
+	$sql.=" ORDER BY meta_id DESC";
+	$sql.=" LIMIT 1";
 	$thumb = $wpdb->get_var($sql);
 
 	if($thumb){
