@@ -30,22 +30,28 @@ td{
 	vertical-align:top;
 }
 
+.up_box{
+	display		:block;
+	width		:400px;
+	margin		:0 10px;
+}
+
 .img_up_box{
 	display		:flex;
 	justify-content: space-around;
 	flex-wrap	:wrap;
-	background	:#0000f0;
 	width		:400px;
 	height		:650px;
 	margin		:10px;
 }
 
 .img_up_box_in{
-	display:block;
+	display		:block;
 	background	:#fafafa;
 	width		:190px;
-	height		:315px;
+	height		:305px;
 	position	:relative;
+	border:2px solid #906000;
 }
 
 .img_up_img{
@@ -62,9 +68,9 @@ td{
 	display		:inline-block;
 	position	:absolute;
 	top			:240px;
-	left		:10px;
-	background	:#fafafa;
-	width		:170px;
+	left		:0;
+	background	:#906000;
+	width		:190px;
 	height		:65px;
 }
 
@@ -72,8 +78,8 @@ td{
 	display		:inline-block;
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
-	top			:5px;
-	left		:5px;
+	top			:7px;
+	left		:15px;
 	height		:25px;
 	line-height	:25px;
 	width		:100px;
@@ -89,8 +95,8 @@ td{
 	display		:inline-block;
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
-	top			:5px;
-	left		:120px;
+	top			:7px;
+	left		:130px;
 	height		:25px;
 	line-height	:25px;
 	width		:20px;
@@ -104,8 +110,8 @@ td{
 	display		:inline-block;
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
-	top			:5px;
-	left		:145px;
+	top			:7px;
+	left		:155px;
 	height		:25px;
 	line-height	:25px;
 	width		:20px;
@@ -251,7 +257,7 @@ td{
 	left		:20px;
 	width		:150px;
 	height		:20px;
-	border-top	:0.2vw solid #ff0000;
+	border-top	:1px solid #ff0000;
 	z-index		:27;
 }
 
@@ -272,12 +278,12 @@ td{
 
 input[type=range] {
 	-webkit-appearance:none;
-	background		:#ffffff;
-	height			:10px;
-	width			:100%;
+	background		:#f17766;
+	height			:6px;
+	width			:80px;
 	display			:inline-block;
 	border			:none;
-	margin			:5px;
+	margin			:8px 5px;
 	border-radius	:0;
 }
 
@@ -374,8 +380,8 @@ input[type=range]::-moz-range-thumb{
 	flex-wrap		:nowrap;
 	font-size		:0;
 	position		:absolute;
-	top				:35px;
-	left			:5px;
+	top				:38px;
+	left			:15px;
 	width			:160px;
 	height			:25px;
 }
@@ -417,8 +423,8 @@ input[type=range]::-moz-range-thumb{
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="../../../../wp/wp-content/plugins/nightparty/js/jquery.ui.touch-punch.min.js?_{$jst}"></script>
-<script src="../../../../wp/wp-content/plugins/nightparty/js/image.js?_{$jst}"></script>
+<script src="../../../../wp/wp-content/plugins/nightparty/js/jquery.ui.touch-punch.min.js"></script>
+<script src="../../../../wp/wp-content/plugins/nightparty/js/image.js?_<?=time()?>"></script>
 <script>
 $(function(){ 
 	$('#staff_l').on('click',function () {
@@ -548,7 +554,7 @@ CAST情報
 <? } ?>
 
 </td><td class="cast_table">
-	<div class"up_box">
+	<div class="up_box">
 	画像の推奨は縦800px×横600pxです。<br>
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
@@ -583,8 +589,8 @@ CAST情報
 </tr>
 </table>
 </form>
+<input id="upd0" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd1" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd2" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd3" class="img_upd" type="file" accept="image/*" style="display:none;">
-<input id="upd4" class="img_upd" type="file" accept="image/*" style="display:none;">
 </div> 

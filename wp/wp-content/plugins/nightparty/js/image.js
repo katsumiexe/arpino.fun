@@ -13,13 +13,15 @@ $(function(){
 	var ImgZoom	=[];
 	var ImgRote	=[];
 
+	var cvs		=[];
+	var ctx		=[];
+
 	var Base_s	=20;
 	var Base_l	=150;
 	var Base_h	=200;
 
 
 	$('.img_upd').on('change', function(e){
-
 		Tmp=$(this).attr("id").replace('upd','');
 
 		var file = e.target.files[0];	
@@ -57,7 +59,8 @@ $(function(){
 						css_H=img_H*(css_W/img_W);
 
 						css_A=css_H;
-						css_B=Base_s-(css_A-Base_l)/2;
+						css_B=20-(css_A-150)/2;
+						css_C=20-(css_A-200)/2;
 
 					}else{
 						cvs_H=1200;
@@ -71,22 +74,18 @@ $(function(){
 						css_W=img_W*(css_H/img_H);
 
 						css_A=css_W;
-						css_B=Base_s-(css_A-Base_l)/2;
+						css_B=20-(css_A-150)/2;
+						css_C=20-(css_A-200)/2;
 					}				
 
-					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
+					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C});
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
 					ImgCode = cvs.toDataURL("image/jpeg");
 
-					$('#img_top').val(css_B);
-					$('#img_left').val(css_B);
-
-						ImgWidth	=css_A;
-						ImgHeight	=css_A;
-						ImgTop		=css_B;
-						ImgLeft		=css_B;
-						Rote		=0;
-						Zoom		=[100,100,100,100,100];
+						ImgTop[Tmp]		=css_B;
+						ImgLeft[Tmp]	=css_C;
+						Rote[Tmp]		=0;
+						Zoom[Tmp]		=100;
 				}
 			};
 		})(file);
@@ -136,6 +135,7 @@ $(function(){
 
 	});
 
+/*
 	$('#img_set').on('click',function(){	
 		if(ImgCode){
 			console.log(Rote);
@@ -189,31 +189,50 @@ $(function(){
 
 		}
 	});
+*/
 
-
-	$('.upload_trush').on('click',function(){	
-		var cvs = document.getElementById('cvs1');
-		var ctx = cvs.getContext('2d');
-		ctx.clearRect(0, 0, cvs_A,cvs_A);
-		$('.mail_img_view').hide().attr('src',"");
-		ImgCode='';
+	$('.img_up_del').on('click',function(){	
+		Tmp=$(this).attr("id").replace('del','');
+/*
+		var cvs[Tmp] = document.getElementById('cvs'+Tmp);
+		var ctx[Tmp] = cvs[Tmp].getContext('2d');
+*/
+		ctx[Tmp].clearRect(0, 0, 1200,1200);
 	});
 
 
-	$('#img_close').on('click',function(){	
-		$('.set_back').fadeOut(200);
-		$('.img_box	').animate({'top':'120vh'},200);
+	$('.img_up_rote').on('click',function(){
+		Tmp=$(this).attr("id").replace('rote','');
 
-		var cvs = document.getElementById('cvs1');
-		var ctx = cvs.getContext('2d');
-		ctx.clearRect(0, 0, cvs_A,cvs_A);
+		for(n=0;n<9;n++){
+			Rote[Tmp]-=10;
+			$('#cvs'+Tmp).css({'transform':'rotate(' + Rote[Tmp] + 'deg)'});
+console.log("●");
+		}
+
+//		Rote[Tmp] -=90;
+		if(Rote[Tmp] <0){
+			Rote[Tmp]+=360;
+		}
 	});
 
-	$('.upload_rote').on('click',function(){
+
+/*
+$('.rotate').animate( { opacity: 1 }, {
+	duration: 1000,
+		step: function (now) {
+			$(this).css({ transform: 'rotate(' + now * -45 + 'deg)' })
+	}
+});
+
+	$('.img_up_rote').on('click',function(){
+
+		Tmp=$(this).attr("id").replace('rote','');
+
 		$({deg:Rote}).animate({deg:-90 + Rote}, {
 			duration:500,
 			progress:function() {
-				$('#cvs1').css({
+				$('#cvs'+Tmp).css({
 					'transform':'rotate(' + this.deg + 'deg)',
 				});
 			},
@@ -223,7 +242,7 @@ $(function(){
 			Rote+=360;
 		}
 	});
-
+*/
 	$('.zoom_mi').on( 'click', function () {
 		Tmp=$(this).attr("id").replace('mi','');
 		Zoom[Tmp]--;
@@ -282,22 +301,4 @@ $(function(){
 		$('#input_zoom').val(Zoom);
 	});
 
-	$('.img_open').on( 'click', function () {
-		$('.back').fadeIn(500);
-	});
-
-	$('#send_img').on('click',function(){
-		$('.img_box').animate({'top':'10vw'},200);
-		$('.set_back').fadeIn(100);
-		$('#img_code').val('');
-	});
-
-	$('#img_close').on('click',function(){
-		$('#img_code').val('')
-		$('.img_box').animate({'top':'120vh'},200);
-		var cvs = document.getElementById('cvs1');
-		var ctx = cvs.getContext('2d');
-		ctx.clearRect(0, 0, cvs_A,cvs_A);
-		$('.set_back').fadeOut(200);
-	});
 });
