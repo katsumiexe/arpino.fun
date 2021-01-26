@@ -12,6 +12,8 @@ $(function(){
 	var ImgLeft	=[];
 	var ImgZoom	=[];
 	var ImgRote	=[];
+	var ImgWidth=[];
+
 
 	var cvs		=[];
 	var ctx		=[];
@@ -80,12 +82,25 @@ $(function(){
 
 					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C});
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
-					ImgCode = cvs.toDataURL("image/jpeg");
 
-						ImgTop[Tmp]		=css_B;
-						ImgLeft[Tmp]	=css_C;
-						Rote[Tmp]		=0;
-						Zoom[Tmp]		=100;
+					ImgCode = cvs.toDataURL("image/jpeg");
+					ImgCode=ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+
+						ImgWidth[Tmp]		=css_A;
+						ImgLeft[Tmp]		=css_B;
+						ImgTop[Tmp]			=css_C;
+						Rote[Tmp]			=0;
+						Zoom[Tmp]			=100;
+
+						$('#c_'+Tmp).val(ImgCode);
+						$('#r_'+Tmp).val(0);
+
+						$('#w_'+Tmp).val(cvs_A);
+						$('#x_'+Tmp).val(css_B);
+						$('#y_'+Tmp).val(css_C);
+						$('#zoom'+Tmp).val(100);
+						$('#zoom_box'+Tmp).text(100);
+
 				}
 			};
 		})(file);
@@ -127,12 +142,10 @@ $(function(){
 
 	$(".cvs0").draggable();
 	$(".cvs0").on("mousemove", function() {
-
 		Tmp=$(this).attr("id").replace('cvs','');
 
-		ImgLeft[Tmp]	= $(this).css("left");
-		ImgTop[Tmp]		= $(this).css("top");
-
+		$('#x_'+Tmp).val($(this).css("left"));
+		$('#y_'+Tmp).val($(this).css("top"));
 	});
 
 /*
@@ -203,28 +216,26 @@ $(function(){
 
 	$('.img_up_rote').on('click',function(){
 		Tmp=$(this).attr("id").replace('rote','');
-/*
-		for(n=0;n<9;n++){
-			Rote[Tmp]-=10;
-			$('#cvs'+Tmp).delay(500).queue(function(){
-				$(this).css({'transform':'rotate(' + Rote[Tmp] + 'deg)'});
-console.log(Rote[Tmp]);
-			});
-		}
-*/
 
-$('#cvs'+Tmp).animate( { opacity: 1 }, {
-	duration: 3000,
-	step: function (Rote[Tmp]) {
-		$(this).css({ transform: 'rotate(' + Rote[Tmp] * -90 + 'deg)' })
-	}
-});
+		console.log(Rote[Tmp]);
+		$('#cvs'+Tmp).animate( { 'zIndex':1}, {
+			duration: 540,
+			step: function (now){
+				T_rote=Rote[Tmp] - now * 90;
+				$(this).css({ transform: 'rotate(' + T_rote + 'deg)' })
+			},
+			complete:function(){
+				$(this).css('zIndex', 0);
 
-//		Rote[Tmp] -=90;
-		if(Rote[Tmp] <0){
-			Rote[Tmp]+=360;
-		}
+				Rote[Tmp] -=90;
+				if(Rote[Tmp] <0){
+					Rote[Tmp]+=360;
+				}
+				$('#r_'+Tmp).val(Rote[Tmp]);
+			}
+		});
 	});
+
 
 
 /*
@@ -299,16 +310,21 @@ $('.rotate').animate( { opacity: 1 }, {
 		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
-	$('#img_reset').on( 'click', function () {
-		Zoom=100;
-		Left=css_B;
-		Right=css_B;
-		Rote=0;
-		$("#cvs1").css({'width': css_A,'height': css_A,'left': css_B,'top': css_B, 'transform':'rotate(0deg)'});
+	$('.img_up_reset').on( 'click', function () {
+		Tmp=$(this).attr("id").replace('reset','');
 
-		$('.zoom_box').text(Zoom);
-		$('#img_zoom').val(Zoom);
-		$('#input_zoom').val(Zoom);
+		Zoom[Tmp]	=100;
+		Rote[Tmp]	=0;
+		css_A		=ImgWidth[Tmp];
+		css_B		=ImgLeft[Tmp];
+		css_C		=ImgTop[Tmp];
+
+		$("#cvs"+Tmp).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C, 'transform':'rotate(0deg)'});
+		$('#zoom_box'+Tmp).text(100);
+		$('#zoom'+Tmp).val(100);
+
+		$('#x_'+Tmp).val(css_B);
+		$('#y_'+Tmp).val(css_C);
+		$('#r_'+Tmp).val(0);
 	});
-
 });

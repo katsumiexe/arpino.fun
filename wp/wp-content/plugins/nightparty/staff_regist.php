@@ -32,8 +32,9 @@ td{
 
 .up_box{
 	display		:block;
-	width		:400px;
+	width		:380px;
 	margin		:0 10px;
+	padding		:0 10px;
 }
 
 .img_up_box{
@@ -82,7 +83,7 @@ td{
 	left		:15px;
 	height		:25px;
 	line-height	:25px;
-	width		:100px;
+	width		:75px;
 	font-size	:16px;
 	text-align	:center;
 	color		:#fafafa;
@@ -92,6 +93,21 @@ td{
 }
 
 .img_up_rote{
+	display		:inline-block;
+	background	:linear-gradient(#c0c0c0,#909090);
+	position	:absolute;
+	top			:7px;
+	left		:105px;
+	height		:25px;
+	line-height	:25px;
+	width		:20px;
+	text-align	:center;
+	color		:#fafafa;
+	border-radius:3px;
+	cursor		:pointer;
+}
+
+.img_up_reset{
 	display		:inline-block;
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
@@ -572,17 +588,24 @@ CAST情報
 			<div class="img_box_out7"></div>
 			<div class="img_box_out8"></div>
 			</div>
+
 			<div class="img_up_comm">
 				<label for="upd<?=$n?>" class="img_up_file">UPLOAD</label>
 				<span id="rote<?=$n?>" type="button" class="img_up_rote">■</span>
+				<span id="reset<?=$n?>" type="button" class="img_up_reset">■</span>
 				<span id="del<?=$n?>" type="button" class="img_up_del">■</span>
 				<div class="img_box_in3">
 					<div id="mi<?=$n?>" class="zoom_mi">-</div>
-					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="num" min="100" max="200" step="1" value="100" class="range_bar"></div>
+					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
 					<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
 				</div>
 			</div>
 		</div>
+		<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
+		<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
+		<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
+		<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
+		<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
 	<?}?>
 	</div>
 </td>
