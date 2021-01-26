@@ -203,12 +203,22 @@ $(function(){
 
 	$('.img_up_rote').on('click',function(){
 		Tmp=$(this).attr("id").replace('rote','');
-
+/*
 		for(n=0;n<9;n++){
 			Rote[Tmp]-=10;
-			$('#cvs'+Tmp).css({'transform':'rotate(' + Rote[Tmp] + 'deg)'});
-console.log("●");
+			$('#cvs'+Tmp).delay(500).queue(function(){
+				$(this).css({'transform':'rotate(' + Rote[Tmp] + 'deg)'});
+console.log(Rote[Tmp]);
+			});
 		}
+*/
+
+$('#cvs'+Tmp).animate( { opacity: 1 }, {
+	duration: 3000,
+	step: function (Rote[Tmp]) {
+		$(this).css({ transform: 'rotate(' + Rote[Tmp] * -90 + 'deg)' })
+	}
+});
 
 //		Rote[Tmp] -=90;
 		if(Rote[Tmp] <0){
