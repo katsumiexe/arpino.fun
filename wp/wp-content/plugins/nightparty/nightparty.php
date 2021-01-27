@@ -71,6 +71,7 @@ if($_POST["staff_set"]){
 		}
 //■cast-------------------------------
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
+
 		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
 		$wpdb->query($sql);	
@@ -134,51 +135,47 @@ if($_POST["staff_set"]){
 		}
 
 //■img-------------------------------
+		if($img_c){
+			$a3=0;
+			foreach($img_c as $a1 => $a2){
+				if($a2){
+					$img2 		= imagecreatetruecolor(600,800);
 
-	if($img_c){
-		$a3=0;
-		foreach($img_c as $a1 => $a2){
-			if($a2){
-				$img2 		= imagecreatetruecolor(600,800);
+					$tmp_left	=floor((20-$img_x[$a1])*(1200/150)*100/$img_z[$a1]);
+					$tmp_top	=floor((20-$img_y[$a1])*(1600/200)*100/$img_z[$a1]);
 
-				$tmp_left	=floor(($img_x[$a1]-20)*(1200/150)*100/$img_z[$a1]);
-				$tmp_top	=floor(($img_y[$a1]-20)*(1600/200)*100/$img_z[$a1]);
+					$tmp_width	=ceil( (600/800) * ($img_w[$a1]*100) / $img_z[$a1]);
+					$tmp_height	=ceil(($img_w[$a1]*100)/$img_z[$a1]);
 
-				$tmp_width	=floor(($img_w[$a1]/2)*100/$img_z[$a1]);
-				$tmp_height	=floor(($img_w[$a1]/2)*100/$img_z[$a1]);
+					if($img_r[$a1] ==90){
+						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
+						$img		= imagerotate($new_img, 270, 0, 0);
 
+					}elseif($img_r[$a1] ==180){
+						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
+						$img		= imagerotate($new_img, 180, 0, 0);
 
-				if($img_r[$a1] ==90){
-					$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-					$img		= imagerotate($new_img, 270, 0, 0);
+					}elseif($img_r[$a1] ==270){
+						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
+						$img		= imagerotate($new_img, 90, 0, 0);
 
-				}elseif($img_r[$a1] ==180){
-					$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-					$img		= imagerotate($new_img, 180, 0, 0);
+					}else{
+						$img = imagecreatefromstring(base64_decode($img_c[$a1]));
+					}
 
-				}elseif($img_r[$a1] ==270){
-					$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
-					$img		= imagerotate($new_img, 90, 0, 0);
+					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
 
-				}else{
-					$img = imagecreatefromstring(base64_decode($img_c[$a1]));
+					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
+					imagejpeg($img2,$link."/".$a3.".jpg",100);
+					$a3++;
+
+		echo $a1."■".$img_x[$a1]."■".$img_y[$a1]."■".$img_z[$a1]."■".$img_r[$a1]."■<hr>";
+		echo $tmp_left."■".$tmp_top."■".$tmp_width."■".$tmp_height."■<hr>";
+
+					imagedestroy($img2);
 				}
-
-				ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-
-				$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
-				imagejpeg($img2,$link."/".$a3.".jpg",100);
-				$a3++;
-
-	echo $a1."■".$img_x[$a1]."■".$img_y[$a1]."■".$img_z[$a1]."■".$img_r[$a1]."■<hr>";
-	echo $tmp_left."■".$tmp_top."■".$tmp_width."■".$tmp_height."■<hr>";
-
-
-				imagedestroy($img2);
 			}
 		}
-	}
-
 	}
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }

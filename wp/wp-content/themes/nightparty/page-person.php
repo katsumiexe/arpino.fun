@@ -136,31 +136,27 @@ foreach($res as $a0){
 	$check_main[]=$a0;
 }
 
-
 $sql ="SELECT * FROM wp01_0check_list";
 $sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
-$sql.=" WHERE del='0'";
-$sql.=" AND (cast_id='' OR cast_id='{$val}')";
-$sql.=" ORDER BY list_sort ASC";
-
+$sql.=" AND del='0'";
+$sql.=" AND (cast_id IS NULL OR cast_id='{$val}')";
+$sql.=" ORDER BY host_id ASC, list_sort ASC";
 $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $a0){
-	if($a0["sel"] ==1 ){
-		$check_list[$a0["host_id"]][$a0["list_sort"]]=$a0;
-	}
+var_dump($a0);
+	$check_list[$a0["host_id"]][$a0["list_sort"]]=$a0;
 }
 
+
+/*
 for($n1=0;$n1<count($check_main);$n1++){
-
 echo "▼".$check_main[$n1]["title"]."<br>\n";
-
 	for($n2=0;$n2<count($check_list[$n1]);$n2++){
 		echo $check_list[$n1][$n2]["list_title"]."■" .$check_list[$n1][$n2]["list_sel"]."<br>\n";
-
 	}
 }
-
+*/
 
 get_header();
 ?>
@@ -212,8 +208,20 @@ get_header();
 		<table class="sche">
 			<?=$list?>
 		</table>
-	</div>
 
+
+		<?for($n=0;$n<count($check_main);$n++){?>
+		<div class="prof_title"><?=$check_main[$n]["title"]?></div>
+			<div class="check_box">
+				<?foreach($check_list[$check_main[$n]["id"]] as $a1 => $a2){?>
+
+				<?if($check_main[$n]["style"]==1 || $check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]== 1){?>
+					<div class="check_set<?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]?>"><?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["list_title"]?></div>
+				<? } ?>
+				<? } ?>
+			</div>
+		<?}?>
+	</div>
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
 			<?for($s=0;$s<count($blog);$s++){?>

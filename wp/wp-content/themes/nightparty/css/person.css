@@ -322,6 +322,31 @@
 	text-align		:left;
 }
 
+.check_box{
+	
+}
+
+.check_set1,.check_set{
+	display			:inline-block;
+	overflow		:hidden;
+	background		:#404040;
+	color			:#a0a0a0;
+	font-size		:18px;
+	height			:30px;
+	line-height		:30px;
+	padding-left	:5px;
+	border-radius	:5px;
+	width			:160px;
+	margin			:2px;
+}
+.check_set1{
+	background		:#f0c0d0;
+	color			:#606060;
+}
+
+
+
+
 @media screen and (max-width: 959px){
 
 .person_main{

@@ -175,13 +175,14 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="main_b">
 		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
+
 			<?for($n=0;$n<count($news);$n++){?>
 				<?if($news[$n]["post_content"]){?>
 					<table  class="main_b_notice" colspan="3">
 					<tr>
 					<td  class="main_b_td_1">
 						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
-						<span class="main_b_notice_tag notice" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
+						<span class="main_b_notice_tag" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
 					</td>
 					<td  class="main_b_td_2">
 						<a href="<?=home_url('/news')?>/?code=<?=$news[$n]["meta_id"]?>" class="main_b_notice_link">
@@ -198,7 +199,7 @@ var Cnt=<?=(count($slide)-1)?>;
 					<tr>
 					<td  class="main_b_td_1">
 						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
-						<span class="main_b_notice_tag notice" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
+						<span class="main_b_notice_tag" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
 					</td>
 					<td  class="main_b_td_2">
 						<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
@@ -241,7 +242,6 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 
 	<div class="main_c">
-
 		<?for($n=0;$n<count($info);$n++){?>
 			<?if($info[$n]["post_content"]){?>
 				<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>" class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side{$n}.png" class="side_img"></a>;

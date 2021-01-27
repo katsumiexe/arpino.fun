@@ -2024,14 +2024,15 @@ ul {
 
 .main_b_top2{
 	display		:flex;
-	justify-content: space-between;
 	width		:94vw;
-	margin:0 auto 2vw auto;
+	margin		:0 auto 2vw auto;
+	justify-content: space-between;
 }
 
 .top2_img{
-	width:46vw;
-	flex-basis:46vw;
+	width		:45vw;
+	flex-basis	:46vw;
+	height		:15vw;
 }
 
 

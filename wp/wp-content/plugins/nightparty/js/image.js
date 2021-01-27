@@ -50,34 +50,35 @@ $(function(){
 					img_S2=Base_l;
 
 					if(img_H /200> img_W/150){
+
 						cvs_W=1200;
 						cvs_H=img_H*(cvs_W/img_W);
 						cvs_A=Math.ceil(cvs_H);
 
-						cvs_X=(cvs_H-cvs_W)/2;
+						cvs_X=Math.ceil((cvs_H-cvs_W)/2);
 						cvs_Y=0;
 
 						css_W=Base_l;
-						css_H=img_H*(css_W/img_W);
+						css_H=Math.ceil(img_H*(css_W/img_W));
 
 						css_A=css_H;
-						css_B=20-(css_A-150)/2;
-						css_C=20-(css_A-200)/2;
+						css_B=Math.ceil(20-(css_A-150)/2);
+						css_C=Math.ceil(20-(css_A-200)/2);
 
 					}else{
 						cvs_H=1200;
 						cvs_W=img_W*(cvs_H/img_H);
 						cvs_A=Math.ceil(cvs_W);
 
-						cvs_Y=(cvs_W-cvs_H)/2;
+						cvs_Y=Math.ceil((cvs_W-cvs_H)/2);
 						cvs_X=0;
 
 						css_H=Base_l;
-						css_W=img_W*(css_H/img_H);
+						css_W=Math.ceil(img_W*(css_H/img_H));
 
 						css_A=css_W;
-						css_B=20-(css_A-150)/2;
-						css_C=20-(css_A-200)/2;
+						css_B=Math.ceil(20-(css_A-150)/2);
+						css_C=Math.ceil(20-(css_A-200)/2);
 					}				
 
 					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C});
@@ -86,25 +87,27 @@ $(function(){
 					ImgCode = cvs.toDataURL("image/jpeg");
 					ImgCode=ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
 
-						ImgWidth[Tmp]		=css_A;
-						ImgLeft[Tmp]		=css_B;
-						ImgTop[Tmp]			=css_C;
-						Rote[Tmp]			=0;
-						Zoom[Tmp]			=100;
+					ImgWidth[Tmp]		=css_A;
+					ImgLeft[Tmp]		=css_B;
+					ImgTop[Tmp]			=css_C;
 
-						$('#c_'+Tmp).val(ImgCode);
-						$('#r_'+Tmp).val(0);
+					Rote[Tmp]			=0;
+					Zoom[Tmp]			=100;
 
-						$('#w_'+Tmp).val(cvs_A);
-						$('#x_'+Tmp).val(css_B);
-						$('#y_'+Tmp).val(css_C);
-						$('#zoom'+Tmp).val(100);
-						$('#zoom_box'+Tmp).text(100);
+					$('#c_'+Tmp).val(ImgCode);
+					$('#r_'+Tmp).val(0);
 
+					$('#w_'+Tmp).val(cvs_A);
+					$('#x_'+Tmp).val(css_B);
+					$('#y_'+Tmp).val(css_C);
+					$('#zoom'+Tmp).val(100);
+					$('#zoom_box'+Tmp).text(100);
 				}
 			};
 		})(file);
 		reader.readAsDataURL(file);
+
+
 /*
 		$('#upd').fileExif(function(exif) {
 
