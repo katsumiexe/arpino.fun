@@ -66,14 +66,14 @@ $(function(){
 						css_C=Math.ceil(20-(css_A-200)/2);
 
 					}else{
-						cvs_H=1200;
+						cvs_H=1600;
 						cvs_W=img_W*(cvs_H/img_H);
 						cvs_A=Math.ceil(cvs_W);
 
 						cvs_Y=Math.ceil((cvs_W-cvs_H)/2);
 						cvs_X=0;
 
-						css_H=Base_l;
+						css_H=200;
 						css_W=Math.ceil(img_W*(css_H/img_H));
 
 						css_A=css_W;
