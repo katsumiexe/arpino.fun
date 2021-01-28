@@ -605,6 +605,7 @@ CAST情報
 			</div>
 		</div>
 		<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
+		<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
 		<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
 		<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
 		<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">

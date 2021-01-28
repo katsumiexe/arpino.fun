@@ -24,18 +24,18 @@ $sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
 $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
 
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
 		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_main\">";
-		$face_b="<img id=\"i1\" src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
+		$face_b="<img id=\"i1\" src=\"{$link}/img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_sub\">";
 
+		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
+			$face_b.="<img id=\"i2\" src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
+		}
 		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/2.jpg")) {
-			$face_b.="<img id=\"i2\" src=\"{$link}/img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
+			$face_b.="<img id=\"i3\" src=\"{$link}/img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
 		}
 		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/3.jpg")) {
-			$face_b.="<img id=\"i3\" src=\"{$link}/img/page/{$a1["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
-		}
-		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/4.jpg")) {
-			$face_b.="<img id=\"i4\" src=\"{$link}/img/page/{$a1["id"]}/4.jpg?t={$tm}\" class=\"person_img_sub\">";
+			$face_b.="<img id=\"i4\" src=\"{$link}/img/page/{$a1["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
 		}
 	}else{
 		$a1["face"]="{$link}/img/cast/noimage.jpg";			

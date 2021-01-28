@@ -2,11 +2,11 @@ $(function(){
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 	
-	var Fav			=[];
-	var cvs_A		=[];
-	var Rote		=[];
-	var Zoom		=[100,100,100,100,100];
-	var Chg			='';
+	var Fav		=[];
+	var cvs_A	=[];
+	var Rote	=[];
+	var Zoom	=[100,100,100,100,100];
+	var Chg		='';
 
 	var ImgTop	=[];
 	var ImgLeft	=[];
@@ -97,7 +97,9 @@ $(function(){
 					$('#c_'+Tmp).val(ImgCode);
 					$('#r_'+Tmp).val(0);
 
-					$('#w_'+Tmp).val(cvs_A);
+					$('#w_'+Tmp).val(img_W);
+					$('#h_'+Tmp).val(img_H);
+
 					$('#x_'+Tmp).val(css_B);
 					$('#y_'+Tmp).val(css_C);
 					$('#zoom'+Tmp).val(100);

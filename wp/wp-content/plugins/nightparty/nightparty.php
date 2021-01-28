@@ -28,6 +28,11 @@ if($_POST["staff_set"]){
 	$staff_address	=$_POST["staff_address"];
 	$staff_registday=$_POST["staff_registday"];
 
+	$b_yy			=$_POST["b_yy"];
+	$b_mm			=$_POST["b_mm"];
+	$b_dd			=$_POST["b_dd"];
+
+
 	$cast_id		=$_POST["cast_id"];
 	$cast_pass		=$_POST["cast_pass"];
 	$genji			=$_POST["genji"];
@@ -46,14 +51,18 @@ if($_POST["staff_set"]){
 
 	$img_c		=$_POST["img_c"];
 	$img_w		=$_POST["img_w"];
+	$img_h		=$_POST["img_h"];
 	$img_x		=$_POST["img_x"];
 	$img_y		=$_POST["img_y"];
 	$img_z		=$_POST["img_z"];
 	$img_r		=$_POST["img_r"];
 
 	if(!$staff_registday) $staff_registday=date("Y-m-d");
-	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`address`,`registday`)";
-	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$staff_birthday}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_address}','{$staff_registday}')";
+	$btime=$b_yy*10000+$b_mm*100+$b_dd;
+	$btime=substr($btime,0,4)."-".substr($btime,4,2)."-".substr($btime,6,2);
+
+	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`address`,`registday`)";
+	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_address}','{$staff_registday}')";
 	$wpdb->query($sql);
 
 	if($c_s == 2){
@@ -143,9 +152,12 @@ if($_POST["staff_set"]){
 
 					$tmp_left	=floor((20-$img_x[$a1])*(1200/150)*100/$img_z[$a1]);
 					$tmp_top	=floor((20-$img_y[$a1])*(1600/200)*100/$img_z[$a1]);
-
+/*
 					$tmp_width	=ceil( (600/800) * ($img_w[$a1]*100) / $img_z[$a1]);
 					$tmp_height	=ceil(($img_w[$a1]*100)/$img_z[$a1]);
+*/
+					$tmp_width	=ceil($img_w[$a1]*(100 / $img_z[$a1]));
+					$tmp_height	=ceil($img_h[$a1]*(100 / $img_z[$a1]));
 
 					if($img_r[$a1] ==90){
 						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	

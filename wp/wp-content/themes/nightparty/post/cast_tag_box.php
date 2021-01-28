@@ -43,8 +43,8 @@ foreach($res as $a1){
 	}
 
 
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
-		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/1.jpg";		
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
+		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
 	}else{
 		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
 	}
