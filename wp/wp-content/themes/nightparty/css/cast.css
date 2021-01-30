@@ -4209,7 +4209,7 @@ input[type=range]::-moz-range-thumb{
 
 .filter_main{
 	display:block;
-	width:88vw;
+	text-align:center;
 }
 
 .filter_box{
@@ -4219,21 +4219,21 @@ input[type=range]::-moz-range-thumb{
 
 .filter_flex{
 	display		:flex;
-	width		:88vw;
-	flex-wrap	:wrap;
+	width		:92vw;
+	margin		:0 auto;
 	justify-content:space-between;
 }
 
 .mail_filter{
 	display		:inline-block;
-	width		:39vw;
+	flex	:1;
 	font-size	:3vw;
-	text-align	:left;
+	text-align	:center;
 	color		:#ffffff;
 	font-weight	:600;
 	background	:#cccccc;	
-	height		:4vw;
-	line-height	:4vw;
+	height		:6vw;
+	line-height	:6vw;
 	margin		:0.5vw;
 	padding-left:1vw;
 	padding		:1vw;

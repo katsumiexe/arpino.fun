@@ -341,8 +341,6 @@ for($n=0;$n<8;$n++){
 	$sql	.=$app3;
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 
-	echo $sql;
-
 	foreach($dat as $tmp){
 		$customer[$n]=$tmp;
 
@@ -550,8 +548,6 @@ for($n=0;$n<8;$n++){
 	}
 
 
-
-
 //■Blog------------------
 	$sql ="SELECT * FROM wp01_posts";
 	$sql.=" LEFT JOIN wp01_term_relationships ON wp01_posts.ID=wp01_term_relationships.object_id";
@@ -565,10 +561,7 @@ for($n=0;$n<8;$n++){
 	$sql.=" ORDER BY post_date DESC";
 	$sql.=" LIMIT 11";
 
-echo $sql;
-
 	$dat = $wpdb->get_results($sql,ARRAY_A );
-
 	$blog_max=count($dat);
 	if($blog_max>10){
 		$blog_max=10;
@@ -665,23 +658,23 @@ echo $sql;
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url(<?php echo get_template_directory_uri(); ?>/font/font_0/fonts/icomoon.ttf) format('truetype');
+	src: url(<?=get_template_directory_uri(); ?>/font/font_0/fonts/icomoon.ttf) format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="<?=get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
+<script src="<?=get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
+<script src="<?=get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 
 <script>
-const Dir='<?php echo get_template_directory_uri(); ?>'; 
+const Dir='<?=get_template_directory_uri(); ?>'; 
 const CastId='<?=$_SESSION["id"] ?>'; 
 const CastName='<?=$_SESSION["genji"] ?>'; 
 
@@ -939,59 +932,60 @@ $(function(){
 			<?}?>	
 		</div>
 
-<div class="tmpl_send_box">
-	<button id="ins_name" type="button" class="tmpl_btn">本名</button>
-	<button id="ins_nick" type="button" class="tmpl_btn">よび名</button>
-	<select class="tmpl_sel">
-	<option value="0" >テンプレート選択</option>
-	<?for($n=1;$n<6;$n++){?>
-	<option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
-	<?}?>
-	</select>
-
-	<textarea id="tmpl_send" class="tmpl_send"></textarea>
-	<div class="tmpl_list">
-		<?for($n=1;$n<6;$n++){?>
-			<div class="tmpl_box">
-				<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><button type="button" class="tmpl_set">選択</button>
-				<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>">
+		<div class="tmpl_send_box">
+			<div class="tmpl_send_box_in">
+				<button id="ins_name" type="button" class="tmpl_btn">本名</button>
+				<button id="ins_nick" type="button" class="tmpl_btn">よび名</button>
+				<select class="tmpl_sel">
+				<option value="0" >テンプレート選択</option>
+				<?for($n=1;$n<6;$n++){?>
+				<option value="<?=$n?>" ><?=$mail_tmpl[$n]["title"]?></option>
+				<?}?>
+				</select>
 			</div>
-		<?}?>
-	</div>
-</div>
+			<textarea id="tmpl_send" class="tmpl_send"></textarea>
 
-<div class="filter_main">
-	<div class="filter_flex">
-		<input type="checkbox" id="filter_1" class="filter_check" value="1"><label for="filter_1" class="mail_filter"><span class="filter_icon"></span>本日未送信</label>
-		<input type="checkbox" id="filter_2" class="filter_check" value="1"><label for="filter_2" class="mail_filter"><span class="filter_icon"></span>本日ユーザー登録</label>
-		<input type="checkbox" id="filter_3" class="filter_check" value="1"><label for="filter_3" class="mail_filter"><span class="filter_icon"></span>本日誕生日</label>
-		<input type="checkbox" id="filter_4" class="filter_check" value="1"><label for="filter_4" class="mail_filter"><span class="filter_icon"></span>本日メモ登録</label>
-	</div>
-
-	<div class="filter_flex">
-		<div class="filter_box">
-			<div class="filter_fav_label"></div>
-			<div class="filter_fav">
-				<span id="filter_fav_6" class="filter_fav_in"></span>
-				<span id="filter_fav_5" class="filter_fav_in"></span>
-				<span id="filter_fav_4" class="filter_fav_in"></span>
-				<span id="filter_fav_3" class="filter_fav_in"></span>
-				<span id="filter_fav_2" class="filter_fav_in"></span>
-				<span id="filter_fav_1" class="filter_fav_in"></span>
-				<span id="filter_fav_0" class="filter_fav_in"></span>
-			</div>
-		</div>
-		<div class="filter_box">
-			<div class="filter_tag_label">タグ</div>
-			<div class="filter_tag">
-				<span id="filter_tag_99" class="filter_tag_in">全て</span>
-				<?foreach((array)$cus_group_sel as $a1=>$a2){?><span id="filter_tag_<?=$a1?>" class="filter_tag_in"><?=$a2?></span>
+			<div class="tmpl_list" style="display:none;">
+				<?for($n=1;$n<6;$n++){?>
+					<div class="tmpl_box">
+						<input id="tmpl_title<?=$n?>" type="text" value="<?=$mail_tmpl[$n]["title"]?>" class="tmpl_title"><button type="button" class="tmpl_set">選択</button>
+						<input id="tmpl_hidden<?=$n?>" type="hidden" value="<?=$mail_tmpl[$n]["log"]?>">
+					</div>
 				<?}?>
 			</div>
 		</div>
-	</div>
-</div>
 
+		<div class="filter_main">
+			<div class="filter_flex">
+				<input type="checkbox" id="filter_1" class="filter_check" value="1"><label for="filter_1" class="mail_filter"><span class="filter_icon"></span>本日未送信</label>
+				<input type="checkbox" id="filter_2" class="filter_check" value="1"><label for="filter_2" class="mail_filter"><span class="filter_icon"></span>本日登録</label>
+				<input type="checkbox" id="filter_3" class="filter_check" value="1"><label for="filter_3" class="mail_filter"><span class="filter_icon"></span>本日誕生日</label>
+				<input type="checkbox" id="filter_4" class="filter_check" value="1"><label for="filter_4" class="mail_filter"><span class="filter_icon"></span>本日メモ登録</label>
+			</div>
+
+			<div class="filter_flex">
+				<div class="filter_box">
+					<div class="filter_fav_label"></div>
+					<div class="filter_fav">
+						<span id="filter_fav_6" class="filter_fav_in"></span>
+						<span id="filter_fav_5" class="filter_fav_in"></span>
+						<span id="filter_fav_4" class="filter_fav_in"></span>
+						<span id="filter_fav_3" class="filter_fav_in"></span>
+						<span id="filter_fav_2" class="filter_fav_in"></span>
+						<span id="filter_fav_1" class="filter_fav_in"></span>
+						<span id="filter_fav_0" class="filter_fav_in"></span>
+					</div>
+				</div>
+				<div class="filter_box">
+					<div class="filter_tag_label">タグ</div>
+					<div class="filter_tag">
+						<span id="filter_tag_99" class="filter_tag_in">全て</span>
+						<?foreach((array)$cus_group_sel as $a1=>$a2){?><span id="filter_tag_<?=$a1?>" class="filter_tag_in"><?=$a2?></span>
+						<?}?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="main pg3">
 		<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
