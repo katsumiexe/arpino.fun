@@ -149,15 +149,28 @@ if($_POST["staff_set"]){
 			foreach($img_c as $a1 => $a2){
 				if($a2){
 					$img2 		= imagecreatetruecolor(600,800);
+/*
+					if($img_h[$a1]/200 > $img_w[$a1]/150){
+						$tmp_width	=ceil(($img_w[$a1])*(600/$img_w[$a1])*2*(100/$img_z[$a1]));
+						$tmp_height	=ceil(($img_w[$a1]/600)*800*2*(100/$img_z[$a1]));
+
+					}else{
+						$tmp_height	=ceil(($img_h[$a1])*(800/$img_h[$a1])*2*(100/$img_z[$a1]));
+						$tmp_width	=ceil(($img_h[$a1]/800)*600*2*(100/$img_z[$a1]));
+					}
+*/
+
+					$tmp_width	=ceil(1200*(100/$img_z[$a1]));
+					$tmp_height	=ceil(1600*(100/$img_z[$a1]));
+
 
 					$tmp_left	=floor((20-$img_x[$a1])*(1200/150)*100/$img_z[$a1]);
 					$tmp_top	=floor((20-$img_y[$a1])*(1600/200)*100/$img_z[$a1]);
+
 /*
 					$tmp_width	=ceil( (600/800) * ($img_w[$a1]*100) / $img_z[$a1]);
 					$tmp_height	=ceil(($img_w[$a1]*100)/$img_z[$a1]);
 */
-					$tmp_width	=ceil($img_w[$a1]*(100 / $img_z[$a1]));
-					$tmp_height	=ceil($img_h[$a1]*(100 / $img_z[$a1]));
 
 					if($img_r[$a1] ==90){
 						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
@@ -181,7 +194,7 @@ if($_POST["staff_set"]){
 					imagejpeg($img2,$link."/".$a3.".jpg",100);
 					$a3++;
 
-		echo $a1."■".$img_x[$a1]."■".$img_y[$a1]."■".$img_z[$a1]."■".$img_r[$a1]."■<hr>";
+		echo $a1."■".$img_x[$a1]."■".$img_y[$a1]."■".$img_w[$a1]."■".$img_h[$a1]."■".$img_z[$a1]."■".$img_r[$a1]."■<hr>";
 		echo $tmp_left."■".$tmp_top."■".$tmp_width."■".$tmp_height."■<hr>";
 
 					imagedestroy($img2);

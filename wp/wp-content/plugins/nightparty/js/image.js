@@ -50,7 +50,6 @@ $(function(){
 					img_S2=Base_l;
 
 					if(img_H /200> img_W/150){
-
 						cvs_W=1200;
 						cvs_H=img_H*(cvs_W/img_W);
 						cvs_A=Math.ceil(cvs_H);
@@ -102,6 +101,7 @@ $(function(){
 
 					$('#x_'+Tmp).val(css_B);
 					$('#y_'+Tmp).val(css_C);
+
 					$('#zoom'+Tmp).val(100);
 					$('#zoom_box'+Tmp).text(100);
 				}
