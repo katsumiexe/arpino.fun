@@ -932,10 +932,11 @@ $(function(){
 			<?}?>	
 		</div>
 
+
 		<div class="tmpl_send_box">
 			<div class="tmpl_send_box_in">
-				<button id="ins_name" type="button" class="tmpl_btn">本名</button>
-				<button id="ins_nick" type="button" class="tmpl_btn">よび名</button>
+				<button id="ins_name" type="button" class="tmpl_btn" value="[本名]">本名</button>
+				<button id="ins_nick" type="button" class="tmpl_btn" value="[呼び名]">呼び名</button>
 				<select class="tmpl_sel">
 				<option value="0" >テンプレート選択</option>
 				<?for($n=1;$n<6;$n++){?>

@@ -2484,4 +2484,14 @@ $(function(){
 			$('#l'+TMP).delay(300).fadeOut(0);
 		}
 	});
+
+	$('.tmpl_btn').on('click', function() {
+		var bN = $(this).val();
+		var Str_A = $('#tmpl_send').val();
+		var Str_P = $('#tmpl_send').get(0).selectionStart;
+		var Str_T = Str_A.substr(0, Str_P);
+		var Str_B = Str_A.substr(Str_P, Str_A.length);
+		var Str_A = $('#tmpl_send').val(Str_T + bN + Str_B);
+	});
+
 });
