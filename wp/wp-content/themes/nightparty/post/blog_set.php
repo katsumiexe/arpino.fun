@@ -7,6 +7,11 @@ $date_gmt=date("Y-m-d H:i:s");
 $now=date("Y-m-d H:i:s",$jst);
 $updir = wp_upload_dir();
 
+$blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
+$blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
+$blog_st[2]="<span class=\"hist_status hist_2\">非公開</span>";
+$blog_st[3]="<span class=\"hist_status hist_3\">削除</span>";
+
 $yy=$_POST["yy"];
 $mm=$_POST["mm"];
 $dd=$_POST["dd"];
@@ -22,16 +27,8 @@ $chg		=$_POST["chg"];
 $open		=$_POST["open"];
 
 $img_code	=$_POST["img_code"];
+$img_id		=$_POST["img_id"];
 
-/*
-$img_zoom	=$_POST["img_zoom"];
-$img_top	=$_POST["img_top"];
-$img_left	=$_POST["img_left"];
-$img_width	=$_POST["img_width"];
-$img_height	=$_POST["img_height"];
-$vw_base	=$_POST["vw_base"];
-$img_rote	=$_POST["img_rote"]+0;
-*/
 
 $sql ="SELECT term_id FROM wp01_terms";
 $sql.=" WHERE slug='{$cast_id}'";
@@ -51,12 +48,6 @@ if(!$dat){
 }else{
 	$terms_id=$dat["term_id"];
 }
-
-
-$blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
-$blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
-$blog_st[2]="<span class=\"hist_status hist_2\">非公開</span>";
-$blog_st[3]="<span class=\"hist_status hist_3\">削除</span>";
 
 if($open<=1 && $now < $date_jst){
 	$open=1;
@@ -100,6 +91,48 @@ if($chg){
 
 }else{
 
+	$sql="SELECT max(ID) AS m_id FROM POSTS";
+	$tmp = $wpdb->get_row($sql,ARRAY_A );
+	$auto_0=$tmp["m_id"];
+	$auto_1=$tmp["m_id"]+1;
+	$auto_2=$tmp["m_id"]+2;
+
+	if($img_code){
+		$mk_dir="../../../../wp-content/uploads/np{$cast_id}/";
+		if(!is_dir($mk_dir)) {
+			mkdir($mk_dir, 0777, TRUE);
+			chmod($mk_dir, 0777);
+		}
+		$link	="../../../../wp-content/uploads/np{$cast_id}/img_{$auto_2}.png";
+		$img_64	= imagecreatefromstring(base64_decode($img_code));	
+		imagepng($img_64,$link);
+		$img_id=$auto_2;
+		$img_app ="('{$cast_id}','{$date_jst}','{$date_gmt}','','img_{$auto_2}','publish','{$date_jst}','{$date_gmt}'";
+		$img_app.=",'open','open','img_{$auto_2}','{$updir['baseurl']}/np{$cast_id}/img_{$auto_2}.png','attachment','image/png','')";
+
+
+		$img_origin			="img_{$auto_2}.png";
+		$img_origin_cnt		=mb_strlen($img_origin);
+
+		$tmp_in="a:5:{s:5:\"width\";i:600;s:6:\"height\";i:600;s:4:\"file\";s:{$img_origin_cnt}:\"{$img_origin}\";s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}";
+
+		$img_m_app	.="('{$auto_2}','_wp_attached_file','np{$cast_id}/img_{$auto_2}.png'),";
+		$img_m_app	.="('{$auto_2}','_wp_attachment_metadata','{$tmp_in}'),";
+		$img_m_app	.="('{$auto_2}','_wp_attachment_image_alt','{$date_jst}'),";
+
+
+
+	}
+
+
+
+
+
+
+	$sql.="(post_author,post_date,post_date_gmt,post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_mime_type,post_parent)";
+
+
+
 	$sql="INSERT INTO wp01_posts ";
 	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_parent)";
 	$sql.="VALUES";
@@ -116,29 +149,10 @@ if($chg){
 		$tmp_img=$tmp_auto2;
 
 		$sql="INSERT INTO wp01_posts ";
-		$sql.="(post_author,post_date,post_date_gmt,post_title,post_status,post_modified,post_modified_gmt, comment_status,ping_status,post_name,guid,post_type,post_mime_type)";
 		$sql.="VALUES";
-		$sql.="('{$cast_id}','{$date_jst}','{$date_gmt}','img_{$tmp_auto2}','inherit','{$date_jst}','{$date_gmt}'";
-		$sql.=",'open','closed','img_{$tmp_auto2}','{$updir['baseurl']}/np{$cast_id}/img_{$tmp_auto2}.png','attachment','image/png')";
 		$wpdb->query($sql);
 
-		$img_origin			="img_{$tmp_auto2}.png";
-		$img_origin_cnt		=mb_strlen($img_origin);
-		$tmp_in="a:5:{s:5:\"width\";i:600;s:6:\"height\";i:600;s:4:\"file\";s:{$img_origin_cnt}:\"{$img_origin}\";s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}";
 
-		$app	.="('{$tmp_auto2}','_wp_attached_file','np{$cast_id}/img_{$tmp_auto2}.png'),";
-		$app	.="('{$tmp_auto2}','_wp_attachment_metadata','{$tmp_in}'),";
-		$app	.="('{$tmp_auto2}','_wp_attachment_image_alt','{$date_jst}'),";
-
-		$mk_dir="../../../../wp-content/uploads/np{$cast_id}/";
-		if(!is_dir($mk_dir)) {
-			mkdir($mk_dir, 0777, TRUE);
-			chmod($mk_dir, 0777);
-		}
-
-		$link	="../../../../wp-content/uploads/np{$cast_id}/img_{$tmp_auto2}.png";
-		$img_64	= imagecreatefromstring(base64_decode($img_code));	
-		imagepng($img_64,$link);
 	}elseif($album){
 		$tmp_img=$album;
 	}

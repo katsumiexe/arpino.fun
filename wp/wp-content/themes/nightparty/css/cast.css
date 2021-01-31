@@ -3062,18 +3062,6 @@ input[type=range]::-moz-range-thumb{
 	left			:19vw;
 }
 
-.mail_img_in{
-    display			: inline-block;
-    width			: 20vw;
-	text-align		:left;
-}
-
-.mail_img_view{
-	display:none;
-    width			:18vw;
-    height			:18vw;
-}
-
 
 .mail_write{
     display			: inline-block;

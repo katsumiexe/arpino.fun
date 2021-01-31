@@ -843,6 +843,22 @@ input[type=range]::-moz-range-thumb{
 
 /*/-----------------------------------------------*/
 
+.mail_img_in{
+	display			: inline-block;
+	width			: 20vw;
+	height			: 20vw;
+	text-align		:left;
+}
+
+.mail_img_view{
+	display			:none;
+    width			:18vw;
+    height			:18vw;
+}
+
+
+
+
 .send_img_table{
 	width:74vw;
 }

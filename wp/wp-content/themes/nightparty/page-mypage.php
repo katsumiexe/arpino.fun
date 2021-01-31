@@ -1130,9 +1130,7 @@ $(function(){
 			<div class="mail_detail_in"></div>
 
 			<div class="mail_write">
-				<div class="mail_img_in">
-				<img src="" class="mail_img_view">
-				</div>
+				<div class="mail_img_in"><img src="" class="mail_img_view">	</div>
 				<textarea class="mail_write_text"></textarea><br>
 				<div class="mail_write_in">
 					<div class="mail_detail_btn_img"></div>
@@ -1192,6 +1190,7 @@ $(function(){
 						<div class="blog_open_no">非公開</div>
 						<input type="hidden" id="blog_open" value="0">
 					</div>
+
 					<table class="blog_table_set">
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
@@ -1251,6 +1250,7 @@ $(function(){
 			</div>
 		</div>
 	<?}elseif($cast_page==5){?>
+
 <div class="main">
 	<div class="config_box">
 		<table class="ana">
