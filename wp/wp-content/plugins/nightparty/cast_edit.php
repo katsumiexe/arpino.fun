@@ -252,8 +252,10 @@ $(function(){
 <tr>
 
 
+https://arpino.fun/wp/wp-admin/admin.php?page=cast_list
+
 <td class='manage-column column-author btm'>
-<a href="<?=admin_url('admin.php')?>?page=cast_edit&cast_id=<?=$member[$n]["id"]?>&post_id=<?=$_REQUEST['post_id']?>" class="detal_btn button button-primary button-large">しょうさい</a>
+<a href="<?=plugin_dir_url( __FILE__ )?>/cast_detail.php?cast_id=<?=$member[$n]["id"]?>" class="detal_btn button button-primary button-large">しょうさい</a>
 
 <input type="submit" name="detail" id="detail<?=$member[$n]["id"]?>" class="detal_btn button button-primary button-large" value="詳細"><br>
 <button type="button" name="chg" id="chg<?=$member[$n]["id"]?>" class="chg_btn button button-large">修正</button>

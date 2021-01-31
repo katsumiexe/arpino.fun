@@ -13,6 +13,14 @@ require_once ("../wp-load.php");
 global $wpdb;
 */
 
+
+if($_REQUEST["cast_edit"]){
+	$post = get_post( $_REQUEST['post_ID'] );
+	check_admin_referer( 'add-' . $post->post_type );
+	esc_html_e( include_once('cast_edit.php'), 'textdomain' );  
+}
+
+
 if($_POST["staff_set"]){
 	$c_s			=$_POST["c_s"];
 
@@ -211,11 +219,6 @@ function custom_menu_page(){
 	add_submenu_page('manage', 'EasyTalk', 'EasyTalk', 'manage_options', 'easytalk_list', 'easytalk_list');
 	add_submenu_page('manage', 'キャストジョブ', 'キャストジョブ', 'manage_options', 'castjob', 'castjob');
 	add_submenu_page('manage', 'お客様一覧', 'お客様一覧', 'manage_options', 'customer_list', 'customer_list');
-}
-
-function get_cast_detail(N){
-
-
 }
 
 function cast_list(){
