@@ -323,6 +323,7 @@
 }
 
 
+
 .check_box{
 	display			:inline-flex;
 	flex-wrap		:wrap;
@@ -332,6 +333,7 @@
 	padding			:5px;
 }
 
+
 .check_set1,.check_set{
 	display			:inline-block;
 	overflow		:hidden;
@@ -340,15 +342,10 @@
 	font-size		:18px;
 	height			:30px;
 	line-height		:30px;
-	padding-left	:5px;
 	border-radius	:5px;
-	flex-basis		:150px;
+	flex-basis		:155px;
 	margin			:5px;
-}
-
-.check_set1{
-	background		:linear-gradient(135deg,#a080ff,#8060cf);
-	color			:#fafafa;
+	text-align		:center;
 }
 
 
@@ -526,7 +523,7 @@
 
 
 .sche_block1{
-	width:12vw;
+	width:7vw;
 	padding-left:1vw;
 }
 
@@ -559,6 +556,22 @@
 	height			:12vw;
 	margin-right	:0;
 	margin-bottom	:1.3vw;
+}
+
+
+.check_box{
+	margin-bottom	:2vw;
+	width			:43.5vw;
+	padding			:0.75vw;
+}
+
+.check_set1,.check_set{
+	font-size		:2vw;
+	height			:4vw;
+	line-height		:4vw;
+	border-radius	:0.5vw;
+	flex-basis		:13.5vw;
+	margin			:0.5vw;
 }
 
 
@@ -801,4 +814,30 @@
 	line-height		:5.5vw;	
 }
 
+.check_box{
+	margin-bottom	:5vw;
+	width			:93vw;
+	padding			:1.25vw;
 }
+
+.check_set1,.check_set{
+	font-size		:4vw;
+	height			:7vw;
+	line-height		:7vw;
+	border-radius	:0.5vw;
+	flex-basis		:30vw;
+	margin			:0.5vw;
+}
+
+
+
+}
+
+
+.check_set1{
+	background		:linear-gradient(135deg,#a080ff,#8060cf);
+	color			:#fafafa;
+}
+
+
+
