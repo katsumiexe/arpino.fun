@@ -213,6 +213,11 @@ function custom_menu_page(){
 	add_submenu_page('manage', 'お客様一覧', 'お客様一覧', 'manage_options', 'customer_list', 'customer_list');
 }
 
+function get_cast_detail(N){
+
+
+}
+
 function cast_list(){
 	global $wpdb;
 	$updir = wp_upload_dir();

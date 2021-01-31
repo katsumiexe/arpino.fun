@@ -102,11 +102,15 @@ $(function(){
 		$('#cast_pass'+Chg).attr('type','text');
 	});
 
+	$('.detal_btn').on('click',function () {
+		Tmp=$(this).attr('id').replace('detail','');
+		get_cast_detail(Tmp);
+	});
 
 	$('.chg_btn').on('click',function () {
 		Chg=$(this).attr('id').replace('chg','');
 
-		if($('#del'+Chg).val() ==4){
+		if($('#del'+Chg).val() ==6){
 
 			if (!confirm('削除します。よろしいですか')) {
 				return false;
