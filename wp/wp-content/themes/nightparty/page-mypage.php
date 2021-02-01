@@ -1761,7 +1761,7 @@ $(function(){
 
 	<div class="img_box">
 		<div class="img_box_in">
-			<div class="img_box_in111"><canvas id="cvs1" width="800px" height="800px;"></canvas></div>
+			<canvas id="cvs1" width="800px" height="800px;"></canvas>
 			<div class="img_box_out1"></div>
 			<div class="img_box_out2"></div>
 			<div class="img_box_out3"></div>
