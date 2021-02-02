@@ -48,6 +48,10 @@ if($img_rote ==90){
 	$new_img = imagecreatefromstring(base64_decode($img_code));
 	$img = imagerotate($new_img, 90, 0, 0);
 
+}elseif($img_rote ==180){
+	$new_img = imagecreatefromstring(base64_decode($img_code));
+	$img = imagerotate($new_img, 180, 0, 0);
+
 }else{
 	$img = imagecreatefromstring(base64_decode($img_code));
 }

@@ -807,6 +807,9 @@ $(function(){
 	});
 
 	$('#blog_set').on('click',function(){
+
+		console.log($('.blog_img').attr('src'));
+
 		$.post({
 			url:Dir + "/post/blog_set.php",
 			data:{
@@ -824,8 +827,7 @@ $(function(){
 				'hh':$('#blog_hh').val(),
 				'ii':$('#blog_ii').val(),
 				'ii':$('#blog_ii').val(),
-				'img_code'	:$('.blog_img').attr('src').replace(/^data:image\/jpeg;base64,/, ""),
-
+				'img_code':$('.blog_img').attr('src').replace("data:image/jpg;base64,",""),
 			},
 
 		}).done(function(data, textStatus, jqXHR){

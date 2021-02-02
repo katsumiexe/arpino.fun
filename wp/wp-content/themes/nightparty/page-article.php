@@ -4,7 +4,7 @@ Template Name: article
 */
 
 $n=0;
-$now=date("Y-m-d H:i:s",time()+23400);
+$now=date("Y-m-d H:i:s",time()+32400);
 
 $cast_list	=$_REQUEST["cast_list"];
 $tag_list	=$_REQUEST["tag_list"];
@@ -51,8 +51,8 @@ $sql.=" AND slug LIKE 'tag%'";
 $tag = $wpdb->get_var($sql);
 
 if($category == 1){
-	if (file_exists(get_template_directory()."/img/page/{$res0["slug"]}/1.jpg")) {
-		$cast_face=get_template_directory_uri()."/img/page/{$res0["slug"]}/1.jpg";			
+	if (file_exists(get_template_directory()."/img/page/{$res0["slug"]}/0.jpg")) {
+		$cast_face=get_template_directory_uri()."/img/page/{$res0["slug"]}/0.jpg";			
 	}else{
 		$cast_face=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
@@ -64,6 +64,7 @@ $sql.=" FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
+
 $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
@@ -72,6 +73,8 @@ $sql.=" AND T.slug='{$res0["slug"]}'";
 
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 4";
+
+print($sql);
 
 $res = $wpdb->get_results($sql,ARRAY_A);
 

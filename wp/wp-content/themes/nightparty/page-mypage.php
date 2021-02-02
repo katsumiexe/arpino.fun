@@ -560,7 +560,7 @@ for($n=0;$n<8;$n++){
 	$sql.=" AND wp01_terms.slug='{$_SESSION["id"]}'";
 	$sql.=" ORDER BY post_date DESC";
 	$sql.=" LIMIT 11";
-
+print($sql);
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	$blog_max=count($dat);
 	if($blog_max>10){
@@ -804,7 +804,12 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
-		<img src="<?php echo get_template_directory_uri(); ?>/img/page/<?=$_SESSION["id"]?>/1.jpg?t_<?=time()?>" class="slide_img">
+		<?if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {?>
+		<img src="<?php echo get_template_directory_uri(); ?>/img/page/<?=$_SESSION["id"]?>/0.jpg?t_<?=time()?>" class="slide_img">
+		<?}else{?>
+		<img src="<?php echo get_template_directory_uri(); ?>/img/page/noimage.jpg?t_<?=time()?>" class="slide_img">
+
+		<?}?>
 		<div class="slide_name"><?=$_SESSION["genji"]?></div>
 
 		<ul class="menu">
