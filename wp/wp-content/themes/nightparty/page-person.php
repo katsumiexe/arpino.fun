@@ -9,6 +9,7 @@ $week[3]="(水)";
 $week[4]="(木)";
 $week[5]="(金)";
 $week[6]="(土)";
+$updir = wp_upload_dir();
 
 $t_day=date("Ymd",time()+32400);
 $n_day=date("Ymd",time()+32400+86400*7);
@@ -25,7 +26,7 @@ $res = $wpdb->get_results($sql,ARRAY_A);
 foreach($res as $a1){
 
 	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_main\">";
+		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_main\">";
 		$face_b="<img id=\"i1\" src=\"{$link}/img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_sub\">";
 
 		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
@@ -83,6 +84,7 @@ $sql.=" FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
 $sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
 $sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
+
 $sql.=" WHERE P.post_type='post'";
 $sql.=" AND P.post_status='publish'";
 $sql.=" AND P.post_date<='{$now}'";
@@ -91,20 +93,21 @@ $sql.=" AND T.slug='{$val}'";
 
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 6";
-
-
 $res = $wpdb->get_results($sql,ARRAY_A);
-$updir = wp_upload_dir();
 
 foreach($res as $a2){
 
 	$a2["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
 
+
 	$sql ="SELECT guid FROM wp01_postmeta";
-	$sql.=" LEFT JOIN wp01_posts ON meta_value=ID";
+	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
 	$sql.=" WHERE meta_key='_thumbnail_id'";
-	$sql.=" AND meta_value='{$a2["ID"]}'";
+	$sql.=" AND post_id='{$a2["ID"]}'";
+	$sql.=" ORDER BY meta_id DESC";
+	$sql.=" LIMIT 1";
 	$thumb = $wpdb->get_var($sql);
+
 	if($thumb){
 		$a2["img"]=$thumb."?t=".time();
 	}else{

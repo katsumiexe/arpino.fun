@@ -8,6 +8,7 @@ require_once ("post/inc_code.php");
 $jst=time()+32400;
 $now_8=date("Ymd",$jst-($start_time*3600));
 $link=get_template_directory_uri();
+$link2=get_template_directory();
 
 
 if($_REQUEST["log_out"] == 1){
@@ -595,7 +596,7 @@ for($n=0;$n<8;$n++){
 			$blog[$n]["img_on"]=$thumb."?t=".time();
 
 		}else{
-			$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
+			$blog[$n]["img"]=$link."/img/customer_no_img.jpg?t=".time();
 		}
 
 		$blog[$n]["id"]		=$tmp["ID"];
@@ -658,23 +659,23 @@ for($n=0;$n<8;$n++){
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url(<?=get_template_directory_uri(); ?>/font/font_0/fonts/icomoon.ttf) format('truetype');
+	src: url(<?=$link?>/font/font_0/fonts/icomoon.ttf) format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/cast.css?t=<?=time()?>">
-<link rel="stylesheet" href="<?=get_template_directory_uri(); ?>/css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=$link?>/css/cast.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=$link?>/css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 
-<script src="<?=get_template_directory_uri(); ?>/js/jquery.exif.js?t=<?=time()?>"></script>
-<script src="<?=get_template_directory_uri(); ?>/js/cast.js?t=<?=time()?>"></script>
-<script src="<?=get_template_directory_uri(); ?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="<?=$link?>/js/jquery.exif.js?t=<?=time()?>"></script>
+<script src="<?=$link?>/js/cast.js?t=<?=time()?>"></script>
+<script src="<?=$link?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 
 <script>
-const Dir='<?=get_template_directory_uri(); ?>'; 
+const Dir='<?=$link?>'; 
 const CastId='<?=$_SESSION["id"] ?>'; 
 const CastName='<?=$_SESSION["genji"] ?>'; 
 
@@ -804,7 +805,12 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
-		<img src="<?php echo get_template_directory_uri(); ?>/img/page/<?=$_SESSION["id"]?>/1.jpg?t_<?=time()?>" class="slide_img">
+		<?if(file_exists($link2."/img/page/{$_SESSION["id"]}/0.jpg")){?>
+		<img src="<?=$link?>/img/page/<?=$_SESSION["id"]?>/0.jpg?t_<?=time()?>" class="slide_img">
+		<?}else{?>
+		<img src="<?=$link?>/img/page/noimage.jpg?t_<?=time()?>" class="slide_img">
+
+		<?}?>
 		<div class="slide_name"><?=$_SESSION["genji"]?></div>
 
 		<ul class="menu">
@@ -900,10 +906,10 @@ $(function(){
 				<?for($n=0;$n<count($customer);$n++){?>
 					<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 						<?if($customer[$n]["face"]){?>
-							<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+							<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 						<?}else{?>
-							<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 						<? } ?>
 						<div class="customer_list_fav">
 							<?for($s=1;$s<6;$s++){?>
@@ -1103,14 +1109,14 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/easytalk_cast.js?t=<?=time()?>"></script>
+	<script src="<?=$link?>/js/easytalk_cast.js?t=<?=time()?>"></script>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<?if($mail_data[$n]["face"]){?>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+					<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 				<?}else{?>
-					<img id="mail_img<?=$s?>" src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+					<img id="mail_img<?=$s?>" src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 				<? } ?>
 				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
@@ -1121,9 +1127,9 @@ $(function(){
 
 				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
 
-				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
-				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
-				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?php echo get_template_directory_uri(); ?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
+				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
+				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
+				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
 		<div class="mail_detail">
@@ -1195,7 +1201,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
@@ -1222,24 +1228,20 @@ $(function(){
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
-					<div class="blog_hist_in">
-						<img src="<?=$blog[$n]["img"]?>" class="hist_img">
-						<span class="hist_date"><?=$blog[$n]["date"]?></span>
-						<span class="hist_title"><?=$blog[$n]["title"]?></span>
-						<span class="hist_tag"><?=$tag_name[$n]["name"]?></span>
-						<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
-						<input type="hidden" class="hidden_tag" value="<?=$tag_name[$n]["slug"]?>">
-					</div>	
-
-					<div class="hist_log">
-						<?if($blog[$n]["img_on"]){?>
-						<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
-						<?}?>
-						<span class="blog_log"><?=$blog[$n]["content"]?></span>
-					</div>
+					<img src="<?=$blog[$n]["img"]?>" class="hist_img">
+					<span class="hist_date"><?=$blog[$n]["date"]?></span>
+					<span class="hist_title"><?=$blog[$n]["title"]?></span>
+					<span class="hist_tag"><?=$tag_name[$n]["name"]?></span>
+					<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
+					<input type="hidden" class="hidden_tag" value="<?=$tag_name[$n]["slug"]?>">
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
-					<span class="hist_comm"><span class="hist_i"></span><span class="hist_comm_c"><?=$blog[$n]["count"]?></span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
+				</div>
+				<div class="hist_log">
+					<?if($blog[$n]["img_on"]){?>
+					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+					<?}?>
+					<span class="blog_log"><?=$blog[$n]["content"]?></span>
 				</div>
 				<? } ?>
 
@@ -1698,7 +1700,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-				<span class="regist_img_pack"><img src="<?php echo get_template_directory_uri(); ?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
+				<span class="regist_img_pack"><img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
 				<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>

@@ -67,8 +67,8 @@ foreach($res as $a1){
 	$last_date[$a1["slug"]]	=str_replace("-",".",substr($a1["last"],0,10));
 
 
-	if (file_exists(get_template_directory()."/img/page/{$a1["slug"]}/1.jpg")) {
-		$cast_face[$a1["slug"]]=get_template_directory_uri()."/img/page/".$a1["slug"]."/1.jpg";			
+	if (file_exists(get_template_directory()."/img/page/{$a1["slug"]}/0.jpg")) {
+		$cast_face[$a1["slug"]]=get_template_directory_uri()."/img/page/".$a1["slug"]."/0.jpg";			
 	}else{
 		$cast_face[$a1["slug"]]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
@@ -326,7 +326,7 @@ get_header();
 					<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
 					<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
 					<span class="blog_list_frame_a">
-					<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/1.jpg?t=<?=time()?>" class="blog_list_castimg">
+					<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/0.jpg?t=<?=time()?>" class="blog_list_castimg">
 					</span>
 					</span>
 				</a>

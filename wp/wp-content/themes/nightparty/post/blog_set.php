@@ -41,7 +41,7 @@ if(!$dat){
 	$terms_id=$wpdb->insert_id;
 
 	$sql	 ="INSERT INTO wp01_term_taxonomy(`term_id`,`taxonomy`)";
-	$sql	.=" VALUES('{$terms_id}','cast')";
+	$sql	.=" VALUES('{$terms_id}','category')";
 	$wpdb->query($sql);
 
 }else{
@@ -96,7 +96,7 @@ if($chg){
 	$auto_2=$tmp["m_id"]+3;
 
 	$sql="INSERT INTO wp01_posts ";
-	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, 	post_mime_type, post_parent)";
+	$sql.="(post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_mime_type, post_parent)";
 	$sql.="VALUES";
 
 //■main
@@ -123,8 +123,8 @@ if($chg){
 
 		$img_id=$auto_2;
 
-		$sql.=",('{$cast_id}','{$date_jst}','{$date_gmt}','','img_{$auto_2}','publish','{$date_jst}','{$date_gmt}'";
-		$sql.=",'open','open','img_{$auto_2}','{$updir['baseurl']}/np{$cast_id}/img_{$auto_2}.png','attachment','image/png','')";
+		$sql.=",('{$cast_id}','{$date_jst}','{$date_gmt}','','img_{$auto_2}','inherit','{$date_jst}','{$date_gmt}'";
+		$sql.=",'open','closed','img_{$auto_2}','{$updir['baseurl']}/np{$cast_id}/img_{$auto_2}.png','attachment','image/png','')";
 
 		$img_origin			="img_{$auto_2}.png";
 		$img_origin_cnt		=mb_strlen($img_origin);
@@ -139,7 +139,6 @@ if($chg){
 	}
 
 	$wpdb->query($sql);
-echo($sql);
 
 //	$sql.="(post_author,post_date,post_date_gmt,post_content, post_title, post_status, post_modified, post_modified_gmt, comment_status, ping_status, post_name, guid, post_type, post_mime_type,post_parent)";
 
