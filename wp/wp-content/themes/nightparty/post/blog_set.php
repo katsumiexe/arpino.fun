@@ -116,8 +116,10 @@ if($chg){
 
 		$link	="../../../../wp-content/uploads/np{$cast_id}/img_{$auto_2}.png";
 
-		$img_64	= imagecreatefromstring(base64_decode($img_code));	
-		imagepng($img_64,$link);
+		$img	= imagecreatefromstring(base64_decode($img_code));	
+		$img2	= imagecreatetruecolor(600,600);
+		ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);
+		imagepng($img2,$link);
 
 		$img_id=$auto_2;
 
