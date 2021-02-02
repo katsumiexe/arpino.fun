@@ -2308,6 +2308,7 @@ input:focus{
 .blog_hist{
 	position		:relative;
 	display			:inline-block;
+	height			:16vw;
 	width			:96vw;
 	margin			:0.5vw auto;
 	border			:0.5vw solid #0000d0;
@@ -2337,12 +2338,6 @@ input:focus{
 	font-weight		:800;
 }
 
-.blog_hist_in{
-	position		:relative;
-	display			:inline-block;
-	height			:16vw;
-	width			:75vw;
-}
 
 .hist_log{
 	display			:none;
@@ -2452,7 +2447,7 @@ input:focus{
 }
 
 
-.hist_watch,.hist_comm{
+.hist_watch{
 	display			:inline-block;
 	position		:absolute;
 	top				:0.5vw;
@@ -2480,7 +2475,7 @@ input:focus{
 	text-align		:center	
 }
 
-.hist_watch_c,.hist_comm_c{
+.hist_watch_c{
 	display			:inline-block;
 	position		:absolute;
 	top				:0;
@@ -2496,13 +2491,6 @@ input:focus{
 	text-align		:right;	
 }
 
-.hist_watch{
-	right			:18vw;
-}
-
-.hist_comm{
-	right			:1vw;
-}
 
 .set_back{
 	display			:none;
