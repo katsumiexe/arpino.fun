@@ -132,6 +132,7 @@ $(function(){
 			$(this).next('.hist_log').slideDown(200);
 			$(this).parent('.blog_hist').slideDown(200);
 			$('#regist_blog').fadeOut(200);
+			$('.blog_ad,.blog_next').hide();
 
 			$('#h_blog_yy').val($(this).children('.hist_date').text().substr(0,4));
 			$('#h_blog_mm').val($(this).children('.hist_date').text().substr(5,2));
@@ -161,6 +162,7 @@ $(function(){
 			$('.blog_hist').slideDown(200);
 			$('#regist_blog').fadeIn(200);
 			$('#blog_chg').val('');
+			$('.blog_ad,.blog_next').show();
 		}
 	});
 

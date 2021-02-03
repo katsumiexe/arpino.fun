@@ -586,7 +586,6 @@ for($n=0;$n<8;$n++){
 		$sql.=" AND meta_key='_thumbnail_id'";
 		$thumb = $wpdb->get_var($sql);
 
-
 		if($thumb){
 /*
 			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
@@ -634,6 +633,7 @@ for($n=0;$n<8;$n++){
 		$tag_list[$a1["term_id"]]=$a1["name"];
 	}
 
+//■------------------
 	$sql ="SELECT * FROM wp01_0cast_log_table";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$dat = $wpdb->get_results($sql,ARRAY_A );
@@ -648,6 +648,13 @@ for($n=0;$n<8;$n++){
 		}
 		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
+
+
+
+
+
+
+
 }
 
 ?>
@@ -726,14 +733,11 @@ $(function(){
 		});
 	});
 <?}?>
-
-
 <?if($c_sort["c_sort_asc"] ==1){?> 
 	$('.sort_circle').css({'left':'10vw','border-radius':'0 10px 10px 0'});
 	$('.sort_btn_on1').css({'color':'#0000d0'});
 	$('.sort_btn_on0').css({'color':'#b0b0a0'});
 <?}?>
-
 });
 </script>
 </head>
@@ -1233,7 +1237,7 @@ $(function(){
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
 					<span class="hist_tag"><?=$tag_name[$n]["name"]?></span>
 					<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
-					<input type="hidden" class="hidden_tag" value="<?=$tag_name[$n]["slug"]?>">
+					<input type="hidden" class="hidden_tag" value="<?=$tag_name[$n]["term_id"]?>">
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
@@ -1250,6 +1254,7 @@ $(function(){
 				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
 				<? } ?>
 			</div>
+
 		</div>
 	<?}elseif($cast_page==5){?>
 
