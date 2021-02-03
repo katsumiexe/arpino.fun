@@ -74,8 +74,6 @@ $sql.=" AND T.slug='{$res0["slug"]}'";
 $sql.=" ORDER BY P.post_date DESC";
 $sql.=" LIMIT 4";
 
-print($sql);
-
 $res = $wpdb->get_results($sql,ARRAY_A);
 
 foreach($res as $a2){
