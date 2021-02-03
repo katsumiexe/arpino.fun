@@ -111,7 +111,6 @@ $(function(){
 						'c_id':C_Id,
 					},
 				}).done(function(data, textStatus, jqXHR){
-//					console.log(data);
 					if(data){
 						$('#tag_3_tbl').html(data);
 					}
@@ -139,12 +138,13 @@ $(function(){
 			$('#h_blog_dd').val($(this).children('.hist_date').text().substr(8,2));
 			$('#h_blog_hh').val($(this).children('.hist_date').text().substr(11,2));
 			$('#h_blog_ii').val($(this).children('.hist_date').text().substr(14,2));
+
 			$('#h_blog_title').val($(this).children('.hist_title').text());
 			$('#h_blog_log').val($(this).next('.hist_log').children('.blog_log').html());
 			$('#h_blog_img').val($(this).children('.hist_img').attr('src'));
 
 			$('#h_blog_tag').val($(this).children('.hidden_tag').val());
-			$('#blog_chg').val($(this).parents().attr('id').replace('blog_hist_',''));
+			$('#blog_chg').val($(this).attr('id').replace('blog_hist_',''));
 			$('#blog_open').val($(this).children('.hidden_status').val());
 			
 			if($(this).children('.hidden_status').val() ==2){
@@ -242,7 +242,6 @@ $(function(){
 			}
 
 			if(Fav>2){
-			
 				$('#fav_'+C_Id+'_3').addClass('fav_in');
 			}else{
 				$('#fav_'+C_Id+'_3').removeClass('fav_in');
@@ -266,7 +265,6 @@ $(function(){
 	});
 
 	$('#tag_1_tbl').on('change','.item_textbox,.rd',function(){
-
 		$.post({
 			url:Dir + "/post/customer_detail_set4.php",
 			data:{
@@ -282,7 +280,6 @@ $(function(){
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
-
 		});
 	});
 
@@ -291,7 +288,6 @@ $(function(){
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
 		Customer_mail=$(this).children('.mail_address').val();
-
 
 		$.post({
 			url:Dir + "/post/easytalk_hist.php",
@@ -462,12 +458,12 @@ $(function(){
 	});
 
 	$('#regist_blog_fix').on('click',function () {
+
 		if($('.blog_write').css('display') == 'none'){
 			$('.blog_write').slideDown(100);
 			$('.blog_list').hide();
 
 			TmpLog=$('#h_blog_log').val().replace(/(<br>|<br \/>)/gi, '\n');
-
 			$('#blog_yy').val($('#h_blog_yy').val());
 			$('#blog_mm').val($('#h_blog_mm').val());
 			$('#blog_dd').val($('#h_blog_dd').val());
@@ -806,8 +802,6 @@ $(function(){
 
 	$('#blog_set').on('click',function(){
 
-		console.log($('.blog_img').attr('src'));
-
 		$.post({
 			url:Dir + "/post/blog_set.php",
 			data:{
@@ -825,13 +819,18 @@ $(function(){
 				'hh':$('#blog_hh').val(),
 				'ii':$('#blog_ii').val(),
 				'ii':$('#blog_ii').val(),
-				'img_code':$('.blog_img').attr('src').replace("data:image/jpg;base64,",""),
+				'img_code':base_64
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
+			if($('#blog_chg').val()){
+				$('#blog_hist'+$('#blog_chg').val()).hide();
+			}
+
 			$('.blog_write').slideUp(300);
 			$('.blog_list').prepend(data);
+			$('.blog_list').show();
+			var base_64='';
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

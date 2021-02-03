@@ -573,7 +573,7 @@ for($n=0;$n<8;$n++){
 		$img_tmp=$tmp["ID"]+2;
 		$updir = wp_upload_dir();
 
-		$sql ="SELECT name,slug FROM wp01_term_relationships";
+		$sql ="SELECT term_id, name,slug FROM wp01_term_relationships";
 		$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
 		$sql.=" WHERE object_id='{$tmp["ID"]}'";
 		$sql.=" AND slug LIKE 'tag%'";
