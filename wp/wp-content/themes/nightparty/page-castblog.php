@@ -130,7 +130,6 @@ if($pg_max==1){
 		}
 		$p_list.="<a href=\"\" class=\"page_n pg_b\">»</a>";
 	$p_list.="</div>";
-
 }
 
 $sql ="SELECT";
@@ -185,7 +184,8 @@ foreach($res as $a2){
 	$thumb = $wpdb->get_var($sql);
 
 	if($thumb){
-		$blog[$n]["img"]=$thumb."?t=".time();
+		$blog[$n]["img"]=str_replace(".png","_s.png",$thumb)."?t=".time();
+
 	}else{
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}

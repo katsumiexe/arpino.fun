@@ -1236,16 +1236,14 @@ $(function(){
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
 					<span class="hist_tag"><?=$tag_name[$n]["name"]?></span>
-					<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
-					<input type="hidden" class="hidden_tag" value="<?=$tag_name[$n]["term_id"]?>">
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
-				</div>
-				<div class="hist_log">
-					<?if($blog[$n]["img_on"]){?>
-					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
-					<?}?>
-					<span class="blog_log"><?=$blog[$n]["content"]?></span>
+					<div class="hist_log">
+						<?if($blog[$n]["img_on"]){?>
+						<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+						<?}?>
+						<span class="blog_log"><?=$blog[$n]["content"]?></span>
+					</div>
 				</div>
 				<? } ?>
 

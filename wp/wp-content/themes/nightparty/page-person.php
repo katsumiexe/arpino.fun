@@ -108,14 +108,15 @@ foreach($res as $a2){
 	$sql.=" LIMIT 1";
 	$thumb = $wpdb->get_var($sql);
 
+
+
+
 	if($thumb){
-		$a2["img"]=$thumb."?t=".time();
+		$a2["img"]=str_replace(".png","_s.png",$thumb)."?t=".time();
 	}else{
 		$a2["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
 	}
 	$blog[]=$a2;
-
-	echo $sql;
 }
 
 $sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
@@ -199,7 +200,6 @@ get_header();
 		<table class="sche">
 			<?=$list?>
 		</table>
-
 
 		<?for($n=0;$n<count($check_main);$n++){?>
 		<div class="prof_title"><?=$check_main[$n]["title"]?></div>

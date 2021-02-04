@@ -25,7 +25,6 @@ get_header();
 		<span class="footmark_text">RECRUIT</span>
 	</div>
 </div>
-
 <div class="main_e">
 	<div class="main_e_in">
 		<span class="main_e_f c_tr"></span>
@@ -54,5 +53,4 @@ get_header();
 <div class="corner box_3"></div>
 <div class="corner box_4"></div>
 </div>
-
 <?php get_footer(); ?>

@@ -802,6 +802,7 @@ $(function(){
 
 	$('#blog_set').on('click',function(){
 
+		$('#blog_hist_'+$('#blog_chg').val()).remove();
 		$.post({
 			url:Dir + "/post/blog_set.php",
 			data:{
@@ -823,13 +824,8 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			if($('#blog_chg').val()){
-				$('#blog_hist'+$('#blog_chg').val()).hide();
-			}
-
 			$('.blog_write').slideUp(300);
-			$('.blog_list').prepend(data);
-			$('.blog_list').show();
+			$('.blog_list').show().prepend(data);
 			var base_64='';
 
 		}).fail(function(jqXHR, textStatus, errorThrown){

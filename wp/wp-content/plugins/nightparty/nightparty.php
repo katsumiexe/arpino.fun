@@ -156,7 +156,6 @@ if($_POST["staff_set"]){
 			$a3=0;
 			foreach($img_c as $a1 => $a2){
 				if($a2){
-					$img2 		= imagecreatetruecolor(600,800);
 
 					$tmp_width	=ceil(1200*(100/$img_z[$a1]));
 					$tmp_height	=ceil(1600*(100/$img_z[$a1]));
@@ -181,12 +180,18 @@ if($_POST["staff_set"]){
 						$img = imagecreatefromstring(base64_decode($img_c[$a1]));
 					}
 
+					$img2 		= imagecreatetruecolor(600,800);
 					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-
 					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
 					imagejpeg($img2,$link."/".$a3.".jpg",100);
-					$a3++;
 					imagedestroy($img2);
+
+					$img2_s 		= imagecreatetruecolor(150,200);
+					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 150, 200, $tmp_width, $tmp_height);
+					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
+					imagejpeg($img2_s,$link."/".$a3."_s.jpg",100);
+					imagedestroy($img2_s);
+					$a3++;
 				}
 			}
 		}
@@ -211,9 +216,6 @@ function custom_menu_page(){
 	add_menu_page('各種設定', '各種設定', 'manage_options', 'config','config', 'dashicons-admin-tools', 8);
 	add_submenu_page('config', '時計/カレンダー', '時計/カレンダー', 'manage_options', 'config_page', 'config_page');
 	add_submenu_page('config', 'プロフィール', 'プロフィール', 'manage_options', 'config_prof', 'config_prof');
-	add_submenu_page('config', 'オプション', 'オプション', 'manage_options', 'config_option', 'config_option');
-	add_submenu_page('config', 'ブログタグ', 'ブログタグ', 'manage_options', 'config_brog', 'config_brog');
-	add_submenu_page('config', 'アイテム', 'アイテム', 'manage_options', 'config_item', 'config_item');
 
 	add_menu_page('情報', '情報', 'manage_options', 'manage','manage', 'dashicons-admin-tools', 9);
 	add_submenu_page('manage', 'EasyTalk', 'EasyTalk', 'manage_options', 'easytalk_list', 'easytalk_list');
@@ -247,6 +249,32 @@ function cast_list(){
 		}
 	}
     esc_html_e( include_once('cast_list.php'), 'textdomain' );  
+}
+
+function config_prof(){
+	global $wpdb;
+	$sql	 ="SELECT * FROM wp01_0charm_table";
+	$sql	.=" ORDER BY sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+
+	foreach($tmp_list as $res){
+		$charm[$res["sort"]]=$res;
+	}
+
+	$sql	 ="SELECT * FROM wp01_0check_main";
+	$sql	.=" ORDER BY sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+	foreach($tmp_list as $res){
+		$check[$res["sort"]]=$res;
+	}
+
+	$sql	 ="SELECT * FROM wp01_0check_list";
+	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
+	$tmp_list = $wpdb->get_results($sql,ARRAY_A);
+	foreach($tmp_list as $res){
+		$list[$res["host_id"]][$res["list_sort"]]=$res;
+	}
+    esc_html_e(include_once('config_prof.php'),'textdomain');  
 }
 
 

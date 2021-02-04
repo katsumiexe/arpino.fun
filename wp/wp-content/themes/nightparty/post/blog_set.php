@@ -212,26 +212,22 @@ if($img_id){
 $log=str_replace("\n","<br>",$log);
 
 $html="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
-$html.="<div class=\"blog_hist_in\">";
 $html.="<img src=\"{$tmp_img_s}\" class=\"hist_img\">";
 $html.="<span class=\"hist_date\">{$date_jst}</span>";
 $html.="<span class=\"hist_title\">{$ttl}</span>";
-$html.="<span class=\"hist_tag\">";
-foreach((array)$tag_name as $a2){
-$html.="{$a2}/";
-}
-$html.="</span>";
-$html.="</div>";
+
+$html.="<span class=\"hist_tag\"></span>";
+$html.="<span class=\"hist_watch\"><span class=\"hist_i\"></span><span class=\"hist_watch_c\">0</span></span>";
+$html.="<span class=\"hist_status hist_{$open} \">{$blog_st[$open]}</span>";
+
 $html.="<div class=\"hist_log\">";
 if($img_id){
 $html.="<span class=\"hist_img_in\"><img src=\"{$tmp_img}\" class=\"hist_img_on\"></span>";
 }
 $html.="<span class=\"blog_log\">{$log}</span>";
 $html.="</div>";
-$html.="<span class=\"hist_watch\"><span class=\"hist_i\"></span><span class=\"hist_watch_c\">{$view_cnt}</span></span>";
-$html.="<span class=\"hist_comm\"><span class=\"hist_i\"></span><span class=\"hist_comm_c\">{$comm_cnt}</span></span>";
-$html.=$blog_st[$open];
 $html.="</div>";
 echo $html;
 exit();
 ?>
+

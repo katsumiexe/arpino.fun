@@ -39,8 +39,8 @@ foreach($res0 as $a1){
 	}
 
 	$dat[$a1["cast_id"]]=$a1;
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/1.jpg";			
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
+		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0.jpg";			
 	}else{
 		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
@@ -171,6 +171,7 @@ var Cnt=<?=(count($slide)-1)?>;
 			<?}?>
 		</div>
 	</div>
+
 <?}?>
 	<div class="main_b">
 		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>" class="new_all">一覧≫</a></div>

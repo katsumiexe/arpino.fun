@@ -86,7 +86,8 @@ foreach($res as $a2){
 	$sql.=" AND meta_key='_thumbnail_id'";
 	$thumb = $wpdb->get_var($sql);
 	if($thumb){
-		$blog[$n]["img"]	=$thumb;
+		$blog[$n]["img"]	=str_replace(".png","_s.png",$thumb)."?t=".time();
+
 	}else{
 		$blog[$n]["img"]=get_template_directory_uri()."/img/customer_no_img.jpg";
 	}
@@ -153,8 +154,6 @@ get_header();
 					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
-					<!--span class="person_blog_tag"><span class="hist_watch_c">0</span></span-->
-					<!--span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span-->
 				</a>
 			<?}?>
 			</div>
