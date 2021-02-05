@@ -259,6 +259,7 @@ ul {
 }
 
 .side_img_out{
+	display:inline-block;
 	position		:relative;
 	width			:300px;
 	height			:100px;

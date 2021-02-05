@@ -46,41 +46,74 @@ foreach($res0 as $a1){
 	}
 }
 
-$sql	 ="SELECT meta_id, meta_value, post_type, post_content FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type, post_content, post_mime_type, guid FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_key='_top_slide'";
 $sql	.=" AND meta_value>0";
 $sql	.=" ORDER BY meta_value ASC";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
+
+	if($a2["guid"]){
+		$a2["link"]=home_url($a2["guid"]);
+
+	}elseif($a2["post_content"]){
+		$a2["link"]=home_url('/event')."/?code=".$a2["meta_id"];
+	}
+
+	if($a2["post_mime_type"]){
+		$a2["link"].="/?cast={$a2["post_mime_type"]}";
+	}
 	$slide[]=$a2;
+
 }
 
-$sql	 ="SELECT meta_id, meta_value, post_type, post_content FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type, post_content, post_mime_type, guid FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_key='_top_info'";
 $sql	.=" AND meta_value>0";
 $sql	.=" ORDER BY meta_value ASC";
+echo $sql;
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
+
+	if($a2["guid"]){
+		$a2["link"]=home_url($a2["guid"]);
+
+	}elseif($a2["post_content"]){
+		$a2["link"]=home_url('/info')."/?code=".$a2["meta_id"];
+	}
+
+	if($a2["post_mime_type"]){
+		$a2["link"].="/?cast={$a2["post_mime_type"]}";
+	}
 	$info[]=$a2;
 }
 
 
-$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date_gmt, T.name, slug FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date_gmt, T.name, slug, post_mime_type, guid FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" LEFT JOIN wp01_terms AS T on M.meta_value=T.term_id";
-
 $sql	.=" WHERE meta_key='_top_news'";
 $sql	.=" AND meta_value>0";
-$sql	.=" AND term_group=1";
-
 $sql	.=" ORDER BY post_date_gmt DESC";
 $sql	.=" LIMIT 5";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
 	$a2["news_date"]=substr($a2["post_date_gmt"],0,4).".".substr($a2["post_date_gmt"],5,2).".".substr($a2["post_date_gmt"],8,2);
 	$a2["post_title"]=str_replace("\n","<br>",$a2["post_title"]);
+
+	if($a2["guid"]){
+		$a2["link"]=home_url($a2["guid"]);
+
+	}elseif($a2["post_content"]){
+		$a2["link"]=home_url('/news')."/?code=".$a2["meta_id"];
+	}
+
+	if($a2["post_mime_type"]){
+		$a2["link"].="/?cast={$a2["post_mime_type"]}";
+	}
+
 	$news[]=$a2;
 }
 
@@ -145,8 +178,8 @@ var Cnt=<?=(count($slide)-1)?>;
 <?if(count($slide) ==1){?>
 	<div class="slide">
 		<div class="slide_img">
-			<?if($slide[0]["post_content"]){?>
-				<a href="<?=home_url('/event')?>/?code=<?=$slide[0]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img"></a>;
+			<?if($slide[0]["link"]){?>
+				<a href="<?=$slide[0]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img"></a>;
 			<?}else{?>	
 				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img">;
 			<?}?>	
@@ -157,8 +190,8 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="slide">
 		<div class="slide_img">
 			<?for($n=0;$n<count($slide);$n++){?>
-				<?if($slide[$n]["post_content"]){?>
-					<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
+				<?if($slide[$n]["link"]){?>
+					<a href="<?=$slide[0]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
 				<?}else{?>	
 					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
 				<?}?>	
@@ -177,7 +210,7 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
 			<?for($n=0;$n<count($news);$n++){?>
-				<?if($news[$n]["post_content"]){?>
+				<?if($news[$n]["link"]){?>
 					<table  class="main_b_notice" colspan="3">
 					<tr>
 					<td  class="main_b_td_1">
@@ -185,12 +218,12 @@ var Cnt=<?=(count($slide)-1)?>;
 						<span class="main_b_notice_tag" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
 					</td>
 					<td  class="main_b_td_2">
-						<a href="<?=home_url('/news')?>/?code=<?=$news[$n]["meta_id"]?>" class="main_b_notice_link">
+						<a href="<?=$news[$n]["link"]?>" class="main_b_notice_link">
 							<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
 						</a>
 					</td>
 					<td  class="main_b_td_3">
-						<span class="main_b_notice_arrow"><a href="<?=home_url('/news')?>/?code=<?=$news[$n]["meta_id"]?>" class="main_b_notice_alink">	</a></span>
+						<span class="main_b_notice_arrow"><a href="<?=$news[$n]["link"]?>" class="main_b_notice_alink">	</a></span>
 					</td>
 					</tr>
 					</table>
@@ -210,8 +243,15 @@ var Cnt=<?=(count($slide)-1)?>;
 			<?}?>
 		</div>
 		<div class="main_b_top2">
-			<img src="<?=get_template_directory_uri()?>/img/page/top/top_side1.png" class="top2_img">
-			<img src="<?=get_template_directory_uri()?>/img/page/top/top_side2.png" class="top2_img">
+			<?for($n=0;$n<count($info);$n++){?>
+				<?if($info[$n]["link"]){?>
+					<a href="<?=$info[$n]["link"]?>" class="side_img_out">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+					</a>
+				<?}else{?>	
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="top2_img">
+				<?}?>
+			<?}?>
 		</div>
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
@@ -243,12 +283,14 @@ var Cnt=<?=(count($slide)-1)?>;
 
 	<div class="main_c">
 		<?for($n=0;$n<count($info);$n++){?>
-			<?if($info[$n]["post_content"]){?>
-				<a href="<?=home_url('/event')?>/?code=<?=$slide[$n]["meta_id"]?>" class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side{$n}.png" class="side_img"></a>;
-			<?}else{?>
-				<div class="side_img_out pc_only"><img src="<?=get_template_directory_uri()?>/img/page/top/top_side{$n}.png" class="side_img"></div>;
-			<?}?>	
-		<?}?>	
+			<?if($info[$n]["link"]){?>
+					<a href="<?=$info[$n]["link"]?>" class="side_img_out">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+					</a>
+			<?}else{?>	
+					<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+			<?}?>
+		<?}?>
 
 		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
