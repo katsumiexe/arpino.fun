@@ -443,7 +443,6 @@ ul {
 .main_b_notice_link,.main_b_notice_alink{
 	display			:inline-block;
 	width			:100%;
-	height			:100%;
 	text-decoration	:none;
 }
 
@@ -1947,8 +1946,15 @@ ul {
 }
 
 
+.new_all{
+	right			:2vw;
+	font-size		:4vw;
+}
+
+
 .main_b_td_1{
 	width:18vw;
+	height:10vw;
 }
 
 .main_b_td_3{
@@ -2237,7 +2243,7 @@ ul {
 
 .main_b_notice{
 	width			:90vw;
-	height			:11vw;
+	height			:10vw;
 }
 
 
@@ -2257,8 +2263,8 @@ ul {
 	left			:0.5vw;
 	bottom			:1vw;
 	width			:17vw;
-	height			:4vw;
-	line-height		:4vw;
+	height			:4.5vw;
+	line-height		:4.5vw;
 	font-size		:3vw;
 }
 
@@ -2267,7 +2273,7 @@ ul {
 	left			:19vw;
 	width			:64vw;
 	padding-left	:1vw;
-	font-size		:3.5vw;
+	font-size		:3.2vw;
 	overflow		:hidden;
 }
 

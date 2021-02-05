@@ -176,7 +176,6 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="main_b">
 		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
-
 			<?for($n=0;$n<count($news);$n++){?>
 				<?if($news[$n]["post_content"]){?>
 					<table  class="main_b_notice" colspan="3">
