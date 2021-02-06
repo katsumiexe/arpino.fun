@@ -671,41 +671,11 @@ input[type=range]::-moz-range-thumb{
     
 }
 
-.mail_box_face{
-	min-height		:11vw;	
-	width			:11vw;
-	border-radius	:2vw;
-	border			:1vw solid #ffe0f0;
-	margin			:1vw 1vw 0 0.5vw;
-}
-
-.mail_box_log_1{
-	width			:64vw;
-	font-size		:3.5vw;
-	line-height		:6vw;
-	border-radius	:1vw 1vw 4vw 1vw;
-	padding			:2vw;
-}
-
-.mail_box_log_2{
-	width			:64vw;
-	font-size		:3.5vw;
-	line-height		:6vw;
-	border-radius	:1vw 1vw 1vw 4vw;
-	padding			:2vw
-}
 
 .mail_box_stamp{
 	width			:60%;
 	height			:auto;
 }
-
-.mail_box_log_in {
-    font-size	:3.5vw;
-    line-height	:5vw;
-    padding		:1.5vw;
-}
-
 
 
 .mail_box_log_0{

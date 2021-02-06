@@ -217,7 +217,6 @@ $(function(){
 			ctx.clearRect(0, 0, cvs_A,cvs_A);
 			$('.set_back').fadeOut(200);
 			$('#img_code').val('');
-
 		}
 	});
 

@@ -25,8 +25,8 @@ if($ss){
 		$sql	.=" AND customer_id='{$ssid["customer_id"]}'";
 		$wpdb->query($sql);
 
-		if (file_exists(get_template_directory()."/img/page/{$ssid["cast_id"]}/1.jpg")) {
-			$face_link=get_template_directory_uri()."/img/page/{$ssid["cast_id"]}/1.jpg";			
+		if (file_exists(get_template_directory()."/img/page/{$ssid["cast_id"]}/0_s.jpg")) {
+			$face_link=get_template_directory_uri()."/img/page/{$ssid["cast_id"]}/0_s.jpg";			
 
 		}else{
 			$face_link=get_template_directory_uri()."/img/page/noimage.jpg";			
@@ -185,6 +185,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 		<? } ?>
 	</div>
 </div>
+
 <footer class="foot_easytalk"></footer>
 <div class="img_box">
 	<div id="img_close" class="btn_c2">×</div>　

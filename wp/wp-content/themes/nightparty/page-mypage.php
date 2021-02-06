@@ -809,8 +809,8 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
-		<?if(file_exists($link2."/img/page/{$_SESSION["id"]}/0.jpg")){?>
-		<img src="<?=$link?>/img/page/<?=$_SESSION["id"]?>/0.jpg?t_<?=time()?>" class="slide_img">
+		<?if(file_exists($link2."/img/page/{$_SESSION["id"]}/0_s.jpg")){?>
+		<img src="<?=$link?>/img/page/<?=$_SESSION["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
 		<?}else{?>
 		<img src="<?=$link?>/img/page/noimage.jpg?t_<?=time()?>" class="slide_img">
 
