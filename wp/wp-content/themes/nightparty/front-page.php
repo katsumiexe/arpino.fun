@@ -73,7 +73,6 @@ $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_key='_top_info'";
 $sql	.=" AND meta_value>0";
 $sql	.=" ORDER BY meta_value ASC";
-echo $sql;
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
 
@@ -243,15 +242,16 @@ var Cnt=<?=(count($slide)-1)?>;
 			<?}?>
 		</div>
 
-
-		<div class="sp_only">
+		<div class="info_box sp_only">
 			<?for($n=0;$n<count($info);$n++){?>
 				<?if($info[$n]["link"]){?>
-					<a href="<?=$info[$n]["link"]?>" class="side_img_out">
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side2_img">
+					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 					</a>
 				<?}else{?>	
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side2_im">
+					<span class="info_img_out">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+					</span>	
 				<?}?>
 			<?}?>
 		</div>
@@ -289,11 +289,11 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="pc_only">
 			<?for($n=0;$n<count($info);$n++){?>
 				<?if($info[$n]["link"]){?>
-						<a href="<?=$info[$n]["link"]?>" class="side_img_out">
-							<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+						<a href="<?=$info[$n]["link"]?>" class="info_img_out">
+							<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 						</a>
 				<?}else{?>	
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 				<?}?>
 			<?}?>
 		</div>
