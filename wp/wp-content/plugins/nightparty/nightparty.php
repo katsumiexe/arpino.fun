@@ -72,19 +72,23 @@ if($_POST["staff_set"]){
 	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`address`,`registday`)";
 	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_address}','{$staff_registday}')";
 	$wpdb->query($sql);
+
 	if($c_s == 2){
 
 //■cast-------------------------------
 		$tmp_auto=$wpdb->insert_id;
+
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
-		$sql="INSERT INTO wp01_0cast (`regist_id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
+
+		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
+
 		$wpdb->query($sql);	
-		$tmp_auto2=$wpdb->insert_id;
+		$tmp_auto=$wpdb->insert_id;
 
 //■encode-------------------------------
-		$id_8	=substr("00000000".$tmp_auto2,-8);
-		$id_0	=$tmp_auto2 % 20;
+		$id_8	=substr("00000000".$tmp_auto,-8);
+		$id_0	=$tmp_auto % 20;
 
 		$sql ="SELECT * FROM wp01_0encode"; 
 		$enc0 = $wpdb->get_results($sql,ARRAY_A );
@@ -111,27 +115,27 @@ if($_POST["staff_set"]){
 			chmod($mk_dir."/m/", 0777);
 		}
 
-		$link="../wp-content/themes/nightparty/img/page/".$tmp_auto2."/";
+		$link="../wp-content/themes/nightparty/img/page/".$tmp_auto."/";
 		if(!is_dir($link)) {
 			mkdir($link, 0777, TRUE);
 			chmod($link, 0777);
 		}
 
 		$sql="INSERT INTO wp01_0cast_log_table(cast_id,item_name,item_icon,item_color,price,sort)VALUES";
-		$sql.="('{$tmp_auto2}','ドリンクA','0','48','100','0'),";
-		$sql.="('{$tmp_auto2}','ドリンクB','2','35','200','1'),";
-		$sql.="('{$tmp_auto2}','フードA','4','3','300','2'),";
-		$sql.="('{$tmp_auto2}','フードB','5','7','500','3'),";
-		$sql.="('{$tmp_auto2}','ボトル','3','36','1000','4'),";	
-		$sql.="('{$tmp_auto2}','本指名','8','55','1000','5'),";
-		$sql.="('{$tmp_auto2}','場内指名','8','12','500','6'),";
-		$sql.="('{$tmp_auto2}','同伴','6','59','2000','7')";
+		$sql.="('{$tmp_auto}','ドリンクA','0','48','100','0'),";
+		$sql.="('{$tmp_auto}','ドリンクB','2','35','200','1'),";
+		$sql.="('{$tmp_auto}','フードA','4','3','300','2'),";
+		$sql.="('{$tmp_auto}','フードB','5','7','500','3'),";
+		$sql.="('{$tmp_auto}','ボトル','3','36','1000','4'),";	
+		$sql.="('{$tmp_auto}','本指名','8','55','1000','5'),";
+		$sql.="('{$tmp_auto}','場内指名','8','12','500','6'),";
+		$sql.="('{$tmp_auto}','同伴','6','59','2000','7')";
 		$wpdb->query($sql);
 
 //■options-------------------------------
 		foreach($options as $a1 => $a2){
 			if($a2 == "on"){
-				$app.="('{$a1}','{$tmp_auto2}',1),";
+				$app.="('{$a1}','{$tmp_auto}',1),";
 			}
 		}
 		if($app){
@@ -144,7 +148,7 @@ if($_POST["staff_set"]){
 //■charm_table-------------------------------
 		foreach($charm_table as $a1 => $a2){
 			if($a2){
-				$app2.="('{$a1}','{$tmp_auto2}','{$a2}'),";
+				$app2.="('{$a1}','{$tmp_auto}','{$a2}'),";
 			}
 		}
 		if($app2){
@@ -185,13 +189,13 @@ if($_POST["staff_set"]){
 
 					$img2 		= imagecreatetruecolor(600,800);
 					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto2;
+					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
 					imagejpeg($img2,$link."/".$a3.".jpg",100);
 					imagedestroy($img2);
 
 					$img2_s 		= imagecreatetruecolor(150,200);
 					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 150, 200, $tmp_width, $tmp_height);
-					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto2;
+					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
 					imagejpeg($img2_s,$link."/".$a3."_s.jpg",100);
 					imagedestroy($img2_s);
 					$a3++;
@@ -243,8 +247,8 @@ function cast_list(){
 		if(mb_strlen($sort_del)==0 || $res["del"]===$sort_del){
 
 			$member[$n]=$res;
-			if (file_exists(get_template_directory()."/img/page/{$res["id"]}/1.jpg")) {
-				$member[$n]["img"]=get_template_directory_uri()."/img/page/".$res["id"]."/1.jpg";
+			if (file_exists(get_template_directory()."/img/page/{$res["id"]}/0.jpg")) {
+				$member[$n]["img"]=get_template_directory_uri()."/img/page/".$res["id"]."/0.jpg";
 			}else{
 				$member[$n]["img"]=get_template_directory_uri()."/img/page/noimage.jpg";			
 			}
