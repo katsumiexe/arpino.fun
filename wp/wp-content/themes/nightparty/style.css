@@ -1884,9 +1884,19 @@ ul {
 }
 
 
+.pc_only{
+	display		:block;
+}
+.sp_only{
+	display		:none;
+}
+
 @media screen and (max-width: 959px){
 .pc_only{
 	display		:none;
+}
+.sp_only{
+	display		:block;
 }
 
 .head{
@@ -2036,7 +2046,7 @@ ul {
 	justify-content: space-between;
 }
 
-.top2_img{
+.side2_img{
 	width		:45vw;
 	flex-basis	:46vw;
 	height		:15vw;

@@ -242,17 +242,21 @@ var Cnt=<?=(count($slide)-1)?>;
 				<?}?>
 			<?}?>
 		</div>
-		<div class="main_b_top2">
+
+
+		<div class="sp_only">
 			<?for($n=0;$n<count($info);$n++){?>
 				<?if($info[$n]["link"]){?>
 					<a href="<?=$info[$n]["link"]?>" class="side_img_out">
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side2_img">
 					</a>
 				<?}else{?>	
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="top2_img">
+						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side2_im">
 				<?}?>
 			<?}?>
 		</div>
+
+
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>
@@ -282,15 +286,17 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 
 	<div class="main_c">
-		<?for($n=0;$n<count($info);$n++){?>
-			<?if($info[$n]["link"]){?>
-					<a href="<?=$info[$n]["link"]?>" class="side_img_out">
+		<div class="pc_only">
+			<?for($n=0;$n<count($info);$n++){?>
+				<?if($info[$n]["link"]){?>
+						<a href="<?=$info[$n]["link"]?>" class="side_img_out">
+							<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+						</a>
+				<?}else{?>	
 						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
-					</a>
-			<?}else{?>	
-					<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="side_img">
+				<?}?>
 			<?}?>
-		<?}?>
+		</div>
 
 		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
