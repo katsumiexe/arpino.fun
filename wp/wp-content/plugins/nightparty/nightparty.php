@@ -56,7 +56,6 @@ if($_POST["staff_set"]){
 	$charm_table	=$_POST["charm_table"];
 	$options		=$_POST["options"];
 
-
 	$img_c		=$_POST["img_c"];
 	$img_w		=$_POST["img_w"];
 	$img_h		=$_POST["img_h"];
@@ -77,14 +76,10 @@ if($_POST["staff_set"]){
 
 //■cast-------------------------------
 		$tmp_auto=$wpdb->insert_id;
-
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
-
 		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
-
 		$wpdb->query($sql);	
-		$tmp_auto=$wpdb->insert_id;
 
 //■encode-------------------------------
 		$id_8	=substr("00000000".$tmp_auto,-8);
@@ -97,14 +92,11 @@ if($_POST["staff_set"]){
 			$dec[$row["gp"]][$row["value"]]	=$row["key"];
 		}
 
-
-
 		for($n=0;$n<8;$n++){
 			$rnd=rand(0,19);
 			$tmp_id=substr($id_8,$n,1);
 			$tmp_dir.=$dec[$id_0][$tmp_id];
 		}
-
 
 		$mk_dir="../wp-content/themes/nightparty/img/cast/".$tmp_dir;
 		if(!is_dir($mk_dir)) {
