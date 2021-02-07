@@ -2308,12 +2308,12 @@ input:focus{
 .blog_hist{
 	position		:relative;
 	display			:inline-block;
-	height			:16vw;
+	min-height		:16vw;
 	width			:96vw;
 	margin			:0.5vw auto;
 	border			:0.5vw solid #0000d0;
 	background		:#fafafa;
-	text-align:left;
+	text-align		:left;
 }
 
 .blog_ad{

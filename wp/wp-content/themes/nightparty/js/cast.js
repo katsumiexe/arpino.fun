@@ -126,10 +126,11 @@ $(function(){
 
 
 	$('.blog_list').on('click','.blog_hist',function () {
+
 		if($(this).next('.hist_log').css('display')=='none'){
 			$('.blog_hist').not(this).slideUp(100);
 			$(this).next('.hist_log').slideDown(200);
-			$(this).parent('.blog_hist').slideDown(200);
+
 			$('#regist_blog').fadeOut(200);
 			$('.blog_ad,.blog_next').hide();
 

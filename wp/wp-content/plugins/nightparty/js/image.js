@@ -49,7 +49,7 @@ $(function(){
 					img_H=img.height;
 					img_S2=Base_l;
 
-					if(img_H /200> img_W/150){
+					if(img_H> img_W){
 						cvs_W=1200;
 						cvs_H=img_H*(cvs_W/img_W);
 						cvs_A=Math.ceil(cvs_H);
@@ -61,8 +61,8 @@ $(function(){
 						css_H=Math.ceil(img_H*(css_W/img_W));
 
 						css_A=css_H;
-						css_B=Math.ceil(20-(css_A-150)/2);
-						css_C=Math.ceil(20-(css_A-200)/2);
+						css_B=Math.ceil(Base_s-(css_A-150)/2);
+						css_C=Math.ceil(Base_s-(css_A-200)/2);
 
 					}else{
 						cvs_H=1600;
@@ -72,12 +72,12 @@ $(function(){
 						cvs_Y=Math.ceil((cvs_W-cvs_H)/2);
 						cvs_X=0;
 
-						css_H=200;
+						css_H=Base_l;
 						css_W=Math.ceil(img_W*(css_H/img_H));
 
 						css_A=css_W;
-						css_B=Math.ceil(20-(css_A-150)/2);
-						css_C=Math.ceil(20-(css_A-200)/2);
+						css_B=Math.ceil(Base_s-(css_A-200)/2);
+						css_C=Math.ceil(Base_s-(css_A-150)/2);
 					}				
 
 					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C});

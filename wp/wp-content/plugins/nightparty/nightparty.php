@@ -341,3 +341,4 @@ function config_option(){
 	}
     esc_html_e( include_once('config_option.php'), 'textdomain' );  
 }
+?>
