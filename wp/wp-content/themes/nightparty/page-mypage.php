@@ -70,7 +70,6 @@ $now_ymd_2	=date("Ymd",$jst+86400);
 $now_ymd_3	=date("Ymd",$jst+172800);
 
 
-
 //Sche-----------------------
 $c_month=$_POST["c_month"];
 if(!$c_month) $c_month=date("Y-m-01");
@@ -648,13 +647,6 @@ for($n=0;$n<8;$n++){
 		}
 		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
-
-
-
-
-
-
-
 }
 
 ?>

@@ -179,22 +179,43 @@ if($_POST["staff_set"]){
 						$img = imagecreatefromstring(base64_decode($img_c[$a1]));
 					}
 
+					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
+
 					$img2 		= imagecreatetruecolor(600,800);
 					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
 					imagejpeg($img2,$link."/".$a3.".jpg",100);
 					imagedestroy($img2);
 
-					$img2_s 		= imagecreatetruecolor(150,200);
-					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 150, 200, $tmp_width, $tmp_height);
-					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
+					$img2_s 		= imagecreatetruecolor(180,240);
+					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
 					imagejpeg($img2_s,$link."/".$a3."_s.jpg",100);
 					imagedestroy($img2_s);
+
+					$img2_n 		= imagecreatetruecolor(30,40);
+					ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
+					imagejpeg($img2_n,$link."/".$a3."_n.jpg",100);
+					imagedestroy($img2_n);
 					$a3++;
 				}
 			}
 		}
 	}
+
+	if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
+
+		$sql_news =" INSERT INTO posts";
+		$sql_news .="(post_status,post_title,post_date,post_date_gmt,guid,post_mime)";
+		$sql_news .=" VALUES('publish','{$_REQUEST["news_box"]}','{$p_date}','{$g_date}','/person','{$tmp_auto}')";
+		$wpdb->query($sql_news);
+
+		$tmp_auto_2=$wpdb->insert_id;
+
+		$sql_news =" INSERT INTO postmeta";
+		$sql_news .="(post_id,meta_key,meta_value)";
+		$sql_news .=" VALUES('{$tmp_auto_2}','_top_news','18')";
+		$wpdb->query($sql_news);
+	}
+
     esc_html_e( include_once('cast_regist.php'), 'textdomain' );  
 }
 
@@ -293,6 +314,9 @@ function staff_list(){
 
 function staff(){
 	global $wpdb;
+
+	$now_code=date("Y-m-d");
+
 	$sql	 ="SELECT * FROM wp01_0charm_table";
 	$sql	.=" WHERE del=0";
 	$sql	.=" ORDER BY sort ASC";

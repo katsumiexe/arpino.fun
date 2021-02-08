@@ -454,8 +454,17 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
+	$("#ctime_mm, #ctime_dd").on("change",function(){
+		Tmp_m=$("#ctime_mm").val();
+		Tmp_d=$("#ctime_dd").val();
+		Tmp_n=$("#genji").val();
+		Tmp_c=$("#h_news_box").val().replace('[date]','[d1]'+Tmp_m+'月'+Tmp_d+'日[n2]');
+		Tmp_c=$("#h_news_box").val().replace('[name]','[n1]'+Tmp_n+'[n2]');
+		$("#news_box").val(Tmp_c);
+	});
 });
 </script>
+
 <div class="wrap">
 <h2>スタッフ登録</h2>
 <form action="" method='post' id="my-submenu-form">
@@ -517,7 +526,7 @@ CAST情報
 </td>
 </tr><tr>
 <td>
-	<div>CAST名			</div><input type="text" name="genji" class="w000" autocomplete="off">
+	<div>CAST名			</div><input id="genji" type="text" name="genji" class="w000" autocomplete="off">
 </td><td>
 	<div>フリガナ		</div><input type="text" name="genji_kana" class="w000" autocomplete="off">
 </td><td>
@@ -536,6 +545,20 @@ CAST情報
 </td>
 </tr>
 </table>
+<table style="width:720px;" class="cast_table table-layout: fixed;">
+<tr>
+	<td colspan="3">NEWS登録</td>
+</tr>	
+<tr>
+	<td>公開日
+	<input type="text" id="news_date_yy" name="news_date_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
+	<input type="text" id="news_date_mm" name="news_date_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
+	<input type="text" id="news_date_dd" name="news_date_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
+
+	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox" autocomplete="off">[date]、[name]ちゃんが入店します！</textarea></td>
+</tr>
+</table>
+<input id="h_news_box" type="hidden" value="[date]に[name]ちゃんが入店します！">
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
 	<?foreach($charm_table as $a1 => $a2){?>

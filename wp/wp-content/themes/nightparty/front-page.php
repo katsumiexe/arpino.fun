@@ -41,6 +41,7 @@ foreach($res0 as $a1){
 	$dat[$a1["cast_id"]]=$a1;
 	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
 		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0.jpg";			
+		$dat[$a1["id"]]["face_n"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_n.jpg";			
 	}else{
 		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
@@ -89,17 +90,16 @@ foreach($res2 as $a2){
 	$info[]=$a2;
 }
 
-
-$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date_gmt, T.name, slug, post_mime_type, guid FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date, T.name, slug, post_mime_type, guid FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" LEFT JOIN wp01_terms AS T on M.meta_value=T.term_id";
 $sql	.=" WHERE meta_key='_top_news'";
 $sql	.=" AND meta_value>0";
-$sql	.=" ORDER BY post_date_gmt DESC";
+$sql	.=" ORDER BY post_date DESC";
 $sql	.=" LIMIT 5";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
 foreach($res2 as $a2){
-	$a2["news_date"]=substr($a2["post_date_gmt"],0,4).".".substr($a2["post_date_gmt"],5,2).".".substr($a2["post_date_gmt"],8,2);
+	$a2["news_date"]=substr($a2["post_date"],0,4).".".substr($a2["post_date"],5,2).".".substr($a2["post_date"],8,2);
 	$a2["post_title"]=str_replace("\n","<br>",$a2["post_title"]);
 
 	if($a2["guid"]){
@@ -135,7 +135,7 @@ $date=date("Y-m-d H:i:s");
 $app="INSERT INTO wp01_0schedule (`date`,sche_date,cast_id,stime,etime) VALUES";
 for($s=0;$s<20;$s++){
 	$ymd=date("Ymd",time()+86400*$s);
-	for($cast=100;$cast<115;$cast++){
+	for($cast=123457;$cast<123467;$cast++){
 		$rnd=rand(0,5);
 		if($rnd>0){
 			$list.="('{$date}','{$ymd}','{$cast}','{$stime[$rnd]}','{$etime[$rnd]}'),";
@@ -147,6 +147,7 @@ $list=substr($list,0,-1);
 $app.=$list;
 $wpdb->query($app);
 */
+
 
 
 get_header();
@@ -256,12 +257,11 @@ var Cnt=<?=(count($slide)-1)?>;
 			<?}?>
 		</div>
 
-
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>
 				<? if($b2 !='9999'){?>
-					<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1">
+					<span class="main_b_1">
 						<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
 						<span class="main_b_1_2">
 							<span class="main_b_1_2_h"></span>
@@ -279,7 +279,8 @@ var Cnt=<?=(count($slide)-1)?>;
 						<?}elseif($dat[$b1]["new"] == 3){?>
 						<span class="main_b_1_ribbon ribbon3">新人</span>
 						<?}?>
-					</a>
+					<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
+					</span>
 				<? } ?>
 			<? } ?>
 		</div>
@@ -297,7 +298,6 @@ var Cnt=<?=(count($slide)-1)?>;
 				<?}?>
 			<?}?>
 		</div>
-
 		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>

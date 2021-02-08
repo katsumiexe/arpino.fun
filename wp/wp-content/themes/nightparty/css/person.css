@@ -137,12 +137,23 @@
 	overflow		:hidden;
 }
 
-.person_img_main{
+.person_img_box{
 	position		:absolute;
 	top				:7px;
 	left			:0;
 	width			:360px;
 	height			:480px;	
+}
+
+.person_img_main,.person_img_top{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	width			:360px;
+	height			:480px;	
+}
+.person_img_top{
+	opacity			:0;
 }
 
 .person_img_list{
@@ -535,6 +546,14 @@
 	margin:0 1vw;
 }
 
+.person_img_box{
+	top				:0;
+	left			:0;
+	width			:39vw;
+	height			:52vw;	
+
+}
+
 .person_img_main{
 	top				:0;
 	left			:0;
@@ -606,9 +625,15 @@
 }
 
 
-.person_img_main{
+.person_img_box{
 	top				:0;
 	left			:0.5vw;
+	width			:75vw;
+	height			:100vw;	
+}
+.person_img_main{
+	top				:0;
+	left			:0;
 	width			:75vw;
 	height			:100vw;	
 }

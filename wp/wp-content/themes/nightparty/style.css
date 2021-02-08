@@ -597,6 +597,17 @@ ul {
 	overflow		:hidden;	
 }
 
+.main_b_1_0{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	display			:inline-block;
+	width			:198px;	
+	height			:330px;
+	opacity			:0;
+}
+
+
 .main_c_1{
 	position	:absolute;
 	display		:inline-block;
@@ -2380,7 +2391,10 @@ ul {
 	display:none;
 }
 
-
+.main_b_1_0{
+	width			:43vw;	
+	height			:74vw;
+}
 
 .main_d_1_1,.main_b_1_1{
 	width			:39vw;
