@@ -25,6 +25,10 @@ input[type=text]{
 	height:100px;
 	resize:none;
 }
+.tbox2{
+	height:70px;
+	resize:none;
+}
 
 td{
 	vertical-align:top;
@@ -550,12 +554,12 @@ CAST情報
 	<td colspan="3">NEWS登録</td>
 </tr>	
 <tr>
-	<td>公開日
+	<td style="width:40%;">公開日
 	<input type="text" id="news_date_yy" name="news_date_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
 	<input type="text" id="news_date_mm" name="news_date_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
 	<input type="text" id="news_date_dd" name="news_date_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
 
-	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox" autocomplete="off">[date]、[name]ちゃんが入店します！</textarea></td>
+	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[date]、[name]ちゃんが入店します！</textarea></td>
 </tr>
 </table>
 <input id="h_news_box" type="hidden" value="[date]に[name]ちゃんが入店します！">
