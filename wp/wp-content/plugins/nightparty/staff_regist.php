@@ -458,14 +458,6 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
-	$("#ctime_mm, #ctime_dd").on("change",function(){
-		Tmp_m=$("#ctime_mm").val();
-		Tmp_d=$("#ctime_dd").val();
-		Tmp_n=$("#genji").val();
-		Tmp_c=$("#h_news_box").val().replace('[date]','[d1]'+Tmp_m+'月'+Tmp_d+'日[n2]');
-		Tmp_c=$("#h_news_box").val().replace('[name]','[n1]'+Tmp_n+'[n2]');
-		$("#news_box").val(Tmp_c);
-	});
 });
 </script>
 
@@ -559,10 +551,9 @@ CAST情報
 	<input type="text" id="news_date_mm" name="news_date_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
 	<input type="text" id="news_date_dd" name="news_date_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
 
-	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[date]、[name]ちゃんが入店します！</textarea></td>
+	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
 </tr>
 </table>
-<input id="h_news_box" type="hidden" value="[date]に[name]ちゃんが入店します！">
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
 	<?foreach($charm_table as $a1 => $a2){?>

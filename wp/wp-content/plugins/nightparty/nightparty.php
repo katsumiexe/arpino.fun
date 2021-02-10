@@ -202,17 +202,21 @@ if($_POST["staff_set"]){
 	}
 
 	if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
-		$news_box=str_replace("[date]","<span style=\"color:#d00000; font-weight:600\">{$ctime_mm}月{$ctime_dd}日</span>",$_REQUEST["news_box"]);
-		$news_box=str_replace("[name]","<span style=\"color:#0000d0; font-weight:600\">{$genji}</span>",$news_box);
+
+		$news_box=str_replace("[name]","<span style=\"color:#0000d0; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
 
 		$p_date=$_REQUEST["news_date_yy"]."-".$_REQUEST["news_date_mm"]."-".$_REQUEST["news_date_dd"]." 00:00:00";
+		$m_date=$_REQUEST["ctime_yy"]."-".$_REQUEST["ctime_mm"]."-".$_REQUEST["ctime_dd"]." 00:00:00";
+
 		$g_date=date("Y-m-d 00:00:00",strtotime($p_date)-32400);
 
+
 		$sql_news =" INSERT INTO wp01_posts";
-		$sql_news .="(post_status,post_title,post_date,post_date_gmt,guid,post_mime_type)";
-		$sql_news .=" VALUES('publish','{$news_box}','{$p_date}','{$g_date}','/person','{$tmp_auto}')";
+		$sql_news .="(post_status,post_title,post_date,post_date_gmt,post_modified,guid,post_mime_type)";
+		$sql_news .=" VALUES('publish','{$news_box}','{$p_date}','{$g_date}','{$m_date}','/person','{$tmp_auto}')";
 		$wpdb->query($sql_news);
 		$tmp_auto_2=$wpdb->insert_id;
+
 echo($sql_news);
 		$sql_news =" INSERT INTO wp01_postmeta";
 		$sql_news .="(post_id,meta_key,meta_value)";

@@ -4,6 +4,8 @@ Template Name: news
 */
 $code=$_REQUEST["code"];
 
+$wp_link=get_template_directory_uri();
+
 $sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" WHERE meta_id='{$code}'";
@@ -12,6 +14,7 @@ $sql	.=" ORDER BY meta_value ASC";
 $dat = $wpdb->get_row($sql,ARRAY_A);
 
 $dat["post_content"]=str_replace("\n","<br>",$dat["post_content"]);
+$dat["post_content"]=str_replace("[wp_link]",$wp_link,$dat["post_content"]);
 
 get_header();
 ?>

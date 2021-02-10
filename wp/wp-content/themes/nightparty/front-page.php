@@ -8,6 +8,7 @@ $sql.=" WHERE meta_key IN('start_time','start_week')";
 $admin	= $wpdb->get_results($sql,ARRAY_A);
 $jst=time()+32400;
 $sch_8=date("Ymd",$jst-($admin["start_time"]*3600));
+$news_base=date("Y-m-d 00:00:00",$jst-($admin["start_time"]*3600));
 //$link=get_template_directory_uri();
 //-------------------------------------------
 
@@ -90,16 +91,18 @@ foreach($res2 as $a2){
 	$info[]=$a2;
 }
 
-$sql	 ="SELECT meta_id, meta_value, post_type, post_title, post_content, post_date, T.name, slug, post_mime_type, guid FROM wp01_postmeta AS M";
+$sql	 ="SELECT meta_id, meta_value, post_type,post_modified, post_title, post_content, post_date, T.name, slug, post_mime_type, guid FROM wp01_postmeta AS M";
 $sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
 $sql	.=" LEFT JOIN wp01_terms AS T on M.meta_value=T.term_id";
 $sql	.=" WHERE meta_key='_top_news'";
 $sql	.=" AND meta_value>0";
-$sql	.=" ORDER BY post_date DESC";
+$sql	.=" AND post_date>'{$ews_base}'";
+$sql	.=" ORDER BY post_modified DESC";
 $sql	.=" LIMIT 5";
 $res2 = $wpdb->get_results($sql,ARRAY_A);
+
 foreach($res2 as $a2){
-	$a2["news_date"]=substr($a2["post_date"],0,4).".".substr($a2["post_date"],5,2).".".substr($a2["post_date"],8,2);
+	$a2["news_date"]=substr($a2["post_modified"],0,4).".".substr($a2["post_modified"],5,2).".".substr($a2["post_modified"],8,2);
 	$a2["post_title"]=str_replace("\n","<br>",$a2["post_title"]);
 
 	if($a2["guid"]){
@@ -191,7 +194,7 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="slide_img">
 			<?for($n=0;$n<count($slide);$n++){?>
 				<?if($slide[$n]["link"]){?>
-					<a href="<?=$slide[0]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
+					<a href="<?=$slide[$n]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
 				<?}else{?>	
 					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
 				<?}?>	
