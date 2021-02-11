@@ -5,6 +5,7 @@ ini_set('display_errors',1);
 //require_once ("./../../../wp-load.php");
 require_once ("post/inc_code.php");
 
+$start_time=6;
 $jst=time()+32400;
 $now_8=date("Ymd",$jst-($start_time*3600));
 $link=get_template_directory_uri();
@@ -457,6 +458,7 @@ for($n=0;$n<8;$n++){
 	}
 
 
+	$notice=array();
 	if($_POST["cus_set"]){
 		$cast_page=2;
 
@@ -519,6 +521,7 @@ for($n=0;$n<8;$n++){
 	$sql	.=" AND cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND status>0";
 	$sql	.=" ORDER BY date DESC";
+
 
 	$dat2 = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat2 as $cus2){

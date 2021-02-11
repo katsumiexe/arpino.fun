@@ -18,6 +18,7 @@
  * @package WordPress
  */
 
+/*
 
 // WP_DEBUG モードを有効化
 define( 'WP_DEBUG', true );
@@ -31,7 +32,7 @@ define( 'WP_DEBUG_DISPLAY', false );
 
 // 「開発版」のコア JavaScript と CSS ファイルを使用 (これらのコアファイルを変更する場合のみ必要)
 define( 'SCRIPT_DEBUG', true );
-
+*/
 
 
 // 注意:
