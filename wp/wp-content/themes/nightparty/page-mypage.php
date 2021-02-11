@@ -274,7 +274,8 @@ for($n=0;$n<8;$n++){
 		$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
 		$ana_sche[$ana_day]	=$tmp2["stime"]."-".$tmp2["etime"];
 
-		if(date("Ym")==substr($tmp2["sche_date"])){
+		if(date("Ym")==substr($tmp2["sche_date"],0,6) ){
+
 			if(substr($sche_table_calc["in"][$tmp2["stime"]],2,1) == 3){
 				$tmp_s=$sche_table_calc["in"][$tmp2["stime"]]+20;
 
@@ -292,8 +293,6 @@ for($n=0;$n<8;$n++){
 			$ana_time[$ana_day]=($tmp_e-$tmp_s)/100;
 		}
 	}
-
-
 
 	if($stime[$now_ymd] && $etime[$now_ymd]){
 		$days_sche="{$stime[$now_ymd]}-{$etime[$now_ymd]}";
@@ -1288,9 +1287,10 @@ $(function(){
 
 	<?for($n=1;$n<$now_count+1;$n++){?>
 		<?$ana_week=($week_01+$n-1)%7?>
+		<?$ana_salary = $ana_time * $_SESSION["cast_salary"]+0?>
+
 		<tr>
 			<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
-
 			<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
 
 			<td class="ana_pay <?=$ana_line[$ana_week]?>">
@@ -1305,8 +1305,9 @@ $(function(){
 						<span class="ana_list_name">店舗</span>
 						<span class="ana_list_icon"></span>
 						<span class="ana_list_item">時給</span>
-						<span class="ana_list_pts">15000</span>
+						<span class="ana_list_pts"><?=$ana_salary?></span>
 					</span>
+
 					<span class="ana_list_c">
 						<span class="ana_list_name">やまちゃん</span>
 						<span class="ana_list_icon"></span>
