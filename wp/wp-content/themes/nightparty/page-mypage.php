@@ -290,7 +290,7 @@ for($n=0;$n<8;$n++){
 				$tmp_e=$sche_table_calc["out"][$tmp2["etime"]];
 			}		
 
-			$ana_time[$ana_day]=($tmp_e-$tmp_s)/100;
+			$ana_time[$ana_day+0]=($tmp_e-$tmp_s)/100;
 		}
 	}
 
@@ -1287,14 +1287,14 @@ $(function(){
 
 	<?for($n=1;$n<$now_count+1;$n++){?>
 		<?$ana_week=($week_01+$n-1)%7?>
-		<?$ana_salary = $ana_time * $_SESSION["cast_salary"]+0?>
+		<? $ana_salary = $ana_time[$n] * $_SESSION["cast_salary"]?>
 
 		<tr>
 			<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
 			<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
 
 			<td class="ana_pay <?=$ana_line[$ana_week]?>">
-				<span class="ana_icon"></span><span class="ana_pay_all">18000</span>
+				<span class="ana_icon"></span><span class="ana_pay_all"><?=$_SESSION["cast_salary"]?></span>
 			</td>
 			<td id="ana_<?=$n?>" class="ana_detail <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
 		</tr>
