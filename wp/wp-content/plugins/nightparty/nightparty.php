@@ -188,8 +188,10 @@ if($_POST["staff_set"]){
 
 					$img2_s 		= imagecreatetruecolor(180,240);
 					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
-					imagejpeg($img2_s,$link."/".$a3."_s.jpg",100);
+//					imagewebp($img2_s,$link."/".$a3."_s.webp");
+					imagejpeg($img2_s,$link."/".$a3."_s.jpg");
 					imagedestroy($img2_s);
+
 
 					$img2_n 		= imagecreatetruecolor(30,40);
 					ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);

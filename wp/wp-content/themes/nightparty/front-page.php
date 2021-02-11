@@ -40,9 +40,12 @@ foreach($res0 as $a1){
 	}
 
 	$dat[$a1["cast_id"]]=$a1;
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0.jpg";			
-		$dat[$a1["id"]]["face_n"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_n.jpg";			
+	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0_s.webp")) {
+		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_s.webp";			
+
+	}elseif (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0_s.jpg")) {
+		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_s.jpg";			
+
 	}else{
 		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
