@@ -123,6 +123,7 @@ foreach($res2 as $a2){
 }
 
 /*
+
 $stime[1]="OPEN";
 $stime[2]="OPEN";
 $stime[3]="OPEN";
@@ -152,8 +153,8 @@ for($s=0;$s<20;$s++){
 $list=substr($list,0,-1);
 $app.=$list;
 $wpdb->query($app);
-*/
 
+*/
 
 
 get_header();

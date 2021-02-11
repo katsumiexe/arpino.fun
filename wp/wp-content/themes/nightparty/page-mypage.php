@@ -256,6 +256,7 @@ for($n=0;$n<8;$n++){
 	foreach($dat as $tmp){
 		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
 		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+		$sche_table_calc[$tmp["in_out"]][$tmp["name"]]	=$tmp["time"];
 	}
 
 	$days_sche="休み";
@@ -272,7 +273,27 @@ for($n=0;$n<8;$n++){
 
 		$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
 		$ana_sche[$ana_day]	=$tmp2["stime"]."-".$tmp2["etime"];
+
+		if(date("Ym")==substr($tmp2["sche_date"])){
+			if(substr($sche_table_calc["in"][$tmp2["stime"]],2,1) == 3){
+				$tmp_s=$sche_table_calc["in"][$tmp2["stime"]]+20;
+
+			}else{
+				$tmp_s=$sche_table_calc["in"][$tmp2["stime"]];
+			}		
+
+			if(substr($sche_table_calc["out"][$tmp2["etime"]],2,1) == 3){
+				$tmp_e=$sche_table_calc["out"][$tmp2["etime"]]+20;
+
+			}else{
+				$tmp_e=$sche_table_calc["out"][$tmp2["etime"]];
+			}		
+
+			$ana_time[$ana_day]=($tmp_e-$tmp_s)/100;
+		}
 	}
+
+
 
 	if($stime[$now_ymd] && $etime[$now_ymd]){
 		$days_sche="{$stime[$now_ymd]}-{$etime[$now_ymd]}";
@@ -309,6 +330,8 @@ for($n=0;$n<8;$n++){
 			}
 		}
 	}
+
+	
 
 	$sql	 ="SELECT * FROM wp01_posts";
 	$sql	.=" WHERE post_password='{$_SESSION["id"]}'";
@@ -650,8 +673,11 @@ for($n=0;$n<8;$n++){
 		}
 		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
-}
 
+
+
+
+}
 ?>
 <html lang="ja">
 <head>
@@ -1310,19 +1336,21 @@ $(function(){
 	<?}elseif($cast_page==6){?>
 <div class="main">
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">基本情報</span></div></h2>
+
+<!--
 <table class="config_img">
 	<tr>
 		<td class="config_img_a" rowspan="3"><img src="<?=$user_face?>?t=<?=time()?>" class="config_img_a1"></td>
-<!--
-		<td id="line_face1" class="config_img_b">
-			<img id="sumb1" src="<?=$prof_img[1]?>?t=<?=time()?>" class="config_img_b1">
-			<div id="s1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 1){?> img_sel<?}?>">
-				<span class="icon_img icon_5s img_btn_icon"></span>
-				<span class="img_btn_txt">選択</span>
-			</div>
-			<a href="line://nv/profile" class="config_img_line"><span class="icon_img icon_line"></span><span class="text_line">LINE</span></a>
-		</td>
--->
+
+//		<td id="line_face1" class="config_img_b">
+//			<img id="sumb1" src="<?=$prof_img[1]?>?t=<?=time()?>" class="config_img_b1">
+//			<div id="s1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 1){?> img_sel<?}?>">
+//				<span class="icon_img icon_5s img_btn_icon"></span>
+//				<span class="img_btn_txt">選択</span>
+//			</div>
+//			<a href="line://nv/profile" class="config_img_line"><span class="icon_img icon_line"></span><span class="text_line">LINE</span></a>
+//		</td>
+
 		<td id="line_face2" class="config_img_b">
 			<img id="sumb1" src="<?=$prof_img[1]?>?t=<?=time()?>" class="config_img_b1">
 			<div id="s1" class="img_btn1<?if(strpos($prof_img[1],"noimage") === FALSE){?> btn_chg<?}?><?if($user["reg_pic"]== 1){?> img_sel<?}?>">
@@ -1374,13 +1402,14 @@ $(function(){
 		</td>
 	</tr>
 </table>
+-->
 
 <div class="config_box">
 	<span class="config_tag1">USER_ID</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
 	<span class="config_tag1">PASSWORD</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="new-password"><br>
 	<span class="config_tag1">名前</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
 	<span class="config_tag1">メール</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
-	<span class="config_tag1">時給</span><input id="hourly" type="text" value="<?=$_SESSION["cast_hourly"]?>" class="config_text1"><br>
+	<span class="config_tag1">時給</span><input id="hourly" type="text" value="<?=$_SESSION["cast_salary"]?>" class="config_text1"><br>
 	<span class="config_tag2">LINE連携</span>
 	<span class="config_tag2">Twitter連携</span>
 </div>

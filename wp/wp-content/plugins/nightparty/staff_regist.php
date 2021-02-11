@@ -204,9 +204,6 @@ td{
 	font-size		:14px;
 }
 
-
-
-
 .img_box_out1{
 	position	:absolute;
 	background	:rgba(255,255,255,0.6);
@@ -537,10 +534,11 @@ CAST情報
 </td><td>
 	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="off">
 </td><td>
-	<div>ランク		</div><input type="text" name="cast_rank" class="w000" autocomplete="off">
+	<div>時給		</div><input type="text" name="cast_salary" class="w000" autocomplete="off">
 </td>
 </tr>
 </table>
+
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
 	<td colspan="3">NEWS登録</td>
@@ -554,6 +552,7 @@ CAST情報
 	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
 </tr>
 </table>
+
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
 	<?foreach($charm_table as $a1 => $a2){?>
@@ -590,6 +589,40 @@ CAST情報
 </table>
 <? } ?>
 
+<table style="width:720px;" class="cast_table table-layout: fixed;">
+<tr>
+	<td class="table_title">スケジュール</td>
+</tr>	
+<tr>
+	<td>
+	<?for($n=0;$n<7;$n++){?>
+	<select id="sch_stime[$n]" name="sch_stime[$n]" class="w60"autocomplete="off">
+	<?foreach($sch_stime_sel as $a1 => $a2){?>
+		<option value="<?=$a1?>"><?=$a2?></option>
+	<?}?>
+	</select>
+	～
+	<select id="sch_stime[$n]" name="sch_etime[$n]" class="w60"autocomplete="off">
+	<?foreach($sch_etime_sel as $a1 => $a2){?>
+		<option value="<?=$a1?>"><?=$a2?></option>
+	<?}?>
+	</select>
+	<hr>
+	<?for($n=7;$n<14;$n++){?>
+	<select id="sch_stime[$n]" name="sch_stime[$n]" class="w60"autocomplete="off">
+	<?foreach($sch_stime_sel as $a1 => $a2){?>
+		<option value="<?=$a1?>"><?=$a2?></option>
+	<?}?>
+	</select>
+	～
+	<select id="sch_stime[$n]" name="sch_etime[$n]" class="w60"autocomplete="off">
+	<?foreach($sch_etime_sel as $a1 => $a2){?>
+		<option value="<?=$a1?>"><?=$a2?></option>
+	<?}?>
+	</select>
+	<td>
+</tr>
+</table>
 </td><td class="cast_table">
 	<div class="up_box">
 	画像の推奨は縦800px×横600pxです。<br>
