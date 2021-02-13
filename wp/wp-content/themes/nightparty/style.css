@@ -82,7 +82,7 @@ ul {
 .main_top_flex{
 	display			:inline-flex;
 	justify-content	:space-between;
-	align-items: flex-start;
+	align-items		: flex-start;
 	text-align		:center;
 	width			:1200px;
 	margin			:0 auto;
@@ -119,8 +119,8 @@ ul {
 }
 
 .head_logo{
-	height		:100px;
-	width		:300px;
+	height			:100px;
+	width			:300px;
 }
 
 .head_b{
@@ -132,10 +132,10 @@ ul {
 }
 
 .head_b_table{
-	position:absolute;
-	right:0px;
-	width		:300px;
-	margin-top	:5px;
+	position		:absolute;
+	right			:0px;
+	width			:300px;
+	margin-top		:5px;
 }
 
 .head_in{
