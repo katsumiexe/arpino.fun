@@ -3,6 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Night-party</title>
+<?php wp_head(); ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -38,7 +39,6 @@ const Dir='<?php echo get_template_directory_uri(); ?>';
 	src: url(<?php echo get_template_directory_uri(); ?>/font/Courgette-Regular.ttf) format('truetype');
 }
 </style>
-<?php wp_head(); ?>
 </head>
 <body class="body">
 <header class="head">

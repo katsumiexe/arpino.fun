@@ -112,7 +112,7 @@ $sql	.="VALUES";
 $sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img_key}')";
 $wpdb->query($sql);
 
-	$log=str_replace("\n","<br>",$log);
+$log=str_replace("\n","<br>",$log);
 
 $dat.="<div class=\"mail_box_b\">";		
 $dat.="<div class=\"mail_box_log_{$send} bg\">";		
@@ -121,13 +121,12 @@ $dat.=$log;
 $dat.="</div>";
 
 if($img_code){
-$dat.=$link;		
-
 $dat.="<img src=\"{$res}\" class=\"mail_box_stamp\">";		
 }
 $dat.="</div>";
 $dat.="<span class=\"mail_box_date_b\"><span class=\"midoku\">未読</span>　{$now_dat}</span>";		
 $dat.="</div>";
+
 echo $dat;
 exit();
 ?>

@@ -117,7 +117,6 @@ for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$box_no.=$dec[$id_0][$tmp_id];
 }
-
 	/*--■イニシャライズ--*/
 	$cast_page=$_POST["cast_page"]+0;
 
@@ -272,7 +271,11 @@ for($n=0;$n<8;$n++){
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 
 		$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
-		$ana_sche[$ana_day]	=$tmp2["stime"]."-".$tmp2["etime"];
+		$ana_sche[$ana_day]	="<span class=\"sche_s\">".$tmp2["stime"]."</span>-<span class=\"sche_e\">".$tmp2["etime"]."</span>";
+
+		
+		
+
 
 		if(date("Ym")==substr($tmp2["sche_date"],0,6) ){
 
@@ -660,7 +663,10 @@ for($n=0;$n<8;$n++){
 //■------------------
 	$sql ="SELECT * FROM wp01_0cast_log_table";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+
+
 	$dat = $wpdb->get_results($sql,ARRAY_A );
+
 	if($dat){
 		foreach($dat as $a1){
 			$log_item[$a1["sort"]]=$a1;
@@ -673,10 +679,28 @@ for($n=0;$n<8;$n++){
 		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
 
+	$sql ="SELECT log_icon,log_comm,log_price,date,B.cast_id,customer_id FROM wp01_0cast_log_list AS A ";
+	$sql.=" LEFT JOIN wp01_0cast_log AS B ON A.master_id=B.log_id";
+	$sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
 
+	$sql.=" WHERE B.cast_id='{$_SESSION["id"]}'";
+	$sql.=" AND date>='{$calendar[1]}'";
+	$sql.=" AND date<'{$calendar[2]}'";
+	$sql.=" AND A.del=0";
+	$sql.=" AND B.del=0";
+	$sql.=" ORDER BY log_id ASC";
 
+	$dat = $wpdb->get_results($sql,ARRAY_A );
 
+	if($dat){
+		foreach($dat as $aa1){
+			$tmp_d=substr($aa1["date"],8,2)+0;
+			$dat_ana[$tmp_d][]	 =$aa1;
+			$pay_all[$tmp_d]	+=$aa1["log_price"];
+		}
+	}
 }
+
 ?>
 <html lang="ja">
 <head>
@@ -1281,25 +1305,27 @@ $(function(){
 		<table class="ana">
 		<tr>
 			<td class="ana_top">日時</td>
-			<td class="ana_top">シフト時間</td>
+			<td class="ana_top">シフト</td>
+			<td class="ana_top">時間</td>
 			<td class="ana_top" colspan="2">給与・歩合</td>
 		</tr>
 
 	<?for($n=1;$n<$now_count+1;$n++){?>
 		<?$ana_week=($week_01+$n-1)%7?>
 		<? $ana_salary = $ana_time[$n] * $_SESSION["cast_salary"]?>
+		<? $ana_all = $ana_salary +$pay_all[$n]?>
 
 		<tr>
 			<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
 			<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
-
-			<td class="ana_pay <?=$ana_line[$ana_week]?>">
-				<span class="ana_icon"></span><span class="ana_pay_all"><?=$_SESSION["cast_salary"]?></span>
+			<td class="ana_time <?=$ana_line[$ana_week]?>"><?=$ana_time[$n]?></td>
+			<td class="ana_pay <?=$ana_line[$ana_week]?>">	
+				<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
 			</td>
 			<td id="ana_<?=$n?>" class="ana_detail <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
 		</tr>
 		<tr>
-			<td id="lana_<?=$n?>" class="ana_list" colspan="3">
+			<td id="lana_<?=$n?>" class="ana_list" colspan="4">
 				<div id="dana_<?=$n?>" class="ana_list_div">
 					<span class="ana_list_c lc1">
 						<span class="ana_list_name">店舗</span>
@@ -1308,24 +1334,14 @@ $(function(){
 						<span class="ana_list_pts"><?=$ana_salary?></span>
 					</span>
 
+				<?foreach((array)$dat_ana[$n] as $a1){?>
 					<span class="ana_list_c">
-						<span class="ana_list_name">やまちゃん</span>
+						<span class="ana_list_name"><?=$a1["nickname"]?></span>
 						<span class="ana_list_icon"></span>
-						<span class="ana_list_item">ボトル</span>
-						<span class="ana_list_pts">15000</span>
+						<span class="ana_list_item"><?=$a1["log_comm"]?></span>
+						<span class="ana_list_pts"><?=$a1["log_price"]?></span>
 					</span>
-					<span class="ana_list_c lc1">
-						<span class="ana_list_name">ゲスト</span>
-						<span class="ana_list_icon"></span>
-						<span class="ana_list_item">指名</span>
-						<span class="ana_list_pts">150</span>
-					</span>
-					<span class="ana_list_c">
-						<span class="ana_list_name">ゲスト</span>
-						<span class="ana_list_icon"></span>
-						<span class="ana_list_item">ドリンク</span>
-						<span class="ana_list_pts">150</span>
-					</span>
+				<? } ?>
 				</div>
 			</td>
 		</tr>
@@ -1728,11 +1744,11 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-				<span class="regist_img_pack"><img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
-				<span class="customer_camera"></span>
+					<span class="regist_img_pack"><img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
+					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
-				<td id="" class="customer_base_item">
+					<td id="" class="customer_base_item">
 				<select id="regist_group" name="cus_group" value="0" class="item_group">
 				<option value="0">通常</option>
 				<?foreach($cus_group_sel as $a1=>$a2){?>

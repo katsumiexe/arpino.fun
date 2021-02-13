@@ -1,8 +1,7 @@
 var TopCnt=0;
 var Vw	=$(window).width();
 var Vh	=$(window).height();
-var TMR=4000;
-	TMR=4000;
+const TMR=4000;
 
 $(function(){ 
 	timerId = setInterval(Fnc_s,TMR);
@@ -74,11 +73,9 @@ function Fnc_s() {
 //		clearInterval(timerId);
 //		timerId = setInterval(Fnc_s,TMR);
 	}
-	Left=TopCnt * (-100);
-		$('.slide_img').animate({'left':Left+"%"},1000)
-		$('.slide_dot').removeClass('dot_on'),
-		$('#dot'+TopCnt).addClass('dot_on')
-
-console.log(Left)
+	var Left=TopCnt * (-100);
+	$('.slide_img').animate({'left':Left+"%"},1000)
+	$('.slide_dot').removeClass('dot_on'),
+	$('#dot'+TopCnt).addClass('dot_on')
 }
 

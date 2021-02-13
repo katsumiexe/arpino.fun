@@ -43,7 +43,7 @@ foreach($res0 as $a1){
 	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0_s.webp")) {
 		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_s.webp";			
 
-	}elseif (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0_s.jpg")) {
+	}elseif (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
 		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_s.jpg";			
 
 	}else{
@@ -186,9 +186,9 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="slide">
 		<div class="slide_img">
 			<?if($slide[0]["link"]){?>
-				<a href="<?=$slide[0]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img"></a>;
+				<a href="<?=$slide[0]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img"></a>;
 			<?}else{?>	
-				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.jpg" class="top_img">;
+				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img">;
 			<?}?>	
 		</div>
 	</div>
@@ -198,9 +198,9 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="slide_img">
 			<?for($n=0;$n<count($slide);$n++){?>
 				<?if($slide[$n]["link"]){?>
-					<a href="<?=$slide[$n]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img"></a>;
+					<a href="<?=$slide[$n]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img"></a>;
 				<?}else{?>	
-					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.jpg" class="top_img">;
+					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img">;
 				<?}?>	
 			<?}?>	
 		</div>
