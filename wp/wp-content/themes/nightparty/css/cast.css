@@ -3995,6 +3995,7 @@ input[type=range]::-moz-range-thumb{
 	color			:#fafafa;
 }
 
+
 .ana_arrow{
 	position		:absolute;
 	top				:1.5vw;
@@ -4043,7 +4044,7 @@ input[type=range]::-moz-range-thumb{
 }
 
 .lc1{
-	background		:#f0f0f0;
+	background		:#fff0f4;
 }
 
 .ana_list_name{

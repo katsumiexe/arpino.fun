@@ -94,6 +94,9 @@ $week_ed		=date("Ymd",$base_day+604800-$times_start);
 $month_st		=date("Ymd",strtotime($calendar[0]));
 $month_ed		=date("Ymd",strtotime($calendar[3]));
 
+$ana_ym=$_POST["ana_ym"];
+if(!$ana_ym) $ana_ym=date("Ym");
+
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
 $ana_line[$week_start]=" ana_line";
@@ -270,14 +273,10 @@ for($n=0;$n<8;$n++){
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 
-		$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
-		$ana_sche[$ana_day]	="<span class=\"sche_s\">".$tmp2["stime"]."</span>-<span class=\"sche_e\">".$tmp2["etime"]."</span>";
-
-		
-		
-
-
-		if(date("Ym")==substr($tmp2["sche_date"],0,6) ){
+		if($ana_ym==substr($tmp2["sche_date"],0,6) ){
+			
+			$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
+			$ana_sche[$ana_day]	="<span class=\"sche_s\">".$tmp2["stime"]."</span>-<span class=\"sche_e\">".$tmp2["etime"]."</span>";
 
 			if(substr($sche_table_calc["in"][$tmp2["stime"]],2,1) == 3){
 				$tmp_s=$sche_table_calc["in"][$tmp2["stime"]]+20;
@@ -679,7 +678,7 @@ for($n=0;$n<8;$n++){
 		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
 
-	$sql ="SELECT log_icon,log_comm,log_price,date,B.cast_id,customer_id FROM wp01_0cast_log_list AS A ";
+	$sql ="SELECT log_icon,log_comm,nickname,log_price,date,B.cast_id,customer_id FROM wp01_0cast_log_list AS A ";
 	$sql.=" LEFT JOIN wp01_0cast_log AS B ON A.master_id=B.log_id";
 	$sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
 
@@ -695,8 +694,10 @@ for($n=0;$n<8;$n++){
 	if($dat){
 		foreach($dat as $aa1){
 			$tmp_d=substr($aa1["date"],8,2)+0;
+	
 			$dat_ana[$tmp_d][]	 =$aa1;
 			$pay_all[$tmp_d]	+=$aa1["log_price"];
+
 		}
 	}
 }
@@ -1313,7 +1314,7 @@ $(function(){
 	<?for($n=1;$n<$now_count+1;$n++){?>
 		<?$ana_week=($week_01+$n-1)%7?>
 		<? $ana_salary = $ana_time[$n] * $_SESSION["cast_salary"]?>
-		<? $ana_all = $ana_salary +$pay_all[$n]?>
+		<? $ana_all = number_format($ana_salary +$pay_all[$n])?>
 
 		<tr>
 			<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
@@ -1322,8 +1323,9 @@ $(function(){
 			<td class="ana_pay <?=$ana_line[$ana_week]?>">	
 				<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
 			</td>
-			<td id="ana_<?=$n?>" class="ana_detail <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
+			<td id="ana_<?=$n?>" class="ana_detail<?if($ana_all ==0){?>_n<?}?> <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
 		</tr>
+
 		<tr>
 			<td id="lana_<?=$n?>" class="ana_list" colspan="4">
 				<div id="dana_<?=$n?>" class="ana_list_div">
@@ -1334,13 +1336,16 @@ $(function(){
 						<span class="ana_list_pts"><?=$ana_salary?></span>
 					</span>
 
+				<?$tmp_line=0;?>
+
 				<?foreach((array)$dat_ana[$n] as $a1){?>
-					<span class="ana_list_c">
-						<span class="ana_list_name"><?=$a1["nickname"]?></span>
-						<span class="ana_list_icon"></span>
+					<?$tmp_lc=$tmp_line % 2;?>
+					<span class="ana_list_c lc<?=$tmp_lc?>">
+						<span class="ana_list_name"><?=$a1["nickname"]?>様</span>
 						<span class="ana_list_item"><?=$a1["log_comm"]?></span>
 						<span class="ana_list_pts"><?=$a1["log_price"]?></span>
 					</span>
+					<?$tmp_line++;?>
 				<? } ?>
 				</div>
 			</td>
