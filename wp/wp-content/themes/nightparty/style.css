@@ -111,7 +111,7 @@ ul {
 .head_top{
 	display			:block;
 	position		:relative;
-	width			:1180px;
+	width			:1200px;
 	height			:100px;
 	margin			:0 auto;
 	text-align		:left;
@@ -126,7 +126,7 @@ ul {
 .head_b{
 	display			:inline-block;
 	height			:100px;
-	width			:880px;
+	width			:900px;
 	text-align		:right;
 	vertical-align	:top;
 }
@@ -165,23 +165,21 @@ ul {
 .head_b_1{
 	color			:#e0e0e0;
 	font-size		:15px;
-	display			:inline-block;
-	line-height		:20px;
-	text-align:right;
+	line-height		:18px;
+	text-align		:right;
 }
 
 .head_b_2,.head_b_3{
 	color			:#e8d8a0;
 	font-size		:22px;
 	font-weight		:600;
-	display			:inline-block;
 	height			:27px;
 	line-height		:27px;
 	text-align		:left;
 }
 
 .head_b_3{
-	width			:200px;
+	width			:190px;
 	text-align		:right;
 
 }
