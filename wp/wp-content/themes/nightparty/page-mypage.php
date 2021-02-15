@@ -1130,11 +1130,7 @@ $(function(){
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			<div class="customer_sns_ttl"></div>
 		</div>
-		<div class="customer_tag">
-			<div id="tag_1" class="tag_set tag_set_ck" style="top:0.5vw;">項目</div>
-			<div id="tag_2" class="tag_set">メモ</div>
-			<div id="tag_3" class="tag_set">履歴</div>
-		</div>
+		<div class="customer_tag"><div id="tag_1" class="tag_set tag_set_ck" style="height:8vw;">項目</div><div id="tag_2" class="tag_set">メモ</div><div id="tag_3" class="tag_set">履歴</div></div>
 		<input id="h_customer_id" type="hidden" name="cus_id" value="0">
 		<input id="h_customer_set" type="hidden" name="cus_set" value="1">
 		<input id="h_customer_page" type="hidden" name="cus_page" value="1">
@@ -1331,7 +1327,6 @@ $(function(){
 				<div id="dana_<?=$n?>" class="ana_list_div">
 					<span class="ana_list_c lc1">
 						<span class="ana_list_name">店舗</span>
-						<span class="ana_list_icon"></span>
 						<span class="ana_list_item">時給</span>
 						<span class="ana_list_pts"><?=$ana_salary?></span>
 					</span>

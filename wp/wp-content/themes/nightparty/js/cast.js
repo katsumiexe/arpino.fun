@@ -72,8 +72,8 @@ $(function(){
 		if($(this).hasClass('tag_set_ck')!='true'){
 
 			Tmp_tr=$(this).attr('id')+"_tbl";
-			$('.tag_set_ck').removeClass('tag_set_ck').animate({'top':'3vw','height':'5.5vw'},200);
-			$(this).addClass('tag_set_ck').animate({'top':'0.5vw','height':'8vw'},200);
+			$('.tag_set_ck').removeClass('tag_set_ck').animate({'height':'5.5vw'},200);
+			$(this).addClass('tag_set_ck').animate({'height':'8vw'},200);
 
 			$('.customer_memo').hide();
 			$('#'+Tmp_tr).fadeIn(300);
@@ -609,7 +609,7 @@ $(function(){
 
 	$('.head').on('click','.arrow_customer',function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
-		$('.customer_detail').animate({'left':'100vw'},150).css({'height':'100vh'});
+		$('.customer_detail').animate({'left':'100vw'},150);
 		$('.head_mymenu_ttl').html('顧客リスト');
 		$('.menu').css({'heigh':'auto'});
 		$('.pg3').hide();
@@ -623,8 +623,8 @@ $(function(){
 		$('.customer_sns_box,.sns_arrow_a,.customer_sns_btn').removeClass('c_customer_twitter c_customer_facebook c_customer_insta c_customer_web c_customer_line c_customer_tel c_customer_mail');
 		$('.sns_jump').removeClass('jump_on');
 
-		$('.tag_set').removeClass('tag_set_ck').animate({'top':'3vw','height':'5.5vw'},300);
-		$('#tag_1').addClass('tag_set_ck').animate({'top':'0.5vw','height':'8vw'},300);
+		$('.tag_set').removeClass('tag_set_ck').animate({'height':'5.5vw'},300);
+		$('#tag_1').addClass('tag_set_ck').animate({'height':'8vw'},300);
 
 		$('.customer_memo').hide();
 		$('#tag_1_tbl').show();
@@ -783,7 +783,7 @@ $(function(){
 			$('#customer_web').addClass('c_customer_web');		
 		}
 
-		$('.customer_detail').animate({'left':'0'},200).animate({'height':'82vw'},0);
+		$('.customer_detail').animate({'left':'0'},200);
 		$('.menu').css({'heigh':'100vh'});
 
 		$.post({
@@ -869,8 +869,7 @@ $(function(){
 
 	$('.customer_sns_btn').on('click',function(){
 		if($('.customer_sns_box').css('display') !== 'none'){
-			$('.customer_detail').animate({'height':'82vw'},100);
-			$('.pg3').animate({'margin-top':'83vw'},200);
+			$('.pg3').animate({'margin-top':'82vw'},200);
 
 			$('.customer_sns_box').slideUp(100);
 			$('.customer_sns_tr').slideUp(100);
@@ -911,8 +910,7 @@ $(function(){
 
 			$('.customer_sns_box').slideDown(200);
 			$('.customer_sns_tr').slideDown(200);
-			$('.customer_detail').animate({'height':'95vw'},200);
-			$('.pg3').animate({'margin-top':'96vw'},200);
+			$('.pg3').animate({'margin-top':'102vw'},200);
 
 		}else{
 			Tmp='';

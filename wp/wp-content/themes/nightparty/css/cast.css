@@ -800,11 +800,12 @@ input:focus{
 
 .customer_tag{
 	position		:relative;
-	width			:98vw;
+	width			:100vw;
 	height			:9.5vw;
 	margin			:0 auto;
 	border-bottom	:1.5vw solid #f17766;
 	overflow		:hidden;
+	font-size		:0;
 }
 
 .tag_btn{
@@ -820,7 +821,7 @@ input:focus{
 
 .tag_set{
 	position		:absolute;
-	top				:3vw;
+	bottom			:0;
 	width			:18vw;
 	height			:5.5vw;
 	line-height		:5.5vw;
@@ -840,26 +841,25 @@ input:focus{
 	color			:#fafafa;
 	border-color	:#f17766;
 	background		:#f17766;
-	height			:8vw;
 	line-height		:7vw;
 	z-index			:18;
 }
 
 
 #tag_1{
-	left:0vw;
+	left:2vw;
 }
 
 #tag_2{
-	left:19.5vw;
+	left:21.5vw;
 }
 
 #tag_3{
-	left:39vw;
+	left:41vw;
 }
 
 #tag_4{
-	left:58.5vw;
+	left:60.5vw;
 }
 
 #tag_2_tbl,#tag_3_tbl{
@@ -1343,7 +1343,6 @@ input:focus{
 	top				:0;
 	left			:100vw;
 	width			:100vw;
-	height			:100vh;
 	background		:linear-gradient(#ffe0f0,#ffe8f8);
 	z-index			:12;
 
@@ -1985,7 +1984,7 @@ input:focus{
 }
 
 .pg3{
-	margin-top		:83vw;
+	margin-top		:82vw;
 }
 
 .main_sch{
@@ -4054,7 +4053,7 @@ input[type=range]::-moz-range-thumb{
 	left			:1vw;
 	height			:4.5vw;
 	line-height		:4.5vw;
-	width			:35vw;
+	width			:32vw;
 	font-size		:3.5vw;
 	text-align		:left;
 }
@@ -4080,12 +4079,13 @@ input[type=range]::-moz-range-thumb{
 	right			:16vw;
 	height			:5vw;
 	line-height		:5vw;
-	width			:25vw;
+	width			:27vw;
 	border-bottom	:1px solid #303030;
 	font-size		:3.5vw;
 	text-align		:left;
+	padding-left:1vw;
 }
-
+	
 .ana_list_pts{
 	display			:inline-block;
 	position		:absolute;
