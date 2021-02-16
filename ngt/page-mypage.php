@@ -1,49 +1,7 @@
 <?
-session_start();
-global $wpdb;
-ini_set('display_errors',1);
-//require_once ("./../../../wp-load.php");
-require_once ("post/inc_code.php");
+include_once('./library/cast_session.php');
+include_once('./library/base.php');
 
-$start_time=6;
-$jst=time()+32400;
-$now_8=date("Ymd",$jst-($start_time*3600));
-$link=get_template_directory_uri();
-$link2=get_template_directory();
-
-
-if($_REQUEST["log_out"] == 1){
-	$_POST="";
-	$_SESSION="";
-	session_destroy();
-}
-
-if($_SESSION["cast_time"]){
-	if($jst<$_SESSION["cast_time"]+3600){
-
-		$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='".$_SESSION["cast_id"]."'",ARRAY_A );
-		$_SESSION=$rows;
-		$_SESSION["cast_time"]=$jst;
-
-	}else{
-		$_SESSION="";
-		session_destroy();
-	}
-
-}elseif($_POST["log_in_set"] && $_POST["log_pass_set"]){
-	$rows = $wpdb->get_row("SELECT * FROM wp01_0cast WHERE cast_id='{$_POST["log_in_set"]}' AND cast_pass='{$_POST["log_pass_set"]}'",ARRAY_A);
-	if($rows){
-		$_SESSION=$rows;
-		$_SESSION["cast_time"]=$jst;
-
-	}else{
-		$err="IDもしくはパスワードが違います";
-		$_SESSION="";
-		session_destroy();
-	}
-}
-
-if($_SESSION["cast_time"]){
 
 /*--■祝日カレンダー--*/
 $holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
