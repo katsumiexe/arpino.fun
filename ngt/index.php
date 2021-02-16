@@ -1,163 +1,77 @@
 <?php
-//---------------------------------------
-//require_once ("../../../wp-load.php");
-global $wpdb;
-
-$sql=" SELECT meta_value, meta_key FROM wp01_usermeta";
-$sql.=" WHERE meta_key IN('start_time','start_week')";
-$admin	= $wpdb->get_results($sql,ARRAY_A);
-$jst=time()+32400;
-$sch_8=date("Ymd",$jst-($admin["start_time"]*3600));
-$news_base=date("Y-m-d 00:00:00",$jst-($admin["start_time"]*3600));
-//$link=get_template_directory_uri();
-//-------------------------------------------
-
+include_once('./library/sql.php');
 $sql=" SELECT sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
-$sql.=" WHERE sche_date='{$sch_8}'";
+$sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
 $sql.=" ORDER BY schedule_id ASC";
 
-$res0= $wpdb->get_results($sql,ARRAY_A);
-foreach($res0 as $a1){
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
 
-	if($a1["stime"] && $a1["etime"]){
-		$a1["sc"]="{$a1["stime"]} － {$a1["etime"]}";
-		$sort[$a1["id"]]=$a1["sort"];
+		if($a1["stime"] && $a1["etime"]){
+			$cast_sch[$a1["id"]]="{$a1["stime"]} － {$a1["etime"]}";
+			$sort[$a1["id"]]=$a1["sort"];
 
-		if($sch_8 < $a1["ctime"]){
-			$a1["new"]=1;
+			if($day_8 < $a1["ctime"]){
+				$a1["new"]=1;
 
-		}elseif($sch_8 == $a1["ctime"]){
-			$a1["new"]=2;
+			}elseif($day_8 == $a1["ctime"]){
+				$a1["new"]=2;
 
-		}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
-			$a1["new"]=3;
+			}elseif(strtotime($day_8) - strtotime($a1["ctime"])<=2592000){
+				$a1["new"]=3;
+			}
+
+			if (file_exists("./img/cast/{$a1["id"]}/0_s.webp")) {
+				$dat[$a1["id"]]["face"]="./img/cast/{$a1["id"]}/0_s.webp";			
+
+			}elseif (file_exists("./img/cast/{$a1["id"]}/0_s.jpg")) {
+				$dat[$a1["id"]]["face"]="./img/cast/{$a1["id"]}/0_s.jpg";			
+
+			}else{
+				$dat[$a1["id"]]["face"]="./img/cast/noimage.jpg";			
+			}
+		}else{
+			$sort[$a1["id"]]=9999;
 		}
-	}else{
-		$sort[$a1["id"]]=9999;
-	}
-
-	$dat[$a1["cast_id"]]=$a1;
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0_s.webp")) {
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_s.webp";			
-
-	}elseif (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/0_s.jpg";			
-
-	}else{
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
 	}
 }
 
-$sql	 ="SELECT meta_id, meta_value, post_type, post_content, post_mime_type, guid FROM wp01_postmeta AS M";
-$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
-$sql	.=" WHERE meta_key='_top_slide'";
-$sql	.=" AND meta_value>0";
-$sql	.=" ORDER BY meta_value ASC";
-$res2 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res2 as $a2){
-
-	if($a2["guid"]){
-		$a2["link"]=home_url($a2["guid"]);
-
-	}elseif($a2["post_content"]){
-		$a2["link"]=home_url('/event')."/?code=".$a2["meta_id"];
-	}
-
-	if($a2["post_mime_type"]){
-		$a2["link"].="/?cast={$a2["post_mime_type"]}";
-	}
-	$slide[]=$a2;
-
-}
-
-$sql	 ="SELECT meta_id, meta_value, post_type, post_content, post_mime_type, guid FROM wp01_postmeta AS M";
-$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
-$sql	.=" WHERE meta_key='_top_info'";
-$sql	.=" AND meta_value>0";
-$sql	.=" ORDER BY meta_value ASC";
-$res2 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res2 as $a2){
-
-	if($a2["guid"]){
-		$a2["link"]=home_url($a2["guid"]);
-
-	}elseif($a2["post_content"]){
-		$a2["link"]=home_url('/info')."/?code=".$a2["meta_id"];
-	}
-
-	if($a2["post_mime_type"]){
-		$a2["link"].="/?cast={$a2["post_mime_type"]}";
-	}
-	$info[]=$a2;
-}
-
-$sql	 ="SELECT meta_id, meta_value, post_type,post_modified, post_title, post_content, post_date, T.name, slug, post_mime_type, guid FROM wp01_postmeta AS M";
-$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
-$sql	.=" LEFT JOIN wp01_terms AS T on M.meta_value=T.term_id";
-$sql	.=" WHERE meta_key='_top_news'";
-$sql	.=" AND meta_value>0";
-$sql	.=" AND post_date>'{$ews_base}'";
-$sql	.=" ORDER BY post_modified DESC";
+$sql	 ="SELECT * FROM wp01_top_slide";
+$sql	.=" WHERE status=0";
+$sql	.=" ORDER BY sort ASC";
 $sql	.=" LIMIT 5";
-$res2 = $wpdb->get_results($sql,ARRAY_A);
 
-foreach($res2 as $a2){
-	$a2["news_date"]=substr($a2["post_modified"],0,4).".".substr($a2["post_modified"],5,2).".".substr($a2["post_modified"],8,2);
-	$a2["post_title"]=str_replace("\n","<br>",$a2["post_title"]);
-
-	if($a2["guid"]){
-		$a2["link"]=home_url($a2["guid"]);
-
-	}elseif($a2["post_content"]){
-		$a2["link"]=home_url('/news')."/?code=".$a2["meta_id"];
-	}
-
-	if($a2["post_mime_type"]){
-		$a2["link"].="/?cast={$a2["post_mime_type"]}";
-	}
-
-	$news[]=$a2;
-}
-
-/*
-
-$stime[1]="OPEN";
-$stime[2]="OPEN";
-$stime[3]="OPEN";
-$stime[4]="OPEN";
-$stime[5]="19:30";
-$stime[6]="OPEN";
-
-$etime[1]="LAST";
-$etime[2]="LAST";
-$etime[3]="23:30";
-$etime[4]="LAST";
-$etime[5]="LAST";
-$etime[6]="LAST";
-
-$date=date("Y-m-d H:i:s");
-$app="INSERT INTO wp01_0schedule (`date`,sche_date,cast_id,stime,etime) VALUES";
-for($s=0;$s<20;$s++){
-	$ymd=date("Ymd",time()+86400*$s);
-	for($cast=123457;$cast<123467;$cast++){
-		$rnd=rand(0,5);
-		if($rnd>0){
-			$list.="('{$date}','{$ymd}','{$cast}','{$stime[$rnd]}','{$etime[$rnd]}'),";
-		}
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$slide[]=$a1:
 	}
 }
 
-$list=substr($list,0,-1);
-$app.=$list;
-$wpdb->query($app);
+$sql	 ="SELECT * FROM wp01_top_news";
+$sql	.=" WHERE status=0";
+$sql	.=" ORDER BY `date` ASC";
+$sql	.=" LIMIT 5";
 
-*/
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$news[]=$a1:
+	}
+}
 
+$sql	 ="SELECT * FROM wp01_top_info";
+$sql	.=" WHERE status=0";
+$sql	.=" ORDER BY `sort` ASC";
+$sql	.=" LIMIT 4";
 
-get_header();
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$info[]=$a1:
+	}
+}
+include_once('./header.php');
 ?>
 <style>
 .slide_img{
@@ -180,7 +94,8 @@ get_header();
 <script>
 var Cnt=<?=(count($slide)-1)?>;
 </script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/index.js?t=<?=time()?>"></script>
+<script src="./js/index.js?t=<?=time()?>"></script>
+
 <div class="main_top">
 <?if(count($slide) ==1){?>
 	<div class="slide">
@@ -308,5 +223,5 @@ var Cnt=<?=(count($slide)-1)?>;
 		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>
 
