@@ -2,7 +2,7 @@
 <footer class="foot">
 	<div class="foot_in">
 		<div class="foot_left">
-			<img src="<?=get_template_directory_uri()?>/img/ad/nightparty_logo.png?i=<?=time()?>" class="foot_logo">
+			<img src="./img/ad/nightparty_logo.png?i=<?=time()?>" class="foot_logo">
 		</div>
 		<div class="foot_right">
 			<span class="foot_right_in">・Top</span><span class="foot_right_in">・Sysyem</span><br>
@@ -18,8 +18,5 @@
 		<div class="to_top_in2"></div>
 	</div>
 </footer>
-<?php wp_footer(); ?>
 </body>
 </html>
-
-

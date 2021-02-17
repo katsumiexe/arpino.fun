@@ -45,8 +45,8 @@ $sql	.=" ORDER BY sort ASC";
 $sql	.=" LIMIT 5";
 
 if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$slide[]=$a1:
+	while($a2 = mysqli_fetch_assoc($res)){
+		$slide[]=$a2:
 	}
 }
 
@@ -56,8 +56,8 @@ $sql	.=" ORDER BY `date` ASC";
 $sql	.=" LIMIT 5";
 
 if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$news[]=$a1:
+	while($a3 = mysqli_fetch_assoc($res)){
+		$news[]=$a3:
 	}
 }
 
@@ -67,8 +67,8 @@ $sql	.=" ORDER BY `sort` ASC";
 $sql	.=" LIMIT 4";
 
 if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$info[]=$a1:
+	while($a4 = mysqli_fetch_assoc($res)){
+		$info[]=$a4:
 	}
 }
 include_once('./header.php');
@@ -101,9 +101,9 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="slide">
 		<div class="slide_img">
 			<?if($slide[0]["link"]){?>
-				<a href="<?=$slide[0]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img"></a>;
+				<a href="<?=$slide[0]["link"]?>"><img src="./img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img"></a>;
 			<?}else{?>	
-				<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img">;
+				<img src="./img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img">;
 			<?}?>	
 		</div>
 	</div>
@@ -113,9 +113,9 @@ var Cnt=<?=(count($slide)-1)?>;
 		<div class="slide_img">
 			<?for($n=0;$n<count($slide);$n++){?>
 				<?if($slide[$n]["link"]){?>
-					<a href="<?=$slide[$n]["link"]?>"><img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img"></a>;
+					<a href="<?=$slide[$n]["link"]?>"><img src="./img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img"></a>;
 				<?}else{?>	
-					<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img">;
+					<img src="./img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img">;
 				<?}?>	
 			<?}?>	
 		</div>
@@ -129,7 +129,7 @@ var Cnt=<?=(count($slide)-1)?>;
 
 <?}?>
 	<div class="main_b">
-		<div class="main_b_title">新着情報<a href="<?=home_url('/new_list')?>" class="new_all">一覧≫</a></div>
+		<div class="main_b_title">新着情報<a href="./new_list.php" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
 			<?for($n=0;$n<count($news);$n++){?>
 				<?if($news[$n]["link"]){?>
@@ -169,11 +169,11 @@ var Cnt=<?=(count($slide)-1)?>;
 			<?for($n=0;$n<count($info);$n++){?>
 				<?if($info[$n]["link"]){?>
 					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+						<img src=".img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 					</a>
 				<?}else{?>	
 					<span class="info_img_out">
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+						<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 					</span>	
 				<?}?>
 			<?}?>
@@ -201,7 +201,7 @@ var Cnt=<?=(count($slide)-1)?>;
 						<?}elseif($dat[$b1]["new"] == 3){?>
 						<span class="main_b_1_ribbon ribbon3">新人</span>
 						<?}?>
-					<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
+					<a href="./person.php?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
 					</span>
 				<? } ?>
 			<? } ?>
@@ -213,10 +213,10 @@ var Cnt=<?=(count($slide)-1)?>;
 			<?for($n=0;$n<count($info);$n++){?>
 				<?if($info[$n]["link"]){?>
 						<a href="<?=$info[$n]["link"]?>" class="info_img_out">
-							<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+							<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 						</a>
 				<?}else{?>	
-						<img src="<?=get_template_directory_uri()?>/img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+						<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
 				<?}?>
 			<?}?>
 		</div>
@@ -224,4 +224,3 @@ var Cnt=<?=(count($slide)-1)?>;
 	</div>
 </div>
 <?include_once('./footer.php'); ?>
-
