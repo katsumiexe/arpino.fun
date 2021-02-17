@@ -1,25 +1,18 @@
 <?php
-/*
-Template Name: news
-*/
+include_once('./library/sql.php');
 $code=$_REQUEST["code"];
 
-$wp_link=get_template_directory_uri();
-
-$sql	 ="SELECT meta_id, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
-$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
-$sql	.=" WHERE meta_id='{$code}'";
-$sql	.=" AND post_status='publish'";
-$sql	.=" ORDER BY meta_value ASC";
-$dat = $wpdb->get_row($sql,ARRAY_A);
-
-$dat["post_content"]=str_replace("\n","<br>",$dat["post_content"]);
-$dat["post_content"]=str_replace("[wp_link]",$wp_link,$dat["post_content"]);
+$sql	 ="SELECT * FROM wp01_0news";
+$sql	.=" WHERE id='{$code}'";
+$sql	.=" AND del=0";
+$sql	.=" LIMIT 1";
+$res = mysqli_query($mysqli,$sql);
+$dat = mysqli_fetch_assoc($res);
 
 get_header();
 ?>
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
@@ -43,8 +36,8 @@ get_header();
 <?if(!$dat){?>
 <span class="sys_box_log">こちらのイベントは終了しています</span><br>
 <?}else{?>
-<span class="sys_box_ttl"><?=$dat["post_title"]?></span><br>
-<span class="sys_box_log"><?=$dat["post_content"]?></span><br>
+<span class="sys_box_ttl"><?=$dat["title"]?></span><br>
+<span class="sys_box_log"><?=$dat["log"]?></span><br>
 <?}?>
 </div>
 <div class="corner box_1"></div>

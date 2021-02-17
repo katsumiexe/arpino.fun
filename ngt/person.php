@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: person
-*/
+include_once('./library/sql.php');
 $week[0]="(日)";
 $week[1]="(月)";
 $week[2]="(火)";
@@ -9,50 +7,55 @@ $week[3]="(水)";
 $week[4]="(木)";
 $week[5]="(金)";
 $week[6]="(土)";
-$updir = wp_upload_dir();
 
-$t_day=date("Ymd",time()+32400);
-$n_day=date("Ymd",time()+32400+86400*7);
+/*
+0　通常
+1　休職
+2　退職
+3　停止
+*/
 
-$tm=time();
-$link=get_template_directory_uri();
+$t_day=date("Ymd",$day_time);
+$n_day=date("Ymd",$day_time+(86400*7));
 
-$tmp=explode("/",$_SERVER["REQUEST_URI"]);
-//$val=$tmp[count($tmp)-2];
-$val=$_REQUEST["cast"];
+$cast=$_REQUEST["cast"];
+$sql="SELECT * FROM wp01_0cast WHERE id='{$cast}' AND status<2 LIMIT 1";
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		if (file_exists("./img/page/{$a1["id"]}/0.jpg")) {
+			$face_a="<img src=\"./img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_main\">";
+			$face_b="<img id=\"i1\" src=\"./img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_sub\">";
 
-$sql="SELECT * FROM wp01_0cast WHERE id='".$val."'";
-$res = $wpdb->get_results($sql,ARRAY_A);
-foreach($res as $a1){
-
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-		$face_a="<img src=\"{$link}/img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_main\">";
-		$face_b="<img id=\"i1\" src=\"{$link}/img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_sub\">";
-
-		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
-			$face_b.="<img id=\"i2\" src=\"{$link}/img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
+			if (file_exists("./img/page/{$a1["id"]}/1.jpg")) {
+				$face_b.="<img id=\"i2\" src=\"./img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
+			}
+			if (file_exists("./img/page/{$a1["id"]}/2.jpg")) {
+				$face_b.="<img id=\"i3\" src=\"./img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
+			}
+			if (file_exists("./img/page/{$a1["id"]}/3.jpg")) {
+				$face_b.="<img id=\"i4\" src=\"./img/page/{$a1["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
+			}
+		}else{
+			$a1["face"]="./img/cast/noimage.jpg";			
+			$face_a="<img src=\"./img/page/noimage.jpg\" class=\"person_img_main\">";
 		}
-		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/2.jpg")) {
-			$face_b.="<img id=\"i3\" src=\"{$link}/img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
-		}
-		if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/3.jpg")) {
-			$face_b.="<img id=\"i4\" src=\"{$link}/img/page/{$a1["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
-		}
-	}else{
-		$a1["face"]="{$link}/img/cast/noimage.jpg";			
-		$face_a="<img src=\"{$link}/img/page/noimage.jpg\" class=\"person_img_main\">";
 	}
 }
 
-$sql="SELECT * FROM wp01_0schedule WHERE sche_date>='".$t_day."' AND sche_date<'".$n_day."' AND cast_id='".$val."'";
-$res2 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res2 as $a2){
-	$sch[$a2["sche_date"]]=$a2;
+$sql	 ="SELECT * FROM wp01_0schedule";
+$sql	.=" WHERE sche_date>='{$t_day}'";
+$sql	.=" AND sche_date<'{$n_day}'";
+$sql	.=" AND cast_id='{$cast}'";
+$sql	.=" ORDER BY id ASC";
+
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$sch[$a1["sche_date"]]=$a1;
+	}
 }
 
 for($n=0;$n<7;$n++){
-	$t_sch=date("Ymd",time()+(86400*$n)+32400);
-
+	$t_sch=date("Ymd",$day_time+(86400*$n));
 	$tmp_s=$sch[$t_sch]["stime"];
 	$tmp_e=$sch[$t_sch]["etime"];
 
@@ -67,93 +70,74 @@ for($n=0;$n<7;$n++){
 }
 
 $sql="SELECT id, charm,style FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
-$res3 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res3 as $a3){
-	if($a3["style"] == 1){
-	$charm_list.="<tr><td class=\"prof_0\" colspan=\"2\"></td></tr><tr><td class=\"prof_l2\" colspan=\"2\">{$a3["charm"]}</td></tr><tr><td class=\"prof_r2\" colspan=\"2\">{$charm[$a3["id"]]}</td></tr>";
-	}else{
-	$charm_list.="<tr><td class=\"prof_l\">{$a3["charm"]}</td><td class=\"prof_r\">{$charm[$a3["id"]]}</td></tr>";
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		if($a1["style"] == 1){
+			$charm_list.="<tr><td class=\"prof_0\" colspan=\"2\"></td></tr><tr><td class=\"prof_l2\" colspan=\"2\">{$a1["charm"]}</td></tr><tr><td class=\"prof_r2\" colspan=\"2\">{$charm[$a1["id"]]}</td></tr>";
+		}else{
+			$charm_list.="<tr><td class=\"prof_l\">{$a1["charm"]}</td><td class=\"prof_r\">{$charm[$a1["id"]]}</td></tr>";
+		}
 	}
 }
 
-$n=0;
-$now=date("Y-m-d H:i:s",time()+32400);
-
-$sql ="SELECT";
-$sql.=" ID, post_date,post_content,post_title,post_status,comment_count,slug,name";
-$sql.=" FROM wp01_posts AS P";
-$sql.=" LEFT JOIN wp01_term_relationships AS R ON P.ID=R.object_id";
-$sql.=" LEFT JOIN wp01_term_taxonomy AS X ON R.term_taxonomy_id=X.term_id";
-$sql.=" LEFT JOIN wp01_terms AS T ON R.term_taxonomy_id=T.term_id";
-
-$sql.=" WHERE P.post_type='post'";
-$sql.=" AND P.post_status='publish'";
-$sql.=" AND P.post_date<='{$now}'";
-$sql.=" AND X.taxonomy='category'";
-$sql.=" AND T.slug='{$val}'";
-
-$sql.=" ORDER BY P.post_date DESC";
+$sql ="SELECT * FROM wp01_posts AS P";
+$sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
+$sql.=" WHERE P.cast='{$cast}'";
+$sql.=" AND P.write_date<='{$now}'";
+$sql.=" AND P.status='0'";
+$sql.=" ORDER BY P.write_date DESC";
 $sql.=" LIMIT 6";
-$res = $wpdb->get_results($sql,ARRAY_A);
 
-foreach($res as $a2){
-	$a2["date"]	=date("Y.m.d H:i",strtotime($a2["post_date"]));
-
-	$sql ="SELECT guid FROM wp01_postmeta";
-	$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
-	$sql.=" WHERE meta_key='_thumbnail_id'";
-	$sql.=" AND post_id='{$a2["ID"]}'";
-	$sql.=" ORDER BY meta_id DESC";
-	$sql.=" LIMIT 1";
-	$thumb = $wpdb->get_var($sql);
-
-	if($thumb){
-		$a2["img"]=str_replace(".png","_s.png",$thumb)."?t=".time();
-	}else{
-		$a2["img"]=get_template_directory_uri()."/img/customer_no_img.jpg?t=".time();
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$blog[]=$a1;
 	}
-	$blog[]=$a2;
 }
 
 $sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
 $sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
 $sql.=" WHERE wp01_0charm_table.del='0'";
-$sql.=" AND (wp01_0charm_sel.cast_id='{$val}' OR wp01_0charm_sel.cast_id='')";
+$sql.=" AND (wp01_0charm_sel.cast_id='{$cast}' OR wp01_0charm_sel.cast_id='')";
 $sql.=" ORDER BY sort ASC";
-$res = $wpdb->get_results($sql,ARRAY_A);
-foreach($res as $a0){
-	$a0["log"]=str_replace("\n","<br>",$a0["log"]);
-	$cast_table[]=$a0;
+
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$a["log"]=str_replace("\n","<br>",$a0["log"]);
+		$cast_table[]=$a;
+	}
 }
+
 
 $sql ="SELECT id,title,style FROM wp01_0check_main";
 $sql.=" WHERE del='0'";
 $sql.=" ORDER BY sort ASC";
 
-$res = $wpdb->get_results($sql,ARRAY_A);
-foreach($res as $a0){
-	$check_main[]=$a0;
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$check_main[]=$a1;
+	}
 }
+
 
 $sql ="SELECT * FROM wp01_0check_list";
 $sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
 $sql.=" AND del='0'";
-$sql.=" AND (cast_id IS NULL OR cast_id='{$val}')";
+$sql.=" AND (cast_id IS NULL OR cast_id='{$cast}')";
 $sql.=" ORDER BY host_id ASC, list_sort ASC";
-$res = $wpdb->get_results($sql,ARRAY_A);
 
-foreach($res as $a0){
-	$check_list[$a0["host_id"]][$a0["list_sort"]]=$a0;
+foreach($res as $a1){
+	$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
 }
-get_header();
+include_once('./header.php');
 ?>
+
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
 	<span class="footmark_icon"></span>
-	<a href="<?=home_url()?>/cast/" class="footmark_box box_a">
+	<a href="./cast.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">CAST</span>
 	</a>
@@ -161,6 +145,7 @@ get_header();
 	<span class="footmark_icon"></span>
 	<span class="footmark_text"><?=$a1["genji"]?></span>
 </div>
+
 <div class="person_main">
 	<div class="person_left">
 		<div class="person_img_box">
@@ -213,7 +198,7 @@ get_header();
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
 			<?for($s=0;$s<count($blog);$s++){?>
-				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+				<a href="./article/?cast_list=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>

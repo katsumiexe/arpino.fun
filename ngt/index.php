@@ -1,5 +1,6 @@
 <?php
 include_once('./library/sql.php');
+
 $sql=" SELECT sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
@@ -46,9 +47,11 @@ $sql	.=" LIMIT 5";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a2 = mysqli_fetch_assoc($res)){
-		$slide[]=$a2:
+		$slide[]=$a2;
 	}
 }
+$slide_count=count(array($slide));
+
 
 $sql	 ="SELECT * FROM wp01_top_news";
 $sql	.=" WHERE status=0";
@@ -57,9 +60,11 @@ $sql	.=" LIMIT 5";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a3 = mysqli_fetch_assoc($res)){
-		$news[]=$a3:
+		$news[]=$a3;
 	}
 }
+$news_count=count(array($news));
+
 
 $sql	 ="SELECT * FROM wp01_top_info";
 $sql	.=" WHERE status=0";
@@ -68,36 +73,42 @@ $sql	.=" LIMIT 4";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a4 = mysqli_fetch_assoc($res)){
-		$info[]=$a4:
+		$info[]=$a4;
 	}
 }
+$info_count=count(array($info));
+
 include_once('./header.php');
 ?>
+
 <style>
 .slide_img{
-	width		:calc( 1200px * <?=count($slide)?>);
+	width		:calc( 1200px * <?=$slide_count?>);
 }
 
 .slide_point{
-	width		:calc( 70px + 30px * <?=count($slide)?>);
+	width		:calc( 70px + 30px * <?=$slide_count?>);
 }
+
 
 @media screen and (max-width: 959px){
 .slide_img{
-	width		:calc( 98vw * <?=count($slide)?>);
+	width		:calc( 98vw * <?=$slide_count?>);
 }
 .slide_point{
-	width		:calc( 25vw + 5vw * <?=count($slide)?>);
+	width		:calc( 25vw + 5vw * <?=$slide_count?>);
 }
 }
 </style>
+
+
 <script>
-var Cnt=<?=(count($slide)-1)?>;
+var Cnt=<?=$slide_count?>-1;
 </script>
 <script src="./js/index.js?t=<?=time()?>"></script>
 
 <div class="main_top">
-<?if(count($slide) ==1){?>
+<?if($slide_count ==1){?>
 	<div class="slide">
 		<div class="slide_img">
 			<?if($slide[0]["link"]){?>
@@ -108,10 +119,10 @@ var Cnt=<?=(count($slide)-1)?>;
 		</div>
 	</div>
 
-<?}elseif(count($slide) >1){?>
+<?}elseif($slide_count >1){?>
 	<div class="slide">
 		<div class="slide_img">
-			<?for($n=0;$n<count($slide);$n++){?>
+			<?for($n=0;$n<$slide_count;$n++){?>
 				<?if($slide[$n]["link"]){?>
 					<a href="<?=$slide[$n]["link"]?>"><img src="./img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img"></a>;
 				<?}else{?>	
@@ -121,7 +132,7 @@ var Cnt=<?=(count($slide)-1)?>;
 		</div>
 
 		<div class="slide_point">
-			<?for($n=0;$n<count($slide);$n++){?>
+			<?for($n=0;$n<$slide_count;$n++){?>
 				<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
 			<?}?>
 		</div>
@@ -131,7 +142,7 @@ var Cnt=<?=(count($slide)-1)?>;
 	<div class="main_b">
 		<div class="main_b_title">新着情報<a href="./new_list.php" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
-			<?for($n=0;$n<count($news);$n++){?>
+			<?for($n=0;$n<$news_count;$n++){?>
 				<?if($news[$n]["link"]){?>
 					<table  class="main_b_notice" colspan="3">
 					<tr>
@@ -166,7 +177,7 @@ var Cnt=<?=(count($slide)-1)?>;
 		</div>
 
 		<div class="info_box sp_only">
-			<?for($n=0;$n<count($info);$n++){?>
+			<?for($n=0;$n<$info_count;$n++){?>
 				<?if($info[$n]["link"]){?>
 					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
 						<img src=".img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
@@ -210,7 +221,7 @@ var Cnt=<?=(count($slide)-1)?>;
 
 	<div class="main_c">
 		<div class="pc_only">
-			<?for($n=0;$n<count($info);$n++){?>
+			<?for($n=0;$n<$info_count;$n++){?>
 				<?if($info[$n]["link"]){?>
 						<a href="<?=$info[$n]["link"]?>" class="info_img_out">
 							<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
