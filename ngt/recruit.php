@@ -1,21 +1,14 @@
 <?php
-/*
-Template Name: Recruit
-*/
+include_once('./library/sql.php');
+$page=$_REQUEST["page"]
+$sql="SELECT * FROM wp01_0contents WHERE page='{$page}' ORDER BY id ASC LIMIT 1";
 
-$sql="SELECT post_content,post_title FROM wp01_posts WHERE post_name LIKE 'RECRUIT-%' AND post_status='publish' ORDER BY post_name ASC";
-$res = $wpdb->get_results($sql,ARRAY_A);
-
-foreach($res as $a1){
-	$recruit[]=$a1;
+if($res = mysqli_query($mysqli,$sql)){
+	$recruit= mysqli_fetch_assoc($res);
 }
-
-//var_dump($recruit);
-//ksort($sys);
-get_header();
 ?>
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
@@ -36,15 +29,12 @@ get_header();
 		<div class="corner_in box_in_3"></div>
 		<div class="corner_in box_in_4"></div>
 		<span class="sys_box_ttl">Recruit</span><br>
-		<?for($n=0;$n<count($recruit);$n++){?>
-			<?if($recruit[$n]["post_content"]){?>
+		<?if($recruit){?>
 			<div class="rec">
-				<div class="rec_l"><?=$recruit[$n]["post_title"]?></div>
-				<div class="rec_r"><?=$recruit[$n]["post_content"]?></div>
+				<div class="rec_l"><?=$recruit["title"]?></div>
+				<div class="rec_r"><?=$recruit["contents"]?></div>
 			</div>
-			<?}?>
-		<?}?>
-		<?if(!$recruit){?>
+		<?}else{?>
 			<span class="sys_box_log">情報はまだありません</span><br>
 		<?}?>
 	</div>
@@ -53,4 +43,4 @@ get_header();
 <div class="corner box_3"></div>
 <div class="corner box_4"></div>
 </div>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>

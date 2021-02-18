@@ -214,4 +214,4 @@ include_once('./header.php');
 		</div>
 	</div>
 </div>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>
