@@ -90,8 +90,7 @@ foreach($res as $a2){
 	}
 	$n++;
 }
-
-get_header();
+include_once('./header.php');
 ?>
 <div class="footmark">
 	<a href="<?=home_url()?>" class="footmark_box box_a">

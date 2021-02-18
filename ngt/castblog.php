@@ -252,8 +252,8 @@ include_once('./header.php');
 					<span class="all_tag_name">全て</span>
 					<span class="all_tag_count"><?=$cate_all?></span>
 				</a>
-				<?foreach($cate_count as $a1=> $a2){?>
-				<a href="<?=home_url('/castblog')?>/?tag_list=<?=$a1?>" class="all_tag">
+				<?foreach($tag_count as $a1=> $a2){?>
+				<a href="./castblog.php?tag_list=<?=$a1?>" class="all_tag">
 					<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
 					<span class="all_tag_name"><?=$cate_name[$a1]?></span>
 					<span class="all_tag_count"><?=$a2?></span>
