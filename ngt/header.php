@@ -39,7 +39,7 @@
 <body class="body">
 <header class="head">
 	<div class="head_top">
-		<img src="/img/page/logo/nightparty_logo.png?t=<?=time()?>" class="head_logo">
+		<img src="./img/page/logo/nightparty_logo.png?t=<?=time()?>" class="head_logo">
 		<div class="head_b">
 			<table class="head_b_table">
 				<tr>

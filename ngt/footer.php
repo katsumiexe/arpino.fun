@@ -2,8 +2,9 @@
 <footer class="foot">
 	<div class="foot_in">
 		<div class="foot_left">
-			<img src="./img/ad/nightparty_logo.png?i=<?=time()?>" class="foot_logo">
+			<img src="./img/page/logo/nightparty_logo.png?t=<?=time()?>" class="foot_logo">
 		</div>
+
 		<div class="foot_right">
 			<span class="foot_right_in">・Top</span><span class="foot_right_in">・Sysyem</span><br>
 			<span class="foot_right_in">・Cast</span><span class="foot_right_in">・Blog</span><br>

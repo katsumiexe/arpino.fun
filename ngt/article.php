@@ -114,9 +114,7 @@ include_once('./header.php');
 		<span class="footmark_text">『<?=$res0["post_title"]?>』</span>
 	</div>
 </div>
-
 <div class="main_top_flex">
-
 	<div class="main_article">
 		<h1 class="blog_ttl">
 			<?=$res0["post_title"]?>

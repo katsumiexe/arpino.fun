@@ -13,6 +13,7 @@ if($res = mysqli_query($mysqli,$sql)){
 
 		if($a1["stime"] && $a1["etime"]){
 			$cast_sch[$a1["id"]]="{$a1["stime"]} － {$a1["etime"]}";
+
 			$sort[$a1["id"]]=$a1["sort"];
 
 			if($day_8 < $a1["ctime"]){
@@ -35,7 +36,7 @@ if($res = mysqli_query($mysqli,$sql)){
 				$dat[$a1["id"]]["face"]="./img/cast/noimage.jpg";			
 			}
 		}else{
-			$sort[$a1["id"]]=9999;
+			$sort[$a1["id"]]="";
 		}
 	}
 }
@@ -49,9 +50,8 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a2 = mysqli_fetch_assoc($res)){
 		$slide[]=$a2;
 	}
+$slide_count=count($slide);
 }
-$slide_count=count(array($slide));
-
 
 $sql	 ="SELECT * FROM wp01_top_news";
 $sql	.=" WHERE status=0";
@@ -62,9 +62,8 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a3 = mysqli_fetch_assoc($res)){
 		$news[]=$a3;
 	}
+$news_count=count($news);
 }
-$news_count=count(array($news));
-
 
 $sql	 ="SELECT * FROM wp01_top_info";
 $sql	.=" WHERE status=0";
@@ -75,9 +74,8 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a4 = mysqli_fetch_assoc($res)){
 		$info[]=$a4;
 	}
+$info_count=count($info);
 }
-$info_count=count(array($info));
-
 include_once('./header.php');
 ?>
 
@@ -90,7 +88,6 @@ include_once('./header.php');
 	width		:calc( 70px + 30px * <?=$slide_count?>);
 }
 
-
 @media screen and (max-width: 959px){
 .slide_img{
 	width		:calc( 98vw * <?=$slide_count?>);
@@ -100,13 +97,10 @@ include_once('./header.php');
 }
 }
 </style>
-
-
 <script>
 var Cnt=<?=$slide_count?>-1;
 </script>
 <script src="./js/index.js?t=<?=time()?>"></script>
-
 <div class="main_top">
 <?if($slide_count ==1){?>
 	<div class="slide">
@@ -137,9 +131,11 @@ var Cnt=<?=$slide_count?>-1;
 			<?}?>
 		</div>
 	</div>
-
 <?}?>
+
+
 	<div class="main_b">
+		<?if($news_count){?>
 		<div class="main_b_title">新着情報<a href="./new_list.php" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
 			<?for($n=0;$n<$news_count;$n++){?>
@@ -175,6 +171,7 @@ var Cnt=<?=$slide_count?>-1;
 				<?}?>
 			<?}?>
 		</div>
+		<?}?>
 
 		<div class="info_box sp_only">
 			<?for($n=0;$n<$info_count;$n++){?>
@@ -190,6 +187,7 @@ var Cnt=<?=$slide_count?>-1;
 			<?}?>
 		</div>
 
+<?if($sort){?>
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<? foreach($sort as $b1=> $b2){?>
@@ -217,6 +215,8 @@ var Cnt=<?=$slide_count?>-1;
 				<? } ?>
 			<? } ?>
 		</div>
+<? } ?>
+
 	</div>
 
 	<div class="main_c">
