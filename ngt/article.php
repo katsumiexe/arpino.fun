@@ -1,7 +1,4 @@
 <?php
-/*
-Template Name: article
-*/
 
 $n=0;
 $now=date("Y-m-d H:i:s",time()+32400);
