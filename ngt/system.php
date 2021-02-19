@@ -1,19 +1,15 @@
 <?php
-/*
-Template Name: System
-*/
+include_once('./library/sql.php');
 
-$sql="SELECT * FROM wp01_posts WHERE post_name LIKE 'SYSTEM-%' AND post_status='publish' ORDER BY post_name DESC";
-$res = $wpdb->get_results($sql,ARRAY_A);
-foreach($res as $a1){
-	$sort=str_replace("SYSTEM-","",$a1["post_name"]);
-	$sys[$sort]=$a1;
+$sql="SELECT * FROM wp01_0contents WHERE page='system' AND status='0' ORDER BY id DESC LIMIT 1";
+if($res = mysqli_query($mysqli,$sql)){
+$dat = mysqli_fetch_assoc($res);
 }
-//ksort($sys);
-get_header();
+
+include_once('./header.php');
 ?>
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
@@ -24,8 +20,7 @@ get_header();
 	</div>
 </div>
 
-<?foreach($sys as $a1){?>
-<?if($a1["post_content"]){?>
+<?if($dat){?>
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
@@ -36,22 +31,18 @@ get_header();
 <div class="corner_in box_in_2"></div>
 <div class="corner_in box_in_3"></div>
 <div class="corner_in box_in_4"></div>
-<span class="sys_box_ttl"><?=$a1["post_title"]?></span><br>
-<span class="sys_box_log"><?=$a1["post_content"]?></span><br>
+<span class="sys_box_ttl"><?=$dat["title"]?></span><br>
+<span class="sys_box_log"><?=$dat["contents"]?></span><br>
 </div>
 <div class="corner box_1"></div>
 <div class="corner box_2"></div>
 <div class="corner box_3"></div>
 <div class="corner box_4"></div>
 </div>
-<?}?>
-<?}?>
-
-
-<?if(!$sys){?>
+<?}else{?>
 <div class="main_e">
 <span class="sys_box_log">情報はまだありません</span><br>
 </div>
 <?}?>
 <br>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>

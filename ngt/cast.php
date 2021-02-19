@@ -1,61 +1,56 @@
 <?php 
-/*
-Template Name: cast
-*/
+include_once('./library/sql.php');
 
-//---------------------------------------
-//require_once ("../../../wp-load.php");
-global $wpdb;
 
-$sql=" SELECT meta_value, meta_key FROM wp01_usermeta";
-$sql.=" WHERE meta_key IN('start_time','start_week')";
-$admin	= $wpdb->get_results($sql,ARRAY_A);
-$jst=time()+32400;
-$now=$jst-($admin["start_time"]*3600);
-$sch_8=date("Ymd",$now);
-$link=get_template_directory_uri();
-//-------------------------------------------
+$sql=" SELECT C.id, genji, in_out, `name`, `sort` FROM wp01_0cast AS C";
+$sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
+$sql.=" LEFT JOIN wp01_0sch_table AS T ON in_out='in' AND stime=T.name";
+$sql.=" WHERE C.cast_status=0";
+$sql.=" AND S.sche_date='{$day_8}'";
+$sql.=" ORDER BY S.id DESC";
 
-/*
-$sql	 =" SELECT * FROM wp01_0sch_table";
-$res0= $wpdb->get_results($sql,ARRAY_A);
-foreach($res0 as $a1){
-	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
-}
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
 
-$sql	="SELECT * FROM wp01_0cast";
-$sql	.=" WHERE del=0";
-$res= $wpdb->get_results($sql,ARRAY_A);
+		if($a1["stime"] && $a1["etime"]){
+			$a1["sch"]="{$a1["stime"]} － {$a1["etime"]}";
+			$sort[$a1["id"]]=$$a1["stime"];
+		}else{
+			$a1["sch"]="休み";
+			$sort[$a1["id"]]=999999;
+		}
 
-foreach($res as $a1){
-	$dat[$a1["id"]]	=$a1;
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/1.jpg")) {
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/".$a1["id"]."/1.jpg";			
-	}else{
-		$dat[$a1["id"]]["face"]=get_template_directory_uri()."/img/page/noimage.jpg";			
-	}
-		$dat[$a1["id"]]["sch"]="休み";
-		$sort[$a1["id"]]=999999;
-}
 
-$sql="SELECT * FROM wp01_0schedule WHERE sche_date='{$now_ymd}' ORDER BY schedule_id ASC";
-$res2 = $wpdb->get_results($sql,ARRAY_A);
-foreach($res2 as $a2){
-	if($a2["stime"] && $a2["etime"]){
-		$dat[$a2["cast_id"]]["sch"]	="{$a2["stime"]} － {$a2["etime"]}";
-		$sort[$a2["cast_id"]]=$sch_table["in"][$a2["stime"]];
-	}else{
-		$sch[$a2["cast_id"]]	="休み";
-		$sort[$a2["cast_id"]]	=999999;
+
+			if (."./img/page/{$a1["id"]}/0.jpg")) {
+				$a1["id"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
+
+			}else{
+				$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
+			}
+
+			if($sch_8 < $a1["ctime"]){
+				$dat[$a1["id"]]["new"]=1;
+
+			}elseif($sch_8 == $a1["ctime"]){
+				$dat[$a1["id"]]["new"]=2;
+
+			}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+				$dat[$a1["id"]]["new"]=3;
+			}
+
+
+
+
+
+		$dat[$a1["id"]]=$a1;
+
 	}
 }
-*/
 
-$sql=" SELECT in_out, `name`, `sort` FROM wp01_0sch_table";
-$res0= $wpdb->get_results($sql,ARRAY_A);
-foreach($res0 as $a1){
-	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
-}
+
+
+
 
 $sql=" SELECT genji,ctime,id FROM wp01_0cast";
 $sql.=" WHERE del=0";
@@ -75,16 +70,55 @@ foreach($res as $a1){
 		if($a2["stime"] && $a2["etime"]){
 			$dat[$a1["id"]]["sch"]="{$a2["stime"]} － {$a2["etime"]}";
 			$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
-		}else{
-			$dat[$a1["id"]]["sch"]="休み";
-			$sort[$a1["id"]]=999999;
-		}
-	}
 
-	if(!$res2){
-		$dat[$a1["id"]]["sch"]="休み";
-		$sort[$a1["id"]]=999999;
-	}
+			if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
+				$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
+
+			}else{
+				$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
+			}
+
+			if($sch_8 < $a1["ctime"]){
+				$dat[$a1["id"]]["new"]=1;
+
+			}elseif($sch_8 == $a1["ctime"]){
+				$dat[$a1["id"]]["new"]=2;
+
+
+
+			}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+				$dat[$a1["id"]]["new"]=3;
+			}
+
+
+
+			if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
+				$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
+
+			}else{
+				$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
+			}
+
+			if($sch_8 < $a1["ctime"]){
+				$dat[$a1["id"]]["new"]=1;
+
+			}elseif($sch_8 == $a1["ctime"]){
+				$dat[$a1["id"]]["new"]=2;
+
+			}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+				$dat[$a1["id"]]["new"]=3;
+			}
+
+				}else{
+					$dat[$a1["id"]]["sch"]="休み";
+					$sort[$a1["id"]]=999999;
+				}
+			}
+
+			if(!$res2){
+				$dat[$a1["id"]]["sch"]="休み";
+				$sort[$a1["id"]]=999999;
+			}
 
 
 	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
