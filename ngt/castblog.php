@@ -25,7 +25,6 @@ $month		=$_REQUEST["month"];
 $n=0;
 if(!$month) $month=substr($day_8,0,6);
 
-
 //■カレンダーカウント
 $sql ="SELECT post_date FROM wp01_0posts";
 $sql.=" WHERE status=0";
@@ -52,13 +51,13 @@ if($res = mysqli_query($mysqli,$sql)){
 		$cast_dat[$a1["cast"]]["name"]	=$a1["genji"];
 		$cast_dat[$a1["cast"]]["date"]	=$a1["b_date"];
 
-	if (file_exists("./img/profile/{$a1["cast"]}/0_s.jpg")) {
-		$cast_dat[$a1["cast"]]["face"]	="./img/profile/{$a1["cast"]}/0_s.jpg";
-	}else{
-		$cast_dat[$a1["cast"]]["face"]	="/img/profile/noimage.jpg";
+		if (file_exists("./img/profile/{$a1["cast"]}/0_s.jpg")) {
+			$cast_dat[$a1["cast"]]["face"]	="./img/profile/{$a1["cast"]}/0_s.jpg";
+		}else{
+			$cast_dat[$a1["cast"]]["face"]	="/img/profile/noimage.jpg";
+		}
 	}
 }
-
 
 //■カテゴリ件数カウント
 $sql ="SELECT tag, COUNT(id) AS cnt FROM wp01_0posts";
@@ -145,7 +144,7 @@ for($n=0;$n<$month_max ;$n++){
 	if($n>$month_w && $n<=$month_w+$month_e){
 
 		$ky=$month."00"+$tmp_days;
-		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"".home_url('/castblog')."/?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$calendar_ck[$tmp_days]}\">{$tmp_days}</a></td>";
+		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"castblog.php?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$calendar_ck[$tmp_days]}\">{$tmp_days}</a></td>";
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
@@ -228,9 +227,9 @@ include_once('./header.php');
 	<div class="sub_blog">
 		<table id="c" class="blog_calendar">
 			<tr>
-				<td id="c_prev"class="blog_calendar_n"><a href="<?=home_url('/castblog')?>/?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
+				<td id="c_prev"class="blog_calendar_n"><a href="./castblog.php?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
 				<td class="blog_calendar_m" colspan="5"><?=$v_month?></td>
-				<td id="c_next" class="blog_calendar_n"><a href="<?=home_url('/castblog')?>/?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
+				<td id="c_next" class="blog_calendar_n"><a href="./castblog.php?month=<?=$n_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
 			</tr>
 			<tr>
 				<td class="blog_calendar_w">日</td>

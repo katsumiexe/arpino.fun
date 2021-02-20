@@ -1,6 +1,7 @@
 <?php 
 include_once('./library/sql.php');
 
+$sort=array();
 
 $sql=" SELECT C.id, genji, in_out, `name`, `sort` FROM wp01_0cast AS C";
 $sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
@@ -20,126 +21,26 @@ if($res = mysqli_query($mysqli,$sql)){
 			$sort[$a1["id"]]=999999;
 		}
 
+		if (file_exists("./img/profile/{$a1["id"]}/0.jpg")) {
+			$a1["face"]="./img/profile/{$a1["id"]}/0.jpg";		
 
+		}else{
+			$a1["face"]="./img/profile/noimage.jpg";			
+		}
 
-			if (."./img/page/{$a1["id"]}/0.jpg")) {
-				$a1["id"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
+		if($sch_8 < $a1["ctime"]){
+			$a1["new"]=1;
 
-			}else{
-				$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
-			}
+		}elseif($sch_8 == $a1["ctime"]){
+			$a1["new"]=2;
 
-			if($sch_8 < $a1["ctime"]){
-				$dat[$a1["id"]]["new"]=1;
-
-			}elseif($sch_8 == $a1["ctime"]){
-				$dat[$a1["id"]]["new"]=2;
-
-			}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
-				$dat[$a1["id"]]["new"]=3;
-			}
-
-
-
-
-
+		}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+			$a1["new"]=3;
+		}
 		$dat[$a1["id"]]=$a1;
-
 	}
 }
 
-
-
-
-
-$sql=" SELECT genji,ctime,id FROM wp01_0cast";
-$sql.=" WHERE del=0";
-$res = $wpdb->get_results($sql,ARRAY_A);
-
-foreach($res as $a1){
-	$dat[$a1["id"]]=$a1;
-
-	$sql =" SELECT * FROM wp01_0schedule";
-	$sql.=" WHERE sche_date='{$sch_8}'";
-	$sql.=" AND cast_id='{$a1["id"]}'";
-	$sql.=" ORDER BY schedule_id DESC";
-	$sql.=" LIMIT 1";
-	$res2 = $wpdb->get_results($sql,ARRAY_A);
-
-	foreach($res2 as $a2){
-		if($a2["stime"] && $a2["etime"]){
-			$dat[$a1["id"]]["sch"]="{$a2["stime"]} － {$a2["etime"]}";
-			$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
-
-			if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-				$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
-
-			}else{
-				$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
-			}
-
-			if($sch_8 < $a1["ctime"]){
-				$dat[$a1["id"]]["new"]=1;
-
-			}elseif($sch_8 == $a1["ctime"]){
-				$dat[$a1["id"]]["new"]=2;
-
-
-
-			}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
-				$dat[$a1["id"]]["new"]=3;
-			}
-
-
-
-			if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-				$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
-
-			}else{
-				$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
-			}
-
-			if($sch_8 < $a1["ctime"]){
-				$dat[$a1["id"]]["new"]=1;
-
-			}elseif($sch_8 == $a1["ctime"]){
-				$dat[$a1["id"]]["new"]=2;
-
-			}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
-				$dat[$a1["id"]]["new"]=3;
-			}
-
-				}else{
-					$dat[$a1["id"]]["sch"]="休み";
-					$sort[$a1["id"]]=999999;
-				}
-			}
-
-			if(!$res2){
-				$dat[$a1["id"]]["sch"]="休み";
-				$sort[$a1["id"]]=999999;
-			}
-
-
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
-
-	}else{
-		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
-	}
-
-	if($sch_8 < $a1["ctime"]){
-		$dat[$a1["id"]]["new"]=1;
-
-	}elseif($sch_8 == $a1["ctime"]){
-		$dat[$a1["id"]]["new"]=2;
-
-	}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
-		$dat[$a1["id"]]["new"]=3;
-	}
-
-
-}
 asort($sort);
 
 $week[0]="(日)";
@@ -158,10 +59,10 @@ for($e=0;$e<7;$e++){
 	$cast_id[$e]=date("Ymd",$now+86400*$e);
 }
 
-get_header();
+include_once('./header.php');
 ?>
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
@@ -172,12 +73,11 @@ get_header();
 	</div>
 </div>
 <div class="cast_tag">
-<!--div id="d0" class="cast_tag_box cast_tag_box_sel">ALL</div-->
 <? for($e=0;$e<7;$e++){?><div id="d<?=$cast_id[$e]?>" class="cast_tag_box <?=$cl[$e]?><?if($e == 0){?> cast_tag_box_sel<?}?>"><?=$cast_tag[$e]?></div><?}?>
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="<?=home_url('/person')?>/?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
+	<a href="./cast.php?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
 		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
 		<span class="main_d_1_2">
 			<span class="main_b_1_2_h"></span>
@@ -200,4 +100,4 @@ get_header();
 	</a>
 <? } ?>
 </div>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>

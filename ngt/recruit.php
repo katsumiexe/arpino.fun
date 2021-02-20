@@ -1,11 +1,12 @@
 <?php
 include_once('./library/sql.php');
-$page=$_REQUEST["page"]
-$sql="SELECT * FROM wp01_0contents WHERE page='{$page}' ORDER BY id ASC LIMIT 1";
+$sql="SELECT * FROM wp01_0contents WHERE page='recruit' ORDER BY id ASC LIMIT 1";
 
 if($res = mysqli_query($mysqli,$sql)){
 	$recruit= mysqli_fetch_assoc($res);
 }
+include_once('./header.php');
+
 ?>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">

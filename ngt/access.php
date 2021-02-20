@@ -1,10 +1,15 @@
 <?php
-/*
-Template Name: access
-*/get_header();
+include_once('./library/sql.php');
+
+$sql="SELECT * FROM wp01_0contents WHERE page='system' AND status='0' ORDER BY id DESC LIMIT 1";
+if($res = mysqli_query($mysqli,$sql)){
+$dat = mysqli_fetch_assoc($res);
+}
+
+include_once('./header.php');
 ?>
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
@@ -15,7 +20,8 @@ Template Name: access
 	</div>
 </div>
 
-<div class="main_e">
+<?if($dat){?>
+div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
 <span class="main_e_f c_tl"></span>
@@ -56,4 +62,12 @@ Template Name: access
 <div class="corner box_4"></div>
 </div>
 </div>
-<?php get_footer(); ?>
+<?}else{?>
+<div class="main_e">
+<span class="sys_box_log">情報はまだありません</span><br>
+</div>
+<?}?>
+<br>
+<?include_once('./footer.php'); ?>
+
+
