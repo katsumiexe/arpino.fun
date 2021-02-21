@@ -1,21 +1,21 @@
 <?php
-/*
-Template Name: event
-*/
+include_once('./library/sql.php');
 $code=$_REQUEST["code"];
-$sql	 ="SELECT meta_id, meta_key, post_date_gmt, post_content, post_title FROM wp01_postmeta AS M";
-$sql	.=" LEFT JOIN wp01_posts AS P on M.post_id=P.ID";
-$sql	.=" WHERE meta_id='{$code}'";
-$sql	.=" AND post_status='publish'";
-$sql	.=" ORDER BY meta_value ASC";
-$dat = $wpdb->get_row($sql,ARRAY_A);
+$sql	 ="SELECT * FROM wp01_0contents";
+$sql	.=" WHERE status=0";
+$sql	.=" AND id='{$code}'";
+$sql	.=" LIMIT 1";
 
-$dat["post_content"]=str_replace("\n","<br>",$dat["post_content"]);
+if($res0 = mysqli_query($mysqli,$sql)){
+$event = mysqli_fetch_assoc($res0);
 
-get_header();
+$event["contents"]=str_replace("\n","<br>",$event["contents"]);
+}
+include_once('./header.php');
 ?>
+
 <div class="footmark">
-	<a href="<?=home_url()?>" class="footmark_box box_a">
+	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
@@ -25,10 +25,8 @@ get_header();
 		<span class="footmark_text">EVENT</span>
 	</div>
 </div>
-
-<img src="<?=get_template_directory_uri()?>/img/page/top/top<?=$dat["meta_id"]?>.jpg" class="top_img">;
-<?=$sql?>
-<?if(!$dat){?>
+<img src="./img/page/event/event_<?=$code?>.jpg" class="top_img">;
+<?if(!$event){?>
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
@@ -57,8 +55,8 @@ get_header();
 <div class="corner_in box_in_2"></div>
 <div class="corner_in box_in_3"></div>
 <div class="corner_in box_in_4"></div>
-<span class="sys_box_ttl"><?=$dat["post_title"]?></span><br>
-<span class="sys_box_log"><?=$dat["post_content"]?></span><br>
+<span class="sys_box_ttl"><?=$event["title"]?></span><br>
+<span class="sys_box_log"><?=$event["contents"]?></span><br>
 </div>
 <div class="corner box_1"></div>
 <div class="corner box_2"></div>
@@ -67,4 +65,4 @@ get_header();
 </div>
 <?}?>
 <br>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>

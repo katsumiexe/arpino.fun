@@ -41,44 +41,66 @@ if($res = mysqli_query($mysqli,$sql)){
 	}
 }
 
-$sql	 ="SELECT * FROM wp01_top_slide";
+$sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
+$sql	.=" AND display_date<'{$now}'";
+$sql	.=" AND page='event'";
+$sql	.=" ORDER BY sort DESC";
+$sql	.=" LIMIT 6";
+
+if($res0 = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res0)){
+		if($a1["category"] == "event"){
+			$a1["link"]="./event.php?code={$a1["id"]}";
+
+		}elseif($a1["contents_key"]>0){
+			$a1["link"]="./{$a1["category"]}.php?code={$a1["contents_key"]}";
+
+		}elseif($a1["category"]){
+			$a1["link"]=$a1["category"];
+		}
+		$event[]=$a1;
+	}
+	if (is_array($event)) {
+		$event_count=count($event);
+	}
+}
+
+
+$sql	 ="SELECT * FROM wp01_0contents";
+$sql	.=" WHERE status=0";
+$sql	.=" AND display_date<'{$now}'";
+$sql	.=" AND page='news'";
 $sql	.=" ORDER BY sort ASC";
 $sql	.=" LIMIT 5";
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a2 = mysqli_fetch_assoc($res)){
-		$slide[]=$a2;
+if($res1 = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res1)){
+		$news[]=$a1;
 	}
-	$slide_count=count($slide);
+	if (is_array($news)) {
+		$news_count=count($news);
+	}
 }
 
-$sql	 ="SELECT * FROM wp01_top_news";
+$sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
-$sql	.=" ORDER BY `date` ASC";
-$sql	.=" LIMIT 5";
+$sql	.=" AND display_date<'{$now}'";
+$sql	.=" AND page='info'";
+$sql	.=" ORDER BY sort ASC";
+$sql	.=" LIMIT 2";
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a3 = mysqli_fetch_assoc($res)){
-		$news[]=$a3;
+if($res2 = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res2)){
+		$info[]=$a1;
 	}
-	$news_count=count($news);
+	if (is_array($info)) {
+		$info_count=count($info);
+	}
 }
 
-$sql	 ="SELECT * FROM wp01_top_info";
-$sql	.=" WHERE status=0";
-$sql	.=" ORDER BY `sort` ASC";
-$sql	.=" LIMIT 4";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a4 = mysqli_fetch_assoc($res)){
-		$info[]=$a4;
-	}
-	$info_count=count($info);
-}
 include_once('./header.php');
 ?>
-
 <style>
 .slide_img{
 	width		:calc( 1200px * <?=$slide_count?>);
@@ -98,42 +120,33 @@ include_once('./header.php');
 }
 </style>
 <script>
-var Cnt=<?=$slide_count?>-1;
+var Cnt=<?=$event_count?>-1;
 </script>
 <script src="./js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
-<?if($slide_count ==1){?>
+<?if($event_count>0){?>
 	<div class="slide">
 		<div class="slide_img">
-			<?if($slide[0]["link"]){?>
-				<a href="<?=$slide[0]["link"]?>"><img src="./img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img"></a>;
-
-			<?}else{?>	
-				<img src="./img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img">;
-
-			<?}?>	
-		</div>
-	</div>
-
-<?}elseif($slide_count >1){?>
-	<div class="slide">
-		<div class="slide_img">
-			<?for($n=0;$n<$slide_count;$n++){?>
-				<?if($slide[$n]["link"]){?>
-					<a href="<?=$slide[$n]["link"]?>"><img src="./img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img"></a>;
+		
+			<?for($n=0;$n<$event_count;$n++){?>
+				<?if($event[$n]["link"]){?>
+					<a href="<?=$event[$n]["link"]?>"><img src="./img/page/event/event_<?=$event[$n]["id"]?>.jpg" class="top_img"></a>;
 				<?}else{?>	
-					<img src="./img/page/top/top<?=$slide[$n]["meta_id"]?>.webp" class="top_img">;
+					<img src="./img/page/event/noimage.jpg" class="top_img">;
 				<?}?>	
 			<?}?>	
 		</div>
 
+<?if($event_count >1){?>
 		<div class="slide_point">
 			<?for($n=0;$n<$slide_count;$n++){?>
 				<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
 			<?}?>
 		</div>
+<?}?>
 	</div>
 <?}?>
+
 
 	<div class="main_b">
 		<?if($news_count){?>

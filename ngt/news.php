@@ -2,14 +2,13 @@
 include_once('./library/sql.php');
 $code=$_REQUEST["code"];
 
-$sql	 ="SELECT * FROM wp01_0news";
+$sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE id='{$code}'";
-$sql	.=" AND del=0";
+$sql	.=" AND status=0";
 $sql	.=" LIMIT 1";
 $res = mysqli_query($mysqli,$sql);
 $dat = mysqli_fetch_assoc($res);
 
-get_header();
 ?>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
