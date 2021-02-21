@@ -45,7 +45,7 @@ $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
 $sql	.=" AND display_date<'{$now}'";
 $sql	.=" AND page='event'";
-$sql	.=" ORDER BY sort DESC";
+$sql	.=" ORDER BY sort ASC";
 $sql	.=" LIMIT 6";
 
 if($res0 = mysqli_query($mysqli,$sql)){
@@ -139,7 +139,7 @@ var Cnt=<?=$event_count?>-1;
 
 <?if($event_count >1){?>
 		<div class="slide_point">
-			<?for($n=0;$n<$slide_count;$n++){?>
+			<?for($n=0;$n<$event_count;$n++){?>
 				<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
 			<?}?>
 		</div>
