@@ -1868,6 +1868,11 @@ ul {
 	border		:1px solid #303030;
 }
 
+.rec_img{
+	width:800px;
+	margin:10px auto;
+}
+
 .rec_l{
 	display		:inline-block;
 	text-align	:left;

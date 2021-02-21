@@ -50,7 +50,7 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a2 = mysqli_fetch_assoc($res)){
 		$slide[]=$a2;
 	}
-$slide_count=count($slide);
+	$slide_count=count($slide);
 }
 
 $sql	 ="SELECT * FROM wp01_top_news";
@@ -62,7 +62,7 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a3 = mysqli_fetch_assoc($res)){
 		$news[]=$a3;
 	}
-$news_count=count($news);
+	$news_count=count($news);
 }
 
 $sql	 ="SELECT * FROM wp01_top_info";
@@ -74,7 +74,7 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a4 = mysqli_fetch_assoc($res)){
 		$info[]=$a4;
 	}
-$info_count=count($info);
+	$info_count=count($info);
 }
 include_once('./header.php');
 ?>
@@ -107,8 +107,10 @@ var Cnt=<?=$slide_count?>-1;
 		<div class="slide_img">
 			<?if($slide[0]["link"]){?>
 				<a href="<?=$slide[0]["link"]?>"><img src="./img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img"></a>;
+
 			<?}else{?>	
 				<img src="./img/page/top/top<?=$slide[0]["meta_id"]?>.webp" class="top_img">;
+
 			<?}?>	
 		</div>
 	</div>
@@ -132,7 +134,6 @@ var Cnt=<?=$slide_count?>-1;
 		</div>
 	</div>
 <?}?>
-
 
 	<div class="main_b">
 		<?if($news_count){?>
