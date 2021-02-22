@@ -58,19 +58,22 @@ if($res = mysqli_query($mysqli,$sql)){
 		}
 	}
 }
-
+ 
 //■カテゴリ件数カウント
-$sql ="SELECT tag, COUNT(id) AS cnt FROM wp01_0posts";
-$sql.=" WHERE status=0";
-$sql.=" AND blog_date<='{$now}'";
-$sql.=" GROUP BY tag'";
+$sql ="SELECT tag_name, tag_icon, wp01_0tag.id, COUNT(wp01_0posts.id) AS cnt FROM wp01_0tag";
+$sql.=" LEFT JOIN wp01_0posts ON wp01_0tag.id=wp01_0posts.tag";
+$sql.=" WHERE tag_group='blog'";
+$sql.=" AND (status=0 OR status IS NULL)";
+$sql.=" AND (blog_date<='{$now}' OR blog_date IS NULL)";
+$sql.=" GROUP BY wp01_0tag.id";
+$sql.=" ORDER BY sort ASC";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
-		$tag_count[$a1["tag"]]	=$a1["cnt"];
+		$tag_count[$a1["id"]]	=$a1;
+		$cate_all+=$a1["cnt"];
 	}
 }
-
 
 $pg_max=ceil($cate_all/16);
 if($pg_max==1){
@@ -128,6 +131,11 @@ if($res = mysqli_query($mysqli,$sql)){
 		$blog[]	=$a1;
 	}
 }
+if(is_array($blog)){
+	$count_blog=count($blog);
+}
+
+
 
 $v_month=date("Y年m月",strtotime($month."01"));
 $p_month=date("Ym",strtotime($month."01")-86400);
@@ -156,37 +164,28 @@ include_once('./header.php');
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
-	<span class="footmark_icon"></span>
-	<a href="./cast.php" class="footmark_box box_a">
-		<span class="footmark_icon"></span>
-		<span class="footmark_text">CAST</span>
-	</a>
-	<span class="footmark_icon"></span>
-	<span class="footmark_icon"></span>
-	<span class="footmark_text"><?=$a1["genji"]?></span>
-
 <?if($cast_list){?>
 	<span class="footmark_icon"></span>
-	<a href="./castblog.php?cast=<?=$cast_list?>" class="footmark_box box_a">
+	<a href="./castblog.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">blog</span>
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"></span>
-		<span class="footmark_text"><?=$a2["castname"]?></span>
+		<span class="footmark_icon"><?=$cast_count[$cast_list]["tag_icon"]?></span>
+		<span class="footmark_text"><?=$cast_count[$cast_list]["tag_name"]?></span>
 	</div>
 
 <?}elseif($tag_list){?>
 	<span class="footmark_icon"></span>
-	<a href="./castblog.php?tag=<?=$tag_list?>" class="footmark_box box_a">
-		<span class="footmark_icon"></span>
+	<a href="./castblog.php" class="footmark_box box_a">
+		<span class="footmark_icon"></span>
 		<span class="footmark_text">blog</span>
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"><?=$tag_icon[str_replace("tag","",$tag_list)]?></span>
-		<span class="footmark_text"><?=$a2["tagname"]?></span>
+		<span class="footmark_icon"><?=$tag_count[$tag_list]["tag_icon"]?></span>
+		<span class="footmark_text"><?=$tag_count[$tag_list]["tag_name"]?></span>
 	</div>
 
 <?}else{?>
@@ -202,7 +201,8 @@ include_once('./header.php');
 	<div class="main_article_out">
 		<h2 class="main_blog_title"> Cast Blog</h2>
 		<div class="main_article">
-			<?for($n=0;$n<count($blog);$n++){?>
+
+			<?for($n=0;$n<$count_blog+0;$n++){?>
 				<a href="./article.php?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
 					<span class="blog_list_comm">
@@ -251,11 +251,12 @@ include_once('./header.php');
 					<span class="all_tag_name">全て</span>
 					<span class="all_tag_count"><?=$cate_all?></span>
 				</a>
+
 				<?foreach($tag_count as $a1=> $a2){?>
 				<a href="./castblog.php?tag_list=<?=$a1?>" class="all_tag">
-					<span class="all_tag_icon"><?=$tag_icon[$a1]?></span>
-					<span class="all_tag_name"><?=$cate_name[$a1]?></span>
-					<span class="all_tag_count"><?=$a2?></span>
+					<span class="all_tag_icon"><?=$a2["tag_icon"]?></span>
+					<span class="all_tag_name"><?=$a2["tag_name"]?></span>
+					<span class="all_tag_count"><?=$a2["cnt"]?></span>
 				</a>
 				<? } ?>
 			</div>

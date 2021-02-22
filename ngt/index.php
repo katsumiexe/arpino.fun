@@ -59,6 +59,17 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		}elseif($a1["category"]){
 			$a1["link"]=$a1["category"];
 		}
+
+		if (file_exists("./img/page/event/event_{$a1["id"]}.webp")) {
+			$a1["img"]="./img/page/event/event_{$a1["id"]}.webp";
+
+		}elseif (file_exists("./img/page/event/event_{$a1["id"]}.jpg")) {
+			$a1["img"]="./img/page/event/event_{$a1["id"]}.jpg";
+
+		}elseif (file_exists("./img/page/event/event_{$a1["id"]}.png")) {
+			$a1["img"]="./img/page/event/event_{$a1["id"]}.png";
+		}
+
 		$event[]=$a1;
 	}
 	if (is_array($event)) {
@@ -130,9 +141,9 @@ var Cnt=<?=$event_count?>-1;
 		
 			<?for($n=0;$n<$event_count;$n++){?>
 				<?if($event[$n]["link"]){?>
-					<a href="<?=$event[$n]["link"]?>"><img src="./img/page/event/event_<?=$event[$n]["id"]?>.jpg" class="top_img"></a>;
+					<a href="<?=$event[$n]["link"]?>"><img src="<?=$event[$n]["img"]?>" class="top_img"></a>;
 				<?}else{?>	
-					<img src="./img/page/event/noimage.jpg" class="top_img">;
+					<img src="<?=$event[$n]["img"]?>" class="top_img">;
 				<?}?>	
 			<?}?>	
 		</div>
