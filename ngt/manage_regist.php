@@ -476,7 +476,7 @@ input[type=range]::-moz-range-thumb{
 	position		:fixed;
 	top				:0;
 	left			:180px;
-	width			: calc(100vw - 180px;);
+	width			: calc(100vw - 180px);
 	height			:50px;
 	background		:#0000d0;
 }
@@ -486,7 +486,7 @@ input[type=range]::-moz-range-thumb{
 	position		:fixed;
 	bottom			:0;
 	left			:180px;
-	width			: calc(100vw - 180px;);
+	width			: calc(100vw - 180px);
 	height			:30px;
 	background		:#00d000;
 
