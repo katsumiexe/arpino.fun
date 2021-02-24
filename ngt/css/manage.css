@@ -1,0 +1,103 @@
+a{
+	text-decoration:none;
+	color: initial;
+}		
+
+.timeline-Footer{font-size:0 !important}
+
+ul {
+	margin-block-start	:0;
+	margin-block-end	:0;
+	margin-inline-start	:0;
+	margin-inline-end	:0;
+	padding-inline-start:0;
+}
+.body{
+	background	:#fafafa;
+	text-align	:center;
+	margin		:0;
+	padding		:0;
+	line-height	:1.2;
+	color		:#333;
+	font-size	:0;
+	font-family: "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+	text-align	:center;
+	width		:100vw;
+}
+
+
+.head{
+	position:fixed;
+	top		:0;
+	left	:0;
+	width:100vw;
+	height: 80px;
+	background:#0000d0;
+	box-shadow:2px 2px 5px rgba(60,60,60,0.5);	
+}
+
+.left{
+	position	:fixed;
+	top			:80px;
+	left		:0;
+	width		:180px;
+	height		:calc(100vh - 120px);
+	background	:#ffc0a0;
+	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
+}
+
+.main{
+	position	:fixed;
+	top			:80px;
+	left		:180px;
+	width		:calc(100vw - 180px);
+	height		:calc(100vh - 120px);
+	background	:#fafafa;
+	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
+	overflow-y	:scroll;
+}
+
+.foot{
+	position	:fixed;
+	bottom		:0;
+	left		:0;
+	width		:100vw;
+	height		:40px;
+	background	:#fafafa;
+	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
+}
+
+.menu_ul{
+	width:160px;
+}
+
+.menu{
+	display		:inline-flex;
+	text-align	:left;
+	width		:160px;
+	height		:30px;
+	line-height	:30px;
+	margin		:0 auto;
+	font-size	:16px;
+	padding		:5px;
+	border-bottom:1px solid #101010;
+}
+
+@media screen and (max-width: 559px){
+.head_menu{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	left			:2vw;
+	bottom			:0; 
+	margin			:auto;
+	width			:10vw;
+	height			:10vw;
+	line-height		:10vw;
+	text-align		:center;
+	border			:1px solid #c8b880;
+	border-radius	:1vw;
+	cursor			:pointer;
+}
+}
+

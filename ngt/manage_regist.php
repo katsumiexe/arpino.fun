@@ -1,3 +1,34 @@
+<?
+$sql	 ="SELECT * FROM wp01_0charm_table";
+$sql	.=" WHERE del=0";
+$sql	.=" ORDER BY sort ASC";
+
+if($res = mysqli_query($mysqli,$sql)){
+	while($res_a = mysqli_fetch_assoc($res)){
+		$charm_table[$res_a["sort"]]=$res_a;
+	}
+}
+
+$sql	 ="SELECT * FROM wp01_0check_main";
+$sql	.=" WHERE del=0";
+$sql	.=" ORDER BY sort ASC";
+if($res1 = mysqli_query($mysqli,$sql)){
+	while($res1_a = mysqli_fetch_assoc($res1)){
+		$ck_main[$res1_a["id"]]=$res1_a;
+	}
+
+	$sql	 ="SELECT * FROM wp01_0check_list";
+	$sql	.=" WHERE del=0";
+	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
+
+	if($res2 = mysqli_query($mysqli,$sql)){
+		while($res2_a = mysqli_fetch_assoc($res2)){
+			$ck_list[$res2_a["host_id"]][$res2_a["id"]]=$res2_a["list_title"];
+		}
+	}
+}
+
+?>
 <style>
 <!--
 input[type=text]{
@@ -565,7 +596,7 @@ CAST情報
 </table>
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
-	<?foreach($charm_table as $a1 => $a2){?>
+	<?foreach((array)$charm_table as $a1 => $a2){?>
 <td>
 	<div><?=$a2["charm"]?></div>
 	<?if($a2["style"] == 1){?>
@@ -581,17 +612,21 @@ CAST情報
 	<? } ?>
 </tr>
 </table>
-<?for($n=0;$n<count($ck_main);$n++){?>
+
+
+$ck_list[$res2_a["host_id"]][$res2_a["list_id"]]=$res2_a["list_title"];
+
+<?foreach((array)$ck_main as $a1 => $a2){?>
 <table style="width:720px;" class="cast_table">
 	<tr>
 	<td class="table_title">
-<span class="table_title cast_table"><?=$ck_main[$n]["title"]?></span>
+<span class="table_title cast_table"><?=$a2["title"]?></span>
 </td></tr>
 	<tr>
 	<td>
-		<?foreach($ck_list[$ck_main[$n]["id"]] as $a1 => $a2){?>
-		<input type="checkbox" id="sel_<?=$a1?>" name="options[<?=$a1?>]" class="ck_off" autocomplete="off" style="display:none; value="1">
-		<label for="sel_<?=$a1?>" class="ck_box"><?=$a2?></label>
+		<?foreach((array)$ck_list[$a1] as $b1 => $b2){?>
+		<input type="checkbox" id="sel_<?=$b1?>" name="options[<?=$b1?>]" class="ck_off" autocomplete="off" style="display:none; value="1">
+		<label for="sel_<?=$b1?>" class="ck_box"><?=$b2?></label>
 		<?}?>
 	</td>
 	</tr>

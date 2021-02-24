@@ -1,3 +1,7 @@
+<?
+include_once('./library/sql.php');
+}
+?>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -10,7 +14,6 @@
 <script src="./js/manage.js?t=<?=time()?>"></script>
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="./css/style.css?t=<?=time()?>">
 <link rel="stylesheet" href="./css/manage.css?t=<?=time()?>">
 <style>
 @font-face {
@@ -36,28 +39,29 @@
 </style>
 </head>
 <body class="body">
-<header class="head">
-</header>
-<div class="left">
-<ul class="menu_ul">登録</div>
-	<li id="regist" class="menu">登録</li>
-	<li id="staff" class="menu">スタッフ</li>
-	<li id="sche" class="menu">スケジュール</li>
-	<li id="blog" class="menu">ブログ</li>
-	<li id="contents" class="menu">コンテンツ</li>
-	<li id="easytalk" class="menu">EasyTalk</li>
-	<li id="notice" class="menu">お知らせ</li>
-	<li id="config" class="menu">コンフィグ</li>
-</ul>
-<div class="head_menu">
-	<div class="menu_a"></div>
-	<div class="menu_b"></div>
-	<div class="menu_c"></div>
-</div>
-</div>
+
 <div class="main">
-<?=include_once('./library/manage_regist.php');?>
+<?=include_once('./manage_regist.php');?>
 </div>
-<footer class="footer">
-</footer>
+
+<div class="left">
+	<ul class="menu_ul">
+		<li id="regist" class="menu">登録</li>
+		<li id="staff" class="menu">スタッフ</li>
+		<li id="sche" class="menu">スケジュール</li>
+		<li id="blog" class="menu">ブログ</li>
+		<li id="contents" class="menu">コンテンツ</li>
+		<li id="easytalk" class="menu">EasyTalk</li>
+		<li id="notice" class="menu">お知らせ</li>
+		<li id="config" class="menu">コンフィグ</li>
+	</ul>
+	<div class="head_menu">
+		<div class="menu_a"></div>
+		<div class="menu_b"></div>
+		<div class="menu_c"></div>
+	</div>
+</div>
+
+<header class="head"></header>
+<footer class="footer"></footer>
 </html>
