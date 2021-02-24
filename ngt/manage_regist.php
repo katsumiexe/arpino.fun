@@ -1,4 +1,5 @@
 <?
+//ini_set('display_errors', "On");
 $sql	 ="SELECT * FROM wp01_0charm_table";
 $sql	.=" WHERE del=0";
 $sql	.=" ORDER BY sort ASC";
@@ -222,13 +223,14 @@ td{
 	display			:inline-block;
 	width			:100px;
 	margin			:3px;
-	padding			:5px;
+	padding			:4px;
 	border-radius	:5px;
 	background		:#c0c0c0;
 	color			:#fafafa;
 	font-size		:14px;
 	text-align		:left;
 }
+
 .table_title{
 	background		:linear-gradient(#e0e0e0,#d0d0d0);
 	padding			:5px;
@@ -469,9 +471,33 @@ input[type=range]::-moz-range-thumb{
 	height:200px;
 
 }
+.head{
+	display			:inline-block;
+	position		:fixed;
+	top				:0;
+	left			:180px;
+	width			: calc(100vw - 180px;);
+	height			:50px;
+	background		:#0000d0;
+}
 
+.foot{
+	display			:inline-block;
+	position		:fixed;
+	bottom			:0;
+	left			:180px;
+	width			: calc(100vw - 180px;);
+	height			:30px;
+	background		:#00d000;
+
+}
+.wrap{
+	display			:inline-block;
+	margin:50px 0 30px 0;
+}
 -->
 </style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="./js/jquery.ui.touch-punch.min.js"></script>
@@ -492,7 +518,7 @@ $(function(){
 });
 </script>
 
-<div class="wrap">
+<div class="head">
 <h2>スタッフ登録</h2>
 <form action="" method='post' id="my-submenu-form">
 <button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
@@ -502,7 +528,9 @@ $(function(){
 　<input id="staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 　<input id="cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
+</div>
 
+<div class="wrap">
 <table>
 <tr><td>
 <table style="width:720px; table-layout: fixed;">
@@ -568,23 +596,13 @@ CAST情報
 </td><td>
 	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="off">
 </td><td>
-	<div>ランク		</div><input type="text" name="cast_rank" class="w000" autocomplete="off">
-</td>
-<td>
-	<div>給与		</div>
-	<select name="cast_salary" class="w000" autocomplete="off">
-	<option value="1">時給</option>
-	<option value="2">週休</option>
-	<option value="3">月給</option>
-	<option value="4">分給</option>
-	</select>
-	<input type="text" name="cast_pay" class="w000" autocomplete="off">
-</td>
+	<div>給与		</div><input type="text" name="cast_pay" class="w000" autocomplete="off">
+	</td>
 </tr>
 </table>
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
-	<td colspan="3">NEWS登録</td>
+	<td class="table_title" colspan="3">NEWS登録</td>
 </tr>	
 <tr>
 	<td style="width:40%;">公開日
@@ -612,10 +630,6 @@ CAST情報
 	<? } ?>
 </tr>
 </table>
-
-
-$ck_list[$res2_a["host_id"]][$res2_a["list_id"]]=$res2_a["list_title"];
-
 <?foreach((array)$ck_main as $a1 => $a2){?>
 <table style="width:720px;" class="cast_table">
 	<tr>
@@ -682,3 +696,5 @@ $ck_list[$res2_a["host_id"]][$res2_a["list_id"]]=$res2_a["list_title"];
 <input id="upd2" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd3" class="img_upd" type="file" accept="image/*" style="display:none;">
 </div> 
+
+<div class="foot"></div> 

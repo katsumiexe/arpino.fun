@@ -25,50 +25,31 @@ ul {
 	width		:100vw;
 }
 
-
-.head{
-	position:fixed;
-	top		:0;
-	left	:0;
-	width:100vw;
-	height: 80px;
-	background:#0000d0;
-	box-shadow:2px 2px 5px rgba(60,60,60,0.5);	
-}
-
 .left{
 	position	:fixed;
-	top			:80px;
+	top			:0;
 	left		:0;
 	width		:180px;
-	height		:calc(100vh - 120px);
+	height		:100vh;
 	background	:#ffc0a0;
 	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
 }
 
 .main{
 	position	:fixed;
-	top			:80px;
+	top			:0px;
 	left		:180px;
 	width		:calc(100vw - 180px);
-	height		:calc(100vh - 120px);
+	height		:100vh;
 	background	:#fafafa;
 	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
 	overflow-y	:scroll;
+	padding		:10px;
 }
 
-.foot{
-	position	:fixed;
-	bottom		:0;
-	left		:0;
-	width		:100vw;
-	height		:40px;
-	background	:#fafafa;
-	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
-}
 
 .menu_ul{
-	width:160px;
+	width		:160px;
 }
 
 .menu{

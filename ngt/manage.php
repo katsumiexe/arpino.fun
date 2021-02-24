@@ -1,6 +1,5 @@
 <?
 include_once('./library/sql.php');
-}
 ?>
 <html lang="ja">
 <head>
@@ -31,7 +30,6 @@ include_once('./library/sql.php');
 	src: url("./font/border/frame2.ttf") format('truetype');
 }
 
-
 @font-face {
 	font-family: at_font1;
 	src: url("./font/Courgette-Regular.ttf") format('truetype');
@@ -39,11 +37,9 @@ include_once('./library/sql.php');
 </style>
 </head>
 <body class="body">
-
 <div class="main">
-<?=include_once('./manage_regist.php');?>
+	<?=include_once('./manage_regist.php');?>
 </div>
-
 <div class="left">
 	<ul class="menu_ul">
 		<li id="regist" class="menu">登録</li>
@@ -61,7 +57,4 @@ include_once('./library/sql.php');
 		<div class="menu_c"></div>
 	</div>
 </div>
-
-<header class="head"></header>
-<footer class="footer"></footer>
 </html>
