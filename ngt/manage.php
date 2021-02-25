@@ -56,8 +56,7 @@ if($_POST["staff_set"]){
 
 	if($c_s == 2){
 //■cast-------------------------------
-		$tmp_auto=mysqli_insert_id($mysql);
-
+		$tmp_auto=mysqli_insert_id($mysqli);
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
 		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
@@ -81,7 +80,7 @@ if($_POST["staff_set"]){
 			chmod($mk_dir."/m/", 0777);
 		}
 
-		$link="../wp-content/themes/nightparty/img/page/profile/".$tmp_auto."/";
+		$link="./img/profile/".$tmp_auto."/";
 		if(!is_dir($link)) {
 			mkdir($link, 0777, TRUE);
 			chmod($link, 0777);
@@ -153,7 +152,7 @@ if($_POST["staff_set"]){
 						$img = imagecreatefromstring(base64_decode($img_c[$a1]));
 					}
 
-					$link="../wp-content/themes/nightparty/img/page/".$tmp_auto;
+					$link="./img/profile/".$tmp_auto;
 
 					$img2 		= imagecreatetruecolor(600,800);
 					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);

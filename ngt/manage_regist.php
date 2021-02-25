@@ -1,15 +1,15 @@
 <?
-
-
 $sql	 ="SELECT * FROM wp01_0charm_table";
 $sql	.=" WHERE del=0";
 $sql	.=" ORDER BY sort ASC";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($res_a = mysqli_fetch_assoc($res)){
-		$charm_table[$res_a["sort"]]=$res_a;
+		$charm_table[$res_a["id"]]=$res_a;
 	}
 }
+
+var_dump($charm_table);
 
 $sql	 ="SELECT * FROM wp01_0check_main";
 $sql	.=" WHERE del=0";
