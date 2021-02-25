@@ -72,10 +72,6 @@ echo $tmp_auto;
 			$rnd=rand(0,19);
 			$tmp_id=substr($id_8,$n,1);
 			$tmp_dir.=$dec[$id_0][$tmp_id];
-
-
-echo $tmp_id."■";
-
 		}
 
 		$mk_dir="./img/cast/".$tmp_dir;
