@@ -108,8 +108,11 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
 		$check_main[]=$a1;
 	}
-}
+	if (is_array($check_main)) {
+		$cnt_check_main=count($check_main);
+	}
 
+}
 
 $sql ="SELECT * FROM wp01_0check_list";
 $sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
@@ -120,8 +123,6 @@ $sql.=" ORDER BY host_id ASC, list_sort ASC";
 foreach($res as $a1){
 	$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
 }
-
-
 
 $sql ="SELECT * FROM wp01_posts AS P";
 $sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
@@ -135,8 +136,11 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
 		$blog[]=$a1;
 	}
-}
+	if (is_array($blog)) {
+		$cnt_blog=count($blog);
+	}
 
+}
 include_once('./header.php');
 ?>
 <div class="footmark">
@@ -185,19 +189,20 @@ include_once('./header.php');
 			</tr>
 		<?}?>
 	<?}?>
+
 		</table>
 		<div class="sche_title">Schedule</div>
 		<table class="sche">
 			<?=$list?>
 		</table>
 
-		<?for($n=0;$n<count($check_main);$n++){?>
-		<div class="prof_title"><?=$check_main[$n]["title"]?></div>
+		<?for($n=0;$n<$cnt_check_main+0;$n++){?>
+			<div class="prof_title"><?=$check_main[$n]["title"]?></div>
 			<div class="check_box">
 				<?foreach($check_list[$check_main[$n]["id"]] as $a1 => $a2){?>
-				<?if($check_main[$n]["style"]==1 || $check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]== 1){?>
-					<div class="check_set<?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]?>"><?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["list_title"]?></div>
-				<? } ?>
+					<?if($check_main[$n]["style"]==1 || $check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]== 1){?>
+						<div class="check_set<?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]?>"><?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["list_title"]?></div>
+					<? } ?>
 				<? } ?>
 			</div>
 		<?}?>
@@ -205,7 +210,7 @@ include_once('./header.php');
 
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
-			<?for($s=0;$s<count($blog);$s++){?>
+			<?for($s=0;$s<$cnt_blog+0;$s++){?>
 				<a href="./article/?cast_list=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
