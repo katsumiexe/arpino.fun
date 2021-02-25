@@ -3,11 +3,11 @@ include_once('./library/sql.php');
 
 $sort=array();
 
-$sql=" SELECT C.id, genji, in_out, `name`, `sort` FROM wp01_0cast AS C";
+$sql=" SELECT C.id, genji, in_out, `name`, T.sort FROM wp01_0cast AS C";
 $sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
 $sql.=" LEFT JOIN wp01_0sch_table AS T ON in_out='in' AND stime=T.name";
 $sql.=" WHERE C.cast_status=0";
-$sql.=" AND S.sche_date='{$day_8}'";
+//$sql.=" AND S.sche_date='{$day_8}'";
 $sql.=" ORDER BY S.id DESC";
 
 if($res = mysqli_query($mysqli,$sql)){
@@ -77,7 +77,7 @@ include_once('./header.php');
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="./cast.php?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
+	<a href="./person.php?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
 		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
 		<span class="main_d_1_2">
 			<span class="main_b_1_2_h"></span>

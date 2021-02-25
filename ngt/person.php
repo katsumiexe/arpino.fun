@@ -19,26 +19,28 @@ $t_day=date("Ymd",$day_time);
 $n_day=date("Ymd",$day_time+(86400*7));
 
 $cast=$_REQUEST["cast"];
-$sql="SELECT * FROM wp01_0cast WHERE id='{$cast}' AND status<2 LIMIT 1";
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		if (file_exists("./img/page/{$a1["id"]}/0.jpg")) {
-			$face_a="<img src=\"./img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_main\">";
-			$face_b="<img id=\"i1\" src=\"./img/page/{$a1["id"]}/0.jpg?t={$tm}\" class=\"person_img_sub\">";
+$sql="SELECT * FROM wp01_0cast WHERE id='{$cast}' AND cast_status<2 LIMIT 1";
 
-			if (file_exists("./img/page/{$a1["id"]}/1.jpg")) {
-				$face_b.="<img id=\"i2\" src=\"./img/page/{$a1["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
-			}
-			if (file_exists("./img/page/{$a1["id"]}/2.jpg")) {
-				$face_b.="<img id=\"i3\" src=\"./img/page/{$a1["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
-			}
-			if (file_exists("./img/page/{$a1["id"]}/3.jpg")) {
-				$face_b.="<img id=\"i4\" src=\"./img/page/{$a1["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
-			}
-		}else{
-			$a1["face"]="./img/cast/noimage.jpg";			
-			$face_a="<img src=\"./img/page/noimage.jpg\" class=\"person_img_main\">";
+if($res = mysqli_query($mysqli,$sql)){
+	$cast_data = mysqli_fetch_assoc($res);
+	if (file_exists("./img/profile/{$cast_data["id"]}/0.jpg")) {
+		$face_a="<img src=\"./img/profile/{$cast_data["id"]}/0.jpg?t={$tm}\" class=\"person_img_main\">";
+		$face_b="<img id=\"i1\" src=\"./img/profile/{$cast_data["id"]}/0.jpg?t={$tm}\" class=\"person_img_sub\">";
+
+		if (file_exists("./img/profile/{$cast_data["id"]}/1.jpg")) {
+			$face_b.="<img id=\"i2\" src=\"./img/profile/{$cast_data["id"]}/1.jpg?t={$tm}\" class=\"person_img_sub\">";
 		}
+
+		if (file_exists("./img/profile/{$cast_data["id"]}/2.jpg")) {
+			$face_b.="<img id=\"i3\" src=\"./img/profile/{$cast_data["id"]}/2.jpg?t={$tm}\" class=\"person_img_sub\">";
+		}
+
+		if (file_exists("./img/profile/{$cast_data["id"]}/3.jpg")) {
+			$face_b.="<img id=\"i4\" src=\"./img/profile/{$cast_data["id"]}/3.jpg?t={$tm}\" class=\"person_img_sub\">";
+		}
+
+	}else{
+		$face_a="<img src=\"./img/profile/noimage.jpg\" class=\"person_img_main\">";
 	}
 }
 
@@ -49,8 +51,8 @@ $sql	.=" AND cast_id='{$cast}'";
 $sql	.=" ORDER BY id ASC";
 
 if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$sch[$a1["sche_date"]]=$a1;
+	while($a0 = mysqli_fetch_assoc($res)){
+		$sch[$a0["sche_date"]]=$a0;
 	}
 }
 
@@ -69,7 +71,8 @@ for($n=0;$n<7;$n++){
 	}
 }
 
-$sql="SELECT id, charm,style FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
+/*
+$sql="SELECT id, charm, style FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
 if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
 		if($a1["style"] == 1){
@@ -79,34 +82,23 @@ if($res = mysqli_query($mysqli,$sql)){
 		}
 	}
 }
-
-$sql ="SELECT * FROM wp01_posts AS P";
-$sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
-$sql.=" WHERE P.cast='{$cast}'";
-$sql.=" AND P.write_date<='{$now}'";
-$sql.=" AND P.status='0'";
-$sql.=" ORDER BY P.write_date DESC";
-$sql.=" LIMIT 6";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$blog[]=$a1;
-	}
-}
+*/
 
 $sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
 $sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
 $sql.=" WHERE wp01_0charm_table.del='0'";
 $sql.=" AND (wp01_0charm_sel.cast_id='{$cast}' OR wp01_0charm_sel.cast_id='')";
-$sql.=" ORDER BY sort ASC";
+$sql.=" ORDER BY wp01_0charm_table.sort ASC";
 
 if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$a["log"]=str_replace("\n","<br>",$a0["log"]);
-		$cast_table[]=$a;
+	while($a0 = mysqli_fetch_assoc($res)){
+		$a0["log"]=str_replace("\n","<br>",$a0["log"]);
+		$charm_table[]=$a0;
+	}
+	if (is_array($charm_table)) {
+		$cnt_charm_table=count($charm_table);
 	}
 }
-
 
 $sql ="SELECT id,title,style FROM wp01_0check_main";
 $sql.=" WHERE del='0'";
@@ -128,9 +120,25 @@ $sql.=" ORDER BY host_id ASC, list_sort ASC";
 foreach($res as $a1){
 	$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
 }
+
+
+
+$sql ="SELECT * FROM wp01_posts AS P";
+$sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
+$sql.=" WHERE P.cast='{$cast}'";
+$sql.=" AND P.write_date<='{$now}'";
+$sql.=" AND P.status='0'";
+$sql.=" ORDER BY P.write_date DESC";
+$sql.=" LIMIT 6";
+
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$blog[]=$a1;
+	}
+}
+
 include_once('./header.php');
 ?>
-
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -162,18 +170,18 @@ include_once('./header.php');
 		<table class="prof">
 			<tr>
 				<td class="prof_l">名前</td>
-				<td class="prof_r"><?=$a1["genji"]?></td>
+				<td class="prof_r"><?=$cast_data["genji"]?></td>
 			</tr>
 
-	<?for($n=0;$n<count($cast_table);$n++){?>
-		<?if($cast_table[$n]["style"] == 1){?>
+	<?for($n=0;$n<$cnt_charm_table+0;$n++){?>
+		<?if($charm_table[$n]["style"] == 1){?>
 			<tr><td class="prof_0" colspan="2"></td></tr>
-			<tr><td class="prof_l2" colspan="2"><?=$cast_table[$n]["charm"]?></td></tr>
-			<tr><td class="prof_r2" colspan="2"><?=$cast_table[$n]["log"]?></td></tr>
+			<tr><td class="prof_l2" colspan="2"><?=$charm_table[$n]["charm"]?></td></tr>
+			<tr><td class="prof_r2" colspan="2"><?=$charm_table[$n]["log"]?></td></tr>
 		<?}else{?>
 			<tr>
-			<td class="prof_l"><?=$cast_table[$n]["charm"]?></td>
-			<td class="prof_r"><?=$cast_table[$n]["log"]?></td>
+			<td class="prof_l"><?=$charm_table[$n]["charm"]?></td>
+			<td class="prof_r"><?=$charm_table[$n]["log"]?></td>
 			</tr>
 		<?}?>
 	<?}?>
