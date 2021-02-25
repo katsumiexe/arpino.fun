@@ -1,5 +1,6 @@
 <?
-//ini_set('display_errors', "On");
+
+
 $sql	 ="SELECT * FROM wp01_0charm_table";
 $sql	.=" WHERE del=0";
 $sql	.=" ORDER BY sort ASC";
