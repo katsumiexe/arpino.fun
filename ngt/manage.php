@@ -57,6 +57,9 @@ if($_POST["staff_set"]){
 	if($c_s == 2){
 //■cast-------------------------------
 		$tmp_auto=mysqli_insert_id($mysqli);
+
+echo $tmp_auto;
+
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
 		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
@@ -69,6 +72,10 @@ if($_POST["staff_set"]){
 			$rnd=rand(0,19);
 			$tmp_id=substr($id_8,$n,1);
 			$tmp_dir.=$dec[$id_0][$tmp_id];
+
+
+echo $tmp_id."■";
+
 		}
 
 		$mk_dir="./img/cast/".$tmp_dir;
@@ -80,7 +87,7 @@ if($_POST["staff_set"]){
 			chmod($mk_dir."/m/", 0777);
 		}
 
-		$link="./img/profile/".$tmp_auto."/";
+		$link="./img/profile/".$tmp_auto;
 		if(!is_dir($link)) {
 			mkdir($link, 0777, TRUE);
 			chmod($link, 0777);
