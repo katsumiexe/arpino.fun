@@ -1,5 +1,453 @@
 <?
-include_once('./library/mypage_inc.php');
+include_once('./library/sql_cast.php');
+//Sche-----------------------
+$c_month=$_POST["c_month"];
+if(!$c_month) $c_month=date("Y-m-01");
+
+$calendar[0]=date("Y-m-01",strtotime($c_month)-86400);
+$calendar[1]=$c_month;
+$calendar[2]=date("Y-m-01",strtotime($c_month)+3456000);
+$calendar[3]=date("Y-m-01",strtotime($calendar[2])+3456000);
+
+$month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);	
+$month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
+$month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
+
+$base_w=$day_w-$start_week;
+if($base_w<0) $base_w+=7;
+
+$base_day		=$day_time-($base_w+7)*86400;
+$week_st		=date("Ymd",$base_day);
+$week_ed		=date("Ymd",$base_day+604800);
+$month_st		=date("Ymd",strtotime($calendar[0]));
+$month_ed		=date("Ymd",strtotime($calendar[3]));
+
+$ana_ym=$_POST["ana_ym"];
+if(!$ana_ym) $ana_ym=date("Ym");
+
+//analytics-----------------------
+$week_01		=date("w",strtotime($c_month));
+
+$ana_line[$start_week]=" ana_line";
+
+$sql ="SELECT term_id FROM wp01_terms"; 
+$sql .=" WHERE slug='{$_SESSION["id"]}'"; 
+
+$id_8=substr("00000000".$_SESSION["id"],-8);
+$id_0	=$_SESSION["id"] % 20;
+
+for($n=0;$n<8;$n++){
+	$tmp_id=substr($id_8,$n,1);
+	$box_no.=$dec[$id_0][$tmp_id];
+}
+
+$cast_page=$_POST["cast_page"]+0;
+
+if($cast_page == 1){
+	$page_title="スケジュール";
+
+}elseif($cast_page == 2){
+	$page_title="顧客リスト";
+
+}elseif($cast_page == 3){
+	$page_title="Easy Talk";
+
+}elseif($cast_page == 4){
+	$page_title="ブログ";
+
+}elseif($cast_page == 5){
+	$page_title="アナリティクス";
+
+}elseif($cast_page == 5){
+	$page_title="各種設定";
+
+}else{
+	$page_title="トップページ";
+}
+
+
+$sql ="SELECT * FROM wp01_0cast_config";
+$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql.=" LIMIT 1";
+
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
+
+	if($row["c_sort_group"]>0){
+		$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
+	}
+
+	if($c_sort["c_sort_main"]==1){
+		$app2	=" `date`";
+		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
+		$app5	=" ,MAX(`date`) AS log_date"; 
+
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" DESC";
+		}else{
+			$app3	.=" ASC";
+		}
+
+	}elseif($c_sort["c_sort_main"]==2){
+		$app2	=" `fav`";
+
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" DESC";
+		}else{
+			$app3	.=" ASC";
+		}
+
+	}elseif($c_sort["c_sort_main"]==3){
+		$app2	=" `birth_day`";
+
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" ASC";
+		}else{
+			$app3	.=" DESC";
+		}
+
+	}else{
+		$app2	=" `id`";
+
+		if($c_sort["c_sort_asc"]==1){
+			$app3	.=" ASC";
+		}else{
+			$app3	.=" DESC";
+		}
+	}
+}
+
+
+	/*--■スケジュール--*/
+$tmp_today[$day_8]="cc8";
+
+$sql ="SELECT * FROM wp01_0sch_table";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$sche_table_name[$row["in_out"]][$row["sort"]]	=$row["name"];
+		$sche_table_time[$row["in_out"]][$row["sort"]]	=$row["time"];
+		$sche_table_calc[$row["in_out"]][$row["name"]]	=$row["time"];
+	}
+}
+
+$days_sche="休み";
+
+$sql	 ="SELECT * FROM wp01_0schedule";
+$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql	.=" AND sche_date>='{$month_st}'";
+$sql	.=" AND sche_date<'{$month_ed}'";
+$sql   	.=" ORDER BY id ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$stime[$row["sche_date"]]		=$row["stime"];
+		$etime[$row["sche_date"]]		=$row["etime"];
+
+		if($ana_ym==substr($row["sche_date"],0,6) ){
+			$ana_sche[$row["sche_date"]]	="<span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span>";
+
+			if(substr($sche_table_calc["in"][$row["stime"]],2,1) == 3){
+				$tmp_s=$sche_table_calc["in"][$row["stime"]]+20;
+
+			}else{
+				$tmp_s=$sche_table_calc["in"][$row["stime"]];
+			}		
+
+			if(substr($sche_table_calc["out"][$row["etime"]],2,1) == 3){
+				$tmp_e=$sche_table_calc["out"][$row["etime"]]+20;
+
+			}else{
+				$tmp_e=$sche_table_calc["out"][$row["etime"]];
+			}		
+
+			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
+		}
+	}
+
+
+	if($stime[$day_8] && $etime[$day_8]){
+		$days_sche="{$stime[$day_8]}-{$etime[$day_8]}";
+	}else{
+		$days_sche="休み";
+	}
+
+	if($stime[$day_8_1] && $etime[$day_8_1]){
+		$days_sche_2="{$stime[$day_8_1]}-{$etime[$day_8_1]}";
+	}else{
+		$days_sche_2="休み";
+	}
+
+	if($stime[$day_8_2] && $etime[$day_8_2]){
+		$days_sche_3="{$stime[$day_8_2]}-{$etime[$day_8_2]}";
+	}else{
+		$days_sche_3="休み";
+	}
+}
+
+
+$sql	 ="SELECT * FROM wp01_0schedule_memo";
+$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql	.=" AND date_8>='{$month_st}'";
+$sql	.=" AND date_8<'{$month_ed}'";
+$sql	.=" AND `log` IS NOT NULL";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		if(trim($row["log"])){
+			$memo_dat[$row["date_8"]]="n3";
+			$cal_app[substr($row["date_8"],0,6)].="<input class=\"cal_m_{$row["date_8"]}\" type=\"hidden\" value=\"{$row["log"]}\">";
+
+			if($day_8 == $row["date_8"]){
+				$days_memo.=$row["log"];
+			}
+		}
+	}
+}
+
+$sql	 ="SELECT * FROM wp01_posts";
+$sql	.=" WHERE cast='{$_SESSION["id"]}'";
+$sql	.=" AND status<2";
+$sql	.=" AND view_date>='{$calendar[0]}'";
+$sql	.=" AND view_date<'{$calendar[3]}'";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$tmp_date=substr($tmp["post_date"],0,4).substr($tmp["post_date"],5,2).substr($tmp["post_date"],8,2);
+		$blog_dat[$tmp_date]="n4";
+	}
+}
+
+
+$sql	 ="SELECT *{$app5} FROM wp01_0customer";
+$sql	.=$app4;
+$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
+$sql	.=$app1;
+$sql	.=" GROUP BY wp01_0customer.id";
+$sql	.=" ORDER BY";
+$sql	.=$app2;
+$sql	.=$app3;
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		if(!$row["birth_day"] || $row["birth_day"]=="0000-00-00"){
+			$row["yy"]="----";
+			$row["mm"]="--";
+			$row["dd"]="--";
+			$row="--";
+
+		}else{
+			$row["yy"]=substr($tmp["birth_day"],0,4);
+			$row["mm"]=substr($tmp["birth_day"],5,2);
+			$row["dd"]=substr($tmp["birth_day"],8,2);
+			$row["ag"]= floor(($day_8-str_replace("-", "", $row["birth_day"]))/10000);
+		}
+
+		$birth=str_replace("-","",$tmp["birth_day"]);
+		$birth_y	=substr($birth,0,4);
+		$birth_m	=substr($birth,4,2);
+		$birth_d	=substr($birth,6,2);
+
+		$birth_dat[$birth_m.$birth_d]="n1";
+		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+
+		if(substr($birth,4,4) == substr($day_8,4,4)){
+			$days_birth.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+
+		}elseif(substr($birth,4,4) == substr($day_8_1,4,4)){
+			$days_birth_2.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+
+		}elseif(substr($birth,4,4) == substr($day_8_2,4,4)){
+			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+		}
+	}
+	if($birth_hidden){
+		foreach($birth_hidden as $a1 => $a2){
+			foreach($birth_hidden[$a1] as $a3 => $a4){
+				$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+			}
+		}
+		$customer[]=$row;
+	}
+	if(is_array($customer)){
+		$cnt_coustomer=connt($customer);
+	}
+}
+
+
+for($n=0;$n<3;$n++){
+	$now_month=date("m",strtotime($calendar[$n]));
+	$now_ym=date("ym",strtotime($calendar[$n]));
+	$t=date("t",strtotime($calendar[$n]));
+
+	$wk=$start_week-date("w",strtotime($calendar[$n]));
+	if($wk>0) $wk-=7;
+
+	$st=strtotime($calendar[$n])+($wk*86400);
+
+	$v_year[$n]	=substr($calendar[$n],0,4)."年";
+	$v_month[$n]=substr($calendar[$n],5,2)."月";
+
+	for($m=0; $m<42;$m++){
+
+		$tmp_ymd	=date("Ymd",$st+($m*86400));
+		$tmp_ym		=date("ym",$st+($m*86400));
+		$tmp_month	=date("m",$st+($m*86400));
+		$tmp_day	=date("d",$st+($m*86400));
+		$tmp_week	=date("w",$st+($m*86400));
+
+
+		$app_n1="";
+		$app_n2="";
+		$app_n3="";
+		$app_n4="";
+
+		$tmp_w	=$m % 7;
+		if($tmp_w==0){
+			if($now_ym<$tmp_ym){
+				break 1;
+			}else{
+				$cal[$n].="</tr><tr>";
+			}
+		}
+
+		if($ob_holiday[$tmp_ymd]){
+			$tmp_week=0;
+
+		}elseif($tmp_ymd ==$day_8){
+			$tmp_week=7;
+		}
+
+		if($now_month!=$tmp_month){
+				$day_tag=" outof";
+
+		}else{
+			$day_tag=" nowmonth";
+
+			$app_n1=$birth_dat[substr($tmp_ymd,4,4)];
+
+			if($stime[$tmp_ymd] && $etime[$tmp_ymd]){
+				$app_n2=" n2";
+				$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$stime[$tmp_ymd]}-{$etime[$tmp_ymd]}\">";
+			}else{
+				$app_n2="";
+			}
+			$app_n3=$memo_dat[$tmp_ymd];
+			$app_n4=$blog_dat[$tmp_ymd];
+		}
+
+		$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
+		$cal[$n].="<span class=\"dy{$tmp_week}{$day_tag}\">{$tmp_day}</span>";
+
+		$cal[$n].="<span class=\"cal_i1 {$app_n1}\"></span>";
+		$cal[$n].="<span class=\"cal_i2 {$app_n2}\"></span>";
+		$cal[$n].="<span class=\"cal_i3 {$app_n3}\"></span>";
+		$cal[$n].="<span class=\"cal_i4 {$app_n4}\"></span>";
+		$cal[$n].="</td>";
+	}
+}
+
+$sql	 ="SELECT * FROM wp01_0notice";
+$sql	.=" LEFT JOIN wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
+$sql	.=" WHERE del='0'";
+$sql	.=" AND cast_id='{$_SESSION["id"]}'";
+$sql	.=" AND status>0";
+$sql	.=" ORDER BY date DESC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$row["log"]=str_replace("\n","<br>",$row["log"]);
+		$notice[$row["id"]]=$row;
+	}
+}
+
+$sql	 ="SELECT * FROM wp01_0customer_item";
+$sql	.=" WHERE del='0'";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$c_list_name[$row["gp"]][$row["id"]]=$row["item_name"];
+		$c_list_style[$row["id"]]=$row["style"];
+	}
+}
+
+$sql	 ="SELECT * FROM wp01_0customer_group";
+$sql	.=" WHERE `del`='0'";
+$sql	.=" AND group_id='1'";
+$sql	.=" AND cast_id='{$_SESSION["id"]}'";
+$sql	.=" ORDER BY `sort` ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$cus_group_sel[$row["sort"]]=$row["tag"];
+	}
+}
+
+
+
+//■Blog------------------
+$sql ="SELECT * FROM wp01_posts";
+$sql.=" WHERE cast='{$_SESSION["id"]}'";
+$sql.=" ORDER BY view_date DESC";
+$sql.=" LIMIT 11";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$blog[]=$row;
+	}
+	$blog_max=count($dat);
+	if($blog_max>10){
+		$blog_max=10;
+		$blog_next=1;
+	}
+}
+
+$sql ="SELECT * FROM wp01_0tag";
+$sql.=" WHERE tag_group='blog'";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$tag[$row["id"]]=$row;
+	}
+}
+
+//■------------------
+$sql ="SELECT * FROM wp01_0cast_log_table";
+$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$log_item[$row["sort"]]=$row;
+		$log_list_cnt.='"i'.$row["sort"].'",';
+	}
+	$log_list_cnt=substr($log_list_cnt,0,-1);
+}
+
+$sql ="SELECT log_icon,log_comm,nickname,log_price,date,B.cast_id,customer_id FROM wp01_0cast_log_list AS A ";
+$sql.=" LEFT JOIN wp01_0cast_log AS B ON A.master_id=B.log_id";
+$sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
+
+$sql.=" WHERE B.cast_id='{$_SESSION["id"]}'";
+$sql.=" AND A.date>='{$calendar[1]}'";
+$sql.=" AND A.date<'{$calendar[2]}'";
+$sql.=" AND A.del=0";
+$sql.=" AND B.del=0";
+$sql.=" ORDER BY log_id ASC";
+
+if($dat){
+	foreach($dat as $aa1){
+		$tmp_d=substr($aa1["date"],8,2)+0;
+
+		$dat_ana[$tmp_d][]	 =$aa1;
+		$pay_all[$tmp_d]	+=$aa1["log_price"];
+	}
+}
+
 ?>
 <html lang="ja">
 <head>
@@ -9,29 +457,28 @@ include_once('./library/mypage_inc.php');
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url("./font/font_0/fonts/icomoon.ttf") format('truetype');
+	src: url(<?=$link?>/font/font_0/fonts/icomoon.ttf) format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">
-<link rel="stylesheet" href="./css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=$link?>/css/cast.css?t=<?=time()?>">
+<link rel="stylesheet" href="<?=$link?>/css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 
-<script src="./js/jquery.exif.js?t=<?=time()?>"></script>
-<script src="./js/cast.js?t=<?=time()?>"></script>
-<script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="<?=$link?>/js/jquery.exif.js?t=<?=time()?>"></script>
+<script src="<?=$link?>/js/cast.js?t=<?=time()?>"></script>
+<script src="<?=$link?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 
 <script>
-const Dir='.'; 
+const Dir='<?=$link?>'; 
 const CastId='<?=$_SESSION["id"] ?>'; 
 const CastName='<?=$_SESSION["genji"] ?>'; 
 
 const Now_md=<?=date("md",$jst)+0?>;
 const Now_Y	=<?=date("Y",$jst)+0?>;
-
 var C_Id=0;
 var C_Id_tmp=0;
 var ChgList=[<?=$log_list_cnt?>];
@@ -41,6 +488,7 @@ const SNS_LINK={
 	customer_twitter:"https://twitter.com/",
 	customer_insta:"https://instagram.com/",
 	customer_facebook:"https://facebook.com/",
+	customer_mail:"<?php the_permalink();?>",
 	customer_tel:"tel",
 };
 
@@ -151,12 +599,11 @@ $(function(){
 		</div>
 	<?}?>
 	</div>
-
 	<div class="slide">
-		<?if(file_exists("./img/profile/{$_SESSION["id"]}/0.jpg")){?>
-		<img src="./img/profile/<?=$_SESSION["id"]?>/0.jpg?t_<?=time()?>" class="slide_img">
+		<?if(file_exists($link2."/img/page/{$_SESSION["id"]}/0_s.jpg")){?>
+		<img src="<?=$link?>/img/page/<?=$_SESSION["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
 		<?}else{?>
-		<img src="./img/profile/noimage.jpg?t_<?=time()?>" class="slide_img">
+		<img src="<?=$link?>/img/page/noimage.jpg?t_<?=time()?>" class="slide_img">
 
 		<?}?>
 		<div class="slide_name"><?=$_SESSION["genji"]?></div>
@@ -176,7 +623,7 @@ $(function(){
 	<?if($cast_page==1){?>
 	<div class="main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
-		<input id="start_week" type="hidden" value="<?=$start_week?>">
+		<input id="week_start" type="hidden" value="<?=$week_start?>">
 		<div class="cal">
 			<?for($c=0;$c<3;$c++){?>
 				<table class="cal_table">
@@ -202,7 +649,7 @@ $(function(){
 					<tr>
 						<?
 						for($s=0;$s<7;$s++){
-						$w=($s+$start_week) % 7;
+						$w=($s+$week_start) % 7;
 						?>
 						<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 						<? } ?>
@@ -217,7 +664,7 @@ $(function(){
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
 			<span class="cal_days_birth"><?=$days_birth?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
-			<input id="set_date" type="hidden" value="<?=$day_8?>">
+			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
 		</div>
 	</div>
 	<?}elseif($cast_page==2){?>
@@ -250,15 +697,14 @@ $(function(){
 	<div class="main pg2">
 		<div class="sort_alert">非表示になっている顧客がいます</div>
 		<div class="customer_all_in">
-
 			<?if (is_array($customer)) {?>
 				<?for($n=0;$n<count($customer);$n++){?>
 					<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 						<?if($customer[$n]["face"]){?>
-							<img src="./img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+							<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 						<?}else{?>
-							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 						<? } ?>
 						<div class="customer_list_fav">
 							<?for($s=1;$s<6;$s++){?>
@@ -454,14 +900,14 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
-	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
+	<script src="<?=$link?>/js/easytalk_cast.js?t=<?=time()?>"></script>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<?if($mail_data[$n]["face"]){?>
-					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+					<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 				<?}else{?>
-					<img id="mail_img<?=$s?>" src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+					<img id="mail_img<?=$s?>" src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 				<? } ?>
 				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
@@ -472,9 +918,9 @@ $(function(){
 
 				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
 
-				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
-				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='./img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
-				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='./img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
+				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
+				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
+				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
 		<div class="mail_detail">
@@ -546,7 +992,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
@@ -590,7 +1036,7 @@ $(function(){
 
 				<?if(count($tmp)>10){?>
 				<div class="blog_ad"><img src="<?=get_template_directory_uri()."/img/ad/bn.jpg?t=".time()?>" style="width:100%;"></div>
-				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読みこむ</div>
+				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
 				<? } ?>
 			</div>
 
@@ -763,7 +1209,7 @@ $(function(){
 </div>
 
 <div class="config_tag3">
-<select id="config_start_week" class="config_tag3_sel">
+<select id="config_week_start" class="config_tag3_sel">
 <option value="0"<?if($_SESSION["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
 <option value="1"<?if($_SESSION["week_st"]==1){?> selected="selected"<?}?>>月曜日</option>
 <option value="2"<?if($_SESSION["week_st"]==2){?> selected="selected"<?}?>>火曜日</option>
@@ -955,7 +1401,7 @@ $(function(){
 		<div class="cal_weeks_box">
 			<div class="cal_weeks_box_2">
 				<?for($n=0;$n<21;$n++){
-					$tmp_wk=($n+$start_week)%7;
+					$tmp_wk=($n+$week_start)%7;
 				?>
 					<div class="cal_list">
 						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
@@ -1044,7 +1490,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-					<span class="regist_img_pack"><img src="./img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
+					<span class="regist_img_pack"><img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
 					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
@@ -1117,17 +1563,7 @@ $(function(){
 			<div class="img_box_out7"></div>
 			<div class="img_box_out8"></div>
 		</div>
-<!--
-		<div class="img_box_in2">
-			<label for="upd" class="upload_icon"></label>
-			<span id="img_set_line" class="upload_icon"></span>
-			<span id="img_set_twitter" class="upload_icon"></span>
-			<span id="img_set_insta" class="upload_icon"></span>
-			<span id="img_set_facebook" class="upload_icon"></span>　
-			<span class="upload_icon upload_rote"></span>
-			<span class="upload_icon upload_trush"></span>
-		</div>
--->
+
 		<div class="img_box_in2">
 			<label for="upd" class="upload_btn"><span class="upload_icon_p"></span><span class="upload_txt">画像選択</span></label>
 			<span class="upload_icon upload_rote"></span>
