@@ -71,19 +71,6 @@ for($n=0;$n<7;$n++){
 	}
 }
 
-/*
-$sql="SELECT id, charm, style FROM wp01_0charm_table WHERE del=0 ORDER BY sort ASC";
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		if($a1["style"] == 1){
-			$charm_list.="<tr><td class=\"prof_0\" colspan=\"2\"></td></tr><tr><td class=\"prof_l2\" colspan=\"2\">{$a1["charm"]}</td></tr><tr><td class=\"prof_r2\" colspan=\"2\">{$charm[$a1["id"]]}</td></tr>";
-		}else{
-			$charm_list.="<tr><td class=\"prof_l\">{$a1["charm"]}</td><td class=\"prof_r\">{$charm[$a1["id"]]}</td></tr>";
-		}
-	}
-}
-*/
-
 $sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
 $sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
 $sql.=" WHERE wp01_0charm_table.del='0'";
@@ -108,10 +95,10 @@ if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
 		$check_main[]=$a1;
 	}
+
 	if (is_array($check_main)) {
 		$cnt_check_main=count($check_main);
 	}
-
 }
 
 $sql ="SELECT * FROM wp01_0check_list";
@@ -120,8 +107,10 @@ $sql.=" AND del='0'";
 $sql.=" AND (cast_id IS NULL OR cast_id='{$cast}')";
 $sql.=" ORDER BY host_id ASC, list_sort ASC";
 
-foreach($res as $a1){
-	$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
+	}
 }
 
 $sql ="SELECT * FROM wp01_posts AS P";
@@ -139,7 +128,6 @@ if($res = mysqli_query($mysqli,$sql)){
 	if (is_array($blog)) {
 		$cnt_blog=count($blog);
 	}
-
 }
 include_once('./header.php');
 ?>

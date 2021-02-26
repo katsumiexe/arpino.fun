@@ -44,6 +44,16 @@ ul {
 	height:400px !important;
 }
 
+.no_blog{
+	display		:block;
+	width		:90%;
+	padding		:20px;
+	text-align	:center;
+	font-size	:18px;
+	color		:#c8b880;
+}
+
+
 .menu{
 	display		:inline-flex;
 	text-align	:center;
@@ -922,12 +932,11 @@ ul {
 	display			:inline-block;
 	position		:relative;
 	width			:1068px;
-	min-height		:30px;
 	margin			:5px auto;
 	border			:1px solid #c8b880;
-	padding			:30px 40px;
+	padding			:40px;
 	text-align		:center;
-	min-height:100px;
+	min-height		:100px;
 }
 
 .corner{
@@ -1870,7 +1879,7 @@ ul {
 
 .rec_img{
 	width:800px;
-	margin:10px auto;
+	margin:0 auto 10px auto;
 }
 
 .rec_l{
@@ -1879,10 +1888,11 @@ ul {
 	flex-basis	:120px;
 	background	:#c8b880;
 	background	:#d0d0d0;
-	color		:#606060;
+	color		:#202020;
 	font-size	:14px;
 	padding		:10px;
 	line-height	:20px;
+	font-weight	:600;
 }
 
 .rec_r{
@@ -1890,7 +1900,7 @@ ul {
 	text-align	:left;
 	flex		:1;
 	background	:#fafafa;
-	color		:#606060;
+	color		:#202020;
 	font-size	:14px;
 	padding		:10px;
 	line-height	:20px;
@@ -1915,6 +1925,14 @@ ul {
 .sp_only{
 	display		:block;
 }
+
+
+.rec_img{
+	width:100vw;
+	margin:0 auto 2vw auto;
+}
+
+
 
 .info_box{
 	display	:flex;
@@ -2771,15 +2789,15 @@ ul {
 
 .rec_l{
 	flex-basis	:30vw;
-	font-size	:4vw;
-	padding		:2vw;
-	line-height	:6vw;
+	font-size	:3.5vw;
+	padding		:1.5vw;
+	line-height	:5vw;
 }
 
 .rec_r{
-	font-size	:4vw;
-	padding		:2vw;
-	line-height	:6vw;
+	font-size	:3.5vw;
+	padding		:1.5vw;
+	line-height	:5vw;
 }
 
 

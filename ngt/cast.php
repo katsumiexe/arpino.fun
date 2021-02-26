@@ -1,9 +1,8 @@
 <?php 
 include_once('./library/sql.php');
-
 $sort=array();
 
-$sql=" SELECT C.id, genji, in_out, `name`, T.sort FROM wp01_0cast AS C";
+$sql=" SELECT C.id, genji, in_out, `name`, T.sort,C.ctime FROM wp01_0cast AS C";
 $sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
 $sql.=" LEFT JOIN wp01_0sch_table AS T ON in_out='in' AND stime=T.name";
 $sql.=" WHERE C.cast_status=0";
@@ -28,13 +27,13 @@ if($res = mysqli_query($mysqli,$sql)){
 			$a1["face"]="./img/profile/noimage.jpg";			
 		}
 
-		if($sch_8 < $a1["ctime"]){
+		if($day_8 < $a1["ctime"]){
 			$a1["new"]=1;
 
-		}elseif($sch_8 == $a1["ctime"]){
+		}elseif($day_8 == $a1["ctime"]){
 			$a1["new"]=2;
 
-		}elseif(strtotime($sch_8) - strtotime($a1["ctime"])<=2592000){
+		}elseif(strtotime($day_8) - strtotime($a1["ctime"])<=2592000){
 			$a1["new"]=3;
 		}
 		$dat[$a1["id"]]=$a1;

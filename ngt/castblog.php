@@ -135,8 +135,6 @@ if(is_array($blog)){
 	$count_blog=count($blog);
 }
 
-
-
 $v_month=date("Y年m月",strtotime($month."01"));
 $p_month=date("Ym",strtotime($month."01")-86400);
 $n_month=date("Ym",strtotime($month."01")+3456000);
@@ -201,7 +199,6 @@ include_once('./header.php');
 	<div class="main_article_out">
 		<h2 class="main_blog_title"> Cast Blog</h2>
 		<div class="main_article">
-
 			<?for($n=0;$n<$count_blog+0;$n++){?>
 				<a href="./article.php?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
 					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
@@ -219,6 +216,10 @@ include_once('./header.php');
 					</span>
 					</span>
 				</a>
+			<? } ?>
+			<?if($count_blog<1){?>
+				<span class="no_blog">まだありません</span>
+
 			<? } ?>
 		</div>
 		<?=$p_list?>
@@ -244,6 +245,7 @@ include_once('./header.php');
 		</table>
 
 		<div class="sub_blog_pack">
+			<?if($tag_count){?>
 			<div class="sub_blog_in">
 				<div class="blog_h1">カテゴリー</div>
 				<a href="./castblog.php" class="all_tag">
@@ -260,7 +262,8 @@ include_once('./header.php');
 				</a>
 				<? } ?>
 			</div>
-
+			<?}?>
+			<?if($cast_dat){?>
 			<div class="sub_blog_in">
 				<div class="blog_h1">CAST一覧</div>
 				<?foreach($cast_dat as $a1=> $a2){?>
@@ -272,6 +275,8 @@ include_once('./header.php');
 					</a>
 				<?}?>
 			</div>
+			<?}?>
+
 		</div>
 	</div>
 </div>

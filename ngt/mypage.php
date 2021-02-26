@@ -1,33 +1,19 @@
 <?
-include_once('./library/cast_session.php');
-include_once('./library/base.php');
+include_once('./library/sql_cast.php');
+
+$blog_status[0]="公開";
+$blog_status[1]="予約";
+$blog_status[2]="非公開";
+$blog_status[3]="削除";
 
 
-/*--■祝日カレンダー--*/
-$holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
-$ob_holiday = json_decode($holiday,true);
-//$ob_holiday["20200101"];
-
-/*--■カレンダー設定--*/
-$week_start		=$_SESSION["week_st"]+0;
+/*--■カレンダー設定--
+$start_week		=$_SESSION["week_st"]+0;
 $times_start	=$_SESSION["times_st"]*3600;
 $jst			=time()+32400-$times_start;
 $now_w			=date("w",$jst);
 $now_count		=date("t",$jst);
-
-
-//Customer-----------------------
-$reg_base_yy	=1980;
-$reg_base_ag	=date("Y")-1980;
-
-
-
-//Notice-----------------------
-$now		=date("Y-m-d H:i:s",$jst);
-$now_ymd	=date("Ymd",$jst);
-$now_ymd_2	=date("Ymd",$jst+86400);
-$now_ymd_3	=date("Ymd",$jst+172800);
-
+*/
 
 //Sche-----------------------
 $c_month=$_POST["c_month"];
@@ -42,34 +28,26 @@ $month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);
 $month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
 $month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
 
-$base_now=strtotime(date("Y-m-d 00:00:00"))+32400-$times_start;
-$base_w=$now_w-$week_start;
+$base_w=$day_w-$start_week;
 if($base_w<0) $base_w+=7;
 
-$base_day		=$base_now-($base_w+7)*86400;
-$week_st		=date("Ymd",$base_day-$times_start);
-$week_ed		=date("Ymd",$base_day+604800-$times_start);
+$base_day		=$day_time-($base_w+7)*86400;
+$week_st		=date("Ymd",$base_day);
+$week_ed		=date("Ymd",$base_day+604800);
 $month_st		=date("Ymd",strtotime($calendar[0]));
 $month_ed		=date("Ymd",strtotime($calendar[3]));
 
 $ana_ym=$_POST["ana_ym"];
 if(!$ana_ym) $ana_ym=date("Ym");
 
+
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
-$ana_line[$week_start]=" ana_line";
 
+$ana_line[$start_week]=" ana_line";
 
 $sql ="SELECT term_id FROM wp01_terms"; 
 $sql .=" WHERE slug='{$_SESSION["id"]}'"; 
-$cate_id = $wpdb->get_var($sql);
-
-$sql ="SELECT * FROM wp01_0encode"; 
-$enc0 = $wpdb->get_results($sql,ARRAY_A );
-foreach($enc0 as $row){
-	$enc[$row["key"]]				=$row["value"];
-	$dec[$row["gp"]][$row["value"]]	=$row["key"];
-}
 
 $id_8=substr("00000000".$_SESSION["id"],-8);
 $id_0	=$_SESSION["id"] % 20;
@@ -78,7 +56,7 @@ for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$box_no.=$dec[$id_0][$tmp_id];
 }
-	/*--■イニシャライズ--*/
+
 	$cast_page=$_POST["cast_page"]+0;
 
 	if($cast_page == 1){
@@ -123,6 +101,7 @@ for($n=0;$n<8;$n++){
 		$n++;
 	}
 */
+/*
 	$sql	 ="SELECT nickname, M.customer_id, C.mail, M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
 	$sql	.=" FROM wp01_0castmail AS M";
 	$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
@@ -133,6 +112,7 @@ for($n=0;$n<8;$n++){
 	$sql	.=" GROUP BY M.customer_id";
 	$sql	.=" ORDER BY last_date DESC";
 	$n=0;
+
 	$mail_data0 = $wpdb->get_results($sql,ARRAY_A );
 
 	foreach($mail_data0 AS $tmp){
@@ -158,116 +138,122 @@ for($n=0;$n<8;$n++){
 		$mail_tmpl[$a1["sort"]]["title"]=$a1["title"];
 		$mail_tmpl[$a1["sort"]]["log"]	=$a1["log"];
 	}
+*/
 
 	$sql ="SELECT * FROM wp01_0cast_config";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
-	$c_sort = $wpdb->get_row($sql,ARRAY_A);
+	$sql.=" LIMIT 1";
+	if($result = mysqli_query($mysqli,$sql)){
+		$row = mysqli_fetch_assoc($result);
+		if($row["c_sort_group"]>0){
+			$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
+		}
 
-	if($c_sort["c_sort_group"]>0){
-		$app1	=" AND c_group='{$c_sort["c_sort_group"]}'";
+		if($c_sort["c_sort_main"]==1){
+			$app2	=" `date`";
+			$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
+			$app5	=" ,MAX(`date`) AS log_date"; 
+
+			if($c_sort["c_sort_asc"]==1){
+				$app3	.=" DESC";
+			}else{
+				$app3	.=" ASC";
+			}
+
+		}elseif($c_sort["c_sort_main"]==2){
+			$app2	=" `fav`";
+
+			if($c_sort["c_sort_asc"]==1){
+				$app3	.=" DESC";
+			}else{
+				$app3	.=" ASC";
+			}
+
+		}elseif($c_sort["c_sort_main"]==3){
+			$app2	=" `birth_day`";
+
+			if($c_sort["c_sort_asc"]==1){
+				$app3	.=" ASC";
+			}else{
+				$app3	.=" DESC";
+			}
+
+		}else{
+			$app2	=" `id`";
+
+			if($c_sort["c_sort_asc"]==1){
+				$app3	.=" ASC";
+			}else{
+				$app3	.=" DESC";
+			}
+		}
 	}
 
-	if($c_sort["c_sort_main"]==1){
-		$app2	=" `date`, `stime`, `etime`";
-		$app2	=" `date`";
-		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_	id";
-		$app5	=" ,MAX(`date`) AS log_date"; 
-
-		if($c_sort["c_sort_asc"]==1){
-			$app3	.=" DESC";
-		}else{
-			$app3	.=" ASC";
-		}
-
-	}elseif($c_sort["c_sort_main"]==2){
-		$app2	=" `fav`";
-
-		if($c_sort["c_sort_asc"]==1){
-			$app3	.=" DESC";
-		}else{
-			$app3	.=" ASC";
-		}
-
-	}elseif($c_sort["c_sort_main"]==3){
-		$app2	=" `birth_day`";
-
-		if($c_sort["c_sort_asc"]==1){
-			$app3	.=" ASC";
-		}else{
-			$app3	.=" DESC";
-		}
-
-	}else{
-		$app2	=" `id`";
-
-		if($c_sort["c_sort_asc"]==1){
-			$app3	.=" ASC";
-		}else{
-			$app3	.=" DESC";
-		}
-	}
 
 	/*--■スケジュール--*/
-	$tmp_today[$now_ymd]="cc8";
+	$tmp_today[$day_8]="cc8";
 
 	$sql ="SELECT * FROM wp01_0sch_table";
 	$sql.=" ORDER BY sort ASC";
-	$dat = $wpdb->get_results($sql,ARRAY_A);
-	foreach($dat as $tmp){
-		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
-		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
-		$sche_table_calc[$tmp["in_out"]][$tmp["name"]]	=$tmp["time"];
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$sche_table_name[$row["in_out"]][$row["sort"]]	=$row["name"];
+			$sche_table_time[$row["in_out"]][$row["sort"]]	=$row["time"];
+			$sche_table_calc[$row["in_out"]][$row["name"]]	=$row["time"];
+		}
 	}
 
 	$days_sche="休み";
+
 	$sql	 ="SELECT * FROM wp01_0schedule";
 	$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
 	$sql	.=" AND sche_date>='{$month_st}'";
 	$sql	.=" AND sche_date<'{$month_ed}'";
-	$sq	   	.=" ORDER BY id ASC";
+	$sql   	.=" ORDER BY id ASC";
 
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $tmp2){
-		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
-		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
 
-		if($ana_ym==substr($tmp2["sche_date"],0,6) ){
-			
-			$ana_day			=substr($tmp2["sche_date"],-2,2)+0;
-			$ana_sche[$ana_day]	="<span class=\"sche_s\">".$tmp2["stime"]."</span>-<span class=\"sche_e\">".$tmp2["etime"]."</span>";
+		$stime[$row["sche_date"]]		=$row["stime"];
+		$etime[$row["sche_date"]]		=$row["etime"];
 
-			if(substr($sche_table_calc["in"][$tmp2["stime"]],2,1) == 3){
-				$tmp_s=$sche_table_calc["in"][$tmp2["stime"]]+20;
+		if($ana_ym==substr($row["sche_date"],0,6) ){
+			$ana_sche[$row["sche_date"]]	="<span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span>";
 
-			}else{
-				$tmp_s=$sche_table_calc["in"][$tmp2["stime"]];
-			}		
-
-			if(substr($sche_table_calc["out"][$tmp2["etime"]],2,1) == 3){
-				$tmp_e=$sche_table_calc["out"][$tmp2["etime"]]+20;
+			if(substr($sche_table_calc["in"][$row["stime"]],2,1) == 3){
+				$tmp_s=$sche_table_calc["in"][$row["stime"]]+20;
 
 			}else{
-				$tmp_e=$sche_table_calc["out"][$tmp2["etime"]];
+				$tmp_s=$sche_table_calc["in"][$row["stime"]];
 			}		
 
-			$ana_time[$ana_day+0]=($tmp_e-$tmp_s)/100;
+			if(substr($sche_table_calc["out"][$row["etime"]],2,1) == 3){
+				$tmp_e=$sche_table_calc["out"][$row["etime"]]+20;
+
+			}else{
+				$tmp_e=$sche_table_calc["out"][$row["etime"]];
+			}		
+
+			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
 		}
 	}
 
-	if($stime[$now_ymd] && $etime[$now_ymd]){
-		$days_sche="{$stime[$now_ymd]}-{$etime[$now_ymd]}";
+
+	if($stime[$day_8] && $etime[$day_8]){
+		$days_sche="{$stime[$day_8]}-{$etime[$day_8]}";
 	}else{
 		$days_sche="休み";
 	}
 
-	if($stime[$now_ymd_2] && $etime[$now_ymd_2]){
-		$days_sche_2="{$stime[$now_ymd_2]}-{$etime[$now_ymd_2]}";
+	if($stime[$day_8_1] && $etime[$day_8_1]){
+		$days_sche_2="{$stime[$day_8_1]}-{$etime[$day_8_1]}";
 	}else{
 		$days_sche_2="休み";
 	}
 
-	if($stime[$now_ymd_3] && $etime[$now_ymd_3]){
-		$days_sche_3="{$stime[$now_ymd_3]}-{$etime[$now_ymd_3]}";
+	if($stime[$day_8_2] && $etime[$day_8_2]){
+		$days_sche_3="{$stime[$day_8_2]}-{$etime[$day_8_2]}";
 	}else{
 		$days_sche_3="休み";
 	}
@@ -277,43 +263,33 @@ for($n=0;$n<8;$n++){
 	$sql	.=" AND date_8>='{$month_st}'";
 	$sql	.=" AND date_8<'{$month_ed}'";
 	$sql	.=" AND `log` IS NOT NULL";
-	$dat = $wpdb->get_results($sql,ARRAY_A );
 
-	foreach($dat as $tmp){
-		if(trim($tmp["log"])){
-			$memo_dat[$tmp["date_8"]]="n3";
-			$cal_app[substr($tmp["date_8"],0,6)].="<input class=\"cal_m_{$tmp["date_8"]}\" type=\"hidden\" value=\"{$tmp["log"]}\">";
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			if(trim($row["log"])){
+				$memo_dat[$row["date_8"]]="n3";
+				$cal_app[substr($row["date_8"],0,6)].="<input class=\"cal_m_{$row["date_8"]}\" type=\"hidden\" value=\"{$row["log"]}\">";
 
-			if($now_ymd == $tmp["date_8"]){
-				$days_memo.=$tmp["log"];
+				if($day_8 == $row["date_8"]){
+					$days_memo.=$row["log"];
+				}
 			}
-		}
 	}
 
-	
-
 	$sql	 ="SELECT * FROM wp01_posts";
-	$sql	.=" WHERE post_password='{$_SESSION["id"]}'";
-	$sql	.=" AND post_name='post'";
-	$sql	.=" AND post_date>='{$calendar[0]}'";
-	$sql	.=" AND post_date<'$calendar[3]}'";
-	$dat = $wpdb->get_results($sql,ARRAY_A );
+	$sql	.=" WHERE cast='{$_SESSION["id"]}'";
+	$sql	.=" AND status<2";
+	$sql	.=" AND view_date>='{$calendar[0]}'";
+	$sql	.=" AND view_date<'$calendar[3]}'";
 
-	foreach($dat as $tmp){
-		if(trim($tmp["post_content"])){
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
 			$tmp_date=substr($tmp["post_date"],0,4).substr($tmp["post_date"],5,2).substr($tmp["post_date"],8,2);
 			$blog_dat[$tmp_date]="n4";
 		}
 	}
 
-	if($_REQUEST["c_id"]){
-		$sql	 ="SELECT id, nickname, name, mail FROM wp01_0customer";
-		$sql	.=" WHERE id='{$_REQUEST["c_id"]}'";
-		$easy_cas = $wpdb->get_row($sql,ARRAY_A );
-	}
-	
 
-	$n=0;
 	$sql	 ="SELECT *{$app5} FROM wp01_0customer";
 	$sql	.=$app4;
 	$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
@@ -322,57 +298,61 @@ for($n=0;$n<8;$n++){
 	$sql	.=" ORDER BY";
 	$sql	.=$app2;
 	$sql	.=$app3;
-	$dat = $wpdb->get_results($sql,ARRAY_A );
 
-	foreach($dat as $tmp){
-		$customer[$n]=$tmp;
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
 
-		if(!$tmp["birth_day"] || $tmp["birth_day"]=="0000-00-00"){
-			$customer[$n]["yy"]="----";
-			$customer[$n]["mm"]="--";
-			$customer[$n]["dd"]="--";
-			$customer[$n]["ag"]="--";
+			if(!$row["birth_day"] || $row["birth_day"]=="0000-00-00"){
+				$row["yy"]="----";
+				$row["mm"]="--";
+				$row["dd"]="--";
+				$row="--";
 
-		}else{
-			$customer[$n]["yy"]=substr($tmp["birth_day"],0,4);
-			$customer[$n]["mm"]=substr($tmp["birth_day"],5,2);
-			$customer[$n]["dd"]=substr($tmp["birth_day"],8,2);
-			$customer[$n]["ag"]= floor(($now_ymd-str_replace("-", "", $tmp["birth_day"]))/10000);
-		}
-		$n++;
+			}else{
+				$row["yy"]=substr($tmp["birth_day"],0,4);
+				$row["mm"]=substr($tmp["birth_day"],5,2);
+				$row["dd"]=substr($tmp["birth_day"],8,2);
+				$row["ag"]= floor(($day_8-str_replace("-", "", $row["birth_day"]))/10000);
+			}
 
-		$birth=str_replace("-","",$tmp["birth_day"]);
-		$birth_y	=substr($birth,0,4);
-		$birth_m	=substr($birth,4,2);
-		$birth_d	=substr($birth,6,2);
+			$birth=str_replace("-","",$tmp["birth_day"]);
+			$birth_y	=substr($birth,0,4);
+			$birth_m	=substr($birth,4,2);
+			$birth_d	=substr($birth,6,2);
 
-		$birth_dat[$birth_m.$birth_d]="n1";
-		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+			$birth_dat[$birth_m.$birth_d]="n1";
+			$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
-		if(substr($birth,4,4) == substr($now_ymd,4,4)){
-			$days_birth.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+			if(substr($birth,4,4) == substr($day_8,4,4)){
+				$days_birth.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
-		}elseif(substr($birth,4,4) == substr($now_ymd_2,4,4)){
-			$days_birth_2.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+			}elseif(substr($birth,4,4) == substr($day_8_1,4,4)){
+				$days_birth_2.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
-		}elseif(substr($birth,4,4) == substr($now_ymd_3,4,4)){
-			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
-		}
-	}
-	if($birth_hidden){
-		foreach($birth_hidden as $a1 => $a2){
-			foreach($birth_hidden[$a1] as $a3 => $a4){
-				$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+			}elseif(substr($birth,4,4) == substr($day_8_2,4,4)){
+				$days_birth_3.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 			}
 		}
+		if($birth_hidden){
+			foreach($birth_hidden as $a1 => $a2){
+				foreach($birth_hidden[$a1] as $a3 => $a4){
+					$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+				}
+			}
+			$customer[]=$row;
+		}
+		if(is_array($customer)){
+			$cnt_coustomer=connt($customer);
+		}
 	}
+
 
 	for($n=0;$n<3;$n++){
 		$now_month=date("m",strtotime($calendar[$n]));
 		$now_ym=date("ym",strtotime($calendar[$n]));
 		$t=date("t",strtotime($calendar[$n]));
 
-		$wk=$week_start-date("w",strtotime($calendar[$n]));
+		$wk=$start_week-date("w",strtotime($calendar[$n]));
 		if($wk>0) $wk-=7;
 
 		$st=strtotime($calendar[$n])+($wk*86400);
@@ -406,7 +386,7 @@ for($n=0;$n<8;$n++){
 			if($ob_holiday[$tmp_ymd]){
 				$tmp_week=0;
 
-			}elseif($tmp_ymd ==$now_ymd){
+			}elseif($tmp_ymd ==$day_8){
 				$tmp_week=7;
 			}
 
@@ -438,9 +418,7 @@ for($n=0;$n<8;$n++){
 			$cal[$n].="</td>";
 		}
 	}
-
-
-	$notice=array();
+/*
 	if($_POST["cus_set"]){
 		$cast_page=2;
 
@@ -493,9 +471,9 @@ for($n=0;$n<8;$n++){
 				$sql_log.=" ('{$_SESSION["id"]}','{$tmp_auto}','{$a1}','{$a2}'),";
 			}
 			$sql_log=substr($sql_log,0,-1);
-			$wpdb->query($sql_log);
 		}
 	}
+*/
 
 	$sql	 ="SELECT * FROM wp01_0notice";
 	$sql	.=" LEFT JOIN wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
@@ -504,21 +482,21 @@ for($n=0;$n<8;$n++){
 	$sql	.=" AND status>0";
 	$sql	.=" ORDER BY date DESC";
 
-
-	$dat2 = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat2 as $cus2){
-		$notice[$cus2["id"]]=$cus2;
-		$notice[$cus2["id"]]["log"]=str_replace("\n","<br>",$cus2["log"]);
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$row["log"]=str_replace("\n","<br>",$row["log"]);
+			$notice[$row["id"]]=$row;
+		}
 	}
-
 
 	$sql	 ="SELECT * FROM wp01_0customer_item";
 	$sql	.=" WHERE del='0'";
-	$dat2 = $wpdb->get_results($sql,ARRAY_A );
 
-	foreach($dat2 as $cus2){
-		$c_list_name[$cus2["gp"]][$cus2["id"]]=$cus2["item_name"];
-		$c_list_style[$cus2["id"]]=$cus2["style"];
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$c_list_name[$row["gp"]][$row["id"]]=$row["item_name"];
+			$c_list_style[$row["id"]]=$row["style"];
+		}
 	}
 
 	$sql	 ="SELECT * FROM wp01_0customer_group";
@@ -526,112 +504,51 @@ for($n=0;$n<8;$n++){
 	$sql	.=" AND group_id='1'";
 	$sql	.=" AND cast_id='{$_SESSION["id"]}'";
 	$sql	.=" ORDER BY `sort` ASC";
-	$dat2 = $wpdb->get_results($sql,ARRAY_A );
 
-	foreach($dat2 as $cus2){
-		$cus_group_sel[$cus2["sort"]]=$cus2["tag"];
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$cus_group_sel[$row["sort"]]=$row["tag"];
+		}
 	}
+
 
 
 //■Blog------------------
 	$sql ="SELECT * FROM wp01_posts";
-	$sql.=" LEFT JOIN wp01_term_relationships ON wp01_posts.ID=wp01_term_relationships.object_id";
-	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_term_relationships.term_taxonomy_id=wp01_term_taxonomy.term_id";
-	$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
-
-//	$sql.=" WHERE post_password='{$_SESSION["id"]}'";
-	$sql.=" WHERE post_type='post'";
-	$sql.=" AND wp01_term_taxonomy.taxonomy='category'";
-	$sql.=" AND wp01_terms.slug='{$_SESSION["id"]}'";
-	$sql.=" ORDER BY post_date DESC";
+	$sql.=" WHERE cast='{$_SESSION["id"]}'";
+	$sql.=" ORDER BY view_date DESC";
 	$sql.=" LIMIT 11";
 
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-	$blog_max=count($dat);
-	if($blog_max>10){
-		$blog_max=10;
-	}
-
-	$n=0;
-	foreach($dat as $tmp){
-		$img_tmp=$tmp["ID"]+2;
-		$updir = wp_upload_dir();
-
-		$sql ="SELECT term_id, name,slug FROM wp01_term_relationships";
-		$sql.=" LEFT JOIN wp01_terms ON wp01_term_relationships.term_taxonomy_id=wp01_terms.term_id";
-		$sql.=" WHERE object_id='{$tmp["ID"]}'";
-		$sql.=" AND slug LIKE 'tag%'";
-
-		$tag_name[$n] = $wpdb->get_row($sql,ARRAY_A );
-
-		$sql ="SELECT guid FROM wp01_postmeta";
-		$sql.=" LEFT JOIN `wp01_posts` ON meta_value=ID";
-		$sql.=" WHERE post_id='{$tmp["ID"]}'";
-		$sql.=" AND meta_key='_thumbnail_id'";
-		$thumb = $wpdb->get_var($sql);
-
-		if($thumb){
-/*
-			$blog[$n]["img"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
-			$blog[$n]["img_on"]="{$updir['baseurl']}/np{$_SESSION["id"]}/img_{$img_tmp}.png?t=".time();
-*/
-			$blog[$n]["img"]=$thumb."?t=".time();
-			$blog[$n]["img_on"]=$thumb."?t=".time();
-
-		}else{
-			$blog[$n]["img"]=$link."/img/customer_no_img.jpg?t=".time();
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$blog[]=$row;
 		}
-
-		$blog[$n]["id"]		=$tmp["ID"];
-		$blog[$n]["date"]	=$tmp["post_date"];
-		$blog[$n]["title"]	=$tmp["post_title"];
-		$blog[$n]["content"]=str_replace("\n","<br>",$tmp["post_content"]);
-		$blog[$n]["count"]	=$tmp["comment_count"];
-
-		if($tmp["post_status"] == "draft"){
-			$blog[$n]["status"]=2;
-
-		}elseif($tmp["post_status"] == "pending"){
-			$blog[$n]["status"]=3;
-
-		}elseif($tmp["post_date"] > $now){
-			$blog[$n]["status"]=1;
-
-		}elseif($tmp["post_status"] == "publish"){
-			$blog[$n]["status"]=0;
-		}	
-		$n++;
+		$blog_max=count($dat);
+		if($blog_max>10){
+			$blog_max=10;
+			$blog_next=1;
+		}
 	}
 
-	$blog_status[0]="公開";
-	$blog_status[1]="予約";
-	$blog_status[2]="非公開";
-	$blog_status[3]="削除";
+	$sql ="SELECT * FROM wp01_0tag";
+	$sql.=" WHERE tag_group='blog'";
+	$sql.=" ORDER BY sort ASC";
 
-	$sql ="SELECT * FROM wp01_terms";
-	$sql.=" LEFT JOIN wp01_term_taxonomy ON wp01_terms.term_id=wp01_term_taxonomy.term_id";
-	$sql.=" WHERE taxonomy='post_tag'";
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-
-	foreach($dat as $a1){
-		$tag_list[$a1["term_id"]]=$a1["name"];
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$tag[$row["id"]]=$row;
+		}
 	}
 
 //■------------------
 	$sql ="SELECT * FROM wp01_0cast_log_table";
 	$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+	$sql.=" ORDER BY sort ASC";
 
-
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-
-	if($dat){
-		foreach($dat as $a1){
-			$log_item[$a1["sort"]]=$a1;
-		}
-		ksort($log_item);
-
-		foreach($log_item as $a1 => $a2){
-			$log_list_cnt.='"i'.$a1.'",';
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$log_item[$row["sort"]]=$row;
+			$log_list_cnt.='"i'.$row["sort"].'",';
 		}
 		$log_list_cnt=substr($log_list_cnt,0,-1);
 	}
@@ -641,13 +558,11 @@ for($n=0;$n<8;$n++){
 	$sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
 
 	$sql.=" WHERE B.cast_id='{$_SESSION["id"]}'";
-	$sql.=" AND date>='{$calendar[1]}'";
-	$sql.=" AND date<'{$calendar[2]}'";
+	$sql.=" AND A.date>='{$calendar[1]}'";
+	$sql.=" AND A.date<'{$calendar[2]}'";
 	$sql.=" AND A.del=0";
 	$sql.=" AND B.del=0";
 	$sql.=" ORDER BY log_id ASC";
-
-	$dat = $wpdb->get_results($sql,ARRAY_A );
 
 	if($dat){
 		foreach($dat as $aa1){
@@ -655,12 +570,11 @@ for($n=0;$n<8;$n++){
 	
 			$dat_ana[$tmp_d][]	 =$aa1;
 			$pay_all[$tmp_d]	+=$aa1["log_price"];
-
 		}
 	}
 }
-
 ?>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -669,28 +583,29 @@ for($n=0;$n<8;$n++){
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url(<?=$link?>/font/font_0/fonts/icomoon.ttf) format('truetype');
+	src: url("./font/font_0/fonts/icomoon.ttf") format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="<?=$link?>/css/cast.css?t=<?=time()?>">
-<link rel="stylesheet" href="<?=$link?>/css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">
+<link rel="stylesheet" href="./css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 
-<script src="<?=$link?>/js/jquery.exif.js?t=<?=time()?>"></script>
-<script src="<?=$link?>/js/cast.js?t=<?=time()?>"></script>
-<script src="<?=$link?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="./js/jquery.exif.js?t=<?=time()?>"></script>
+<script src="./js/cast.js?t=<?=time()?>"></script>
+<script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 
 <script>
-const Dir='<?=$link?>'; 
+const Dir='.'; 
 const CastId='<?=$_SESSION["id"] ?>'; 
 const CastName='<?=$_SESSION["genji"] ?>'; 
 
 const Now_md=<?=date("md",$jst)+0?>;
 const Now_Y	=<?=date("Y",$jst)+0?>;
+
 var C_Id=0;
 var C_Id_tmp=0;
 var ChgList=[<?=$log_list_cnt?>];
@@ -700,7 +615,6 @@ const SNS_LINK={
 	customer_twitter:"https://twitter.com/",
 	customer_insta:"https://instagram.com/",
 	customer_facebook:"https://facebook.com/",
-	customer_mail:"<?php the_permalink();?>",
 	customer_tel:"tel",
 };
 
@@ -811,11 +725,12 @@ $(function(){
 		</div>
 	<?}?>
 	</div>
+
 	<div class="slide">
-		<?if(file_exists($link2."/img/page/{$_SESSION["id"]}/0_s.jpg")){?>
-		<img src="<?=$link?>/img/page/<?=$_SESSION["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
+		<?if(file_exists("./img/profile/{$_SESSION["id"]}/0.jpg")){?>
+		<img src="./img/profile/<?=$_SESSION["id"]?>/0.jpg?t_<?=time()?>" class="slide_img">
 		<?}else{?>
-		<img src="<?=$link?>/img/page/noimage.jpg?t_<?=time()?>" class="slide_img">
+		<img src="./img/profile/noimage.jpg?t_<?=time()?>" class="slide_img">
 
 		<?}?>
 		<div class="slide_name"><?=$_SESSION["genji"]?></div>
@@ -835,7 +750,7 @@ $(function(){
 	<?if($cast_page==1){?>
 	<div class="main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
-		<input id="week_start" type="hidden" value="<?=$week_start?>">
+		<input id="start_week" type="hidden" value="<?=$start_week?>">
 		<div class="cal">
 			<?for($c=0;$c<3;$c++){?>
 				<table class="cal_table">
@@ -861,7 +776,7 @@ $(function(){
 					<tr>
 						<?
 						for($s=0;$s<7;$s++){
-						$w=($s+$week_start) % 7;
+						$w=($s+$start_week) % 7;
 						?>
 						<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 						<? } ?>
@@ -876,7 +791,7 @@ $(function(){
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
 			<span class="cal_days_birth"><?=$days_birth?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
-			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
+			<input id="set_date" type="hidden" value="<?=$day_8?>">
 		</div>
 	</div>
 	<?}elseif($cast_page==2){?>
@@ -909,14 +824,15 @@ $(function(){
 	<div class="main pg2">
 		<div class="sort_alert">非表示になっている顧客がいます</div>
 		<div class="customer_all_in">
+
 			<?if (is_array($customer)) {?>
 				<?for($n=0;$n<count($customer);$n++){?>
 					<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 						<?if($customer[$n]["face"]){?>
-							<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+							<img src="./img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 						<?}else{?>
-							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 						<? } ?>
 						<div class="customer_list_fav">
 							<?for($s=1;$s<6;$s++){?>
@@ -1112,14 +1028,14 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
-	<script src="<?=$link?>/js/easytalk_cast.js?t=<?=time()?>"></script>
+	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<?if($mail_data[$n]["face"]){?>
-					<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 				<?}else{?>
-					<img id="mail_img<?=$s?>" src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+					<img id="mail_img<?=$s?>" src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 				<? } ?>
 				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
@@ -1130,9 +1046,9 @@ $(function(){
 
 				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
 
-				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
-				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
-				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
+				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
+				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='./img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
+				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='./img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
 		<div class="mail_detail">
@@ -1204,7 +1120,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
@@ -1248,7 +1164,7 @@ $(function(){
 
 				<?if(count($tmp)>10){?>
 				<div class="blog_ad"><img src="<?=get_template_directory_uri()."/img/ad/bn.jpg?t=".time()?>" style="width:100%;"></div>
-				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
+				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読みこむ</div>
 				<? } ?>
 			</div>
 
@@ -1421,7 +1337,7 @@ $(function(){
 </div>
 
 <div class="config_tag3">
-<select id="config_week_start" class="config_tag3_sel">
+<select id="config_start_week" class="config_tag3_sel">
 <option value="0"<?if($_SESSION["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
 <option value="1"<?if($_SESSION["week_st"]==1){?> selected="selected"<?}?>>月曜日</option>
 <option value="2"<?if($_SESSION["week_st"]==2){?> selected="selected"<?}?>>火曜日</option>
@@ -1613,7 +1529,7 @@ $(function(){
 		<div class="cal_weeks_box">
 			<div class="cal_weeks_box_2">
 				<?for($n=0;$n<21;$n++){
-					$tmp_wk=($n+$week_start)%7;
+					$tmp_wk=($n+$start_week)%7;
 				?>
 					<div class="cal_list">
 						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
@@ -1702,7 +1618,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-					<span class="regist_img_pack"><img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
+					<span class="regist_img_pack"><img src="./img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
 					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>

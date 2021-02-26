@@ -71,7 +71,7 @@ $(document).ready(function () {
 			$(this).addClass('cast_tag_box_sel');		
 			Tmp=$(this).attr('id').replace('d','');
 			$.post({
-				url:Dir + "/post/cast_tag_box.php",
+				url:"./post/cast_tag_box.php",
 				data:{
 					'date':Tmp,
 				},

@@ -2,13 +2,8 @@
 /*
 通常ページ　CAST読み込み
 */
-global $wpdb;
-require_once ("../../../../wp-load.php");
-$jst=time()+32400;
-$link=get_template_directory_uri();
-$now=date("Y-m-d H:i:s",$jst);
+include_once('./library/sql.php');
 $date		=$_POST['date'];
-
 
 $sql=" SELECT * FROM wp01_0sch_table";
 $res0= $wpdb->get_results($sql,ARRAY_A);
