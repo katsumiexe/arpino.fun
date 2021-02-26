@@ -18,8 +18,8 @@ $week[6]="(土)";
 $t_day=date("Ymd",$day_time);
 $n_day=date("Ymd",$day_time+(86400*7));
 
-$cast=$_REQUEST["cast"];
-$sql="SELECT * FROM wp01_0cast WHERE id='{$cast}' AND cast_status<2 LIMIT 1";
+$post_id=$_REQUEST["post_id"];
+$sql="SELECT * FROM wp01_0cast WHERE id='{$id}' AND cast_status<2 LIMIT 1";
 
 if($res = mysqli_query($mysqli,$sql)){
 	$cast_data = mysqli_fetch_assoc($res);

@@ -181,19 +181,19 @@ echo $tmp_auto;
 
 	if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
 
-		$news_box=str_replace("[name]","<span style=\"color:#0000d0; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
+		$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
 
 		$p_date=$_REQUEST["news_date_yy"]."-".$_REQUEST["news_date_mm"]."-".$_REQUEST["news_date_dd"]." 00:00:00";
 		$m_date=$_REQUEST["ctime_yy"]."-".$_REQUEST["ctime_mm"]."-".$_REQUEST["ctime_dd"]." 00:00:00";
 		$g_date=date("Y-m-d 00:00:00",strtotime($p_date)-32400);
 
-		$sql =" INSERT INTO wp01_contents";
+		$sql =" INSERT INTO wp01_0contents";
 		$sql .="(`date`, display_date, page, category, contents_key, title, contents)";
-		$sql .=" VALUES('{$now}','{$display_date}','news','{$category}','{$contents_key}','{$title}','{$contents}')";
+		$sql .=" VALUES('{$now}','{$p_date}','news','person','{$tmp_auto}','{$title}','{$news_box}')";
 		mysqli_query($mysqli,$sql);
+		echo $sql;
 	}
 }
-
 ?>
 <html lang="ja">
 <head>

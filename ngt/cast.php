@@ -76,7 +76,7 @@ include_once('./header.php');
 </div>
 <div class="main_d">
 <? foreach($sort as $b1=> $b2){?>
-	<a href="./person.php?cast=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
+	<a href="./person.php?post_id=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
 		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
 		<span class="main_d_1_2">
 			<span class="main_b_1_2_h"></span>
