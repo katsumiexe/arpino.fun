@@ -28,21 +28,21 @@ if(!$month) $month=substr($day_8,0,6);
 //■カレンダーカウント
 $sql ="SELECT post_date FROM wp01_0posts";
 $sql.=" WHERE status=0";
-$sql.=" AND blog_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
+$sql.=" AND view_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
 $sql.=" AND post_date<='{$now}'";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
-		$tmp=substr($a1["blog_date"],8,2)+0;
+		$tmp=substr($a1["view_date"],8,2)+0;
 		$calendar_ck[$tmp]=1;
 	}
 }
 
 //■キャスト件数カウント
-$sql ="SELECT cast, genji, COUNT(id) AS cnt ,MAX(blog_date) AS b_date ,FROM wp01_0posts";
+$sql ="SELECT cast, genji, COUNT(id) AS cnt ,MAX(view_date) AS b_date ,FROM wp01_0posts";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0posts.cast=wp01_0cast.id";
 $sql.=" WHERE status=0";
-$sql.=" AND blog_date<='{$now}'";
+$sql.=" AND view_date<='{$now}'";
 $sql.=" GROUP BY cast'";
 
 if($res = mysqli_query($mysqli,$sql)){
@@ -64,7 +64,7 @@ $sql ="SELECT tag_name, tag_icon, wp01_0tag.id, COUNT(wp01_0posts.id) AS cnt FRO
 $sql.=" LEFT JOIN wp01_0posts ON wp01_0tag.id=wp01_0posts.tag";
 $sql.=" WHERE tag_group='blog'";
 $sql.=" AND (status=0 OR status IS NULL)";
-$sql.=" AND (blog_date<='{$now}' OR blog_date IS NULL)";
+$sql.=" AND (view_date<='{$now}' OR view_date IS NULL)";
 $sql.=" GROUP BY wp01_0tag.id";
 $sql.=" ORDER BY sort ASC";
 
@@ -75,9 +75,10 @@ if($res = mysqli_query($mysqli,$sql)){
 	}
 }
 
+echo $sql;
+
 $pg_max=ceil($cate_all/16);
-if($pg_max==1){
-}elseif($pg_max<=5){
+if($pg_max<=5 && $pg_max>1){
 	$p_list.="<div class=\"page_box\">";
 		for($pp=1;$pp<$pg_max+1;$pp++){
 			$p_list.="<a href=\"/castblog/?pg={$pp}\" class=\"page_n ";
@@ -86,7 +87,8 @@ if($pg_max==1){
 		}
 	$p_list.="</div>";
 
-}else{
+}elseif($pg_max>5){
+
 	if($pg<3){
 		$pg_s=1;
 		$pg_e=5;
@@ -113,7 +115,7 @@ if($pg_max==1){
 
 $sql ="SELECT * FROM wp01_0posts";
 $sql.=" WHERE status=0";
-$sql.=" AND blog_date<='{$now}'";
+$sql.=" AND view_date<='{$now}'";
 
 if($cast_list){
 	$sql.=" AND cast='{$cast_list}'";
@@ -123,7 +125,7 @@ if($tag_list){
 	$sql.=" AND tag='{$tag_list}'";
 }
 
-$sql.=" ORDER BY blog_date DESC";
+$sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT {$pg_st},16";
 
 if($res = mysqli_query($mysqli,$sql)){
@@ -198,6 +200,7 @@ include_once('./header.php');
 <div class="main_top_flex">
 	<div class="main_article_out">
 		<h2 class="main_blog_title"> Cast Blog</h2>
+
 		<div class="main_article">
 			<?for($n=0;$n<$count_blog+0;$n++){?>
 				<a href="./article.php?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
@@ -219,7 +222,6 @@ include_once('./header.php');
 			<? } ?>
 			<?if($count_blog<1){?>
 				<span class="no_blog">まだありません</span>
-
 			<? } ?>
 		</div>
 		<?=$p_list?>
