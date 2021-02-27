@@ -6,6 +6,20 @@
 	text-align	:center;
 	font-size	:0;
 }
+.person_err{
+	display		:inline-block;
+	position	:relative;
+	flex-basis	:1;
+	min-height	:600px;	
+	font-size	:18px;
+	text-align	:center;
+	margin		:50px auto;
+	border		:1px solid #c8b880;
+	background	:252018;
+	color		:#c8b880;
+}
+
+
 .person_left{
 	display		:inline-block;
 	position	:relative;

@@ -19,8 +19,7 @@ $t_day=date("Ymd",$day_time);
 $n_day=date("Ymd",$day_time+(86400*7));
 
 $post_id=$_REQUEST["post_id"];
-$sql="SELECT * FROM wp01_0cast WHERE id='{$id}' AND cast_status<2 LIMIT 1";
-
+$sql="SELECT * FROM wp01_0cast WHERE id='{$post_id}' AND cast_status<2 LIMIT 1";
 if($res = mysqli_query($mysqli,$sql)){
 	$cast_data = mysqli_fetch_assoc($res);
 	if (file_exists("./img/profile/{$cast_data["id"]}/0.jpg")) {
@@ -42,92 +41,96 @@ if($res = mysqli_query($mysqli,$sql)){
 	}else{
 		$face_a="<img src=\"./img/profile/noimage.jpg\" class=\"person_img_main\">";
 	}
-}
 
-$sql	 ="SELECT * FROM wp01_0schedule";
-$sql	.=" WHERE sche_date>='{$t_day}'";
-$sql	.=" AND sche_date<'{$n_day}'";
-$sql	.=" AND cast_id='{$cast}'";
-$sql	.=" ORDER BY id ASC";
+	$sql	 ="SELECT * FROM wp01_0schedule";
+	$sql	.=" WHERE sche_date>='{$t_day}'";
+	$sql	.=" AND sche_date<'{$n_day}'";
+	$sql	.=" AND cast_id='{$post_id}'";
+	$sql	.=" ORDER BY id ASC";
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a0 = mysqli_fetch_assoc($res)){
-		$sch[$a0["sche_date"]]=$a0;
+	if($res = mysqli_query($mysqli,$sql)){
+		while($a0 = mysqli_fetch_assoc($res)){
+			$sch[$a0["sche_date"]]=$a0;
+		}
+	}
+
+	for($n=0;$n<7;$n++){
+		$t_sch=date("Ymd",$day_time+(86400*$n));
+		$tmp_s=$sch[$t_sch]["stime"];
+		$tmp_e=$sch[$t_sch]["etime"];
+
+		$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
+		$list_week=date("w",strtotime($t_sch));
+
+		if($tmp_s && $tmp_e){
+			$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
+		}else{
+			$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
+		}
+	}
+
+	$sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
+	$sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
+	$sql.=" WHERE wp01_0charm_table.del='0'";
+	$sql.=" AND (wp01_0charm_sel.cast_id='{$post_id}' OR wp01_0charm_sel.cast_id='')";
+	$sql.=" ORDER BY wp01_0charm_table.sort ASC";
+
+	if($res = mysqli_query($mysqli,$sql)){
+		while($a0 = mysqli_fetch_assoc($res)){
+			$a0["log"]=str_replace("\n","<br>",$a0["log"]);
+			$charm_table[]=$a0;
+		}
+		if (is_array($charm_table)) {
+			$cnt_charm_table=count($charm_table);
+		}
+	}
+
+	$sql ="SELECT id,title,style FROM wp01_0check_main";
+	$sql.=" WHERE del='0'";
+	$sql.=" ORDER BY sort ASC";
+
+	if($res = mysqli_query($mysqli,$sql)){
+		while($a1 = mysqli_fetch_assoc($res)){
+			$check_main[]=$a1;
+		}
+
+		if (is_array($check_main)) {
+			$cnt_check_main=count($check_main);
+		}
+	}
+
+	$sql ="SELECT * FROM wp01_0check_list";
+	$sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
+	$sql.=" AND del='0'";
+	$sql.=" AND (cast_id IS NULL OR cast_id='{$post_id}')";
+	$sql.=" ORDER BY host_id ASC, list_sort ASC";
+
+	if($res = mysqli_query($mysqli,$sql)){
+		while($a1 = mysqli_fetch_assoc($res)){
+			$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
+		}
+	}
+
+	$sql ="SELECT * FROM wp01_posts AS P";
+	$sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
+	$sql.=" WHERE P.cast='{$post_id}'";
+	$sql.=" AND P.write_date<='{$now}'";
+	$sql.=" AND P.status='0'";
+	$sql.=" ORDER BY P.write_date DESC";
+	$sql.=" LIMIT 6";
+
+	if($res = mysqli_query($mysqli,$sql)){
+		while($a1 = mysqli_fetch_assoc($res)){
+			$blog[]=$a1;
+		}
+		if (is_array($blog)) {
+			$cnt_blog=count($blog);
+		}
 	}
 }
 
-for($n=0;$n<7;$n++){
-	$t_sch=date("Ymd",$day_time+(86400*$n));
-	$tmp_s=$sch[$t_sch]["stime"];
-	$tmp_e=$sch[$t_sch]["etime"];
-
-	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
-	$list_week=date("w",strtotime($t_sch));
-
-	if($tmp_s && $tmp_e){
-		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
-	}else{
-		$list.="<tr><td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
-	}
-}
-
-$sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
-$sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
-$sql.=" WHERE wp01_0charm_table.del='0'";
-$sql.=" AND (wp01_0charm_sel.cast_id='{$cast}' OR wp01_0charm_sel.cast_id='')";
-$sql.=" ORDER BY wp01_0charm_table.sort ASC";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a0 = mysqli_fetch_assoc($res)){
-		$a0["log"]=str_replace("\n","<br>",$a0["log"]);
-		$charm_table[]=$a0;
-	}
-	if (is_array($charm_table)) {
-		$cnt_charm_table=count($charm_table);
-	}
-}
-
-$sql ="SELECT id,title,style FROM wp01_0check_main";
-$sql.=" WHERE del='0'";
-$sql.=" ORDER BY sort ASC";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$check_main[]=$a1;
-	}
-
-	if (is_array($check_main)) {
-		$cnt_check_main=count($check_main);
-	}
-}
-
-$sql ="SELECT * FROM wp01_0check_list";
-$sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
-$sql.=" AND del='0'";
-$sql.=" AND (cast_id IS NULL OR cast_id='{$cast}')";
-$sql.=" ORDER BY host_id ASC, list_sort ASC";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
-	}
-}
-
-$sql ="SELECT * FROM wp01_posts AS P";
-$sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
-$sql.=" WHERE P.cast='{$cast}'";
-$sql.=" AND P.write_date<='{$now}'";
-$sql.=" AND P.status='0'";
-$sql.=" ORDER BY P.write_date DESC";
-$sql.=" LIMIT 6";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$blog[]=$a1;
-	}
-	if (is_array($blog)) {
-		$cnt_blog=count($blog);
-	}
+if(!$cast_data["id"]){
+	$err="お探しの女の子はみつかりませんでした";
 }
 include_once('./header.php');
 ?>
@@ -141,12 +144,16 @@ include_once('./header.php');
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">CAST</span>
 	</a>
+<?if(!$err){?>
 	<span class="footmark_icon"></span>
 	<span class="footmark_icon"></span>
 	<span class="footmark_text"><?=$a1["genji"]?></span>
+<?}?>
 </div>
-
 <div class="person_main">
+<?if($err){?>
+	<div class="person_err"><?=$err?></div>
+<?}else{?>
 	<div class="person_left">
 		<div class="person_img_box">
 			<?=$face_a?>
@@ -156,7 +163,6 @@ include_once('./header.php');
 			<?=$face_b?>
 		</div>
 	</div>
-
 	<div class="person_middle">
 		<div class="prof_title">Profile</div>
 		<table class="prof">
@@ -214,5 +220,8 @@ include_once('./header.php');
 			<?}?>
 		</div>
 	</div>
+<?}?>
+
+
 </div>
 <?include_once('./footer.php'); ?>
