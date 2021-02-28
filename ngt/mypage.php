@@ -1,6 +1,11 @@
 <?
+//ini_set( 'display_errors', 1 );
+//ini_set('error_reporting', E_ALL);
+
 include_once('./library/sql_cast.php');
+
 //Sche-----------------------
+if($_SESSION){
 $c_month=$_POST["c_month"];
 if(!$c_month) $c_month=date("Y-m-01");
 
@@ -13,7 +18,7 @@ $month_ym[0]=substr(str_replace("-","",$calendar[0]),0,6);
 $month_ym[1]=substr(str_replace("-","",$calendar[1]),0,6);	
 $month_ym[2]=substr(str_replace("-","",$calendar[2]),0,6);	
 
-$base_w=$day_w-$start_week;
+$base_w=$day_w-$config["start_week"];
 if($base_w<0) $base_w+=7;
 
 $base_day		=$day_time-($base_w+7)*86400;
@@ -28,18 +33,10 @@ if(!$ana_ym) $ana_ym=date("Ym");
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
 
-$ana_line[$start_week]=" ana_line";
+$ana_line[$config["start_week"]]=" ana_line";
 
-$sql ="SELECT term_id FROM wp01_terms"; 
-$sql .=" WHERE slug='{$_SESSION["id"]}'"; 
 
-$id_8=substr("00000000".$_SESSION["id"],-8);
-$id_0	=$_SESSION["id"] % 20;
 
-for($n=0;$n<8;$n++){
-	$tmp_id=substr($id_8,$n,1);
-	$box_no.=$dec[$id_0][$tmp_id];
-}
 
 $cast_page=$_POST["cast_page"]+0;
 
@@ -283,7 +280,7 @@ for($n=0;$n<3;$n++){
 	$now_ym=date("ym",strtotime($calendar[$n]));
 	$t=date("t",strtotime($calendar[$n]));
 
-	$wk=$start_week-date("w",strtotime($calendar[$n]));
+	$wk=$config["start_week"]-date("w",strtotime($calendar[$n]));
 	if($wk>0) $wk-=7;
 
 	$st=strtotime($calendar[$n])+($wk*86400);
@@ -398,7 +395,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$blog[]=$row;
 	}
+	if(is_array($dat)){
 	$blog_max=count($dat);
+	}
 	if($blog_max>10){
 		$blog_max=10;
 		$blog_next=1;
@@ -448,6 +447,8 @@ if($dat){
 	}
 }
 
+}
+echo "▲-------------▲";
 ?>
 <html lang="ja">
 <head>
@@ -457,28 +458,27 @@ if($dat){
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url(<?=$link?>/font/font_0/fonts/icomoon.ttf) format('truetype');
+	src: url(./font/font_0/fonts/icomoon.ttf) format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="<?=$link?>/css/cast.css?t=<?=time()?>">
-<link rel="stylesheet" href="<?=$link?>/css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">
+<link rel="stylesheet" href="./css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 
-<script src="<?=$link?>/js/jquery.exif.js?t=<?=time()?>"></script>
-<script src="<?=$link?>/js/cast.js?t=<?=time()?>"></script>
-<script src="<?=$link?>/js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="./js/jquery.exif.js?t=<?=time()?>"></script>
+<script src="./js/cast.js?t=<?=time()?>"></script>
+<script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 
 <script>
-const Dir='<?=$link?>'; 
-const CastId='<?=$_SESSION["id"] ?>'; 
-const CastName='<?=$_SESSION["genji"] ?>'; 
+const CastId='<?=$cast_data["id"] ?>'; 
+const CastName='<?=$cast_data["genji"] ?>'; 
 
-const Now_md=<?=date("md",$jst)+0?>;
-const Now_Y	=<?=date("Y",$jst)+0?>;
+const Now_md=<?=date("md")+0?>;
+const Now_Y	=<?=date("Y")+0?>;
 var C_Id=0;
 var C_Id_tmp=0;
 var ChgList=[<?=$log_list_cnt?>];
@@ -488,7 +488,6 @@ const SNS_LINK={
 	customer_twitter:"https://twitter.com/",
 	customer_insta:"https://instagram.com/",
 	customer_facebook:"https://facebook.com/",
-	customer_mail:"<?php the_permalink();?>",
 	customer_tel:"tel",
 };
 
@@ -533,9 +532,10 @@ $(function(){
 </script>
 </head>
 <body class="body">
-<? if(!$_SESSION["cast_time"]){ ?>
+
+<? if(!$cast_data["cast_time"]){ ?>
 	<div class="login_box">
-		<form action="<?php the_permalink();?>" method="post">
+		<form action="./mypage.php" method="post">
 			<span class="login_name">IDCODE</span>
 			<input type="text" class="login" name="log_in_set">
 			<span class="login_name">PASSWORD</span>
@@ -548,6 +548,7 @@ $(function(){
 			<?=$err?>
 		</div>
 	<? }?>
+
 <?}else{?>
 	<div class="head">
 		<div class="head_mymenu">
@@ -600,14 +601,12 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
-		<?if(file_exists($link2."/img/page/{$_SESSION["id"]}/0_s.jpg")){?>
-		<img src="<?=$link?>/img/page/<?=$_SESSION["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
+		<?if(file_exists("./img/profile/{$cast_data["id"]}/0_s.jpg")){?>
+		<img src="./img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
 		<?}else{?>
-		<img src="<?=$link?>/img/page/noimage.jpg?t_<?=time()?>" class="slide_img">
-
+		<img src="./img/profile/noimage.jpg?t_<?=time()?>" class="slide_img">
 		<?}?>
-		<div class="slide_name"><?=$_SESSION["genji"]?></div>
-
+		<div class="slide_name"><?=$cast_data["genji"]?></div>
 		<ul class="menu">
 			<li id="m0" class="menu_1<?if($cast_page+0==0){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">トップページ</span></li>
 			<li id="m1" class="menu_1<?if($cast_page+0==1){?> menu_sel<?}?>"><span class="menu_i"></span><span class="menu_s">スケジュール</span></li>
@@ -623,7 +622,7 @@ $(function(){
 	<?if($cast_page==1){?>
 	<div class="main_sch">
 		<input id="c_month" type="hidden" value="<?=$c_month?>" name="c_month">
-		<input id="week_start" type="hidden" value="<?=$week_start?>">
+		<input id="week_start" type="hidden" value="<?=$config["start_week"]?>">
 		<div class="cal">
 			<?for($c=0;$c<3;$c++){?>
 				<table class="cal_table">
@@ -649,7 +648,7 @@ $(function(){
 					<tr>
 						<?
 						for($s=0;$s<7;$s++){
-						$w=($s+$week_start) % 7;
+						$w=($s+$config["start_week"]) % 7;
 						?>
 						<td class="cal_th <?=$week_tag[$w]?>"><?=$week[$w]?></td>
 						<? } ?>
@@ -701,10 +700,10 @@ $(function(){
 				<?for($n=0;$n<count($customer);$n++){?>
 					<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
 						<?if($customer[$n]["face"]){?>
-							<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+							<img src="./img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 						<?}else{?>
-							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 						<? } ?>
 						<div class="customer_list_fav">
 							<?for($s=1;$s<6;$s++){?>
@@ -900,14 +899,14 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
-	<script src="<?=$link?>/js/easytalk_cast.js?t=<?=time()?>"></script>
+	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
 	<div class="main">
 		<?for($n=0;$n<count($mail_data);$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<?if($mail_data[$n]["face"]){?>
-					<img src="<?=$link?>/img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 				<?}else{?>
-					<img id="mail_img<?=$s?>" src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+					<img id="mail_img<?=$s?>" src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
 				<? } ?>
 				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
@@ -918,9 +917,9 @@ $(function(){
 
 				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
 
-				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_1"]?>'><? } ?>
-				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_2"]?>'><? } ?>
-				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='<?=$link?>/img/cast/mail/<?=$_SESSION["id"]?>/<?=$a1["img_3"]?>'><? } ?>
+				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_1"]?>'><? } ?>
+				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_2"]?>'><? } ?>
+				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
 		<div class="mail_detail">
@@ -992,7 +991,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
@@ -1055,7 +1054,7 @@ $(function(){
 
 	<?for($n=1;$n<$now_count+1;$n++){?>
 		<?$ana_week=($week_01+$n-1)%7?>
-		<? $ana_salary = $ana_time[$n] * $_SESSION["cast_salary"]?>
+		<? $ana_salary = $ana_time[$n] * $cast_data["cast_salary"]?>
 		<? $ana_all = number_format($ana_salary +$pay_all[$n])?>
 
 		<tr>
@@ -1168,11 +1167,11 @@ $(function(){
 -->
 
 <div class="config_box">
-	<span class="config_tag1">USER_ID</span><span class="config_text2"><?=$_SESSION["cast_id"]?></span><br>
-	<span class="config_tag1">PASSWORD</span><input type="password" value="<?=$_SESSION["cast_pass"]?>" class="config_text1" autocomplete="new-password"><br>
-	<span class="config_tag1">名前</span><input type="text" value="<?=$_SESSION["genji"]?>" class="config_text1"><br>
-	<span class="config_tag1">メール</span><input type="text" value="<?=$_SESSION["cast_mail"]?>" class="config_text1"><br>
-	<span class="config_tag1">時給</span><input id="hourly" type="text" value="<?=$_SESSION["cast_salary"]?>" class="config_text1"><br>
+	<span class="config_tag1">USER_ID</span><span class="config_text2"><?=$cast_data["cast_id"]?></span><br>
+	<span class="config_tag1">PASSWORD</span><input type="password" value="<?=$cast_data["cast_pass"]?>" class="config_text1" autocomplete="new-password"><br>
+	<span class="config_tag1">名前</span><input type="text" value="<?=$cast_data["genji"]?>" class="config_text1"><br>
+	<span class="config_tag1">メール</span><input type="text" value="<?=$cast_data["cast_mail"]?>" class="config_text1"><br>
+	<span class="config_tag1">時給</span><input id="hourly" type="text" value="<?=$cast_data["cast_salary"]?>" class="config_text1"><br>
 	<span class="config_tag2">LINE連携</span>
 	<span class="config_tag2">Twitter連携</span>
 </div>
@@ -1180,43 +1179,43 @@ $(function(){
 <div class="config_box">
 <div class="config_tag3">
 <select id="config_day_start" class="config_tag3_sel">
-<option value="0"<?if($_SESSION["times_st"]==0){?> selected="selected"<?}?>>00:00</option>
-<option value="1"<?if($_SESSION["times_st"]==1){?> selected="selected"<?}?>>01:00</option>
-<option value="2"<?if($_SESSION["times_st"]==2){?> selected="selected"<?}?>>02:00</option>
-<option value="3"<?if($_SESSION["times_st"]==3){?> selected="selected"<?}?>>03:00</option>
-<option value="4"<?if($_SESSION["times_st"]==4){?> selected="selected"<?}?>>04:00</option>
-<option value="5"<?if($_SESSION["times_st"]==5){?> selected="selected"<?}?>>05:00</option>
-<option value="6"<?if($_SESSION["times_st"]==6){?> selected="selected"<?}?>>06:00</option>
-<option value="7"<?if($_SESSION["times_st"]==7){?> selected="selected"<?}?>>07:00</option>
-<option value="8"<?if($_SESSION["times_st"]==8){?> selected="selected"<?}?>>08:00</option>
-<option value="9"<?if($_SESSION["times_st"]==9){?> selected="selected"<?}?>>09:00</option>
-<option value="10"<?if($_SESSION["times_st"]==10){?> selected="selected"<?}?>>10:00</option>
-<option value="11"<?if($_SESSION["times_st"]==11){?> selected="selected"<?}?>>11:00</option>
-<option value="12"<?if($_SESSION["times_st"]==12){?> selected="selected"<?}?>>12:00</option>
-<option value="13"<?if($_SESSION["times_st"]==13){?> selected="selected"<?}?>>13:00</option>
-<option value="14"<?if($_SESSION["times_st"]==14){?> selected="selected"<?}?>>14:00</option>
-<option value="15"<?if($_SESSION["times_st"]==15){?> selected="selected"<?}?>>15:00</option>
-<option value="16"<?if($_SESSION["times_st"]==16){?> selected="selected"<?}?>>16:00</option>
-<option value="17"<?if($_SESSION["times_st"]==17){?> selected="selected"<?}?>>17:00</option>
-<option value="18"<?if($_SESSION["times_st"]==18){?> selected="selected"<?}?>>18:00</option>
-<option value="19"<?if($_SESSION["times_st"]==19){?> selected="selected"<?}?>>19:00</option>
-<option value="20"<?if($_SESSION["times_st"]==20){?> selected="selected"<?}?>>20:00</option>
-<option value="21"<?if($_SESSION["times_st"]==21){?> selected="selected"<?}?>>21:00</option>
-<option value="22"<?if($_SESSION["times_st"]==22){?> selected="selected"<?}?>>22:00</option>
-<option value="23"<?if($_SESSION["times_st"]==23){?> selected="selected"<?}?>>23:00</option>
+<option value="0"<?if($cast_data["times_st"]==0){?> selected="selected"<?}?>>00:00</option>
+<option value="1"<?if($cast_data["times_st"]==1){?> selected="selected"<?}?>>01:00</option>
+<option value="2"<?if($cast_data["times_st"]==2){?> selected="selected"<?}?>>02:00</option>
+<option value="3"<?if($cast_data["times_st"]==3){?> selected="selected"<?}?>>03:00</option>
+<option value="4"<?if($cast_data["times_st"]==4){?> selected="selected"<?}?>>04:00</option>
+<option value="5"<?if($cast_data["times_st"]==5){?> selected="selected"<?}?>>05:00</option>
+<option value="6"<?if($cast_data["times_st"]==6){?> selected="selected"<?}?>>06:00</option>
+<option value="7"<?if($cast_data["times_st"]==7){?> selected="selected"<?}?>>07:00</option>
+<option value="8"<?if($cast_data["times_st"]==8){?> selected="selected"<?}?>>08:00</option>
+<option value="9"<?if($cast_data["times_st"]==9){?> selected="selected"<?}?>>09:00</option>
+<option value="10"<?if($cast_data["times_st"]==10){?> selected="selected"<?}?>>10:00</option>
+<option value="11"<?if($cast_data["times_st"]==11){?> selected="selected"<?}?>>11:00</option>
+<option value="12"<?if($cast_data["times_st"]==12){?> selected="selected"<?}?>>12:00</option>
+<option value="13"<?if($cast_data["times_st"]==13){?> selected="selected"<?}?>>13:00</option>
+<option value="14"<?if($cast_data["times_st"]==14){?> selected="selected"<?}?>>14:00</option>
+<option value="15"<?if($cast_data["times_st"]==15){?> selected="selected"<?}?>>15:00</option>
+<option value="16"<?if($cast_data["times_st"]==16){?> selected="selected"<?}?>>16:00</option>
+<option value="17"<?if($cast_data["times_st"]==17){?> selected="selected"<?}?>>17:00</option>
+<option value="18"<?if($cast_data["times_st"]==18){?> selected="selected"<?}?>>18:00</option>
+<option value="19"<?if($cast_data["times_st"]==19){?> selected="selected"<?}?>>19:00</option>
+<option value="20"<?if($cast_data["times_st"]==20){?> selected="selected"<?}?>>20:00</option>
+<option value="21"<?if($cast_data["times_st"]==21){?> selected="selected"<?}?>>21:00</option>
+<option value="22"<?if($cast_data["times_st"]==22){?> selected="selected"<?}?>>22:00</option>
+<option value="23"<?if($cast_data["times_st"]==23){?> selected="selected"<?}?>>23:00</option>
 </select>
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
 
 <div class="config_tag3">
 <select id="config_week_start" class="config_tag3_sel">
-<option value="0"<?if($_SESSION["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
-<option value="1"<?if($_SESSION["week_st"]==1){?> selected="selected"<?}?>>月曜日</option>
-<option value="2"<?if($_SESSION["week_st"]==2){?> selected="selected"<?}?>>火曜日</option>
-<option value="3"<?if($_SESSION["week_st"]==3){?> selected="selected"<?}?>>水曜日</option>
-<option value="4"<?if($_SESSION["week_st"]==4){?> selected="selected"<?}?>>木曜日</option>
-<option value="5"<?if($_SESSION["week_st"]==5){?> selected="selected"<?}?>>金曜日</option>
-<option value="6"<?if($_SESSION["week_st"]==6){?> selected="selected"<?}?>>土曜日</option>
+<option value="0"<?if($cast_data["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
+<option value="1"<?if($cast_data["week_st"]==1){?> selected="selected"<?}?>>月曜日</option>
+<option value="2"<?if($cast_data["week_st"]==2){?> selected="selected"<?}?>>火曜日</option>
+<option value="3"<?if($cast_data["week_st"]==3){?> selected="selected"<?}?>>水曜日</option>
+<option value="4"<?if($cast_data["week_st"]==4){?> selected="selected"<?}?>>木曜日</option>
+<option value="5"<?if($cast_data["week_st"]==5){?> selected="selected"<?}?>>金曜日</option>
+<option value="6"<?if($cast_data["week_st"]==6){?> selected="selected"<?}?>>土曜日</option>
 </select>
 <span class="config_tag3_in">週の開始曜日</span>
 </div>
@@ -1401,7 +1400,7 @@ $(function(){
 		<div class="cal_weeks_box">
 			<div class="cal_weeks_box_2">
 				<?for($n=0;$n<21;$n++){
-					$tmp_wk=($n+$week_start)%7;
+					$tmp_wk=($n+$config["start_week"])%7;
 				?>
 					<div class="cal_list">
 						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
@@ -1490,7 +1489,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-					<span class="regist_img_pack"><img src="<?=$link?>/img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
+					<span class="regist_img_pack"><img src="./img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
 					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
@@ -1550,7 +1549,6 @@ $(function(){
 		<input id="regist_fav" type="hidden" value="0">
 	</div>
 
-
 	<div class="img_box">
 		<div class="img_box_in">
 			<canvas id="cvs1" width="800px" height="800px;"></canvas>
@@ -1563,7 +1561,17 @@ $(function(){
 			<div class="img_box_out7"></div>
 			<div class="img_box_out8"></div>
 		</div>
-
+<!--
+		<div class="img_box_in2">
+			<label for="upd" class="upload_icon"></label>
+			<span id="img_set_line" class="upload_icon"></span>
+			<span id="img_set_twitter" class="upload_icon"></span>
+			<span id="img_set_insta" class="upload_icon"></span>
+			<span id="img_set_facebook" class="upload_icon"></span>　
+			<span class="upload_icon upload_rote"></span>
+			<span class="upload_icon upload_trush"></span>
+		</div>
+-->
 		<div class="img_box_in2">
 			<label for="upd" class="upload_btn"><span class="upload_icon_p"></span><span class="upload_txt">画像選択</span></label>
 			<span class="upload_icon upload_rote"></span>
@@ -1673,11 +1681,13 @@ $(function(){
 <input id="easytalk_page" type="hidden" value="1">
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
-<input id="cast_id" type="hidden" value="<?=$_SESSION["id"]?>">
-<form id="logout" action="<?php the_permalink();?>" method="post">
+<input id="cast_id" type="hidden" value="<?=$cast_data["id"]?>">
+
+<form id="logout" action="./mypage.php" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>
-<form id="menu_sel" action="<?php the_permalink();?>" method="post">
+
+<form id="menu_sel" action="mypage.php" method="post">
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?=$c_month?>" name="c_month">
 </form>

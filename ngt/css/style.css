@@ -68,7 +68,7 @@ ul {
 	background	:#000000;
 	text-align	:center;
 	width		:1200px;
-	min-height	:90vh;
+	min-height	:calc(100vh - 370px);
 	margin		:0 auto;
 	padding-top	:175px;
 	font-size	:0;

@@ -7,16 +7,19 @@
 	font-size	:0;
 }
 .person_err{
-	display		:inline-block;
+	display		:block;
 	position	:relative;
-	flex-basis	:1;
-	min-height	:600px;	
+	flex-basis	:600px;
+	height		:100px;
+	line-height	:1;
 	font-size	:18px;
-	text-align	:center;
-	margin		:50px auto;
+	text-align	:left;
+	margin		:50px auto auto auto;
 	border		:1px solid #c8b880;
 	background	:252018;
 	color		:#c8b880;
+	padding		:25px;
+
 }
 
 
