@@ -1,12 +1,5 @@
 <?
-/*
-Itemchg
-*/
-
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
+include_once('../library/sql_cast.php');
 $sort		=$_POST["sort"];
 $cds		=$_POST["cds"];
 $clr		=$_POST["clr"];
@@ -32,8 +25,9 @@ if($cds){
 $sql =" UPDATE wp01_0cast_log_table SET";
 $sql.=$app;
 $sql.=" WHERE sort='{$sort}'";
-$sql.=" AND cast_id='{$cast_id}'";
-$wpdb->query($sql);
+$sql.=" AND cast_id='{$cast_data["id"]}'";
+mysqli_query($mysqli,$sql);
+
 echo $sql;
 exit();
 ?>

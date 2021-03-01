@@ -1,21 +1,10 @@
 <?
-/*
-BlogSet
-*/
-
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
+include_once('../library/sql_cast.php');
 $c_id		=$_POST["c_id"];
-
-
 $item_name	=$_POST["item_name"];
 $item_icon	=$_POST["item_icon"];
 $item_color	=$_POST["item_color"];
 $item_price	=$_POST["item_price"];
-
-$now=date("Y-m-d H:i:s",$jst);
 
 $yy			=substr('0000'.$_POST["yy"],-4,4);
 $mm			=substr('00'.$_POST["mm"],-2,2);
@@ -36,10 +25,10 @@ $stime	=$hh_s.$ii_s;
 $etime	=$hh_e.$ii_e;
 
 if(!$chg_id){
-	$sql_log ="INSERT INTO wp01_0cast_log(`date`,`sdate`,`stime`,`etime`,`cast_id`,`customer_id`,`log`) VALUES ";
-	$sql_log.=" ('{$now}','{$sdate}','{$stime}','{$etime}','{$cast_id}','{$c_id}','{$log}')";
-	$wpdb->query($sql_log);
-	$tmp_auto=$wpdb->insert_id;
+	$sql ="INSERT INTO wp01_0cast_log(`date`,`sdate`,`stime`,`etime`,`cast_id`,`customer_id`,`log`) VALUES ";
+	$sql.="('{$now}','{$sdate}','{$stime}','{$etime}','{$cast_data["id"]}','{$c_id}','{$log}')";
+	mysqli_query($mysqli,$sql);
+	$tmp_auto=mysqli_insert_id($mysqli);
 
 	$dat.="<tr><td class=\"customer_memo_tag\">";
 	$dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span>{$sdate}　{$stime} - {$etime}</div>";
@@ -59,15 +48,15 @@ if(!$chg_id){
 
 		$tmp="#".$tmp_1.$tmp_2.$tmp_3;
 
-		$sql_log.=" ('{$tmp_auto}','{$tmp}','{$item_icon[$a1]}','{$item_name[$a1]}','{$item_price[$a1]}'),";
+		$sql.=" ('{$tmp_auto}','{$tmp}','{$item_icon[$a1]}','{$item_name[$a1]}','{$item_price[$a1]}'),";
 		$dat.="<div class=\"customer_log_item\" style=\"border:1px solid {$dat3["log_color"]}; color:{$dat3["log_color"]};\">";
 		$app.="<span class=\"log_item_icon\">{$item_icon[$a1]}</span>";
 		$app.="<span class=\"log_item_name\">{$item_comm[$a1]}</span>";
 		$app.="<span class=\"log_item_price\">{$item_price[$a1]}</span>";
 		$app.="</div>";
 	}
-	$sql_log=substr($sql_log,0,-1);
-	$wpdb->query($sql_log);
+	$sql=substr($sql,0,-1);
+	mysqli_query($mysqli,$sql);
 	$dat.=$app."</span></td></tr>";
 
 }else{
@@ -80,9 +69,9 @@ if(!$chg_id){
 		$sql.=" item_color='{$item_color[$tmp]}',";
 		$sql.=" price='{$item_price[$tmp]}'";
 
-		$sql.=" WHERE cast_id='{$cast_id}'";
+		$sql.=" WHERE cast_id='{$cast_data["id"]}'";
 		$sql.=" AND sort='{$n}'";
-		$wpdb->query($sql);
+		mysqli_query($mysqli,$sql);
 	}
 }
 echo $dat;

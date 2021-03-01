@@ -1,9 +1,5 @@
 <?
-/*
-カレンダースライドセット処理
-*/
-require_once ("./post_inc.php");
-
+include_once('../library/sql_cast.php');
 $week[0]="日";
 $week[1]="月";
 $week[2]="火";
@@ -27,15 +23,12 @@ $week_tag2[3]="ca2";
 $week_tag2[4]="ca2";
 $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
-
 $week_start=get_option("start_of_week")+0;
-
 $holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
 $ob_holiday = json_decode($holiday,true);
 
 $c_month	=$_POST["c_month"];
 $pre		=$_POST["pre"];
-$cast_id	=$_POST["cast_id"];
 
 if($pre == 1){
 	$cal["date"]	=date("Y-m-01",strtotime($c_month)-86400);
@@ -46,39 +39,25 @@ if($pre == 1){
 	$c_month		=date("Y-m-01",strtotime($c_month)+6912000);
 }
 
-	$sc_st=str_replace('-','',$c_month);
-	$sc_ed=date("Ym01",strtotime($c_month)+3456000);
-
-/*
-$b_month=substr($c_month,4,4);
-$sql	 ="SELECT * FROM wp01_0customer";
-$sql	.=" WHERE cast_id='{$cast_id}'";
-$sql	.=" AND birth_day LIKE '%{$b_month}%'";
-$sql	.=" AND del='0'";
-
-$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $tmp){
-	$birth=str_replace("-","",$tmp["birth_day"]);
-	$birth=substr($c_month,0,4).substr($birth,4,4);
-	$birth_dat[$birth]="n1";
-	$cal_app.="<input class=\"cal_b_{$birth}\" type=\"hidden\" value=\"{$tmp["nickname"]}\">";
-}
-*/
+$sc_st=str_replace('-','',$c_month);
+$sc_ed=date("Ym01",strtotime($c_month)+3456000);
 
 $b_month=substr($c_month,4,4);
 $sql	 ="SELECT * FROM wp01_0customer";
-$sql	.=" WHERE cast_id='{$cast_id}'";
+$sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND birth_day LIKE '%{$b_month}%'";
 $sql	.=" AND del='0'";
 
-$dat = $wpdb->get_results($sql,ARRAY_A );
-foreach($dat as $tmp){
-	$birth=str_replace("-","",$tmp["birth_day"]);
-	$birth_y	=substr($birth,0,4);
-	$birth_m	=substr($birth,4,2);
-	$birth_d	=substr($birth,6,2);
-	$birth_dat[$birth_m.$birth_d]="n1";
-	$birth_hidden[$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		$birth=str_replace("-","",$row["birth_day"]);
+		$birth_y	=substr($birth,0,4);
+		$birth_m	=substr($birth,4,2);
+		$birth_d	=substr($birth,6,2);
+		$birth_dat[$birth_m.$birth_d]="n1";
+		$birth_hidden[$birth_d].="<span class='days_icon'></span>{$tmp["nickname"]}<br>";
+	}
 }
 
 foreach($birth_hidden as $a1 => $a2){
@@ -90,17 +69,17 @@ $sql	.=" WHERE cast_id='{$cast_id}'";
 $sql	.=" AND sche_date>='{$sc_st}'";
 $sql	.=" AND sche_date<'{$sc_ed}'";
 
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
 
-$cal["sql"]=$sql;
-$dat = $wpdb->get_results($sql,ARRAY_A );
-foreach($dat as $tmp){
-	if($tmp["stime"] && $tmp["etime"]){;
-		$sch_dat[$tmp["sche_date"]]="n2";
-		$h_sch[$tmp["sche_date"]]="{$tmp["stime"]}-{$tmp["etime"]}";
+		if($row["stime"] && $row["etime"]){;
+			$sch_dat[$row["sche_date"]]="n2";
+			$h_sch[$row["sche_date"]]="{$row["stime"]}-{$row["etime"]}";
 
-	}else{
-		$sch_dat[$tmp["sche_date"]]="";
-		$h_sch[$tmp["sche_date"]]="";
+		}else{
+			$sch_dat[$row["sche_date"]]="";
+			$h_sch[$row["sche_date"]]="";
+		}
 	}
 }
 
@@ -111,26 +90,29 @@ foreach($h_sch as $a1 => $a2){
 $st_blog=$c_month." 00:00:00";
 $ed_blog=date("Y-m-d 00:00:00",strtotime($st_blog)+3456000);
 
-$sql	 ="SELECT * FROM wp01_posts";
-$sql	.=" WHERE post_password='{$cast_id}'";
-$sql	.=" AND post_name='post'";
-$sql	.=" AND post_date>='{$st_blog}'";
-$sql	.=" AND post_date<'{$ed_blog}'";
-$dat = $wpdb->get_results($sql,ARRAY_A );
+$sql	 ="SELECT id,view_date,status FROM wp01_posts";
+$sql	.=" WHERE cast='{$cast_data["id"]}'";
+$sql	.=" AND status<2";
+$sql	.=" AND view_date>='{$st_blog}'";
+$sql	.=" AND view_date<'{$ed_blog}'";
 
-foreach($dat as $tmp){
-	if(trim($tmp["post_content"])){
-		$tmp_date=substr($tmp["post_date"],0,4).substr($tmp["post_date"],5,2).substr($tmp["post_date"],8,2);
-		$blog_dat[$tmp_date]="n4";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+	if(trim($row["log"])){
+		$tmp_date=substr($tmp["view_date"],0,4).substr($tmp["view_date"],5,2).substr($tmp["view_date"],8,2);
+		$blog_dat[$tmp_date]="n4";	
 	}
 }
 
 $sql	 ="SELECT * FROM wp01_0schedule_memo";
-$sql	.=" WHERE cast_id='{$cast_id}'";
+$sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND date_8>='{$sc_st}'";
 $sql	.=" AND date_8<'{$sc_ed}'";
 $sql	.=" AND `log` IS NOT NULL";
-$dat = $wpdb->get_results($sql,ARRAY_A );
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
 
 foreach($dat as $tmp){
 	if(trim($tmp["log"])){
@@ -139,7 +121,7 @@ foreach($dat as $tmp){
 	}
 }
 
-$now_month	=date("Ym",strtotime($c_month));
+$now_month	=date("Ym",strtotime($c	_month));
 $t			=date("t",strtotime($c_month));
 $wk			=$week_start-date("w",strtotime($c_month));
 if($wk>0) $wk-=7;
@@ -147,6 +129,7 @@ if($wk>0) $wk-=7;
 $st			=strtotime($c_month)+($wk*86400);
 $v_year		=substr($c_month,0,4)."年";
 $v_month	=substr($c_month,5,2)."月";
+
 
 $cal["html"].="<table class=\"cal_table\"><tr>";
 $cal["html"].="<td class=\"cal_top\" colspan=\"7\">";

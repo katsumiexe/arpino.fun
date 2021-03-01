@@ -1,14 +1,6 @@
 <?
-/*
-logSet
-*/
-
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
+include_once('../library/sql_cast.php');
 $c_id		=$_POST["c_id"];
-
 
 $item_name	=$_POST["item_name"];
 $item_icon	=$_POST["item_icon"];
@@ -37,10 +29,10 @@ $etime	=$hh_e.$ii_e;
 
 if($del > 0){//■削除
 	$sql="DELETE FROM wp01_0cast_log WHERE log_id='{$del}'";
-	$wpdb->query($sql);
+	mysqli_query($mysqli,$sql);
 
 	$sql="DELETE FROM wp01_0cast_log_list WHERE master_id='{$del}'";
-	$wpdb->query($sql);
+	mysqli_query($mysqli,$sql);
 	exit();
 }
 
@@ -51,18 +43,17 @@ if($chg){//■変更
 	$sql.=" etime='{$etime}',";
 	$sql.=" log='{$log}'";
 	$sql.=" WHERE log_id='{$chg}'";
-	$wpdb->query($sql);
+	mysqli_query($mysqli,$sql);
 
 	$sql="DELETE FROM wp01_0cast_log_list WHERE master_id='{$chg}'";
-	$wpdb->query($sql);
+	mysqli_query($mysqli,$sql);
 	$tmp_auto=$chg;
-
 
 }else{//新規
 	$sql_log ="INSERT INTO wp01_0cast_log(`date`,`sdate`,`stime`,`etime`,`cast_id`,`customer_id`,`log`) VALUES ";
 	$sql_log.=" ('{$now}','{$sdate}','{$stime}','{$etime}','{$cast_id}','{$c_id}','{$log}')";
-	$wpdb->query($sql_log);
-	$tmp_auto=$wpdb->insert_id;
+	mysqli_query($mysqli,$sql);
+	$tmp_auto=mysqli_insert_id($mysqli);
 }
 
 $log=str_replace("\n","<br>",$log);
@@ -72,7 +63,6 @@ $stime=substr($stime,0,2).":".substr($stime,2,2);
 $etime=substr($etime,0,2).":".substr($etime,2,2);
 
 $dat.="<tr id=\"customer_log_td_{$dat1["id"]}\"><td class=\"customer_log_td\">";
-
 $dat.="<div class=\"customer_log_date\"> <span class=\"customer_log_icon\"></span><span class=\"customer_log_date_detail\">{$sdate} {$stime}-{$etime}</span>";
 $dat.="<div id=\"m_chg{$dat1["id"]}\" class=\"customer_log_chg\"></div>";
 $dat.="<div id=\"l_del{$dat1["id"]}\" class=\"customer_log_del\"></div>";
@@ -84,6 +74,7 @@ $dat.="<div class=\"customer_log_list\">";
 
 if($item_name){
 	$sql_log ="INSERT INTO wp01_0cast_log_list(`master_id`,`log_color`,`log_icon`,`log_comm`,`log_price`) VALUES ";
+
 	foreach($item_name as $a1 => $a2){
 		$item_color[$a1]=str_replace("rgb(","",$item_color[$a1]);
 		$item_color[$a1]=str_replace(")","",$item_color[$a1]);
@@ -102,10 +93,9 @@ if($item_name){
 		$app.="</div>";
 	}
 	$sql_log=substr($sql_log,0,-1);
-	$wpdb->query($sql_log);
+	mysqli_query($mysqli,$sql);
 	$dat.=$app."</span></td></tr>";
 }
-
 echo $dat;
 exit();
 ?>
