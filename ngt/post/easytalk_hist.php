@@ -2,82 +2,66 @@
 /*
 mail_hist
 */
-require_once ("./post_inc.php");
+include_once('../library/sql_cast.php');
 $c_id		=$_POST['c_id'];
-$cast_id	=$_POST['cast_id'];
 $st			=($_POST['pg']+0)*10;
-
 $st=0;
+$n=0;
 
-$now=date("Y-m-d H:i:s",$jst);
 
-$sql ="SELECT * FROM wp01_0encode"; 
-$enc0 = $wpdb->get_results($sql,ARRAY_A );
-foreach($enc0 as $row){
-	$enc[$row["key"]]				=$row["value"];
-	$dec[$row["gp"]][$row["value"]]	=$row["key"];
-}
-
-$id_8=substr("00000000".$cast_id,-8);
+$id_8=substr("00000000".$cast_data["id"],-8);
 $id_0	=$_SESSION["id"] % 20;
 
 for($n=0;$n<8;$n++){
 	$tmp_id=substr($id_8,$n,1);
 	$tmp_dir.=$dec[$id_0][$tmp_id];
-
 }
 
 $sql	 ="SELECT * FROM wp01_0castmail AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
-$sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_id}'";
+$sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_data["id"]}'";
 $sql	.=" AND M.del='0'";
 $sql	.=" ORDER BY mail_id DESC";
 $sql	.=" LIMIT {$st},10";
 
-$res = $wpdb->get_results($sql,ARRAY_A);
-$n=count($res)-1;
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
+	$row[$n]=$a1;
+	$row[$n]["log"]=str_replace("\n","<br>",$row[$n]["log"]);
+	$row[$n]["send_date"]=substr(str_replace("-",".",$row[$n]["send_date"]),0,16);
 
-$tmp_sql=$sql;
+	if($row[$n]["watch_date"] =='0000-00-00 00:00:00'){
+		$row[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
+		$row[$n]["new"]="<span class=\"mail_new\">NEW!</span>";
 
-foreach($res as $a1){
-	$dat[$n]=$a1;
-	$dat[$n]["log"]=str_replace("\n","<br>",$dat[$n]["log"]);
-	$dat[$n]["send_date"]=substr(str_replace("-",".",$dat[$n]["send_date"]),0,16);
-
-	if($dat[$n]["watch_date"] =='0000-00-00 00:00:00'){
-		$dat[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
-		$dat[$n]["new"]="<span class=\"mail_new\">NEW!</span>";
 	}else{
-		$dat[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
-		$dat[$n]["bg"]=1;
+		$row[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
+		$row[$n]["bg"]=1;
 	}
 
-	$dat[$n]["stamp"]=get_template_directory_uri()."/img/cast/".$tmp_dir."/m/".$dat[$n]["img_1"].".png";
-	
-	$n--;
+	$row[$n]["stamp"]="./img/cast/".$tmp_dir."/m/".$row[$n]["img_1"].".png";
+	$n++;
 }
 
 
 $sql	 ="UPDATE wp01_0castmail SET";
 $sql	.=" watch_date='{$now}'";
 $sql	.=" WHERE customer_id='{$c_id}'";
-$sql	.=" AND cast_id='{$cast_id}'";
+$sql	.=" AND cast_id='{$cast_data["id"]}'";
 $sql	.=" AND watch_date='0000-00-00 00:00:00'";
 $sql	.=" AND send_flg=2";
-$wpdb->query($sql);
+mysqli_query($mysqli,$sql);
 
 if($a1["face"]){
-$face=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$a1["face"]."?t_".time();
+	$face="./img/cast/".$tmp_dir."/c/".$a1["face"]."?t_".time();
 }else{
-$face=get_template_directory_uri()."/img/customer_no_img.jpg?t_".time();
+	$face="./img/customer_no_img.jpg?t_".time();
 }
+
 
 //$html=$tmp_sql;
 for($n=0;$n<count($dat);$n++){
 	if($dat[$n]["send_flg"] == 2){
-
-//	$dat[$n]["border"]="<div class=\"mail_border\">{$dat[$n]["watch_date"]}■{$dat[$n1]["watch_date"]}■{$dat[$n+1]["watch_date"]}■</div>";
-
 
 if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";

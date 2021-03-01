@@ -1,5 +1,6 @@
 <?
-require_once ("./post_inc.php");
+include_once('../library/sql_cast.php');
+
 $cast_id		=$_POST['cast_id'];
 $cast_name		=$_POST['cast_name'];
 
@@ -12,8 +13,7 @@ $customer_id	=$_POST['customer_id'];
 $customer_name	=$_POST['customer_name'];
 $customer_mail	=$_POST['customer_mail'];
 
-$now	=date("Y-m-d H:i:s",$jst);
-$now_dat=date("Y.m.d H:i",$jst);
+$now_dat		=date("Y.m.d H:i");
 
 $n0=($cast_id % 720)+1;
 $n1=rand(1, 720);
@@ -21,15 +21,6 @@ $n2=rand(1, 720);
 $n3=rand(1, 720);
 $n4=($customer_id % 720)+1;
 $n5=rand(1, 9);
-
-$sql ="SELECT * FROM wp01_0encode"; 
-$enc0 = $wpdb->get_results($sql,ARRAY_A );
-
-foreach($enc0 as $row){
-	$enc[$row["key"]]				=$row["value"];
-	$dec[$row["gp"]][$row["value"]]	=$row["key"];
-	$rnd[$row["id"]]				=$row["value"];
-}
 
 $ssid_key.=$rnd[$n0].$rnd[$n1].$rnd[$n2].$rnd[$n3].$rnd[$n4].$dec[$n5][$send];
 
@@ -46,7 +37,8 @@ if($send==1){
 	$sql	.="(ssid,cast_id,customer_id,`date`,`mail`)";
 	$sql	.="VALUES";
 	$sql	.="('{$ssid_key}','{$cast_id}','{$customer_id}','{$now}','{$customer_mail}')";
-	$wpdb->query($sql);
+
+	mysqli_query($mysqli,$sql);
 
 //------------------------------------------------
 
@@ -88,17 +80,18 @@ if($send==1){
 	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$sid}'";
 	$sql	.=" LIMIT 1";
-	$ssid		=$wpdb->get_row($sql,ARRAY_A);
 
-	$customer_id=$ssid["customer_id"];
-	$cast_id	=$ssid["cast_id"];
+	if($result = mysqli_query($mysqli,$sql)){
+		$row = mysqli_fetch_assoc($result);
+
+		$customer_id=$row["customer_id"];
+		$cast_id	=$row["cast_id"];
+	}
 }
 
 
 if($img_code){
 	$link	="../img/cast/".$tmp_dir."/m/".$ssid_key.".png";
-	$res	=get_template_directory_uri()."/img/cast/".$tmp_dir."/m/".$ssid_key.".png";
-
 	$img2	=imagecreatetruecolor(600,600);
 	$img	=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);
@@ -110,7 +103,7 @@ $sql	 ="INSERT INTO wp01_0castmail";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
 $sql	.="VALUES";
 $sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img_key}')";
-$wpdb->query($sql);
+mysqli_query($mysqli,$sql);
 
 $log=str_replace("\n","<br>",$log);
 
@@ -121,7 +114,7 @@ $dat.=$log;
 $dat.="</div>";
 
 if($img_code){
-$dat.="<img src=\"{$res}\" class=\"mail_box_stamp\">";		
+$dat.="<img src=\"{$link}\" class=\"mail_box_stamp\">";		
 }
 $dat.="</div>";
 $dat.="<span class=\"mail_box_date_b\"><span class=\"midoku\">未読</span>　{$now_dat}</span>";		

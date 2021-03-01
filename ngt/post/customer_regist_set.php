@@ -1,9 +1,5 @@
 <?
-/*
-顧客情報読み込み
-*/
-require_once ("./post_inc.php");
-$regist_date=date("Y-m-d H:i:s",$jst);
+include_once('../library/sql_cast.php');
 
 $group	=$_POST["group"];
 $name	=$_POST["name"];
@@ -12,7 +8,6 @@ $fav	=$_POST["fav"];
 $cast_id=$_POST["cast_id"];
 $img	=$_POST["img"];
 $vw_base=$_POST["vw_base"];
-
 
 $yy	=$_POST["yy"];
 $mm	=$_POST["mm"];
@@ -58,20 +53,6 @@ $wpdb->query($sql);
 
 
 if($img_code){
-	$sql ="SELECT * FROM wp01_0encode"; 
-	$enc0 = $wpdb->get_results($sql,ARRAY_A );
-	foreach($enc0 as $row){
-		$enc[$row["key"]]				=$row["value"];
-		$dec[$row["gp"]][$row["value"]]	=$row["key"];
-	}
-
-	$id_8=substr("00000000".$cast_id,-8);
-	$id_0	=$cast_id % 20;
-
-	for($n=0;$n<8;$n++){
-		$tmp_id=substr($id_8,$n,1);
-		$tmp_dir.=$dec[$id_0][$tmp_id];
-	}
 
 	for($n=0;$n<strlen($tmp_auto);$n++){
 		$cus=substr($tmp_auto,$n,1);
@@ -80,9 +61,7 @@ if($img_code){
 	}
 
 	$clist.=".png";
-	$res=get_template_directory_uri()."/img/cast/".$tmp_dir."/c/".$clist;
-	$link="../img/cast/".$tmp_dir."/c/".$clist;
-
+	$link="../img/cast/{$box_no}/c/".$clist;
 	$img2 		= imagecreatetruecolor(300,300);
 
 /*
@@ -96,6 +75,10 @@ if($img_code){
 	if($img_rote ==90){
 		$new_img = imagecreatefromstring(base64_decode($img_code));	
 		$img = imagerotate($new_img, 270, 0, 0);
+
+	}elseif($img_rote ==180){
+		$new_img = imagecreatefromstring(base64_decode($img_code));
+		$img = imagerotate($new_img, 180, 0, 0);
 
 	}elseif($img_rote ==270){
 		$new_img = imagecreatefromstring(base64_decode($img_code));
@@ -116,7 +99,7 @@ if($img_code){
 	$html_img.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$clist}\">";
 
 }else{
-//	$html_img="<img src=\"{php echo get_template_directory_uri();}/img/customer_no_img.jpg\" class=\"mail_img\">";
+	$html_img="<img src=\"./img/customer_no_img.jpg\" class=\"mail_img\">";
 }
 
 

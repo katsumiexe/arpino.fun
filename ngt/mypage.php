@@ -1,8 +1,13 @@
 <?
-//ini_set( 'display_errors', 1 );
-//ini_set('error_reporting', E_ALL);
-
 include_once('./library/sql_cast.php');
+
+$week[0]="日";
+$week[1]="月";
+$week[2]="火";
+$week[3]="水";
+$week[4]="木";
+$week[5]="金";
+$week[6]="土";
 
 //Sche-----------------------
 if($_SESSION){
@@ -34,9 +39,6 @@ if(!$ana_ym) $ana_ym=date("Ym");
 $week_01		=date("w",strtotime($c_month));
 
 $ana_line[$config["start_week"]]=" ana_line";
-
-
-
 
 $cast_page=$_POST["cast_page"]+0;
 
@@ -377,13 +379,15 @@ $sql	.=" AND group_id='1'";
 $sql	.=" AND cast_id='{$_SESSION["id"]}'";
 $sql	.=" ORDER BY `sort` ASC";
 
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$cus_group_sel[$row["sort"]]=$row["tag"];
 	}
+	if(is_array($cus_group_sel)){
+		$cnt_cus_group_sel=count($cus_group_sel);
+	}
 }
-
-
 
 //■Blog------------------
 $sql ="SELECT * FROM wp01_posts";
@@ -414,9 +418,34 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+$sql	 ="SELECT nickname, M.customer_id, C.mail, M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
+$sql	.=" FROM wp01_0castmail AS M";
+$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
+$sql	.=" LEFT JOIN wp01_0castmail AS M2 ON (M.customer_id = M2.customer_id AND M.send_date < M2.send_date)";
+$sql	.=" WHERE M.cast_id='{$cast_data["id"]}'";
+$sql	.=" AND M2.send_date IS NULL";
+$sql	.=" AND M.del='0'";
+$sql	.=" GROUP BY M.customer_id";
+$sql	.=" ORDER BY last_date DESC";
+$n=0;
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		$row["log_p"]=mb_substr($row["log"],0,39);
+		if(mb_strlen($row["log"])>39){
+			$row["log_p"].="...";
+		}
+		$row["last_date"]=date("m.d H:i",strtotime($row["last_date"]));
+		$mail_data[]=$row;
+	}
+	if(is_array($mail_data)){
+		$cnt_mail_data=count($mail_data);
+	}
+}
+
 //■------------------
 $sql ="SELECT * FROM wp01_0cast_log_table";
-$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -448,7 +477,8 @@ if($dat){
 }
 
 }
-echo "▲-------------▲";
+
+
 ?>
 <html lang="ja">
 <head>
@@ -458,7 +488,7 @@ echo "▲-------------▲";
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url(./font/font_0/fonts/icomoon.ttf) format('truetype');
+	src: url("./font/font_0/fonts/icomoon.ttf") format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -685,8 +715,10 @@ $(function(){
 		</div>
 		<select id="customer_sort_fil" class="customer_sort_sel">
 		<option value="0">全て</option>
-		<?foreach($cus_group_sel as $a1=>$a2){?>
-		<option value="<?=$a1?>" <?if($c_sort["c_sort_group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
+		<?if($cnt_cus_group_sel>0){?>
+			<?foreach($cus_group_sel as $a1=>$a2){?>
+				<option value="<?=$a1?>" <?if($c_sort["c_sort_group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
+			<?}?>
 		<?}?>
 		</select>
 		<span class="customer_sort_tag"></span>
@@ -781,7 +813,9 @@ $(function(){
 					<div class="filter_tag_label">タグ</div>
 					<div class="filter_tag">
 						<span id="filter_tag_99" class="filter_tag_in">全て</span>
-						<?foreach((array)$cus_group_sel as $a1=>$a2){?><span id="filter_tag_<?=$a1?>" class="filter_tag_in"><?=$a2?></span>
+						<?if($cnt_cus_group_sel > 0){?>
+							<?foreach($cus_group_sel as $a1=>$a2){?><span id="filter_tag_<?=$a1?>" class="filter_tag_in"><?=$a2?></span>
+						<?}?>
 						<?}?>
 					</div>
 				</div>
@@ -805,8 +839,10 @@ $(function(){
 				<td id="" class="customer_base_item">
 				<select id="customer_group" name="cus_group" value="" class="item_group cas_set">
 				<option value="0">通常</option>
-				<?foreach((array)$cus_group_sel as $a1=>$a2){?>
+				<?if($cnt_cus_group_sel > 0){?>
+				<?foreach($cus_group_sel as $a1=>$a2){?>
 				<option value="<?=$a1?>"><?=$a2?></option>
+				<?}?>
 				<?}?>
 				</select>
 				</td>
@@ -900,8 +936,10 @@ $(function(){
 
 	<?}elseif($cast_page==3){?>
 	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
+
 	<div class="main">
-		<?for($n=0;$n<count($mail_data);$n++){?>
+
+		<?for($n=0;$n<$cnt_mail_data;$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 				<?if($mail_data[$n]["face"]){?>
 					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
@@ -1033,15 +1071,14 @@ $(function(){
 				</div>
 				<? } ?>
 
-				<?if(count($tmp)>10){?>
-				<div class="blog_ad"><img src="<?=get_template_directory_uri()."/img/ad/bn.jpg?t=".time()?>" style="width:100%;"></div>
+				<?if($blog_max>10){?>
+				<div class="blog_ad"><img src="./img/page/ad/bn.jpg?t=<?=time()?>" style="width:100%;"></div>
 				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
 				<? } ?>
 			</div>
-
 		</div>
-	<?}elseif($cast_page==5){?>
 
+	<?}elseif($cast_page==5){?>
 <div class="main">
 	<div class="config_box">
 		<table class="ana">
@@ -1234,6 +1271,7 @@ $(function(){
 </thead>
 
 <tbody id="gp_sort">
+	<?if($cnt_cus_group_sel > 0){?>
 	<?foreach($cus_group_sel as $a1 => $a2){?>
 		<tr id="gp<?=$a1?>">
 			<td class="log_td_del"><span class="gp_del_in"></span></td>
@@ -1244,6 +1282,7 @@ $(function(){
 			</td>
 			<td class="gp_handle"></td>
 		</tr>
+	<?}?>
 	<?}?>
 </tbody>
 
@@ -1257,7 +1296,7 @@ $(function(){
 		<td class="log_td_handle"><span id="gp_set"></span></td>
 	</tr>
 </table>
-<input id="count_gp" type="hidden" value="<?=count($cus_group_sel)?>">
+<input id="count_gp" type="hidden" value="<?=$cnt_cus_group_sel?>">
 </div>
 <h2 class="h2_config"><div class="h2_config_1"></div><div class="h2_config_2"></div><div class="h2_config_3"></div><span class="h2_config_4">履歴アイテム設定</span></div></h2>
 <div class="config_box">
@@ -1416,13 +1455,13 @@ $(function(){
 <?for($s=0;$s<count($sche_table_name["in"]);$s++){?><option value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
 <?}?>
 </select>
-						<select id="sel_out<?=$n?>" name="sel_out<?=$n?>" class="sch_time_out">
-							<option class="sel_txt" value=""></option>
-							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
-								<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
-							<?}?>
-						</select>
 
+<select id="sel_out<?=$n?>" name="sel_out<?=$n?>" class="sch_time_out">
+<option class="sel_txt" value=""></option>
+<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
+<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
+<?}?>
+</select>
 						<? } ?>
 					</div>
 				<? } ?>
@@ -1496,8 +1535,10 @@ $(function(){
 					<td id="" class="customer_base_item">
 				<select id="regist_group" name="cus_group" value="0" class="item_group">
 				<option value="0">通常</option>
+				<?if($cnt_cus_group_sel > 0){?>
 				<?foreach($cus_group_sel as $a1=>$a2){?>
 				<option value="<?=$a1?>"><?=$a2?></option>
+				<?}?>
 				<?}?>
 				</select>
 				</td>
@@ -1691,6 +1732,7 @@ $(function(){
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?=$c_month?>" name="c_month">
 </form>
+
 <form id="sns_form" action="" method="post">
 	<input id="sns_form_hidden" type="hidden" name="cast_page" value="">
 	<input id="sns_form_customer" type="hidden" name="c_id" value="">

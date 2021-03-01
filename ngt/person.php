@@ -147,7 +147,7 @@ include_once('./header.php');
 <?if(!$err){?>
 	<span class="footmark_icon"></span>
 	<span class="footmark_icon"></span>
-	<span class="footmark_text"><?=$a1["genji"]?></span>
+	<span class="footmark_text"><?=$cast_data["genji"]?></span>
 <?}?>
 </div>
 <div class="person_main">

@@ -75,8 +75,6 @@ if($res = mysqli_query($mysqli,$sql)){
 	}
 }
 
-echo $sql;
-
 $pg_max=ceil($cate_all/16);
 if($pg_max<=5 && $pg_max>1){
 	$p_list.="<div class=\"page_box\">";

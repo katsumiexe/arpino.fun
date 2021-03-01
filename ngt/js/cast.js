@@ -84,7 +84,7 @@ $(function(){
 			if(Tmp == 2){
 				$('.customer_memo_set').show();
 				$.post({
-					url:Dir + "/post/customer_memo_read.php",
+					url:"./post/customer_memo_read.php",
 					data:{
 						'cast_id'	:CastId,
 						'c_id':C_Id,
@@ -105,7 +105,7 @@ $(function(){
 			if(Tmp == 3){
 				$('.customer_log_set').show();
 				$.post({
-					url:Dir + "/post/customer_log_read.php",
+					url:"./post/customer_log_read.php",
 					data:{
 						'cast_id'	:CastId,
 						'c_id':C_Id,
@@ -193,7 +193,7 @@ $(function(){
 		bId=$(this).attr('id').replace('blog_next_','');
 
 		$.post({
-			url:Dir + "/post/blog_reload.php",
+			url:"./post/blog_reload.php",
 			data:{
 				'cast_id':CastId,
 				'blog_id':bId,
@@ -219,7 +219,7 @@ $(function(){
 		}
 
 		$.post({
-			url:Dir + "/post/customer_detail_set3.php",
+			url:"./post/customer_detail_set3.php",
 			data:{
 			'c_id'		:C_Id,
 			'fav'		:Fav,
@@ -267,7 +267,7 @@ $(function(){
 
 	$('#tag_1_tbl').on('change','.item_textbox,.rd',function(){
 		$.post({
-			url:Dir + "/post/customer_detail_set4.php",
+			url:"./post/customer_detail_set4.php",
 			data:{
 				'c_id'		:C_Id,
 				'cast_id'	:CastId,
@@ -291,7 +291,7 @@ $(function(){
 		Customer_mail=$(this).children('.mail_address').val();
 
 		$.post({
-			url:Dir + "/post/easytalk_hist.php",
+			url:"./post/easytalk_hist.php",
 			data:{
 				'cast_id'	:CastId,
 				'c_id'		:Customer_id
@@ -362,7 +362,7 @@ $(function(){
 
 	$('#customer_regist_set').on('click',function () {
 		$.post({
-			url:Dir + "/post/customer_regist_set.php",
+			url:"./post/customer_regist_set.php",
 			data:{
 				'cast_id'	:CastId,
 				'group'		:$('#regist_group').val(),
@@ -787,7 +787,7 @@ $(function(){
 		$('.menu').css({'heigh':'100vh'});
 
 		$.post({
-			url:Dir + "/post/customer_detail_read.php",
+			url:"./post/customer_detail_read.php",
 			data:{
 				'c_id':C_Id,
 			},
@@ -805,7 +805,7 @@ $(function(){
 
 		$('#blog_hist_'+$('#blog_chg').val()).remove();
 		$.post({
-			url:Dir + "/post/blog_set.php",
+			url:"./post/blog_set.php",
 			data:{
 				'cast_id':CastId,
 				'ttl':$('#blog_title').val(),
@@ -837,7 +837,7 @@ $(function(){
 
 	$('.sns_btn').on('click',function(){
 		$.post({
-			url:Dir + "/post/customer_sns_set.php",
+			url:"./post/customer_sns_set.php",
 			data:{
 				'c_id':C_Id,
 				'text':$('.sns_text').val(),
@@ -1021,7 +1021,7 @@ $(function(){
 			$('#wait').show();
 		
 			$.post({
-				url:Dir + "/post/img_set.php",
+				url:"./post/img_set.php",
 				data:{
 					'cast_id'	:CastId,
 					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
@@ -1201,7 +1201,7 @@ $(function(){
 		console.log(Tmp_2);
 
 		$.post({
-			url:Dir + "/post/sch_set.php",
+			url:"./post/sch_set.php",
 			data:{
 				'cast_id':$('#cast_id').val(),
 				'base_day':$('#base_day').val(),
@@ -1324,7 +1324,7 @@ $(function(){
 		Log=$('.customer_memo_new_txt').val();
 		var TmpMemoId=$('#memo_chg_id').val()
 		$.post({
-			url:Dir + "/post/customer_memo_set.php",
+			url:"./post/customer_memo_set.php",
 			data:{
 				'cast_id'	:CastId,
 				'c_id'		:C_Id,
@@ -1384,7 +1384,7 @@ $(function(){
 
 	$('.mail_detail_btn_send').on('click',function(){
 		$.post({
-			url:Dir + "/post/easytalk_send.php",
+			url:"./post/easytalk_send.php",
 			data:{
 				'log'			:$('.mail_write_text').val(),
 				'send'			:'1',
@@ -1414,7 +1414,7 @@ $(function(){
 
 	$('#log_list_del_set').on('click',function () {
 		$.post({
-			url:Dir + "/post/log_item_del.php",
+			url:"./post/log_item_del.php",
 			data:{
 				'cast_id'	:CastId,
 				'list_id'	:Tmp_DelList,
@@ -1467,7 +1467,7 @@ $(function(){
 		}
 
 		$.post({
-			url:Dir + "/post/customer_detail_set.php",
+			url:"./post/customer_detail_set.php",
 			data:{
 			'c_id'		:C_Id,
 			'id'		:$(this).attr('id'),
@@ -1479,7 +1479,7 @@ $(function(){
 
 	$('.cas_set2').on('change',function () {
 		$.post({
-			url:Dir + "/post/customer_detail_set2.php",
+			url:"./post/customer_detail_set2.php",
 			data:{
 			'c_id'		:C_Id,
 			'id'		:$(this).attr('id'),
@@ -1503,7 +1503,7 @@ $(function(){
 
 	$('#memo_del_set').on('click',function () {
 		$.post({
-			url:Dir + "/post/customer_memo_del.php",
+			url:"./post/customer_memo_del.php",
 			data:{
 				'cast_id'	:CastId,
 				'c_id'		:C_Id,
@@ -1536,7 +1536,7 @@ $(function(){
 
 	$('.cal').on('click','.cal_prev',function () {
 		$.post({
-			url:Dir + "/post/calendar_set.php",
+			url:"./post/calendar_set.php",
 			data:{
 				'c_month'	:$('#c_month').val(),
 				'week_start':$('#week_start').val(),
@@ -1585,7 +1585,7 @@ $(function(){
 		$(this).addClass('notice_box_sel');
 
 		$.post({
-			url:Dir + "/post/notice_ck.php",
+			url:"./post/notice_ck.php",
 			data:{
 				'n_id':Nid,
 				'cast_id':CastId,
@@ -1596,7 +1596,7 @@ $(function(){
 
 	$('.cal').on('click','.cal_next',function () {
 		$.post({
-			url:Dir + "/post/calendar_set.php",
+			url:"./post/calendar_set.php",
 			data:{
 				'c_month':$('#c_month').val(),
 				'week_start':$('#week_start').val(),
@@ -1615,7 +1615,7 @@ $(function(){
 	$('.cal_weeks_prev').on('click',function (){
 /*		$('.cal_weeks_box_2').animate({'top':'0'},2000);*/
 		$.post({
-			url:Dir + "/post/chg_weeks.php",
+			url:"./post/chg_weeks.php",
 			data:{
 				'c_month':$('#c_month').val(),
 				'base_day':$('#base_day').val(),
@@ -1638,7 +1638,7 @@ $(function(){
 	$('.cal_weeks_next').on('click',function (){
 /*		$('.cal_weeks_box_2').animate({'top':'-73.5vw'},200);*/
 		$.post({
-			url:Dir + "/post/chg_weeks.php",
+			url:"./post/chg_weeks.php",
 			data:{
 				'c_month':$('#c_month').val(),
 				'base_day':$('#base_day').val(),
@@ -1666,7 +1666,7 @@ $(function(){
 				$('.cal_weeks_box_2').animate({'top':'0'},100);
 
 				$.post({
-					url:Dir + "/post/chg_weeks.php",
+					url:"./post/chg_weeks.php",
 					data:{
 						'c_month':$('#c_month').val(),
 						'base_day':$('#base_day').val(),
@@ -1685,7 +1685,7 @@ $(function(){
 				$('.cal_weeks_box_2').animate({'top':'-147vw'},100);
 
 				$.post({
-					url:Dir + "/post/chg_weeks.php",
+					url:"./post/chg_weeks.php",
 					data:{
 						'c_month':$('#c_month').val(),
 						'base_day':$('#base_day').val(),
@@ -1717,7 +1717,7 @@ $(function(){
 			if(ui.position.left > VwBase*(-90)){/*■先月*/
 				$('.cal').animate({'left':'0'},200);
 				$.post({
-					url:Dir + "/post/calendar_set.php",
+					url:"./post/calendar_set.php",
 					data:{
 						'c_month':$('#c_month').val(),
 						'week_start':$('#week_start').val(),
@@ -1742,7 +1742,7 @@ $(function(){
 			}else if(ui.position.left < VwBase*(-110)){/*■来月*/
 				$('.cal').animate({'left':'-200vw'},200);
 				$.post({
-					url:Dir + "/post/calendar_set.php",
+					url:"./post/calendar_set.php",
 					data:{
 						'c_month':$('#c_month').val(),
 						'week_start':$('#week_start').val(),
@@ -1781,7 +1781,7 @@ $(function(){
 		$(this).parent().parent().next().css('color',Clr);
 
 		$.post({
-			url:Dir + "/post/log_item_chg.php",
+			url:"./post/log_item_chg.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1809,7 +1809,7 @@ $(function(){
 		$('.color_picker,.icon_picker').slideUp(100);
 
 		$.post({
-			url:Dir + "/post/log_item_chg.php",
+			url:"./post/log_item_chg.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1825,7 +1825,7 @@ $(function(){
 		Tmp=$(this).attr('id').replace('item_name_','');
 		Cds=$(this).val();
 		$.post({
-			url:Dir + "/post/log_item_chg.php",
+			url:"./post/log_item_chg.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1840,7 +1840,7 @@ $(function(){
 		Tmp=$(this).attr('id').replace('item_price_','');
 		Cds=$(this).val();
 		$.post({
-			url:Dir + "/post/log_item_chg.php",
+			url:"./post/log_item_chg.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1855,7 +1855,7 @@ $(function(){
 		Tmp=$('#count_gp').val()-0+1;
 		Cds=$(this).val();
 		$.post({
-			url:Dir + "/post/gp_set.php",
+			url:"./post/gp_set.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1873,7 +1873,7 @@ $(function(){
 		Tmp=$(this).attr('id').replace('gp_name_','');
 		Cds=$(this).val();
 		$.post({
-			url:Dir + "/post/gp_chg.php",
+			url:"./post/gp_chg.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1888,7 +1888,7 @@ $(function(){
 		Tmp=$(this).attr('id').replace('gp_name_','');
 		Cds=$(this).val();
 		$.post({
-			url:Dir + "/post/gp_del.php",
+			url:"./post/gp_del.php",
 			data:{
 			'sort'		:Tmp,
 			'cast_id'	:CastId,
@@ -1902,7 +1902,7 @@ $(function(){
 	$('#config_week_start').on('change',function (){
 		Tmp=String($(this).val());
 		$.post({
-			url:Dir + "/post/config_week_chg.php",
+			url:"./post/config_week_chg.php",
 			data:{
 			'week'		:Tmp,
 			'cast_id'	:CastId,
@@ -1916,7 +1916,7 @@ $(function(){
 	$('#config_day_start').on('change',function (){
 		Tmp=String($(this).val());
 		$.post({
-			url:Dir + "/post/config_day_chg.php",
+			url:"./post/config_day_chg.php",
 			data:{
 			'times'		:Tmp,
 			'cast_id'	:CastId,
@@ -1933,7 +1933,7 @@ $(function(){
 		$('.'+TmpCal).removeClass(TmpCal);
 
 		$.post({
-			url:Dir + "/post/calendar_memo_set.php",
+			url:"./post/calendar_memo_set.php",
 			data:{
 			'set_date'	:$('#set_date').val(),
 			'cast_id'	:CastId,
@@ -2053,7 +2053,7 @@ $(function(){
 				ItemColor[i]=$('#item_color_hidden_'+i).val();
 			}
 			$.post({
-				url:Dir + "/post/log_item_set.php",
+				url:"./post/log_item_set.php",
 				data:{
 				'cast_id'		:CastId,
 				'chglist[]'		:ChgList,
@@ -2096,7 +2096,7 @@ $(function(){
 				ItemColor[i]=$('#item_color_hidden_'+i).val();
 			}
 			$.post({
-				url:Dir + "/post/gp_sort.php",
+				url:"./post/gp_sort.php",
 				data:{
 				'cast_id'		:CastId,
 				'chglist[]'		:ChgList,
@@ -2128,7 +2128,7 @@ $(function(){
 		}
 
 		$.post({
-			url:Dir + "/post/log_item_set.php",
+			url:"./post/log_item_set.php",
 			data:{
 			'cast_id'		:CastId,
 			'chglist[]'		:ChgList,
@@ -2149,7 +2149,7 @@ $(function(){
 
 	$('#new_set').on('click',function(){
 		$.post({
-			url:Dir + "/post/log_item_new.php",
+			url:"./post/log_item_new.php",
 			data:{
 			'cast_id'		:CastId,
 			'price'			:$('#price_new').val(),
@@ -2191,7 +2191,7 @@ $(function(){
 
 /*
 		$.post({
-			url:Dir + "/post/log_select_set.php",
+			url:"./post/log_select_set.php",
 			data:{
 			'cast_id'	:CastId,
 			'color'		:$(this).css('color'),
@@ -2236,7 +2236,7 @@ $(function(){
 		});
 
 		$.post({
-			url:Dir + "/post/customer_log_set.php",
+			url:"./post/customer_log_set.php",
 			data:{
 
 			'chg'	:Chg,
@@ -2285,7 +2285,7 @@ $(function(){
 
 	$('#log_del_set').on('click',function () {
 		$.post({
-			url:Dir + "/post/customer_log_set.php",
+			url:"./post/customer_log_set.php",
 			data:{
 			'del'		:Chg,
 			'cast_id'	:CastId,
@@ -2325,7 +2325,7 @@ $(function(){
 
 	$('.customer_sort_sel').on('change',function(){
 		$.post({
-			url:Dir + "/post/customer_sort.php",
+			url:"./post/customer_sort.php",
 			data:{
 			'sel'		:$('#customer_sort_sel').val(),
 			'fil'		:$('#customer_sort_fil').val(),
@@ -2352,7 +2352,7 @@ $(function(){
 		$('#customer_sort_asc').val('0');
 
 		$.post({
-			url:Dir + "/post/customer_sort.php",
+			url:"./post/customer_sort.php",
 			data:{
 			'sel'		:$('#customer_sort_sel').val(),
 			'fil'		:$('#customer_sort_fil').val(),
@@ -2379,7 +2379,7 @@ $(function(){
 		$('#customer_sort_asc').val('1');
 
 		$.post({
-			url:Dir + "/post/customer_sort.php",
+			url:"./post/customer_sort.php",
 			data:{
 			'sel'		:$('#customer_sort_sel').val(),
 			'fil'		:$('#customer_sort_fil').val(),

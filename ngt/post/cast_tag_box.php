@@ -2,7 +2,7 @@
 /*
 通常ページ　CAST読み込み
 */
-include_once('./library/sql.php');
+include_once('../library/sql.php');
 $date		=$_POST['date'];
 
 $sql=" SELECT * FROM wp01_0sch_table";

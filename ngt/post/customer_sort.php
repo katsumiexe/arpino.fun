@@ -1,32 +1,11 @@
 <?
-/*
-BlogSet
-*/
-require_once ("./post_inc.php");
-$date_gmt=date("Y-m-d H:i:s");
-$now_ymd	=date("Ymd",$jst);
+include_once('../library/sql_cast.php');
 
-require_once ("./post_inc.php");
 $cast_id	=$_POST["cast_id"];
 $sel		=$_POST["sel"]+0;
 $fil		=$_POST["fil"];
 $asc		=$_POST["asc"];
 $ext		=$_POST["ext"];
-
-$sql ="SELECT * FROM wp01_0encode"; 
-$enc0 = $wpdb->get_results($sql,ARRAY_A );
-foreach($enc0 as $row){
-	$enc[$row["key"]]				=$row["value"];
-	$dec[$row["gp"]][$row["value"]]	=$row["key"];
-}
-
-$id_8=substr("00000000".$_SESSION["id"],-8);
-$id_0	=$_SESSION["id"] % 20;
-
-for($n=0;$n<8;$n++){
-	$tmp_id=substr($id_8,$n,1);
-	$box_no.=$dec[$id_0][$tmp_id];
-}
 
 	if($fil>0){
 		$app1=" AND c_group={$fil}";
@@ -87,20 +66,20 @@ if($ext){
 	$sql.=" c_sort_main='{$sel}',";
 	$sql.=" c_sort_asc='{$asc}',";
 	$sql.=" c_sort_group='{$fil}'";
-	$sql.=" WHERE cast_id='{$cast_id}'";
-	$wpdb->query($sql);
+	$sql.=" WHERE cast_id='{$cast_data["id"]}'";
+	mysqli_query($mysqli,$sql);
 
 }else{
 	$sql="INSERT INTO wp01_0cast_config ";
 	$sql.="(cast_id, c_sort_main, c_sort_asc, c_sort_group)";
 	$sql.="VALUES";
-	$sql.="('{$cast_id}','{$sel}','{$asc}','{$fil}')";
-	$wpdb->query($sql);
+	$sql.="('{$cast_data["id"]}','{$sel}','{$asc}','{$fil}')";
+	mysqli_query($mysqli,$sql);
 }
 
 $sql	 ="SELECT *{$app5} FROM wp01_0customer";
 $sql	.=$app4;
-$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
+$sql	.=" WHERE wp01_0customer.cast_id='{$cast_data["id"]}'";
 $sql	.=$app1;
 $sql	.=" GROUP BY wp01_0customer.id";
 $sql	.=" ORDER BY";
@@ -131,13 +110,14 @@ if($fil>0){
 	$html.="<div class=\"sort_alert\">非表示になっている顧客がいます</div>";
 }
 */
+
 for($n=0;$n<$s;$n++){
 	$html.="<div id=\"clist{$customer[$n]["id"]}\" class=\"customer_list\">";
 	if($customer[$n]["face"]){
-		$html.="<img src=\"".get_template_directory_uri()."/img/cast/".$box_no."/c/".$customer[$n]["face"]."?t_".time()."\" class=\"mail_img\">";
+		$html.="<img src=\"./img/cast/{$box_no}/c/{$customer[$n]["face"]}?t_{time()}\" class=\"mail_img\">";
 		$html.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$customer[$n]["face"]}\">";
 	}else{
-		$html.="<img src=\"".get_template_directory_uri()."/img/customer_no_img.jpg?t_".time()."\" class=\"mail_img\">";
+		$html.="<img src=\"./img/customer_no_img.jpg?t_{time()}\" class=\"mail_img\">";
 	}
 		$html.="<div class=\"customer_list_fav\">";
 
@@ -170,7 +150,6 @@ for($n=0;$n<$s;$n++){
 	$html.="</div>";
 }
 
-//echo $sql;
 echo $html;
 exit();
 ?>
