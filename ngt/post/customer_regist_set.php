@@ -51,9 +51,7 @@ foreach($dat as $a1){
 $sql=substr($sql,0,-1);
 $wpdb->query($sql);
 
-
 if($img_code){
-
 	for($n=0;$n<strlen($tmp_auto);$n++){
 		$cus=substr($tmp_auto,$n,1);
 		$rnd=rand(0,19);
