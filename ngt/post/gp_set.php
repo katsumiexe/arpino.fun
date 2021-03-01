@@ -1,18 +1,11 @@
 <?
-/*
-GpSet
-*/
-
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
+include_once('../library/sql_cast.php');
 $name		=$_POST["name"];
 $group_id	=$_POST["sort"];
 
 $sql	 =" INSERT INTO wp01_0customer_group(`group_id`,`cast_id`,`sort`,`tag`)";
-$sql	.=" VALUES('1','{$cast_id}','{$group_id}','{$name}')";
-$wpdb->query($sql);
+$sql	.=" VALUES('1','{$cast_data["id"]}','{$group_id}','{$name}')";
+mysqli_query($mysqli,$sql)
 
 $list.="<tr id=\"gp{$group_id}\">";
 $list.="<td class=\"log_td_del\"><span class=\"gp_del_in\"></span></td>";

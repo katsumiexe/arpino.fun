@@ -1,33 +1,26 @@
 <?
-/*
-Itemchg
-*/
-
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
+include_once('../library/sql_cast.php');
 $name		=$_POST["name"];
 $sort		=$_POST["sort"];
 
 $sql =" UPDATE wp01_0customer_group SET";
 $sql.=" del='1'";
 $sql.=" WHERE sort='{$sort}'";
-$sql.=" AND cast_id='{$cast_id}'";
-$wpdb->query($sql);
-$n=0:
+$sql.=" AND cast_id='{$cast_data["id"]}'";
+mysqli_query($mysqli,$sql)
 
+$n=0:
 $sql =" SELECT sort tag FROM wp01_0customer_group";
 $sql.=" WHERE del='0'";
-$sql.=" AND cast_id='{$cast_id}'";
+$sql.=" AND cast_id='{$cast_data["id"]}'";
 $sql.=" ORDER BY sort ASC";
-$res = $wpdb->get_results($sql,ARRAY_A );
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
 
-foreach($res as $row){
 	$sql =" UPDATE wp01_0customer_group SET";
 	$sql.=" sort='{$n}'";
 	$sql.=" WHERE id='{$row[$id]}'";
-	$wpdb->query($sql);
+	mysqli_query($mysqli,$sql)
 
 	$html.="<tr id=\"gp{$n}\">";
 	$html.="<td class=\"log_td_del\"><span class=\"gp_del_in\"></span></td>";
@@ -42,4 +35,3 @@ foreach($res as $row){
 echo $html;
 exit();
 ?>
-
