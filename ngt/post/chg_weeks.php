@@ -2,10 +2,7 @@
 /*
 スケジュールスライドセット処理
 */
-session_start();
-ini_set('display_errors',1);
-require_once ("../../../../wp-load.php");
-global $wpdb;
+include_once('../library/sql_cast.php');
 
 $week[0]="日";
 $week[1]="月";
@@ -24,9 +21,6 @@ $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
 
 $pre		=$_POST["pre"];
-$cast_id	=$_POST["cast_id"];
-
-$base_now=strtotime(date("Y-m-d 00:00:00"));
 
 if($pre ==1){
 	$base_day			=$_POST["base_day"]-604800;
@@ -36,12 +30,14 @@ if($pre ==1){
 	$base_day_ed_sql	=date("Ymd",$add_day+86400*7);
 	
 	$sql	 ="SELECT * FROM wp01_0schedule";
-	$sql	.=" WHERE cast_id='{$cast_id}'";
+	$sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 	$sql	.=" AND sche_date>='{$base_day_sql}'";
 	$sql	.=" AND sche_date<'{$base_day_ed_sql}'";
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp2){
+
+
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}
@@ -54,14 +50,16 @@ if($pre ==1){
 	$base_day_ed_sql	=date("Ymd",$add_day+86400*7);
 
 	$sql	 ="SELECT * FROM wp01_0schedule";
-	$sql	.=" WHERE cast_id='{$cast_id}'";
+	$sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 	$sql	.=" AND sche_date>='{$base_day_sql}'";
 	$sql	.=" AND sche_date<'{$base_day_ed_sql}'";
+	$sql	.=" ORDER BY id ASC";
 
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $tmp2){
-		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
-		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$stime[$row["sche_date"]]		=$row["stime"];
+			$etime[$row["sche_date"]]		=$row["etime"];
+		}
 	}
 }
 
@@ -70,10 +68,11 @@ $cal["date"]=$base_day;
 
 $sql ="SELECT * FROM wp01_0sch_table";
 $sql.=" ORDER BY sort ASC";
-$dat = $wpdb->get_results($sql,ARRAY_A );
-foreach($dat as $tmp){
-	$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
-	$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
+		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+	}
 }
 
 $week_start=date("w",$base_day);

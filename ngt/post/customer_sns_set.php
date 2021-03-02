@@ -1,21 +1,20 @@
 <?
 /*
-SNSセット処理
+SNSセット
 */
-ini_set('display_errors',1);
-require_once ("../../../../wp-load.php");
-global $wpdb;
+include_once('../library/sql_cast.php');
+$n_id	=$_POST["n_id"];
 
 $c_id		=$_POST['c_id'];
 $text		=$_POST['text'];
 $kind		=$_POST['kind'];
 
-
-
 $sql	="UPDATE wp01_0customer";
 $sql	.=" SET {$kind}='{$text}'";
 $sql	.=" WHERE id='{$c_id}'";
-$wpdb->query($sql);
+mysqli_query($mysqli,$sql);
+
+
 echo $kind;
 exit();
 ?>

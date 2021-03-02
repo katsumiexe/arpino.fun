@@ -1,12 +1,8 @@
 <?
 /*
-BlogSet
 */
-
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
+include_once('../library/sql_cast.php');
+$n_id	=$_POST["n_id"];
 
 $item_name	=$_POST["item_name"];
 $item_icon	=$_POST["item_icon"];
@@ -25,9 +21,10 @@ for($n=0;$n<count($chglist);$n++){
 	$sql.=" item_color='{$item_color[$tmp]}',";
 	$sql.=" price='{$item_price[$tmp]}'";
 
-	$sql.=" WHERE cast_id='{$cast_id}'";
+	$sql.=" WHERE cast_id='{$cast_data["id"]}'";
 	$sql.=" AND sort='{$n}'";
-	$wpdb->query($sql);
+	mysqli_query($mysqli,$sql);
+
 	$n1=$n+1;
 	$dat["html"].="<tr id=\"i{$n}\">";
 	$dat["html"].="<td class=\"log_td_del\"><span class=\"log_td_del_in\"></span></td>";

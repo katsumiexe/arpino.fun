@@ -26,23 +26,21 @@ $sql	.=" LIMIT {$st},10";
 
 if($result = mysqli_query($mysqli,$sql)){
 	$row = mysqli_fetch_assoc($result);
-	$row[$n]=$a1;
-	$row[$n]["log"]=str_replace("\n","<br>",$row[$n]["log"]);
-	$row[$n]["send_date"]=substr(str_replace("-",".",$row[$n]["send_date"]),0,16);
+
+	$row["log"]=str_replace("\n","<br>",$row["log"]);
+	$row["send_date"]=substr(str_replace("-",".",$row["send_date"]),0,16);
 
 	if($row[$n]["watch_date"] =='0000-00-00 00:00:00'){
-		$row[$n]["kidoku"]="<span class=\"midoku\">未読</span>";
-		$row[$n]["new"]="<span class=\"mail_new\">NEW!</span>";
+		$row["kidoku"]="<span class=\"midoku\">未読</span>";
+		$row["new"]="<span class=\"mail_new\">NEW!</span>";
 
 	}else{
-		$row[$n]["kidoku"]="<span class=\"kidoku\">既読</span>";
-		$row[$n]["bg"]=1;
+		$row["kidoku"]="<span class=\"kidoku\">既読</span>";
+		$row["bg"]=1;
 	}
-
-	$row[$n]["stamp"]="./img/cast/".$tmp_dir."/m/".$row[$n]["img_1"].".png";
-	$n++;
+	$row["stamp"]="./img/cast/".$tmp_dir."/m/".$row["img_1"].".png";
+	$dat[]=$row;
 }
-
 
 $sql	 ="UPDATE wp01_0castmail SET";
 $sql	.=" watch_date='{$now}'";
@@ -52,14 +50,13 @@ $sql	.=" AND watch_date='0000-00-00 00:00:00'";
 $sql	.=" AND send_flg=2";
 mysqli_query($mysqli,$sql);
 
-if($a1["face"]){
-	$face="./img/cast/".$tmp_dir."/c/".$a1["face"]."?t_".time();
+if($row["face"]){
+	$face="./img/cast/".$tmp_dir."/c/".$row["face"]."?t_".time();
 }else{
-	$face="./img/customer_no_img.jpg?t_".time();
+	$face="./img/customer_no_image.png?t_".time();
 }
 
 
-//$html=$tmp_sql;
 for($n=0;$n<count($dat);$n++){
 	if($dat[$n]["send_flg"] == 2){
 
@@ -92,7 +89,6 @@ if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !=
 		if($dat[$n]["img_1"]){
 			$html.="<img src=\"{$dat[$n]["stamp"]}\" class=\"mail_box_stamp\">";		
 		}
-
 
 		$html.="</div>";
 		$html.="<span class=\"mail_box_date_b\">{$dat[$n]["kidoku"]}　{$dat[$n]["send_date"]}</span>";

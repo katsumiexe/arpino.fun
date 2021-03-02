@@ -1,30 +1,26 @@
 <?
 /*
-BlogSet
 */
+include_once('../library/sql_cast.php');
+include_once("../library/inc_code.php");
 
-require_once ("./post_inc.php");
-require_once ("./inc_code.php");
-
-$cast_id	=$_POST["cast_id"];
 $item_name	=$_POST["item_name"];
 $item_icon	=$_POST["item_icon"];
 $item_color	=$_POST["item_color"];
 
 $price		=$_POST["price"];
 
-$sql ="SELECT MAX(`sort`) AS od FROM wp01_0cast_log_table";
-$sql.=" WHERE cast_id='{$cast_id}'";
-$res = $wpdb->get_results($sql,ARRAY_A );
-
-foreach($res as $a1){
-	$odr=$a1["od"];
+$sql ="SELECT COUNT(`sort`) AS od FROM wp01_0cast_log_table";
+$sql.=" WHERE cast_id='{$cast_data["id"]}'";
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
+	$odr=$row["od"];
 }
 $odr++;
 
-$sql_log ="INSERT INTO wp01_0cast_log_table(`cast_id`,`item_name`,`item_icon`,`item_color`,`price`,`sort`) VALUES ";
-$sql_log.=" ('{$cast_id}','{$item_name}','{$item_icon}','{$item_color}','{$price}','{$odr}')";
-$wpdb->query($sql_log);
+$sql ="INSERT INTO wp01_0cast_log_table(`cast_id`,`item_name`,`item_icon`,`item_color`,`price`,`sort`) VALUES ";
+$sql.=" ('{$cast_id}','{$item_name}','{$item_icon}','{$item_color}','{$price}','{$odr}')";
+mysqli_query($mysqli,$sql);
 
 $dat["sql"]=$sql;
 $dat["odr"]=$odr;

@@ -2,29 +2,24 @@
 /*
 顧客情報読み込み
 */
-ini_set('display_errors',1);
-
-require_once ("../../../../wp-load.php");
-global $wpdb;
-
-$c_id=$_POST["c_id"];
-
+include_once('../library/sql_cast.php');
 $sql	 ="SELECT * FROM wp01_0customer_list";
 $sql	 .=" WHERE del=0";
 $sql	 .=" AND customer_id='{$c_id}'";
-$dat0 = $wpdb->get_results($sql,ARRAY_A );
-
-foreach($dat0 AS $dat1){
-	$cus[$dat1["item"]]=$dat1["comm"];
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$cus[$dat1["item"]]=$row["comm"];
+	}
 }
+
 
 $sql	 ="SELECT * FROM wp01_0customer_item";
 $sql	 .=" WHERE del=0";
 $sql	 .=" AND gp=0";
-$dat0 = $wpdb->get_results($sql,ARRAY_A );
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
 
-foreach($dat0 AS $dat1){
-	if($dat1["style"] == 2){
+	if($row["style"] == 2){
 		$s2[$cus[$dat1["id"]]]=" checked=\"checked\"";
 
 		$dat.="<tr><td class=\"customer_memo_tag\">{$dat1["item_name"]}</td>";

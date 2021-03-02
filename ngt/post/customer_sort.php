@@ -6,49 +6,51 @@ $sel		=$_POST["sel"]+0;
 $fil		=$_POST["fil"];
 $asc		=$_POST["asc"];
 $ext		=$_POST["ext"];
+$s=0;
 
-	if($fil>0){
-		$app1=" AND c_group={$fil}";
-	}
 
-	if($sel==1){
-		$app2	=" `date`";
-		$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
-		$app5	=" ,MAX(`date`) AS log_date"; 
+if($fil>0){
+	$app1=" AND c_group={$fil}";
+}
 
-		if($asc==1){
-			$app3	.=" DESC";
-		}else{
-			$app3	.=" ASC";
-		}
+if($sel==1){
+	$app2	=" `date`";
+	$app4	=" LEFT JOIN wp01_0cast_log ON id=customer_id";
+	$app5	=" ,MAX(`date`) AS log_date"; 
 
-	}elseif($sel==2){
-		$app2	=" `fav`";
-
-		if($asc==1){
-			$app3	.=" DESC";
-		}else{
-			$app3	.=" ASC";
-		}
-
-	}elseif($sel==3){
-		$app2	=" `birth_day`";
-
-		if($asc==1){
-			$app3	.=" ASC";
-		}else{
-			$app3	.=" DESC";
-		}
-
+	if($asc==1){
+		$app3	.=" DESC";
 	}else{
-		$app2	=" `id`";
-
-		if($asc==1){
-			$app3	.=" ASC";
-		}else{
-			$app3	.=" DESC";
-		}
+		$app3	.=" ASC";
 	}
+
+}elseif($sel==2){
+	$app2	=" `fav`";
+
+	if($asc==1){
+		$app3	.=" DESC";
+	}else{
+		$app3	.=" ASC";
+	}
+
+}elseif($sel==3){
+	$app2	=" `birth_day`";
+
+	if($asc==1){
+		$app3	.=" ASC";
+	}else{
+		$app3	.=" DESC";
+	}
+
+}else{
+	$app2	=" `id`";
+
+	if($asc==1){
+		$app3	.=" ASC";
+	}else{
+		$app3	.=" DESC";
+	}
+}
 
 
 if($asc == 1){
@@ -58,7 +60,6 @@ if($asc == 1){
 }else{
 	$order="ASC";
 	$select="MIN(`date`)";
-
 }
 
 if($ext){
@@ -85,31 +86,28 @@ $sql	.=" GROUP BY wp01_0customer.id";
 $sql	.=" ORDER BY";
 $sql	.=$app2;
 $sql	.=$app3;
-$dat = $wpdb->get_results($sql,ARRAY_A );
 
-$s=0;
-foreach($dat as $tmp){
-	$customer[$s]=$tmp;
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
 
-	if(!$tmp["birth_day"] || $tmp["birth_day"]=="0000-00-00"){
+	$customer[$s]=$row;
+
+	if(!$row["birth_day"] || $row["birth_day"]=="0000-00-00"){
 		$customer[$s]["yy"]="----";
 		$customer[$s]["mm"]="--";
 		$customer[$s]["dd"]="--";
 		$customer[$s]["ag"]="--";
 
 	}else{
-		$customer[$s]["yy"]=substr($tmp["birth_day"],0,4);
-		$customer[$s]["mm"]=substr($tmp["birth_day"],5,2);
-		$customer[$s]["dd"]=substr($tmp["birth_day"],8,2);
-		$customer[$s]["ag"]= floor(($now_ymd-str_replace("-", "", $tmp["birth_day"]))/10000);
+		$customer[$s]["yy"]=substr($row["birth_day"],0,4);
+		$customer[$s]["mm"]=substr($row["birth_day"],5,2);
+		$customer[$s]["dd"]=substr($row["birth_day"],8,2);
+		$customer[$s]["ag"]= floor(($now_ymd-str_replace("-", "", $row["birth_day"]))/10000);
 	}
 	$s++;
 }
-/*
-if($fil>0){
-	$html.="<div class=\"sort_alert\">非表示になっている顧客がいます</div>";
-}
-*/
+
+
 
 for($n=0;$n<$s;$n++){
 	$html.="<div id=\"clist{$customer[$n]["id"]}\" class=\"customer_list\">";
