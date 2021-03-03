@@ -10,7 +10,7 @@ $week[5]="金";
 $week[6]="土";
 
 //Sche-----------------------
-if($_SESSION){
+if($cast_data){
 $c_month=$_POST["c_month"];
 if(!$c_month) $c_month=date("Y-m-01");
 
@@ -57,16 +57,15 @@ if($cast_page == 1){
 }elseif($cast_page == 5){
 	$page_title="アナリティクス";
 
-}elseif($cast_page == 5){
+}elseif($cast_page == 6){
 	$page_title="各種設定";
 
 }else{
 	$page_title="トップページ";
 }
 
-
 $sql ="SELECT * FROM wp01_0cast_config";
-$sql.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql.=" LIMIT 1";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -119,6 +118,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 	/*--■スケジュール--*/
 $tmp_today[$day_8]="cc8";
+$days_sche="休み";
 
 $sql ="SELECT * FROM wp01_0sch_table";
 $sql.=" ORDER BY sort ASC";
@@ -131,18 +131,27 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-$days_sche="休み";
 
+//■カレンダー　スケジュール
 $sql	 ="SELECT * FROM wp01_0schedule";
-$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND sche_date>='{$month_st}'";
 $sql	.=" AND sche_date<'{$month_ed}'";
 $sql   	.=" ORDER BY id ASC";
 
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$stime[$row["sche_date"]]		=$row["stime"];
-		$etime[$row["sche_date"]]		=$row["etime"];
+
+		if($row["stime"] && $row["etime"]){
+			$days_sche[$row["sche_date"]]="{$row["stime"]}-{$row["etime"]}";
+			$sche_dat[$row["sche_date"]]="n3";
+
+		}else{
+			$days_sche="休み";
+			$sche_dat[$row["sche_date"]]="";
+
+		}
 
 		if($ana_ym==substr($row["sche_date"],0,6) ){
 			$ana_sche[$row["sche_date"]]	="<span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span>";
@@ -164,30 +173,12 @@ if($result = mysqli_query($mysqli,$sql)){
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
 		}
 	}
-
-
-	if($stime[$day_8] && $etime[$day_8]){
-		$days_sche="{$stime[$day_8]}-{$etime[$day_8]}";
-	}else{
-		$days_sche="休み";
-	}
-
-	if($stime[$day_8_1] && $etime[$day_8_1]){
-		$days_sche_2="{$stime[$day_8_1]}-{$etime[$day_8_1]}";
-	}else{
-		$days_sche_2="休み";
-	}
-
-	if($stime[$day_8_2] && $etime[$day_8_2]){
-		$days_sche_3="{$stime[$day_8_2]}-{$etime[$day_8_2]}";
-	}else{
-		$days_sche_3="休み";
-	}
 }
 
 
+//■カレンダー　メモ
 $sql	 ="SELECT * FROM wp01_0schedule_memo";
-$sql	.=" WHERE cast_id='{$_SESSION["id"]}'";
+$sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND date_8>='{$month_st}'";
 $sql	.=" AND date_8<'{$month_ed}'";
 $sql	.=" AND `log` IS NOT NULL";
@@ -198,16 +189,20 @@ if($result = mysqli_query($mysqli,$sql)){
 		if(trim($row["log"])){
 			$memo_dat[$row["date_8"]]="n3";
 			$cal_app[substr($row["date_8"],0,6)].="<input class=\"cal_m_{$row["date_8"]}\" type=\"hidden\" value=\"{$row["log"]}\">";
-
+/*
 			if($day_8 == $row["date_8"]){
 				$days_memo.=$row["log"];
 			}
+*/
+
 		}
 	}
 }
 
+
+//■カレンダー　ブログカウント
 $sql	 ="SELECT * FROM wp01_posts";
-$sql	.=" WHERE cast='{$_SESSION["id"]}'";
+$sql	.=" WHERE cast='{$cast_data["id"]}'";
 $sql	.=" AND status<2";
 $sql	.=" AND view_date>='{$calendar[0]}'";
 $sql	.=" AND view_date<'{$calendar[3]}'";
@@ -220,9 +215,11 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 
+//■カスタマーソート
+
 $sql	 ="SELECT *{$app5} FROM wp01_0customer";
 $sql	.=$app4;
-$sql	.=" WHERE wp01_0customer.cast_id='{$_SESSION["id"]}'";
+$sql	.=" WHERE wp01_0customer.cast_id='{$cast_data["id"]}'";
 $sql	.=$app1;
 $sql	.=" GROUP BY wp01_0customer.id";
 $sql	.=" ORDER BY";
@@ -239,30 +236,24 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row="--";
 
 		}else{
-			$row["yy"]=substr($tmp["birth_day"],0,4);
-			$row["mm"]=substr($tmp["birth_day"],5,2);
-			$row["dd"]=substr($tmp["birth_day"],8,2);
+			$row["yy"]=substr($row["birth_day"],0,4);
+			$row["mm"]=substr($row["birth_day"],5,2);
+			$row["dd"]=substr($row["birth_day"],8,2);
 			$row["ag"]= floor(($day_8-str_replace("-", "", $row["birth_day"]))/10000);
 		}
 
-		$birth=str_replace("-","",$tmp["birth_day"]);
+		$birth=str_replace("-","",$row["birth_day"]);
 		$birth_y	=substr($birth,0,4);
 		$birth_m	=substr($birth,4,2);
 		$birth_d	=substr($birth,6,2);
 
 		$birth_dat[$birth_m.$birth_d]="n1";
-		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
 
-		if(substr($birth,4,4) == substr($day_8,4,4)){
-			$days_birth.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
+		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
+		$days_birth[$birth_m.$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
 
-		}elseif(substr($birth,4,4) == substr($day_8_1,4,4)){
-			$days_birth_2.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
-
-		}elseif(substr($birth,4,4) == substr($day_8_2,4,4)){
-			$days_birth_3.="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$tmp["nickname"]}</span></span><br>";
-		}
 	}
+
 	if($birth_hidden){
 		foreach($birth_hidden as $a1 => $a2){
 			foreach($birth_hidden[$a1] as $a3 => $a4){
@@ -352,7 +343,7 @@ for($n=0;$n<3;$n++){
 $sql	 ="SELECT * FROM wp01_0notice";
 $sql	.=" LEFT JOIN wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id";
 $sql	.=" WHERE del='0'";
-$sql	.=" AND cast_id='{$_SESSION["id"]}'";
+$sql	.=" AND cast_id='{$cast_data["id"]}'";
 $sql	.=" AND status>0";
 $sql	.=" ORDER BY date DESC";
 
@@ -376,7 +367,7 @@ if($result = mysqli_query($mysqli,$sql)){
 $sql	 ="SELECT * FROM wp01_0customer_group";
 $sql	.=" WHERE `del`='0'";
 $sql	.=" AND group_id='1'";
-$sql	.=" AND cast_id='{$_SESSION["id"]}'";
+$sql	.=" AND cast_id='{$cast_data["id"]}'";
 $sql	.=" ORDER BY `sort` ASC";
 
 
@@ -391,7 +382,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 //■Blog------------------
 $sql ="SELECT * FROM wp01_posts";
-$sql.=" WHERE cast='{$_SESSION["id"]}'";
+$sql.=" WHERE cast='{$cast_data["id"]}'";
 $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT 11";
 
@@ -460,7 +451,7 @@ $sql ="SELECT log_icon,log_comm,nickname,log_price,date,B.cast_id,customer_id FR
 $sql.=" LEFT JOIN wp01_0cast_log AS B ON A.master_id=B.log_id";
 $sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
 
-$sql.=" WHERE B.cast_id='{$_SESSION["id"]}'";
+$sql.=" WHERE B.cast_id='{$cast_data["id"]}'";
 $sql.=" AND A.date>='{$calendar[1]}'";
 $sql.=" AND A.date<'{$calendar[2]}'";
 $sql.=" AND A.del=0";
