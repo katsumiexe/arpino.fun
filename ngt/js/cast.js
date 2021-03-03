@@ -1195,34 +1195,28 @@ $(function(){
 	});
 
 	$('.sch_set').on('click',function () {
-		Tmp_1=$('.cal_weeks_box_2').children().eq(12).children('.sch_time_in').val();
-		Tmp_2=$('.cal_weeks_box_2').children().eq(13).children('.sch_time_in').val();
-		console.log(Tmp_1);
-		console.log(Tmp_2);
+		  $.ajax({
+				url:'./post/sch_set.php',
+				type: 'post',
+				data:{
+					'base_day':$('#base_day').val(),
+					'sel_in[0]':$('.cal_weeks_box_2').children().eq(7).children('.sch_time_in').val(),
+					'sel_in[1]':$('.cal_weeks_box_2').children().eq(8).children('.sch_time_in').val(),
+					'sel_in[2]':$('.cal_weeks_box_2').children().eq(9).children('.sch_time_in').val(),
+					'sel_in[3]':$('.cal_weeks_box_2').children().eq(10).children('.sch_time_in').val(),
+					'sel_in[4]':$('.cal_weeks_box_2').children().eq(11).children('.sch_time_in').val(),
+					'sel_in[5]':$('.cal_weeks_box_2').children().eq(12).children('.sch_time_in').val(),
+					'sel_in[6]':$('.cal_weeks_box_2').children().eq(13).children('.sch_time_in').val(),
 
-		$.post({
-			url:"./post/sch_set.php",
-			data:{
-				'cast_id':$('#cast_id').val(),
-				'base_day':$('#base_day').val(),
+					'sel_out[0]':$('.cal_weeks_box_2').children().eq(7).children('.sch_time_out').val(),
+					'sel_out[1]':$('.cal_weeks_box_2').children().eq(8).children('.sch_time_out').val(),
+					'sel_out[2]':$('.cal_weeks_box_2').children().eq(9).children('.sch_time_out').val(),
+					'sel_out[3]':$('.cal_weeks_box_2').children().eq(10).children('.sch_time_out').val(),
+					'sel_out[4]':$('.cal_weeks_box_2').children().eq(11).children('.sch_time_out').val(),
+					'sel_out[5]':$('.cal_weeks_box_2').children().eq(12).children('.sch_time_out').val(),
+					'sel_out[6]':$('.cal_weeks_box_2').children().eq(13).children('.sch_time_out').val(),
+				},
 
-				'sel_in[0]':$('.cal_weeks_box_2').children().eq(7).children('.sch_time_in').val(),
-				'sel_in[1]':$('.cal_weeks_box_2').children().eq(8).children('.sch_time_in').val(),
-				'sel_in[2]':$('.cal_weeks_box_2').children().eq(9).children('.sch_time_in').val(),
-				'sel_in[3]':$('.cal_weeks_box_2').children().eq(10).children('.sch_time_in').val(),
-				'sel_in[4]':$('.cal_weeks_box_2').children().eq(11).children('.sch_time_in').val(),
-				'sel_in[5]':$('.cal_weeks_box_2').children().eq(12).children('.sch_time_in').val(),
-				'sel_in[6]':$('.cal_weeks_box_2').children().eq(13).children('.sch_time_in').val(),
-
-				'sel_out[0]':$('.cal_weeks_box_2').children().eq(7).children('.sch_time_out').val(),
-				'sel_out[1]':$('.cal_weeks_box_2').children().eq(8).children('.sch_time_out').val(),
-				'sel_out[2]':$('.cal_weeks_box_2').children().eq(9).children('.sch_time_out').val(),
-				'sel_out[3]':$('.cal_weeks_box_2').children().eq(10).children('.sch_time_out').val(),
-				'sel_out[4]':$('.cal_weeks_box_2').children().eq(11).children('.sch_time_out').val(),
-				'sel_out[5]':$('.cal_weeks_box_2').children().eq(12).children('.sch_time_out').val(),
-				'sel_out[6]':$('.cal_weeks_box_2').children().eq(13).children('.sch_time_out').val(),
-			},
-			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
 			$.each(data, function(a1, a2){
@@ -1238,6 +1232,7 @@ $(function(){
 			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
 			$('.cal_weeks').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
+
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);

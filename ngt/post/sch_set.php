@@ -1,6 +1,7 @@
 <?
-include_once('../library/sql_cast.php');
-$base_day	=$_POST['base_day']+86400*7-($config["start_time"]*3600);
+include_once('../library/sql_post.php');
+$base_day	=$_POST['base_day']+86400*7;
+
 $sel_in		=$_POST['sel_in'];
 $sel_out	=$_POST['sel_out'];
 
@@ -25,6 +26,10 @@ if($sql_log_app){
 	$sql_log.=substr($sql_log_app,0,-1);
 	mysqli_query($mysqli,$sql_log);
 }
+
+$day_date["sql"]	=$sql_log;
+$day_date["cast"]	=$ee;
+$day_date["session"]	=$_SESSION;
 
 echo json_encode($day_date);
 exit();

@@ -354,6 +354,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
 $sql	 ="SELECT * FROM wp01_0customer_item";
 $sql	.=" WHERE del='0'";
 
@@ -391,8 +392,9 @@ if($result = mysqli_query($mysqli,$sql)){
 		$blog[]=$row;
 	}
 	if(is_array($dat)){
-	$blog_max=count($dat);
+		$blog_max=count($dat);
 	}
+
 	if($blog_max>10){
 		$blog_max=10;
 		$blog_next=1;
