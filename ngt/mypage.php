@@ -1423,6 +1423,9 @@ $(function(){
 		<div id="notice_box_log<?=$notice[$n]["id"]?>" class="notice_box_log"></div>
 	<? } ?>
 </div>
+
+
+
 <div class="customer_memo_set"></div>
 <div class="customer_log_set"></div>
 <div class="sch_set_done">スケジュールが登録されました</div>
@@ -1436,25 +1439,26 @@ $(function(){
 				?>
 					<div class="cal_list">
 						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=date("m月d日",$base_day+86400*$n)?>(<?=$week[$tmp_wk]?>)</div>
-						<?if($base_now>$base_day+86400*$n){?>
+
+						<?if($day_time>$base_day+86400*$n){?>
 							<div class="d_sch_time_in <?=date("Ymd",$base_day+86400*$n)?>"><?=$stime[date("Ymd",$base_day+86400*$n)]?></div>
 							<div class="d_sch_time_out <?=$base_day?>"><?=$etime[date("Ymd",$base_day+86400*$n)]?></div>
 							<input id="sel_in<?=$n?>" type="hidden" value="<?=$stime[date("Ymd",$base_day+86400*$n)]?>" class="sch_time_in">
 							<input id="sel_out<?=$n?>" type="hidden" value="<?=$etime[date("Ymd",$base_day+86400*$n)]?>" class="sch_time_in">
 
 						<?}else{?>
-<select id="sel_in<?=$n?>" value="" name="sel_in<?=$n?>" class="sch_time_in">
-<option value=""></option>
-<?for($s=0;$s<count($sche_table_name["in"]);$s++){?><option value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
-<?}?>
-</select>
+							<select id="sel_in<?=$n?>" value="" name="sel_in<?=$n?>" class="sch_time_in">
+							<option value=""></option>
+							<?for($s=0;$s<count($sche_table_name["in"]);$s++){?><option value="<?=$sche_table_name["in"][$s]?>" <?if($stime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["in"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["in"][$s]?></option>
+							<?}?>
+							</select>
 
-<select id="sel_out<?=$n?>" name="sel_out<?=$n?>" class="sch_time_out">
-<option class="sel_txt" value=""></option>
-<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
-<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
-<?}?>
-</select>
+							<select id="sel_out<?=$n?>" name="sel_out<?=$n?>" class="sch_time_out">
+							<option class="sel_txt" value=""></option>
+							<?for($s=0;$s<count($sche_table_name["out"]);$s++){?>
+							<option class="sel_txt" value="<?=$sche_table_name["out"][$s]?>" <?if($etime[date("Ymd",$base_day+86400*$n)]===$sche_table_name["out"][$s]){?> selected="selected"<?}?>><?=$sche_table_name["out"][$s]?></option>
+							<?}?>
+							</select>
 						<? } ?>
 					</div>
 				<? } ?>

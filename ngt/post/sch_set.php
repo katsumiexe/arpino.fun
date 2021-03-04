@@ -17,7 +17,7 @@ for($n=0;$n<7;$n++){
 
 	$day_8=date("Ymd",$base_day+86400*$n);
 	if($day_8 >=$now_8){
-		$sql_log_app.="('{$day_8}','{$now}','{$cast_data["id]"}','{$sel_in[$n]}','{$sel_out[$n]}'),";
+		$sql_log_app.="('{$day_8}','{$now}','{$cast_data["id"]}','{$sel_in[$n]}','{$sel_out[$n]}'),";
 		$day_date[$day_8]=$sel_in[$n];
 	}
 }

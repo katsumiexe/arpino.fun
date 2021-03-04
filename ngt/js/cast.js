@@ -1216,6 +1216,7 @@ $(function(){
 					'sel_out[5]':$('.cal_weeks_box_2').children().eq(12).children('.sch_time_out').val(),
 					'sel_out[6]':$('.cal_weeks_box_2').children().eq(13).children('.sch_time_out').val(),
 				},
+				dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
@@ -1227,8 +1228,6 @@ $(function(){
 				}
 			  console.log(a1 + ':' + a2);
 			})
-
-
 			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
 			$('.cal_weeks').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);
