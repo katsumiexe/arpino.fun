@@ -728,7 +728,7 @@ $(function(){
 							<img src="./img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 						<?}else{?>
-							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+							<img src="./img/customer_no_image.png?t_<?=time()?>" class="mail_img">
 						<? } ?>
 						<div class="customer_list_fav">
 							<?for($s=1;$s<6;$s++){?>
@@ -937,7 +937,7 @@ $(function(){
 				<?if($mail_data[$n]["face"]){?>
 					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
 				<?}else{?>
-					<img id="mail_img<?=$s?>" src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img">
+					<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t_<?=time()?>" class="mail_img">
 				<? } ?>
 				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
@@ -1022,7 +1022,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="./img/customer_no_img.jpg?t_<?=time()?>" class="blog_img">
+							<img src="./img/customer_no_image.png?t_<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
@@ -1521,7 +1521,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-					<span class="regist_img_pack"><img src="./img/customer_no_img.jpg?t_<?=time()?>" class="regist_img"></span>					
+					<span class="regist_img_pack"><img src="./img/customer_no_image.png?t_<?=time()?>" class="regist_img"></span>					
 					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
