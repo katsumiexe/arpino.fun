@@ -1,6 +1,6 @@
 <?
 include_once('./library/sql_cast.php');
-
+include_once('./library/inc_code.php');
 $week[0]="日";
 $week[1]="月";
 $week[2]="火";
@@ -1375,31 +1375,30 @@ $(function(){
 <div class="config_menu">退会</div>
 <div class="config_menu">プライバシーポリシー</div>
 <div class="config_menu">ご利用規約</div>
-
-
 </div>
+
 	<?}else{?>
 	<div class="main">
 		<div class="notice_ttl">
-			<div class="notice_ttl_day"><span id="notice_day"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span></div>
+			<div class="notice_ttl_day"><span id="notice_day"><?=date("m月d日",$day_time)?>[<?=$week[date("w",$day_time)]?>]</span></div>
 			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
 			<div id="notice_ttl_2" class="notice_ttl_in">明日</div>
 			<div id="notice_ttl_3" class="notice_ttl_in">明後日</div>
-			<input id="h_notice_ttl_1" type="hidden" value="<?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]">
-			<input id="h_notice_ttl_2" type="hidden" value="<?=date("m月d日",$jst+86400)?>[<?=$week[date("w",$jst+86400)]?>]">
-			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$jst+172800)?>[<?=$week[date("w",$jst+172800)]?>]">
+			<input id="h_notice_ttl_1" type="hidden" value="<?=date("m月d日",$day_time)?>[<?=$week[date("w",$day_time)]?>]">
+			<input id="h_notice_ttl_2" type="hidden" value="<?=date("m月d日",$day_time+86400)?>[<?=$week[date("w",$day_time+86400)]?>]">
+			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$day_time+172800)?>[<?=$week[date("w",$day_time+172800)]?>]">
 		</div>
 		<div id="notice_box_1" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_8]?></span><br>
+			<span class="notice_box_birth"><?=$days_birth[$day_md]?></span>
 		</div>
 		<div id="notice_box_2" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_2?></span><br>
-			<span class="notice_box_birth"><?=$days_birth_2?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_8_1]?></span><br>
+			<span class="notice_box_birth"><?=$days_birth[$day_md_1]?></span>
 		</div>
 		<div id="notice_box_3" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche_3?></span><br>
-			<span class="notice_box_birth"><?=$days_birth_3?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_2]?></span><br>
+			<span class="notice_box_birth"><?=$days_birth[$day_md_2]?></span>
 		</div>
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 
@@ -1416,8 +1415,6 @@ $(function(){
 		<div id="notice_box_log<?=$notice[$n]["id"]?>" class="notice_box_log"></div>
 	<? } ?>
 </div>
-
-
 
 <div class="customer_memo_set"></div>
 <div class="customer_log_set"></div>
