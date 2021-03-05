@@ -35,6 +35,7 @@ $month_ed		=date("Ymd",strtotime($calendar[3]));
 $ana_ym=$_POST["ana_ym"];
 if(!$ana_ym) $ana_ym=date("Ym");
 
+
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
 
@@ -116,10 +117,8 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 
-	/*--■スケジュール--*/
+/*--■スケジュール--*/
 $tmp_today[$day_8]="cc8";
-$days_sche="休み";
-
 $sql ="SELECT * FROM wp01_0sch_table";
 $sql.=" ORDER BY sort ASC";
 
@@ -142,13 +141,12 @@ $sql   	.=" ORDER BY id ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
 		if($row["stime"] && $row["etime"]){
 			$days_sche[$row["sche_date"]]="{$row["stime"]}-{$row["etime"]}";
-			$sche_dat[$row["sche_date"]]="n3";
+			$sche_dat[$row["sche_date"]]="n2";
 
 		}else{
-			$days_sche="休み";
+			$days_sche[$row["sche_date"]]="休み";
 			$sche_dat[$row["sche_date"]]="";
 
 		}
@@ -174,7 +172,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 	}
 }
-
 
 //■カレンダー　メモ
 $sql	 ="SELECT * FROM wp01_0schedule_memo";
@@ -269,6 +266,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 
 for($n=0;$n<3;$n++){
+
 	$now_month=date("m",strtotime($calendar[$n]));
 	$now_ym=date("ym",strtotime($calendar[$n]));
 	$t=date("t",strtotime($calendar[$n]));
@@ -276,19 +274,18 @@ for($n=0;$n<3;$n++){
 	$wk=$config["start_week"]-date("w",strtotime($calendar[$n]));
 	if($wk>0) $wk-=7;
 
-	$st=strtotime($calendar[$n])+($wk*86400);
+	$st=strtotime($calendar[$n])+($wk*86400);//初日
+	
 
 	$v_year[$n]	=substr($calendar[$n],0,4)."年";
 	$v_month[$n]=substr($calendar[$n],5,2)."月";
 
 	for($m=0; $m<42;$m++){
-
 		$tmp_ymd	=date("Ymd",$st+($m*86400));
 		$tmp_ym		=date("ym",$st+($m*86400));
 		$tmp_month	=date("m",$st+($m*86400));
 		$tmp_day	=date("d",$st+($m*86400));
 		$tmp_week	=date("w",$st+($m*86400));
-
 
 		$app_n1="";
 		$app_n2="";
@@ -303,7 +300,6 @@ for($n=0;$n<3;$n++){
 				$cal[$n].="</tr><tr>";
 			}
 		}
-
 		if($ob_holiday[$tmp_ymd]){
 			$tmp_week=0;
 
@@ -318,15 +314,12 @@ for($n=0;$n<3;$n++){
 			$day_tag=" nowmonth";
 
 			$app_n1=$birth_dat[substr($tmp_ymd,4,4)];
-
-			if($stime[$tmp_ymd] && $etime[$tmp_ymd]){
-				$app_n2=" n2";
-				$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$stime[$tmp_ymd]}-{$etime[$tmp_ymd]}\">";
-			}else{
-				$app_n2="";
-			}
+			$app_n2=$sche_dat[$tmp_ymd];
 			$app_n3=$memo_dat[$tmp_ymd];
 			$app_n4=$blog_dat[$tmp_ymd];
+
+			$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$days_sche[$tmp_ymd]}\">";
+
 		}
 
 		$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
@@ -682,11 +675,11 @@ $(function(){
 		</div>
 
 		<div class="cal_days">
-			<span class="cal_days_date"><?=date("m月d日",$jst)?>[<?=$week[date("w",$jst)]?>]</span>
-			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche?></span></span>
+			<span class="cal_days_date"><?=date("m月d日",$day_time)?>[<?=$week[$day_w]?>]</span>
+			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche[$now_8]?></span></span>
 			<span class="cal_days_birth"><?=$days_birth?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
-			<input id="set_date" type="hidden" value="<?=$now_ymd?>">
+			<input id="set_date" type="hidden" value="<?=$day_8?>">
 		</div>
 	</div>
 	<?}elseif($cast_page==2){?>
