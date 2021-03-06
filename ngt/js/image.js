@@ -47,7 +47,6 @@ $(function(){
 				img.onload = function() {
 					img_W=img.width;
 					img_H=img.height;
-					img_S2=Base_l;
 
 					if(img_H> img_W){
 						cvs_W=1200;
@@ -72,13 +71,17 @@ $(function(){
 						cvs_Y=Math.ceil((cvs_W-cvs_H)/2);
 						cvs_X=0;
 
-						css_H=Base_l;
+						css_H=Base_h;
 						css_W=Math.ceil(img_W*(css_H/img_H));
 
 						css_A=css_W;
 						css_B=Math.ceil(Base_s-(css_A-200)/2);
 						css_C=Math.ceil(Base_s-(css_A-150)/2);
 					}				
+
+console.log(css_A);
+console.log(css_B);
+console.log(css_C);
 
 					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C});
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
