@@ -9,8 +9,6 @@ if($res = mysqli_query($mysqli,$sql)){
 	}
 }
 
-var_dump($charm_table);
-
 $sql	 ="SELECT * FROM wp01_0check_main";
 $sql	.=" WHERE del=0";
 $sql	.=" ORDER BY sort ASC";
@@ -69,9 +67,8 @@ td{
 
 .up_box{
 	display		:block;
-	width		:380px;
-	margin		:0 10px;
-	padding		:0 10px;
+	margin		:10px 20px;
+	font-size	:14px;
 }
 
 .img_up_box{
@@ -248,7 +245,7 @@ td{
 	left		:0;
 	width		:20px;
 	height		:20px;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out2{
@@ -259,7 +256,7 @@ td{
 	width		:150px;
 	height		:20px;
 	border-bottom:1px solid #ff0000;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out3{
@@ -269,7 +266,7 @@ td{
 	right		:0;
 	width		:20px;
 	height		:20px;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out4{
@@ -280,7 +277,7 @@ td{
 	width		:20px;
 	height		:200px;
 	border-right:1px solid #ff0000;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out5{
@@ -291,7 +288,7 @@ td{
 	width		:20px;
 	height		:200px;
 	border-left	:1px solid #ff0000;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out6{
@@ -301,7 +298,7 @@ td{
 	left		:0;
 	width		:20px;
 	height		:20px;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out7{
@@ -312,7 +309,7 @@ td{
 	width		:150px;
 	height		:20px;
 	border-top	:1px solid #ff0000;
-	z-index		:27;
+	z-index		:5;
 }
 
 .img_box_out8{
@@ -322,7 +319,7 @@ td{
 	right		:0;
 	width		:20px;
 	height		:20px;
-	z-index		:27;
+	z-index		:5;
 }
 
 .cvw_0{
@@ -477,9 +474,10 @@ input[type=range]::-moz-range-thumb{
 	position		:fixed;
 	top				:0;
 	left			:180px;
-	width			: calc(100vw - 180px);
+	width			:calc(100vw - 180px);
 	height			:50px;
 	background		:#0000d0;
+	z-index:10;
 }
 
 .foot{
@@ -490,11 +488,14 @@ input[type=range]::-moz-range-thumb{
 	width			: calc(100vw - 180px);
 	height			:30px;
 	background		:#00d000;
+	z-index:10;
 
 }
 .wrap{
-	display			:inline-block;
+	display			:inline-flex;
 	margin:50px 0 30px 0;
+	width:1200px;
+
 }
 -->
 </style>
@@ -519,7 +520,7 @@ $(function(){
 });
 </script>
 
-<div class="head">
+<header class="head">
 <h2>スタッフ登録</h2>
 <form action="" method='post' id="my-submenu-form">
 <button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
@@ -529,11 +530,10 @@ $(function(){
 　<input id="staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 　<input id="cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
-</div>
+</header>
 
 <div class="wrap">
-<table>
-<tr><td>
+<div class="main_box">
 <table style="width:720px; table-layout: fixed;">
 <tr>
 <td class="table_title" colspan="3">
@@ -601,6 +601,7 @@ CAST情報
 	</td>
 </tr>
 </table>
+
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
 	<td class="table_title" colspan="3">NEWS登録</td>
@@ -631,6 +632,7 @@ CAST情報
 	<? } ?>
 </tr>
 </table>
+
 <?foreach((array)$ck_main as $a1 => $a2){?>
 <table style="width:720px;" class="cast_table">
 	<tr>
@@ -647,12 +649,14 @@ CAST情報
 	</tr>
 </table>
 <? } ?>
+</div>
 
-</td><td class="cast_table">
+<div class="main_box cast_table">
 	<div class="up_box">
 	画像の推奨は縦800px×横600pxです。<br>
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
+
 	<div class="img_up_box">
 	<?for($n=0;$n<4;$n++){?>
 		<div class="img_up_box_in">
@@ -688,14 +692,12 @@ CAST情報
 		<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
 	<?}?>
 	</div>
-</td>
-</tr>
-</table>
+</div>
 </form>
 <input id="upd0" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd1" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd2" class="img_upd" type="file" accept="image/*" style="display:none;">
 <input id="upd3" class="img_upd" type="file" accept="image/*" style="display:none;">
 </div> 
+<footer class="foot"></footer> 
 
-<div class="foot"></div> 

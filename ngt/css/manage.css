@@ -33,6 +33,7 @@ ul {
 	height		:100vh;
 	background	:#ffc0a0;
 	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
+	z-index:20;
 }
 
 .main{
@@ -43,8 +44,9 @@ ul {
 	height		:100vh;
 	background	:#fafafa;
 	box-shadow	:2px 2px 5px rgba(60,60,60,0.5);	
-	overflow-y	:scroll;
+	overflow	:scroll;
 	padding		:10px;
+	text-align:left;
 }
 
 
@@ -63,6 +65,14 @@ ul {
 	padding		:5px;
 	border-bottom:1px solid #101010;
 }
+
+
+.main_box{
+	display:inline-block;
+	margin:10px;
+	vertical-align:top;
+}
+
 
 @media screen and (max-width: 559px){
 .head_menu{

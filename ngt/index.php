@@ -6,40 +6,45 @@ $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
 $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
-$sql.=" ORDER BY schedule_id ASC";
+$sql.=" ORDER BY wp01_0schedule.id ASC";
+if($row = mysqli_query($mysqli,$sql)){
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
+	while($result = mysqli_fetch_assoc($row)){
 
-		if($a1["stime"] && $a1["etime"]){
-			$cast_sch[$a1["id"]]="{$a1["stime"]} － {$a1["etime"]}";
+		if($result["stime"] && $result["etime"]){
+	
+			$result["sch_view"]=$result["stime"]." － ".$result["etime"];
 
-			$sort[$a1["id"]]=$a1["sort"];
 
-			if($day_8 < $a1["ctime"]){
-				$a1["new"]=1;
+			if($day_8 < $result["ctime"]){
+				$result["new"]=1;
 
-			}elseif($day_8 == $a1["ctime"]){
-				$a1["new"]=2;
+			}elseif($day_8 == $result["ctime"]){
+				$result["new"]=2;
 
-			}elseif(strtotime($day_8) - strtotime($a1["ctime"])<=2592000){
-				$a1["new"]=3;
+			}elseif(strtotime($day_8) - strtotime($result["ctime"])<=2592000){
+				$result["new"]=3;
 			}
 
-			if (file_exists("./img/cast/{$a1["id"]}/0_s.webp")) {
-				$dat[$a1["id"]]["face"]="./img/cast/{$a1["id"]}/0_s.webp";			
+			if (file_exists("./img/profile/{$result["id"]}/0.webp")) {
+				$result["face"]="./img/profile/{$result["id"]}/0.webp";			
 
-			}elseif (file_exists("./img/cast/{$a1["id"]}/0_s.jpg")) {
-				$dat[$a1["id"]]["face"]="./img/cast/{$a1["id"]}/0_s.jpg";			
+			}elseif (file_exists("./img/profile/{$result["id"]}/0.jpg")) {
+				$result["face"]="./img/profile/{$result["id"]}/0.jpg";			
 
 			}else{
-				$dat[$a1["id"]]["face"]="./img/cast/noimage.jpg";			
+				$result["face"]="./img/cast_no_image.jpg";			
 			}
+			$dat[$result["id"]]=$result;
+
 		}else{
-			$sort[$a1["id"]]="";
+			$dat[$result["id"]]="";
 		}
 	}
 }
+
+ksort($dat);
+
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
@@ -235,37 +240,36 @@ var Cnt=<?=$event_count?>-1;
 			<?}?>
 		</div>
 
-<?if($sort){?>
+<?if($dat){?>
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
-			<? foreach($sort as $b1=> $b2){?>
-				<? if($b2 !='9999'){?>
-					<span class="main_b_1">
-						<img src="<?=$dat[$b1]["face"]?>?t=<?=time()?>" class="main_b_1_1">
-						<span class="main_b_1_2">
-							<span class="main_b_1_2_h"></span>
-							<span class="main_b_1_2_f f_tr"></span>
-							<span class="main_b_1_2_f f_tl"></span>
-							<span class="main_b_1_2_f f_br"></span>
-							<span class="main_b_1_2_f f_bl"></span>
-							<span class="main_b_1_2_name"><?=$dat[$b1]["genji"]?></span>
-							<span class="main_b_1_2_sch"><?=$dat[$b1]["sc"]?></span>
-						</span>
-						<?if($dat[$b1]["new"] == 1){?>
-						<span class="main_b_1_ribbon ribbon1">近日入店</span>
-						<?}elseif($dat[$b1]["new"] == 2){?>
-						<span class="main_b_1_ribbon ribbon2">本日入店</span>
-						<?}elseif($dat[$b1]["new"] == 3){?>
-						<span class="main_b_1_ribbon ribbon3">新人</span>
-						<?}?>
-					<a href="./person.php?cast=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
+			<? foreach($dat as $b1=> $b2){?>
+				<span class="main_b_1">
+					<img src="<?=$b2["face"]?>?t=<?=time()?>" class="main_b_1_1">
+					<span class="main_b_1_2">
+						<span class="main_b_1_2_h"></span>
+						<span class="main_b_1_2_f f_tr"></span>
+						<span class="main_b_1_2_f f_tl"></span>
+						<span class="main_b_1_2_f f_br"></span>
+						<span class="main_b_1_2_f f_bl"></span>
+						<span class="main_b_1_2_name"><?=$b2["genji"]?></span>
+						<span class="main_b_1_2_sch"><?=$b2["sch_view"]?></span>
 					</span>
-				<? } ?>
+					<?if($b2["new"] == 1){?>
+					<span class="main_b_1_ribbon ribbon1">近日入店</span>
+					<?}elseif($b2["new"] == 2){?>
+					<span class="main_b_1_ribbon ribbon2">本日入店</span>
+					<?}elseif($b2["new"] == 3){?>
+					<span class="main_b_1_ribbon ribbon3">新人</span>
+					<?}?>
+				<a href="./person.php?post_id=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
+				</span>
 			<? } ?>
 		</div>
 <? } ?>
 
 	</div>
+
 
 	<div class="main_c">
 		<div class="pc_only">

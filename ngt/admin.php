@@ -231,8 +231,9 @@ echo $tmp_auto;
 </style>
 </head>
 <body class="body">
+
 <div class="main">
-	<?=include_once('./manage_regist.php');?>
+	<?=include_once('./admin_regist.php');?>
 </div>
 <div class="left">
 	<ul class="menu_ul">
