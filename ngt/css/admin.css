@@ -51,19 +51,47 @@ ul {
 
 
 .menu_ul{
-	width		:160px;
+	width		:180px;
 }
 
 .menu{
-	display		:inline-flex;
-	text-align	:left;
-	width		:160px;
-	height		:30px;
-	line-height	:30px;
-	margin		:0 auto;
-	font-size	:16px;
-	padding		:5px;
-	border-bottom:1px solid #101010;
+	position		:relative;
+	display			:inline-block;
+	text-align		:left;
+	width			:170px;
+	height			:40px;
+	line-height		:40px;
+	margin			:0 auto;
+	border-bottom	:1px solid #101010;
+	cursor			:pointer;
+}
+
+.menu_comm{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:35px;
+	display			:inline-block;
+	height			:30px;
+	line-height		:30px;
+	text-align		:left;
+	font-size		:18px;
+	margin			:auto;
+}
+
+.menu_icon{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:0px;
+	display			:inline-block;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
+	text-align		:center;
+	font-size		:22px;
+	font-family		:at_icon;
+	margin			:auto;
 }
 
 

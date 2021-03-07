@@ -3,7 +3,6 @@
 include_once('./library/sql.php');
 
 //■スタッフ登録した
-
 if($_POST["staff_set"]){
 	$c_s			=$_POST["c_s"];
 
@@ -57,9 +56,6 @@ if($_POST["staff_set"]){
 	if($c_s == 2){
 //■cast-------------------------------
 		$tmp_auto=mysqli_insert_id($mysqli);
-
-echo $tmp_auto;
-
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
 		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
 		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
@@ -180,7 +176,6 @@ echo $tmp_auto;
 	}
 
 	if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
-
 		$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
 
 		$p_date=$_REQUEST["news_date_yy"]."-".$_REQUEST["news_date_mm"]."-".$_REQUEST["news_date_dd"]." 00:00:00";
@@ -188,10 +183,9 @@ echo $tmp_auto;
 		$g_date=date("Y-m-d 00:00:00",strtotime($p_date)-32400);
 
 		$sql =" INSERT INTO wp01_0contents";
-		$sql .="(`date`, display_date, page, category, contents_key, title, contents)";
-		$sql .=" VALUES('{$now}','{$p_date}','news','person','{$tmp_auto}','{$title}','{$news_box}')";
+		$sql .="(`date`, display_date, page, category, contents_key, title, contents,tag)";
+		$sql .=" VALUES('{$now}','{$p_date}','news','person','{$tmp_auto}','{$title}','{$news_box}','2')";
 		mysqli_query($mysqli,$sql);
-		echo $sql;
 	}
 }
 ?>
@@ -204,10 +198,10 @@ echo $tmp_auto;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
-<script src="./js/manage.js?t=<?=time()?>"></script>
+<script src="./js/admin.js?t=<?=time()?>"></script>
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="./css/manage.css?t=<?=time()?>">
+<link rel="stylesheet" href="./css/admin.css?t=<?=time()?>">
 <style>
 @font-face {
 	font-family: at_icon;
@@ -231,20 +225,21 @@ echo $tmp_auto;
 </style>
 </head>
 <body class="body">
-
 <div class="main">
-	<?=include_once('./admin_regist.php');?>
+	<?if($_POST["menu_post"]){?>
+		<?=include_once("./admin_{$_POST["menu_post"]}.php");?>
+	<?}?>
 </div>
 <div class="left">
 	<ul class="menu_ul">
-		<li id="regist" class="menu">登録</li>
-		<li id="staff" class="menu">スタッフ</li>
-		<li id="sche" class="menu">スケジュール</li>
-		<li id="blog" class="menu">ブログ</li>
-		<li id="contents" class="menu">コンテンツ</li>
-		<li id="easytalk" class="menu">EasyTalk</li>
-		<li id="notice" class="menu">お知らせ</li>
-		<li id="config" class="menu">コンフィグ</li>
+		<li id="regist" class="menu"><span class="menu_icon"></span><span class="menu_comm">登録</span></li>
+		<li id="staff" class="menu"><span class="menu_icon"></span><span class="menu_comm">スタッフ</span></li>
+		<li id="sche" class="menu"><span class="menu_icon"></span><span class="menu_comm">スケジュール</span></li>
+		<li id="blog" class="menu"><span class="menu_icon"></span><span class="menu_comm">ブログ</span></li>
+		<li id="contents" class="menu"><span class="menu_icon"></span><span class="menu_comm">コンテンツ</span></li>
+		<li id="easytalk" class="menu"><span class="menu_icon"></span><span class="menu_comm">EasyTalk</span></li>
+		<li id="notice" class="menu"><span class="menu_icon"></span><span class="menu_comm">お知らせ</span></li>
+		<li id="config" class="menu"><span class="menu_icon"></span><span class="menu_comm">コンフィグ</span></li>
 	</ul>
 	<div class="head_menu">
 		<div class="menu_a"></div>
@@ -252,4 +247,8 @@ echo $tmp_auto;
 		<div class="menu_c"></div>
 	</div>
 </div>
+<form id="form_menu" method="post" action="./admin.php">
+<input id="menu_post" type="hidden" name="menu_post">
+<?$_POST="";?>
+</form>
 </html>

@@ -2,7 +2,7 @@
 include_once('./library/sql.php');
 $sort=array();
 
-$sql=" SELECT C.id, genji, in_out, `name`, T.sort,C.ctime FROM wp01_0cast AS C";
+$sql=" SELECT C.id, genji, in_out, `name`, T.sort,C.ctime, stime, etime FROM wp01_0cast AS C";
 $sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
 $sql.=" LEFT JOIN wp01_0sch_table AS T ON in_out='in' AND stime=T.name";
 $sql.=" WHERE C.cast_status=0";
@@ -11,10 +11,10 @@ $sql.=" ORDER BY S.id DESC";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
-
 		if($a1["stime"] && $a1["etime"]){
+
 			$a1["sch"]="{$a1["stime"]} － {$a1["etime"]}";
-			$sort[$a1["id"]]=$$a1["stime"];
+			$sort[$a1["id"]]=$a1["stime"];
 		}else{
 			$a1["sch"]="休み";
 			$sort[$a1["id"]]=999999;
@@ -36,6 +36,7 @@ if($res = mysqli_query($mysqli,$sql)){
 		}elseif(strtotime($day_8) - strtotime($a1["ctime"])<=2592000){
 			$a1["new"]=3;
 		}
+
 		$dat[$a1["id"]]=$a1;
 	}
 }
@@ -54,8 +55,8 @@ $cl[0]="tag_sun";
 $cl[6]="tag_sat";
 
 for($e=0;$e<7;$e++){
-	$cast_tag[$e]="<span class=\"tag_pc\">".date("m月d日",$now+86400*$e).$week[date("w",$now+86400*$e)]."</span><span class=\"tag_sp\">".date("m/d",$now+86400*$e)."<br>".$week[date("w",$now+86400*$e)]."</span>";
-	$cast_id[$e]=date("Ymd",$now+86400*$e);
+	$cast_tag[$e]="<span class=\"tag_pc\">".date("m月d日",$day_time+86400*$e).$week[date("w",$day_time+86400*$e)]."</span><span class=\"tag_sp\">".date("m/d",$day_time+86400*$e)."<br>".$week[date("w",$day_time+86400*$e)]."</span>";
+	$cast_id[$e]=date("Ymd",$day_time+86400*$e);
 }
 
 include_once('./header.php');

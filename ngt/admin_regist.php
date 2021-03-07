@@ -171,7 +171,7 @@ td{
 	cursor		:pointer;
 }
 
-#staff,#cast{
+#sel_staff,#sel_cast{
 	display:none;
 }
 
@@ -497,6 +497,10 @@ input[type=range]::-moz-range-thumb{
 	width:1200px;
 
 }
+
+.icon{
+	font-family:at_icon;
+}
 -->
 </style>
 
@@ -527,8 +531,8 @@ $(function(){
 <button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
 <input type="hidden" value="1" name="staff_set">
 <div class="c_s_box">
-　<input id="staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
-　<input id="cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
+　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
+　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
 </header>
 
@@ -674,9 +678,9 @@ CAST情報
 
 			<div class="img_up_comm">
 				<label for="upd<?=$n?>" class="img_up_file">UPLOAD</label>
-				<span id="rote<?=$n?>" type="button" class="img_up_rote">■</span>
-				<span id="reset<?=$n?>" type="button" class="img_up_reset">■</span>
-				<span id="del<?=$n?>" type="button" class="img_up_del">■</span>
+				<span id="rote<?=$n?>" type="button" class="img_up_rote icon"></span>
+				<span id="reset<?=$n?>" type="button" class="img_up_reset icon"></span>
+				<span id="del<?=$n?>" type="button" class="img_up_del icon"></span>
 				<div class="img_box_in3">
 					<div id="mi<?=$n?>" class="zoom_mi">-</div>
 					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
