@@ -1,33 +1,29 @@
 <?
-$sql	 ="SELECT * FROM wp01_0staff AS S";
+$sql	 ="SELECT id,staff_id,genji,genji_kana,cast_status,mame,name_kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
-$sql	.=" ORDER BY sort ASC";
+$sql	.=" ORDER BY staff_id DESC";
 
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($res_a = mysqli_fetch_assoc($res)){
-		$charm_table[$res_a["id"]]=$res_a;
-	}
-}
 
-$sql	 ="SELECT * FROM wp01_0check_main";
-$sql	.=" WHERE del=0";
-$sql	.=" ORDER BY sort ASC";
-if($res1 = mysqli_query($mysqli,$sql)){
-	while($res1_a = mysqli_fetch_assoc($res1)){
-		$ck_main[$res1_a["id"]]=$res1_a;
-	}
+if($result = mysqli_query($mysqli,$sql)){
+	while($res = mysqli_fetch_assoc($result)){
+		if (file_exists("./img/profile/{$res["id"]}/0.webp")) {
+			$res["face"]="./img/profile/{$res["id"]}/0.webp";			
 
-	$sql	 ="SELECT * FROM wp01_0check_list";
-	$sql	.=" WHERE del=0";
-	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
+		}elseif (file_exists("./img/profile/{$res["id"]}/0.jpg")) {
+			$res["face"]="./img/profile/{$res["id"]}/0.jpg";			
 
-	if($res2 = mysqli_query($mysqli,$sql)){
-		while($res2_a = mysqli_fetch_assoc($res2)){
-			$ck_list[$res2_a["host_id"]][$res2_a["id"]]=$res2_a["list_title"];
+		}else{
+			$res["face"]="./img/cast_no_image.jpg";			
 		}
+		$dat[]=$res_a;
 	}
+	if(is_array($dat)){
+		$count_dat=count($dat);
+	}
+
 }
+
 ?>
 <style>
 <!--
@@ -550,7 +546,7 @@ $(function(){
 <td class="td_top">登録日</td>
 <td class="td_top">状態</td>
 </tr>
-
+<?for($n=0;$n<$count_dat;$n++){?>
 <tr>
 <td class="td_1"><img src="<?=$dat[$n]["face"]?>" style="width:60px; height:80px;"></td>
 <td class="td_2"><?=$dat[$n]["genji"]?>[<?=$dat[$n]["kana"]?>]</td>
@@ -558,6 +554,7 @@ $(function(){
 <td class="td_4"><?=$dat[$n]["ctime"]?></td>
 <td class="td_5"><?=$dat[$n]["cast_status"]?></td>
 </tr>
+<?}?>
 </table>
 <footer class="foot"></footer> 
 
