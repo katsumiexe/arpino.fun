@@ -232,14 +232,14 @@ if($_POST["staff_set"]){
 </div>
 <div class="left">
 	<ul class="menu_ul">
-		<li id="regist" class="menu"><span class="menu_icon"></span><span class="menu_comm">登録</span></li>
-		<li id="staff" class="menu"><span class="menu_icon"></span><span class="menu_comm">スタッフ</span></li>
-		<li id="sche" class="menu"><span class="menu_icon"></span><span class="menu_comm">スケジュール</span></li>
-		<li id="blog" class="menu"><span class="menu_icon"></span><span class="menu_comm">ブログ</span></li>
-		<li id="contents" class="menu"><span class="menu_icon"></span><span class="menu_comm">コンテンツ</span></li>
-		<li id="easytalk" class="menu"><span class="menu_icon"></span><span class="menu_comm">EasyTalk</span></li>
-		<li id="notice" class="menu"><span class="menu_icon"></span><span class="menu_comm">お知らせ</span></li>
-		<li id="config" class="menu"><span class="menu_icon"></span><span class="menu_comm">コンフィグ</span></li>
+		<li id="regist" class="menu <?=$sel["regist"]?>"><span class="menu_icon"></span><span class="menu_comm">登録</span></li>
+		<li id="staff" class="menu <?=$sel["staff"]?>"><span class="menu_icon"></span><span class="menu_comm">スタッフ</span></li>
+		<li id="sche" class="menu <?=$sel["sche"]?>"><span class="menu_icon"></span><span class="menu_comm">スケジュール</span></li>
+		<li id="contents" class="menu <?=$sel["contents"]?>"><span class="menu_icon"></span><span class="menu_comm">コンテンツ</span></li>
+		<li id="notice" class="menu <?=$sel["notice"]?>"><span class="menu_icon"></span><span class="menu_comm">お知らせ</span></li>
+		<li id="config" class="menu <?=$sel["config"]?>"><span class="menu_icon"></span><span class="menu_comm">設定</span></li>
+		<li id="blog" class="menu <?=$sel["blog"]?>"><span class="menu_icon"></span><span class="menu_comm">ブログ</span></li>
+		<li id="easytalk" class="menu <?=$sel["easytalk"]?>"><span class="menu_icon"></span><span class="menu_comm">EasyTalk</span></li>
 	</ul>
 	<div class="head_menu">
 		<div class="menu_a"></div>
