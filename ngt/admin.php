@@ -188,6 +188,10 @@ if($_POST["staff_set"]){
 		mysqli_query($mysqli,$sql);
 	}
 }
+
+
+
+
 ?>
 <html lang="ja">
 <head>
