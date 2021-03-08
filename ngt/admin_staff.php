@@ -545,6 +545,7 @@ $(function(){
 <h2>スタッフ一覧</h2>
 <input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 <input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
+
 <input id="sel_staff" value="1" type="radio" name="c_s"><label id="label_staff" for="sel_staff" class="c_s_btn">STAFF</label>
 <input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="label_cast" for="sel_cast" class="c_s_btn on_2">CAST</label>
 
@@ -557,6 +558,8 @@ $(function(){
 <input id="sel_status_3" value="1" type="checkbox" name="sel_status_3"><label id="label_status_3" for="sel_status_3" class="sel_status">退職</label>
 <input id="sel_status_4" value="1" type="checkbox" name="sel_status_4"><label id="label_status_4" for="sel_status_4" class="sel_status">停止</label>
 </header>
+
+
 <div class="wrap">
 <div class="main_box">
 <table style="width:720px; table-layout: fixed;">
