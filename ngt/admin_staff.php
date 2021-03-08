@@ -1,9 +1,9 @@
 <?
-$sql	 ="SELECT id,staff_id,genji,genji_kana,cast_status,mame,name_kana FROM wp01_0staff AS S";
+$sql	 ="SELECT id,staff_id,genji,genji_kana,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" ORDER BY staff_id DESC";
 
-
+echo $sql;
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
@@ -16,7 +16,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		}else{
 			$res["face"]="./img/cast_no_image.jpg";			
 		}
-		$dat[]=$res_a;
+		$dat[]=$res;
 	}
 	if(is_array($dat)){
 		$count_dat=count($dat);
@@ -30,6 +30,12 @@ if($result = mysqli_query($mysqli,$sql)){
 input[type=text]{
 	height:30px;
 }
+
+input[type="checkbox"],input[type="radio"]{
+	display:none;
+}
+
+
 
 .w000{
 	width:100%;
@@ -224,6 +230,25 @@ td{
 	font-size		:14px;
 	text-align		:left;
 }
+
+.sel_status{
+	display			:inline-block;
+	background		:#d0d0d0;
+	width			:80px;
+	height			:30px;
+	line-height		:30px;
+	margin			:5px;
+	border-radius	:5px;
+	color			:#fafafa;
+	font-size		:18px;
+	font-weight		:600;
+	text-align		:center;
+}
+
+input[type=checkbox]:checked + label{
+	background		:linear-gradient(#c0c0f0,#8080ff);
+}
+
 
 .table_title{
 	background		:linear-gradient(#e0e0e0,#d0d0d0);
@@ -518,11 +543,8 @@ $(function(){
 
 <header class="head">
 <h2>スタッフ一覧</h2>
-<div class="c_s_box">
-　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
-　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
-</div>
-<div class="c_s_box">
+<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
+<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 <input id="sel_staff" value="1" type="radio" name="c_s"><label id="label_staff" for="sel_staff" class="c_s_btn">STAFF</label>
 <input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="label_cast" for="sel_cast" class="c_s_btn on_2">CAST</label>
 
@@ -534,7 +556,6 @@ $(function(){
 <input id="sel_status_2" value="1" type="checkbox" name="sel_status_2"><label id="label_status_2" for="sel_status_2" class="sel_status">休職</label>
 <input id="sel_status_3" value="1" type="checkbox" name="sel_status_3"><label id="label_status_3" for="sel_status_3" class="sel_status">退職</label>
 <input id="sel_status_4" value="1" type="checkbox" name="sel_status_4"><label id="label_status_4" for="sel_status_4" class="sel_status">停止</label>
-</div>
 </header>
 <div class="wrap">
 <div class="main_box">
@@ -549,7 +570,7 @@ $(function(){
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr>
 <td class="td_1"><img src="<?=$dat[$n]["face"]?>" style="width:60px; height:80px;"></td>
-<td class="td_2"><?=$dat[$n]["genji"]?>[<?=$dat[$n]["kana"]?>]</td>
+<td class="td_2"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["kana"]?>]</td>
 <td class="td_3"><?=$dat[$n]["cast_id"]?></td>
 <td class="td_4"><?=$dat[$n]["ctime"]?></td>
 <td class="td_5"><?=$dat[$n]["cast_status"]?></td>
