@@ -23,7 +23,7 @@ $week_tag2[3]="ca2";
 $week_tag2[4]="ca2";
 $week_tag2[5]="ca2";
 $week_tag2[6]="ca3";
-$week_start=get_option("start_of_week")+0;
+
 $holiday	= file_get_contents("https://katsumiexe.github.io/pages/holiday.json");
 $ob_holiday = json_decode($holiday,true);
 

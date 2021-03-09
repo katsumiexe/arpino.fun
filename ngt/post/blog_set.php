@@ -39,7 +39,7 @@ mysqli_query($mysqli,$sql);
 $tmp_auto=mysqli_insert_id($mysqli); 
 
 if($img_code){
-	$img_link="../img/profile/{$_SESSION["id"]}/blog/img_{$tmp_auto}";
+	$img_link="../img/profile/{$cast_data["id"]}/blog/img_{$tmp_auto}";
 	$img	= imagecreatefromstring(base64_decode($img_code));	
 
 	$img2	= imagecreatetruecolor(600,600);

@@ -5,96 +5,53 @@ $group	=$_POST["group"];
 $name	=$_POST["name"];
 $nick	=$_POST["nick"];
 $fav	=$_POST["fav"];
-$cast_id=$_POST["cast_id"];
 $img	=$_POST["img"];
-$vw_base=$_POST["vw_base"];
 
 $yy	=$_POST["yy"];
 $mm	=$_POST["mm"];
 $dd	=$_POST["dd"];
 $ag	=$_POST["ag"];
 
-$img_code	=$_POST["img_code"];
-$img_zoom	=$_POST["img_zoom"];
-$img_top	=$_POST["img_top"];
-$img_left	=$_POST["img_left"];
-$img_width	=$_POST["img_width"];
-$img_height	=$_POST["img_height"];
-$vw_base	=$_POST["vw_base"];
-$img_rote	=$_POST["img_rote"]+0;
-
-
 if($yy && $mm && $dd){
-	$birth=$yy."-".$mm."-".$dd;
+	$birth=$yy.$mm.$dd;
 }else{
-	$birth="0000-00-00";
+	$birth="00000000";
 }
 
 $sql ="SELECT * FROM wp01_0customer_item"; 
 $sql .=" WHERE gp=0"; 
 $sql .=" AND del=0"; 
-$res0 = $wpdb->get_results($sql,ARRAY_A );
-foreach($res0 as $row1){
-	$dat[]=$row1["id"];
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$dat[]=$row;
+	}
 }
 
 
 $sql_log ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
-$sql_log .=" VALUES('{$cast_id}','{$nick}','{$name}','{$regist_date}','{$birth}','{$clist}','{$fav}','{$group}')";
-$wpdb->query($sql_log);
-$tmp_auto=$wpdb->insert_id;
+$sql_log .=" VALUES('{$cast_data["id"]}','{$nick}','{$name}','{$now}','{$birth}','{$clist}','{$fav}','{$group}')";
+mysqli_query($mysqli,$sql);
+$tmp_auto=mysqli_insert_id($mysqli);
 
-$sql ="INSERT INTO wp01_0customer_list (`cast_id`,`customer_id`,`item`) VALUES";
-foreach($dat as $a1){
-	$sql .="('{$cast_id}','{$tmp_auto}','{$a1}'),";
+
+if($dat){
+	$sql ="INSERT INTO wp01_0customer_list (`cast_id`,`customer_id`,`item`) VALUES";
+	foreach($dat as $a1){
+		$sql .="('{$cast_data["id"]}','{$tmp_auto}','{$a1}'),";
+	}
+	$sql=substr($sql,0,-1);
+	mysqli_query($mysqli,$sql);
 }
-$sql=substr($sql,0,-1);
-$wpdb->query($sql);
 
 if($img_code){
-	for($n=0;$n<strlen($tmp_auto);$n++){
-		$cus=substr($tmp_auto,$n,1);
-		$rnd=rand(0,19);
-		$clist=$dec[$rnd][$cus];
-	}
+	$img_link="../img/cast/{$box_no}/c/img_{$tmp_auto}";
+	$img	= imagecreatefromstring(base64_decode($img_code));	
 
-	$clist.=".png";
-	$link="../img/cast/{$box_no}/c/".$clist;
-	$img2 		= imagecreatetruecolor(300,300);
+	$img2	= imagecreatetruecolor(160,160);
+	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 160, 160, 300, 300);
+	imagepng($img2,$img_link.".png");
 
-/*
-	$tmp_top	=floor(((($vw_base*10-$img_top)*10)/$vw_base)*100/$img_zoom);
-	$tmp_left	=floor(((($vw_base*10-$img_left)*10)/$vw_base)*100/$img_zoom);
-
-	$tmp_width	=floor(600/($img_zoom/100));
-	$tmp_height	=floor(600/($img_zoom/100));
-*/
-
-	if($img_rote ==90){
-		$new_img = imagecreatefromstring(base64_decode($img_code));	
-		$img = imagerotate($new_img, 270, 0, 0);
-
-	}elseif($img_rote ==180){
-		$new_img = imagecreatefromstring(base64_decode($img_code));
-		$img = imagerotate($new_img, 180, 0, 0);
-
-	}elseif($img_rote ==270){
-		$new_img = imagecreatefromstring(base64_decode($img_code));
-		$img = imagerotate($new_img, 90, 0, 0);
-
-	}else{
-		$img = imagecreatefromstring(base64_decode($img_code));
-	}
-	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 300, 300, 300, 300);
-	imagepng($img2,$link);
-
-	$sql_log ="UPDATE wp01_0customer SET";
-	$sql_log .=" face='{$clist}'";
-	$sql_log .=" WHERE id='{$tmp_auto}'";
-	$wpdb->query($sql_log);
-
-	$html_img ="<img src=\"{$res}\" class=\"mail_img\">";
-	$html_img.="<input type=\"hidden\" class=\"customer_hidden_face\" value=\"{$clist}\">";
+	$tmp_img=<img src=\"{$img_link}.png\" class=\"mail_img\">;
 
 }else{
 	$html_img="<img src=\"./img/customer_no_img.jpg\" class=\"mail_img\">";
