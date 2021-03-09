@@ -249,7 +249,22 @@ if($result = mysqli_query($mysqli,$sql)){
 		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
 		$days_birth[$birth_m.$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
 
+
+		if(file_exists("./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.png")){
+			$row["face"]="<img src=\"./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.png?t_{time()}\" class=\"slide_img\">";
+
+		}else{
+			$row["face"]="<img src=\"./img/customer_no_image.png?t_{time()}\" class=\"slide_img\">";
+
+		}
+
+		$customer[]=$row;
 	}
+
+	if(is_array($customer)){
+		$cnt_coustomer=count($customer);
+	}
+
 
 	if($birth_hidden){
 		foreach($birth_hidden as $a1 => $a2){
@@ -257,11 +272,10 @@ if($result = mysqli_query($mysqli,$sql)){
 				$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
 			}
 		}
-		$customer[]=$row;
 	}
-	if(is_array($customer)){
-		$cnt_coustomer=connt($customer);
-	}
+
+
+
 }
 
 
@@ -1540,7 +1554,6 @@ $(function(){
 				<td class="customer_base_tag">呼び名</td>
 				<td class="customer_base_item"><input type="text" id="regist_nick" name="cus_nick" value="" class="item_basebox"></td>
 			</tr>
-
 			<tr>
 				<td class="regist_fav">
 					<span id="reg_fav_1" class="reg_fav"></span>

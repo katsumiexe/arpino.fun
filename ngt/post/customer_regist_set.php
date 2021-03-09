@@ -1,6 +1,9 @@
 <?
-include_once('../library/sql_cast.php');
-
+/*
+ini_set( 'display_errors', 1 );
+ini_set('error_reporting', E_ALL);
+*/
+include_once('../library/sql_post.php');
 $group	=$_POST["group"];
 $name	=$_POST["name"];
 $nick	=$_POST["nick"];
@@ -27,12 +30,10 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
-$sql_log ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
-$sql_log .=" VALUES('{$cast_data["id"]}','{$nick}','{$name}','{$now}','{$birth}','{$clist}','{$fav}','{$group}')";
+$sql ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
+$sql .=" VALUES('{$cast_data["id"]}','{$nick}','{$name}','{$now}','{$birth}','{$clist}','{$fav}','{$group}')";
 mysqli_query($mysqli,$sql);
 $tmp_auto=mysqli_insert_id($mysqli);
-
 
 if($dat){
 	$sql ="INSERT INTO wp01_0customer_list (`cast_id`,`customer_id`,`item`) VALUES";
@@ -43,16 +44,15 @@ if($dat){
 	mysqli_query($mysqli,$sql);
 }
 
-if($img_code){
-	$img_link="../img/cast/{$box_no}/c/img_{$tmp_auto}";
-	$img	= imagecreatefromstring(base64_decode($img_code));	
 
+if($img_code){
+
+	$img_link="../img/cast/{$box_no}/c/{$dec[$id_0][$tmp_auto]}.png";
+	$img	= imagecreatefromstring(base64_decode($img_code));	
 	$img2	= imagecreatetruecolor(160,160);
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 160, 160, 300, 300);
 	imagepng($img2,$img_link.".png");
-
-	$tmp_img=<img src=\"{$img_link}.png\" class=\"mail_img\">;
-
+	$tmp_img="<img src=\"{$img_link}.png\" class=\"mail_img\">";
 }else{
 	$html_img="<img src=\"./img/customer_no_img.jpg\" class=\"mail_img\">";
 }
