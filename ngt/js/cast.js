@@ -364,7 +364,6 @@ $(function(){
 		$.post({
 			url:"./post/customer_regist_set.php",
 			data:{
-				'cast_id'	:CastId,
 				'group'		:$('#regist_group').val(),
 				'name'		:$('#regist_name').val(),
 				'nick'		:$('#regist_nick').val(),
@@ -379,6 +378,7 @@ $(function(){
 
 
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			$('.customer_all_in').append(data);
 			$('.customer_regist').animate({'top':'100vh'},200);
 			$('.set_back').fadeOut(100);

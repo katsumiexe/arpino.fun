@@ -1553,20 +1553,20 @@ $(function(){
 				<td class="customer_base_item">
 				<select id="reg_yy" name="cus_b_y" value="1977" class="item_basebox_yy">
 					<?for($n=1930;$n<date("Y");$n++){?>
-					<option value="<?=$n?>" <?if($n==$reg_base_yy){?> selected="selected"<?}?>><?=$n?></option>
+					<option value="<?=$n?>" <?if($n==1980){?> selected="selected"<?}?>><?=$n?></option>
 					<?}?>
 				</select>/<select id="reg_mm" name="cus_b_m" value="" class="item_basebox_mm">
 					<?for($n=1;$n<13;$n++){?>
-					<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+					<option value="<?=substr("0".$n,-2,2)?>" <?if($n==1){?> selected="selected"<?}?>><?=substr("0".$n,-2,2)?></option>
 					<?}?>
 				</select>/<select id="reg_dd" name="cus_b_d" value="" class="item_basebox_mm">
 					<?for($n=1;$n<32;$n++){?>
-					<option value="<?=substr("0".$n,-2,2)?>"><?=substr("0".$n,-2,2)?></option>
+					<option value="<?=substr("0".$n,-2,2)?>" <?if($n==1){?> selected="selected"<?}?>><?=substr("0".$n,-2,2)?></option>
 					<?}?>
 				</select><span class="detail_age">
 					<select id="reg_ag" name="cus_b_a" value="20" class="item_basebox_ag">
 						<?for($n=0;$n<date("Y")-1930;$n++){?>
-						<option value="<?=$n?>" <?if($n==$reg_base_ag){?> selected="selected"<?}?>><?=$n?></option>
+						<option value="<?=$n?>" <?if($n==41){?> selected="selected"<?}?>><?=$n?></option>
 						<?}?>
 					</select>
 				歳</span>
