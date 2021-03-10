@@ -21,14 +21,20 @@ if($result = mysqli_query($mysqli,$sql)){
 ?>
 
 <script>
-$('.prof_sort').on('change',function(){
+$(function(){ 
+	$('.prof_sort').on('change',function(){
 
-	Tmp=$(this).parents('.plof_list').attr('id').replace('prof_b','');
-	Tmp2=$(this).val();
+		Tmp=$(this).parents('.plof_list').attr('id').replace('prof_b','');
+		Tmp2=$(this).val();
 
-	$('#prof_b'+Tmp2).children('.prof_sort').val(Tmp);
-	$('#prof_b'+Tmp2).css('order',Tmp);
-	$('#prof_b'+Tmp).css('order',Tmp2);
+		$('#prof_b'+Tmp2).children('.prof_sort').val(Tmp);
+		$('#prof_b'+Tmp2).css('order',Tmp);
+		$('#prof_b'+Tmp).css('order',Tmp2);
+
+		console.log(Tmp);
+		console.log(Tmp2);
+
+	});
 });
 </script>
 <table>
@@ -100,9 +106,9 @@ $('.prof_sort').on('change',function(){
 <?}?>
 </table>
 プロフィール
-<div class="plof_box">
+<div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
-	<div id="prof_b<?=$a2["sort"]?>" class="plof_list" style="order: <?=$a2["sort"]?>;">
+	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
 		<input type="textbox" value="<?=$a2["sort"]?>" name="prof_sort[<?=$a1?>]" class="prof_sort">
 		<input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name">
 		<select name="prof_name[<?=$a1?>]" class="prof_option">

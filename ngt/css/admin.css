@@ -167,7 +167,7 @@ ul {
 .prof_list{
 	display		:block;
 	height		:30px;
-	flex-basis	:600px;
+	flex-basis	:500px;
 }
 
 .prof_name{
