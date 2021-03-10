@@ -24,7 +24,8 @@ if($result = mysqli_query($mysqli,$sql)){
 $(function(){ 
 	$('.prof_sort').on('change',function(){
 
-		Tmp=$(this).parents('.plof_list').attr('id').replace('prof_b','');
+		Tmp=$(this).parent('.plof_list').attr('id').replace('prof_b','');
+
 		Tmp2=$(this).val();
 
 		$('#prof_b'+Tmp2).children('.prof_sort').val(Tmp);
@@ -109,8 +110,10 @@ $(function(){
 <div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
 	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
+
 		<input type="textbox" value="<?=$a2["sort"]?>" name="prof_sort[<?=$a1?>]" class="prof_sort">
 		<input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name">
+
 		<select name="prof_name[<?=$a1?>]" class="prof_option">
 			<option value="0">コメント</option>
 			<option value="1" <?if($a2["style"]== 1){?>selected="selected"<?}?>>文章</option>

@@ -160,8 +160,9 @@ ul {
 
 
 .prof_box{
-	display	:flex;;
-	width	:500px;
+	display		:flex;;
+	width		:500px;
+	flex-wrap	:wrap;
 }
 
 .prof_list{
