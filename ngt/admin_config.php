@@ -1,19 +1,36 @@
 <?
 $sql ="SELECT * FROM wp01_0sch_table";
 $sql.=" ORDER BY sort ASC";
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
 		$table_sort[$row["sort"]]=1;
-
 		$table_id[$row["in_out"]][$row["sort"]]	=$row["id"];
-
 		$table_dat[$row["id"]]=$row;
 	}
 }
 
+
+$sql ="SELECT * FROM wp01_0charm_table";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$charm_dat[$row["sort"]]=$row;
+	}
+}
 ?>
+
+<script>
+$('.prof_sort').on('change',function(){
+
+	Tmp=$(this).parents('.plof_list').attr('id').replace('prof_b','');
+	Tmp2=$(this).val();
+
+	$('#prof_b'+Tmp2).children('.prof_sort').val(Tmp);
+	$('#prof_b'+Tmp2).css('order',Tmp);
+	$('#prof_b'+Tmp).css('order',Tmp2);
+});
+</script>
 <table>
 <tr>
 <td>開始時間</td>
@@ -81,4 +98,39 @@ if($result = mysqli_query($mysqli,$sql)){
 <td><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
 </tr>
 <?}?>
+</table>
+プロフィール
+<div class="plof_box">
+<?foreach($charm_dat as $a1 => $a2){?>
+	<div id="prof_b<?=$a2["sort"]?>" class="plof_list" style="order: <?=$a2["sort"]?>;">
+		<input type="textbox" value="<?=$a2["sort"]?>" name="prof_sort[<?=$a1?>]" class="prof_sort">
+		<input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name">
+		<select name="prof_name[<?=$a1?>]" class="prof_option">
+			<option value="0">コメント</option>
+			<option value="1" <?if($a2["style"]== 1){?>selected="selected"<?}?>>文章</option>
+		</select>
+	</div>
+<? } ?>
+</div>
+オプション
+<table>
+<tr>
+	<td>順</td>
+	<td>表題：<input id="sel_ttl_1" type="text" name="" value="" class="sel_ttl"></td>
+	<td>未選択
+	<select class="sel_option">
+		<option value="1">表示</option>
+		<option value="2">非表示</option>
+	</select>
+	</td>
+	<td>項目数：<span class="sel_count"></span></td>
+</tr>
+<tr>
+	<td colspan="3" class="sel_flex">
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
+	</td>
+</tr>
 </table>
