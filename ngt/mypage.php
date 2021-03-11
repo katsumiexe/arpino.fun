@@ -731,12 +731,8 @@ $(function(){
 			<?if (is_array($customer)) {?>
 				<?for($n=0;$n<count($customer);$n++){?>
 					<div id="clist<?=$customer[$n]["id"]?>" class="customer_list">
-						<?if($customer[$n]["face"]){?>
-							<img src="./img/cast/<?=$box_no?>/c/<?=$customer[$n]["face"]?>?t_<?=time()?>" class="mail_img">
-							<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
-						<?}else{?>
-							<img src="./img/customer_no_image.png?t_<?=time()?>" class="mail_img">
-						<? } ?>
+						<?=$customer[$n]["face"]?>
+						<input type="hidden" class="customer_hidden_face" value="<?=$customer[$n]["face"]?>">
 						<div class="customer_list_fav">
 							<?for($s=1;$s<6;$s++){?>
 								<span id="fav_<?=$customer[$n]["id"]?>_<?=$s?>" class="customer_list_fav_icon<?if($customer[$n]["fav"]>=$s){?> fav_in<?}?>"></span>

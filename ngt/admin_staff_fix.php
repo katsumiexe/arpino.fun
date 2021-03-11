@@ -1,33 +1,60 @@
 <?
+$staff_id=$_REQUEST["staff_id"];
+
+
 $sql	 ="SELECT * FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
-$sql	.=" ORDER BY sort ASC";
-
+$sql	.=" WHERE staff_id={$staff_id}";
+$sql	.="LIMIT 1";
 
 if($res = mysqli_query($mysqli,$sql)){
-	while($res_a = mysqli_fetch_assoc($res)){
-		$charm_table[$res_a["id"]]=$res_a;
-	}
+	$staff_data = mysqli_fetch_assoc($res));
 }
 
-$sql	 ="SELECT * FROM wp01_0check_main";
-$sql	.=" WHERE del=0";
-$sql	.=" ORDER BY sort ASC";
-if($res1 = mysqli_query($mysqli,$sql)){
-	while($res1_a = mysqli_fetch_assoc($res1)){
-		$ck_main[$res1_a["id"]]=$res1_a;
-	}
+if($staff_data["id"]){
 
-	$sql	 ="SELECT * FROM wp01_0check_list";
+	$sql	 ="SELECT * FROM wp01_0check_main";
 	$sql	.=" WHERE del=0";
-	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
+	$sql	.=" ORDER BY sort ASC";
 
-	if($res2 = mysqli_query($mysqli,$sql)){
-		while($res2_a = mysqli_fetch_assoc($res2)){
-			$ck_list[$res2_a["host_id"]][$res2_a["id"]]=$res2_a["list_title"];
+	if($ressult = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$ck_main[$row["id"]]=$row;
 		}
 	}
+
+
+	$sql	 ="SELECT l.id, host_id,list_sort,list_title,sel FROM wp01_0check_list AS L";
+	$sql	.=" LEFT JOIN wp01_0check_sel AS S ON L.id=S.list_id";
+	$sql	.=" WHERE del=0";
+	$sql	.=" AND(cast_id='{$staff_id}' OR cast_id IS NULL)";
+	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
+
+	if($ressult = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$ck_sub[$row["host_id"]][$row["list_sort"]]=$row;
+		}
+	}
+
+
+	$sql	 ="SELECT T.id,sort,charm,style,del,log FROM wp01_0charm_table AS T";
+	$sql	.=" LEFT JOIN wp01_0charm_sel AS S ON T.id=S.list_id";
+	$sql	.=" WHERE del=0";
+	$sql	.=" AND(cast_id='{$staff_id}' OR cast_id IS NULL)";
+	$sql	.=" ORDER BY sort ASC";
+
+	if($ressult = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$charm[$row["id"]]=$row;
+		}
+	}
+
+
+
+
 }
+
+
 ?>
 <style>
 <!--
@@ -555,19 +582,19 @@ $(function(){
 </tr>
 
 <tr>
-<td class="td_1"><img src="<?=$dat[$n]["face"]?>" style="width:60px; height:80px;"></td>
-<td class="td_2"><?=$dat[$n]["genji"]?>[<?=$dat[$n]["kana"]?>]</td>
-<td class="td_3"><?=$dat[$n]["cast_id"]?></td>
-<td class="td_4"><?=$dat[$n]["ctime"]?></td>
-<td class="td_5"><?=$dat[$n]["cast_status"]?></td>
+<td class="td_1"><img src="<?=$staff_data["face"]?>" style="width:60px; height:80px;"></td>
+<td class="td_2"><?=$staff_data["genji"]?>[<?=$dat[$n]["kana"]?>]</td>
+<td class="td_3"><?=$staff_data["cast_id"]?></td>
+<td class="td_4"><?=$staff_data["ctime"]?></td>
+<td class="td_5"><?=$staff_data["cast_status"]?></td>
 </tr>
 
 
 <option value="0">通常</option>
-<option value="1"<?if($dat[$n]["cast_status"] ==1){?> selected="selected"<?}?>>準備</option>
-<option value="2"<?if($dat[$n]["cast_status"] ==2){?> selected="selected"<?}?>>休職</option>
-<option value="3"<?if($dat[$n]["cast_status"] ==3){?> selected="selected"<?}?>>退職</option>
-<option value="4"<?if($dat[$n]["cast_status"] ==4){?> selected="selected"<?}?>>停止</option>
+<option value="1"<?if($staff_data["cast_status"] ==1){?> selected="selected"<?}?>>準備</option>
+<option value="2"<?if($staff_data["cast_status"] ==2){?> selected="selected"<?}?>>休職</option>
+<option value="3"<?if($staff_data["cast_status"] ==3){?> selected="selected"<?}?>>退職</option>
+<option value="4"<?if($staff_data["cast_status"] ==4){?> selected="selected"<?}?>>停止</option>
 
 
 
@@ -578,6 +605,7 @@ $(function(){
 	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_dd" value="01" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
+
 <td colspan="2">
 	<div>住所			</div><input type="text" name="staff_address" class="w000" autocomplete="off">
 </td><td >
@@ -588,19 +616,19 @@ $(function(){
 </td>
 </tr><tr>
 <td>
-	<div>電話番号		</div><input type="text" name="staff_tel" class="w000" autocomplete="off">
+	<div>電話番号		</div><input type="text" name="staff_tel" value="<?=$staff_data["tel"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>メールアドレス	</div><input type="text" name="staff_mail" class="w000" autocomplete="off">
+	<div>メールアドレス	</div><input type="text" name="staff_mail" value="<?=$staff_data["mail"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>LINE			</div><input type="text" name="staff_mail" class="w000" autocomplete="off">
+	<div>LINE			</div><input type="text" name="staff_mail" value="<?=$staff_data["line"]?>" class="w000" autocomplete="off">
 </td>
 </tr><tr>
 <td>
-	<div>役職			</div><input type="text" name="staff_position" class="w000" autocomplete="off">
+	<div>役職			</div><input type="text" name="staff_position" value="<?=$staff_data["position"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>グループ		</div><input type="text" name="staff_group" class="w000" autocomplete="off">
+	<div>グループ		</div><input type="text" name="staff_group" value="<?=$staff_data["group"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>ランク			</div><input type="text" name="staff_rank" class="w000" autocomplete="off">
+	<div>ランク			</div><input type="text" name="staff_rank" value="<?=$staff_data["rank"]?>" class="w000" autocomplete="off">
 </td>
 </tr>
 </table>
@@ -612,22 +640,22 @@ CAST情報
 </td>
 </tr><tr>
 <td>
-	<div>CAST名			</div><input id="genji" type="text" name="genji" class="w000" autocomplete="off">
+	<div>CAST名			</div><input id="genji" type="text" name="genji" value="<?=$staff_data["genji"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>フリガナ		</div><input type="text" name="genji_kana" class="w000" autocomplete="off">
+	<div>フリガナ		</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
-	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
+	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["ctime_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
+	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["ctime_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
+	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["ctime_dd"]?>" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td>
-	<div>ログインID		</div><input type="text" name="cast_id" class="w000" autocomplete="off">
+	<div>ログインID		</div><input type="text" name="cast_id" value="<?=$staff_data["cast_id"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="off">
+	<div>ログインPASS	</div><input type="text" name="cast_pass" value="<?=$staff_data["cast_pass"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>給与		</div><input type="text" name="cast_pay" class="w000" autocomplete="off">
+	<div>給与		</div><input type="text" name="cast_salary" value="<?=$staff_data["cast_salary"]?>" class="w000" autocomplete="off">
 	</td>
 </tr>
 </table>
@@ -644,9 +672,11 @@ CAST情報
 	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
 </tr>
 </table>
+
+<?if($charm){?>
 <table style="width:720px;" class="cast_table table-layout: fixed;">
 <tr>
-	<?foreach((array)$charm_table as $a1 => $a2){?>
+	<?foreach($charm as $a1 => $a2){?>
 <td>
 	<div><?=$a2["charm"]?></div>
 	<?if($a2["style"] == 1){?>
@@ -662,22 +692,25 @@ CAST情報
 	<? } ?>
 </tr>
 </table>
+<? } ?>
 
-<?foreach((array)$ck_main as $a1 => $a2){?>
-<table style="width:720px;" class="cast_table">
-	<tr>
-	<td class="table_title">
-<span class="table_title cast_table"><?=$a2["title"]?></span>
-</td></tr>
-	<tr>
-	<td>
-		<?foreach((array)$ck_list[$a1] as $b1 => $b2){?>
-		<input type="checkbox" id="sel_<?=$b1?>" name="options[<?=$b1?>]" class="ck_off" autocomplete="off" style="display:none; value="1">
-		<label for="sel_<?=$b1?>" class="ck_box"><?=$b2?></label>
-		<?}?>
-	</td>
-	</tr>
-</table>
+<?if($ck_main){?>
+<?foreach($ck_main as $a1 => $a2){?>
+	<table style="width:720px;" class="cast_table">
+		<tr>
+			<td class="table_title"><span class="table_title cast_table"><?=$a2["title"]?></span></td>
+		</tr>
+		<tr>
+		<td>
+			<?if($ck_sub[$a1]){?>
+				<?foreach($ck_sub[$a1] as $b1 => $b2){?>
+				<input type="checkbox" id="sel_<?=$b1?>" name="options[<?=$b1?>]" class="ck_off" autocomplete="off" style="display:none; value="1"<?if($b2["sel"] == 1){?> checked="checked"<?}?>>
+				<label for="sel_<?=$b1?>" class="ck_box"><?=$b2?></label>
+				<?}?>
+			<?}?>
+		</td>
+		</tr>
+	</table>
 <? } ?>
 </div>
 

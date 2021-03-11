@@ -69,6 +69,8 @@ if($_POST["staff_set"]){
 			$tmp_id=substr($id_8,$n,1);
 			$tmp_dir.=$dec[$id_0][$tmp_id];
 		}
+		$tmp_dir.=$tmp_id;
+
 
 		$mk_dir="./img/cast/".$tmp_dir;
 		if(!is_dir($mk_dir)) {
