@@ -1,5 +1,5 @@
 <?
-$sql	 ="SELECT id,staff_id,genji,genji_kana,cast_status,name,kana FROM wp01_0staff AS S";
+$sql	 ="SELECT id,staff_id,genji,genji_kana,cast_id,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" ORDER BY staff_id DESC";
 
@@ -569,6 +569,7 @@ $(function(){
 <td class="td_top">ID</td>
 <td class="td_top">登録日</td>
 <td class="td_top">状態</td>
+<td class="td_top">変更</td>
 </tr>
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr>
@@ -577,6 +578,9 @@ $(function(){
 <td class="td_3"><?=$dat[$n]["cast_id"]?></td>
 <td class="td_4"><?=$dat[$n]["ctime"]?></td>
 <td class="td_5"><?=$dat[$n]["cast_status"]?></td>
+
+<td class="td_5"><form action="./admin_staff_fix.php"><button type="submit">変更</button><input type="hidden" name="staff_id" value="<?=$staff_id?>"></form></td>
+
 </tr>
 <?}?>
 </table>
