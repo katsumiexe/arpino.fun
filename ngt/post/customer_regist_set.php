@@ -48,13 +48,15 @@ if($dat){
 if($img_code){
 
 	$img_link="../img/cast/{$box_no}/c/{$dec[$id_0][$tmp_auto]}.png";
+
 	$img	= imagecreatefromstring(base64_decode($img_code));	
 	$img2	= imagecreatetruecolor(160,160);
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 160, 160, 300, 300);
-	imagepng($img2,$img_link.".png");
-	$tmp_img="<img src=\"{$img_link}.png\" class=\"mail_img\">";
+	imagepng($img2,$img_link);
+	$tmp_img="<img src=\"{$img_link}\" class=\"mail_img\">";
+
 }else{
-	$html_img="<img src=\"./img/customer_no_img.jpg\" class=\"mail_img\">";
+	$tmp_img="<img src=\"./img/customer_no_img.png\" class=\"mail_img\">";
 }
 
 

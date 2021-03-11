@@ -251,10 +251,10 @@ if($result = mysqli_query($mysqli,$sql)){
 
 
 		if(file_exists("./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.png")){
-			$row["face"]="<img src=\"./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.png?t_{time()}\" class=\"slide_img\">";
+			$row["face"]="<img src=\"./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.pngt=".time()."\" class=\"mail_img\">";
 
 		}else{
-			$row["face"]="<img src=\"./img/customer_no_image.png?t_{time()}\" class=\"slide_img\">";
+			$row["face"]="<img src=\"./img/customer_no_image.png?t=".time()."\" class=\"mail_img\">";
 
 		}
 
@@ -936,12 +936,15 @@ $(function(){
 	<div class="main">
 
 		<?for($n=0;$n<$cnt_mail_data;$n++){?>
+
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
+
 				<?if($mail_data[$n]["face"]){?>
-					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t_<?=time()?>" class="mail_img">
+					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t=<?=time()?>" class="mail_img">
 				<?}else{?>
-					<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t_<?=time()?>" class="mail_img">
+					<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t=<?=time()?>" class="mail_img">
 				<? } ?>
+
 				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
 				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
 				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$n]["nickname"]?></span>
@@ -1025,7 +1028,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="./img/customer_no_image.png?t_<?=time()?>" class="blog_img">
+							<img src="./img/customer_no_image.png?t=<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
@@ -1525,7 +1528,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-					<span class="regist_img_pack"><img src="./img/customer_no_image.png?t_<?=time()?>" class="regist_img"></span>					
+					<span class="regist_img_pack"><img src="./img/customer_no_image.png?t=<?=time()?>" class="regist_img"></span>					
 					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
