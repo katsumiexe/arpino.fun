@@ -231,6 +231,7 @@ if($_POST["staff_set"]){
 </style>
 </head>
 <body class="body">
+<?=$_POST["menu_post"]?>
 <div class="main">
 	<?if($_POST["menu_post"]){?>
 		<?=include_once("./admin_{$_POST["menu_post"]}.php");?>

@@ -2,9 +2,6 @@
 $sql	 ="SELECT id,staff_id,genji,genji_kana,cast_id,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" ORDER BY staff_id DESC";
-
-echo $sql;
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		if (file_exists("./img/profile/{$res["id"]}/0.webp")) {
@@ -559,7 +556,6 @@ $(function(){
 <input id="sel_status_4" value="1" type="checkbox" name="sel_status_4"><label id="label_status_4" for="sel_status_4" class="sel_status">停止</label>
 </header>
 
-
 <div class="wrap">
 <div class="main_box">
 <table style="width:720px; table-layout: fixed;">
@@ -579,7 +575,7 @@ $(function(){
 <td class="td_4"><?=$dat[$n]["ctime"]?></td>
 <td class="td_5"><?=$dat[$n]["cast_status"]?></td>
 
-<td class="td_5"><form action="./admin_staff_fix.php"><button type="submit">変更</button><input type="hidden" name="staff_id" value="<?=$staff_id?>"></form></td>
+<td class="td_5"><form method="post"><button type="submit">変更</button><input type="hidden" value="staff_fix" name="menu_post"><input type="hidden" name="staff_id" value="<?=$dat[$n]["staff_id"]?>"></form></td>
 
 </tr>
 <?}?>

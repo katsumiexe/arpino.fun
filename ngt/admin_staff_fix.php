@@ -1,14 +1,15 @@
 <?
 $staff_id=$_REQUEST["staff_id"];
 
-
 $sql	 ="SELECT * FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" WHERE staff_id={$staff_id}";
-$sql	.="LIMIT 1";
+$sql	.=" LIMIT 1";
 
-if($res = mysqli_query($mysqli,$sql)){
-	$staff_data = mysqli_fetch_assoc($res));
+echo $sql;
+
+if($res = mysqli_query($mysqli,$sql) ){
+	$staff_data = mysqli_fetch_assoc($res);
 }
 
 if($staff_data["id"]){
@@ -48,10 +49,6 @@ if($staff_data["id"]){
 			$charm[$row["id"]]=$row;
 		}
 	}
-
-
-
-
 }
 
 
@@ -574,29 +571,11 @@ $(function(){
 <div class="main_box">
 <table style="width:720px; table-layout: fixed;">
 <tr>
-<td class="td_top"></td>
-<td class="td_top">源氏名[フリガナ]</td>
-<td class="td_top">ID</td>
-<td class="td_top">登録日</td>
-<td class="td_top">状態</td>
-</tr>
-
-<tr>
-<td class="td_1"><img src="<?=$staff_data["face"]?>" style="width:60px; height:80px;"></td>
-<td class="td_2"><?=$staff_data["genji"]?>[<?=$dat[$n]["kana"]?>]</td>
-<td class="td_3"><?=$staff_data["cast_id"]?></td>
-<td class="td_4"><?=$staff_data["ctime"]?></td>
-<td class="td_5"><?=$staff_data["cast_status"]?></td>
-</tr>
-
-
-<option value="0">通常</option>
-<option value="1"<?if($staff_data["cast_status"] ==1){?> selected="selected"<?}?>>準備</option>
-<option value="2"<?if($staff_data["cast_status"] ==2){?> selected="selected"<?}?>>休職</option>
-<option value="3"<?if($staff_data["cast_status"] ==3){?> selected="selected"<?}?>>退職</option>
-<option value="4"<?if($staff_data["cast_status"] ==4){?> selected="selected"<?}?>>停止</option>
-
-
+<td class="table_title" colspan="3">
+STAFF情報
+</td>
+</tr><tr>
+<td>
 
 	<div>名前			</div><input type="text" name="staff_name" class="w000" autocomplete="off">
 </td><td>
@@ -674,24 +653,24 @@ CAST情報
 </table>
 
 <?if($charm){?>
-<table style="width:720px;" class="cast_table table-layout: fixed;">
-<tr>
-	<?foreach($charm as $a1 => $a2){?>
-<td>
-	<div><?=$a2["charm"]?></div>
-	<?if($a2["style"] == 1){?>
-		<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
-	<? }else{ ?>
-		<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" autocomplete="off">
-	<? } ?>
-</td>
-<?if(($cnt+0) % 2 ==1){?>
-</tr><tr>
-<?}?>
-<?$cnt++;?>
-	<? } ?>
-</tr>
-</table>
+	<table style="width:720px;" class="cast_table table-layout: fixed;">
+	<tr>
+		<?foreach($charm as $a1 => $a2){?>
+			<td>
+				<div><?=$a2["charm"]?></div>
+				<?if($a2["style"] == 1){?>
+					<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
+				<? }else{ ?>
+					<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" autocomplete="off">
+				<? } ?>
+			</td>
+			<?if(($cnt+0) % 2 ==1){?>
+				</tr><tr>
+			<?}?>
+			<?$cnt++;?>
+		<? } ?>
+	</tr>
+	</table>
 <? } ?>
 
 <?if($ck_main){?>
@@ -711,6 +690,7 @@ CAST情報
 		</td>
 		</tr>
 	</table>
+<? } ?>
 <? } ?>
 </div>
 

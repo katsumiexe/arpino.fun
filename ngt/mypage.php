@@ -563,7 +563,7 @@ $(function(){
 </head>
 <body class="body">
 
-<? if(!$cast_data["cast_time"]){ ?>
+<? if(!$cast_data){ ?>
 	<div class="login_box">
 		<form action="./mypage.php" method="post">
 			<span class="login_name">IDCODE</span>
@@ -634,7 +634,7 @@ $(function(){
 		<?if(file_exists("./img/profile/{$cast_data["id"]}/0_s.jpg")){?>
 		<img src="./img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
 		<?}else{?>
-		<img src="./img/profile/noimage.jpg?t_<?=time()?>" class="slide_img">
+		<img src="./img/cast_no_image.jpg?t_<?=time()?>" class="slide_img">
 		<?}?>
 		<div class="slide_name"><?=$cast_data["genji"]?></div>
 		<ul class="menu">
