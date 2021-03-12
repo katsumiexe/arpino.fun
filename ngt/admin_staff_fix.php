@@ -132,7 +132,7 @@ td{
 .img_up_comm{
 	display		:inline-block;
 	position	:absolute;
-	top			:240px;
+	bottom		:0px;
 	left		:0;
 	background	:#906000;
 	width		:190px;
@@ -144,62 +144,67 @@ td{
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
 	top			:7px;
-	left		:15px;
+	left		:5px;
 	height		:25px;
 	line-height	:25px;
-	width		:75px;
-	font-size	:16px;
+	width		:55px;
 	text-align	:center;
 	color		:#fafafa;
 	overflow	:hidden;
 	padding		:0 5px;
 	border-radius:3px;
+	text-align	:center;
+	font-size	:20px;
+	font-family:at_icon;
 }
 
-.img_up_rote{
+.img_up_rote,.img_up_reset,.img_up_del{
 	display		:inline-block;
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
 	top			:7px;
-	left		:105px;
+	left		:80px;
 	height		:25px;
 	line-height	:25px;
-	width		:20px;
+	width		:25px;
 	text-align	:center;
 	color		:#fafafa;
 	border-radius:3px;
 	cursor		:pointer;
+	font-size	:16px;
+	font-family:at_icon;
 }
 
 .img_up_reset{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:130px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
+	left		:110px;
 }
 
 .img_up_del{
+	left		:140px;
+}
+
+.img_up_al,.img_up_al_f{
 	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
+	background	:#ffe0f0;
+	color		:#d00000;
 	position	:absolute;
-	top			:7px;
-	left		:155px;
-	height		:25px;
-	line-height	:25px;
+	top			:2px;
+	right		:0px;
+	height		:63px;
+	line-height	:63px;
 	width		:20px;
 	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
 	cursor		:pointer;
+	font-size	:14px;
+	font-family	:at_icon;
 }
+
+.img_up_al_f{
+	background	:#f0e0ff;
+	color		:#0000d0;
+	left		:0px;
+}
+
 
 #sel_staff,#sel_cast{
 	display:none;
@@ -249,7 +254,7 @@ td{
 
 .ck_box{
 	display			:inline-block;
-	width			:100px;
+	width			:128px;
 	margin			:3px;
 	padding			:4px;
 	border-radius	:5px;
@@ -462,7 +467,7 @@ input[type=range]::-moz-range-thumb{
 	font-size		:0;
 	position		:absolute;
 	top				:38px;
-	left			:15px;
+	left			:5px;
 	width			:160px;
 	height			:25px;
 }
@@ -659,9 +664,9 @@ CAST情報
 			<td>
 				<div><?=$a2["charm"]?></div>
 				<?if($a2["style"] == 1){?>
-					<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
+					<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"><?=$a2["log"]?></textarea>
 				<? }else{ ?>
-					<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" autocomplete="off">
+					<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" value="<?=$a2["log"]?>" autocomplete="off">
 				<? } ?>
 			</td>
 			<?if(($cnt+0) % 2 ==1){?>
@@ -678,17 +683,10 @@ CAST情報
 <?foreach($ck_main as $a1 => $a2){?>
 	<table style="width:720px;" class="cast_table">
 		<tr>
-			<td class="table_title"><span class="table_title cast_table"><?=$a2["title"]?></span></td>
+			<td class="table_title"><?=$a2["title"]?></td>
 		</tr>
 		<tr>
-		<td>
-			<?if($ck_sub[$a1]){?>
-				<?foreach($ck_sub[$a1] as $b1 => $b2){?>
-				<input type="checkbox" id="sel_<?=$b1?>" name="options[<?=$b1?>]" class="ck_off" autocomplete="off" style="display:none; value="1"<?if($b2["sel"] == 1){?> checked="checked"<?}?>>
-				<label for="sel_<?=$b1?>" class="ck_box"><?=$b2["list_title"]?></label>
-				<?}?>
-			<?}?>
-		</td>
+		<td><?if($ck_sub[$a1]){?><?foreach($ck_sub[$a1] as $b1 => $b2){?><input type="checkbox" id="sel_<?=$b1?>" name="options[<?=$b1?>]" class="ck_off" autocomplete="off" style="display:none; value="1"<?if($b2["sel"] == 1){?> checked="checked"<?}?>><label for="sel_<?=$b1?>" class="ck_box"><?=$b2["list_title"]?></label><?}?><?}?></td>
 		</tr>
 	</table>
 <? } ?>
@@ -696,11 +694,29 @@ CAST情報
 </div>
 
 <div class="main_box cast_table">
-	<div class="up_box">
-	画像の推奨は縦800px×横600pxです。<br>
-	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
+	<div class="img_up_box">
+		<div class="img_up_box_in"><img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:150px; margin:20px;"><div class="img_up_comm"><span>写真変更</span></div>
+		</div>
+		<div class="img_up_box_in">
+			<img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:100%;">
+			<div class="img_up_comm">
+				<span>写真変更</span>
+			</div>
+		</div>
+		<div class="img_up_box_in">
+			<img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:100%;">
+			<div class="img_up_comm">
+				<span>写真変更</span>
+			</div>
+		</div>
+		<div class="img_up_box_in">
+			<img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:100%;">
+			<div class="img_up_comm">
+				<span>写真変更</span>
+				<span class="img_up_al_f"></span>
+			</div>
+		</div>
 	</div>
-
 	<div class="img_up_box">
 	<?for($n=0;$n<4;$n++){?>
 		<div class="img_up_box_in">
@@ -715,17 +731,17 @@ CAST情報
 			<div class="img_box_out7"></div>
 			<div class="img_box_out8"></div>
 			</div>
-
 			<div class="img_up_comm">
-				<label for="upd<?=$n?>" class="img_up_file">UPLOAD</label>
-				<span id="rote<?=$n?>" type="button" class="img_up_rote icon"></span>
-				<span id="reset<?=$n?>" type="button" class="img_up_reset icon"></span>
-				<span id="del<?=$n?>" type="button" class="img_up_del icon"></span>
+				<label for="upd<?=$n?>" class="img_up_file"></label>
+				<span id="rote<?=$n?>" type="button" class="img_up_rote icon"></span>
+				<span id="reset<?=$n?>" type="button" class="img_up_reset icon"></span>
+				<span id="del<?=$n?>" type="button" class="img_up_del icon"></span>
 				<div class="img_box_in3">
 					<div id="mi<?=$n?>" class="zoom_mi">-</div>
 					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
 					<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
 				</div>
+				<span class="img_up_al"></span>
 			</div>
 		</div>
 		<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
