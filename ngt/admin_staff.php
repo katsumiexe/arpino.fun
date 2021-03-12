@@ -61,7 +61,28 @@ input[type="checkbox"],input[type="radio"]{
 }
 
 td{
-	vertical-align:top;
+	border:1px solid #303030;
+}
+
+
+.td_1{
+	width:60px;
+}
+
+.td_2{
+	width:200px;
+}
+
+.td_3{
+	width:100px;
+}
+
+.td_4{
+	width:100px;
+}
+
+.td_5{
+	width:80px;
 }
 
 .up_box{
@@ -558,7 +579,7 @@ $(function(){
 
 <div class="wrap">
 <div class="main_box">
-<table style="width:720px; table-layout: fixed;">
+<table>
 <tr>
 <td class="td_top"></td>
 <td class="td_top">源氏名[フリガナ]</td>
@@ -570,15 +591,15 @@ $(function(){
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr>
 <td class="td_1"><img src="<?=$dat[$n]["face"]?>" style="width:60px; height:80px;"></td>
-<td class="td_2"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["kana"]?>]</td>
+<td class="td_2"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
 <td class="td_3"><?=$dat[$n]["cast_id"]?></td>
 <td class="td_4"><?=$dat[$n]["ctime"]?></td>
-<td class="td_5"><?=$dat[$n]["cast_status"]?></td>
+<td class="td_5"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
 
 <td class="td_5"><form method="post"><button type="submit">変更</button><input type="hidden" value="staff_fix" name="menu_post"><input type="hidden" name="staff_id" value="<?=$dat[$n]["staff_id"]?>"></form></td>
+
 
 </tr>
 <?}?>
 </table>
 <footer class="foot"></footer> 
-

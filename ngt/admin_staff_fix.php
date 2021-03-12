@@ -6,10 +6,20 @@ $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" WHERE staff_id={$staff_id}";
 $sql	.=" LIMIT 1";
 
-echo $sql;
-
 if($res = mysqli_query($mysqli,$sql) ){
 	$staff_data = mysqli_fetch_assoc($res);
+
+	if($staff_data["birthday"]){
+		$staff_data["b_yy"]=substr($staff_data["birthday"],0,4);
+		$staff_data["b_mm"]=substr($staff_data["birthday"],4,2);
+		$staff_data["b_dd"]=substr($staff_data["birthday"],6,2);
+	}
+	if($staff_data["ctime"]){
+		$staff_data["c_yy"]=substr($staff_data["ctime"],0,4);
+		$staff_data["c_mm"]=substr($staff_data["ctime"],4,2);
+		$staff_data["c_dd"]=substr($staff_data["ctime"],6,2);
+	}
+
 }
 
 if($staff_data["id"]){
@@ -18,25 +28,23 @@ if($staff_data["id"]){
 	$sql	.=" WHERE del=0";
 	$sql	.=" ORDER BY sort ASC";
 
-	if($ressult = mysqli_query($mysqli,$sql)){
+	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$ck_main[$row["id"]]=$row;
 		}
 	}
 
-
-	$sql	 ="SELECT l.id, host_id,list_sort,list_title,sel FROM wp01_0check_list AS L";
+	$sql	 ="SELECT L.id, host_id,list_sort,list_title,cast_id ,sel FROM wp01_0check_list AS L";
 	$sql	.=" LEFT JOIN wp01_0check_sel AS S ON L.id=S.list_id";
-	$sql	.=" WHERE del=0";
 	$sql	.=" AND(cast_id='{$staff_id}' OR cast_id IS NULL)";
+	$sql	.=" AND del=0";
 	$sql	.=" ORDER BY host_id ASC, list_sort ASC";
 
-	if($ressult = mysqli_query($mysqli,$sql)){
+	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$ck_sub[$row["host_id"]][$row["list_sort"]]=$row;
 		}
 	}
-
 
 	$sql	 ="SELECT T.id,sort,charm,style,del,log FROM wp01_0charm_table AS T";
 	$sql	.=" LEFT JOIN wp01_0charm_sel AS S ON T.id=S.list_id";
@@ -44,14 +52,12 @@ if($staff_data["id"]){
 	$sql	.=" AND(cast_id='{$staff_id}' OR cast_id IS NULL)";
 	$sql	.=" ORDER BY sort ASC";
 
-	if($ressult = mysqli_query($mysqli,$sql)){
+	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$charm[$row["id"]]=$row;
 		}
 	}
-}
-
-
+	}
 ?>
 <style>
 <!--
@@ -559,7 +565,6 @@ $(function(){
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
-
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">昇順</label>
 　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">降順</label>
@@ -577,21 +582,25 @@ STAFF情報
 </tr><tr>
 <td>
 
-	<div>名前			</div><input type="text" name="staff_name" class="w000" autocomplete="off">
+
+	<div>名前			</div><input type="text" name="staff_name" value="<?=$staff_data["name"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>フリガナ		</div><input type="text" name="staff_kana" class="w000" autocomplete="off">
+	<div>フリガナ		</div><input type="text" name="staff_kana" value="<?=$staff_data["kana"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_dd" value="01" size="2" maxlength="2" autocomplete="off">日
+	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="<?=$staff_data["b_yy"]?>" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="<?=$staff_data["b_mm"]?>" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_dd" value="<?=$staff_data["b_dd"]?>" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 
 <td colspan="2">
-	<div>住所			</div><input type="text" name="staff_address" class="w000" autocomplete="off">
+	<div>住所			</div><input type="text" name="staff_address" value="<?=$staff_data["address"]?>" class="w000" autocomplete="off">
 </td><td >
 	<div>性別			</div>
-<span class="sex_box"><input id="sex1" type="radio" name="staff_sex" value="1" class="sex_box_ck"><label for="sex1" class="sex_box_txt">男性</label></span>
-<span class="sex_box"><input id="sex2" type="radio" name="staff_sex" value="2" class="sex_box_ck"><label for="sex2" class="sex_box_txt">女性</label></span>
-<span class="sex_box"><input id="sex3" type="radio" name="staff_sex" value="3" class="sex_box_ck"><label for="sex3" class="sex_box_txt">他</label></span>
+<span class="sex_box"><input id="sex1" type="radio" name="staff_sex" value="1" <?if($staff_data["sex"] ==1){?> checked="checked"<?}?> class="sex_box_ck"><label for="sex1" class="sex_box_txt">男性</label></span>
+<span class="sex_box"><input id="sex2" type="radio" name="staff_sex" value="2" <?if($staff_data["sex"] ==2){?> checked="checked"<?}?> class="sex_box_ck"><label for="sex2" class="sex_box_txt">女性</label></span>
+<span class="sex_box"><input id="sex3" type="radio" name="staff_sex" value="3" <?if($staff_data["sex"] ==3){?> checked="checked"<?}?> class="sex_box_ck"><label for="sex3" class="sex_box_txt">他</label></span>
+
+
+
 </td>
 </tr><tr>
 <td>
@@ -624,9 +633,9 @@ CAST情報
 	<div>フリガナ		</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
-	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["ctime_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["ctime_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["ctime_dd"]?>" size="2" maxlength="2" autocomplete="off">日
+	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["c_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
+	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["c_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
+	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["c_dd"]?>" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td>
@@ -639,22 +648,13 @@ CAST情報
 </tr>
 </table>
 
-<table style="width:720px;" class="cast_table table-layout: fixed;">
-<tr>
-	<td class="table_title" colspan="3">NEWS登録</td>
-</tr>	
-<tr>
-	<td style="width:40%;">公開日
-	<input type="text" id="news_date_yy" name="news_date_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="news_date_mm" name="news_date_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="news_date_dd" name="news_date_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
-	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
-</tr>
-</table>
-
 <?if($charm){?>
 	<table style="width:720px;" class="cast_table table-layout: fixed;">
 	<tr>
+		<td class="table_title" colspan="3">プロフィール</td>
+	</tr>	
+	<tr>
+
 		<?foreach($charm as $a1 => $a2){?>
 			<td>
 				<div><?=$a2["charm"]?></div>
@@ -673,6 +673,7 @@ CAST情報
 	</table>
 <? } ?>
 
+
 <?if($ck_main){?>
 <?foreach($ck_main as $a1 => $a2){?>
 	<table style="width:720px;" class="cast_table">
@@ -684,7 +685,7 @@ CAST情報
 			<?if($ck_sub[$a1]){?>
 				<?foreach($ck_sub[$a1] as $b1 => $b2){?>
 				<input type="checkbox" id="sel_<?=$b1?>" name="options[<?=$b1?>]" class="ck_off" autocomplete="off" style="display:none; value="1"<?if($b2["sel"] == 1){?> checked="checked"<?}?>>
-				<label for="sel_<?=$b1?>" class="ck_box"><?=$b2?></label>
+				<label for="sel_<?=$b1?>" class="ck_box"><?=$b2["list_title"]?></label>
 				<?}?>
 			<?}?>
 		</td>

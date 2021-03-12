@@ -1,20 +1,16 @@
 <?php
 include_once('./library/sql.php');
-
 $sql=" SELECT sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
 $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
 $sql.=" ORDER BY wp01_0schedule.id ASC";
+
 if($row = mysqli_query($mysqli,$sql)){
-
 	while($result = mysqli_fetch_assoc($row)){
-
 		if($result["stime"] && $result["etime"]){
-	
 			$result["sch_view"]=$result["stime"]." － ".$result["etime"];
-
 
 			if($day_8 < $result["ctime"]){
 				$result["new"]=1;
@@ -42,9 +38,9 @@ if($row = mysqli_query($mysqli,$sql)){
 		}
 	}
 }
-
-ksort($dat);
-
+if(is_array($dat)){
+	krsort($dat);
+}
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
@@ -119,6 +115,7 @@ if($res2 = mysqli_query($mysqli,$sql)){
 
 include_once('./header.php');
 ?>
+
 <style>
 .slide_img{
 	width		:calc( 1200px * <?=$slide_count?>);

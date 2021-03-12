@@ -1,6 +1,7 @@
 <?
 //ini_set( 'display_errors', 1 );
 include_once('./library/sql.php');
+include_once('./library/inc_code.php');
 
 //■スタッフ登録した
 if($_POST["staff_set"]){
