@@ -1,6 +1,7 @@
 <?
 $sql	 ="SELECT id,staff_id,genji,genji_kana,cast_id,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
+$sql	.=" WHERE S.del=0";
 $sql	.=" ORDER BY staff_id DESC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
@@ -18,8 +19,8 @@ if($result = mysqli_query($mysqli,$sql)){
 	if(is_array($dat)){
 		$count_dat=count($dat);
 	}
-
 }
+
 
 ?>
 <style>

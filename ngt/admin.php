@@ -190,9 +190,24 @@ if($_POST["staff_set"]){
 		$sql .=" VALUES('{$now}','{$p_date}','news','person','{$tmp_auto}','{$title}','{$news_box}','2')";
 		mysqli_query($mysqli,$sql);
 	}
+
+
+
+
+
+}elseif($_POST["fix_flg"] == 1){//■スタッフ修正
+
+
+
+}elseif($_POST["fix_flg"] == 2){//■スタッフ削除
+	$sql  =" UPDATE wp01_0staff SET";
+	$sql .=" `del`=1";
+	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
+	mysqli_query($mysqli,$sql);
+
+	echo $sql;
+
 }
-
-
 
 
 ?>

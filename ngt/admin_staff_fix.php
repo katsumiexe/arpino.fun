@@ -46,6 +46,7 @@ if($staff_data["id"]){
 		}
 	}
 
+
 	$sql	 ="SELECT T.id,sort,charm,style,del,log FROM wp01_0charm_table AS T";
 	$sql	.=" LEFT JOIN wp01_0charm_sel AS S ON T.id=S.list_id";
 	$sql	.=" WHERE del=0";
@@ -63,6 +64,10 @@ if($staff_data["id"]){
 			$face[$n]="./img/profile/{$staff_id}/{$n}.jpg";		
 		}
 	}
+
+
+
+
 }
 ?>
 <style>
@@ -136,6 +141,7 @@ td{
 
 .img_box_td_1{
 	border			:2px solid #906000;
+	max-width		:190px;
 	width			:190px;
 	height			:240px;
 	overflow		:hidden;
@@ -145,6 +151,7 @@ td{
 
 .img_box_td_2{
 	border			:2px solid #906000;
+	max-width		:190px;
 	width			:190px;
 	background		:#906000;
 	position		:relative;
@@ -152,7 +159,6 @@ td{
 	text-align		:center;
 	vertical-align	:middle;
 }
-
 
 .img_up_img{
 	display		:inline-block;
@@ -614,21 +620,40 @@ $(function(){
 	});
 
 	$('.img_up_al').on('click',function(){
-		$(this).parents('.img_box_table').animate({'left':'0'},300);
+		$(this).parents('.img_box_table').animate({'left':'0'},200);
+		$(this).parents('.img_box_table').next('.chg_check').val('0');
 	});
-
 
 	$('.img_up_al2,.img_box_in2').on('click',function(){
-		$(this).parents('.img_box_table').animate({'left':'-192px'},300);
+		$(this).parents('.img_box_table').animate({'left':'-192px'},200);
+		$(this).parents('.img_box_table').next('.chg_check').val('1');
+	});
+
+	$('.btn_fix').on('click',function(){
+		$('#fix_flg').val('1');
+		$('#form_fix').submit();
+	});
+
+	$('.btn_del').on('click',function(){
+		if(!confirm('削除します。よろしいですか')){
+		    return false;
+		}else{
+			$('#fix_flg').val('2');
+			$('#form_fix').submit();
+		}
 	});
 });
+
+
 </script>
 <header class="head">
 <h2>スタッフ登録</h2>
-<form action="" method='post' id="my-submenu-form">
-<button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
-<button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
-<input type="hidden" value="1" name="staff_set">
+<button type='button' class='btn_fix'>修正</button>
+<button type='button' class='btn_del'>削除</button>
+
+<form id="form_fix" action="" method='post' id="my-submenu-form">
+<input type="hidden" value="<?=$staff_id?>" name="staff_id">
+<input id="fix_flg" type="hidden" value="1" name="fix_flg">
 
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
@@ -695,9 +720,9 @@ CAST情報
 </td>
 </tr><tr>
 <td>
-	<div>CAST名			</div><input id="genji" type="text" name="genji" value="<?=$staff_data["genji"]?>" class="w000" autocomplete="off">
+	<div>CAST名		</div><input id="genji" type="text" name="genji" value="<?=$staff_data["genji"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>フリガナ		</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
+	<div>フリガナ	</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
 	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["c_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
@@ -800,6 +825,7 @@ CAST情報
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
 			<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
 			<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
 			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
