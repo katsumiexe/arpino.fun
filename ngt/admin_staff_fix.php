@@ -57,7 +57,13 @@ if($staff_data["id"]){
 			$charm[$row["id"]]=$row;
 		}
 	}
+
+	for($n=0;$n<4;$n++){
+		if(file_exists("./img/profile/{$staff_id}/{$n}.jpg")){
+			$face[$n]="./img/profile/{$staff_id}/{$n}.jpg";		
+		}
 	}
+}
 ?>
 <style>
 <!--
@@ -101,7 +107,7 @@ td{
 	font-size	:14px;
 }
 
-.img_up_box{
+.img_box_flex{
 	display		:flex;
 	justify-content: space-around;
 	flex-wrap	:wrap;
@@ -110,14 +116,43 @@ td{
 	margin		:10px;
 }
 
-.img_up_box_in{
-	display		:block;
-	background	:#fafafa;
-	width		:190px;
-	height		:305px;
+.img_box_in{
 	position	:relative;
-	border:2px solid #906000;
+	display		:inline-block;
+	flex-basis	:194px;
+	height		:311px;
+	overflow	:hidden;
 }
+
+.img_box_table{
+	position		:absolute;
+	top				:0;
+	left			:-192px;
+	width			:386px;
+	background		:#fafafa;
+	height			:311px;
+	border			:2px solid #906000;
+}
+
+.img_box_td_1{
+	border			:2px solid #906000;
+	width			:190px;
+	height			:240px;
+	overflow		:hidden;
+	position		:relative;
+	padding			:0;
+}
+
+.img_box_td_2{
+	border			:2px solid #906000;
+	width			:190px;
+	background		:#906000;
+	position		:relative;
+	padding			:0;
+	text-align		:center;
+	vertical-align	:middle;
+}
+
 
 .img_up_img{
 	display		:inline-block;
@@ -129,15 +164,6 @@ td{
 	height		:200px;
 }
 
-.img_up_comm{
-	display		:inline-block;
-	position	:absolute;
-	bottom		:0px;
-	left		:0;
-	background	:#906000;
-	width		:190px;
-	height		:65px;
-}
 
 .img_up_file{
 	display		:inline-block;
@@ -183,13 +209,12 @@ td{
 	left		:140px;
 }
 
-.img_up_al,.img_up_al_f{
+.img_up_al,.img_up_al2{
 	display		:inline-block;
 	background	:#ffe0f0;
 	color		:#d00000;
 	position	:absolute;
 	top			:2px;
-	right		:0px;
 	height		:63px;
 	line-height	:63px;
 	width		:20px;
@@ -199,10 +224,39 @@ td{
 	font-family	:at_icon;
 }
 
-.img_up_al_f{
-	background	:#f0e0ff;
-	color		:#0000d0;
+.img_up_al{
+	right		:0px;
+}
+.img_up_al2{
 	left		:0px;
+}
+
+.img_up_al2_in{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:5px;
+	margin			:auto;
+	transform		:rotate(45deg);
+	transform-origin:center;
+	border-bottom	:5px solid #d00000;
+	border-left		:5px solid #d00000;
+	width			:10px;
+	height			:10px;
+}
+
+.img_up_al_in{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	right			:5px;
+	margin			:auto;
+	transform		:rotate(45deg);
+	transform-origin:center;
+	border-top		:5px solid #d00000;
+	border-right	:5px solid #d00000;
+	width			:10px;
+	height			:10px;
 }
 
 
@@ -451,22 +505,24 @@ input[type=range]::-moz-range-thumb{
 	font-size			:14px;
 }
 
-.img_box_in{
-	position		:absolute;
-	top				:0;
-	left			:0;
-	width			:190px;
-	height			:240px;
-	overflow		:hidden;
-}
+.img_box_in2{
+	display			:inline-block;
+	font-size		:20px;
+	color			:#fafafa;
+	font-weight		:600;
+	width			:100%;
+	height			:65px;
+	line-height		:65px;
+	text-align		:center;
 
+}
 
 .img_box_in3{
 	display			:flex;
 	flex-wrap		:nowrap;
 	font-size		:0;
 	position		:absolute;
-	top				:38px;
+	top				:40px;
 	left			:5px;
 	width			:160px;
 	height			:25px;
@@ -556,9 +612,17 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
+
+	$('.img_up_al').on('click',function(){
+		$(this).parents('.img_box_table').animate({'left':'0'},300);
+	});
+
+
+	$('.img_up_al2,.img_box_in2').on('click',function(){
+		$(this).parents('.img_box_table').animate({'left':'-192px'},300);
+	});
 });
 </script>
-
 <header class="head">
 <h2>スタッフ登録</h2>
 <form action="" method='post' id="my-submenu-form">
@@ -575,8 +639,6 @@ $(function(){
 　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">降順</label>
 </div>
 </header>
-
-
 <div class="wrap">
 <div class="main_box">
 <table style="width:720px; table-layout: fixed;">
@@ -659,7 +721,6 @@ CAST情報
 		<td class="table_title" colspan="3">プロフィール</td>
 	</tr>	
 	<tr>
-
 		<?foreach($charm as $a1 => $a2){?>
 			<td>
 				<div><?=$a2["charm"]?></div>
@@ -694,62 +755,58 @@ CAST情報
 </div>
 
 <div class="main_box cast_table">
-	<div class="img_up_box">
-		<div class="img_up_box_in"><img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:150px; margin:20px;"><div class="img_up_comm"><span>写真変更</span></div>
-		</div>
-		<div class="img_up_box_in">
-			<img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:100%;">
-			<div class="img_up_comm">
-				<span>写真変更</span>
-			</div>
-		</div>
-		<div class="img_up_box_in">
-			<img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:100%;">
-			<div class="img_up_comm">
-				<span>写真変更</span>
-			</div>
-		</div>
-		<div class="img_up_box_in">
-			<img src="./img/profile/<?=$staff_id?>/0.jpg" style="width:100%;">
-			<div class="img_up_comm">
-				<span>写真変更</span>
-				<span class="img_up_al_f"></span>
-			</div>
-		</div>
-	</div>
-	<div class="img_up_box">
+	<div class="img_box_flex">
 	<?for($n=0;$n<4;$n++){?>
-		<div class="img_up_box_in">
-			<div class="img_box_in">
-			<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
-			<div class="img_box_out1"></div>
-			<div class="img_box_out2"></div>
-			<div class="img_box_out3"></div>
-			<div class="img_box_out4"></div>
-			<div class="img_box_out5"></div>
-			<div class="img_box_out6"></div>
-			<div class="img_box_out7"></div>
-			<div class="img_box_out8"></div>
-			</div>
-			<div class="img_up_comm">
-				<label for="upd<?=$n?>" class="img_up_file"></label>
-				<span id="rote<?=$n?>" type="button" class="img_up_rote icon"></span>
-				<span id="reset<?=$n?>" type="button" class="img_up_reset icon"></span>
-				<span id="del<?=$n?>" type="button" class="img_up_del icon"></span>
-				<div class="img_box_in3">
-					<div id="mi<?=$n?>" class="zoom_mi">-</div>
-					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
-					<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
-				</div>
-				<span class="img_up_al"></span>
-			</div>
+		<div class="img_box_in">
+			<table class="img_box_table" <?if($face[$n]){?> style="left:0px;"<?}?>>
+				<tr>
+					<td class="img_box_td_1">
+						<img src="<?=$face[$n]?>" style="width:150px; margin:20px;">
+					</td>
+					<td class="img_box_td_1">
+					<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
+					<div class="img_box_out1"></div>
+					<div class="img_box_out2"></div>
+					<div class="img_box_out3"></div>
+					<div class="img_box_out4"></div>
+					<div class="img_box_out5"></div>
+					<div class="img_box_out6"></div>
+					<div class="img_box_out7"></div>
+					<div class="img_box_out8"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="img_box_td_2">
+						<span class="img_box_in2">写真変更</span>
+						<span class="img_up_al2">
+						<span class="img_up_al2_in"></span>
+						</span>
+					</td>
+					<td class="img_box_td_2">
+						<label for="upd<?=$n?>" class="img_up_file"></label>
+						<span id="rote<?=$n?>" type="button" class="img_up_rote icon"></span>
+						<span id="reset<?=$n?>" type="button" class="img_up_reset icon"></span>
+						<span id="del<?=$n?>" type="button" class="img_up_del icon"></span>
+						<div class="img_box_in3">
+							<div id="mi<?=$n?>" class="zoom_mi">-</div>
+							<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
+							<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
+						</div>
+<?if($face[$n]){?>
+						<span class="img_up_al">
+						<span class="img_up_al_in"></span>
+						</span>
+<?}?>
+					</td>
+				</tr>
+			</table>
+			<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
+			<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
+			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
+			<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
+			<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
+			<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
 		</div>
-		<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
-		<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
-		<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
-		<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
-		<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
-		<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
 	<?}?>
 	</div>
 </div>
@@ -760,4 +817,3 @@ CAST情報
 <input id="upd3" class="img_upd" type="file" accept="image/*" style="display:none;">
 </div> 
 <footer class="foot"></footer> 
-
