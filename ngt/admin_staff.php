@@ -587,7 +587,7 @@ $(function(){
 </tr>
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr>
-<td class="td_1"><img src="<?=$dat[$n]["face"]?>" style="width:60px; height:80px;"></td>
+<td class="td_1"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
 <td class="td_2"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
 <td class="td_3"><?=$dat[$n]["cast_id"]?></td>
 <td class="td_4"><?=$dat[$n]["ctime"]?></td>

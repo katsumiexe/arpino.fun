@@ -201,7 +201,7 @@ STAFF情報
 </td><td>
 	<div>メールアドレス	</div><input type="text" name="staff_mail" class="w000" autocomplete="off">
 </td><td>
-	<div>LINE			</div><input type="text" name="staff_mail" class="w000" autocomplete="off">
+	<div>LINE			</div><input type="text" name="staff_line" class="w000" autocomplete="off">
 </td>
 </tr><tr>
 <td>
