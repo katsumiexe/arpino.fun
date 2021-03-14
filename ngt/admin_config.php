@@ -38,6 +38,7 @@ $(function(){
 	});
 });
 </script>
+
 <header class="head">
 <input id="sel_contents_0" value="1" type="radio" name="sel_contents" checked="checked"><label id="label_contents_0" for="sel_contents_0" class="sel_contents">イベント</label>
 <input id="sel_contents_1" value="2" type="radio" name="sel_contents"><label id="label_contents_1" for="sel_contents_1" class="sel_contents">NEWS</label>
@@ -46,6 +47,9 @@ $(function(){
 <input id="sel_contents_4" value="5" type="radio" name="sel_contents"><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
 <input id="sel_contents_5" value="6" type="radio" name="sel_contents"><label id="label_contents_5" for="sel_contents_5" class="sel_contents">REQRUIT</label>
 </header>
+
+<div class="wrap">
+<div class="main_box">
 <table>
 <tr>
 <td>開始時間</td>
@@ -151,4 +155,6 @@ $(function(){
 	</td>
 </tr>
 </table>
+</div>
+</div>
 <footer class="foot"></footer> 

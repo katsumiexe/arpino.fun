@@ -30,27 +30,8 @@ if($res1 = mysqli_query($mysqli,$sql)){
 
 ?>
 <style>
+<style>
 <!--
-input[type=text]{
-	height:30px;
-}
-
-.w000{
-	width:100%;
-	margin-bottom:5px;
-}
-
-.w400{
-	width:400px;
-}
-
-.w50{
-	width:60px;
-}
-
-.w40{
-	width:40px;
-}
 
 .tbox{
 	height:100px;
@@ -65,111 +46,6 @@ td{
 	vertical-align:top;
 }
 
-.up_box{
-	display		:block;
-	margin		:10px 20px;
-	font-size	:14px;
-}
-
-.img_up_box{
-	display		:flex;
-	justify-content: space-around;
-	flex-wrap	:wrap;
-	width		:400px;
-	height		:650px;
-	margin		:10px;
-}
-
-.img_up_box_in{
-	display		:block;
-	background	:#fafafa;
-	width		:190px;
-	height		:305px;
-	position	:relative;
-	border:2px solid #906000;
-}
-
-.img_up_img{
-	display		:inline-block;
-	position	:absolute;
-	top			:20px;
-	left		:20px;
-	background	:#009000;
-	width		:150px;
-	height		:200px;
-}
-
-.img_up_comm{
-	display		:inline-block;
-	position	:absolute;
-	top			:240px;
-	left		:0;
-	background	:#906000;
-	width		:190px;
-	height		:65px;
-}
-
-.img_up_file{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:15px;
-	height		:25px;
-	line-height	:25px;
-	width		:75px;
-	font-size	:16px;
-	text-align	:center;
-	color		:#fafafa;
-	overflow	:hidden;
-	padding		:0 5px;
-	border-radius:3px;
-}
-
-.img_up_rote{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:105px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
-}
-
-.img_up_reset{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:130px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
-}
-
-.img_up_del{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:155px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
-}
 
 #sel_staff,#sel_cast{
 	display:none;
@@ -219,7 +95,7 @@ td{
 
 .ck_box{
 	display			:inline-block;
-	width			:100px;
+	width			:128px;
 	margin			:3px;
 	padding			:4px;
 	border-radius	:5px;
@@ -236,207 +112,6 @@ td{
 }
 
 
-
-
-.img_box_out1{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	top			:0;
-	left		:0;
-	width		:20px;
-	height		:20px;
-	z-index		:5;
-}
-
-.img_box_out2{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	top			:0;
-	left		:20px;
-	width		:150px;
-	height		:20px;
-	border-bottom:1px solid #ff0000;
-	z-index		:5;
-}
-
-.img_box_out3{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	top			:0;
-	right		:0;
-	width		:20px;
-	height		:20px;
-	z-index		:5;
-}
-
-.img_box_out4{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	top			:20px;
-	left		:0;
-	width		:20px;
-	height		:200px;
-	border-right:1px solid #ff0000;
-	z-index		:5;
-}
-
-.img_box_out5{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	top			:20px;
-	right		:0;
-	width		:20px;
-	height		:200px;
-	border-left	:1px solid #ff0000;
-	z-index		:5;
-}
-
-.img_box_out6{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	bottom		:0;
-	left		:0;
-	width		:20px;
-	height		:20px;
-	z-index		:5;
-}
-
-.img_box_out7{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	bottom		:0;
-	left		:20px;
-	width		:150px;
-	height		:20px;
-	border-top	:1px solid #ff0000;
-	z-index		:5;
-}
-
-.img_box_out8{
-	position	:absolute;
-	background	:rgba(255,255,255,0.6);
-	bottom		:0;
-	right		:0;
-	width		:20px;
-	height		:20px;
-	z-index		:5;
-}
-
-.cvw_0{
-	position	:absolute;
-	background	:#f0f0f0;
-}
-
-input[type=range] {
-	-webkit-appearance:none;
-	background		:#f17766;
-	height			:6px;
-	width			:80px;
-	display			:inline-block;
-	border			:none;
-	margin			:8px 5px;
-	border-radius	:0;
-}
-
-input[type=range]::-webkit-slider-thumb{
-	-webkit-appearance	:none;
-	background			:#f17766;
-	height				:14px;
-	width				:14px;
-	border-radius		:50%;
-	border				:2px solid #ffffff;
-}
-
-input[type=range]::-ms-tooltip{
-	display:none;
-}
-
-input[type=range]::-moz-range-track{
-	height:0;
-}
-
-input[type=range]::-moz-range-thumb{
-	background		:#f17766;
-	height			:14px;
-	width			:14px;
-	border-radius	:50%;
-	border			:2px solid #ffffff;
-}
-
-.zoom_mi{
-	display				:inline-block;
-	height				:20px;
-	flex-basis			:15px;
-	border				:1px solid #f17766;
-	border-radius		:5px 0 0 5px;
-	line-height			:20px;
-	text-align			:center;
-	cursor				:pointer;
-	background			:#ffe0f0;
-	color				:#f17766;
-	font-size			:14px;
-	font-weight			:600;
-}		
-
-.zoom_pu{
-	display				:inline-block;
-	height				:20px;
-	flex-basis			:15px;
-	border				:1px solid #f17766;
-	border-radius		:0 5px 5px 0;
-	line-height			:20px;
-	text-align			:center;
-	cursor				:pointer;
-	background			:#ffe0f0;
-	color				:#f17766;
-	font-size			:14px;
-	font-weight			:600;
-}
-
-.zoom_rg{
-	display				:inline-block;
-	height				:20px;
-	line-height			:20px;
-	flex				:1;
-	border				:1px solid #f17766;
-	background			:#ffe0f0
-}
-
-.zoom_box{
-	border				:1px solid #f17766;
-	color				:#f17766;
-	display				:inline-block;
-	height				:20px;
-	flex-basis			:35px;
-	line-height			:20px;
-	text-align			:center;
-	margin-left			:5px;
-	background			:#ffffff;
-	font-weight			:600;
-	font-size			:14px;
-}
-
-.img_box_in{
-	position		:absolute;
-	top				:0;
-	left			:0;
-	width			:190px;
-	height			:240px;
-	overflow		:hidden;
-}
-
-
-.img_box_in3{
-	display			:flex;
-	flex-wrap		:nowrap;
-	font-size		:0;
-	position		:absolute;
-	top				:38px;
-	left			:15px;
-	width			:160px;
-	height			:25px;
-}
-
 .sex_box{
 	position		:relative;
 	display			:inline-block;
@@ -445,64 +120,28 @@ input[type=range]::-moz-range-thumb{
 }
 
 .sex_box_ck{
-	position:absolute;
-	top:0;
-	left:3px;
-	bottom:0;
-	margin:auto !important; 
+	position		:absolute;
+	top				:0;
+	left			:3px;
+	bottom			:0;
+	margin			:auto !important; 
 }
 
 .sex_box_txt{
-	position:absolute;
-	display	:inline-block;
-	top		:0px;
-	left	:25px;
-	bottom	:0;
-	margin	:auto;
-	height:30px;
-	line-height:30px;
-
-}
-
-.cvs0{
-	width:150px;
-	height:200px;
-
-}
-.head{
+	position		:absolute;
 	display			:inline-block;
-	position		:fixed;
-	top				:0;
-	left			:180px;
-	width			:calc(100vw - 180px);
-	height			:50px;
-	background		:#0000d0;
-	z-index:10;
-}
-
-.foot{
-	display			:inline-block;
-	position		:fixed;
+	top				:0px;
+	left			:25px;
 	bottom			:0;
-	left			:180px;
-	width			: calc(100vw - 180px);
+	margin			:auto;
 	height			:30px;
-	background		:#00d000;
-	z-index:10;
-
-}
-.wrap{
-	display			:inline-flex;
-	margin:50px 0 30px 0;
-	width:1200px;
+	line-height		:30px;
 
 }
 
-.icon{
-	font-family:at_icon;
-}
 -->
 </style>
+<link rel="stylesheet" href="./css/admin_image.css?t=<?=time()?>">
 <script src="./js/image.js?_<?=time()?>"></script>
 <script>
 $(function(){ 
@@ -656,40 +295,54 @@ CAST情報
 	画像の推奨は縦800px×横600pxです。<br>
 	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
 	</div>
-
 	<div class="img_up_box">
 	<?for($n=0;$n<4;$n++){?>
-		<div class="img_up_box_in">
-			<div class="img_box_in">
-			<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
-			<div class="img_box_out1"></div>
-			<div class="img_box_out2"></div>
-			<div class="img_box_out3"></div>
-			<div class="img_box_out4"></div>
-			<div class="img_box_out5"></div>
-			<div class="img_box_out6"></div>
-			<div class="img_box_out7"></div>
-			<div class="img_box_out8"></div>
-			</div>
-
-			<div class="img_up_comm">
-				<label for="upd<?=$n?>" class="img_up_file">UPLOAD</label>
-				<span id="rote<?=$n?>" type="button" class="img_up_rote icon"></span>
-				<span id="reset<?=$n?>" type="button" class="img_up_reset icon"></span>
-				<span id="del<?=$n?>" type="button" class="img_up_del icon"></span>
-				<div class="img_box_in3">
-					<div id="mi<?=$n?>" class="zoom_mi">-</div>
-					<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
-					<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
-				</div>
-			</div>
+		<div class="img_box_in">
+			<table class="img_box_table" <?if($face[$n]){?> style="left:0px;"<?}?>>
+				<tr>
+					<td class="img_box_td_1">
+						<img src="<?=$face[$n]?>" style="width:150px; margin:20px;">
+					</td>
+					<td class="img_box_td_1">
+					<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
+					<div class="img_box_out1"></div>
+					<div class="img_box_out2"></div>
+					<div class="img_box_out3"></div>
+					<div class="img_box_out4"></div>
+					<div class="img_box_out5"></div>
+					<div class="img_box_out6"></div>
+					<div class="img_box_out7"></div>
+					<div class="img_box_out8"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="img_box_td_2">
+						<span class="img_box_in2">写真変更</span>
+						<span class="img_up_al2">
+						<span class="img_up_al2_in"></span>
+						</span>
+					</td>
+					<td class="img_box_td_2">
+						<label for="upd<?=$n?>" class="img_up_file"></label>
+						<span id="rote<?=$n?>" type="button" class="img_up_rote"></span>
+						<span id="reset<?=$n?>" type="button" class="img_up_reset"></span>
+						<span id="del<?=$n?>" type="button" class="img_up_del"></span>
+						<div class="img_box_in3">
+							<div id="mi<?=$n?>" class="zoom_mi">-</div>
+							<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
+							<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
+			<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
+			<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
+			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
+			<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
+			<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
+			<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
 		</div>
-		<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
-		<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
-		<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
-		<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
-		<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
-		<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
 	<?}?>
 	</div>
 </div>

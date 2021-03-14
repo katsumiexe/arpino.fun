@@ -231,14 +231,12 @@ if($staff_set == 4){
 	}
 }
 $sel[$_POST["menu_post"]]="menu_sel";
-
 ?>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Night-party</title>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
@@ -275,7 +273,6 @@ $sel[$_POST["menu_post"]]="menu_sel";
 </style>
 </head>
 <body class="body">
-<?=$_POST["menu_post"]?>
 <div class="main">
 	<?if($_POST["menu_post"]){?>
 		<?=include_once("./admin_{$_POST["menu_post"]}.php");?>

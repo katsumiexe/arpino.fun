@@ -12,11 +12,53 @@ td{
 	padding:5px;
 }
 
-
-checkbox{
-	height:30px;
-	font-size:16px;
+input[type="text"]{
+	height		:30px;
+	font-size	:16px;
 }
+
+
+.w000{
+	width:100%;
+	margin-bottom:5px;
+}
+
+.w400{
+	width:400px;
+}
+
+.w40{
+	width:40px;
+}
+
+.head{
+	display			:inline-block;
+	position		:fixed;
+	top				:0;
+	left			:180px;
+	width			:calc(100vw - 180px);
+	height			:50px;
+	background		:#0000d0;
+	z-index:10;
+}
+
+.foot{
+	display			:inline-block;
+	position		:fixed;
+	bottom			:0;
+	left			:180px;
+	width			: calc(100vw - 180px);
+	height			:30px;
+	background		:#00d000;
+	z-index:10;
+
+}
+.wrap{
+	display			:inline-flex;
+	margin			:50px 0 30px 0;
+	width			:1200px;
+}
+
 .timeline-Footer{font-size:0 !important}
 
 ul {
@@ -197,6 +239,7 @@ ul {
 	height		:30px;
 	width		:120px;
 }
+
 
 @media screen and (max-width: 559px){
 .head_menu{
