@@ -4,9 +4,16 @@ include_once('./library/sql.php');
 include_once('./library/inc_code.php');
 
 //■スタッフ登録した
-if($_POST["staff_set"]){
-	$c_s			=$_POST["c_s"];
+$staff_set=$_POST["staff_set"];
 
+if($staff_set == 4){
+	$sql  =" UPDATE wp01_0staff SET";
+	$sql .=" `del`=1";
+	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
+	mysqli_query($mysqli,$sql);
+
+}elseif($staff_set){
+	$c_s			=$_POST["c_s"];
 	$staff_name		=$_POST["staff_name"];
 	$staff_kana		=$_POST["staff_kana"];
 	$staff_birthday	=$_POST["staff_birthday"];
@@ -48,81 +55,126 @@ if($_POST["staff_set"]){
 
 	if(!$staff_registday) $staff_registday=date("Y-m-d");
 	$btime=$b_yy*10000+$b_mm*100+$b_dd;
-	$btime=substr($btime,0,4)."-".substr($btime,4,2)."-".substr($btime,6,2);
 
-	$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`address`,`registday`)";
-	$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_address}','{$staff_registday}')";
-	mysqli_query($mysqli,$sql);
-
-	if($c_s == 2){
-//■cast-------------------------------
-		$tmp_auto=mysqli_insert_id($mysqli);
-		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
-		$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
-		$sql.="VALUES('{$tmp_auto}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
+	if($staff_set == 2 || $staff_set == 3){
+		$sql="UPDATE wp01_0staff SET";
+		$sql.=" `name`='{$staff_name}',";
+		$sql.=" `kana`='{$staff_kana}',";
+		$sql.=" `birthday`='{$btime}',";
+		$sql.=" `sex`='{$staff_sex}',";
+		$sql.=" `rank`='{$staff_rank}',";
+		$sql.=" `position`='{$staff_position}',";
+		$sql.=" `group`='{$staff_group}',";
+		$sql.=" `tel`='{$staff_tel}',";
+		$sql.=" `line`='{$staff_line}',";
+		$sql.=" `address`='{$staff_address}',";
+		$sql.=" `registday`=,'{$staff_registday}'";
+		$sql.=" WHERE staff_id='{$staff_id}'";
 		mysqli_query($mysqli,$sql);
+
+	}else{
+		$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`address`,`registday`)";
+		$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_address}','{$staff_registday}')";
+		mysqli_query($mysqli,$sql);
+	}
+
+//■cast-------------------------------
+	if($c_s == 2){
+		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
+		if($staff_set == 2){
+			$sql="UPDATE wp01_0cast SET";
+			$sql.=" `id`='{$id}',";
+			$sql.=" `genji`='{$genji}',";
+			$sql.=" `$genji_kana`='{$genji_kana}',";
+
+			$sql.=" `cast_id`='{$cast_id}',";
+			$sql.=" `cast_pass`='{$cast_pass}',";
+			$sql.=" `cast_mail`='{$cast_mail}',";
+
+			$sql.=" `ctime`='{$ctime}',";
+			$sql.=" `cast_rank`='{$cast_rank}',";
+			$sql.=" `cast_sort`='{$cast_sort}'";
+			$sql.=" WHERE staff_id='{$staff_id}'";
+			mysqli_query($mysqli,$sql);
+
+		}else{
+			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`rank`,`sort`)";
+			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
 
 //■encode-------------------------------
-		$id_8	=substr("00000000".$tmp_auto,-8);
-		$id_0	=$tmp_auto % 20;
-		for($n=0;$n<8;$n++){
-			$rnd=rand(0,19);
-			$tmp_id=substr($id_8,$n,1);
-			$tmp_dir.=$dec[$id_0][$tmp_id];
-		}
-		$tmp_dir.=$tmp_id;
-
-
-		$mk_dir="./img/cast/".$tmp_dir;
-		if(!is_dir($mk_dir)) {
-			mkdir($mk_dir."/c/", 0777, TRUE);
-			chmod($mk_dir."/c/", 0777);
-
-			mkdir($mk_dir."/m/", 0777, TRUE);
-			chmod($mk_dir."/m/", 0777);
-		}
-
-		$link="./img/profile/".$tmp_auto;
-		if(!is_dir($link)) {
-			mkdir($link, 0777, TRUE);
-			chmod($link, 0777);
-		}
-
-		$sql="INSERT INTO wp01_0cast_log_table(cast_id,item_name,item_icon,item_color,price,sort)VALUES";
-		$sql.="('{$tmp_auto}','ドリンクA','0','48','100','0'),";
-		$sql.="('{$tmp_auto}','ドリンクB','2','35','200','1'),";
-		$sql.="('{$tmp_auto}','フードA','4','3','300','2'),";
-		$sql.="('{$tmp_auto}','フードB','5','7','500','3'),";
-		$sql.="('{$tmp_auto}','ボトル','3','36','1000','4'),";	
-		$sql.="('{$tmp_auto}','本指名','8','55','1000','5'),";
-		$sql.="('{$tmp_auto}','場内指名','8','12','500','6'),";
-		$sql.="('{$tmp_auto}','同伴','6','59','2000','7')";
-		mysqli_query($mysqli,$sql);
-		
-//■options-------------------------------
-		foreach($options as $a1 => $a2){
-			if($a2 == "on"){
-				$app.="('{$a1}','{$tmp_auto}',1),";
+			$id_8	=substr("00000000".$tmp_auto,-8);
+			$id_0	=$tmp_auto % 20;
+			for($n=0;$n<8;$n++){
+				$rnd=rand(0,19);
+				$tmp_id=substr($id_8,$n,1);
+				$tmp_dir.=$dec[$id_0][$tmp_id];
 			}
-		}
-		if($app){
-			$app=substr($app,0,-1);
-			$sql="INSERT INTO wp01_0check_sel(list_id,cast_id,sel)VALUES";
-			$sql.=$app;
+			$tmp_dir.=$tmp_id;
+
+			$mk_dir="./img/cast/".$tmp_dir;
+			if(!is_dir($mk_dir)) {
+				mkdir($mk_dir."/c/", 0777, TRUE);
+				chmod($mk_dir."/c/", 0777);
+
+				mkdir($mk_dir."/m/", 0777, TRUE);
+				chmod($mk_dir."/m/", 0777);
+			}
+
+			$link="./img/profile/".$tmp_auto;
+			if(!is_dir($link)) {
+				mkdir($link, 0777, TRUE);
+				chmod($link, 0777);
+			}
+
+			$sql="INSERT INTO wp01_0cast_log_table(cast_id,item_name,item_icon,item_color,price,sort)VALUES";
+			$sql.="('{$tmp_auto}','ドリンクA','0','48','100','0'),";
+			$sql.="('{$tmp_auto}','ドリンクB','2','35','200','1'),";
+			$sql.="('{$tmp_auto}','フードA','4','3','300','2'),";
+			$sql.="('{$tmp_auto}','フードB','5','7','500','3'),";
+			$sql.="('{$tmp_auto}','ボトル','3','36','1000','4'),";	
+			$sql.="('{$tmp_auto}','本指名','8','55','1000','5'),";
+			$sql.="('{$tmp_auto}','場内指名','8','12','500','6'),";
+			$sql.="('{$tmp_auto}','同伴','6','59','2000','7')";
 			mysqli_query($mysqli,$sql);
-		}
+			
+//■options-------------------------------
+			foreach($options as $a1 => $a2){
+				if($a2 == "on"){
+					$app.="('{$a1}','{$tmp_auto}',1),";
+				}
+			}
+			if($app){
+				$app=substr($app,0,-1);
+				$sql="INSERT INTO wp01_0check_sel(list_id,cast_id,sel)VALUES";
+				$sql.=$app;
+				mysqli_query($mysqli,$sql);
+			}
 
 //■charm_table-------------------------------
-		foreach($charm_table as $a1 => $a2){
-			if($a2){
-				$app2.="('{$a1}','{$tmp_auto}','{$a2}'),";
+			foreach($charm_table as $a1 => $a2){
+				if($a2){
+					$app2.="('{$a1}','{$tmp_auto}','{$a2}'),";
+				}
 			}
-		}
-		if($app2){
-			$app2=substr($app2,0,-1);
-			$sql="INSERT INTO wp01_0charm_sel(list_id,cast_id,log)VALUES";
-			$sql.=$app2;
-			mysqli_query($mysqli,$sql);
+			if($app2){
+				$app2=substr($app2,0,-1);
+				$sql="INSERT INTO wp01_0charm_sel(list_id,cast_id,log)VALUES";
+				$sql.=$app2;
+				mysqli_query($mysqli,$sql);
+			}
+
+			if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
+				$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
+
+				$p_date=$_REQUEST["news_date_yy"]."-".$_REQUEST["news_date_mm"]."-".$_REQUEST["news_date_dd"]." 00:00:00";
+				$m_date=$_REQUEST["ctime_yy"]."-".$_REQUEST["ctime_mm"]."-".$_REQUEST["ctime_dd"]." 00:00:00";
+				$g_date=date("Y-m-d 00:00:00",strtotime($p_date)-32400);
+
+				$sql =" INSERT INTO wp01_0contents";
+				$sql .="(`date`, display_date, page, category, contents_key, title, contents,tag)";
+				$sql .=" VALUES('{$now}','{$p_date}','news','person','{$tmp_auto}','{$title}','{$news_box}','2')";
+				mysqli_query($mysqli,$sql);
+			}
 		}
 
 //■img-------------------------------
@@ -177,38 +229,8 @@ if($_POST["staff_set"]){
 			}
 		}
 	}
-
-	if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
-		$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
-
-		$p_date=$_REQUEST["news_date_yy"]."-".$_REQUEST["news_date_mm"]."-".$_REQUEST["news_date_dd"]." 00:00:00";
-		$m_date=$_REQUEST["ctime_yy"]."-".$_REQUEST["ctime_mm"]."-".$_REQUEST["ctime_dd"]." 00:00:00";
-		$g_date=date("Y-m-d 00:00:00",strtotime($p_date)-32400);
-
-		$sql =" INSERT INTO wp01_0contents";
-		$sql .="(`date`, display_date, page, category, contents_key, title, contents,tag)";
-		$sql .=" VALUES('{$now}','{$p_date}','news','person','{$tmp_auto}','{$title}','{$news_box}','2')";
-		mysqli_query($mysqli,$sql);
-	}
-
-
-
-
-
-}elseif($_POST["fix_flg"] == 1){//■スタッフ修正
-
-
-
-}elseif($_POST["fix_flg"] == 2){//■スタッフ削除
-	$sql  =" UPDATE wp01_0staff SET";
-	$sql .=" `del`=1";
-	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
-	mysqli_query($mysqli,$sql);
-
-	echo $sql;
-
 }
-
+$sel[$_POST["menu_post"]]="menu_sel";
 
 ?>
 <html lang="ja">
@@ -244,6 +266,12 @@ if($_POST["staff_set"]){
 	font-family: at_font1;
 	src: url("./font/Courgette-Regular.ttf") format('truetype');
 }
+
+.menu_sel{
+	background:linear-gradient(#ff0000,#e00000);
+	color:#fafafa;
+}
+
 </style>
 </head>
 <body class="body">

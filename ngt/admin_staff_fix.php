@@ -520,7 +520,6 @@ input[type=range]::-moz-range-thumb{
 	height			:65px;
 	line-height		:65px;
 	text-align		:center;
-
 }
 
 .img_box_in3{
@@ -630,7 +629,7 @@ $(function(){
 	});
 
 	$('.btn_fix').on('click',function(){
-		$('#fix_flg').val('1');
+		$('#fix_flg').val('2');
 		$('#form_fix').submit();
 	});
 
@@ -638,7 +637,7 @@ $(function(){
 		if(!confirm('削除します。よろしいですか')){
 		    return false;
 		}else{
-			$('#fix_flg').val('2');
+			$('#fix_flg').val('4');
 			$('#form_fix').submit();
 		}
 	});
@@ -652,8 +651,9 @@ $(function(){
 <button type='button' class='btn_del'>削除</button>
 
 <form id="form_fix" action="" method='post' id="my-submenu-form">
+
 <input type="hidden" value="<?=$staff_id?>" name="staff_id">
-<input id="fix_flg" type="hidden" value="1" name="fix_flg">
+<input id="fix_flg" type="hidden" value="2" name="staff_set">
 
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
