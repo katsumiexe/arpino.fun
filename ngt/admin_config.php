@@ -47,7 +47,6 @@ $(function(){
 <input id="sel_contents_4" value="5" type="radio" name="sel_contents"><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
 <input id="sel_contents_5" value="6" type="radio" name="sel_contents"><label id="label_contents_5" for="sel_contents_5" class="sel_contents">REQRUIT</label>
 </header>
-
 <div class="wrap">
 <div class="main_box">
 <table>
@@ -101,6 +100,11 @@ $(function(){
 
 <table>
 <tr>
+<td class="table_title" colspan="4">
+スケジュール
+</td>
+</tr>
+<tr>
 <td colspan="2">IN</td><td colspan="2">OUT</td>
 </tr><tr>
 <td>表示</td>
@@ -133,8 +137,12 @@ $(function(){
 	</div>
 <? } ?>
 </div>
-オプション
 <table>
+<tr>
+<td class="table_title" colspan="4">
+オプション
+</td>
+</tr>
 <tr>
 	<td>順</td>
 	<td>表題：<input id="sel_ttl_1" type="text" name="" value="" class="sel_ttl"></td>
@@ -147,14 +155,40 @@ $(function(){
 	<td>項目数：<span class="sel_count"></span></td>
 </tr>
 <tr>
-	<td colspan="3" class="sel_flex">
+	<td colspan="4" class="sel_flex">
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
+		<div class="sel_block">
+		<span class="sel_del">×</span>
+			<input id="sel_1" type="text" name="" value="" class="sel_text">
+		</div>
 		<div class="sel_block">
 		<span class="sel_del">×</span>
 			<input id="sel_1" type="text" name="" value="" class="sel_text">
 		</div>
 	</td>
 </tr>
+
 </table>
+
 </div>
 </div>
 <footer class="foot"></footer> 

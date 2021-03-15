@@ -166,16 +166,19 @@ ul {
 }
 
 .sel_flex{
-	display:flex;
 	width:1000px;
-
+	max-width:1000px;
+	text-align:left;
+	font-size:0;
 }
 .sel_block{
-	flex-basis	:190px;
-	height		:40px;
-	background	:#e0c080;
-	position	:relative;
-	border-radius:5px;
+	display			:inline-block;
+	width			:194px;
+	height			:40px;
+	background		:#e0c080;
+	position		:relative;
+	border-radius	:5px;
+	margin			:3px;
 }
 
 .sel_text{
