@@ -33,8 +33,6 @@ input[type="checkbox"],input[type="radio"]{
 	display:none;
 }
 
-
-
 .w000{
 	width:100%;
 	margin-bottom:5px;
@@ -66,131 +64,67 @@ td{
 }
 
 
-.td_1{
-	width:60px;
-}
-
-.td_2{
-	width:200px;
-}
-
-.td_3{
-	width:100px;
-}
-
-.td_4{
-	width:100px;
-}
-
-.td_5{
-	width:80px;
-}
-
-.up_box{
-	display		:block;
-	margin		:10px 20px;
+.td_top{
+	background:#f0f0ff;
+	text-align:center;
 	font-size	:14px;
 }
 
-.img_up_box{
-	display		:flex;
-	justify-content: space-around;
-	flex-wrap	:wrap;
-	width		:400px;
-	height		:650px;
-	margin		:10px;
+.td_60{
+	width:60px;
 }
 
-.img_up_box_in{
-	display		:block;
-	background	:#fafafa;
-	width		:190px;
-	height		:305px;
-	position	:relative;
-	border:2px solid #906000;
+.td_200{
+	width:200px;
 }
 
-.img_up_img{
+.td_100{
+	width:100px;
+}
+
+.td_sort{
+	width:40px;
+	position:relative;
+}
+
+.td_sort_up,.td_sort_down{
 	display		:inline-block;
 	position	:absolute;
-	top			:20px;
-	left		:20px;
-	background	:#009000;
-	width		:150px;
-	height		:200px;
-}
-
-.img_up_comm{
-	display		:inline-block;
-	position	:absolute;
-	top			:240px;
 	left		:0;
-	background	:#906000;
-	width		:190px;
-	height		:65px;
+	right		:0;
+	margin		:auto;
+	width		:30px;
+	height		:22px;
+	line-height	:22px;
+	background	:#d0d0d0;
+	text-align	:center;
 }
 
-.img_up_file{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:15px;
-	height		:25px;
-	line-height	:25px;
-	width		:75px;
-	font-size	:16px;
-	text-align	:center;
-	color		:#fafafa;
-	overflow	:hidden;
-	padding		:0 5px;
-	border-radius:3px;
+.td_sort_down{
+	bottom:5px;
 }
 
-.img_up_rote{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:105px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
+.td_sort_up{
+	top:5px;
 }
 
-.img_up_reset{
+.td_sort_middle{
 	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
-	top			:7px;
-	left		:130px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	top		:0;
+	bottom	:0;
+	height	:26px;
+	background	:#fafafa;
+	border:1px solid #303030;
+	text-align:right;
+	width		:24px;
+	padding:2px;
 }
 
-.img_up_del{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:7px;
-	left		:155px;
-	height		:25px;
-	line-height	:25px;
-	width		:20px;
-	text-align	:center;
-	color		:#fafafa;
-	border-radius:3px;
-	cursor		:pointer;
-}
+
 
 #sel_staff,#sel_cast{
 	display:none;
@@ -542,6 +476,7 @@ input[type=range]::-moz-range-thumb{
 </style>
 <script>
 $(function(){ 
+	$('#sort').sortable();
 	$('#staff_l').on('click',function () {
 		$(this).addClass('on_1');
 		$('#cast_l').removeClass('on_2');
@@ -553,6 +488,28 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
+
+$('.td_sort_up').on('click',function(){
+
+	Tmp1=$(this).attr('id').replace('u_','');
+	Tmp2=Tmp1-1;
+
+	Html1=$('#tr_'+Tmp1).html();
+	Html2=$('#tr_'+Tmp2).html();
+
+	$('#tr_'+Tmp1).html(Html2);
+	$('#tr_'+Tmp2).html(Html1);
+
+	$('#tr_'+Tmp1).children('.td_sort_middle').html("111");
+	$('#tr_'+Tmp2).children('.td_sort_middle').html("222");
+
+
+
+});
+
+
+
+
 });
 </script>
 
@@ -577,26 +534,36 @@ $(function(){
 <div class="wrap">
 <div class="main_box">
 <table>
+<thead>
 <tr>
 <td class="td_top"></td>
 <td class="td_top">源氏名[フリガナ]</td>
 <td class="td_top">ID</td>
+<td class="td_top">序列</td>
 <td class="td_top">登録日</td>
 <td class="td_top">状態</td>
 <td class="td_top">変更</td>
 </tr>
+</thead>
+<tbody id="sort">
 <?for($n=0;$n<$count_dat;$n++){?>
-<tr>
-<td class="td_1"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
-<td class="td_2"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
-<td class="td_3"><?=$dat[$n]["cast_id"]?></td>
-<td class="td_4"><?=$dat[$n]["ctime"]?></td>
-<td class="td_5"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
+<tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
+<td class="td_60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+<td class="td_200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
+
+<td class="td_100"><?=$dat[$n]["cast_id"]?></td>
+<td class="td_sort">
+<div id="u_<?=$dat[$n]["staff_id"]?>" af="<?=$dat[$n]["staff_id"]?>" bf="<?=$dat[$n]["staff_id"]-1?>" class="td_sort_up">□</div>
+<div id="m_<?=$dat[$n]["staff_id"]?>" class="td_sort_middle"><?=$n+1?></div>
+<div id="d_<?=$dat[$n]["staff_id"]?>" af="<?=$dat[$n]["staff_id"]?>" bf="<?=$dat[$n]["staff_id"]+1?>" class="td_sort_down">□</div>
+</td>
+<td class="td_100"><?=$dat[$n]["ctime"]?></td>
+<td class="td_100"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
 
 <td class="td_5"><form method="post"><button type="submit">変更</button><input type="hidden" value="staff_fix" name="menu_post"><input type="hidden" name="staff_id" value="<?=$dat[$n]["staff_id"]?>"></form></td>
 
-
 </tr>
 <?}?>
+</tbody>
 </table>
 <footer class="foot"></footer> 

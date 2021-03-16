@@ -89,7 +89,6 @@ echo $sql;
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
 		if($staff_set == 2){//変更
 			$sql="UPDATE wp01_0cast SET";
-			$sql.=" `id`='{$id}',";
 			$sql.=" `genji`='{$genji}',";
 			$sql.=" `genji_kana`='{$genji_kana}',";
 
@@ -102,8 +101,6 @@ echo $sql;
 			$sql.=" `cast_sort`='{$cast_sort}'";
 			$sql.=" WHERE id='{$staff_id}'";
 			mysqli_query($mysqli,$sql);
-
-echo $sql;
 
 			$sql="DELETE FROM wp01_0charm_sel WHERE cast_id='{$staff_id}'";
 			mysqli_query($mysqli,$sql);
