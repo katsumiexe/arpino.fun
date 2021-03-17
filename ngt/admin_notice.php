@@ -3,13 +3,6 @@
 ?>
 <style>
 <!--
-input[type=text]{
-	height:30px;
-}
-
-input[type="checkbox"],input[type="radio"]{
-	display:none;
-}
 
 .sel_contents{
 	display			:inline-block;
@@ -29,45 +22,22 @@ input[type=radio]:checked + label{
 	background		:linear-gradient(#ff0000,#d00000);
 }
 
-
-.head{
-	display			:inline-block;
-	position		:fixed;
-	top				:0;
-	left			:180px;
-	width			:calc(100vw - 180px);
-	height			:50px;
-	background		:#0000d0;
-	z-index:10;
+.main_box{
+	display:inline-block;
+	flex-basis:800px;
+	background:#e0e000;
+	min-height:calc(100vh - 80px);
 }
 
-.foot{
-	display			:inline-block;
-	position		:fixed;
-	bottom			:0;
-	left			:180px;
-	width			: calc(100vw - 180px);
-	height			:30px;
-	background		:#00d000;
-	z-index:10;
-
-}
-.wrap{
-	display			:inline-flex;
-	margin			:50px 0 30px 0;
-	width			:1200px;
-
+.sub_box{
+	display:inline-block;
+	flex-basis:400px;
+	background:#008040;
+	min-height:calc(100vh - 80px);
 }
 
-.icon{
-	font-family:at_icon;
-}
 -->
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="./js/jquery.ui.touch-punch.min.js"></script>
-<script src="./js/image.js?_<?=time()?>"></script>
 <script>
 $(function(){ 
 });
@@ -82,6 +52,14 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="main_box">
+
 	</div>
+
+	<div class="sub_box">
+		<?foreach($dat as $a1 => $a2)?>
+
+	</div>
+
+
 </div>
-<footer class="foot"></footer> 
+<footer class="foot"></footer>
