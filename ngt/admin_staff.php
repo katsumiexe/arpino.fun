@@ -33,58 +33,37 @@ input[type="checkbox"],input[type="radio"]{
 	display:none;
 }
 
-.w000{
-	width:100%;
-	margin-bottom:5px;
-}
-
-.w400{
-	width:400px;
-}
-
-.w50{
-	width:60px;
-}
-
-.w40{
-	width:40px;
-}
-
-.tbox{
-	height:100px;
-	resize:none;
-}
-.tbox2{
-	height:70px;
-	resize:none;
-}
-
 td{
 	border:1px solid #303030;
 }
 
 
 .td_top{
-	background:#f0f0ff;
-	text-align:center;
+	background	:#f0f0ff;
+	text-align	:center;
 	font-size	:14px;
+	background	:#fafafa;
 }
 
 .td_60{
-	width:60px;
+	width		:60px;
+	background	:#fafafa;
 }
 
 .td_200{
-	width:200px;
+	width		:200px;
+	background	:#fafafa;
 }
 
 .td_100{
-	width:100px;
+	width		:100px;
+	background	:#fafafa;
 }
 
 .td_sort{
-	width:40px;
-	position:relative;
+	width		:40px;
+	position	:relative;
+	background	:#fafafa;
 }
 
 .td_sort_up,.td_sort_down{
@@ -489,28 +468,14 @@ $(function(){
 		$('.cast_table').fadeIn(100);
 	});
 
-$('.td_sort_up').on('click',function(){
-
-	Tmp1=$(this).attr('id').replace('u_','');
-	Tmp2=Tmp1-1;
-
-	Html1=$('#tr_'+Tmp1).html();
-	Html2=$('#tr_'+Tmp2).html();
-
-	$('#tr_'+Tmp1).html(Html2);
-	$('#tr_'+Tmp2).html(Html1);
-
-	$('#tr_'+Tmp1).children('.td_sort_middle').html("111");
-	$('#tr_'+Tmp2).children('.td_sort_middle').html("222");
-
-
+	$('#sort').sortable({
+		axis: 'y',
+        handle: '.td_sort',
+		stop : function() {
+	});
 
 });
 
-
-
-
-});
 </script>
 
 <header class="head">
