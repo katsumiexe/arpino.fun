@@ -469,7 +469,6 @@ input[type=range]::-moz-range-thumb{
 </style>
 <script>
 $(function(){ 
-	$('#sort').sortable();
 	$('#staff_l').on('click',function () {
 		$(this).addClass('on_1');
 		$('#cast_l').removeClass('on_2');
@@ -488,6 +487,22 @@ $(function(){
 		stop : function(){
 			ChgList=$(this).sortable("toArray");
 			console.log(ChgList);
+			var Cnt = 1;
+			$('.tr').each(function(){
+				$(this).children('.td_40').children('.box_sort').val(Cnt);
+				Cnt++;
+			});
+			$.ajax({
+				url:'./post/admin_staff_sort.php',
+				type: 'post',
+				data:{
+					'list[]':ChgList,
+				},
+				dataType: 'json',
+
+			}).done(function(data, textStatus, jqXHR){
+		
+			});
 		}
 	});
 
@@ -530,7 +545,7 @@ $(function(){
 </thead>
 <tbody id="sort">
 <?for($n=0;$n<$count_dat;$n++){?>
-<tr id="tr_<?=$dat[$n]["staff_id"]?>">
+<tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
 <td class="td_sort">■</td>
 <td class="td_40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
 <td class="td_60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
