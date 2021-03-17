@@ -170,10 +170,12 @@ ul {
 }
 
 .sel_flex{
-	width:1000px;
-	max-width:1000px;
-	text-align:left;
-	font-size:0;
+	width			:1000px;
+	max-width		:1000px;
+	text-align		:left;
+	font-size		:0;
+	padding			:10px;
+	background		:#e0e0e0;
 }
 .sel_block{
 	display			:inline-block;
@@ -182,7 +184,7 @@ ul {
 	background		:#e0c080;
 	position		:relative;
 	border-radius	:5px;
-	margin			:3px;
+	margin			:5px;
 }
 
 .sel_text{
@@ -211,7 +213,7 @@ ul {
 	height			:30px;
 	line-height		:30px;
 	text-align		:center;
-	color			:#fafafa;
+	color			:#0000d0;
 	font-weight		:800;
 	font-size		:20px;
 	cursor			:pointer;

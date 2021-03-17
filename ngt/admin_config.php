@@ -8,8 +8,8 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-$sql ="SELECT * FROM wp01_0check_main";
-$sql.=" ORDER BY sort ASC";
+$sql ="SELECT * FROM wp01_0check_list";
+$sql.=" ORDER BY host_id ASC, list_sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
@@ -40,19 +40,26 @@ if($result = mysqli_query($mysqli,$sql)){
 <script>
 $(function(){ 
 	$('.prof_sort').on('change',function(){
-
 		Tmp=$(this).parent('.plof_list').attr('id').replace('prof_b','');
-
 		Tmp2=$(this).val();
-
 		$('#prof_b'+Tmp2).children('.prof_sort').val(Tmp);
 		$('#prof_b'+Tmp2).css('order',Tmp);
 		$('#prof_b'+Tmp).css('order',Tmp2);
 
 		console.log(Tmp);
 		console.log(Tmp2);
-
 	});
+
+	$('.sel_flex').sortable({
+		containment: 'parent',
+		handle: '.sel_move',
+		stop : function(){
+			ChgList=$(this).sortable("toArray");
+			console.log(ChgList);
+		}
+	});
+
+
 });
 </script>
 
@@ -173,12 +180,14 @@ $(function(){
 
 <tr>
 	<td colspan="4" class="sel_flex">
+		<?foreach($c_list_dat[$a1] as $b1 => $b2){?>
 		<div class="sel_block">
 		<span class="sel_move"></span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
+			<input id="sel_1" type="text" name="" value="<?=$b2["list_title"]?>" class="sel_text">
 		<span class="sel_del">×</span>
 		</div>
-	</td>0
+		<? } ?>
+	</td>
 </tr>
 <? } ?>
 </table>
