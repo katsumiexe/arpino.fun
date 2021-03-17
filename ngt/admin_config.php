@@ -1,11 +1,19 @@
 <?
-$sql ="SELECT * FROM wp01_0sch_table";
+$sql ="SELECT * FROM wp01_0check_main";
 $sql.=" ORDER BY sort ASC";
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$table_sort[$row["sort"]]=1;
-		$table_id[$row["in_out"]][$row["sort"]]	=$row["id"];
-		$table_dat[$row["id"]]=$row;
+		$c_main_dat[$row["id"]]=$row;
+	}
+}
+
+$sql ="SELECT * FROM wp01_0check_main";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$c_list_dat[$row["host_id"]][$row["list_sort"]]=$row;
 	}
 }
 
@@ -18,6 +26,15 @@ if($result = mysqli_query($mysqli,$sql)){
 		$charm_dat[$row["sort"]]=$row;
 	}
 }
+$sql ="SELECT * FROM wp01_0charm_table";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$charm_dat[$row["sort"]]=$row;
+	}
+}
+
 ?>
 
 <script>
@@ -80,9 +97,6 @@ $(function(){
 <option value="23" <?if($start_time="5"){?> selected="selected"<?}?>>23時</option>
 </select>
 </td>
-</tr>
-
-<tr>
 <td>開始曜日</td>
 <td>
 <select name="set_week" class="set_box">
@@ -143,52 +157,31 @@ $(function(){
 オプション
 </td>
 </tr>
+
+<?foreach($c_main_dat as $a1 => $a2){?>
 <tr>
 	<td>順</td>
-	<td>表題：<input id="sel_ttl_1" type="text" name="" value="" class="sel_ttl"></td>
+	<td>表題：<input id="sel_ttl_1" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl"></td>
 	<td>未選択
 	<select class="sel_option">
-		<option value="1">表示</option>
-		<option value="2">非表示</option>
+		<option value="0">表示</option>
+		<option value="1">非表示</option>
 	</select>
 	</td>
 	<td>項目数：<span class="sel_count"></span></td>
 </tr>
+
 <tr>
 	<td colspan="4" class="sel_flex">
 		<div class="sel_block">
-		<span class="sel_del">×</span>
+		<span class="sel_move"></span>
 			<input id="sel_1" type="text" name="" value="" class="sel_text">
-		</div>
-		<div class="sel_block">
 		<span class="sel_del">×</span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
 		</div>
-		<div class="sel_block">
-		<span class="sel_del">×</span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
-		</div>
-		<div class="sel_block">
-		<span class="sel_del">×</span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
-		</div>
-		<div class="sel_block">
-		<span class="sel_del">×</span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
-		</div>
-		<div class="sel_block">
-		<span class="sel_del">×</span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
-		</div>
-		<div class="sel_block">
-		<span class="sel_del">×</span>
-			<input id="sel_1" type="text" name="" value="" class="sel_text">
-		</div>
-	</td>
+	</td>0
 </tr>
-
+<? } ?>
 </table>
-
 </div>
 </div>
 <footer class="foot"></footer> 

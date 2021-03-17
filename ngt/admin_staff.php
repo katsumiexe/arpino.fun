@@ -1,8 +1,9 @@
 <?
-$sql	 ="SELECT id,staff_id,genji,genji_kana,cast_id,cast_status,name,kana FROM wp01_0staff AS S";
+$sql	 ="SELECT id,staff_id,genji,genji_kana, cast_sort, cast_id,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" WHERE S.del=0";
-$sql	.=" ORDER BY staff_id DESC";
+$sql	.=" ORDER BY cast_sort ASC";
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		if (file_exists("./img/profile/{$res["id"]}/0.webp")) {
@@ -45,6 +46,19 @@ td{
 	background	:#fafafa;
 }
 
+.td_sort{
+	width		:30px;
+	text-align	:center;
+	background	:#a06000;
+	color		:#fafafa;
+}
+
+.td_40{
+	width		:40px;
+	background	:#fafafa;
+	text-align:center;
+}
+
 .td_60{
 	width		:60px;
 	background	:#fafafa;
@@ -57,12 +71,6 @@ td{
 
 .td_100{
 	width		:100px;
-	background	:#fafafa;
-}
-
-.td_sort{
-	width		:40px;
-	position	:relative;
 	background	:#fafafa;
 }
 
@@ -93,14 +101,14 @@ td{
 	left		:0;
 	right		:0;
 	margin		:auto;
-	top		:0;
-	bottom	:0;
-	height	:26px;
+	top			:0;
+	bottom		:0;
+	height		:26px;
 	background	:#fafafa;
-	border:1px solid #303030;
-	text-align:right;
+	border		:1px solid #303030;
+	text-align	:right;
 	width		:24px;
-	padding:2px;
+	padding		:2px;
 }
 
 
@@ -451,6 +459,12 @@ input[type=range]::-moz-range-thumb{
 .icon{
 	font-family:at_icon;
 }
+
+.box_sort{
+	width		:30px;
+	text-align	:right;
+	padding		:5px;
+}
 -->
 </style>
 <script>
@@ -471,7 +485,10 @@ $(function(){
 	$('#sort').sortable({
 		axis: 'y',
         handle: '.td_sort',
-		stop : function() {
+		stop : function(){
+			ChgList=$(this).sortable("toArray");
+			console.log(ChgList);
+		}
 	});
 
 });
@@ -501,10 +518,11 @@ $(function(){
 <table>
 <thead>
 <tr>
+<td class="td_top">替</td>
+<td class="td_top">順</td>
 <td class="td_top"></td>
 <td class="td_top">源氏名[フリガナ]</td>
 <td class="td_top">ID</td>
-<td class="td_top">序列</td>
 <td class="td_top">登録日</td>
 <td class="td_top">状態</td>
 <td class="td_top">変更</td>
@@ -512,21 +530,21 @@ $(function(){
 </thead>
 <tbody id="sort">
 <?for($n=0;$n<$count_dat;$n++){?>
-<tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
+<tr id="tr_<?=$dat[$n]["staff_id"]?>">
+<td class="td_sort">■</td>
+<td class="td_40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
 <td class="td_60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
 <td class="td_200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
-
 <td class="td_100"><?=$dat[$n]["cast_id"]?></td>
-<td class="td_sort">
-<div id="u_<?=$dat[$n]["staff_id"]?>" af="<?=$dat[$n]["staff_id"]?>" bf="<?=$dat[$n]["staff_id"]-1?>" class="td_sort_up">□</div>
-<div id="m_<?=$dat[$n]["staff_id"]?>" class="td_sort_middle"><?=$n+1?></div>
-<div id="d_<?=$dat[$n]["staff_id"]?>" af="<?=$dat[$n]["staff_id"]?>" bf="<?=$dat[$n]["staff_id"]+1?>" class="td_sort_down">□</div>
-</td>
 <td class="td_100"><?=$dat[$n]["ctime"]?></td>
 <td class="td_100"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
-
-<td class="td_5"><form method="post"><button type="submit">変更</button><input type="hidden" value="staff_fix" name="menu_post"><input type="hidden" name="staff_id" value="<?=$dat[$n]["staff_id"]?>"></form></td>
-
+<td class="td_60">
+	<form method="post">
+		<button type="submit">変更</button>
+		<input type="hidden" value="staff_fix" name="menu_post">
+		<input type="hidden" name="staff_id" value="<?=$dat[$n]["staff_id"]?>">
+	</form>
+</td>
 </tr>
 <?}?>
 </tbody>
