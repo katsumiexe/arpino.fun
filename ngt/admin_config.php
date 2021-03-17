@@ -17,7 +17,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 $sql ="SELECT * FROM wp01_0charm_table";
 $sql.=" ORDER BY sort ASC";
 
@@ -26,17 +25,19 @@ if($result = mysqli_query($mysqli,$sql)){
 		$charm_dat[$row["sort"]]=$row;
 	}
 }
-$sql ="SELECT * FROM wp01_0charm_table";
-$sql.=" ORDER BY sort ASC";
 
+$sql ="SELECT * FROM wp01_0sch_table";
+$sql.=" ORDER BY sort ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$charm_dat[$row["sort"]]=$row;
+		$table_sort[$row["sort"]]=1;
+		$table_id[$row["in_out"]][$row["sort"]]	=$row["id"];
+		$table_dat[$row["id"]]=$row;
 	}
 }
+
 
 ?>
-
 <script>
 $(function(){ 
 	$('.prof_sort').on('change',function(){
@@ -143,6 +144,8 @@ $(function(){
 </tr>
 <?}?>
 </table>
+
+
 プロフィール
 <div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
