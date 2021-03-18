@@ -1,5 +1,8 @@
 <?
+
+$sel_id	=$_POST["sel_id"];
 $post_id=$_POST["post_id"];
+
 if(!$post_id) $post_id="event";
 
 $sql	 ="SELECT * FROM wp01_0contents";
@@ -7,15 +10,14 @@ $sql	.=" WHERE page={$post_id}";
 $sql	.=" ORDER BY id DESC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
-		$dat[]=$res;
-		if($res["id"]== $select_id){
-			
-		}
+		$dat[$res["id"]]=$res;
 	}
+
 	if(is_array($dat)){
 		$dat_count=count($dat);
 	}
 }
+
 if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0tag";
 	$sql	.=" WHERE tag_group='{$post_id}'";
@@ -25,7 +27,7 @@ if($post_id == "news"){
 		while($res = mysqli_fetch_assoc($result)){
 			$tag[]=$res;
 		}
-		if(is_array($dat)){
+		if(is_array($tag)){
 			$tag_count=count($dat);
 		}
 	}
@@ -92,7 +94,7 @@ $(function(){
 	<input type="text" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
 
 	<span class="tag">タイトル</span>
-	<input type="text" name="title" value="<?=$sel_title?>"> 
+	<input type="text" name="title" value="<?=$dat["sel_id"]["title"]?>"> 
 
 	<span class="tag">タグ</span>
 	<select name="tag">
@@ -100,16 +102,12 @@ $(function(){
 		<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
 		<? } ?>	
 	</select>
-
-	<textarea><?=$sel_contents?>"></textarea>
+	<textarea class="textarea"><?=$dat["sel_id"]["contents"]?></textarea>
 	</div>
 
 	<div class="sub_box">
-		<?for($n=0;$n<$count_dat;$n++){?>
-
+		<?foreach($dat as $a1 => $a2){?>
 		<? } ?>
 	</div>
 </div>
-
 <footer class="foot"></footer>
-
