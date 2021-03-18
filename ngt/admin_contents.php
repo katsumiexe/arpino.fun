@@ -1,5 +1,4 @@
 <?
-
 $post_id=$_POST["post_id"];
 if(!$post_id) $post_id="event";
 
@@ -9,9 +8,26 @@ $sql	.=" ORDER BY id DESC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		$dat[]=$res;
+		if($res["id"]== $select_id){
+			
+		}
 	}
 	if(is_array($dat)){
 		$dat_count=count($dat);
+	}
+}
+if($post_id == "news"){
+	$sql	 ="SELECT * FROM wp01_0tag";
+	$sql	.=" WHERE tag_group='{$post_id}'";
+	$sql	.=" ORDER BY sort ASC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
+			$tag[]=$res;
+		}
+		if(is_array($dat)){
+			$tag_count=count($dat);
+		}
 	}
 }
 
@@ -55,7 +71,7 @@ input[type=radio]:checked + label{
 </style>
 <script>
 $(function(){ 
-
+	$('#e_yy, #t_yy').datetimepicker();
 });
 </script>
 <header class="head">
@@ -75,15 +91,21 @@ $(function(){
 	<span class="tag">イベント時間</span>
 	<input type="text" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
 
-
+	<span class="tag">タイトル</span>
 	<input type="text" name="title" value="<?=$sel_title?>"> 
+
+	<span class="tag">タグ</span>
+	<select name="tag">
+		<?for($n=0;$n<$tag_count;$n++){?>
+		<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
+		<? } ?>	
+	</select>
+
 	<textarea><?=$sel_contents?>"></textarea>
 	</div>
 
 	<div class="sub_box">
 		<?for($n=0;$n<$count_dat;$n++){?>
-$('#e_yy, #t_yy').datetimepicker();
-
 
 		<? } ?>
 	</div>
