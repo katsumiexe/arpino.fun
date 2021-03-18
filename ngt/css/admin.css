@@ -155,18 +155,16 @@ ul {
 	margin			:auto;
 }
 
-
 .main_box{
 	display	:inline-block;
 	vertical-align:top;
 }
 
-
 .set_box{
-	width:100px;
-	height:40px;
-	font-size:16px;
-	padding:5px;
+	width		:100px;
+	height		:40px;
+	font-size	:16px;
+	padding		:5px;
 }
 
 .sel_flex{
@@ -175,8 +173,9 @@ ul {
 	text-align		:left;
 	font-size		:0;
 	padding			:10px;
-	background		:#e0e0e0;
+	background		:#e6e6fa;
 }
+
 .sel_block{
 	display			:inline-block;
 	width			:240px;
@@ -199,7 +198,6 @@ ul {
 	padding			:5px;
 	color			:#303030;
 	font-size		:16px;
-
 }
 
 .sel_move{

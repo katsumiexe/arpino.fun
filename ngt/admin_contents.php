@@ -1,7 +1,7 @@
 <?
 
-$sel_id	=$_POST["sel_id"];
-$post_id=$_POST["post_id"];
+$sel_id			=$_POST["sel_id"];
+$post_id		=$_POST["post_id"];
 
 if(!$post_id) $post_id="event";
 
@@ -27,8 +27,9 @@ if($post_id == "news"){
 		while($res = mysqli_fetch_assoc($result)){
 			$tag[]=$res;
 		}
+
 		if(is_array($tag)){
-			$tag_count=count($dat);
+			$tag_count=count($tag);
 		}
 	}
 }
@@ -51,7 +52,7 @@ if($post_id == "news"){
 	text-align		:center;
 }
 
-input[type=radio]:checked + label{
+.sel_ck{
 	background		:linear-gradient(#ff0000,#d00000);
 }
 
@@ -73,18 +74,28 @@ input[type=radio]:checked + label{
 </style>
 <script>
 $(function(){ 
-	$('#e_yy, #t_yy').datetimepicker();
+//	$('#e_yy, #t_yy').datetimepicker();
+
+	$('.sel_contents').on('click',function(){
+		Tmp=$(this).attr('id').replace('c_','');
+		$('#sel_ck').val(Tmp);
+		$('#form').submit();
+	});
+
 });
 </script>
 <header class="head">
-<input id="sel_contents_0" value="event" type="radio" name="sel_contents" <?if($post_id=="event"){?>checked="checked"<?}?>><label id="label_contents_0" for="sel_contents_0" class="sel_contents">イベント</label>
-<input id="sel_contents_1" value="news" type="radio" name="sel_contents" <?if($post_id=="news"){?>checked="checked"<?}?>><label id="label_contents_1" for="sel_contents_1" class="sel_contents">NEWS</label>
-<input id="sel_contents_2" value="info" type="radio" name="sel_contents" <?if($post_id=="info"){?>checked="checked"<?}?>><label id="label_contents_2" for="sel_contents_2" class="sel_contents">お知らせ</label>
-<input id="sel_contents_3" value="system" type="radio" name="sel_contents" <?if($post_id=="system"){?>checked="checked"<?}?>><label id="label_contents_3" for="sel_contents_3" class="sel_contents">SYSTEM</label>
-<input id="sel_contents_4" value="access" type="radio" name="sel_contents" <?if($post_id=="access"){?>checked="checked"<?}?>><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
-<input id="sel_contents_5" value="recruit" type="radio" name="sel_contents" <?if($post_id=="recruit"){?>checked="checked"<?}?>><label id="label_contents_5" for="sel_contents_5" class="sel_contents">RECRUIT</label>
+<div id="event" class="sel_contents <?if($post_id == "event"){?> sel_ck<?}?>">イベント</div>
+<div id="news" class="sel_contents <?if($post_id == "news"){?> sel_ck<?}?>">NEWS</div>
+<div id="info" class="sel_contents <?if($post_id == "info"){?> sel_ck<?}?>">お知らせ</div>
+<div id="system" class="sel_contents <?if($post_id == "system"){?> sel_ck<?}?>">SYSTEM</div>
+<div id="access" class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
+<div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
+<form id="form" method="post">
+<input id="sel_ck" type="hidden" name="post_id">
+<input type="hidden" name="menu_post" value="contents">
+</form>
 </header>
-
 <div class="wrap">
 	<div class="main_box">
 	<span class="tag">表示時間</span>

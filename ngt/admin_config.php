@@ -14,9 +14,7 @@ $sql.=" ORDER BY host_id ASC, list_sort ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$c_list_dat[$row["host_id"]][$row["id"]]=$row;
-	}
-	if(is_array($c_list_dat)){
-		$count_list=count($c_list_dat);
+		$count_list++;
 	}
 }
 
@@ -41,7 +39,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 ?>
 <script>
-ids='<?=$count_list?>';
+ids='<?=$count_list+1?>';
 $(function(){ 
 	$('.prof_sort').on('change',function(){
 		Tmp=$(this).parent('.plof_list').attr('id').replace('prof_b','');
@@ -68,7 +66,7 @@ $(function(){
 		}
 	});
 
-	$('.sel_ck').on('change',function() {
+	$('.main_box').on('change','.sel_ck',function() {
 		if($(this).prop('checked')){
 			$(this).parents('.sel_block').addClass('sel_ck_off');	
 			$(this).siblings().addClass('sel_ck_off');	
@@ -78,14 +76,16 @@ $(function(){
 			$(this).siblings().removeClass('sel_ck_off');	
 		}
 	});
-	$('sel_count').on('click',function(){
+
+	$('.sel_count').on('click',function(){
 		ids++;
 		Tmp=$(this).attr('id').replace("ad_","");
 		Cnt = $("#no_" + Tmp + " > div").length;
 		Cnt++;	
 		Lst="<div class=\"sel_block no_"+Tmp+"\"><span class=\"sel_move\"></span><input id=\"sel_"+ ids +"\" type=\"text\" name=\"sel[" + ids + "]\" class=\"sel_text\"><input id=\"sel_del" + ids + "\" type=\"checkbox\" name=\"del[" + ids + "]\" class=\"sel_ck\" value=\"0\"><label for=\"sel_del" + ids + "\" class=\"sel_del\">×</label><input type=\"hidden\" name=\"sort[<?=$b1?>]\" value=\"" + Cnt + "\" class=\"sel_hidden\"></div>";
-		$('#no_'+Tmp).prepend(Lst);
+		$('#no_'+Tmp).append(Lst);
 	});
+
 
 });
 </script>
@@ -96,12 +96,6 @@ $(function(){
 }
 </style>
 <header class="head">
-<input id="sel_contents_0" value="1" type="radio" name="sel_contents" checked="checked"><label id="label_contents_0" for="sel_contents_0" class="sel_contents">イベント</label>
-<input id="sel_contents_1" value="2" type="radio" name="sel_contents"><label id="label_contents_1" for="sel_contents_1" class="sel_contents">NEWS</label>
-<input id="sel_contents_2" value="3" type="radio" name="sel_contents"><label id="label_contents_2" for="sel_contents_2" class="sel_contents">お知らせ</label>
-<input id="sel_contents_3" value="4" type="radio" name="sel_contents"><label id="label_contents_3" for="sel_contents_3" class="sel_contents">SYSTEM</label>
-<input id="sel_contents_4" value="5" type="radio" name="sel_contents"><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
-<input id="sel_contents_5" value="6" type="radio" name="sel_contents"><label id="label_contents_5" for="sel_contents_5" class="sel_contents">REQRUIT</label>
 </header>
 <div class="wrap">
 <div class="main_box">
@@ -150,6 +144,7 @@ $(function(){
 </td>
 </tr>
 </table>
+
 <table>
 	<tr>
 		<td class="table_title" colspan="4">スケジュール</td>
@@ -187,7 +182,6 @@ $(function(){
 	</div>
 <? } ?>
 </div>
-
 <table>
 	<tr>
 		<td class="table_title" colspan="4">オプション</td>

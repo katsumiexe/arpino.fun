@@ -61,14 +61,14 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$a1["link"]=$a1["category"];
 		}
 
-		if (file_exists("./img/page/event/event_{$a1["id"]}.webp")) {
-			$a1["img"]="./img/page/event/event_{$a1["id"]}.webp";
+		if (file_exists("./img/page/event/{$a1["id"]}.webp")) {
+			$a1["img"]="./img/page/event/{$a1["id"]}.webp";
 
-		}elseif (file_exists("./img/page/event/event_{$a1["id"]}.jpg")) {
-			$a1["img"]="./img/page/event/event_{$a1["id"]}.jpg";
+		}elseif (file_exists("./img/page/event/{$a1["id"]}.jpg")) {
+			$a1["img"]="./img/page/event/{$a1["id"]}.jpg";
 
-		}elseif (file_exists("./img/page/event/event_{$a1["id"]}.png")) {
-			$a1["img"]="./img/page/event/event_{$a1["id"]}.png";
+		}elseif (file_exists("./img/page/event/{$a1["id"]}.png")) {
+			$a1["img"]="./img/page/event/{$a1["id"]}.png";
 		}
 
 		$event[]=$a1;
@@ -106,7 +106,19 @@ $sql	.=" LIMIT 2";
 
 if($res2 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res2)){
+
+		if($a1["contents_url"]){
+			$a1["link"]=$a1["contents_url"];
+
+		}elseif($a1["category"] == "person" && $a1["contents_key"]>0){
+			$a1["link"]="person.php?post_id=".$a1["contents_key"];
+
+		}elseif($a1["category"] == "event" && $a1["contents_key"]>0){
+			$a1["link"]="event.php?post_id=".$a1["contents_key"];
+		}
+
 		$info[]=$a1;
+
 	}
 	if (is_array($info)) {
 		$info_count=count($info);
@@ -227,11 +239,11 @@ var Cnt=<?=$event_count?>-1;
 			<?for($n=0;$n<$info_count;$n++){?>
 				<?if($info[$n]["link"]){?>
 					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
-						<img src=".img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+						<img src="./img/page/info/<?=$info[$n]["id"]?>.png" class="info_img">
 					</a>
 				<?}else{?>	
 					<span class="info_img_out">
-						<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+						<img src="./img/page/info/<?=$info[$n]["id"]?>.png" class="info_img">
 					</span>	
 				<?}?>
 			<?}?>
@@ -269,11 +281,13 @@ var Cnt=<?=$event_count?>-1;
 		<div class="pc_only">
 			<?for($n=0;$n<$info_count;$n++){?>
 				<?if($info[$n]["link"]){?>
-						<a href="<?=$info[$n]["link"]?>" class="info_img_out">
-							<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
-						</a>
+					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
+						<img src="./img/page/info/<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
+					</a>
 				<?}else{?>	
-						<img src="./img/page/top/info<?=$info[$n]["meta_id"]?>.png" class="info_img">
+					<span class="info_img_out">
+						<img src="./img/page/info/<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
+					</span>	
 				<?}?>
 			<?}?>
 		</div>
