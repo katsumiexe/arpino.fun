@@ -488,7 +488,7 @@ $(function(){
 			ChgList=$(this).sortable("toArray");
 			console.log(ChgList);
 			var Cnt = 1;
-			$('.tr').each(function(){
+			$(this).each(function(){
 				$(this).children('.td_40').children('.box_sort').val(Cnt);
 				Cnt++;
 			});
@@ -505,11 +505,8 @@ $(function(){
 			});
 		}
 	});
-
 });
-
 </script>
-
 <header class="head">
 <h2>スタッフ一覧</h2>
 <input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>

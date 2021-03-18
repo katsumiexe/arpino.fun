@@ -13,7 +13,10 @@ $sql.=" ORDER BY host_id ASC, list_sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$c_list_dat[$row["host_id"]][$row["list_sort"]]=$row;
+		$c_list_dat[$row["host_id"]][$row["id"]]=$row;
+	}
+	if(is_array($c_list_dat)){
+		$count_list=count($c_list_dat);
 	}
 }
 
@@ -36,9 +39,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 ?>
 <script>
+ids='<?=$count_list?>';
 $(function(){ 
 	$('.prof_sort').on('change',function(){
 		Tmp=$(this).parent('.plof_list').attr('id').replace('prof_b','');
@@ -46,24 +49,52 @@ $(function(){
 		$('#prof_b'+Tmp2).children('.prof_sort').val(Tmp);
 		$('#prof_b'+Tmp2).css('order',Tmp);
 		$('#prof_b'+Tmp).css('order',Tmp2);
-
-		console.log(Tmp);
-		console.log(Tmp2);
 	});
 
 	$('.sel_flex').sortable({
 		containment: 'parent',
 		handle: '.sel_move',
 		stop : function(){
+			Tmp=$(this).attr('id');
+
 			ChgList=$(this).sortable("toArray");
 			console.log(ChgList);
+
+			var Cnt = 1;
+			$('.'+Tmp).each(function(){
+				$(this).children('.sel_hidden').val(Cnt);
+				Cnt++;
+			});
 		}
 	});
 
+	$('.sel_ck').on('change',function() {
+		if($(this).prop('checked')){
+			$(this).parents('.sel_block').addClass('sel_ck_off');	
+			$(this).siblings().addClass('sel_ck_off');	
+
+		}else{
+			$(this).parents('.sel_block').removeClass('sel_ck_off');	
+			$(this).siblings().removeClass('sel_ck_off');	
+		}
+	});
+	$('sel_count').on('click',function(){
+		ids++;
+		Tmp=$(this).attr('id').replace("ad_","");
+		Cnt = $("#no_" + Tmp + " > div").length;
+		Cnt++;	
+		Lst="<div class=\"sel_block no_"+Tmp+"\"><span class=\"sel_move\"></span><input id=\"sel_"+ ids +"\" type=\"text\" name=\"sel[" + ids + "]\" class=\"sel_text\"><input id=\"sel_del" + ids + "\" type=\"checkbox\" name=\"del[" + ids + "]\" class=\"sel_ck\" value=\"0\"><label for=\"sel_del" + ids + "\" class=\"sel_del\">×</label><input type=\"hidden\" name=\"sort[<?=$b1?>]\" value=\"" + Cnt + "\" class=\"sel_hidden\"></div>";
+		$('#no_'+Tmp).prepend(Lst);
+	});
 
 });
 </script>
-
+<style>
+.sel_ck_off{
+	background		:linear-gradient(#e0e0e0,#d0d0d0);
+	color			:#a0a0a0;
+}
+</style>
 <header class="head">
 <input id="sel_contents_0" value="1" type="radio" name="sel_contents" checked="checked"><label id="label_contents_0" for="sel_contents_0" class="sel_contents">イベント</label>
 <input id="sel_contents_1" value="2" type="radio" name="sel_contents"><label id="label_contents_1" for="sel_contents_1" class="sel_contents">NEWS</label>
@@ -119,22 +150,19 @@ $(function(){
 </td>
 </tr>
 </table>
-
 <table>
-<tr>
-<td class="table_title" colspan="4">
-スケジュール
-</td>
-</tr>
-<tr>
-<td colspan="2">IN</td><td colspan="2">OUT</td>
-</tr><tr>
-<td>表示</td>
-<td>時間</td>
-<td>表示</td>
-<td>時間</td>
-</tr>
-
+	<tr>
+		<td class="table_title" colspan="4">スケジュール</td>
+	</tr>
+	<tr>
+		<td colspan="2">IN</td><td colspan="2">OUT</td>
+	</tr>
+	<tr>
+		<td>表示</td>
+		<td>時間</td>
+		<td>表示</td>
+		<td>時間</td>
+	</tr>
 <?foreach($table_sort as $a1 => $a2){?>
 <tr>
 <td><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
@@ -145,12 +173,10 @@ $(function(){
 <?}?>
 </table>
 
-
 プロフィール
 <div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
 	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
-
 		<input type="textbox" value="<?=$a2["sort"]?>" name="prof_sort[<?=$a1?>]" class="prof_sort">
 		<input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name">
 
@@ -161,35 +187,39 @@ $(function(){
 	</div>
 <? } ?>
 </div>
+
 <table>
 <tr>
 <td class="table_title" colspan="4">
 オプション
 </td>
 </tr>
-
 <?foreach($c_main_dat as $a1 => $a2){?>
 <tr>
 	<td>順</td>
-	<td>表題：<input id="sel_ttl_1" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl"></td>
+	<td>表題：<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl"></td>
 	<td>未選択
 	<select class="sel_option">
 		<option value="0">表示</option>
 		<option value="1">非表示</option>
 	</select>
 	</td>
-	<td>項目数：<span class="sel_count"></span></td>
+	<td>追加<span id="ad_<?=$a1?>" class="sel_count">+</span></td>
 </tr>
 
 <tr>
-	<td colspan="4" class="sel_flex">
+	<td id="no_<?=$a1?>" colspan="4" class="sel_flex">
 		<?foreach($c_list_dat[$a1] as $b1 => $b2){?>
-		<div class="sel_block">
-		<span class="sel_move"></span>
-			<input id="sel_1" type="text" name="" value="<?=$b2["list_title"]?>" class="sel_text">
-		<span class="sel_del">×</span>
+		<?$u++?>
+		<div id="item_<?=$a1?>_<?=$b1?>" class="sel_block no_<?=$a1?>">
+			<span class="sel_move"></span>
+			<input id="sel_<?=$b1?>" type="text" name="sel[<?=$b1?>]" value="<?=$b2["list_title"]?>" class="sel_text">
+			<input id="sel_del<?=$b1?>" type="checkbox" name="del[<?=$b1?>]" class="sel_ck" value="0">
+			<label for="sel_del<?=$b1?>" class="sel_del">×</label>
+			<input type="hidden" name="sort[<?=$b1?>]" value="<?=$u?>" class="sel_hidden">
 		</div>
 		<? } ?>
+		<?$u=0?>
 	</td>
 </tr>
 <? } ?>
