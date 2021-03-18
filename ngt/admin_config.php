@@ -189,38 +189,37 @@ $(function(){
 </div>
 
 <table>
-<tr>
-<td class="table_title" colspan="4">オプション</td>
-</tr>
-<?foreach($c_main_dat as $a1 => $a2){?>
-<tr>
-	<td>順</td>
-	<td>表題：<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl"></td>
-	<td>未選択
-	<select class="sel_option">
-		<option value="0">表示</option>
-		<option value="1">非表示</option>
-	</select>
-	</td>
-	<td>追加<span id="ad_<?=$a1?>" class="sel_count">+</span></td>
-</tr>
-
-<tr>
-	<td id="no_<?=$a1?>" colspan="4" class="sel_flex">
-		<?foreach($c_list_dat[$a1] as $b1 => $b2){?>
-		<?$u++?>
-		<div id="item_<?=$a1?>_<?=$b1?>" class="sel_block no_<?=$a1?>">
-			<span class="sel_move"></span>
-			<input id="sel_<?=$b1?>" type="text" name="sel[<?=$b1?>]" value="<?=$b2["list_title"]?>" class="sel_text">
-			<input id="sel_del<?=$b1?>" type="checkbox" name="del[<?=$b1?>]" class="sel_ck" value="0">
-			<label for="sel_del<?=$b1?>" class="sel_del">×</label>
-			<input type="hidden" name="sort[<?=$b1?>]" value="<?=$u?>" class="sel_hidden">
-		</div>
-		<? } ?>
-		<?$u=0?>
-	</td>
-</tr>
-<? } ?>
+	<tr>
+		<td class="table_title" colspan="4">オプション</td>
+	</tr>
+	<?foreach($c_main_dat as $a1 => $a2){?>
+		<tr>
+			<td>順</td>
+			<td>表題：<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl"></td>
+			<td>未選択
+			<select class="sel_option">
+				<option value="0">表示</option>
+				<option value="1">非表示</option>
+			</select>
+			</td>
+			<td>追加<span id="ad_<?=$a1?>" class="sel_count">+</span></td>
+		</tr>
+		<tr>
+			<td id="no_<?=$a1?>" colspan="4" class="sel_flex">
+				<?foreach($c_list_dat[$a1] as $b1 => $b2){?>
+				<?$u++?>
+				<div id="item_<?=$a1?>_<?=$b1?>" class="sel_block no_<?=$a1?>">
+					<span class="sel_move"></span>
+					<input id="sel_<?=$b1?>" type="text" name="sel[<?=$b1?>]" value="<?=$b2["list_title"]?>" class="sel_text">
+					<input id="sel_del<?=$b1?>" type="checkbox" name="del[<?=$b1?>]" class="sel_ck" value="0">
+					<label for="sel_del<?=$b1?>" class="sel_del">×</label>
+					<input type="hidden" name="sort[<?=$b1?>]" value="<?=$u?>" class="sel_hidden">
+				</div>
+				<? } ?>
+				<?$u=0?>
+			</td>
+		</tr>
+	<? } ?>
 </table>
 </div>
 </div>
