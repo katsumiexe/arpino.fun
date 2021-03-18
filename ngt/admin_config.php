@@ -190,9 +190,7 @@ $(function(){
 
 <table>
 <tr>
-<td class="table_title" colspan="4">
-オプション
-</td>
+<td class="table_title" colspan="4">オプション</td>
 </tr>
 <?foreach($c_main_dat as $a1 => $a2){?>
 <tr>
