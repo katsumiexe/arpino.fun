@@ -10,6 +10,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		$dat[]=$res;
 	}
+	if(is_array($dat)){
+		$dat_count=count($dat);
+	}
 }
 
 ?>
@@ -63,19 +66,28 @@ $(function(){
 <input id="sel_contents_4" value="access" type="radio" name="sel_contents" <?if($post_id=="access"){?>checked="checked"<?}?>><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
 <input id="sel_contents_5" value="recruit" type="radio" name="sel_contents" <?if($post_id=="recruit"){?>checked="checked"<?}?>><label id="label_contents_5" for="sel_contents_5" class="sel_contents">RECRUIT</label>
 </header>
+
 <div class="wrap">
 	<div class="main_box">
-	<input type="text" value=""> 
-	<textarea></textarea>
+	<span class="tag">表示時間</span>
+	<input type="text" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+
+	<span class="tag">イベント時間</span>
+	<input type="text" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
 
 
+	<input type="text" name="title" value="<?=$sel_title?>"> 
+	<textarea><?=$sel_contents?>"></textarea>
 	</div>
+
 	<div class="sub_box">
-		<?foreach($dat as $a1 => $a2)?>
+		<?for($n=0;$n<$count_dat;$n++){?>
+$('#e_yy, #t_yy').datetimepicker();
+
 
 		<? } ?>
 	</div>
-
-
 </div>
+
 <footer class="foot"></footer>
+
