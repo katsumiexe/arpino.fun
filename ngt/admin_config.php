@@ -94,6 +94,9 @@ $(function(){
 	background		:linear-gradient(#e0e0e0,#d0d0d0);
 	color			:#a0a0a0;
 }
+
+
+
 </style>
 <header class="head">
 </header>
@@ -168,7 +171,11 @@ $(function(){
 <?}?>
 </table>
 
-プロフィール
+<table style="width:720px;" class="cast_table">
+	<tr>
+		<td class="table_title">プロフィール</td>
+	</tr>
+</table>
 <div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
 	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
@@ -196,7 +203,7 @@ $(function(){
 				<option value="1">非表示</option>
 			</select>
 			</td>
-			<td>追加<span id="ad_<?=$a1?>" class="sel_count">+</span></td>
+			<td><span id="ad_<?=$a1?>" class="sel_count">+項目追加</span></td>
 		</tr>
 		<tr>
 			<td id="no_<?=$a1?>" colspan="4" class="sel_flex">

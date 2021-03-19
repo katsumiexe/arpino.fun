@@ -167,6 +167,20 @@ ul {
 	padding		:5px;
 }
 
+.sel_count{
+	display			:inline-block;
+	width			:100px;
+	height			:20px;
+	line-height		:20px;
+	background		:#e0c080;
+	position		:relative;
+	border-radius	:5px;
+	margin			:5px;
+	color			:#fafafa;
+	padding			:5px;
+}
+
+
 .sel_flex{
 	width			:1000px;
 	max-width		:1000px;
@@ -263,6 +277,12 @@ ul {
 .prof_option{
 	height		:30px;
 	width		:120px;
+}
+
+.table_title{
+	background		:linear-gradient(#e0e0e0,#d0d0d0);
+	padding			:5px;
+	font-size		:14px;
 }
 
 

@@ -140,12 +140,6 @@ td{
 	text-align		:left;
 }
 
-.table_title{
-	background		:linear-gradient(#e0e0e0,#d0d0d0);
-	padding			:5px;
-	font-size		:14px;
-}
-
 
 .sex_box{
 	position		:relative;
