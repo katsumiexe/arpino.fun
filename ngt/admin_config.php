@@ -171,11 +171,8 @@ $(function(){
 <?}?>
 </table>
 
-<table style="width:720px;" class="cast_table">
-	<tr>
-		<td class="table_title">プロフィール</td>
-	</tr>
-</table>
+<div class="table_title" style="width:1000px;">プロフィール</div>
+
 <div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
 	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
@@ -189,24 +186,25 @@ $(function(){
 	</div>
 <? } ?>
 </div>
-<table>
-	<tr>
-		<td class="table_title" colspan="4">オプション</td>
-	</tr>
-	<?foreach($c_main_dat as $a1 => $a2){?>
+
+<div class="table_title" style="width:1000px;">オプション</div>
+
+<?foreach($c_main_dat as $a1 => $a2){?>
+	<table class="option_table">
 		<tr>
-			<td>順</td>
-			<td>表題：<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl"></td>
-			<td>未選択
+			<td class="option_top">
+			<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl">
+			未選択
 			<select class="sel_option">
 				<option value="0">表示</option>
 				<option value="1">非表示</option>
 			</select>
+			<span id="ad_<?=$a1?>" class="option_add">＋項目追加</span>
+			<span id="dl_<?=$a1?>" class="option_del">×オプション削除</span>
 			</td>
-			<td><span id="ad_<?=$a1?>" class="sel_count">+項目追加</span></td>
 		</tr>
 		<tr>
-			<td id="no_<?=$a1?>" colspan="4" class="sel_flex">
+			<td id="no_<?=$a1?>" class="option_flex">
 				<?foreach($c_list_dat[$a1] as $b1 => $b2){?>
 				<?$u++?>
 				<div id="item_<?=$a1?>_<?=$b1?>" class="sel_block no_<?=$a1?>">
@@ -220,8 +218,9 @@ $(function(){
 				<?$u=0?>
 			</td>
 		</tr>
-	<? } ?>
-</table>
+	</table>
+<? } ?>
+
 </div>
 </div>
 <footer class="foot"></footer> 

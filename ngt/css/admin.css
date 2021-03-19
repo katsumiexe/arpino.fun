@@ -167,9 +167,9 @@ ul {
 	padding		:5px;
 }
 
-.sel_count{
+.option_add{
 	display			:inline-block;
-	width			:100px;
+	width			:90px;
 	height			:20px;
 	line-height		:20px;
 	background		:#e0c080;
@@ -178,10 +178,42 @@ ul {
 	margin			:5px;
 	color			:#fafafa;
 	padding			:5px;
+	font-size		:16px;
+	font-weight		:600;
+}
+
+.option_del{
+	display			:inline-block;
+	width			:140px;
+	height			:20px;
+	line-height		:20px;
+	background		:#d00000;
+	position		:relative;
+	border-radius	:5px;
+	margin			:5px;
+	color			:#fafafa;
+	padding			:5px;
+	font-size	:16px;
+	font-weight		:600;
 }
 
 
-.sel_flex{
+.option_table{
+	border:1px solid #303030;
+	margin:5px;
+}
+.option_top{
+	width			:1000px;
+	max-width		:1000px;
+	text-align		:left;
+	font-size		:0;
+	padding			:0 10px;
+	background		:#d0d0ff;
+	position		:relative;
+
+}
+
+.option_flex{
 	width			:1000px;
 	max-width		:1000px;
 	text-align		:left;
