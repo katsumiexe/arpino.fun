@@ -1,5 +1,4 @@
 <?
-
 ?>
 <style>
 <!--
@@ -64,10 +63,6 @@ input[type=radio]:checked + label{
 }
 -->
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="./js/jquery.ui.touch-punch.min.js"></script>
-<script src="./js/image.js?_<?=time()?>"></script>
 <script>
 $(function(){ 
 });

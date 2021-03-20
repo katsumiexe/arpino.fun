@@ -69,7 +69,6 @@ td{
 	text-align			:left;
 	margin 0 50px;
 }
-
 .c_s_btn{
 	display				: inline-block;
 	height				:30px;
