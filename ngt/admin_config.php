@@ -102,6 +102,8 @@ $(function(){
 </header>
 <div class="wrap">
 <div class="main_box">
+
+<div class="config_title">カレンダースタート</div>
 <table>
 <tr>
 <td>開始時間</td>
@@ -148,10 +150,8 @@ $(function(){
 </tr>
 </table>
 
+<div class="config_title">スケジュール</div>
 <table>
-	<tr>
-		<td class="table_title" colspan="4">スケジュール</td>
-	</tr>
 	<tr>
 		<td colspan="2">IN</td><td colspan="2">OUT</td>
 	</tr>
@@ -171,8 +171,7 @@ $(function(){
 <?}?>
 </table>
 
-<div class="table_title" style="width:1000px;">プロフィール</div>
-
+<div class="config_title">プロフィール</div>
 <div class="prof_box">
 <?foreach($charm_dat as $a1 => $a2){?>
 	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
@@ -187,15 +186,14 @@ $(function(){
 <? } ?>
 </div>
 
-<div class="table_title" style="width:1000px;">オプション</div>
-
+<div class="config_title">オプション</div>
 <?foreach($c_main_dat as $a1 => $a2){?>
 	<table class="option_table">
 		<tr>
 			<td class="option_top">
-			<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="sel_ttl">
-			未選択
-			<select class="sel_option">
+			<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="option_ttl">
+			<span class="option_tag">未選択</span>
+			<select class="option_select">
 				<option value="0">表示</option>
 				<option value="1">非表示</option>
 			</select>
@@ -220,7 +218,6 @@ $(function(){
 		</tr>
 	</table>
 <? } ?>
-
 </div>
 </div>
 <footer class="foot"></footer> 

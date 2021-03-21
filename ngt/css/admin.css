@@ -167,6 +167,36 @@ ul {
 	padding		:5px;
 }
 
+
+.option_ttl{
+	width			:200px;
+	padding-left	:10px;
+	font-size		:18px;
+	border			:none;
+	border-bottom	:2px solid #000000;
+	margin			:5px;
+}
+
+.option_select{
+	width			:100px;
+	padding-left	:10px;
+	font-size		:18px;
+	border			:1px solid #000000;
+	margin			:5px 345px 5px 0;
+}
+
+.option_tag{
+	display			:inline-block;
+	width			:60px;
+	height			:30px;
+	line-height		:30px;
+	font-size		:18px;
+	margin			:5px;
+	font-weight		:600;
+	text-align		:right;
+	padding-right	:5px;
+}
+
 .option_add{
 	display			:inline-block;
 	width			:90px;
@@ -202,6 +232,7 @@ ul {
 	border:1px solid #303030;
 	margin:5px;
 }
+
 .option_top{
 	width			:1000px;
 	max-width		:1000px;
@@ -210,7 +241,6 @@ ul {
 	padding			:0 10px;
 	background		:#d0d0ff;
 	position		:relative;
-
 }
 
 .option_flex{
@@ -314,7 +344,16 @@ ul {
 .table_title{
 	background		:linear-gradient(#e0e0e0,#d0d0d0);
 	padding			:5px;
-	font-size		:14px;
+	font-size		:16px;
+}
+
+.config_title{
+	background		:linear-gradient(#e0e0e0,#d0d0d0);
+	padding			:5px;
+	font-size		:16px;
+	width			:1012px;
+	margin			:20px 5px 0 5px;
+
 }
 
 
