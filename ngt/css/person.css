@@ -203,6 +203,7 @@
 	height			:30px;
 	line-height		:30px;
 	font-family		:at_font1;
+
 }
 
 .prof_l{
@@ -706,10 +707,10 @@
 
 .prof_title,.sche_title,.blog_title{
 	width			:93vw;
-	height			:8vw;
-	line-height		:8vw;
+	height			:7vw;
+	line-height		:7vw;
 	margin			:0 auto;
-	font-size		:5vw;
+	font-size		:4vw;
 	padding-left	:2vw;
 	border-radius:1vw 1vw 0 0; 
 }
@@ -718,10 +719,10 @@
 
 .prof_l{
 	padding		:0 0.5vw;
-	height		:8vw;
-	line-height	:8vw;
+	height		:7vw;
+	line-height	:7vw;
 	width		:30vw;
-	font-size	:4vw;
+	font-size	:3.5vw;
 	padding-left:1.5vw;
 }
 
@@ -729,7 +730,7 @@
 .prof_r{
 	padding		:0 0.5vw;
 	width		:auto;
-	font-size	:4vw;
+	font-size	:3.5vw;
 	padding-left:1.5vw;
 }
 
@@ -738,7 +739,7 @@
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
-	font-size	:4vw;
+	font-size	:3.5vw;
 }
 
 
@@ -746,8 +747,8 @@
 	width		:auto;
 	padding		:1vw;
 	min-height	:4vw;
-	line-height	:6vw;
-	font-size	:4vw;
+	line-height	:5vw;
+	font-size	:3.5vw;
 }
 
 .sche_l_0,
@@ -760,10 +761,10 @@
 {
 
 	padding-left:1.5vw;
-	height		:8vw;
-	line-height	:8vw;
+	height		:7vw;
+	line-height	:7vw;
 	width		:30vw;
-	font-size	:4vw;
+	font-size	:3.5vw;
 
 
 }
@@ -778,10 +779,10 @@
 .sche_r_6
 {
 	padding-left:1.5vw;
-	height		:8vw;
-	line-height	:8vw;
+	height		:7vw;
+	line-height	:7vw;
 	width		:auto;
-	font-size	:4vw;
+	font-size	:3.5vw;
 }
 
 
