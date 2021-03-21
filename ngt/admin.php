@@ -4,7 +4,7 @@ include_once('./library/sql.php');
 include_once('./library/inc_code.php');
 
 $staff_set=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
-$staff_id=$_POST["staff_id"];//１新規　２変更　３キャスト追加変更　４削除
+$staff_id=$_POST["staff_id"];
 
 //■スタッフ削除
 if($staff_set == 4){
@@ -12,10 +12,10 @@ if($staff_set == 4){
 	$sql .=" `del`=1";
 	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
 	mysqli_query($mysqli,$sql);
+	$_POST["menu_post"]="staff";
 
 //■スタッフ登録or変更
 }elseif($staff_set){
-//var_dump($_POST);
 	$c_s			=$_POST["c_s"];
 	$staff_name		=$_POST["staff_name"];
 	$staff_kana		=$_POST["staff_kana"];
@@ -75,18 +75,19 @@ if($staff_set == 4){
 		$sql.=" `registday`='{$staff_registday}'";
 		$sql.=" WHERE staff_id='{$staff_id}'";
 		mysqli_query($mysqli,$sql);
-echo $sql;
 
 	//新規STAFF
 	}else{
 		$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`mail`,`address`,`registday`)";
 		$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_mail}','{$staff_address}','{$staff_registday}')";
 		mysqli_query($mysqli,$sql);
+		$staff_id=mysqli_insert_id($mysqli);
 	}
 
 //■cast-------------------------------
 	if($c_s == 2){
 		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
+
 		if($staff_set == 2){//変更
 			$sql="UPDATE wp01_0cast SET";
 			$sql.=" `genji`='{$genji}',";
@@ -112,8 +113,7 @@ echo $sql;
 			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`)";
 			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
 			mysqli_query($mysqli,$sql);
-			$staff_id=mysqli_insert_id($mysql);
-
+echo $sql;
 //■encode-------------------------------
 			$id_8	=substr("00000000".$staff_id,-8);
 			$id_0	=$staff_id % 20;
