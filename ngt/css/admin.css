@@ -223,7 +223,7 @@ ul {
 	margin			:5px;
 	color			:#fafafa;
 	padding			:5px;
-	font-size	:16px;
+	font-size		:16px;
 	font-weight		:600;
 }
 
@@ -251,6 +251,30 @@ ul {
 	padding			:10px;
 	background		:#e6e6fa;
 }
+
+.config_sche{
+	border			:1px solid #303030;
+	margin			:5px;
+	table-layout	:fixed;
+}
+
+.config_sche_top{
+	text-align		:center;
+	height			:20px;
+	background		:#d0d0ff;
+	font-size		:14px;
+	font-weight		:600;
+	color:#000000;
+}
+
+.config_sche_list{
+	text-align		:center;
+	font-size		:0;
+	background		:#e6e6fa;
+	width			:120px;
+}
+
+
 
 .sel_block{
 	display			:inline-block;

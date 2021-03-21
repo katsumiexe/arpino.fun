@@ -44,12 +44,14 @@
 	position		:relative;
 	padding			:0;
 }
-.img_box_td_1_in
+
+.img_box_td_1_in{
 	display:block;
 	width			:190px;
 	height			:240px;
 	padding			:0;
 	margin			:0;
+	overflow		:hidden;
 }
 
 

@@ -85,8 +85,6 @@ $(function(){
 		Lst="<div class=\"sel_block no_"+Tmp+"\"><span class=\"sel_move\"></span><input id=\"sel_"+ ids +"\" type=\"text\" name=\"sel[" + ids + "]\" class=\"sel_text\"><input id=\"sel_del" + ids + "\" type=\"checkbox\" name=\"del[" + ids + "]\" class=\"sel_ck\" value=\"0\"><label for=\"sel_del" + ids + "\" class=\"sel_del\">×</label><input type=\"hidden\" name=\"sort[<?=$b1?>]\" value=\"" + Cnt + "\" class=\"sel_hidden\"></div>";
 		$('#no_'+Tmp).append(Lst);
 	});
-
-
 });
 </script>
 <style>
@@ -95,8 +93,6 @@ $(function(){
 	color			:#a0a0a0;
 }
 
-
-
 </style>
 <header class="head">
 </header>
@@ -104,36 +100,36 @@ $(function(){
 <div class="main_box">
 
 <div class="config_title">カレンダースタート</div>
-<table>
-<tr>
-<td>開始時間</td>
-<td>
-<select name="set_time" class="set_box">
-<option value="0">24時</option>
-<option value="1" <?if($start_time="1"){?> selected="selected"<?}?>>01時</option>
-<option value="2" <?if($start_time="2"){?> selected="selected"<?}?>>02時</option>
-<option value="3" <?if($start_time="3"){?> selected="selected"<?}?>>03時</option>
-<option value="4" <?if($start_time="4"){?> selected="selected"<?}?>>04時</option>
-<option value="5" <?if($start_time="5"){?> selected="selected"<?}?>>05時</option>
-<option value="6" <?if($start_time="6"){?> selected="selected"<?}?>>06時</option>
-<option value="7" <?if($start_time="1"){?> selected="selected"<?}?>>07時</option>
-<option value="8" <?if($start_time="2"){?> selected="selected"<?}?>>08時</option>
-<option value="9" <?if($start_time="3"){?> selected="selected"<?}?>>09時</option>
-<option value="10" <?if($start_time="4"){?> selected="selected"<?}?>>10時</option>
-<option value="11" <?if($start_time="5"){?> selected="selected"<?}?>>11時</option>
-<option value="12" <?if($start_time="6"){?> selected="selected"<?}?>>12時</option>
-<option value="13" <?if($start_time="1"){?> selected="selected"<?}?>>13時</option>
-<option value="14" <?if($start_time="2"){?> selected="selected"<?}?>>14時</option>
-<option value="15" <?if($start_time="3"){?> selected="selected"<?}?>>15時</option>
-<option value="16" <?if($start_time="4"){?> selected="selected"<?}?>>16時</option>
-<option value="17" <?if($start_time="5"){?> selected="selected"<?}?>>17時</option>
-<option value="18" <?if($start_time="6"){?> selected="selected"<?}?>>18時</option>
-<option value="19" <?if($start_time="1"){?> selected="selected"<?}?>>19時</option>
-<option value="20" <?if($start_time="2"){?> selected="selected"<?}?>>20時</option>
-<option value="21" <?if($start_time="3"){?> selected="selected"<?}?>>21時</option>
-<option value="22" <?if($start_time="4"){?> selected="selected"<?}?>>22時</option>
-<option value="23" <?if($start_time="5"){?> selected="selected"<?}?>>23時</option>
-</select>
+<table class="option_table">
+	<tr>
+		<td class="option_top">開始時間</td>
+		<td>
+			<select name="set_time" class="set_box">
+			<option value="0">24時</option>
+			<option value="1" <?if($start_time="1"){?> selected="selected"<?}?>>01時</option>
+			<option value="2" <?if($start_time="2"){?> selected="selected"<?}?>>02時</option>
+			<option value="3" <?if($start_time="3"){?> selected="selected"<?}?>>03時</option>
+			<option value="4" <?if($start_time="4"){?> selected="selected"<?}?>>04時</option>
+			<option value="5" <?if($start_time="5"){?> selected="selected"<?}?>>05時</option>
+			<option value="6" <?if($start_time="6"){?> selected="selected"<?}?>>06時</option>
+			<option value="7" <?if($start_time="1"){?> selected="selected"<?}?>>07時</option>
+			<option value="8" <?if($start_time="2"){?> selected="selected"<?}?>>08時</option>
+			<option value="9" <?if($start_time="3"){?> selected="selected"<?}?>>09時</option>
+			<option value="10" <?if($start_time="4"){?> selected="selected"<?}?>>10時</option>
+			<option value="11" <?if($start_time="5"){?> selected="selected"<?}?>>11時</option>
+			<option value="12" <?if($start_time="6"){?> selected="selected"<?}?>>12時</option>
+			<option value="13" <?if($start_time="1"){?> selected="selected"<?}?>>13時</option>
+			<option value="14" <?if($start_time="2"){?> selected="selected"<?}?>>14時</option>
+			<option value="15" <?if($start_time="3"){?> selected="selected"<?}?>>15時</option>
+			<option value="16" <?if($start_time="4"){?> selected="selected"<?}?>>16時</option>
+			<option value="17" <?if($start_time="5"){?> selected="selected"<?}?>>17時</option>
+			<option value="18" <?if($start_time="6"){?> selected="selected"<?}?>>18時</option>
+			<option value="19" <?if($start_time="1"){?> selected="selected"<?}?>>19時</option>
+			<option value="20" <?if($start_time="2"){?> selected="selected"<?}?>>20時</option>
+			<option value="21" <?if($start_time="3"){?> selected="selected"<?}?>>21時</option>
+			<option value="22" <?if($start_time="4"){?> selected="selected"<?}?>>22時</option>
+			<option value="23" <?if($start_time="5"){?> selected="selected"<?}?>>23時</option>
+			</select>
 </td>
 <td>開始曜日</td>
 <td>
@@ -150,23 +146,27 @@ $(function(){
 </tr>
 </table>
 
+
 <div class="config_title">スケジュール</div>
-<table>
+<table class="config_sche">	
 	<tr>
-		<td colspan="2">IN</td><td colspan="2">OUT</td>
+		<td colspan="2" class="config_sche_top">IN</td>
+		<td colspan="2" class="config_sche_top">OUT</td>
 	</tr>
+
+
 	<tr>
-		<td>表示</td>
-		<td>時間</td>
-		<td>表示</td>
-		<td>時間</td>
+		<td class="config_sche_top">表示</td>
+		<td class="config_sche_top">時間</td>
+		<td class="config_sche_top">表示</td>
+		<td class="config_sche_top">時間</td>
 	</tr>
 <?foreach($table_sort as $a1 => $a2){?>
 <tr>
-<td><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
-<td><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
-<td><input type="text" name="out_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["name"]?>"></td>
-<td><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
+<td class="config_sche_list"><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
+<td class="config_sche_list"><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
+<td class="config_sche_list"><input type="text" name="out_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["name"]?>"></td>
+<td class="config_sche_list"><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
 </tr>
 <?}?>
 </table>
@@ -187,6 +187,7 @@ $(function(){
 </div>
 
 <div class="config_title">オプション</div>
+
 <?foreach($c_main_dat as $a1 => $a2){?>
 	<table class="option_table">
 		<tr>

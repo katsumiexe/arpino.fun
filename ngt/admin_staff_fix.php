@@ -371,7 +371,8 @@ CAST情報
 						<img src="<?=$face[$n]?>" style="width:150px; margin:20px;">
 					</td>
 					<td class="img_box_td_1">
-					<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
+					<div class="img_box_td_1_in"><canvas id="cvs<?=$n?>" width="1200px" height="1600px;" class="cvs0"></canvas></div>
+
 					<div class="img_box_out1"></div>
 					<div class="img_box_out2"></div>
 					<div class="img_box_out3"></div>
