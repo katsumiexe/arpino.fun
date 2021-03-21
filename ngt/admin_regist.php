@@ -290,58 +290,43 @@ CAST情報
 </div>
 
 <div class="main_box cast_table">
-	<div class="up_box">
-	画像の推奨は縦800px×横600pxです。<br>
-	縦：横は4:3です。比率が違う場合は自動的にリサイズされます。<br>
-	</div>
-	<div class="img_up_box">
+	<div class="img_box_flex">
 	<?for($n=0;$n<4;$n++){?>
-		<div class="img_box_in">
-			<table class="img_box_table" <?if($face[$n]){?> style="left:0px;"<?}?>>
-				<tr>
-					<td class="img_box_td_1">
-						<img src="<?=$face[$n]?>" style="width:150px; margin:20px;">
-					</td>
-					<td class="img_box_td_1">
-					<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
-					<div class="img_box_out1"></div>
-					<div class="img_box_out2"></div>
-					<div class="img_box_out3"></div>
-					<div class="img_box_out4"></div>
-					<div class="img_box_out5"></div>
-					<div class="img_box_out6"></div>
-					<div class="img_box_out7"></div>
-					<div class="img_box_out8"></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="img_box_td_2">
-						<span class="img_box_in2">写真変更</span>
-						<span class="img_up_al2">
-						<span class="img_up_al2_in"></span>
-						</span>
-					</td>
-					<td class="img_box_td_2">
-						<label for="upd<?=$n?>" class="img_up_file"></label>
-						<span id="rote<?=$n?>" type="button" class="img_up_rote"></span>
-						<span id="reset<?=$n?>" type="button" class="img_up_reset"></span>
-						<span id="del<?=$n?>" type="button" class="img_up_del"></span>
-						<div class="img_box_in3">
-							<div id="mi<?=$n?>" class="zoom_mi">-</div>
-							<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
-							<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
-			<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
-			<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
-			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
-			<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
-			<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
-			<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
-		</div>
+		<table class="r_img_box_table">
+			<tr>
+				<td class="img_box_td_1">
+				<canvas id="cvs<?=$n?>" width="	1200px" height="1600px;" class="cvs0"></canvas>
+				<div class="img_box_out1"></div>
+				<div class="img_box_out2"></div>
+				<div class="img_box_out3"></div>
+				<div class="img_box_out4"></div>
+				<div class="img_box_out5"></div>
+				<div class="img_box_out6"></div>
+				<div class="img_box_out7"></div>
+				<div class="img_box_out8"></div>
+				</td>
+			</tr>
+			<tr>
+				<td class="img_box_td_2">
+					<label for="upd<?=$n?>" class="img_up_file"></label>
+					<span id="rote<?=$n?>" type="button" class="img_up_rote"></span>
+					<span id="reset<?=$n?>" type="button" class="img_up_reset"></span>
+					<span id="del<?=$n?>" type="button" class="img_up_del"></span>
+					<div class="img_box_in3">
+						<div id="mi<?=$n?>" class="zoom_mi">-</div>
+						<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
+						<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
+					</div>
+					<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
+					<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
+					<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
+					<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
+					<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
+					<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
+					<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
+				</td>
+			</tr>
+		</table>
 	<?}?>
 	</div>
 </div>

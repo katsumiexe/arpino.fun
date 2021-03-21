@@ -488,10 +488,11 @@ $(function(){
 			ChgList=$(this).sortable("toArray");
 			console.log(ChgList);
 			var Cnt = 1;
-			$(this).each(function(){
+			$(this).children('.tr').each(function(){
 				$(this).children('.td_40').children('.box_sort').val(Cnt);
 				Cnt++;
 			});
+
 			$.ajax({
 				url:'./post/admin_staff_sort.php',
 				type: 'post',
@@ -506,6 +507,7 @@ $(function(){
 		}
 	});
 });
+
 </script>
 <header class="head">
 <h2>スタッフ一覧</h2>

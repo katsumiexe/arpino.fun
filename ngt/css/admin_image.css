@@ -25,6 +25,14 @@
 	border			:2px solid #906000;
 }
 
+.r_img_box_table{
+	flex-basis		:192px;
+	overflow		:hidden;
+	background		:#fafafa;
+	height			:311px;
+}
+
+
 .img_box_td_1{
 	border			:2px solid #906000;
 	max-width		:190px;
@@ -274,10 +282,10 @@ input[type=range]::-moz-range-thumb{
 .zoom_mi{
 	display				:inline-block;
 	height				:20px;
+	line-height			:22px;
 	flex-basis			:15px;
 	border				:1px solid #f17766;
 	border-radius		:5px 0 0 5px;
-	line-height			:20px;
 	text-align			:center;
 	cursor				:pointer;
 	background			:#ffe0f0;
@@ -289,10 +297,10 @@ input[type=range]::-moz-range-thumb{
 .zoom_pu{
 	display				:inline-block;
 	height				:20px;
+	line-height			:22px;
 	flex-basis			:15px;
 	border				:1px solid #f17766;
 	border-radius		:0 5px 5px 0;
-	line-height			:20px;
 	text-align			:center;
 	cursor				:pointer;
 	background			:#ffe0f0;
@@ -315,13 +323,13 @@ input[type=range]::-moz-range-thumb{
 	color				:#f17766;
 	display				:inline-block;
 	height				:20px;
+	line-height			:22px;
 	flex-basis			:35px;
-	line-height			:20px;
 	text-align			:center;
 	margin-left			:5px;
 	background			:#ffffff;
 	font-weight			:600;
-	font-size			:14px;
+	font-size			:13px;
 }
 
 .img_box_in2{
@@ -343,7 +351,7 @@ input[type=range]::-moz-range-thumb{
 	top				:40px;
 	left			:5px;
 	width			:160px;
-	height			:25px;
+	height			:22px;
 }
 
 .cvs0{
