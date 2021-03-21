@@ -23,7 +23,7 @@ $sql.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$charm_dat[$row["sort"]]=$row;
+		$charm_dat[$row["id"]]=$row;
 	}
 }
 
@@ -49,14 +49,25 @@ $(function(){
 		$('#prof_b'+Tmp).css('order',Tmp2);
 	});
 
+	$('#prof').sortable({
+		axis: 'y',
+        handle: '.config_prof_handle',
+
+		stop : function(){
+			var Cnt = 1;
+			$(this).children('.tr').each(function(){
+				$(this).children('.config_prof_sort').children('.prof_sort').val(Cnt);
+				Cnt++;
+			});
+		},
+	});
+
+
 	$('.sel_flex').sortable({
 		containment: 'parent',
 		handle: '.sel_move',
 		stop : function(){
 			Tmp=$(this).attr('id');
-
-			ChgList=$(this).sortable("toArray");
-			console.log(ChgList);
 
 			var Cnt = 1;
 			$('.'+Tmp).each(function(){
@@ -100,10 +111,11 @@ $(function(){
 <div class="main_box">
 
 <div class="config_title">カレンダースタート</div>
-<table class="option_table">
+
+<table class="config_sche">	
 	<tr>
-		<td class="option_top">開始時間</td>
-		<td>
+		<td class="config_sche_top" style="width:120px;">開始時間</td>
+		<td class="config_sche_list">
 			<select name="set_time" class="set_box">
 			<option value="0">24時</option>
 			<option value="1" <?if($start_time="1"){?> selected="selected"<?}?>>01時</option>
@@ -130,20 +142,20 @@ $(function(){
 			<option value="22" <?if($start_time="4"){?> selected="selected"<?}?>>22時</option>
 			<option value="23" <?if($start_time="5"){?> selected="selected"<?}?>>23時</option>
 			</select>
-</td>
-<td>開始曜日</td>
-<td>
-<select name="set_week" class="set_box">
-<option value="0">日曜日</option>
-<option value="1" <?if($start_week="1"){?> selected="selected"<?}?>>月曜日</option>
-<option value="2" <?if($start_week="2"){?> selected="selected"<?}?>>火曜日</option>
-<option value="3" <?if($start_week="3"){?> selected="selected"<?}?>>水曜日</option>
-<option value="4" <?if($start_week="4"){?> selected="selected"<?}?>>木曜日</option>
-<option value="5" <?if($start_week="5"){?> selected="selected"<?}?>>金曜日</option>
-<option value="6" <?if($start_week="6"){?> selected="selected"<?}?>>土曜日</option>
-</select>
-</td>
-</tr>
+		</td>
+		<td class="config_sche_top" style="width:120px;">開始曜日</td>
+		<td class="config_sche_list">
+			<select name="set_week" class="set_box">
+			<option value="0">日曜日</option>
+			<option value="1" <?if($start_week="1"){?> selected="selected"<?}?>>月曜日</option>
+			<option value="2" <?if($start_week="2"){?> selected="selected"<?}?>>火曜日</option>
+			<option value="3" <?if($start_week="3"){?> selected="selected"<?}?>>水曜日</option>
+			<option value="4" <?if($start_week="4"){?> selected="selected"<?}?>>木曜日</option>
+			<option value="5" <?if($start_week="5"){?> selected="selected"<?}?>>金曜日</option>
+			<option value="6" <?if($start_week="6"){?> selected="selected"<?}?>>土曜日</option>
+			</select>
+		</td>
+	</tr>
 </table>
 
 
@@ -153,8 +165,6 @@ $(function(){
 		<td colspan="2" class="config_sche_top">IN</td>
 		<td colspan="2" class="config_sche_top">OUT</td>
 	</tr>
-
-
 	<tr>
 		<td class="config_sche_top">表示</td>
 		<td class="config_sche_top">時間</td>
@@ -172,22 +182,51 @@ $(function(){
 </table>
 
 <div class="config_title">プロフィール</div>
-<div class="prof_box">
+	
+<table class="config_sche">
+<thead>
+	<tr>
+		<td class="config_sche_top">替</td>
+		<td class="config_sche_top">順番</td>
+		<td class="config_sche_top">名前</td>
+		<td class="config_sche_top">スタイル</td>
+		<td class="config_sche_top">削除</td>
+	</tr>
+</thead>
+<tbody id="prof">
 <?foreach($charm_dat as $a1 => $a2){?>
-	<div id="prof_b<?=$a2["sort"]?>" class="prof_list" style="order:<?=$a2["sort"]?>;">
-		<input type="textbox" value="<?=$a2["sort"]?>" name="prof_sort[<?=$a1?>]" class="prof_sort">
-		<input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name">
+	<tr id="tr_<?=$a1?>" class="tr">
+		<td class="config_prof_handle"></td>
 
-		<select name="prof_name[<?=$a1?>]" class="prof_option">
-			<option value="0">コメント</option>
-			<option value="1" <?if($a2["style"]== 1){?>selected="selected"<?}?>>文章</option>
-		</select>
-	</div>
+		<td class="config_prof_sort"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
+		<td class="config_prof_name"><input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name"></td>
+		<td class="config_prof_style">
+			<select name="prof_style[<?=$a1?>]" class="prof_option">
+				<option value="0">コメント</option>
+				<option value="1" <?if($a2["style"]== 1){?>selected="selected"<?}?>>文章</option>
+			</select>
+		</td>
+		<td class="config_prof_sort">
+		</td>
+	</tr>
 <? } ?>
-</div>
+</tbody>
+	<tr>
+		<td style="border-bottom:none;border-left:none;"></td>
+		<td class="config_prof_sort"><input type="textbox" value="<?=$a2["sort"]+1?>" class="prof_sort" disabled></td>
+		<td class="config_prof_name"><input type="text" name="prof_name_new" value="" class="prof_name"></td>
+		<td class="config_prof_style">
+			<select name="prof_style_new" class="prof_option">
+				<option value="0">コメント</option>
+				<option value="1">文章</option>
+			</select>
+		</td>
+		<td class="config_prof_sort">
+		</td>
+	</tr>
+</table>
 
 <div class="config_title">オプション</div>
-
 <?foreach($c_main_dat as $a1 => $a2){?>
 	<table class="option_table">
 		<tr>
