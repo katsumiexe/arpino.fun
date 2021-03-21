@@ -524,7 +524,6 @@ $(function(){
 <input id="sel_status_3" value="1" type="checkbox" name="sel_status_3"><label id="label_status_3" for="sel_status_3" class="sel_status">退職</label>
 <input id="sel_status_4" value="1" type="checkbox" name="sel_status_4"><label id="label_status_4" for="sel_status_4" class="sel_status">停止</label>
 </header>
-
 <div class="wrap">
 <div class="main_box">
 <table>
