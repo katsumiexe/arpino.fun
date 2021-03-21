@@ -18,7 +18,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
 $sql ="SELECT * FROM wp01_0charm_table";
+$sql.=" WHERE del=0";
 $sql.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -190,7 +192,7 @@ $(function(){
 		<td class="config_sche_top">順番</td>
 		<td class="config_sche_top">名前</td>
 		<td class="config_sche_top">スタイル</td>
-		<td class="config_sche_top">削除</td>
+		<td class="config_sche_top"></td>
 	</tr>
 </thead>
 <tbody id="prof">

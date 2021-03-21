@@ -22,7 +22,6 @@ if($res = mysqli_query($mysqli,$sql) ){
 }
 
 if($staff_data["id"]){
-
 	$sql	 ="SELECT * FROM wp01_0check_main";
 	$sql	.=" WHERE del=0";
 	$sql	.=" ORDER BY sort ASC";
@@ -46,17 +45,27 @@ if($staff_data["id"]){
 	}
 
 
-	$sql	 ="SELECT T.id,sort,charm,style,del,log FROM wp01_0charm_table AS T";
-	$sql	.=" LEFT JOIN wp01_0charm_sel AS S ON T.id=S.list_id";
-	$sql	.=" AND T.del=0";
-	$sql	.=" AND(cast_id='{$staff_id}' OR cast_id IS NULL)";
+	$sql	 ="SELECT * FROM wp01_0charm_table";
+	$sql	.=" WHERE del=0";
 	$sql	.=" ORDER BY sort ASC";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
-			$charm[$row["id"]]=$row;
+			$charm_main[$row["id"]]=$row;
 		}
 	}
+
+
+	$sql	 ="SELECT * FROM wp01_0charm_sel";
+	$sql	.=" WHERE cast_id='{$staff_id}'";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$charm_list[$row["list_id"]]=$row;
+		}
+	}
+
+
 
 	for($n=0;$n<4;$n++){
 		if(file_exists("./img/profile/{$staff_id}/{$n}.jpg")){
@@ -323,19 +332,19 @@ CAST情報
 </tr>
 </table>
 
-<?if($charm){?>
+<?if($charm_main){?>
 	<table style="width:720px;" class="cast_table table-layout: fixed;">
 	<tr>
 		<td class="table_title" colspan="3">プロフィール</td>
 	</tr>	
 	<tr>
-		<?foreach($charm as $a1 => $a2){?>
+		<?foreach($charm_main as $a1 => $a2){?>
 			<td>
 				<div class="td_tag"><?=$a2["charm"]?></div>
 				<?if($a2["style"] == 1){?>
-					<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"><?=$a2["log"]?></textarea>
+					<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"><?=$charm_list[$a1]["log"]?></textarea>
 				<? }else{ ?>
-					<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" value="<?=$a2["log"]?>" autocomplete="off">
+					<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" value="<?=$charm_list[$a1]["log"]?>" autocomplete="off">
 				<? } ?>
 			</td>
 			<?if(($cnt+0) % 2 ==1){?>
