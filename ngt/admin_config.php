@@ -28,7 +28,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$charm_dat[$row["id"]]=$row;
 	}
 	if(is_array($charm_dat)){
-		$max_charm=max($charm_dat);
+		$max_charm=max(array_keys($charm_dat));
 	}
 }
 
@@ -97,10 +97,8 @@ $(function(){
 		Cnt = $("#no_" + Tmp + " > div").length;
 		Cnt++;	
 		Lst="<div class=\"sel_block no_"+Tmp+"\"><span class=\"sel_move\"></span><input id=\"sel_"+ ids +"\" type=\"text\" name=\"sel[" + ids + "]\" class=\"sel_text\"><input id=\"sel_del" + ids + "\" type=\"checkbox\" name=\"del[" + ids + "]\" class=\"sel_ck\" value=\"0\"><label for=\"sel_del" + ids + "\" class=\"sel_del\">×</label><input type=\"hidden\" name=\"sort[<?=$b1?>]\" value=\"" + Cnt + "\" class=\"sel_hidden\"></div>";
-
 		$('#no_'+Tmp).append(Lst);
 	});
-
 
 	$('#prof_set').on('click',function() {
 		if($('#prof_name_new').val()==''){
@@ -207,6 +205,7 @@ $(function(){
 	</tr>
 </thead>
 <tbody id="prof">
+
 <?foreach($charm_dat as $a1 => $a2){?>
 	<tr id="tr_<?=$a1?>" class="tr">
 		<td class="config_prof_handle"></td>
@@ -227,6 +226,7 @@ $(function(){
 <? } ?>
 </tbody>
 </table>
+
 <table class="config_sche">
 	<tr>
 <form id="new_set" action="" method="post">
