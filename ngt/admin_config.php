@@ -109,6 +109,14 @@ $(function(){
 		}
 	});
 
+	$('#prof').on('click','.view_btn',function() {
+		if($(this).hasClass('bg1')){
+			$(this).parent().parent('.tr').find('.bg1').addClass('bg0').removeClass('bg1');	
+
+		}else if($(this).hasClass('bg0')){
+			$(this).parent().parent('.tr').find('.bg0').addClass('bg1').removeClass('bg0');	
+		}
+	});
 });
 </script>
 <style>
@@ -208,19 +216,19 @@ $(function(){
 
 <?foreach($charm_dat as $a1 => $a2){?>
 	<tr id="tr_<?=$a1?>" class="tr">
-		<td class="config_prof_handle"></td>
-
-		<td class="config_prof_sort"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
-		<td class="config_prof_name"><input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name"></td>
-		<td class="config_prof_style">
-			<select name="prof_style[<?=$a1?>]" class="prof_option">
+		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
+		<td class="config_prof_handle bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_sort bg<?=$a2["view"]?>"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
+		<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>">
+			<select name="prof_style[<?=$a1?>]" class="prof_option bg<?=$a2["view"]?>">
 				<option value="0">コメント</option>
 				<option value="1" <?if($a2["style"]== 1){?>selected="selected"<?}?>>文章</option>
 			</select>
 		</td>
-		<td class="config_prof_style">
-			<button type="button" class="prof_btn">非表示</button>
-			<button type="submit" class="prof_btn">削除</button>
+		<td class="config_prof_style bg<?=$a2["view"]?>">
+			<button type="button" class="prof_btn view_btn bg<?=$a2["view"]?>">非表示</button>
+			<button type="button" class="prof_btn del_btn  bg<?=$a2["view"]?>">削除</button>
 		</td>
 	</tr>
 <? } ?>

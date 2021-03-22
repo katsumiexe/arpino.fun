@@ -72,6 +72,7 @@ if($res = mysqli_query($mysqli,$sql)){
 	$sql ="SELECT sort,charm,style,log FROM wp01_0charm_table";
 	$sql.=" LEFT JOIN `wp01_0charm_sel` ON wp01_0charm_table.id=list_id";
 	$sql.=" WHERE wp01_0charm_table.del='0'";
+	$sql.=" AND wp01_0charm_table.view='0'";
 	$sql.=" AND (wp01_0charm_sel.cast_id='{$post_id}' OR wp01_0charm_sel.cast_id='')";
 	$sql.=" ORDER BY wp01_0charm_table.sort ASC";
 
@@ -183,7 +184,6 @@ include_once('./header.php');
 			</tr>
 		<?}?>
 	<?}?>
-
 		</table>
 		<div class="sche_title">Schedule</div>
 		<table class="sche">
@@ -221,7 +221,5 @@ include_once('./header.php');
 		</div>
 	</div>
 <?}?>
-
-
 </div>
 <?include_once('./footer.php'); ?>
