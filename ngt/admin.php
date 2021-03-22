@@ -241,7 +241,13 @@ if($staff_set == 4){
 			}
 		}
 	}
+
+}elseif($_POST["prof_name_new"] && $_POST["prof_style_new"]){
+	$sql="INSERT INTO wp01_0charm_table (`charm`,`sort`,`style`)";
+	$sql.="VALUES('{$_POST["prof_name_new"]}','{$_POST["prof_sort_new"]}','{$_POST["prof_style_new"]}')";
+	mysqli_query($mysqli,$sql);
 }
+
 $sel[$_POST["menu_post"]]="menu_sel";
 ?>
 <html lang="ja">

@@ -27,6 +27,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$charm_dat[$row["id"]]=$row;
 	}
+	if(is_array($charm_dat)){
+		$max_charm=max($charm_dat);
+	}
 }
 
 $sql ="SELECT * FROM wp01_0sch_table";
@@ -38,7 +41,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		$table_dat[$row["id"]]=$row;
 	}
 }
-
 ?>
 <script>
 ids='<?=$count_list+1?>';
@@ -90,14 +92,25 @@ $(function(){
 		}
 	});
 
-	$('.sel_count').on('click',function(){
-		ids++;
+	$('.option_add').on('click',function(){
 		Tmp=$(this).attr('id').replace("ad_","");
 		Cnt = $("#no_" + Tmp + " > div").length;
 		Cnt++;	
 		Lst="<div class=\"sel_block no_"+Tmp+"\"><span class=\"sel_move\"></span><input id=\"sel_"+ ids +"\" type=\"text\" name=\"sel[" + ids + "]\" class=\"sel_text\"><input id=\"sel_del" + ids + "\" type=\"checkbox\" name=\"del[" + ids + "]\" class=\"sel_ck\" value=\"0\"><label for=\"sel_del" + ids + "\" class=\"sel_del\">×</label><input type=\"hidden\" name=\"sort[<?=$b1?>]\" value=\"" + Cnt + "\" class=\"sel_hidden\"></div>";
+
 		$('#no_'+Tmp).append(Lst);
 	});
+
+
+	$('#prof_set').on('click',function() {
+		if($('#prof_name_new').val()==''){
+			alert('プロフィール名がありません');
+			return false;
+		}else{
+			$('#new_set').submit()
+		}
+	});
+
 });
 </script>
 <style>
@@ -207,8 +220,8 @@ $(function(){
 			</select>
 		</td>
 		<td class="config_prof_style">
-			<button>非表示</button>
-			<button>削除</button>
+			<button type="button" class="prof_btn">非表示</button>
+			<button type="submit" class="prof_btn">削除</button>
 		</td>
 	</tr>
 <? } ?>
@@ -216,16 +229,20 @@ $(function(){
 </table>
 <table class="config_sche">
 	<tr>
-		<td style="width:70px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
-		<td class="config_prof_name" style=" background:#ffe0f0"><input type="text" name="prof_name_new" value="" class="prof_name"></td>
+<form id="new_set" action="" method="post">
+<input type="hidden" name="menu_post" value="config">
+<input type="hidden" value="<?=$max_charm+1?>" name="prof_sort_new">
+		<td style="width:71px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
+		<td class="config_prof_name" style=" background:#ffe0f0"><input id="prof_name_new" type="text" name="prof_name_new" value="" class="prof_name"></td>
 		<td class="config_prof_style" style=" background:#ffe0f0">
 			<select name="prof_style_new" class="prof_option">
 				<option value="0">コメント</option>
 				<option value="1">文章</option>
 			</select>
 		</td>
+</form>
 		<td class="config_prof_style" style=" background:#ffe0f0">
-			<button>追加</button>
+			<button id="prof_set" type="submit" class="prof_btn">追加</button>
 		</td>
 	</tr>
 </table>

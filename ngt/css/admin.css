@@ -302,7 +302,9 @@ ul {
 	background		:#d0d0ff;
 	font-size		:14px;
 	font-weight		:600;
-	color:#000000;
+	color			:#000000;
+	border			:1px solid #303030;
+
 }
 
 .config_sche_list{
@@ -403,6 +405,12 @@ ul {
 	font-size		:16px;
 	width			:1012px;
 	margin			:20px 5px 0 5px;
+}
+
+.prof_btn{
+	width:55px;
+	height:30px;
+	font-size:13px;
 }
 
 @media screen and (max-width: 559px){
