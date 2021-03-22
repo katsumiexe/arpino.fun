@@ -113,7 +113,6 @@ $(function(){
 <div class="main_box">
 
 <div class="config_title">カレンダースタート</div>
-
 <table class="config_sche">	
 	<tr>
 		<td class="config_sche_top" style="width:120px;">開始時間</td>
@@ -159,7 +158,6 @@ $(function(){
 		</td>
 	</tr>
 </table>
-
 
 <div class="config_title">スケジュール</div>
 <table class="config_sche">	
@@ -208,22 +206,26 @@ $(function(){
 				<option value="1" <?if($a2["style"]== 1){?>selected="selected"<?}?>>文章</option>
 			</select>
 		</td>
-		<td class="config_prof_sort">
+		<td class="config_prof_style">
+			<button>非表示</button>
+			<button>削除</button>
 		</td>
 	</tr>
 <? } ?>
 </tbody>
+</table>
+<table class="config_sche">
 	<tr>
-		<td style="border-bottom:none;border-left:none;"></td>
-		<td class="config_prof_sort"><input type="textbox" value="<?=$a2["sort"]+1?>" class="prof_sort" disabled></td>
-		<td class="config_prof_name"><input type="text" name="prof_name_new" value="" class="prof_name"></td>
-		<td class="config_prof_style">
+		<td style="width:70px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
+		<td class="config_prof_name" style=" background:#ffe0f0"><input type="text" name="prof_name_new" value="" class="prof_name"></td>
+		<td class="config_prof_style" style=" background:#ffe0f0">
 			<select name="prof_style_new" class="prof_option">
 				<option value="0">コメント</option>
 				<option value="1">文章</option>
 			</select>
 		</td>
-		<td class="config_prof_sort">
+		<td class="config_prof_style" style=" background:#ffe0f0">
+			<button>追加</button>
 		</td>
 	</tr>
 </table>

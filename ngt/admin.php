@@ -113,7 +113,6 @@ if($staff_set == 4){
 			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`)";
 			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
 			mysqli_query($mysqli,$sql);
-echo $sql;
 //■encode-------------------------------
 			$id_8	=substr("00000000".$staff_id,-8);
 			$id_0	=$staff_id % 20;
@@ -196,7 +195,7 @@ echo $sql;
 
 			foreach($img_c as $a1 => $a2){
 
-				if($a2 || chg_check[$a3]==1){
+				if($a2 || $chg_check[$a3]==1){
 
 					$tmp_width	=ceil(1200*(100/$img_z[$a1]));
 					$tmp_height	=ceil(1600*(100/$img_z[$a1]));

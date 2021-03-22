@@ -5,9 +5,9 @@ $sql="SELECT * FROM wp01_0contents WHERE page='system' AND status='0' ORDER BY i
 if($res = mysqli_query($mysqli,$sql)){
 $dat = mysqli_fetch_assoc($res);
 }
-
 include_once('./header.php');
 ?>
+
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -21,7 +21,7 @@ include_once('./header.php');
 </div>
 
 <?if($dat){?>
-div class="main_e">
+<div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
 <span class="main_e_f c_tl"></span>
@@ -51,7 +51,7 @@ div class="main_e">
 			</div>
 			<div class="access_tag">電話番号</div>
 			<div class="access_box">
-				03-6457-6156
+				<span>03</span>-<span>6457</span>-<span>6156</span>
 			</div>
 		</div>
 	</div>
