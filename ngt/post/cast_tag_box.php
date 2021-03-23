@@ -5,58 +5,50 @@
 include_once('../library/sql.php');
 $date		=$_POST['date'];
 
-$sql=" SELECT * FROM wp01_0sch_table";
-$res0= $wpdb->get_results($sql,ARRAY_A);
-foreach($res0 as $a1){
-	$sch_table[$a1["in_out"]][$a1["name"]]=$a1["sort"];
-}
+$sql=" SELECT C.id, genji, in_out, `name`, T.sort,C.ctime, stime, etime FROM wp01_0cast AS C";
+$sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
+$sql.=" LEFT JOIN wp01_0sch_table AS T ON in_out='in' AND stime=T.name";
+$sql.=" WHERE C.cast_status=0";
+$sql.=" AND sche_date='{$date}'";
+$sql.=" AND C.id>0";
+$sql.=" ORDER BY cast_sort ASC";
 
-$sql=" SELECT * FROM wp01_0cast";
-$sql.=" WHERE del=0";
-$res = $wpdb->get_results($sql,ARRAY_A);
+if($res = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res)){
+		if($a1["stime"] && $a1["etime"]){
 
-foreach($res as $a1){
-	$dat[$a1["id"]]=$a1;
-
-	$sql =" SELECT * FROM wp01_0schedule";
-	$sql.=" WHERE sche_date='{$date}'";
-	$sql.=" AND cast_id='{$a1["id"]}'";
-	$res2 = $wpdb->get_results($sql,ARRAY_A);
-
-	foreach($res2 as $a2){
-		if($a2["stime"] && $a2["etime"]){
-			$dat[$a1["id"]]["sch"]="{$a2["stime"]}-{$a2["etime"]}";
-			$sort[$a1["id"]]=$sch_table["in"][$a2["stime"]];
+			$a1["sch"]="{$a1["stime"]} － {$a1["etime"]}";
+			$sort[$a1["id"]]=$a1["stime"];
 		}else{
-			$dat[$a1["id"]]["sch"]="";
+			$a1["sch"]="休み";
+			$sort[$a1["id"]]=999999;
 		}
+
+		if (file_exists("../img/profile/{$a1["id"]}/0.jpg")) {
+			$a1["face"]="./img/profile/{$a1["id"]}/0.jpg";		
+
+		}else{
+			$a1["face"]="./img/cast_no_image.jpg";			
+		}
+
+		if($day_8 < $a1["ctime"]){
+			$a1["new"]=1;
+
+		}elseif($day_8 == $a1["ctime"]){
+			$a1["new"]=2;
+
+		}elseif(strtotime($day_8) - strtotime($a1["ctime"])<=2592000){
+			$a1["new"]=3;
+		}
+
+		$dat[$a1["id"]]=$a1;
 	}
-
-	if(!$dat[$a1["id"]]["sch"]){
-		$dat[$a1["id"]]["sch"]="休み";
-		$sort[$a1["id"]]=999999;
-	}
-
-
-	if (file_exists(get_template_directory()."/img/page/{$a1["id"]}/0.jpg")) {
-		$dat[$a1["id"]]["face"]="{$link}/img/page/{$a1["id"]}/0.jpg";		
-	}else{
-		$dat[$a1["id"]]["face"]="{$link}/img/page/noimage.jpg";			
-	}
-
-	if($date < $a1["ctime"]){
-		$dat[$a1["id"]]["new"]=1;
-
-	}elseif($date == $a1["ctime"]){
-		$dat[$a1["id"]]["new"]=2;
-
-	}elseif(strtotime($date) - strtotime($a1["ctime"])<=2592000){
-		$dat[$a1["id"]]["new"]=3;
-	}
-
-
 }
+
 asort($sort);
+
+
+
 
 foreach($sort as $b1=> $b2){
 $html.="<a href=\"{$link}/person/?cast={$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";

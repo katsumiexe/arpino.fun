@@ -2,42 +2,54 @@
 include_once('./library/sql.php');
 $sort=array();
 
-$sql=" SELECT C.id, genji, in_out, `name`, T.sort,C.ctime, stime, etime FROM wp01_0cast AS C";
-$sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
-$sql.=" LEFT JOIN wp01_0sch_table AS T ON in_out='in' AND stime=T.name";
-$sql.=" WHERE C.cast_status=0";
-//$sql.=" AND S.sche_date='{$day_8}'";
-$sql.=" ORDER BY S.id DESC";
+$sql=" SELECT id, genji FROM wp01_0cast";
+$sql.=" WHERE cast_status=0";
+$sql.=" AND id>0";
+$sql.=" AND genji IS NOT NULL";
+$sql.=" ORDER BY cast_sort ASC";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		if($a1["stime"] && $a1["etime"]){
+		if($day_8 < $row["ctime"]){
+			$row["new"]=1;
 
-			$a1["sch"]="{$a1["stime"]} － {$a1["etime"]}";
-			$sort[$a1["id"]]=$a1["stime"];
+		}elseif($day_8 == $row["ctime"]){
+			$row["new"]=2;
+
+		}elseif(strtotime($day_8) - strtotime($row["ctime"])<=2592000){
+			$row["new"]=3;
+		}
+
+		if (file_exists("./img/profile/{$row["id"]}/0.jpg")) {
+			$row["face"]="./img/profile/{$row["id"]}/0.jpg";		
+
 		}else{
-			$a1["sch"]="休み";
-			$sort[$a1["id"]]=999999;
+			$row["face"]="./img/cast_no_image.jpg";			
 		}
+		$row["sch"]		="休み";
+		$row["sort"]	=9999;
+		$cast_dat[$row["id"]]=$row;
+	}
+}
+echo $sql;
 
-		if (file_exists("./img/profile/{$a1["id"]}/0.jpg")) {
-			$a1["face"]="./img/profile/{$a1["id"]}/0.jpg";		
+$sql=" SELECT stime, etime, cast_id,sort FROM wp01_0schedule AS S";
+$sql.=" LEFT JOIN wp01_0sch_table AS T ON S.stime=T.name";
+$sql.=" WHERE sche_date='{$day_8}'";
+$sql.=" AND in_out='in'";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		if($row["stime"] && $row["etime"]){
+			$cast_dat[$row["cast_id"]]["sch"]="{$row["stime"]} － {$row["etime"]}";
+			$cast_dat[$row["cast_id"]]["sort"]=$row["sort"];
 
 		}else{
-			$a1["face"]="./img/profile/noimage.jpg";			
+1			$cast_dat[$row["cast_id"]]["sch"]="休み";
+			$cast_dat[$row["cast_id"]]["sort"]=9999;
 		}
-
-		if($day_8 < $a1["ctime"]){
-			$a1["new"]=1;
-
-		}elseif($day_8 == $a1["ctime"]){
-			$a1["new"]=2;
-
-		}elseif(strtotime($day_8) - strtotime($a1["ctime"])<=2592000){
-			$a1["new"]=3;
-		}
-
-		$dat[$a1["id"]]=$a1;
 	}
 }
 
@@ -76,9 +88,9 @@ include_once('./header.php');
 <? for($e=0;$e<7;$e++){?><div id="d<?=$cast_id[$e]?>" class="cast_tag_box <?=$cl[$e]?><?if($e == 0){?> cast_tag_box_sel<?}?>"><?=$cast_tag[$e]?></div><?}?>
 </div>
 <div class="main_d">
-<? foreach($sort as $b1=> $b2){?>
+<? foreach($cast_dat as $b1=> $b2){?>
 	<a href="./person.php?post_id=<?=$b1?>" id="i<?=$b1?>" class="main_d_1">
-		<img src="<?=$dat[$b1]["face"]?>" class="main_d_1_1">
+		<img src="<?=$b2["face"]?>" class="main_d_1_1">
 		<span class="main_d_1_2">
 			<span class="main_b_1_2_h"></span>
 			<span class="main_b_1_2_f f_tr"></span>
@@ -86,15 +98,15 @@ include_once('./header.php');
 			<span class="main_b_1_2_f f_br"></span>
 			<span class="main_b_1_2_f f_bl"></span>
 
-			<span class="main_d_1_2_name"><?=$dat[$b1]["genji"]?></span>
+			<span class="main_d_1_2_name"><?=$b2["genji"]?></span>
 			<span class="main_d_1_2_sch"><?=$dat[$b1]["sch"]?></span>
 		</span>
 
-		<?if($dat[$b1]["new"] == 1){?>
+		<?if($b2["new"] == 1){?>
 			<span class="main_b_1_ribbon ribbon1">近日入店</span>
-		<?}elseif($dat[$b1]["new"] == 2){?>
+		<?}elseif($b2["new"] == 2){?>
 			<span class="main_b_1_ribbon ribbon2">本日入店</span>
-		<?}elseif($dat[$b1]["new"] == 3){?>
+		<?}elseif($b2["new"] == 3){?>
 			<span class="main_b_1_ribbon ribbon3">新人</span>
 		<?}?>
 	</a>
