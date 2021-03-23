@@ -28,6 +28,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 		$row["sch"]		="休み";
 		$row["sort"]	=9999;
+
 		$cast_dat[$row["id"]]=$row;
 	}
 }
@@ -47,7 +48,7 @@ if($result = mysqli_query($mysqli,$sql)){
 			$cast_dat[$row["cast_id"]]["sort"]=$row["sort"];
 
 		}else{
-1			$cast_dat[$row["cast_id"]]["sch"]="休み";
+			$cast_dat[$row["cast_id"]]["sch"]="休み";
 			$cast_dat[$row["cast_id"]]["sort"]=9999;
 		}
 	}
@@ -99,7 +100,7 @@ include_once('./header.php');
 			<span class="main_b_1_2_f f_bl"></span>
 
 			<span class="main_d_1_2_name"><?=$b2["genji"]?></span>
-			<span class="main_d_1_2_sch"><?=$dat[$b1]["sch"]?></span>
+			<span class="main_d_1_2_sch"><?=$b2["sch"]?></span>
 		</span>
 
 		<?if($b2["new"] == 1){?>
