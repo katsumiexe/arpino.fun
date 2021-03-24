@@ -2347,6 +2347,8 @@ input:focus{
 	text-align		:left;
 	font-size		:3.5vw;
 	line-height		:6vw
+	background		:#f0f0e0;
+	border:1px solid #101010;
 }
 
 .hist_img_in{

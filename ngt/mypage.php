@@ -399,6 +399,8 @@ $sql.=" LIMIT 11";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
+
+		$row["log"]=str_replace("\n","<br>",$row["log"]);
 		$blog[]=$row;
 	}
 	if(is_array($blog)){
@@ -1062,7 +1064,7 @@ $(function(){
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
 					<img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
 					<?}else{?>
-					<img src="./img/blog_no_image.jpg?t_<?=time()?>" class="hist_img">
+					<img src="./img/blog_no_image.png?t_<?=time()?>" class="hist_img">
 					<?}?>
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
