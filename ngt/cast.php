@@ -10,13 +10,13 @@ $sql.=" ORDER BY cast_sort ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
-		if($day_8 < $row["ctime"]){
+		if($day_8 < $row["ctime"] && $admin_config["coming_soon"]==1){
 			$row["new"]=1;
 
-		}elseif($day_8 == $row["ctime"]){
+		}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
 			$row["new"]=2;
 
-		}elseif(strtotime($day_8) - strtotime($row["ctime"])<=2592000){
+		}elseif(strtotime($day_8) - strtotime($row["ctime"])<$admin_config["new_commer"]){
 			$row["new"]=3;
 		}
 
@@ -32,13 +32,12 @@ if($result = mysqli_query($mysqli,$sql)){
 		$cast_dat[$row["id"]]=$row;
 	}
 }
-echo $sql;
 
 $sql=" SELECT stime, etime, cast_id,sort FROM wp01_0schedule AS S";
 $sql.=" LEFT JOIN wp01_0sch_table AS T ON S.stime=T.name";
 $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND in_out='in'";
-$sql.=" ORDER BY sort ASC";
+$sql.=" ORDER BY S.id ASC, T.sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){

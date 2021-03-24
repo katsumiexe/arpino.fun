@@ -1,5 +1,6 @@
 <?php
 include_once('./library/sql.php');
+
 $sql=" SELECT sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
@@ -291,7 +292,9 @@ var Cnt=<?=$event_count?>-1;
 				<?}?>
 			<?}?>
 		</div>
-		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/serra_geddon?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<?if($admin_config["twitter_view"]==1 && $admin_config["twitter"]){?>
+		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/<?=$admin_config["twitter"]?>?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<?}?>	
 	</div>
 </div>
 <?include_once('./footer.php'); ?>
