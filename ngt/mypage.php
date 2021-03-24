@@ -8,6 +8,10 @@ $week[3]="水";
 $week[4]="木";
 $week[5]="金";
 $week[6]="土";
+$blog_status[0]="公開";
+$blog_status[1]="予約";
+$blog_status[2]="非公開";
+$blog_status[3]="削除";
 
 //Sche-----------------------
 if($cast_data){
@@ -198,7 +202,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 
 //■カレンダー　ブログカウント
-$sql	 ="SELECT * FROM wp01_posts";
+$sql	 ="SELECT * FROM wp01_0posts";
 $sql	.=" WHERE cast='{$cast_data["id"]}'";
 $sql	.=" AND status<2";
 $sql	.=" AND view_date>='{$calendar[0]}'";
@@ -378,7 +382,6 @@ $sql	.=" AND group_id='1'";
 $sql	.=" AND cast_id='{$cast_data["id"]}'";
 $sql	.=" ORDER BY `sort` ASC";
 
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$cus_group_sel[$row["sort"]]=$row["tag"];
@@ -389,7 +392,7 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 //■Blog------------------
-$sql ="SELECT * FROM wp01_posts";
+$sql ="SELECT * FROM wp01_0posts";
 $sql.=" WHERE cast='{$cast_data["id"]}'";
 $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT 11";
@@ -398,8 +401,8 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$blog[]=$row;
 	}
-	if(is_array($dat)){
-		$blog_max=count($dat);
+	if(is_array($blog)){
+		$blog_max=count($blog);
 	}
 
 	if($blog_max>10){
@@ -1054,19 +1057,25 @@ $(function(){
 
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
+
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
-					<img src="<?=$blog[$n]["img"]?>" class="hist_img">
+					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
+					<img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
+					<?}else{?>
+					<img src="./img/blog_no_image.jpg?t_<?=time()?>" class="hist_img">
+					<?}?>
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
-					<span class="hist_tag"><?=$tag_name[$n]["name"]?></span>
+					<span class="hist_tag"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span>
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
+
 				<div class="hist_log">
-					<?if($blog[$n]["img_on"]){?>
-					<span class="hist_img_in"><img src="<?=$blog[$n]["img"]?>" class="hist_img_on"></span>
+					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
+					<span class="hist_img_in"><img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>.png?t_<?=time()?>" class="hist_img_on"></span>
 					<?}?>
-					<span class="blog_log"><?=$blog[$n]["content"]?></span>
+					<span class="blog_log"><?=$blog[$n]["log"]?></span>
 				</div>
 				<? } ?>
 

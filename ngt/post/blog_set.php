@@ -11,7 +11,7 @@ $dd=$_POST["dd"];
 $hh=$_POST["hh"];
 $ii=$_POST["ii"];
 
-$date_jst=$yy."-".$mm."-".$dd." ".$hh.":".$ii.":00";
+$view_date=$yy."-".$mm."-".$dd." ".$hh.":".$ii.":00";
 
 $ttl		=$_POST["ttl"];
 $log		=$_POST["log"];
@@ -38,10 +38,10 @@ if($img_id){
 	$img_name	 ="p".$img_name;
 }
 
-$sql="INSERT INTO wp01_posts ";
-$sql.="(date, view_date, title, log, cast, tag, img, status)";
+$sql="INSERT INTO wp01_0posts ";
+$sql.="(`date`, `view_date`, `title`, `log`, `cast`, `tag`, `img`, `status`)";
 $sql.="VALUES";
-$sql.="('{$now}','{$view_date}','{$title}','{$log}','{$_SESSION["id"]}','{$tag}','{$img_name}','{$status}')";
+$sql.="('{$now}','{$view_date}','{$ttl}','{$log}','{$cast_data["id"]}','{$tag}','{$img_name}','{$open}')";
 mysqli_query($mysqli,$sql);
 $tmp_auto=mysqli_insert_id($mysqli); 
 
@@ -62,7 +62,6 @@ if($img_name){
 
 }else{
 	$tmp_img="./img/blog_no_image.png";
-
 }
 
 if($chg){
@@ -76,8 +75,9 @@ if($chg){
 
 $log=str_replace("\n","<br>",$log);
 
-$html="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
-$html.="<img src=\"{$tmp_img_s}\" class=\"hist_img\">";
+$html=$sql;
+$html.="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
+$html.="<img src=\"{$tmp_img}\" class=\"hist_img\">";
 $html.="<span class=\"hist_date\">{$date_jst}</span>";
 $html.="<span class=\"hist_title\">{$ttl}</span>";
 $html.="<span class=\"hist_tag\">{$tag}</span>";
