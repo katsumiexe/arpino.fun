@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_cast.php');
+include_once('../library/sql_post.php');
 $blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
 $blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
 $blog_st[2]="<span class=\"hist_status hist_2\">非公開</span>";
@@ -30,16 +30,24 @@ if($open<=1 && $now < $date_jst){
 	$view_data=$open;
 }
 
+if($img_id){
+	$img_name=$img_id;
+
+}elseif($img_code){
+	$img_name	 =time()+2121212121;
+	$img_name	 ="p".$img_name;
+}
 
 $sql="INSERT INTO wp01_posts ";
 $sql.="(date, view_date, title, log, cast, tag, img, status)";
 $sql.="VALUES";
-$sql.="('{$now}','{$view_date}','{$title}','{$log}','{$_SESSION["id"]}','{$tag}','png','{$status}'";
+$sql.="('{$now}','{$view_date}','{$title}','{$log}','{$_SESSION["id"]}','{$tag}','{$img_name}','{$status}')";
 mysqli_query($mysqli,$sql);
 $tmp_auto=mysqli_insert_id($mysqli); 
 
-if($img_code){
-	$img_link="../img/profile/{$cast_data["id"]}/blog/img_{$tmp_auto}";
+if($img_name){
+	$img_link="../img/profile/{$cast_data["id"]}/{$img_name}";
+
 	$img	= imagecreatefromstring(base64_decode($img_code));	
 
 	$img2	= imagecreatetruecolor(600,600);
@@ -49,7 +57,12 @@ if($img_code){
 	$img2	= imagecreatetruecolor(200,200);
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 200, 200, 600, 600);
 	imagepng($img2,$img_link."_s.png");
-	$tmp_img="{$img_link}.png";
+
+	$tmp_img=substr($img_link,1).".png";
+
+}else{
+	$tmp_img="./img/blog_no_image.png";
+
 }
 
 if($chg){
@@ -60,9 +73,6 @@ if($chg){
 	mysqli_query($mysqli,$sql);
 }
 
-if(!$tmp_img){
-	$tmp_img="../img/profile/blog_no_img.png";
-}
 
 $log=str_replace("\n","<br>",$log);
 

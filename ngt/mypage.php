@@ -1028,15 +1028,15 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="./img/customer_no_image.png?t=<?=time()?>" class="blog_img">
+							<img src="./img/blog_no_image.png?t=<?=time()?>" class="blog_img">
 							</span>					
 							<span class="customer_camera"></span>
 							</td>
 							<td class="blog_tag_td">
 								<span class="tag_icon"></span>
 								<select id="blog_tag" name="blog_tag" class="blog_tag_sel">
-								<?foreach($tag_list as $a1=> $a2){?>
-									<option value="<?=$a1?>"><?=$a2?></option>
+								<?foreach($tag as $a1=> $a2){?>
+									<option value="<?=$a1?>"><?=$a2["tag_name"]?></option>
 								<?}?>
 								</select>
 								<span class=" tag_ttl">タグ</span>

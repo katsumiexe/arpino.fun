@@ -2296,12 +2296,12 @@ input:focus{
 	position		:absolute;
 	top				:0;
 	bottom			:0;
-	left			:18.5vw;
+	left			:18vw;
 	margin			:auto;
 	font-size		:4.5vw;
 	width			:40vw;
 	background		:#fafafa;
-	padding-left	:1vw;
+	padding-left	:1.5vw;
 }
 
 .blog_hist{
