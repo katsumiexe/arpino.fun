@@ -11,6 +11,10 @@ $sql	.=" ORDER BY id DESC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		$dat[$res["id"]]=$res;
+
+		if($res["id"] == "$sel_id"){
+			$dat_sel=$res;
+		}
 	}
 
 	if(is_array($dat)){
@@ -97,28 +101,68 @@ $(function(){
 </form>
 </header>
 <div class="wrap">
-	<div class="main_box">
-	<span class="tag">表示時間</span>
-	<input type="text" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+	<?if($post_id == "event"){?>
+		<div class="main_box">
+			<table>
+				<tr>
+					<td>
+						<span class="tag">表示時間</span>
+						<input type="text" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+					</td>
 
-	<span class="tag">イベント時間</span>
-	<input type="text" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+					<td>
+						<span class="tag">イベント時間</span>
+						<input type="text" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+					</td>
 
-	<span class="tag">タイトル</span>
-	<input type="text" name="title" value="<?=$dat["sel_id"]["title"]?>"> 
+					<td>
+						<span class="tag">タグ</span>
+						<select name="tag">
+							<?for($n=0;$n<$tag_count;$n++){?>
+								<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
+							<? } ?>	
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="tag">タイトル</span>
+						<input type="text" name="event_title" value="<?=$dat_sel["title"]?>"> 
+					</td>
 
-	<span class="tag">タグ</span>
-	<select name="tag">
-		<?for($n=0;$n<$tag_count;$n++){?>
-		<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
-		<? } ?>	
-	</select>
-	<textarea class="textarea"><?=$dat["sel_id"]["contents"]?></textarea>
-	</div>
+					<td>
+						<span class="tag">URL</span>
+						<input type="text" name="event_url" value="<?=$dat_sel["contents_url"]?>"> 
+					</td>
 
-	<div class="sub_box">
-		<?foreach($dat as $a1 => $a2){?>
-		<? } ?>
-	</div>
+					<td>
+						<span class="tag">Key</span>
+						<input type="text" name="event_key" value="<?=$dat_sel["contents_key"]?>"> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<textarea class="textarea"><?=$dat_sel["contents"]?></textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="sub_box">
+			<?foreach($dat as $a1 => $a2){?>
+				<table>
+					<tr>
+						<Td><?=$a2["display_daye"]?></td>
+						<Td></td>
+					</tr>
+					<tr>
+						<td colspan="2"><?=$a2["title"]?></td>
+					</tr>
+					<tr>
+						<td colspan="2"><?=$a2["contents"]?></td>
+					</tr>
+				</table>
+			<? } ?>
+		</div>
+	<? } ?>
 </div>
 <footer class="foot"></footer>

@@ -41,6 +41,18 @@ if($result = mysqli_query($mysqli,$sql)){
 		$table_dat[$row["id"]]=$row;
 	}
 }
+
+$sql ="SELECT * FROM wp01_0tag";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$tag_dat[$row["tag_group"]][$row["id"]]=$row;
+	}
+}
+
+
+
 ?>
 <script>
 ids='<?=$count_list+1?>';
@@ -130,7 +142,6 @@ $(function(){
 </header>
 <div class="wrap">
 <div class="main_box">
-
 <div class="config_title">カレンダースタート</div>
 <table class="config_sche">	
 	<tr>
@@ -200,8 +211,67 @@ $(function(){
 <?}?>
 </table>
 
+<div class="config_title">リボン</div>
+<table class="config_sche">	
+	<tr>
+		<td class="config_sche_top"></td>
+		<td class="config_sche_top">入店前</td>
+		<td class=""></td>
+	</tr>
+	<tr>
+		<td class="config_sche_top"></td>
+		<td class="config_sche_top">入店日</td>
+		<td class=""></td>
+	</tr>
+	<tr>
+		<td class="config_sche_top"></td>
+		<td class="config_sche_top">新人期間</td>
+		<td class=""></td>
+	</tr>
+<?foreach($table_sort as $a1 => $a2){?>
+<?}?>
+</table>
+
+<div class="config_title">ニュース</div>
+<table class="config_sche">	
+<thead>
+	<tr>
+		<td class="config_sche_top">替</td>
+		<td class="config_sche_top">順番</td>
+		<td class="config_sche_top">名前</td>
+		<td class="config_sche_top">色</td>
+		<td class="config_sche_top"></td>
+	</tr>
+</thead>
+<tbody id="news">
+<?foreach($tag_dat["news"] as $a1 => $a2){?>
+	<tr id="tr_n_<?=$a1?>" class="tr">
+		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
+		<td class="config_prof_handle bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_sort bg<?=$a2["view"]?>"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
+		<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>"><input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>">
+			<button type="button" class="prof_btn view_btn bg<?=$a2["view"]?>">非表示</button>
+			<button type="button" class="prof_btn del_btn  bg<?=$a2["view"]?>">削除</button>
+		</td>
+	</tr>
+<? } ?>
+</tbody>
+</table>
+
+<div class="config_title">インセンティブ</div>
+<table class="config_sche">	
+<?foreach($table_sort as $a1 => $a2){?>
+	<tr>
+		<td class="config_sche_top"></td>
+		<td class="config_sche_top">新人期間</td>
+		<td class=""></td>
+	</tr>
+<?}?>
+</table>
+
 <div class="config_title">プロフィール</div>
-	
 <table class="config_sche">
 <thead>
 	<tr>
@@ -213,7 +283,6 @@ $(function(){
 	</tr>
 </thead>
 <tbody id="prof">
-
 <?foreach($charm_dat as $a1 => $a2){?>
 	<tr id="tr_<?=$a1?>" class="tr">
 		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
@@ -235,6 +304,7 @@ $(function(){
 </tbody>
 </table>
 
+
 <table class="config_sche">
 	<tr>
 <form id="new_set" action="" method="post">
@@ -254,6 +324,8 @@ $(function(){
 		</td>
 	</tr>
 </table>
+
+
 
 <div class="config_title">オプション</div>
 <?foreach($c_main_dat as $a1 => $a2){?>
@@ -289,4 +361,5 @@ $(function(){
 <? } ?>
 </div>
 </div>
+
 <footer class="foot"></footer> 
