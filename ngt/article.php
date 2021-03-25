@@ -55,9 +55,7 @@ $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT 5";
 
 if($result = mysqli_query($mysqli,$sql)){
-
 	while($row = mysqli_fetch_assoc($result){
-
 		if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
 			$row["face"]="./img/profile/{$row["cast"]}/0.webp";			
 
