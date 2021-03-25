@@ -1,6 +1,6 @@
 <?php
 include_once('./library/sql.php');
-
+/*
 $tag_icon[0]="";
 $tag_icon["tag1"]="";
 $tag_icon["tag2"]="";
@@ -10,6 +10,8 @@ $tag_icon["tag5"]="";
 $tag_icon["tag6"]="";
 $tag_icon["tag7"]="";
 $tag_icon["tag8"]="";
+*/
+
 
 $pg=$_REQUEST["pg"];
 if($pg+0<1) $pg=1;
@@ -111,8 +113,14 @@ if($pg_max<=5 && $pg_max>1){
 	$p_list.="</div>";
 }
 
-$sql ="SELECT * FROM wp01_0posts";
-$sql.=" WHERE status=0";
+
+$sql ="SELECT P.id,view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+
+$sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
+$sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
+
+$sql.=" WHERE P.status=0";
+$sql.=" AND C.cast_status<4";
 $sql.=" AND view_date<='{$now}'";
 
 if($cast_list){
@@ -126,11 +134,32 @@ if($tag_list){
 $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT {$pg_st},16";
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$blog[]	=$a1;
+echo $sql;
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
+			$row["face"]="./img/profile/{$row["cast"]}/0.webp";			
+
+		}elseif (file_exists("./img/profile/{$row["cast"]}/0.jpg")) {
+			$row["face"]="./img/profile/{$row["cast"]}/0.jpg";			
+
+		}else{
+			$row["face"]="./img/cast_no_image.jpg";			
+		}
+
+		if ($row["img"]) {
+			$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
+
+		}else{
+			$row["thumb"]="./img/blog_no_image.png";
+		}
+
+		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+		$blog[]	=$row;
 	}
-}
+}	
 if(is_array($blog)){
 	$count_blog=count($blog);
 }
@@ -194,26 +223,25 @@ include_once('./header.php');
 	</div>
 <?}?>
 </div>
-
 <div class="main_top_flex">
 	<div class="main_article_out">
 		<h2 class="main_blog_title"> Cast Blog</h2>
 
 		<div class="main_article">
 			<?for($n=0;$n<$count_blog+0;$n++){?>
-				<a href="./article.php?cast_list=<?=$blog[$n]["ID"]?>" id="i<?=$b1?>" class="blog_list">
-					<img src="<?=$blog[$n]["img"]?>" class="blog_list_img">
+				<a href="./article.php?post_id=<?=$blog[$n]["id"]?>" id="i<?=$n?>" class="blog_list">
+					<img src="<?=$blog[$n]["thumb"]?>" class="blog_list_img">
 					<span class="blog_list_comm">
 						<span class="blog_list_i"></span>
 						<span class="blog_list_c"><?=$blog[$n]["count"]+0?></span>
 					</span>
-					<span class="blog_list_title"><?=$blog[$n]["post_title"]?></span>
+					<span class="blog_list_title"><?=$blog[$n]["title"]?></span>
 					<span class="blog_list_cast">
-					<span class="blog_list_tag"><span class="blog_list_icon"></span><span class="blog_list_tcomm"><?=$blog[$n]["tagname"]?></span></span>
+					<span class="blog_list_tag"><span class="blog_list_icon"><?=$blog[$n]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$n]["tag_name"]?></span></span>
 					<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
-					<span class="blog_list_castname"><?=$blog[$n]["castname"]?></span>
+					<span class="blog_list_castname"><?=$blog[$n]["genji"]?></span>
 					<span class="blog_list_frame_a">
-					<img src="https://arpino.fun/wp/wp-content/themes/nightparty/img/page/<?=$blog[$n]["castslug"]?>/0.jpg?t=<?=time()?>" class="blog_list_castimg">
+					<img src="<?=$blog[$n]["face"]?>?t=<?=time()?>" class="blog_list_castimg">
 					</span>
 					</span>
 				</a>
@@ -249,7 +277,7 @@ include_once('./header.php');
 			<div class="sub_blog_in">
 				<div class="blog_h1">カテゴリー</div>
 				<a href="./castblog.php" class="all_tag">
-					<span class="all_tag_icon"><?=$tag_icon[0]?></span>
+					<span class="all_tag_icon"></span>
 					<span class="all_tag_name">全て</span>
 					<span class="all_tag_count"><?=$cate_all?></span>
 				</a>
