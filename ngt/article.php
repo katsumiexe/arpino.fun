@@ -21,7 +21,6 @@ $sql.=" WHERE P.status=0";
 $sql.=" AND C.cast_status<4";
 $sql.=" AND view_date<='{$now}'";
 $sql.=" AND P.id='{$post_id}'";
-echo $sql;
 
 if($result = mysqli_query($mysqli,$sql)){
 	$blog = mysqli_fetch_assoc($result);
@@ -42,12 +41,50 @@ if($result = mysqli_query($mysqli,$sql)){
 	}else{
 		$blog["thumb"]="./img/blog_no_image.png";
 	}
-
 	$blog["date"]=substr(str_replace("-",".",$blog["view_date"]),0,16);
+}
+
+$sql ="SELECT  view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+$sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
+$sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
+$sql.=" WHERE P.status=0";
+$sql.=" AND C.cast_status<4";
+$sql.=" AND view_date<='{$now}'";
+$sql.=" AND C.id='{$blog["cast"]}'";
+$sql.=" ORDER BY view_date DESC";
+$sql.=" LIMIT 5";
+
+if($result = mysqli_query($mysqli,$sql)){
+
+	while($row = mysqli_fetch_assoc($result){
+
+		if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
+			$row["face"]="./img/profile/{$row["cast"]}/0.webp";			
+
+		}elseif (file_exists("./img/profile/{$row["cast"]}/0.jpg")) {
+			$row["face"]="./img/profile/{$row["cast"]}/0.jpg";			
+
+		}else{
+			$row["face"]="./img/cast_no_image.jpg";			
+		}
+
+		if ($row["img"]) {
+			$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
+
+		}else{
+			$row["thumb"]="./img/blog_no_image.png";
+		}
+		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+		$blog_new[]=$row;
+
+		$blog_new_count++;
+	}
 
 }
-include_once('./header.php');
 
+
+
+include_once('./header.php');
 ?>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
@@ -78,7 +115,7 @@ include_once('./header.php');
 		</h1>
 
 		<div class="blog_ttl_btm">
-			<span class="blog_ttl_tag"><span class="blog_list_icon"><?=$blog[$n]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$n]["tag_name"]?></span></span>
+			<span class="blog_ttl_tag"><span class="blog_list_icon"><?=$blog["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog["tag_name"]?></span></span>
 			<span class="blog_ttl_date"><span class="icon"></span><?=$blog["date"]?></span>
 		</div>
 		<div class="blog_ttl_border">　</div>
@@ -100,11 +137,11 @@ include_once('./header.php');
 
 			<div class="sub_blog_in">
 			<div class="blog_h1">新着</div>
-			<?for($s=0;$s<count($blog);$s++){?>
+			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
-					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
-					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-					<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+					<img src="<?=$blog_new[$s]["img"]?>" class="person_blog_img">
+					<span class="person_blog_date"><?=$blog_new[$s]["date"]?></span>
+					<span class="person_blog_title"><?=$blog_new[$s]["post_title"]?></span>
 				</a>
 			<?}?>
 			</div>
