@@ -44,7 +44,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	$blog["date"]=substr(str_replace("-",".",$blog["view_date"]),0,16);
 }
 
-$sql ="SELECT  view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+$sql ="SELECT view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
 $sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
 $sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
 $sql.=" WHERE P.status=0";
@@ -55,15 +55,15 @@ $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT 5";
 
 if($result = mysqli_query($mysqli,$sql)){
-	while($row = mysqli_fetch_assoc($result){
+	while($row = mysqli_fetch_assoc($result)){
 		if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
-			$row["face"]="./img/profile/{$row["cast"]}/0.webp";			
-
+			$row["face"]="./img/profile/{$row["cast"]}/0.webp";
+			
 		}elseif (file_exists("./img/profile/{$row["cast"]}/0.jpg")) {
-			$row["face"]="./img/profile/{$row["cast"]}/0.jpg";			
+			$row["face"]="./img/profile/{$row["cast"]}/0.jpg";
 
 		}else{
-			$row["face"]="./img/cast_no_image.jpg";			
+			$row["face"]="./img/cast_no_image.jpg";
 		}
 
 		if ($row["img"]) {
@@ -77,7 +77,6 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		$blog_new_count++;
 	}
-
 }
 
 
@@ -128,7 +127,7 @@ include_once('./header.php');
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
 			<div class="sub_blog_in">
-			<div class="blog_h1"><?=$blog["cast"]?></div>
+			<div class="blog_h1"><?=$blog["genji"]?></div>
 				<img src="<?=$blog["face"]?>" class="blog_cast_img">
 				<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">プロフィール</a>
 			</div>
@@ -136,14 +135,14 @@ include_once('./header.php');
 			<div class="sub_blog_in">
 			<div class="blog_h1">新着</div>
 			<?for($s=0;$s<$blog_new_count;$s++){?>
-				<a href="<?=get_template_directory_uri(); ?>/article/?cast_list=<?=$blog[$s]["ID"]?>" id="i<?=$b1?>" class="person_blog">
+				<a href="./article.php?post_d=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["img"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog_new[$s]["date"]?></span>
-					<span class="person_blog_title"><?=$blog_new[$s]["post_title"]?></span>
+					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>
 			<?}?>
 			</div>
 		</div>
 	</div>
 </div>
-<?php get_footer(); ?>
+<?include_once('./footer.php'); ?>

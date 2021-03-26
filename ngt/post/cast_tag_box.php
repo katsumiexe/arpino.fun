@@ -62,7 +62,7 @@ asort($sort);
 
 foreach($cast_dat as $b1=> $b2){
 
-	$html.="<a href=\"{$link}/person/?cast={$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";
+	$html.="<a href=\"./person.php?post_id={$b1}\" id=\"i{$b1}\" class=\"main_d_1\">";
 	$html.="<img src=\"{$b2["face"]}\" class=\"main_d_1_1\">";
 	$html.="<span class=\"main_d_1_2\">";
 	$html.="<span class=\"main_b_1_2_h\"></span>";
