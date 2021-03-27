@@ -112,22 +112,44 @@ if($res = mysqli_query($mysqli,$sql)){
 		}
 	}
 
-	$sql ="SELECT * FROM wp01_posts AS P";
-	$sql.=" LEFT JOIN wp01_0blog_tag AS T= ON P.tag=T.id";
-	$sql.=" WHERE P.cast='{$post_id}'";
-	$sql.=" AND P.write_date<='{$now}'";
-	$sql.=" AND P.status='0'";
-	$sql.=" ORDER BY P.write_date DESC";
-	$sql.=" LIMIT 6";
+	$sql ="SELECT view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+	$sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
+	$sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
+	$sql.=" WHERE P.status=0";
+	$sql.=" AND C.cast_status<4";
+	$sql.=" AND view_date<='{$now}'";
+	$sql.=" P.cast='{$post_id}'";
+	$sql.=" ORDER BY view_date DESC";
+	$sql.=" LIMIT 5";
 
-	if($res = mysqli_query($mysqli,$sql)){
-		while($a1 = mysqli_fetch_assoc($res)){
-			$blog[]=$a1;
-		}
-		if (is_array($blog)) {
-			$cnt_blog=count($blog);
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
+				$row["face"]="./img/profile/{$row["cast"]}/0.webp";
+				
+			}elseif (file_exists("./img/profile/{$row["cast"]}/0.jpg")) {
+				$row["face"]="./img/profile/{$row["cast"]}/0.jpg";
+
+			}else{
+				$row["face"]="./img/cast_no_image.jpg";
+			}
+
+
+			if ($row["img"]) {
+				$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
+
+			}else{
+				$row["thumb"]="./img/blog_no_image.png";
+			}
+
+			$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+			$blog[]=$row;
+
+			$cnt_blog++;
 		}
 	}
+
+
 }
 
 if(!$cast_data["id"]){
@@ -204,16 +226,16 @@ include_once('./header.php');
 
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
-			<?for($s=0;$s<$cnt_blog+0;$s++){?>
-				<a href="./article/?cast_list=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
-					<img src="<?=$blog[$s]["img"]?>" class="person_blog_img">
+			<?for($s=0;$s<$count_blog+0;$s++){?>
+				<a href="./article.php?post_id=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
+					<img src="<?=$blog[$s]["thumb"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-					<span class="person_blog_title"><?=$blog[$s]["post_title"]?></span>
+					<span class="person_blog_title"><?=$blog[$s]["title"]?></span>
 					<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
 					<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 				</a>
 			<?}?>
-			<?if(!$blog){?>
+			<?if($count_blog == 0){?>
 				<div class="person_blog">
 					<span class="person_blog_no">まだありません</span>
 				</div>

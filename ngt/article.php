@@ -14,7 +14,7 @@ if($cast_list){
 	$category=2;
 }
 
-$sql ="SELECT  view_date, title, log, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+$sql ="SELECT view_date, title, log, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
 $sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
 $sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
 $sql.=" WHERE P.status=0";
@@ -66,12 +66,14 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["face"]="./img/cast_no_image.jpg";
 		}
 
+
 		if ($row["img"]) {
 			$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
 
 		}else{
 			$row["thumb"]="./img/blog_no_image.png";
 		}
+
 		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
 		$blog_new[]=$row;
 
@@ -136,7 +138,7 @@ include_once('./header.php');
 			<div class="blog_h1">新着</div>
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_d=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
-					<img src="<?=$blog_new[$s]["img"]?>" class="person_blog_img">
+					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog_new[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>
