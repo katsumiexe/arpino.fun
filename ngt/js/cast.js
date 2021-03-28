@@ -128,11 +128,18 @@ $(function(){
 	$('.blog_list').on('click','.blog_hist',function () {
 
 		if($(this).next('.hist_log').css('display')=='none'){
+
+			var TMp=$(this).children('.hidden_tag').val();
+
 			$('.blog_hist').not(this).hide();
 			$(this).next('.hist_log').slideDown(200);
 
 			$('#regist_blog').fadeOut(200);
 			$('.blog_ad,.blog_next').hide();
+
+			$('#h_blog_tag').val($(this).children('.hidden_tag').val());
+			$('#h_blog_status').val($(this).children('.hidden_status').val());
+			$('#blog_chg').val($(this).attr('id').replace('blog_hist_',''));
 
 			$('#h_blog_yy').val($(this).children('.hist_date').text().substr(0,4));
 			$('#h_blog_mm').val($(this).children('.hist_date').text().substr(5,2));
@@ -142,12 +149,8 @@ $(function(){
 
 			$('#h_blog_title').val($(this).children('.hist_title').text());
 			$('#h_blog_log').val($(this).next('.hist_log').children('.blog_log').html());
-			$('#h_blog_img').val($(this).children('.hist_img').attr('src'));
-
-			$('#h_blog_tag').val($(this).children('.hidden_tag').val());
-			$('#blog_chg').val($(this).attr('id').replace('blog_hist_',''));
-			$('#blog_open').val($(this).children('.hidden_status').val());
-			
+			$('#h_blog_img').val($(this).children('.hist_img').attr('id').replace('b_img_',''));
+	
 			if($(this).children('.hidden_status').val() ==2){
 				$('.blog_open_no').addClass('no_on');
 				$('.blog_open_yes').removeClass('yes_on');
@@ -465,6 +468,7 @@ $(function(){
 			$('.blog_list').hide();
 
 			TmpLog=$('#h_blog_log').val().replace(/(<br>|<br \/>)/gi, '\n');
+
 			$('#blog_yy').val($('#h_blog_yy').val());
 			$('#blog_mm').val($('#h_blog_mm').val());
 			$('#blog_dd').val($('#h_blog_dd').val());
@@ -473,21 +477,23 @@ $(function(){
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
 
-			$('.blog_img').attr('src',$('#h_blog_img').val());
-
+			if($('#h_blog_img').val()){
+			$('.blog_img').attr('src','./img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
+			}
 			$('#blog_tag').val($('#h_blog_tag').val());
-
 			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
+
+
 
 			var ChgImg = new Image();
 			var cvs = document.getElementById('cvs1');
 			var ctx = cvs.getContext('2d');
-
+/*
 			ChgImg.src=$('#h_blog_img').val();
 			ChgImg.onload = ()=>{
 				ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,600, 600);
 			};
-
+*/
 		}else{
 			$('.blog_write').slideUp(50);
 			$('.blog_list').show();
@@ -815,15 +821,14 @@ $(function(){
 				'log':$('#blog_log').val(),
 				'tag':$('#blog_tag').val(),
 				'chg':$('#blog_chg').val(),
-				'open':$('#blog_open').val(),
+				'status':$('#blog_status').val(),
 
 				'yy':$('#blog_yy').val(),
 				'mm':$('#blog_mm').val(),
 				'dd':$('#blog_dd').val(),
-
 				'hh':$('#blog_hh').val(),
 				'ii':$('#blog_ii').val(),
-				'ii':$('#blog_ii').val(),
+
 				'img_code':base_64
 			},
 

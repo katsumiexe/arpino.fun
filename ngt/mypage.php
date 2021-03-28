@@ -391,9 +391,11 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
 //■Blog------------------
 $sql ="SELECT * FROM wp01_0posts";
 $sql.=" WHERE cast='{$cast_data["id"]}'";
+$sql.=" AND status<4";
 $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT 11";
 
@@ -1029,7 +1031,7 @@ $(function(){
 					<div class="blog_open">
 						<div class="blog_open_yes yes_on">公開</div>
 						<div class="blog_open_no">非公開</div>
-						<input type="hidden" id="blog_open" value="0">
+						<input type="hidden" id="blog_status" value="0">
 					</div>
 
 					<table class="blog_table_set">
@@ -1063,17 +1065,22 @@ $(function(){
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
+					<input type="hidden" class="hidden_tag" value="<?=$blog[$n]["tag"]?>">
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
-					<img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
+					<img id="b_img_<?=$blog[$n]["img"]?>" src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
 					<?}else{?>
-					<img src="./img/blog_no_image.png?t_<?=time()?>" class="hist_img">
+					<img id="b_img_" src="./img/blog_no_image.png?t_<?=time()?>" class="hist_img">
 					<?}?>
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
-					<span class="hist_tag"><span class="hist_tag_i"><?=$tag[$blog[$n]["tag"]]["tag_icon"]?></span><span class="hist_tag_name"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span></span>
+					<span class="hist_tag">
+						<span class="hist_tag_i"><?=$tag[$blog[$n]["tag"]]["tag_icon"]?></span>
+						<span class="hist_tag_name"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span>
+					</span>
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
+
 				<div class="hist_log">
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
 					<span class="hist_img_in"><img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>.png?t_<?=time()?>" class="hist_img_on"></span>
@@ -1710,7 +1717,9 @@ $(function(){
 		</div>
 	</div>
 </div>
+
 <input id="page" type="hidden" val="<?=$cast_page?>">
+
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">
@@ -1719,6 +1728,7 @@ $(function(){
 <input id="img_url" type="hidden" name="img_url" value="">
 <input id="img_code" type="hidden" name="img_code" value="">
 
+<input id="h_blog_id" type="hidden" value="">
 <input id="h_blog_yy" type="hidden" value="">
 <input id="h_blog_mm" type="hidden" value="">
 <input id="h_blog_dd" type="hidden" value="">
@@ -1728,6 +1738,9 @@ $(function(){
 <input id="h_blog_log" type="hidden" value="">
 <input id="h_blog_tag" type="hidden" value="">
 <input id="h_blog_img" type="hidden" value="">
+<input id="h_blog_status" type="hidden" value="">
+
+
 <input id="memo_chg_id" type="hidden">
 
 <input id="easytalk_page" type="hidden" value="1">
