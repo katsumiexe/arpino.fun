@@ -112,16 +112,15 @@ if($res = mysqli_query($mysqli,$sql)){
 		}
 	}
 
-	$sql ="SELECT view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+	$sql ="SELECT P.id,view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
 	$sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
 	$sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
 	$sql.=" WHERE P.status=0";
 	$sql.=" AND C.cast_status<4";
 	$sql.=" AND view_date<='{$now}'";
-	$sql.=" P.cast='{$post_id}'";
+	$sql.=" AND P.cast='{$post_id}'";
 	$sql.=" ORDER BY view_date DESC";
 	$sql.=" LIMIT 5";
-
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
@@ -148,9 +147,9 @@ if($res = mysqli_query($mysqli,$sql)){
 			$cnt_blog++;
 		}
 	}
-
-
 }
+
+echo $sql;
 
 if(!$cast_data["id"]){
 	$err="お探しの女の子はみつかりませんでした";
@@ -226,7 +225,7 @@ include_once('./header.php');
 
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
-			<?for($s=0;$s<$count_blog+0;$s++){?>
+			<?for($s=0;$s<$cnt_blog+0;$s++){?>
 				<a href="./article.php?post_id=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog[$s]["thumb"]?>" class="person_blog_img">
 					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
@@ -235,7 +234,7 @@ include_once('./header.php');
 					<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 				</a>
 			<?}?>
-			<?if($count_blog == 0){?>
+			<?if($cnt_blog == 0){?>
 				<div class="person_blog">
 					<span class="person_blog_no">まだありません</span>
 				</div>

@@ -1305,6 +1305,7 @@ ul {
 }
 
 .footmark{
+	display			:flex;
 	height			:20px;
 	width			:1150px;
 	margin			:10px auto;
@@ -1319,6 +1320,7 @@ ul {
 	margin			:0 3px;	
 	text-align		:left;
 	cursor			:pointer;
+	overflow		:hidden;
 }
 
 .box_a{

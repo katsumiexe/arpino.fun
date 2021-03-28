@@ -81,10 +81,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
-
 include_once('./header.php');
 ?>
+
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
