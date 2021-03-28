@@ -128,7 +128,7 @@ $(function(){
 	$('.blog_list').on('click','.blog_hist',function () {
 
 		if($(this).next('.hist_log').css('display')=='none'){
-			$('.blog_hist').not(this).slideUp(100);
+			$('.blog_hist').not(this).hide();
 			$(this).next('.hist_log').slideDown(200);
 
 			$('#regist_blog').fadeOut(200);
@@ -472,7 +472,9 @@ $(function(){
 			$('#blog_ii').val($('#h_blog_ii').val());
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
+
 			$('.blog_img').attr('src',$('#h_blog_img').val());
+
 			$('#blog_tag').val($('#h_blog_tag').val());
 
 			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
@@ -485,6 +487,7 @@ $(function(){
 			ChgImg.onload = ()=>{
 				ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,600, 600);
 			};
+
 		}else{
 			$('.blog_write').slideUp(50);
 			$('.blog_list').show();

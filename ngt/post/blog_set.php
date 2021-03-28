@@ -13,6 +13,8 @@ $ii=$_POST["ii"];
 
 $view_date=$yy."-".$mm."-".$dd." ".$hh.":".$ii.":00";
 
+$date_jst=$yy.".".$mm.".".$dd." ".$hh.":".$ii;
+
 $ttl		=$_POST["ttl"];
 $log		=$_POST["log"];
 $tag		=$_POST["tag"];
@@ -72,6 +74,15 @@ if($chg){
 	mysqli_query($mysqli,$sql);
 }
 
+$sql ="SELECT id, tag_name, tag_icon FROM wp01_0tag";
+$sql.=" WHERE tag_group='blog'";
+$sql.=" AND del='0'";
+if($result = mysqli_query($mysqli,$sql)){
+	while($raw = mysqli_fetch_assoc($result)){
+		$tag_name[$raw["id"]]=$raw["tag_name"];
+		$tag_icon[$raw["id"]]=$raw["tag_icon"];
+	}
+}
 
 $log=str_replace("\n","<br>",$log);
 
@@ -80,7 +91,7 @@ $html.="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
 $html.="<img src=\"{$tmp_img}\" class=\"hist_img\">";
 $html.="<span class=\"hist_date\">{$date_jst}</span>";
 $html.="<span class=\"hist_title\">{$ttl}</span>";
-$html.="<span class=\"hist_tag\">{$tag}</span>";
+$html.="<span class=\"hist_tag\"><span class=\"hist_tag_i\">{$tag_icon}</span><span class=\"hist_tag_name\">{$tag_name}</span></span>";
 $html.="<span class=\"hist_watch\"><span class=\"hist_i\"></span><span class=\"hist_watch_c\">0</span></span>";
 $html.=$blog_st[$view_data];
 $html.="</div>";

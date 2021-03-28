@@ -401,6 +401,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
+
+		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+
 		$blog[]=$row;
 	}
 	if(is_array($blog)){
@@ -1059,7 +1062,6 @@ $(function(){
 
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
-
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
 					<img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
@@ -1068,11 +1070,10 @@ $(function(){
 					<?}?>
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
-					<span class="hist_tag"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span>
+					<span class="hist_tag"><span class="hist_tag_i"><?=$tag[$blog[$n]["tag"]]["tag_icon"]?></span><span class="hist_tag_name"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span></span>
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
-
 				<div class="hist_log">
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
 					<span class="hist_img_in"><img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>.png?t_<?=time()?>" class="hist_img_on"></span>

@@ -141,7 +141,7 @@ if($res = mysqli_query($mysqli,$sql)){
 				$row["thumb"]="./img/blog_no_image.png";
 			}
 
-			$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+			$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,10);
 			$blog[]=$row;
 
 			$cnt_blog++;
@@ -152,7 +152,7 @@ if($res = mysqli_query($mysqli,$sql)){
 echo $sql;
 
 if(!$cast_data["id"]){
-	$err="お探しの女の子はみつかりませんでした";
+	$err="お探しのページはみつかりませんでした";
 }
 include_once('./header.php');
 ?>
@@ -228,10 +228,9 @@ include_once('./header.php');
 			<?for($s=0;$s<$cnt_blog+0;$s++){?>
 				<a href="./article.php?post_id=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog[$s]["thumb"]?>" class="person_blog_img">
+					<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$s]["tag_name"]?></span></span>
 					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog[$s]["title"]?></span>
-					<span class="person_blog_tag"><span class="hist_watch_c">0</span></span>
-					<span class="person_blog_comm"><span class="person_blog_i"></span><span class="person_blog_c"><?=$blog[$s]["count"]+0?></span></span>
 				</a>
 			<?}?>
 			<?if($cnt_blog == 0){?>

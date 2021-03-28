@@ -57,6 +57,7 @@
 		
 }
 
+
 .person_blog_no{
 	display			:inline-block;
 	position		:relative;
@@ -81,14 +82,30 @@
 .person_blog_date{
 	display			:inline-block;
 	position		:absolute;
-	top				:2px;
+	top				:5px;
 	left			:90px;
-	width			:150px;
-	height			:22px;
-	line-height		:22px;
+	width			:100px;
+	height			:24px;
+	line-height		:24px;
 	font-size		:12px;
 	text-align		:left;
 	color			:#e0e0e0;
+}
+
+.person_blog_tag{
+	display			:inline-block;
+	position		:absolute;
+	top				:5px;
+	right			:5px;
+	width			:115px;
+	height			:24px;
+	line-height		:24px;
+	font-size		:12px;
+	text-align		:left;
+	color			:#252015;
+	padding-left	:5px;
+	border-radius	:5px;
+	background		:#c8b880;
 }
 
 .person_blog_comm{
@@ -140,11 +157,11 @@
 .person_blog_title{
 	display			:inline-block;
 	position		:absolute;
-	top				:30px;
+	top				:35px;
 	left			:90px;
 	width			:200px;
-	height			:50px;	
-	line-height		:25px;	
+	height			:45px;	
+	line-height		:23px;	
 	text-align		:left;
 	font-size		:15px;
 	overflow		:hidden;
@@ -213,8 +230,6 @@
 	vertical-align	:top;
 }
 
-
-
 .prof_r{
 	border-bottom	:1px solid #C8B880;
 	padding			:0 5px;
@@ -223,7 +238,6 @@
 	font-size		:16px;
 	background		:#282828;
 	color			:#c0b890;
-
 }
 
 
@@ -241,7 +255,7 @@
 .prof_r2{
 	border-bottom	:1px solid #C8B880;
 	padding			:5px;
-	line-height		:30px;
+	line-height		:28px;
 	font-size		:16px;
 	background		:#282828;
 	color			:#c0b890;
@@ -251,7 +265,7 @@
 
 
 .prof_0{
-	height			:8px;
+	height			:0;
 }
 
 .sche{
@@ -396,7 +410,7 @@
 }
 
 .prof{
-	border-spacing: 0px 1vw;
+	border-spacing: 0px 0.5vw;
 	margin:0vw auto 3vw auto;
 	width:45vw;
 }
@@ -446,7 +460,7 @@
 
 .prof_r2{
 	width		:auto;
-	padding		:0 1vw;
+	padding		:1vw;
 	min-height	:4vw;
 	line-height	:3vw;
 	font-size	:2vw;
@@ -460,14 +474,11 @@
 .sche_l_5,
 .sche_l_6
 {
-
 	padding		:0 0.5vw;
 	height		:4vw;
 	line-height	:4vw;
 	width		:16vw;
 	font-size	:2vw;
-
-
 }
 
 
@@ -819,7 +830,7 @@
 .person_blog_date{
 	top				:1vw;
 	left			:21vw;
-	width			:50vw;
+	width			:34vw;
 	height			:4vw;	
 	line-height		:4vw;	
 	font-size		:3.2vw;

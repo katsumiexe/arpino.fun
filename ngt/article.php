@@ -44,7 +44,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	$blog["date"]=substr(str_replace("-",".",$blog["view_date"]),0,16);
 }
 
-$sql ="SELECT view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
+$sql ="SELECT P.id, view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
 $sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
 $sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
 $sql.=" WHERE P.status=0";
@@ -74,7 +74,7 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["thumb"]="./img/blog_no_image.png";
 		}
 
-		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,10);
 		$blog_new[]=$row;
 
 		$blog_new_count++;
@@ -136,8 +136,9 @@ include_once('./header.php');
 			<div class="sub_blog_in">
 			<div class="blog_h1">新着</div>
 			<?for($s=0;$s<$blog_new_count;$s++){?>
-				<a href="./article.php?post_d=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
+				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">
+					<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog_new[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog_new[$s]["tag_name"]?></span></span>
 					<span class="person_blog_date"><?=$blog_new[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>

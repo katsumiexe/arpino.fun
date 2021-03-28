@@ -2341,12 +2341,12 @@ input:focus{
 .hist_log{
 	display			:none;
 	margin			:1vw auto 0 auto;
-	width			:91vw;
+	width			:94vw;
 	border-top		:1px solid #303030;
 	padding			:1vw;
 	text-align		:left;
 	font-size		:3.5vw;
-	line-height		:6vw
+	line-height		:6vw;
 	background		:#f0f0e0;
 	border:1px solid #101010;
 }
@@ -2376,13 +2376,13 @@ input:focus{
 .hist_date{
 	display			:inline-block;
 	position		:absolute;
-	top				:0vw;
+	top				:0.5vw;
 	left			:17vw;
-	width			:40vw;
+	width			:30vw;
 	border-bottom	:1px solid #0000d0;
-	height			:3.5vw;
-	line-height		:4vw;
-	font-size		:3vw;
+	height			:4.5vw;
+	line-height		:4.5vw;
+	font-size		:3.2vw;
 	padding			:0.5vw;
 }	
 
@@ -2422,29 +2422,17 @@ input:focus{
 	font-weight:600;
 }
 
-.hist_tag{
-	display			:inline-block;
-	position		:absolute;
-	top				:11.5vw;
-	left			:17vw;
-	font-size		:3vw;
-	font-weight		:600;
-	color			:#303030;	
-}
-
 .hist_title{
 	display			:inline-block;
 	position		:absolute;
-	top				:6vw;
+	top				:7vw;
 	left			:17vw;
-	width			:58vw;
-	height			:6vw;
-	line-height		:6vw;
+	width			:62vw;
+	height			:8.5vw;
+	line-height		:4.5vw;
 	overflow		:hidden;
-	font-size		:4.5vw;
-	font-weight		:600;
+	font-size		:3.5vw;
 	color			:#303030;	
-
 }
 
 
@@ -2490,6 +2478,51 @@ input:focus{
 	line-height		:5vw;
 	width			:10vw;
 	text-align		:right;	
+}
+
+.hist_tag{
+	display			:inline-block;
+	position		:absolute;
+	top				:0.5vw;
+	left			:51vw;
+	border			:1px solid #888888;
+	border-radius	:1vw;
+	height			:5vw;
+	width			:27vw;
+	background		:#888888;
+}
+
+.hist_tag_i{
+	font-family		:at_icon;
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:0.5vw;
+	margin			:auto;
+	
+	color			:#fafafa;
+	font-size		:3.5vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:5vw;
+	text-align		:center	
+}
+
+.hist_tag_name{
+	display			:inline-block;
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	left			:6vw;
+	margin			:auto;
+	font-weight		:600;
+	color			:#fafafa;
+	font-size		:3.2vw;
+	height			:5vw;
+	line-height		:5vw;
+	width			:20vw;
+	text-align		:left;	
 }
 
 
