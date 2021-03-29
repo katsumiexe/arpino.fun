@@ -2494,7 +2494,7 @@ ul {
 	width			:calc(46.5vw - 2px);
 	height			:15vw;
 	border			:1px solid #c8d880;
-	margin:0.5vw;
+	margin			:0.5vw;
 }
 
 .blog_list_img{
@@ -2507,10 +2507,10 @@ ul {
 .blog_list_title{
 	top				:0.5vw;
 	left			:15vw;
-	width			:32vw;
-	height			:7.5vw;
-	line-height		:4vw;
-	font-size		:3vw;
+	width			:29vw;
+	height			:7vw;
+	line-height		:3.5vw;
+	font-size		:2.5vw;
 }
 
 .blog_list_cast{
@@ -2526,7 +2526,7 @@ ul {
 	height			:3vw;
 	border-radius	:0.5vw;
 	padding			:0 1vw;
-	width			:24vw;
+	width			:15vw;
 }
 
 .blog_list_icon{
@@ -3205,6 +3205,7 @@ ul {
 	height			:6vw;
 	border-radius	:1vw;
 	padding			:0 1vw;
+	width			:24vw;
 }
 
 .blog_list_icon{

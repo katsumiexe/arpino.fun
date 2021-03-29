@@ -502,10 +502,10 @@ $(function(){
 
 	$('#upd').on('change', function(e){
 		var Zoom		=100;
-		var Left		=css_B;
-		var Right		=css_B;
+		var Left		=Width_s;
+		var Top			=Width_s;
 		var Rote		=0;
-		$("#cvs1").css({'width': css_A,'height': css_A,'left': css_B,'top': css_B, 'transform':'rotate(0deg)'});
+		$("#cvs1").css({'width': Width_l,'height': Width_l,'left': Width_s,'top': Width_s, 'transform':'rotate(0deg)'});
 
 		$('.zoom_box').text(Zoom);
 		$('#img_zoom').val(Zoom);

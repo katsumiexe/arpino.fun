@@ -805,6 +805,15 @@
 	
 }
 
+
+.person_blog_tag{
+	width			:26vw;
+	height			:6vw;
+    border-radius	:1vw;
+	font-size		:3.5vw;
+	padding-left	:0.5vw;
+}
+
 .person_blog_ttl{
 	width			:88vw;
 	height			:8vw;	
@@ -829,11 +838,11 @@
 
 .person_blog_date{
 	top				:1vw;
-	left			:21vw;
+	left			:22vw;
 	width			:34vw;
-	height			:4vw;	
-	line-height		:4vw;	
-	font-size		:3.2vw;
+	height			:6vw;	
+	line-height		:6vw;	
+	font-size		:3.5vw;
 }
 
 .person_blog_comm{
