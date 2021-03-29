@@ -149,8 +149,6 @@ if($res = mysqli_query($mysqli,$sql)){
 	}
 }
 
-echo $sql;
-
 if(!$cast_data["id"]){
 	$err="お探しのページはみつかりませんでした";
 }

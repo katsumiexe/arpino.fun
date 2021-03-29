@@ -2405,22 +2405,23 @@ input:focus{
 }
 
 .hist_1{
-	background:#009000;
-	color:#fafafa;
-	font-weight:600;
-}
-
-.hist_2{
 	background:#d00000;
 	color:#fafafa;
 	font-weight:600;
 }
 
-.hist_3{
-	background:#aaaaaa;
+.hist_2{
+	background:#808080;
 	color:#fafafa;
 	font-weight:600;
 }
+
+.hist_3{
+	background:#009000;
+	color:#fafafa;
+	font-weight:600;
+}
+
 
 .hist_title{
 	display			:inline-block;

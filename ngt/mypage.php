@@ -9,9 +9,9 @@ $week[4]="木";
 $week[5]="金";
 $week[6]="土";
 $blog_status[0]="公開";
-$blog_status[1]="予約";
-$blog_status[2]="非公開";
-$blog_status[3]="削除";
+$blog_status[1]="非公開";
+$blog_status[2]="削除";
+$blog_status[3]="予約";
 
 //Sche-----------------------
 if($cast_data){
@@ -401,10 +401,12 @@ $sql.=" LIMIT 11";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
-
 		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
+
+		if($row["view_date"] > $now){
+			$row["status"]=3; 
+		}
 
 		$blog[]=$row;
 	}
@@ -1719,7 +1721,6 @@ $(function(){
 </div>
 
 <input id="page" type="hidden" val="<?=$cast_page?>">
-
 <input id="img_top" type="hidden" name="img_top" value="10">
 <input id="img_left" type="hidden" name="img_left" value="10">
 <input id="img_width" type="hidden" name="img_width" value="10">

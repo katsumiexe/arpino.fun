@@ -37,9 +37,6 @@ if($result = mysqli_query($mysqli,$sql)){
 
 	if ($blog["img"]) {
 		$blog["thumb"]="./img/profile/{$blog["cast"]}/{$blog["img"]}.png";			
-
-	}else{
-		$blog["thumb"]="./img/blog_no_image.png";
 	}
 	$blog["date"]=substr(str_replace("-",".",$blog["view_date"]),0,16);
 }

@@ -1,9 +1,9 @@
 <?
 include_once('../library/sql_post.php');
 $blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
-$blog_st[1]="<span class=\"hist_status hist_1\">予約</span>";
-$blog_st[2]="<span class=\"hist_status hist_2\">非公開</span>";
-$blog_st[3]="<span class=\"hist_status hist_3\">削除</span>";
+$blog_st[1]="<span class=\"hist_status hist_1\">非公開</span>";
+$blog_st[2]="<span class=\"hist_status hist_2\">削除</span>";
+$blog_st[3]="<span class=\"hist_status hist_3\">予約</span>";
 
 $yy=$_POST["yy"];
 $mm=$_POST["mm"];
@@ -24,11 +24,11 @@ $status		=$_POST["status"];
 $img_code	=$_POST["img_code"];
 $img_id		=$_POST["img_id"];
 
-if($open<=1 && $now < $date_jst){
-	$view_data=1;
+if($status<1 && $now < $view_date){
+	$view_data=4;
 
 }else{
-	$view_data=$open;
+	$view_data=$status;
 }
 
 if($img_id){
@@ -89,9 +89,8 @@ if($chg){
 
 $log=str_replace("\n","<br>",$log);
 
-$html=$sql;
 $html.="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
-$html.="<img src=\"{$tmp_img}\" class=\"hist_img\">";
+$html.="<img id=\"b_img_{$img_name}\" src=\"{$tmp_img}\" class=\"hist_img\">";
 $html.="<span class=\"hist_date\">{$date_jst}</span>";
 $html.="<span class=\"hist_title\">{$ttl}</span>";
 $html.="<span class=\"hist_tag\"><span class=\"hist_tag_i\">{$tag_icon[$tag]}</span><span class=\"hist_tag_name\">{$tag_name[$tag]}</span></span>";

@@ -41,9 +41,14 @@ $tmp_height	=floor($width_l/($img_zoom/100));
 $tmp_top	=floor( ( $img_top  - $width_s ) * ( -600 / $width_l) * (100 / $img_zoom ) );
 $tmp_left	=floor( ( $img_left - $width_s ) * ( -600 / $width_l) * (100 / $img_zoom ) );
 
-$tmp_width	=floor($img_width/($img_zoom/100));
-$tmp_height	=floor($img_width/($img_zoom/100));
+if($img_width>$img_height){
+	$tmp_width	=floor($img_height/($img_zoom/100));
+	$tmp_height	=floor($img_height/($img_zoom/100));
 
+}else{
+	$tmp_width	=floor($img_width/($img_zoom/100));
+	$tmp_height	=floor($img_width/($img_zoom/100));
+}
 
 if($img_rote ==90){
 	$new_img = imagecreatefromstring(base64_decode($img_code));	

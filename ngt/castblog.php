@@ -113,9 +113,7 @@ if($pg_max<=5 && $pg_max>1){
 	$p_list.="</div>";
 }
 
-
 $sql ="SELECT P.id,view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
-
 $sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
 $sql.=" LEFT JOIN wp01_0tag AS T ON P.tag=T.id";
 
@@ -133,8 +131,6 @@ if($tag_list){
 
 $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT {$pg_st},16";
-
-echo $sql;
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){

@@ -501,6 +501,16 @@ $(function(){
 	});
 
 	$('#upd').on('change', function(e){
+		var Zoom		=100;
+		var Left		=css_B;
+		var Right		=css_B;
+		var Rote		=0;
+		$("#cvs1").css({'width': css_A,'height': css_A,'left': css_B,'top': css_B, 'transform':'rotate(0deg)'});
+
+		$('.zoom_box').text(Zoom);
+		$('#img_zoom').val(Zoom);
+		$('#input_zoom').val(Zoom);
+
 		var file = e.target.files[0];	
 		var reader = new FileReader();
 
@@ -556,7 +566,6 @@ $(function(){
 					}				
 
 					$("#cvs1").attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
-
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
 					ImgCode = cvs.toDataURL("image/jpeg");
 
@@ -1049,6 +1058,16 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
+
+console.log(ImgTop);
+console.log(ImgLeft);
+
+console.log(cvs_W);
+console.log(cvs_H);
+
+console.log(Width_s);
+console.log(Width_l);
+
 				base_64=data;
 				$('.img_box').animate({'top':'120vh'},200);
 				var cvs = document.getElementById('cvs1');
