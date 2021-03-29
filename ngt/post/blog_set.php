@@ -99,8 +99,8 @@ $html.=$blog_st[$view_data];
 $html.="</div>";
 $html.="<div class=\"hist_log\">";
 
-if($img_id){
-$html.="<span class=\"hist_img_in\"><img src=\"{$tmp_img}\" class=\"hist_img_on\"></span>";
+if($img_name){
+$html.="<span class=\"hist_img_in\"><img src=\"./img/profile/{$cast_data["id"]}/{$img_name}.png\" class=\"hist_img_on\"></span><br>";
 }
 $html.="<span class=\"blog_log\">{$log}</span>";
 $html.="</div>";
