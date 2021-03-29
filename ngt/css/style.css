@@ -2492,47 +2492,48 @@ ul {
 
 .blog_list{
 	width			:calc(46.5vw - 2px);
-	height			:12vw;
+	height			:15vw;
 	border			:1px solid #c8d880;
 	margin:0.5vw;
 }
 
 .blog_list_img{
-	top			:0.5vw;
-	left		:0.5vw;
-	width		:11vw;
-	height		:11vw;
+	top			:1vw;
+	left		:1vw;
+	width		:13vw;
+	height		:13vw;
 }
-	
+
 .blog_list_title{
 	top				:0.5vw;
-	left			:13vw;
-	width			:34vw;
-	height			:5.5vw;
-	line-height		:3vw;
-	font-size		:2.5vw;
+	left			:15vw;
+	width			:32vw;
+	height			:7.5vw;
+	line-height		:4vw;
+	font-size		:3vw;
 }
 
 .blog_list_cast{
 	bottom			:0.5vw;
 	right			:0.5vw;
-	width			:34vw;
+	width			:32vw;
 	height			:4.5vw;
 }
 
 .blog_list_tag{
-	bottom			:0vw;
-	left			:0vw;
+	bottom			:0.5vw;
+	left			:1vw;
 	height			:3vw;
 	border-radius	:0.5vw;
-	padding			:0 0.5vw;
+	padding			:0 1vw;
+	width			:24vw;
 }
 
 .blog_list_icon{
 	left			:0;
 	height			:3vw;
 	line-height		:3vw;
-	width			:2.5vw;
+	width			:2vw;
 	font-size		:2vw;
 }
 
@@ -2542,7 +2543,6 @@ ul {
 	line-height		:3vw;
 	font-size		:1.8vw;
 }
-
 
 .blog_list_castimg{
 	width		:5vw;
@@ -3162,16 +3162,16 @@ ul {
 	top				:1vw;
 	left			:25vw;
 	width			:70vw;
-	height			:11vw;
-	line-height		:5.5vw;
-	font-size		:4vw;
+	height			:9.5vw;
+	line-height		:5vw;
+	font-size		:3.5vw;
 }
 
 .blog_list_cast{
 	bottom			:0.5vw;
 	right			:0.5vw;
 	width			:71vw;
-	height			:12vw;
+	height			:14vw;
 	margin			:0 auto;
 }
 
