@@ -1041,7 +1041,7 @@ $(function(){
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
 							<img src="./img/blog_no_image.png?t=<?=time()?>" class="blog_img">
-							</span>					
+							</span>
 							<span class="customer_camera"></span>
 							</td>
 							<td class="blog_tag_td">
@@ -1068,6 +1068,7 @@ $(function(){
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
 					<input type="hidden" class="hidden_tag" value="<?=$blog[$n]["tag"]?>">
+					<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
 					<img id="b_img_<?=$blog[$n]["img"]?>" src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
 					<?}else{?>
@@ -1081,6 +1082,7 @@ $(function(){
 					</span>
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
+
 				</div>
 
 				<div class="hist_log">

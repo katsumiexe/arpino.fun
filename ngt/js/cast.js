@@ -4,6 +4,7 @@ $(function(){
 	var Width_s	=$('.img_box_out1').width();
 	var VwBase	=$(window).width()/100;
 
+	var ImgId		='';
 	var Fav			=0;
 	var cvs_A		=0;
 	var Rote		=0;
@@ -181,14 +182,13 @@ $(function(){
 	$('.blog_open_yes').on('click',function () {
 		$(this).addClass('yes_on');
 		$('.blog_open_no').removeClass('no_on');
-		$('#blog_open').val('0');
+		$('#blog_status').val('0');
 	});
-
 
 	$('.blog_open_no').on('click',function () {
 		$(this).addClass('no_on');
 		$('.blog_open_yes').removeClass('yes_on');
-		$('#blog_open').val('2');
+		$('#blog_status').val('2');
 	});
 
 	$('.blog_list').on('click','.blog_next',function () {
@@ -477,13 +477,22 @@ $(function(){
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
 
-			if($('#h_blog_img').val()){
-			$('.blog_img').attr('src','./img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
+
+			if($('#h_blog_status').val() == 1){
+				$('.blog_open_yes').removeClass('yes_on');
+				$('.blog_open_no').addClass('no_on');
 			}
+
+			$('#blog_status').val($('#h_blog_status').val());
+
+			if($('#h_blog_img').val()){
+				$('.blog_img').attr('src','./img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
+				ImgId=$('#h_blog_img').val();
+			}
+
+
 			$('#blog_tag').val($('#h_blog_tag').val());
 			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
-
-
 
 			var ChgImg = new Image();
 			var cvs = document.getElementById('cvs1');
@@ -825,7 +834,7 @@ $(function(){
 		$.post({
 			url:"./post/blog_set.php",
 			data:{
-				'cast_id':CastId,
+				'img_id':ImgId,
 				'ttl':$('#blog_title').val(),
 				'log':$('#blog_log').val(),
 				'tag':$('#blog_tag').val(),

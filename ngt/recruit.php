@@ -20,15 +20,16 @@ include_once('./header.php');
 		<span class="footmark_text">RECRUIT</span>
 	</div>
 </div>
+
 <?foreach($recruit["image"] as $a2){?>
-	<?if (file_exists("./img/page/contents/{$a2["contents"]}.webp")) {?>
-		<img src="./img/page/contents/<?=$a2["contents"]?>.webp" class="rec_img">
+	<?if (file_exists("./img/page/contents/{$a2["id"]}.webp")) {?>
+		<img src="./img/page/contents/<?=$a2["id"]?>.webp" class="rec_img">
 
-	<?}elseif (file_exists("./img/page/contents/{$a2["contents"]}.jpg")) {?>
-		<img src="./img/page/contents/<?=$a2["contents"]?>.jpg" class="rec_img">
+	<?}elseif (file_exists("./img/page/contents/{$a2["id"]}.jpg")) {?>
+		<img src="./img/page/contents/<?=$a2["id"]?>.jpg" class="rec_img">
 
-	<?}elseif (file_exists("./img/page/contents/{$a2["contents"]}.png")) {?>
-		<img src="./img/page/contents/<?=$a2["contents"]?>.png" class="rec_img">
+	<?}elseif (file_exists("./img/page/contents/{$a2["id"]}.png")) {?>
+		<img src="./img/page/contents/<?=$a2["id"]?>.png" class="rec_img">
 	<?}?>
 <?}?>
 
