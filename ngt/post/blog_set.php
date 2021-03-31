@@ -89,6 +89,8 @@ if($chg){
 
 $log=str_replace("\n","<br>",$log);
 
+$html=$sql;
+
 $html.="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
 $html.="<img id=\"b_img_{$img_name}\" src=\"{$tmp_img}\" class=\"hist_img\">";
 $html.="<span class=\"hist_date\">{$date_jst}</span>";

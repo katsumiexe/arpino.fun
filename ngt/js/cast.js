@@ -451,9 +451,28 @@ $(function(){
 
 	$('#regist_blog').on('click',function () {
 		if($('.blog_write').css('display') == 'none'){
+			var now = new Date();
+			var yy = now.getFullYear();
+			var mm = now.getMonth() + 1;
+			var mm = "0" + mm;
+			var dd = "0" + now.getDate();
+			var hh = "0" + now.getHours();
+			var ii = "0" + now.getMinutes();
+
 			$('.blog_write').slideDown(100);
 			$('.blog_list').hide();
+			$('#blog_yy').val(yy);
+			$('#blog_mm').val(mm.substr(-2));
+			$('#blog_dd').val(dd.substr(-2));
+			$('#blog_hh').val(hh.substr(-2));
+			$('#blog_ii').val(ii.substr(-2));
 
+			$('#blog_title').val('');
+			$('#blog_log').val('');
+			$('#blog_status').val('');
+			$('#blog_tag').val('5');
+
+			$('.blog_img').attr('src','./img/blog_no_image.png');
 
 		}else{
 			$('.blog_write').slideUp(50);
@@ -462,13 +481,11 @@ $(function(){
 	});
 
 	$('#regist_blog_fix').on('click',function () {
-
 		if($('.blog_write').css('display') == 'none'){
 			$('.blog_write').slideDown(100);
 			$('.blog_list').hide();
 
 			TmpLog=$('#h_blog_log').val().replace(/(<br>|<br \/>)/gi, '\n');
-
 			$('#blog_yy').val($('#h_blog_yy').val());
 			$('#blog_mm').val($('#h_blog_mm').val());
 			$('#blog_dd').val($('#h_blog_dd').val());
@@ -477,32 +494,23 @@ $(function(){
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
 
-
+			$('#blog_status').val($('#h_blog_status').val());
 			if($('#h_blog_status').val() == 1){
 				$('.blog_open_yes').removeClass('yes_on');
 				$('.blog_open_no').addClass('no_on');
 			}
 
-			$('#blog_status').val($('#h_blog_status').val());
+			$('#blog_tag').val($('#h_blog_tag').val());
 
 			if($('#h_blog_img').val()){
 				$('.blog_img').attr('src','./img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
 				ImgId=$('#h_blog_img').val();
+
+			}else{
+				$('.blog_img').attr('src','./img/blog_no_image.png');
+				ImgId='';
 			}
 
-
-			$('#blog_tag').val($('#h_blog_tag').val());
-			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
-
-			var ChgImg = new Image();
-			var cvs = document.getElementById('cvs1');
-			var ctx = cvs.getContext('2d');
-/*
-			ChgImg.src=$('#h_blog_img').val();
-			ChgImg.onload = ()=>{
-				ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,600, 600);
-			};
-*/
 		}else{
 			$('.blog_write').slideUp(50);
 			$('.blog_list').show();
@@ -834,7 +842,6 @@ $(function(){
 		$.post({
 			url:"./post/blog_set.php",
 			data:{
-				'img_id':ImgId,
 				'ttl':$('#blog_title').val(),
 				'log':$('#blog_log').val(),
 				'tag':$('#blog_tag').val(),
@@ -847,6 +854,7 @@ $(function(){
 				'hh':$('#blog_hh').val(),
 				'ii':$('#blog_ii').val(),
 
+				'img_id':ImgId,
 				'img_code':base_64
 			},
 
@@ -943,16 +951,45 @@ $(function(){
 		}
 	});
 
-
 	$('.customer_detail').on('click','.jump_on',function(){
 		$('#sns_form').submit();
 	});
 
 	$('.blog_td_img').on('click',function(){
+		Task="blog";
 		$('.img_box').animate({'top':'10vw'},200);
 		$('.set_back').fadeIn(100);
-		$('#img_code').val('');
-		Task="blog";
+
+//----------------------------
+		var ChgImg = new Image();
+		var cvs = document.getElementById('cvs1');
+		var ctx = cvs.getContext('2d');
+
+
+
+		ChgImg.src	='./img/profile/'+ CastId +'/' + ImgId + '.png';
+		ImgWidth	=Width_l;
+		ImgHeight	=Width_l;
+		ImgTop		=Width_s;
+		ImgLeft		=Width_s;
+		Rote		=0;
+		Zoom		=100;
+
+		cvs_A		=800;
+		cvs_W		=800;
+		cvs_H		=800;
+		cvs_X		=0;
+		cvs_Y		=0;
+
+		css_l		=Width_l;
+		css_p		=Width_s;
+		css_A		=Width_l;
+		css_B		=Width_s;
+
+		$("#cvs1").attr({'width': 800,'height': 800}).css({'width':ImgWidth,'height':ImgHeight,'top':ImgTop,'left':ImgLeft});
+		ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,800, 800);
+		ImgCode = cvs.toDataURL("image/jpeg");
+//----------------------------
 	});
 
 	$('#set_new_img').on('click',function(){
@@ -966,7 +1003,6 @@ $(function(){
 		$('.img_box').animate({'top':'10vw'},200);
 		$('.set_back').fadeIn(100);
 		$('#img_code').val('');
-
 		Task="chg";
 
 		Img=$(this).attr("src");
@@ -1061,8 +1097,8 @@ $(function(){
 					'img_zoom'	:Zoom,
 					'img_rote'	:Rote,
 
-					'width_s'	:Width_s,
-					'width_l'	:Width_l,
+					'Width_s'	:Width_s,
+					'Width_l'	:Width_l,
 					'task'		:Task,
 				},
 
@@ -1122,8 +1158,8 @@ console.log(Width_l);
 			console.log("css_B:"+css_B);	
 			console.log("ImgLeft:"+ImgLeft);	
 			console.log("ImgTop:"+ImgTop);	
-			console.log("width_l:"+Width_l);
-			console.log("width_s:"+Width_s);
+			console.log("Width_l:"+Width_l);
+			console.log("Width_s:"+Width_s);
 			console.log("Zoom:"+Zoom);
 			$('#img_code').val(ImgCode)
 

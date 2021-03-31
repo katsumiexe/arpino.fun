@@ -1041,6 +1041,7 @@ $(function(){
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
 							<img src="./img/blog_no_image.png?t=<?=time()?>" class="blog_img">
+
 							</span>
 							<span class="customer_camera"></span>
 							</td>
