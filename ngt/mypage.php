@@ -946,11 +946,8 @@ $(function(){
 	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
 
 	<div class="main">
-
 		<?for($n=0;$n<$cnt_mail_data;$n++){?>
-
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-
 				<?if($mail_data[$n]["face"]){?>
 					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t=<?=time()?>" class="mail_img">
 				<?}else{?>
@@ -973,7 +970,6 @@ $(function(){
 		<?}?>
 		<div class="mail_detail">
 			<div class="mail_detail_in"></div>
-
 			<div class="mail_write">
 				<div class="mail_img_in"><img src="" class="mail_img_view">	</div>
 				<textarea class="mail_write_text"></textarea><br>
@@ -1025,6 +1021,7 @@ $(function(){
 						</select>
 						<br>
 					</div>
+
 					<span class="blog_title_tag">タイトル</span><br>
 					<input id="blog_title" type="text" name="blog_title" class="blog_title_box"><br>
 
@@ -1061,6 +1058,7 @@ $(function(){
 							</td>
 						</tr>
 					</table>
+
 				</div>
 				<input id="blog_chg" type="hidden" value="" >
 			</div>
@@ -1083,7 +1081,6 @@ $(function(){
 					</span>
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
-
 				</div>
 
 				<div class="hist_log">
@@ -1266,6 +1263,8 @@ $(function(){
 </select>
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
+
+
 
 <div class="config_tag3">
 <select id="config_week_start" class="config_tag3_sel">

@@ -113,6 +113,7 @@ if($staff_set == 4){
 			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`)";
 			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
 			mysqli_query($mysqli,$sql);
+
 //■encode-------------------------------
 			$id_8	=substr("00000000".$staff_id,-8);
 			$id_0	=$staff_id % 20;
