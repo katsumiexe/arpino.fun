@@ -52,7 +52,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 	}
 }
-
 asort($sort);
 
 $week[0]="(日)";

@@ -125,7 +125,6 @@ if($res2 = mysqli_query($mysqli,$sql)){
 		$info_count=count($info);
 	}
 }
-
 include_once('./header.php');
 ?>
 
