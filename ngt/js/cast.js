@@ -829,6 +829,7 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			$('#tag_1_tbl').html(data);
+			console.log(data);	
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

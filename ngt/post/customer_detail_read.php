@@ -2,20 +2,23 @@
 /*
 顧客情報読み込み
 */
-include_once('../library/sql_cast.php');
+$c_id=$_POST["c_id"];
+include_once('../library/sql_post.php');
 $sql	 ="SELECT * FROM wp01_0customer_list";
 $sql	 .=" WHERE del=0";
 $sql	 .=" AND customer_id='{$c_id}'";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$cus[$dat1["item"]]=$row["comm"];
+		$cus[$row["item"]]=$row["comm"];
 	}
 }
 
 
 $sql	 ="SELECT * FROM wp01_0customer_item";
-$sql	 .=" WHERE del=0";
-$sql	 .=" AND gp=0";
+$sql	 .=" WHERE `del`=0";
+$sql	 .=" AND `gp`=0";
+
+$dat=$sql;
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
