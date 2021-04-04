@@ -1,21 +1,44 @@
 <?
 /*
-memo1セット
+memo1変更処理
 */
-require_once("./post_inc.php");
+include_once('../library/sql_post.php');
 
 $c_id	=$_POST["c_id"];
-$cast_id=$_POST["cast_id"];
-$item	=$_POST["item"];
+$tmp	=$_POST["tmp"];
 $value	=$_POST["value"];
 
-$sql_log ="UPDATE wp01_0customer_list SET";
-$sql_log .=" comm='{$value}'";
-$sql_log .=" WHERE cast_id={$cast_id}";
-$sql_log .=" AND customer_id={$c_id}";
-$sql_log .=" AND item='{$item}'";
+if(substr($tmp,0,2)=="m_"){
+	$code=2;
 
-echo($sql_log);
-$wpdb->query($sql_log);
+}elseif(substr($tmp,0,2)=="b_"){
+	$code=8;
+
+}else{
+	$code=str_replace("tbl_a_","",$tmp);
+}
+
+$sql ="SELECT id FROM wp01_0customer_list";
+$sql .=" WHERE customer_id='{$c_id}'";
+$sql .=" AND item='{$code}'";
+
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
+
+	if($row){
+		$sql ="UPDATE wp01_0customer_list SET";
+		$sql .=" comm='{$value}'";
+		$sql .=" WHERE customer_id={$c_id}";
+		$sql .=" AND item='{$code}'";
+		mysqli_query($mysqli,$sql);
+	
+	}else{
+		$sql ="INSERT INTO wp01_0customer_list";
+		$sql .=" (`customer_id`, `item`, `comm`)values";
+		$sql .=" ('{$c_id}','{$code}','{$value}')";
+		mysqli_query($mysqli,$sql);
+	}	
+}
+
 exit();
 ?>

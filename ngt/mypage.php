@@ -39,12 +39,12 @@ $month_ed		=date("Ymd",strtotime($calendar[3]));
 $ana_ym=$_POST["ana_ym"];
 if(!$ana_ym) $ana_ym=date("Ym");
 
+echo $base_w;
+
 
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
-
 $ana_line[$config["start_week"]]=" ana_line";
-
 $cast_page=$_POST["cast_page"]+0;
 
 if($cast_page == 1){
@@ -120,7 +120,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 /*--■スケジュール--*/
 $tmp_today[$day_8]="cc8";
 $sql ="SELECT * FROM wp01_0sch_table";
@@ -134,14 +133,12 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 //■カレンダー　スケジュール
 $sql	 ="SELECT * FROM wp01_0schedule";
 $sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND sche_date>='{$month_st}'";
 $sql	.=" AND sche_date<'{$month_ed}'";
 $sql   	.=" ORDER BY id ASC";
-
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
@@ -152,7 +149,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		}else{
 			$days_sche[$row["sche_date"]]="休み";
 			$sche_dat[$row["sche_date"]]="";
-
 		}
 
 		if($ana_ym==substr($row["sche_date"],0,6) ){
@@ -186,7 +182,6 @@ $sql	.=" AND `log` IS NOT NULL";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
 		if(trim($row["log"])){
 			$memo_dat[$row["date_8"]]="n3";
 			$cal_app[substr($row["date_8"],0,6)].="<input class=\"cal_m_{$row["date_8"]}\" type=\"hidden\" value=\"{$row["log"]}\">";
@@ -195,7 +190,6 @@ if($result = mysqli_query($mysqli,$sql)){
 				$days_memo.=$row["log"];
 			}
 */
-
 		}
 	}
 }
@@ -204,17 +198,16 @@ if($result = mysqli_query($mysqli,$sql)){
 //■カレンダー　ブログカウント
 $sql	 ="SELECT * FROM wp01_0posts";
 $sql	.=" WHERE cast='{$cast_data["id"]}'";
-$sql	.=" AND status<2";
+$sql	.=" AND status='0'";
 $sql	.=" AND view_date>='{$calendar[0]}'";
 $sql	.=" AND view_date<'{$calendar[3]}'";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$tmp_date=substr($tmp["post_date"],0,4).substr($tmp["post_date"],5,2).substr($tmp["post_date"],8,2);
+		$tmp_date=substr($row["view_date"],0,4).substr($row["view_date"],5,2).substr($row["view_date"],8,2);
 		$blog_dat[$tmp_date]="n4";
 	}
 }
-
 
 //■カスタマーソート
 
@@ -234,7 +227,7 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["yy"]="----";
 			$row["mm"]="--";
 			$row["dd"]="--";
-			$row="--";
+			$row["ag"]="--";
 
 		}else{
 			$row["yy"]=substr($row["birth_day"],0,4);
@@ -259,9 +252,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		}else{
 			$row["face"]="<img src=\"./img/customer_no_image.png?t=".time()."\" class=\"mail_img\">";
-
 		}
-
 		$customer[]=$row;
 	}
 
@@ -277,9 +268,6 @@ if($result = mysqli_query($mysqli,$sql)){
 			}
 		}
 	}
-
-
-
 }
 
 
@@ -703,7 +691,7 @@ $(function(){
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$day_time)?>[<?=$week[$day_w]?>]</span>
 			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche[$now_8]?></span></span>
-			<span class="cal_days_birth"><?=$days_birth?></span>
+			<span class="cal_days_birth"><?=$days_birth[substr($now_8,4,4)]?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$day_8?>">
 		</div>
@@ -1263,8 +1251,6 @@ $(function(){
 </select>
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
-
-
 
 <div class="config_tag3">
 <select id="config_week_start" class="config_tag3_sel">

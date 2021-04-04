@@ -1043,8 +1043,9 @@ input:focus{
 	margin			:0;
 	border			:none;
 	font-size		:4.5vw;
-	width			:58vw;
+	width			:57vw;
 	border-color	:#f17766;
+	padding-left:1vw;
 }
 
 .item_group{
@@ -1610,20 +1611,20 @@ input:focus{
 	color			:#303030;
 	font-size		:4vw;
 	text-align		:center;
-	padding			:1vw;
+	padding			:5vw 1vw;
 	position		:absolute;
 	top				:50vw;
 	left			:0;
 	right			:0;
 	margin			:2vw auto;	
-	width			:60vw;
-	height			:30vw;
-	z-index:200;
+	width			:64vw;
+	height			:18vw;
+	z-index			:200;
 }
 
 .customer_memo_del_back_in_btn{
 	position		:absolute;
-	bottom			:3vw;
+	bottom			:1vw;
 	left			:0;
 	right			:0;
 	margin			:auto;	

@@ -269,13 +269,13 @@ $(function(){
 	});
 
 	$('#tag_1_tbl').on('change','.item_textbox,.rd',function(){
+		Tmp=$(this).attr('id');
 		$.post({
 			url:"./post/customer_detail_set4.php",
 			data:{
+				'tmp'		:Tmp,
 				'c_id'		:C_Id,
-				'cast_id'	:CastId,
 				'value'		:$(this).val(),
-				'item'		:$(this).attr('name').replace('cus',''),
 			},
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
@@ -1389,18 +1389,17 @@ console.log(Width_l);
 
 	$('#memo_set').on('click',function () {
 		Log=$('.customer_memo_new_txt').val();
-		var TmpMemoId=$('#memo_chg_id').val()
+		var TmpMemoId=$('#memo_chg_id').val();
+
 		$.post({
 			url:"./post/customer_memo_set.php",
 			data:{
-				'cast_id'	:CastId,
 				'c_id'		:C_Id,
 				'log'		:Log,
 				'memo_id'	:TmpMemoId,
-
 			},
-		}).done(function(data, textStatus, jqXHR){
 
+		}).done(function(data, textStatus, jqXHR){
 			if($('#memo_chg_id').val('')){
 				$('#tr_memo_detail'+TmpMemoId).remove();
 				$('#tr_memo_log'+TmpMemoId).remove();
@@ -1569,19 +1568,20 @@ console.log(Width_l);
 	});
 
 	$('#memo_del_set').on('click',function () {
+
+		Tmp=$('#memo_chg_id').val();
+
 		$.post({
 			url:"./post/customer_memo_del.php",
 			data:{
-				'cast_id'	:CastId,
-				'c_id'		:C_Id,
-				'memo_id'	:$('#memo_chg_id').val(),
+				'memo_id'	:Tmp,
 			},
 
 		}).done(function(data, textStatus, jqXHR){
 			$('.set_back,.customer_memo_del_back_in').fadeOut(500);
-			$('#tag_2_tbl').html(data);
 			$('#memo_chg_id').val('');
-
+			$('#tr_memo_detail' + Tmp).hide();
+			$('#tr_memo_log' + Tmp).hide();
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -1606,76 +1606,97 @@ console.log(Width_l);
 			url:"./post/calendar_set.php",
 			data:{
 				'c_month'	:$('#c_month').val(),
-				'week_start':$('#week_start').val(),
-				'cast_id'	:CastId,
 				'pre'		:'1',
 			},
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.cal').prepend(data.html).animate({'left':'-100vw'},200);
+			console.log(data);
+			$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
 			$(".cal").children().last().remove();
 			$('#c_month').val(data.date);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
 	});
-
-	$('.notice_ttl_in').on('click',function(){
-		if(!$(this).hasClass('notice_sel')){
-			Tmp=$(this).attr('id');
-			$('#h_'+Tmp).val();
-			$('#notice_day').hide().fadeIn(800).text($('#h_'+Tmp).val());
-
-			Tmp2=$(this).attr('id').replace('ttl','box');
-			$('.notice_ttl_in').removeClass('notice_sel');
-			$(this).addClass('notice_sel');
-			$('.notice_box').hide();
-			$('#'+Tmp2).fadeIn(0);
-		}
-	});
-
-
-	$('.notice_box_item2').on('click',function (){
-		Tmp=$(this).attr('id').replace("title","hidden");
-		$('.notice_box_log').html($('#'+Tmp).val());
-		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
-		$(this).addClass('notice_box_sel');
-	});
-
-	$('.notice_box_item1').on('click',function (){
-		Nid=$(this).attr('id').replace("notice_box_title","");
-		Tmp=$(this).attr('id').replace("title","hidden");
-		$(this).removeClass('notice_box_item1').addClass('notice_box_item2');
-		$(this).children('div').removeClass('notice_yet1').addClass('notice_yet2');
-		$('.notice_box_log').html($('#'+Tmp).val());
-
-		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
-		$(this).addClass('notice_box_sel');
-
-		$.post({
-			url:"./post/notice_ck.php",
-			data:{
-				'n_id':Nid,
-				'cast_id':CastId,
-			},
-		});
-	});
-
 
 	$('.cal').on('click','.cal_next',function () {
 		$.post({
 			url:"./post/calendar_set.php",
 			data:{
-				'c_month':$('#c_month').val(),
-				'week_start':$('#week_start').val(),
-				'cast_id':CastId,	
-				'pre':'2',
+				'c_month'	:$('#c_month').val(),
+				'pre'		:'2',
 			},
 			dataType: 'json',
+
 		}).done(function(data, textStatus, jqXHR){
-			$('.cal').append(data.html).animate({'left':'-100vw'},200);
+			console.log(data);
+			$('.cal').append(data.html).animate({'left':'-100vw'},0);
 			$(".cal").children().first().remove();
 			$('#c_month').val(data.date);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
+	});
+
+
+	$('.cal').draggable({
+		axis: 'x',
+		drag: function( event, ui ) {
+//			console.log(ui.position.left)
+		},
+		stop: function( event, ui ) {
+			if(ui.position.left > VwBase*(-90)){/*■先月*/
+				$('.cal').animate({'left':'0'},200);
+
+				$.post({
+					url:"./post/calendar_set.php",
+					data:{
+						'c_month'	:$('#c_month').val(),
+						'pre'		:'1',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+					console.log(data);
+					$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
+					$(".cal").children().last().remove();
+					$('#c_month').val(data.date);
+
+				}).fail(function(jqXHR, textStatus, errorThrown){
+					console.log(textStatus);
+					console.log(errorThrown);
+				});
+
+			}else if(ui.position.left < VwBase*(-110)){/*■来月*/
+				$('.cal').animate({'left':'-200vw'},200);
+				$.post({
+					url:"./post/calendar_set.php",
+					data:{
+						'c_month'	:$('#c_month').val(),
+						'pre'		:'2',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+					console.log(data);
+					$('.cal').append(data.html).animate({'left':'-100vw'},0);
+					$(".cal").children().first().remove();
+					$('#c_month').val(data.date);
+
+				}).fail(function(jqXHR, textStatus, errorThrown){
+					console.log(textStatus);
+					console.log(errorThrown);
+				});
+
+			}else{
+				$('.cal').animate({'left':'-100vw'},100);
+			}
+		},
 	});
 
 
@@ -1773,63 +1794,49 @@ console.log(Width_l);
 		},
 	});
 
-	$('.cal').draggable({
-		axis: 'x',
-		drag: function( event, ui ) {
-			console.log(ui.position.left)
 
-		},
+	$('.notice_ttl_in').on('click',function(){
+		if(!$(this).hasClass('notice_sel')){
+			Tmp=$(this).attr('id');
+			$('#h_'+Tmp).val();
+			$('#notice_day').hide().fadeIn(800).text($('#h_'+Tmp).val());
 
-		stop: function( event, ui ) {
-			if(ui.position.left > VwBase*(-90)){/*■先月*/
-				$('.cal').animate({'left':'0'},200);
-				$.post({
-					url:"./post/calendar_set.php",
-					data:{
-						'c_month':$('#c_month').val(),
-						'week_start':$('#week_start').val(),
-						'cast_id':CastId,
-						'pre':'1',
-					},
-					dataType: 'json',
-
-				}).done(function(data, textStatus, jqXHR){
-
-					$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
-					$(".cal").children().last().remove();
-					$('#c_month').val(data.date);
-/*
-					console.log(data.sql);
-					console.log(data.html);
-*/
-					console.log($(".cal").children().last());
-
-				});
-
-			}else if(ui.position.left < VwBase*(-110)){/*■来月*/
-				$('.cal').animate({'left':'-200vw'},200);
-				$.post({
-					url:"./post/calendar_set.php",
-					data:{
-						'c_month':$('#c_month').val(),
-						'week_start':$('#week_start').val(),
-						'cast_id':CastId,
-						'pre':'2',
-					},
-					dataType: 'json',
-				}).done(function(data, textStatus, jqXHR){
-					$('.cal').append(data.html).animate({'left':'-100vw'},0);
-					$(".cal").children().first().remove();
-					$('#c_month').val(data.date);
-					console.log(data.sql);
-					console.log(data.html);
-				});
-
-			}else{
-				$('.cal').animate({'left':'-100vw'},100);
-			}
-		},
+			Tmp2=$(this).attr('id').replace('ttl','box');
+			$('.notice_ttl_in').removeClass('notice_sel');
+			$(this).addClass('notice_sel');
+			$('.notice_box').hide();
+			$('#'+Tmp2).fadeIn(0);
+		}
 	});
+
+
+	$('.notice_box_item2').on('click',function (){
+		Tmp=$(this).attr('id').replace("title","hidden");
+		$('.notice_box_log').html($('#'+Tmp).val());
+		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
+		$(this).addClass('notice_box_sel');
+	});
+
+	$('.notice_box_item1').on('click',function (){
+		Nid=$(this).attr('id').replace("notice_box_title","");
+		Tmp=$(this).attr('id').replace("title","hidden");
+		$(this).removeClass('notice_box_item1').addClass('notice_box_item2');
+		$(this).children('div').removeClass('notice_yet1').addClass('notice_yet2');
+		$('.notice_box_log').html($('#'+Tmp).val());
+
+		$('.notice_box_item1,.notice_box_item2').removeClass('notice_box_sel');
+		$(this).addClass('notice_box_sel');
+
+		$.post({
+			url:"./post/notice_ck.php",
+			data:{
+				'n_id':Nid,
+				'cast_id':CastId,
+			},
+		});
+	});
+
+
 
 	$('.log_item_set').on('click','.item_color',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
@@ -2054,6 +2061,7 @@ console.log(Width_l);
 		}
 		console.log(Tmp);
 	});
+
 
 	$('.slide').draggable({
 		axis: 'x',

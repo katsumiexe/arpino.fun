@@ -1,8 +1,9 @@
 <?
 /*
-顧客情報読み込み
+MEMO2読み込み
 */
 include_once('../library/sql_cast.php');
+
 $c_id		=$_POST["c_id"];
 
 $sql	 ="SELECT * FROM wp01_0customer_memo";
@@ -12,7 +13,10 @@ $sql	 .=" AND `log` IS NOT NULL";
 $sql	 .=" ORDER BY `date` DESC";
 
 if($result = mysqli_query($mysqli,$sql)){
-	$row = mysqli_fetch_assoc($result);
+	while($row = mysqli_fetch_assoc($result)){
+		$row["date"]=str_replace("-",".",$row["date"]);
+		$row["date"]=substr($row["date"],0,16);
+
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
 
 		$dat.="<tr id=\"tr_memo_detail{$row["id"]}\"><td class=\"customer_memo_td1\">";
@@ -26,9 +30,8 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 if(!$dat){
-	$dat="<tr><td class=\"customer_memo_td1\">まだ何もありません</td></tr>";
+	$dat="<tr><td class=\"customer_memo_td1\" style=\"text-align:center;\"><br>まだ何もありません<br><br></td></tr>";
 }
-
 echo $dat;
 exit();
 ?>
