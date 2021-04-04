@@ -1086,9 +1086,7 @@ $(function(){
 			$.post({
 				url:"./post/img_set.php",
 				data:{
-					'cast_id'	:CastId,
 					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
-
 					'img_top'	:ImgTop,
 					'img_left'	:ImgLeft,
 
@@ -1105,6 +1103,7 @@ $(function(){
 
 			}).done(function(data, textStatus, jqXHR){
 
+
 console.log(ImgTop);
 console.log(ImgLeft);
 
@@ -1113,24 +1112,26 @@ console.log(cvs_H);
 
 console.log(Width_s);
 console.log(Width_l);
+console.log(Zoom);
+console.log(Rote);
 
 				base_64=data;
+
 				$('.img_box').animate({'top':'120vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 
 				if(Task=="blog"){
-					$('.blog_img').attr('src',"data:image/jpg;base64,"+base_64);
+					$('.blog_img').attr('src',"data:image/jpg;base64,"+ base_64);
 					$('.set_back').fadeOut(200);
 
 				}else if(Task=="regist"){
-					$('.regist_img').attr('src',"data:image/jpg;base64,"+base_64);
+					$('.regist_img').attr('src',"data:image/jpg;base64,"+ base_64);
 
 				}else if(Task=="chg"){
-					$('.customer_detail_img').attr('src',ImgCode);
+					$('.customer_detail_img').attr('src',"data:image/jpg;base64,"+ base_64);
 					$('.set_back').fadeOut(200);
-
 
 				}else if(Task=="mail"){
 					if(base_64){
@@ -1162,7 +1163,7 @@ console.log(Width_l);
 			console.log("Width_l:"+Width_l);
 			console.log("Width_s:"+Width_s);
 			console.log("Zoom:"+Zoom);
-			$('#img_code').val(ImgCode)
+			$('#img_code').val(base_64)
 
 		}else{
 			$('#img_code').val('')

@@ -39,9 +39,6 @@ $month_ed		=date("Ymd",strtotime($calendar[3]));
 $ana_ym=$_POST["ana_ym"];
 if(!$ana_ym) $ana_ym=date("Ym");
 
-echo $base_w;
-
-
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
 $ana_line[$config["start_week"]]=" ana_line";

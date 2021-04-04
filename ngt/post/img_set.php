@@ -2,8 +2,8 @@
 /*
 画像登録処理
 */
+include_once('../library/sql_post.php');
 
-$cast_id	=$_POST["cast_id"];
 $img_code	=$_POST["img_code"];
 
 $img_top	=$_POST["img_top"];
@@ -18,9 +18,6 @@ $width_s	=$_POST["width_s"];
 $width_l	=$_POST["width_l"];
 $task		=$_POST["task"];
 
-$c_id		=$_POST["c_id"]+0;
-$img_url	=$_POST["img_url"]+0;
-
 if($task=="regist" or $task=="chg"){
 	$size=300;
 
@@ -29,14 +26,6 @@ if($task=="regist" or $task=="chg"){
 }
 
 $img2 		= imagecreatetruecolor($size,$size);
-
-/*
-$tmp_top	=floor( ( $img_top  - $width_s ) * ( ) * ( $img_zoom /100) );
-$tmp_left	=floor( ( $img_left - $width_s ) * ( ) * ( $img_zoom /100 ) );
-
-$tmp_width	=floor($width_l/($img_zoom/100));
-$tmp_height	=floor($width_l/($img_zoom/100));
-*/
 
 $tmp_top	=floor( ( $img_top  - $width_s ) * ( -600 / $width_l) * (100 / $img_zoom ) );
 $tmp_left	=floor( ( $img_left - $width_s ) * ( -600 / $width_l) * (100 / $img_zoom ) );
@@ -68,12 +57,12 @@ if($img_rote ==90){
 	
 ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, $size, $size, $tmp_width, $tmp_height);
 
-
-$tmpfname	= tempnam('tmp', 'pngtmp_');
-$tmp		=imagepng($img2, $tmpfname);
-$data		=@file_get_contents($tmpfname);
+$tmpfname = tempnam('tmp', 'pngtmp_');
+$tmp=imagepng($img2, $tmpfname);
+$data = @file_get_contents($tmpfname);
 unlink($tmpfname);
-	if ($data) $img_64 = base64_encode($data);
+if($data) $img_64 = base64_encode($data);
+
 echo $img_64;
 exit()
 ?>
