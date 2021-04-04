@@ -188,7 +188,7 @@ $(function(){
 	$('.blog_open_no').on('click',function () {
 		$(this).addClass('no_on');
 		$('.blog_open_yes').removeClass('yes_on');
-		$('#blog_status').val('2');
+		$('#blog_status').val('1');
 	});
 
 	$('.blog_list').on('click','.blog_next',function () {
