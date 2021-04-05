@@ -1529,6 +1529,7 @@ $(function(){
 	</div>
 
 	<div class="customer_regist">
+
 		<div class="customer_regist_ttl">新規顧客登録</div>
 		<span class="customer_regist_no">×</span>
 		<table class="customer_regist_base">
@@ -1593,6 +1594,7 @@ $(function(){
 		</table>
 		<div id="customer_regist_set" class="btn btn_l2">登録</div>
 		<input id="regist_fav" type="hidden" value="0">
+
 	</div>
 
 	<div class="img_box">

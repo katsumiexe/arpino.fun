@@ -2,18 +2,16 @@
 /*
 画像登録処理
 */
+
 include_once('../library/sql_post.php');
 
 $img_code	=$_POST["img_code"];
-
 $img_top	=$_POST["img_top"];
 $img_left	=$_POST["img_left"];
 $img_width	=$_POST["img_width"];
 $img_height	=$_POST["img_height"];
-
 $img_zoom	=$_POST["img_zoom"];
 $img_rote	=$_POST["img_rote"]+0;
-
 $width_s	=$_POST["width_s"];
 $width_l	=$_POST["width_l"];
 $task		=$_POST["task"];

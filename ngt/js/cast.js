@@ -364,44 +364,48 @@ $(function(){
 	});
 
 	$('#customer_regist_set').on('click',function () {
-		$.post({
-			url:"./post/customer_regist_set.php",
-			data:{
-				'group'		:$('#regist_group').val(),
-				'name'		:$('#regist_name').val(),
-				'nick'		:$('#regist_nick').val(),
-				'fav'		:$('#regist_fav').val(),
+		if($('#regist_name').val() =='' && $('#regist_nick').val() ==''){
+			alert('「名前」か「呼び名」どちらかは必要です');		
+			return false;
+		}else{
+			$.post({
+				url:"./post/customer_regist_set.php",
+				data:{
+					'group'		:$('#regist_group').val(),
+					'name'		:$('#regist_name').val(),
+					'nick'		:$('#regist_nick').val(),
+					'fav'		:$('#regist_fav').val(),
 
-				'yy'		:$('#reg_yy').val(),
-				'mm'		:$('#reg_mm').val(),
-				'dd'		:$('#reg_dd').val(),
-				'ag'		:$('#reg_ag').val(),
-				'img_code'	:base_64,
-			},
+					'yy'		:$('#reg_yy').val(),
+					'mm'		:$('#reg_mm').val(),
+					'dd'		:$('#reg_dd').val(),
+					'ag'		:$('#reg_ag').val(),
+					'img_code'	:base_64,
+				},
+			}).done(function(data, textStatus, jqXHR){
+				console.log(data);
+				$('.customer_all_in').append(data);
+				$('.customer_regist').animate({'top':'100vh'},200);
+				$('.set_back').fadeOut(100);
 
+				$('#regist_group').val('0');
+				$('#regist_name').val('');
+				$('#regist_nick').val('');
+				$('#regist_fav').val('0');
 
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-			$('.customer_all_in').append(data);
-			$('.customer_regist').animate({'top':'100vh'},200);
-			$('.set_back').fadeOut(100);
+				$('#reg_yy').val('1980');
+				$('#reg_mm').val('01');
+				$('#reg_dd').val('01');
+				$('#reg_ag').val('30');
+				$('.reg_fav').css('color','#cccccc');
 
-			$('#regist_group').val('0');
-			$('#regist_name').val('');
-			$('#regist_nick').val('');
-			$('#regist_fav').val('0');
-
-			$('#reg_yy').val('1980');
-			$('#reg_mm').val('01');
-			$('#reg_dd').val('01');
-			$('#reg_ag').val('30');
-			$('.reg_fav').css('color','#cccccc');
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
+		}
 	});
+
 
 	$('#reg_yy,#reg_mm,#reg_dd').on('change', function(){
 		var Tmp=$('#reg_mm').val()+$('#reg_dd').val();
@@ -1103,25 +1107,24 @@ $(function(){
 
 			}).done(function(data, textStatus, jqXHR){
 
-
-console.log(ImgTop);
-console.log(ImgLeft);
-
-console.log(cvs_W);
-console.log(cvs_H);
-
-console.log(Width_s);
-console.log(Width_l);
-console.log(Zoom);
-console.log(Rote);
-
-				base_64=data;
+				console.log("cvs_w:"+cvs_W);
+				console.log("cvs_h:"+cvs_H);
+				console.log("css_A:"+css_A);
+				console.log("css_B:"+css_B);	
+				console.log("ImgLeft:"+ImgLeft);	
+				console.log("ImgTop:"+ImgTop);	
+				console.log("Width_l:"+Width_l);
+				console.log("Width_s:"+Width_s);
+				console.log("Zoom:"+Zoom);
 
 				$('.img_box').animate({'top':'120vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
-
+			
+				base_64=data;
+				console.log(base_64);
+				
 				if(Task=="blog"){
 					$('.blog_img').attr('src',"data:image/jpg;base64,"+ base_64);
 					$('.set_back').fadeOut(200);
@@ -1153,17 +1156,6 @@ console.log(Rote);
 				console.log(textStatus);
 				console.log(errorThrown);
 			});
-
-			console.log("cvs_w:"+cvs_W);
-			console.log("cvs_h:"+cvs_H);
-			console.log("css_A:"+css_A);
-			console.log("css_B:"+css_B);	
-			console.log("ImgLeft:"+ImgLeft);	
-			console.log("ImgTop:"+ImgTop);	
-			console.log("Width_l:"+Width_l);
-			console.log("Width_s:"+Width_s);
-			console.log("Zoom:"+Zoom);
-			$('#img_code').val(base_64)
 
 		}else{
 			$('#img_code').val('')
