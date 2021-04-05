@@ -237,26 +237,27 @@ if($result = mysqli_query($mysqli,$sql)){
 		$birth_y	=substr($birth,0,4);
 		$birth_m	=substr($birth,4,2);
 		$birth_d	=substr($birth,6,2);
-
 		$birth_dat[$birth_m.$birth_d]="n1";
 
 		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
 		$days_birth[$birth_m.$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
 
+		$cd="";
+		for($n=0;$n<strlen($row["id"]);$n++){
+			$tmp=substr($row["id"],$n,1);
+			$cd.=$dec[$id_0][$tmp];
+		}
 
-		if(file_exists("./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.png")){
-			$row["face"]="<img src=\"./img/cast/{$box_no}/c/{$dec[$id_0][$row["id"]]}.pngt=".time()."\" class=\"mail_img\">";
+		if(file_exists("./img/cast/{$box_no}/c/{$cd}.png")){
+			$row["face"]="<img src=\"./img/cast/{$box_no}/c/{$cd}.png?t=".time()."\" class=\"mail_img\">";
 
 		}else{
 			$row["face"]="<img src=\"./img/customer_no_image.png?t=".time()."\" class=\"mail_img\">";
 		}
+
 		$customer[]=$row;
+		$cnt_coustomer++;
 	}
-
-	if(is_array($customer)){
-		$cnt_coustomer=count($customer);
-	}
-
 
 	if($birth_hidden){
 		foreach($birth_hidden as $a1 => $a2){
@@ -267,9 +268,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 for($n=0;$n<3;$n++){
-
 	$now_month=date("m",strtotime($calendar[$n]));
 	$now_ym=date("ym",strtotime($calendar[$n]));
 	$t=date("t",strtotime($calendar[$n]));

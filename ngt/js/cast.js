@@ -367,6 +367,7 @@ $(function(){
 		if($('#regist_name').val() =='' && $('#regist_nick').val() ==''){
 			alert('「名前」か「呼び名」どちらかは必要です');		
 			return false;
+
 		}else{
 			$.post({
 				url:"./post/customer_regist_set.php",
@@ -1086,26 +1087,28 @@ $(function(){
 	$('#img_set').on('click',function(){	
 		if(ImgCode){
 			$('#wait').show();
-		
 			$.post({
 				url:"./post/img_set.php",
 				data:{
 					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
 					'img_top'	:ImgTop,
 					'img_left'	:ImgLeft,
-
 					'img_width'	:cvs_W,
 					'img_height':cvs_H,
-
 					'img_zoom'	:Zoom,
 					'img_rote'	:Rote,
-
-					'Width_s'	:Width_s,
-					'Width_l'	:Width_l,
+					'width_s'	:Width_s,
+					'width_l'	:Width_l,
 					'task'		:Task,
+					'post_id'	:C_Id,
 				},
-
 			}).done(function(data, textStatus, jqXHR){
+				base_64=data;
+
+				$('.img_box').animate({'top':'120vh'},200);
+				var cvs = document.getElementById('cvs1');
+				var ctx = cvs.getContext('2d');
+				ctx.clearRect(0, 0, cvs_A,cvs_A);
 
 				console.log("cvs_w:"+cvs_W);
 				console.log("cvs_h:"+cvs_H);
@@ -1116,15 +1119,8 @@ $(function(){
 				console.log("Width_l:"+Width_l);
 				console.log("Width_s:"+Width_s);
 				console.log("Zoom:"+Zoom);
-
-				$('.img_box').animate({'top':'120vh'},200);
-				var cvs = document.getElementById('cvs1');
-				var ctx = cvs.getContext('2d');
-				ctx.clearRect(0, 0, cvs_A,cvs_A);
+				console.log("Cid:"+C_Id);
 			
-				base_64=data;
-				console.log(base_64);
-				
 				if(Task=="blog"){
 					$('.blog_img').attr('src',"data:image/jpg;base64,"+ base_64);
 					$('.set_back').fadeOut(200);

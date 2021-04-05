@@ -8,12 +8,12 @@ $group	=$_POST["group"];
 $name	=$_POST["name"];
 $nick	=$_POST["nick"];
 $fav	=$_POST["fav"];
-$img	=$_POST["img"];
+$img_code	=$_POST["img_code"];
 
-$yy	=$_POST["yy"];
-$mm	=$_POST["mm"];
-$dd	=$_POST["dd"];
-$ag	=$_POST["ag"];
+$yy		=$_POST["yy"];
+$mm		=$_POST["mm"];
+$dd		=$_POST["dd"];
+$ag		=$_POST["ag"];
 
 if($yy && $mm && $dd){
 	$birth=$yy.$mm.$dd;
@@ -21,56 +21,44 @@ if($yy && $mm && $dd){
 	$birth="00000000";
 }
 
-$sql ="SELECT * FROM wp01_0customer_item"; 
-$sql .=" WHERE gp=0"; 
-$sql .=" AND del=0"; 
-if($result = mysqli_query($mysqli,$sql)){
-	while($row = mysqli_fetch_assoc($result)){
-		$dat[]=$row;
-	}
-}
-
 $sql ="INSERT INTO wp01_0customer (`cast_id`,`nickname`,`name`,`regist_date`,`birth_day`,`face`,`fav`,`c_group`)";
 $sql .=" VALUES('{$cast_data["id"]}','{$nick}','{$name}','{$now}','{$birth}','{$clist}','{$fav}','{$group}')";
 mysqli_query($mysqli,$sql);
 $tmp_auto=mysqli_insert_id($mysqli);
 
-if($dat){
-	$sql ="INSERT INTO wp01_0customer_list (`cast_id`,`customer_id`,`item`) VALUES";
-	foreach($dat as $a1){
-		$sql .="('{$cast_data["id"]}','{$tmp_auto}','{$a1}'),";
-	}
-	$sql=substr($sql,0,-1);
-	mysqli_query($mysqli,$sql);
-}
-
-
 if($img_code){
+	for($n=0;$n<strlen($tmp_auto);$n++){
+		$tmp=substr($tmp_auto,$n,1);
+		$cd.=$dec[$id_0][$tmp];
+	}
 
-	$img_link="../img/cast/{$box_no}/c/{$dec[$id_0][$tmp_auto]}.png";
-
+	$img_link="../img/cast/{$box_no}/c/{$cd}.png";
 	$img	= imagecreatefromstring(base64_decode($img_code));	
 	$img2	= imagecreatetruecolor(160,160);
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 160, 160, 300, 300);
 	imagepng($img2,$img_link);
+
+	$img_link=substr($img_link,1);
 	$tmp_img="<img src=\"{$img_link}\" class=\"mail_img\">";
 
 }else{
 	$tmp_img="<img src=\"./img/customer_no_img.png\" class=\"mail_img\">";
 }
 
-
 for($s=1;$s<6;$s++){
-	$html_fav.="<span id=\"fav_{$tmp_auto}_{$s}\" class=\"customer_list_fav_icon";
 
+	$html_fav.="<span id=\"fav_{$tmp_auto}_{$s}\" class=\"customer_list_fav_icon";
 	if($fav>=$s){
 		$html_fav.=" fav_in";
 	}
-	$html_fav.="\"></span>\"";
+	$html_fav.="\"></span>";
 }
 
-$html="<div id=\"clist{$tmp_auto}\" class=\"customer_list\">";
-$html.=$html_img;
+$html.=$hsql;
+
+
+$html.="<div id=\"clist{$tmp_auto}\" class=\"customer_list\">";
+$html.=$tmp_img;
 $html.="<div class=\"customer_list_fav\">";
 $html.=$html_fav;
 $html.="</div>";

@@ -12,9 +12,13 @@ $img_width	=$_POST["img_width"];
 $img_height	=$_POST["img_height"];
 $img_zoom	=$_POST["img_zoom"];
 $img_rote	=$_POST["img_rote"]+0;
+
 $width_s	=$_POST["width_s"];
 $width_l	=$_POST["width_l"];
+
 $task		=$_POST["task"];
+$post_id	=$_POST["post_id"];
+
 
 if($task=="regist" or $task=="chg"){
 	$size=300;
@@ -60,6 +64,15 @@ $tmp=imagepng($img2, $tmpfname);
 $data = @file_get_contents($tmpfname);
 unlink($tmpfname);
 if($data) $img_64 = base64_encode($data);
+
+if($task=="chg"){
+	for($n=0;$n<strlen($post_id);$n++){
+		$tmp=substr($post_id,$n,1);
+		$cd.=$dec[$id_0][$tmp];
+	}
+	$img_link="../img/cast/{$box_no}/c/{$cd}.png";
+	imagepng($img2,$img_link);
+}
 
 echo $img_64;
 exit()
