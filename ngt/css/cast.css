@@ -500,9 +500,9 @@ input:focus{
 	display			:inline-block;
 	top				:9vw;
 	left			:1vw;
-	width			:38vw;
-	height			:5vw;
-	line-height		:5vw;
+	width			:34vw;
+	height			:7vw;
+	line-height		:7vw;
 	color			:#0000d0;
 	text-align		:left;
 	font-size:0;
@@ -550,12 +550,17 @@ input:focus{
 
 .days_icon{
 	display			:inline-block;
-	width			:4.5vw;
-	height			:4.5vw;
-	line-height		:4.5vw;	
+	position		:absolute;
+	top				:0;
+	left			:1vw;
+	bottom			:0;
+	margin			:auto;
+	width			:5vw;
+	height			:5vw;
+	line-height		:5vw;	
 	text-align		:center;
 	font-family		:at_icon;
-	font-size		:3.5vw;
+	font-size		:5vw;
 }
 
 .days_birth{
@@ -3927,11 +3932,13 @@ input[type=range]::-moz-range-thumb{
 }
 
 .ana_top{
-	background		:#e0f0ff;
+	background		:#c0c0c0;
 	border			:1px solid #666666;
 	text-align		:center;
 	font-weight		:600;
-	font-size		:3.2vw;
+	font-size		:3.5vw;
+	height			:4.5vw;
+	line-height		:4.5vw;
 }
 
 .ana_month{
@@ -3942,13 +3949,33 @@ input[type=range]::-moz-range-thumb{
 	padding-right	:1vw;
 	font-size		:3.8vw;
 }
+
 .ana_sche{
 	position		:relative;
-	width			:27vw;
+	width			:28vw;
 	border			:1px solid #666666;
 	border-top		:2px solid #101010;
 	text-align		:center;
 	font-size		:3.8vw;
+}
+
+.ana_f{
+	background:#f0f0ff;
+}
+
+.sche_b{
+	display		:inline-block;
+	position	:absolute;
+	top			:0;
+	right		:1vw;
+	bottom		:0;
+	margin		:auto;
+	width		:27vw;
+	height		:5vw;
+	line-height	:5vw;
+	text-align	:center;
+	margin		:auto;
+	font-size	:3.5vw;
 }
 
 .sche_s{
@@ -3978,11 +4005,11 @@ input[type=range]::-moz-range-thumb{
 }
 
 .ana_time{
-	width			:10vw;
+	width			:8vw;
 	border			:1px solid #666666;
 	border-top		:2px solid #101010;
 	text-align		:right;
-	padding			:0.5vw;
+	padding			:1vw;
 	font-size		:3.8vw;
 }
 
@@ -4120,7 +4147,7 @@ input[type=range]::-moz-range-thumb{
 	border-bottom	:1px solid #303030;
 	font-size		:3.5vw;
 	text-align		:left;
-	padding-left:1vw;
+	padding-left	:1vw;
 }
 	
 .ana_list_pts{

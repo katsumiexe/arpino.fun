@@ -39,6 +39,9 @@ $month_ed		=date("Ymd",strtotime($calendar[3]));
 $ana_ym=$_POST["ana_ym"];
 if(!$ana_ym) $ana_ym=date("Ym");
 
+$ana_t=date("t",strtotime($ana_1));
+
+
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
 $ana_line[$config["start_week"]]=" ana_line";
@@ -140,33 +143,26 @@ $sql   	.=" ORDER BY id ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if($row["stime"] && $row["etime"]){
-			$days_sche[$row["sche_date"]]="{$row["stime"]}-{$row["etime"]}";
+			$days_sche[$row["sche_date"]]="<span class=\"sche_b\"><span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span></span>";
 			$sche_dat[$row["sche_date"]]="n2";
-
-		}else{
-			$days_sche[$row["sche_date"]]="休み";
-			$sche_dat[$row["sche_date"]]="";
-		}
-
-		if($ana_ym==substr($row["sche_date"],0,6) ){
-			$ana_sche[$row["sche_date"]]	="<span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span>";
-
 			if(substr($sche_table_calc["in"][$row["stime"]],2,1) == 3){
 				$tmp_s=$sche_table_calc["in"][$row["stime"]]+20;
-
 			}else{
 				$tmp_s=$sche_table_calc["in"][$row["stime"]];
 			}		
-
 			if(substr($sche_table_calc["out"][$row["etime"]],2,1) == 3){
 				$tmp_e=$sche_table_calc["out"][$row["etime"]]+20;
-
 			}else{
 				$tmp_e=$sche_table_calc["out"][$row["etime"]];
 			}		
-
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
+
+		}else{
+			$days_sche[$row["sche_date"]]="<span class=\"sche_s\">休み</span>";
+			$sche_dat[$row["sche_date"]]="";
+			$ana_time[$row["sche_date"]]=0;
 		}
+
 	}
 }
 
@@ -319,9 +315,7 @@ for($n=0;$n<3;$n++){
 			$app_n2=$sche_dat[$tmp_ymd];
 			$app_n3=$memo_dat[$tmp_ymd];
 			$app_n4=$blog_dat[$tmp_ymd];
-
 			$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$days_sche[$tmp_ymd]}\">";
-
 		}
 
 		$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
@@ -686,7 +680,7 @@ $(function(){
 
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$day_time)?>[<?=$week[$day_w]?>]</span>
-			<span class="cal_days_sche"><span class="days_icon"></span><span class="days_day"><?=$days_sche[$now_8]?></span></span>
+			<span class="cal_days_sche"><span class="days_icon"></span><?=$days_sche[$now_8]?></span>
 			<span class="cal_days_birth"><?=$days_birth[substr($now_8,4,4)]?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$day_8?>">
@@ -1093,16 +1087,22 @@ $(function(){
 			<td class="ana_top" colspan="2">給与・歩合</td>
 		</tr>
 
-	<?for($n=1;$n<$now_count+1;$n++){?>
-		<?$ana_week=($week_01+$n-1)%7?>
-		<? $ana_salary = $ana_time[$n] * $cast_data["cast_salary"]?>
-		<? $ana_all = number_format($ana_salary +$pay_all[$n])?>
+	<?for($n=1;$n<$ana_t+1;$n++){?>
+		<?
+			$ana_c	=$ana_ym*100+$n;
+			$ana_week	=($week_01+$n-1)%7;
+			$ana_salary = $ana_time[$ana_c] * $cast_data["cast_salary"];
+			$ana_all = number_format($ana_salary +$pay_all[$ana_c]);
+			if($ana_c >$day_8){
+				$f_day="ana_f";
+			}
+		?>
 
 		<tr>
-			<td rowspan="2" class="ana_month <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
-			<td class="ana_sche <?=$ana_line[$ana_week]?>"><?=$ana_sche[$n]?></td>
-			<td class="ana_time <?=$ana_line[$ana_week]?>"><?=$ana_time[$n]?></td>
-			<td class="ana_pay <?=$ana_line[$ana_week]?>">	
+			<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
+			<td class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$days_sche[$ana_c]?></td>
+			<td class="ana_time <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_time[$ana_c]?></td>
+			<td class="ana_pay <?=$f_day?> <?=$ana_line[$ana_week]?>">	
 				<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
 			</td>
 			<td id="ana_<?=$n?>" class="ana_detail<?if($ana_all ==0){?>_n<?}?> <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
