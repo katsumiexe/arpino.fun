@@ -893,6 +893,7 @@ $(function(){
 				<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
 			</tr>
 		</table>
+
 		<div class="customer_sns_box">
 			<div class="sns_jump"></div><input type="text" class="sns_text"><div class="sns_btn"></div>
 			<div class="customer_sns_ttl"></div>
@@ -922,7 +923,6 @@ $(function(){
 
 	<?}elseif($cast_page==3){?>
 	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
-
 	<div class="main">
 		<?for($n=0;$n<$cnt_mail_data;$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
@@ -1116,7 +1116,6 @@ $(function(){
 						<span class="ana_list_item">時給</span>
 						<span class="ana_list_pts"><?=$ana_salary?></span>
 					</span>
-
 				<?$tmp_line=0;?>
 
 				<?foreach((array)$dat_ana[$n] as $a1){?>
@@ -1593,7 +1592,6 @@ $(function(){
 		</table>
 		<div id="customer_regist_set" class="btn btn_l2">登録</div>
 		<input id="regist_fav" type="hidden" value="0">
-
 	</div>
 
 	<div class="img_box">
@@ -1680,12 +1678,14 @@ $(function(){
 				<?}?>
 			</select>
 		</div>
+
 		<div class="customer_log_left">
 			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
 				<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>
 				<span class="sel_log_comm"><?=$log_item[0]["item_name"]?></span>
 				<span class="sel_log_price">￥<?=$log_item[0]["price"]?></span>
 			</div>
+
 			<div id="sel_log_box" class="sel_log_box">
 				<?foreach($log_item as $a1){?>
 				<div id="ls<?=$a1["sort"]?>" class="sel_log_option" style="color:<?=$c_code[$a1["item_color"]]?>;border:1px solid <?=$c_code[$a1["item_color"]]?>">
@@ -1727,18 +1727,14 @@ $(function(){
 <input id="h_blog_img" type="hidden" value="">
 <input id="h_blog_status" type="hidden" value="">
 
-
 <input id="memo_chg_id" type="hidden">
-
 <input id="easytalk_page" type="hidden" value="1">
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
 <input id="cast_id" type="hidden" value="<?=$cast_data["id"]?>">
-
 <form id="logout" action="./mypage.php" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>
-
 <form id="menu_sel" action="mypage.php" method="post">
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?=$c_month?>" name="c_month">

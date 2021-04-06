@@ -2321,8 +2321,10 @@ $(function(){
 			'item_icon[]'	:ItemIcon,
 			'item_name[]'	:ItemName,
 			'item_price[]'	:ItemPrice
+
 			},
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			if(Chg){
 				$('#customer_log_td_'+Chg).remove();
 			}

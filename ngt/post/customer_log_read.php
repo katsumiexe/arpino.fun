@@ -1,6 +1,5 @@
 <?
-
-include_once('../library/sql_cast.php');
+include_once('../library/sql_post.php');
 
 $c_id		=$_POST["c_id"];
 
