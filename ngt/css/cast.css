@@ -4167,7 +4167,6 @@ input[type=range]::-moz-range-thumb{
 
 .ana_line{
 	border-top	:3px solid #ff3030;
-
 }
 
 #ins_name{
@@ -4180,8 +4179,6 @@ input[type=range]::-moz-range-thumb{
 	background	:linear-gradient(#ffe0e0,#ffd0d0);
 }
 
-
-
 .tmpl_btn{
 	position		:absolute;
 	top				:1vw;
@@ -4190,8 +4187,8 @@ input[type=range]::-moz-range-thumb{
 	font-size		:3.5vw;
 	border-radius	:1vw;
 	font-weight		:700;
-	text-shadow:1px 1px 0 #fafafa;
-	color:#303030
+	text-shadow		:1px 1px 0 #fafafa;
+	color			:#303030;
 }
 
 .btn_1{
