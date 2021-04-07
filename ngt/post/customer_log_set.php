@@ -56,7 +56,6 @@ if($chg){//■変更
 	mysqli_query($mysqli,$sql);
 	$tmp_auto=mysqli_insert_id($mysqli);
 }
-echo $sql;
 $log=str_replace("\n","<br>",$log);
 
 $sdate=substr($sdate,0,4)."/".substr($sdate,4,2)."/".substr($sdate,6,2);
@@ -94,9 +93,10 @@ if($item_name){
 		$app.="</div>";
 	}
 	$sql_log=substr($sql_log,0,-1);
-	mysqli_query($mysqli,$sql);
+	mysqli_query($mysqli,$sql_log);
 	$dat.=$app."</span></td></tr>";
 }
+echo $sql_log;
 echo $dat;
 exit();
 ?>

@@ -63,7 +63,6 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["face"]="./img/cast_no_image.jpg";
 		}
 
-
 		if ($row["img"]) {
 			$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
 

@@ -446,6 +446,33 @@ if($result = mysqli_query($mysqli,$sql)){
 	$log_list_cnt=substr($log_list_cnt,0,-1);
 }
 
+$sql ="SELECT log_id, sdate, SUM(log_price) AS pts, nickname,name, customer_id FROM wp01_0cast_log AS A ";
+$sql.=" LEFT JOIN wp01_0cast_log_list AS B ON B.master_id=A.log_id";
+
+$sql.=" LEFT JOIN wp01_0customer AS C ON A.customer_id=C.id";
+
+$sql.=" WHERE A.cast_id='{$cast_data["id"]}'";
+$sql.=" AND A.sdate LIKE '{$ana_ym}%'";
+$sql.=" AND A.del=0";
+$sql.=" AND B.del=0";
+$sql.=" GROUP BY log_id";
+$sql.=" ORDER BY sdate ASC,stime ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		if(!$row["nickname"]){
+			$row["nickname"]=$row["name"];
+		}
+		
+		$dat_ana[$row["sdate"]][]	 =$row;
+		$pay_all[$row["sdate"]]	+=$row["pts"];
+
+	}
+}
+
+
+
+/*
 $sql ="SELECT log_icon,log_comm,nickname,log_price,date,B.cast_id,customer_id FROM wp01_0cast_log_list AS A ";
 $sql.=" LEFT JOIN wp01_0cast_log AS B ON A.master_id=B.log_id";
 $sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
@@ -465,6 +492,8 @@ if($dat){
 		$pay_all[$tmp_d]	+=$aa1["log_price"];
 	}
 }
+*/
+
 
 }
 
@@ -1118,12 +1147,12 @@ $(function(){
 					</span>
 				<?$tmp_line=0;?>
 
-				<?foreach((array)$dat_ana[$n] as $a1){?>
+				<?foreach((array)$dat_ana[$ana_c] as $a1){?>
 					<?$tmp_lc=$tmp_line % 2;?>
 					<span class="ana_list_c lc<?=$tmp_lc?>">
 						<span class="ana_list_name"><?=$a1["nickname"]?>様</span>
 						<span class="ana_list_item"><?=$a1["log_comm"]?></span>
-						<span class="ana_list_pts"><?=$a1["log_price"]?></span>
+						<span class="ana_list_pts"><?=$a1["pts"]?></span>
 					</span>
 					<?$tmp_line++;?>
 				<? } ?>

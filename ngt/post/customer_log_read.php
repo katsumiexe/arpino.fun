@@ -1,6 +1,5 @@
 <?
 include_once('../library/sql_post.php');
-
 $c_id		=$_POST["c_id"];
 
 $sql	 ="SELECT * FROM wp01_0cast_log";
@@ -13,7 +12,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($dat1 = mysqli_fetch_assoc($result)){
 
 		$t_date=substr($dat1["sdate"],0,4)."/".substr($dat1["sdate"],4,2)."/".substr($dat1["sdate"],6,2);
-
 		$s_time=substr($dat1["stime"],0,2).":".substr($dat1["stime"],2,2);
 		$e_time=substr($dat1["etime"],0,2).":".substr($dat1["etime"],2,2);
 
@@ -30,12 +28,14 @@ if($result = mysqli_query($mysqli,$sql)){
 		$dat.="</div>";
 		$dat.="<div class=\"customer_log_list\">";
 
+
+
 		$sql	 ="SELECT * FROM wp01_0cast_log_list";
 		$sql	.=" WHERE master_id='{$dat1["log_id"]}'";
 		$sql	.=" ORDER BY wp01_0cast_log_list.id DESC";
 
-		if($result = mysqli_query($mysqli,$dat2)){
-			while($dat3 = mysqli_fetch_assoc($dat2)){
+		if($result2 = mysqli_query($mysqli,$sql)){
+			while($dat3 = mysqli_fetch_assoc($result2)){
 				$dat.="<div class=\"customer_log_item\" style=\"border:1px solid {$dat3["log_color"]}; color:{$dat3["log_color"]};\">";
 				$dat.="<span class=\"sel_log_icon_s\">{$dat3["log_icon"]}</span>";
 				$dat.="<span class=\"sel_log_comm_s\">{$dat3["log_comm"]}</span>";
@@ -53,6 +53,7 @@ if(!$dat){
 }
 
 
+echo $sql;
 echo $dat;
 exit();
 ?>
