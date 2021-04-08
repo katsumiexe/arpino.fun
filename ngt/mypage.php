@@ -1096,10 +1096,7 @@ $(function(){
 				<? } ?>
 			</div>
 		</div>
-
 	<?}elseif($cast_page==5){?>
-
-
 
 <div class="main">
 	<div class="config_box">
@@ -1109,7 +1106,7 @@ $(function(){
 				<option value="<?=$a1?>"<?if($a1 == $ana_ym){?> selected="selected"<?}?>><?=$a2?></option>
 			<?}?>
 			</select>
-			<div class="ana_res">収入/予定：<?=$ana_salary_all+$pay_item_all?>円(<?=$ana_salary_y_all+$pay_item_yet?>円)</div>
+			<div class="ana_res">収入/予定：<span class="ana_res_a"><?=$ana_salary_all+$pay_item_all?></span>円<span class="ana_res_b">(<?=$ana_salary_y_all+$pay_item_yet?>円)</span></div>
 		</div>
 
 		<table class="ana">

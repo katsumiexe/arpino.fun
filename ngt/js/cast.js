@@ -2464,7 +2464,7 @@ $(function(){
 		});
 	});
 
-	$('.ana_detail').on('click',function () {
+	$('.ana').on('click','.ana_detail',function () {
 		TMP=$(this).attr('id');
 		$('.ana_detail').removeClass('ana_on');
 		$('.ana_arrow').removeClass('ana_arrow_on');
@@ -2480,6 +2480,21 @@ $(function(){
 		}else{
 			$('#l'+TMP).delay(300).fadeOut(0);
 		}
+	});
+
+	$('.ana_sel').on('change',function({
+		Tmp=$(this).val();
+		$.post({
+			url:"./post/ana_chg.php",
+			data:{
+			't_month'	:Tmp,
+			},
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.ana').html(data.html);
+			$('.ana_res_a').html(data.a);
+			$('.ana_res_b').html(data.b);
+		});
 	});
 
 	$('.tmpl_btn').on('click', function() {
