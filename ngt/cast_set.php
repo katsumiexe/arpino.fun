@@ -1,10 +1,9 @@
 <?php 
 include_once('./library/sql.php');
 
-$st=20210320;
+$st=20210408;
 $cnt=20;
 $sql_a=" INSERT INTO wp01_0schedule(`date`,`sche_date`,`cast_id`,`stime`,`etime`) VALUES";
-
 
 $sql=" SELECT * FROM wp01_0sch_table";
 if($result = mysqli_query($mysqli,$sql)){

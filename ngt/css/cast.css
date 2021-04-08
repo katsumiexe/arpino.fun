@@ -3931,6 +3931,29 @@ input[type=range]::-moz-range-thumb{
 	font-weight		:400;
 }
 
+.ana_head{
+	position	:relative;
+	height		:10vw;
+	width		:96vw;
+}
+
+.ana_sel{
+	width		:30vw;
+	height		:8vw;
+	font-size	:4.5vw;
+	padding-left:1.5vw;
+}
+
+.ana_res{
+	display		:inline-block;
+	width		:65vw;
+	height		:8vw;
+	line-height	:8vw;
+
+	font-size	:3.5vw;
+}
+
+
 .ana_top{
 	background		:#c0c0c0;
 	border			:1px solid #666666;

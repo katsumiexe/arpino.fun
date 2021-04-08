@@ -37,7 +37,7 @@ $month_st		=date("Ymd",strtotime($calendar[0]));
 $month_ed		=date("Ymd",strtotime($calendar[3]));
 
 $ana_ym=$_POST["ana_ym"];
-if(!$ana_ym) $ana_ym=date("Ym");
+if(!$ana_ym) $ana_ym=substr($day_8,0,6);
 
 $ana_t=date("t",strtotime($ana_1));
 
@@ -162,8 +162,69 @@ if($result = mysqli_query($mysqli,$sql)){
 			$sche_dat[$row["sche_date"]]="";
 			$ana_time[$row["sche_date"]]=0;
 		}
+	}
+}
+
+if(is_array($ana_time)){
+	foreach($ana_time as $a1 => $a2){
+		if($a1<=$day_8){
+			$ana_salary[$a1]=$a2*$cast_data["cast_salary"];	
+			$ana_salary_all+=$a2*$cast_data["cast_salary"];	
+		}
+			$ana_salary_y[$a1]=$a2*$cast_data["cast_salary"];	
+			$ana_salary_y_all+=$a2*$cast_data["cast_salary"];	
+	}
+}
+
+//■------------------
+$sql ="SELECT * FROM wp01_0cast_log_table";
+$sql.=" WHERE cast_id='{$cast_data["id"]}'";
+$sql.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$log_item[$row["sort"]]=$row;
+		$log_list_cnt.='"i'.$row["sort"].'",';
+	}
+	$log_list_cnt=substr($log_list_cnt,0,-1);
+}
+
+$sql ="SELECT log_id, sdate, SUM(log_price) AS pts, nickname,name, customer_id FROM wp01_0cast_log AS A ";
+$sql.=" LEFT JOIN wp01_0cast_log_list AS B ON B.master_id=A.log_id";
+$sql.=" LEFT JOIN wp01_0customer AS C ON A.customer_id=C.id";
+
+$sql.=" WHERE A.cast_id='{$cast_data["id"]}'";
+$sql.=" AND A.sdate LIKE '{$ana_ym}%'";
+$sql.=" AND A.del=0";
+$sql.=" AND B.del=0";
+$sql.=" GROUP BY log_id";
+$sql.=" ORDER BY sdate ASC,stime ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		if(!$row["nickname"]){
+			$row["nickname"]=$row["name"];
+		}
+		
+		$dat_ana[$row["sdate"]][]	 =$row;
+		$pay_item[$row["sdate"]]	+=$row["pts"];
+
+		if($row["sdate"]<=$day_8){
+			$pay_item_all					+=$row["pts"];
+		}
+			$pay_item_yet					+=$row["pts"];
 
 	}
+}
+
+$ana_st=substr($config["open_day"],0,6);
+$ana_ed=date("Ym",strtotime($day_month)+6048000);
+
+for($n=$ana_st;$n<$ana_ed;$n++){
+	if(substr($ana_st,-2,2) == 13){
+		$ana_st+=88;
+	}
+	$ana_sel[$n]=substr($n,0,4)."年".substr($n,4,2)."月";
 }
 
 //■カレンダー　メモ
@@ -187,7 +248,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 //■カレンダー　ブログカウント
 $sql	 ="SELECT * FROM wp01_0posts";
 $sql	.=" WHERE cast='{$cast_data["id"]}'";
@@ -203,7 +263,6 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 //■カスタマーソート
-
 $sql	 ="SELECT *{$app5} FROM wp01_0customer";
 $sql	.=$app4;
 $sql	.=" WHERE wp01_0customer.cast_id='{$cast_data["id"]}'";
@@ -273,7 +332,6 @@ for($n=0;$n<3;$n++){
 	if($wk>0) $wk-=7;
 
 	$st=strtotime($calendar[$n])+($wk*86400);//初日
-	
 
 	$v_year[$n]	=substr($calendar[$n],0,4)."年";
 	$v_month[$n]=substr($calendar[$n],5,2)."月";
@@ -369,7 +427,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 //■Blog------------------
 $sql ="SELECT * FROM wp01_0posts";
 $sql.=" WHERE cast='{$cast_data["id"]}'";
@@ -432,72 +489,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$cnt_mail_data=count($mail_data);
 	}
 }
-
-//■------------------
-$sql ="SELECT * FROM wp01_0cast_log_table";
-$sql.=" WHERE cast_id='{$cast_data["id"]}'";
-$sql.=" ORDER BY sort ASC";
-
-if($result = mysqli_query($mysqli,$sql)){
-	while($row = mysqli_fetch_assoc($result)){
-		$log_item[$row["sort"]]=$row;
-		$log_list_cnt.='"i'.$row["sort"].'",';
-	}
-	$log_list_cnt=substr($log_list_cnt,0,-1);
 }
-
-$sql ="SELECT log_id, sdate, SUM(log_price) AS pts, nickname,name, customer_id FROM wp01_0cast_log AS A ";
-$sql.=" LEFT JOIN wp01_0cast_log_list AS B ON B.master_id=A.log_id";
-
-$sql.=" LEFT JOIN wp01_0customer AS C ON A.customer_id=C.id";
-
-$sql.=" WHERE A.cast_id='{$cast_data["id"]}'";
-$sql.=" AND A.sdate LIKE '{$ana_ym}%'";
-$sql.=" AND A.del=0";
-$sql.=" AND B.del=0";
-$sql.=" GROUP BY log_id";
-$sql.=" ORDER BY sdate ASC,stime ASC";
-
-if($result = mysqli_query($mysqli,$sql)){
-	while($row = mysqli_fetch_assoc($result)){
-		if(!$row["nickname"]){
-			$row["nickname"]=$row["name"];
-		}
-		
-		$dat_ana[$row["sdate"]][]	 =$row;
-		$pay_all[$row["sdate"]]	+=$row["pts"];
-
-	}
-}
-
-
-
-/*
-$sql ="SELECT log_icon,log_comm,nickname,log_price,date,B.cast_id,customer_id FROM wp01_0cast_log_list AS A ";
-$sql.=" LEFT JOIN wp01_0cast_log AS B ON A.master_id=B.log_id";
-$sql.=" LEFT JOIN wp01_0customer AS C ON B.customer_id=C.id";
-
-$sql.=" WHERE B.cast_id='{$cast_data["id"]}'";
-$sql.=" AND A.date>='{$calendar[1]}'";
-$sql.=" AND A.date<'{$calendar[2]}'";
-$sql.=" AND A.del=0";
-$sql.=" AND B.del=0";
-$sql.=" ORDER BY log_id ASC";
-
-if($dat){
-	foreach($dat as $aa1){
-		$tmp_d=substr($aa1["date"],8,2)+0;
-
-		$dat_ana[$tmp_d][]	 =$aa1;
-		$pay_all[$tmp_d]	+=$aa1["log_price"];
-	}
-}
-*/
-
-
-}
-
-
 ?>
 <html lang="ja">
 <head>
@@ -1106,8 +1098,20 @@ $(function(){
 		</div>
 
 	<?}elseif($cast_page==5){?>
+
+
+
 <div class="main">
 	<div class="config_box">
+		<div class="ana_head">
+			<select class="ana_sel">
+			<?foreach($ana_sel as $a1 => $a2){?>
+				<option value="<?=$a1?>"<?if($a1 == $ana_ym){?> selected="selected"<?}?>><?=$a2?></option>
+			<?}?>
+			</select>
+			<div class="ana_res">収入/予定：<?=$ana_salary_all+$pay_item_all?>円(<?=$ana_salary_y_all+$pay_item_yet?>円)</div>
+		</div>
+
 		<table class="ana">
 		<tr>
 			<td class="ana_top">日時</td>
@@ -1120,8 +1124,7 @@ $(function(){
 		<?
 			$ana_c	=$ana_ym*100+$n;
 			$ana_week	=($week_01+$n-1)%7;
-			$ana_salary = $ana_time[$ana_c] * $cast_data["cast_salary"];
-			$ana_all = number_format($ana_salary +$pay_all[$ana_c]);
+			$ana_all = number_format($ana_salary[$ana_c] +$pay_item[$ana_c]);
 			if($ana_c >$day_8){
 				$f_day="ana_f";
 			}
@@ -1143,7 +1146,7 @@ $(function(){
 					<span class="ana_list_c lc1">
 						<span class="ana_list_name">店舗</span>
 						<span class="ana_list_item">時給</span>
-						<span class="ana_list_pts"><?=$ana_salary?></span>
+						<span class="ana_list_pts"><?=$ana_salary[$ana_c]?></span>
 					</span>
 				<?$tmp_line=0;?>
 
@@ -1275,7 +1278,6 @@ $(function(){
 </select>
 <span class="config_tag3_in">一日の開始時間</span>
 </div>
-
 <div class="config_tag3">
 <select id="config_week_start" class="config_tag3_sel">
 <option value="0"<?if($cast_data["week_st"]==0){?> selected="selected"<?}?>>日曜日</option>
