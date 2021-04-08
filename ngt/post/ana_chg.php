@@ -84,56 +84,59 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-<<<EOM
-		<tr>
-			<td class="ana_top">日時</td>
-			<td class="ana_top">シフト</td>
-			<td class="ana_top">時間</td>
-			<td class="ana_top" colspan="2">給与・歩合</td>
-		</tr>
+$dat["a"]=$pay_item_all+$ana_salary_all;
+$dat["b"]=$pay_item_yet+$ana_salary_y_all;
 
-	<?for($n=1;$n<$ana_t+1;$n++){?>
-		<?
-			$ana_c	=$ana_ym*100+$n;
-			$ana_week	=($week_01+$n-1)%7;
-			$ana_all = number_format($ana_salary[$ana_c] +$pay_item[$ana_c]);
-			if($ana_c >$day_8){
-				$f_day="ana_f";
-			}
-		?>
+$dat["html"]=<<<EOM
+	<tr>
+		<td class="ana_top">日時</td>
+		<td class="ana_top">シフト</td>
+		<td class="ana_top">時間</td>
+		<td class="ana_top" colspan="2">給与・歩合</td>
+	</tr>
 
-		<tr>
-			<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
-			<td class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$days_sche[$ana_c]?></td>
-			<td class="ana_time <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_time[$ana_c]?></td>
-			<td class="ana_pay <?=$f_day?> <?=$ana_line[$ana_week]?>">	
-				<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
-			</td>
-			<td id="ana_<?=$n?>" class="ana_detail<?if($ana_all ==0){?>_n<?}?> <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
-		</tr>
+<?for($n=1;$n<$ana_t+1;$n++){?>
+	<?
+		$ana_c	=$ana_ym*100+$n;
+		$ana_week	=($week_01+$n-1)%7;
+		$ana_all = number_format($ana_salary[$ana_c] +$pay_item[$ana_c]);
+		if($ana_c >$day_8){
+			$f_day="ana_f";
+		}
+	?>
 
-		<tr>
-			<td id="lana_<?=$n?>" class="ana_list" colspan="4">
-				<div id="dana_<?=$n?>" class="ana_list_div">
-					<span class="ana_list_c lc1">
-						<span class="ana_list_name">店舗</span>
-						<span class="ana_list_item">時給</span>
-						<span class="ana_list_pts"><?=$ana_salary[$ana_c]?></span>
-					</span>
-				<?$tmp_line=0;?>
+	<tr>
+		<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
+		<td class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$days_sche[$ana_c]?></td>
+		<td class="ana_time <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_time[$ana_c]?></td>
+		<td class="ana_pay <?=$f_day?> <?=$ana_line[$ana_week]?>">	
+			<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
+		</td>
+		<td id="ana_<?=$n?>" class="ana_detail<?if($ana_all ==0){?>_n<?}?> <?=$ana_line[$ana_week]?>"><span class="ana_arrow"></span></td>
+	</tr>
 
-				<?foreach((array)$dat_ana[$ana_c] as $a1){?>
-					<?$tmp_lc=$tmp_line % 2;?>
-					<span class="ana_list_c lc<?=$tmp_lc?>">
-						<span class="ana_list_name"><?=$a1["nickname"]?>様</span>
-						<span class="ana_list_item"><?=$a1["log_comm"]?></span>
-						<span class="ana_list_pts"><?=$a1["pts"]?></span>
-					</span>
-					<?$tmp_line++;?>
-				<? } ?>
-				</div>
-			</td>
-		</tr>
+	<tr>
+		<td id="lana_<?=$n?>" class="ana_list" colspan="4">
+			<div id="dana_<?=$n?>" class="ana_list_div">
+				<span class="ana_list_c lc1">
+					<span class="ana_list_name">店舗</span>
+					<span class="ana_list_item">時給</span>
+					<span class="ana_list_pts"><?=$ana_salary[$ana_c]?></span>
+				</span>
+			<?$tmp_line=0;?>
+
+			<?foreach((array)$dat_ana[$ana_c] as $a1){?>
+				<?$tmp_lc=$tmp_line % 2;?>
+				<span class="ana_list_c lc<?=$tmp_lc?>">
+					<span class="ana_list_name"><?=$a1["nickname"]?>様</span>
+					<span class="ana_list_item"><?=$a1["log_comm"]?></span>
+					<span class="ana_list_pts"><?=$a1["pts"]?></span>
+				</span>
+				<?$tmp_line++;?>
+			<? } ?>
+			</div>
+		</td>
+	</tr>
 EOM;
 
 echo json_decode($dat);
