@@ -1696,12 +1696,12 @@ $(function(){
 			data:{
 				'c_month':$('#c_month').val(),
 				'base_day':$('#base_day').val(),
-				'cast_id':CastId,
 				'pre':'1',
 			},
-			dataType: 'json',
+//			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			$('.cal_weeks_box_2').prepend(data.html).animate({'top':'-73.5vw'},2000);
 			$('.cal_weeks_box_2').children().slice(-7).remove();
 			$('#base_day').val(data.date);
@@ -1719,7 +1719,6 @@ $(function(){
 			data:{
 				'c_month':$('#c_month').val(),
 				'base_day':$('#base_day').val(),
-				'cast_id':CastId,
 				'pre':'2',
 			},
 			dataType: 'json',
@@ -1728,6 +1727,10 @@ $(function(){
 			$('.cal_weeks_box_2').children().slice(0,7).remove();
 			$('.cal_weeks_box_2').append(data.html).css({'top':'-73.5vw'});
 			$('#base_day').val(data.date);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
 	});
 
@@ -2482,8 +2485,9 @@ $(function(){
 		}
 	});
 
-	$('.ana_sel').on('change',function({
+	$('.ana_sel').on('change',function(){
 		Tmp=$(this).val();
+
 		$.post({
 			url:"./post/ana_chg.php",
 			data:{

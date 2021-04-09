@@ -34,10 +34,11 @@ if($pre ==1){
 	$sql	.=" AND sche_date>='{$base_day_sql}'";
 	$sql	.=" AND sche_date<'{$base_day_ed_sql}'";
 
-	$dat = $wpdb->get_results($sql,ARRAY_A );
-	foreach($dat as $tmp2){
-		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
-		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$stime[$row["sche_date"]]		=$row["stime"];
+			$etime[$row["sche_date"]]		=$row["etime"];
+		}
 	}
 
 }else{

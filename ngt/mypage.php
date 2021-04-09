@@ -448,7 +448,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["view_date"] > $now){
 			$row["status"]=3; 
 		}
-
 		$blog[]=$row;
 	}
 	if(is_array($blog)){
