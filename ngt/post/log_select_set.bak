@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $c_id		=$_POST["c_id"];
 $item_name	=$_POST["item_name"];
 $item_icon	=$_POST["item_icon"];

@@ -2,7 +2,7 @@
 /*
 MEMO2読み込み
 */
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 
 $c_id		=$_POST["c_id"];
 

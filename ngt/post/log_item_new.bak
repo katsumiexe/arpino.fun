@@ -1,7 +1,7 @@
 <?
 /*
 */
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 include_once("../library/inc_code.php");
 
 $item_name	=$_POST["item_name"];

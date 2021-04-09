@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $week		=$_POST["week"];
 $sql =" UPDATE wp01_0cast SET";
 $sql.=" week_st='{$week}'";

@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $sort		=$_POST["sort"];
 $cds		=$_POST["cds"];
 $clr		=$_POST["clr"];

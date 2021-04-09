@@ -3,7 +3,7 @@
 BlogSet
 */
 
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 include_once("../library/inc_code.php");
 
 $list_id	=$_POST["list_id"];

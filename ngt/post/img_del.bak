@@ -3,7 +3,7 @@
 画像登録処理
 */
 
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $c_id		=$_POST["c_id"];
 $imgurl		=$_POST["imgurl"];
 

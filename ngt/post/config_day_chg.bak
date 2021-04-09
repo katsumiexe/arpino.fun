@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $times		=$_POST["times"]+0;
 
 $sql =" UPDATE wp01_0cast SET";

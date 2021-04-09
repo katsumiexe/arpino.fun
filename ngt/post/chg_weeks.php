@@ -2,7 +2,7 @@
 /*
 スケジュールスライドセット処理
 */
-include_once('../library/sql_cast.php');
+include_once('../library/sql_post.php');
 
 $week[0]="日";
 $week[1]="月";
@@ -36,8 +36,6 @@ if($pre ==1){
 
 	$dat = $wpdb->get_results($sql,ARRAY_A );
 	foreach($dat as $tmp2){
-
-
 		$stime[$tmp2["sche_date"]]		=$tmp2["stime"];
 		$etime[$tmp2["sche_date"]]		=$tmp2["etime"];
 	}

@@ -2,7 +2,7 @@
 /*
 mail_hist
 */
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $c_id		=$_POST['c_id'];
 $st			=($_POST['pg']+0)*10;
 $st=0;

@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $blog_id	=$_POST["blog_id"];
 
 //■Blog------------------

@@ -145,6 +145,10 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["stime"] && $row["etime"]){
 			$days_sche[$row["sche_date"]]="<span class=\"sche_b\"><span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span></span>";
 			$sche_dat[$row["sche_date"]]="n2";
+
+			$stime[$row["sche_date"]]=$row["stime"];
+			$etime[$row["sche_date"]]=$row["etime"];
+
 			if(substr($sche_table_calc["in"][$row["stime"]],2,1) == 3){
 				$tmp_s=$sche_table_calc["in"][$row["stime"]]+20;
 			}else{
@@ -161,6 +165,8 @@ if($result = mysqli_query($mysqli,$sql)){
 			$days_sche[$row["sche_date"]]="<span class=\"sche_s\">休み</span>";
 			$sche_dat[$row["sche_date"]]="";
 			$ana_time[$row["sche_date"]]=0;
+			$stime[$row["sche_date"]]="";
+			$etime[$row["sche_date"]]="";
 		}
 	}
 }
@@ -1474,7 +1480,7 @@ $(function(){
 					$sche_8=date("Ymd",$base_day+86400*$n);
 				?>
 					<div class="cal_list">
-						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?substr($sche_8,4,2)?>月<?substr($sche_8,6,2)?>月(<?=$week[$tmp_wk]?>)</div>
+						<div class="cal_day <?=$week_tag2[$tmp_wk]?>"><?=substr($sche_8,4,2)?>月<?=substr($sche_8,6,2)?>日(<?=$week[$tmp_wk]?>)</div>
 
 						<?if($day_8>$sche_8){?>
 							<div class="d_sch_time_in <?=$sche_8?>"><?=$stime[$sche_8]?></div>

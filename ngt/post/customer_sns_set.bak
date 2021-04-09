@@ -2,7 +2,7 @@
 /*
 SNSセット
 */
-include_once('../library/sql_post.php');
+include_once('../library/sql_cast.php');
 $n_id	=$_POST["n_id"];
 
 $c_id		=$_POST['c_id'];
