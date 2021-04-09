@@ -71,6 +71,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$sche_table_name[$tmp["in_out"]][$tmp["sort"]]	=$tmp["name"];
 		$sche_table_time[$tmp["in_out"]][$tmp["sort"]]	=$tmp["time"];
+		$sch_cnt++;
 	}
 }
 
@@ -94,7 +95,8 @@ if($base_now>$add_day+86400*$n){
 }else{
 	$cal["html"].="<select id=\"sel_in{$n}\" class=\"sch_time_in\">";
 	$cal["html"].="<option class=\"sel_txt\"></option>";
-	for($s=0;$s<count($sche_table_name["in"]);$s++){
+
+	for($s=0;$s<$sch_cnt;$s++){
 		$cal["html"].="<option class=\"sel_txt\" value=\"{$sche_table_name["in"][$s]}\"";
 		if($stime[date("Ymd",$add_day+86400*$n)]===$sche_table_name["in"][$s]){
 			$cal["html"].= " selected=\"selected\"";
@@ -107,7 +109,7 @@ if($base_now>$add_day+86400*$n){
 	$cal["html"].="<select id=\"sel_out{$n}\" class=\"sch_time_out\">";
 	$cal["html"].="<option class=\"sel_txt\"></option>";
 
-	for($s=0;$s<count($sche_table_name["out"]);$s++){
+	for($s=0;$s<$sch_cnt;$s++){
 		$cal["html"].="<option class=\"sel_txt\" value=\"{$sche_table_name["out"][$s]}\"";
 		if($etime[date("Ymd",$add_day+86400*$n)]===$sche_table_name["out"][$s]){
 			$cal["html"].= " selected=\"selected\"";

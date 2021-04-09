@@ -1458,9 +1458,6 @@ $(function(){
 			$('.mail_write_text').val('');
 //			$('.mail_img_view').attr('src','./img/customer_no_img.jpg');
 
-
-
-
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
@@ -1688,7 +1685,6 @@ $(function(){
 		},
 	});
 
-
 	$('.cal_weeks_prev').on('click',function (){
 /*		$('.cal_weeks_box_2').animate({'top':'0'},2000);*/
 		$.post({
@@ -1698,10 +1694,9 @@ $(function(){
 				'base_day':$('#base_day').val(),
 				'pre':'1',
 			},
-//			dataType: 'json',
+			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.cal_weeks_box_2').prepend(data.html).animate({'top':'-73.5vw'},2000);
 			$('.cal_weeks_box_2').children().slice(-7).remove();
 			$('#base_day').val(data.date);
