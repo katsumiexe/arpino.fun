@@ -1515,7 +1515,6 @@ $(function(){
 
 		}else if($(this).attr('id')=='customer_group'){
 			$('#clist'+C_Id).children('.customer_hidden_group').val($(this).val());
-
 		}
 
 		$.post({
@@ -1745,7 +1744,6 @@ $(function(){
 					data:{
 						'c_month':$('#c_month').val(),
 						'base_day':$('#base_day').val(),
-						'cast_id':CastId,
 						'pre':'1',
 					},
 					dataType: 'json',
@@ -1762,10 +1760,9 @@ $(function(){
 				$.post({
 					url:"./post/chg_weeks.php",
 					data:{
-						'c_month':$('#c_month').val(),
-						'base_day':$('#base_day').val(),
-						'cast_id':CastId,
-						'pre':'2',
+						'c_month'	:$('#c_month').val(),
+						'base_day'	:$('#base_day').val(),
+						'pre'		:'2',
 					},
 					dataType: 'json',
 
@@ -1780,7 +1777,6 @@ $(function(){
 			}
 		},
 	});
-
 
 	$('.notice_ttl_in').on('click',function(){
 		if(!$(this).hasClass('notice_sel')){
