@@ -564,6 +564,7 @@ input:focus{
 }
 
 .days_birth{
+	position		:relative;
 	display			:inline-block;
 	width			:38vw;
 	height			:4.5vw;
