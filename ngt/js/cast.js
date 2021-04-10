@@ -2014,35 +2014,26 @@ $(function(){
 		$(this).addClass('cc8');
 
 		DaySet =$(this).attr('id').replace("c","");
-		$('#set_date').val(DaySet);
-	
-		ToMon	=$(this).attr('id').substr(5,2);
-		ToDay	=$(this).attr('id').substr(7,2);
-		ToMD	=$(this).attr('id').substr(5,4);
-		ToWeek	=$(this).attr('week');
-		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
+		console.log(DaySet);
 
-		var Tmp=$(this).attr('id').replace('c','cal_s_');
-		if($('.'+Tmp).val()){
-			$('.days_day').text($('.'+Tmp).val());
-		}else{
-			$('.days_day').text('休み');
-		}		
+		$.post({
+			url:"./post/calendar_day_sel.php",
+			data:{
+			'set_date'	:DaySet,
+			},
+//			dataType: 'json',
 
-		var Tmp=$(this).attr('id').substr(5,4);
-		if($('.cal_b_'+Tmp).val()){
-			$('.cal_days_birth').html($('.cal_b_'+Tmp).val());
-		}else{
-			$('.cal_days_birth').text('');
-		}
+		}).done(function(data, textStatus, jqXHR){
+console.log(data);
+			$('.days_date').html(data.date);
+			$('.days_sche').html(data.sche);
+			$('.cal_days_birth').html(data.birth);
+			$('.cal_days_memo').val(data.mdmo);
 
-		var Tmp=$(this).attr('id').replace('c','cal_m_');
-		if($('.'+Tmp).val()){
-			$('.cal_days_memo').val($('.'+Tmp).val());
-		}else{
-			$('.cal_days_memo').val('');
-		}
-		console.log(Tmp);
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
 	});
 
 
