@@ -501,11 +501,23 @@ input:focus{
 	top				:9vw;
 	left			:1vw;
 	width			:34vw;
-	height			:7vw;
-	line-height		:7vw;
+	height			:6vw;
+	line-height		:6vw;
 	color			:#0000d0;
 	text-align		:left;
 	font-size:0;
+}
+
+
+.cal_days_birth_in{
+	display			:inline-block;
+	width			:34vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:3.5vw;
+	color			:#006000;
+	text-align		:left;
+	overflow-x		:hidden;
 }
 
 .cal_days_birth{
@@ -515,12 +527,8 @@ input:focus{
 	left			:1vw;
 	width			:38vw;
 	line-height		:6vw;
-	font-size		:4vw;
-	color			:#303030;
 	text-align		:left;
-	height			:24vw;
 	height			:calc(100vh - 135vw);
-	overflow-x		:hidden;
 	overflow-y		:scroll;
 }
 
@@ -555,12 +563,12 @@ input:focus{
 	left			:1vw;
 	bottom			:0;
 	margin			:auto;
-	width			:5vw;
-	height			:5vw;
-	line-height		:5vw;	
+	width			:4.5vw;
+	height			:4vw;
+	line-height		:4vw;	
 	text-align		:center;
 	font-family		:at_icon;
-	font-size		:5vw;
+	font-size		:4vw;
 }
 
 .days_birth{

@@ -143,7 +143,6 @@ $sql   	.=" ORDER BY id ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if($row["stime"] && $row["etime"]){
-			$days_sche[$row["sche_date"]]="<span class=\"sche_b\"><span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span></span>";
 			$sche_dat[$row["sche_date"]]="n2";
 
 			$stime[$row["sche_date"]]=$row["stime"];
@@ -162,7 +161,6 @@ if($result = mysqli_query($mysqli,$sql)){
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
 
 		}else{
-			$days_sche[$row["sche_date"]]="<span class=\"sche_s\">休み</span>";
 			$sche_dat[$row["sche_date"]]="";
 			$ana_time[$row["sche_date"]]=0;
 			$stime[$row["sche_date"]]="";
@@ -239,17 +237,15 @@ $sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND date_8>='{$month_st}'";
 $sql	.=" AND date_8<'{$month_ed}'";
 $sql	.=" AND `log` IS NOT NULL";
-
+echo $sql;
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if(trim($row["log"])){
 			$memo_dat[$row["date_8"]]="n3";
-			$cal_app[substr($row["date_8"],0,6)].="<input class=\"cal_m_{$row["date_8"]}\" type=\"hidden\" value=\"{$row["log"]}\">";
-/*
-			if($day_8 == $row["date_8"]){
-				$days_memo.=$row["log"];
+	
+			if($row["date_8"] == $day_8){
+				$days_memo=$row["log"];
 			}
-*/
 		}
 	}
 }
@@ -281,7 +277,7 @@ $sql	.=$app3;
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
-		if(!$row["birth_day"] || $row["birth_day"]=="0000-00-00"){
+		if(!$row["birth_day"]){
 			$row["yy"]="----";
 			$row["mm"]="--";
 			$row["dd"]="--";
@@ -289,9 +285,9 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		}else{
 			$row["yy"]=substr($row["birth_day"],0,4);
-			$row["mm"]=substr($row["birth_day"],5,2);
-			$row["dd"]=substr($row["birth_day"],8,2);
-			$row["ag"]= floor(($day_8-str_replace("-", "", $row["birth_day"]))/10000);
+			$row["mm"]=substr($row["birth_day"],4,2);
+			$row["dd"]=substr($row["birth_day"],6,2);
+			$row["ag"]= floor(($now_8-$row["birth_day"])/10000);
 		}
 
 		$birth=str_replace("-","",$row["birth_day"]);
@@ -704,9 +700,11 @@ $(function(){
 			<?}?>
 		</div>
 
+
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$day_time)?>[<?=$week[$day_w]?>]</span>
-			<span class="cal_days_sche"><span class="days_icon"></span><?=$days_sche[$now_8]?></span>
+
+			<span class="cal_days_sche"><span class="days_icon"></span><span id="days_sche" class="sche_b"><?=$days_sche?></span></span>
 			<span class="cal_days_birth"><?=$days_birth[substr($now_8,4,4)]?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$day_8?>">
