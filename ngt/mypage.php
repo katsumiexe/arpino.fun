@@ -166,8 +166,17 @@ if($result = mysqli_query($mysqli,$sql)){
 			$stime[$row["sche_date"]]="";
 			$etime[$row["sche_date"]]="";
 		}
+
+		if($row["sche_date"] == $day_8){
+			$days_sche="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
+		}
 	}
 }
+
+if(!$days_sche){
+	$days_sche="休み";
+}
+
 
 if(is_array($ana_time)){
 	foreach($ana_time as $a1 => $a2){
@@ -237,7 +246,7 @@ $sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND date_8>='{$month_st}'";
 $sql	.=" AND date_8<'{$month_ed}'";
 $sql	.=" AND `log` IS NOT NULL";
-echo $sql;
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if(trim($row["log"])){
@@ -276,33 +285,24 @@ $sql	.=$app3;
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
-		if(!$row["birth_day"]){
-			$row["yy"]="----";
-			$row["mm"]="--";
-			$row["dd"]="--";
-			$row["ag"]="--";
-
-		}else{
-			$row["yy"]=substr($row["birth_day"],0,4);
-			$row["mm"]=substr($row["birth_day"],4,2);
-			$row["dd"]=substr($row["birth_day"],6,2);
-			$row["ag"]= floor(($now_8-$row["birth_day"])/10000);
-		}
-
-		$birth=str_replace("-","",$row["birth_day"]);
-		$birth_y	=substr($birth,0,4);
-		$birth_m	=substr($birth,4,2);
-		$birth_d	=substr($birth,6,2);
-		$birth_dat[$birth_m.$birth_d]="n1";
-
-		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
-		$days_birth[$birth_m.$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
+		$birth_md	=substr($row["birth_day"],4,4);
+		$birth_dat[$birth_md]="n1";
 
 		$cd="";
 		for($n=0;$n<strlen($row["id"]);$n++){
 			$tmp=substr($row["id"],$n,1);
 			$cd.=$dec[$id_0][$tmp];
+		}
+
+		if(substr($day_8,4,4) ==$birth_md){
+			$tmp_age=ceil(($day_8-$row["birth_day"])/10000);
+			if(!$row["nickname"]){
+				$tmp_name=$row["name"]."様";
+			}else{	
+				$tmp_name=$row["nickname"];
+			} 
+			$days_birth.="<span id=\"c{$row["id"]}\" class=\"cal_days_birth_in\"><span class=\"days_icon\"></span><span class=\"days_birth\">{$tmp_name}({$tmp_age})</span></span><br>";
+		
 		}
 
 		if(file_exists("./img/cast/{$box_no}/c/{$cd}.png")){
@@ -314,14 +314,6 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		$customer[]=$row;
 		$cnt_coustomer++;
-	}
-
-	if($birth_hidden){
-		foreach($birth_hidden as $a1 => $a2){
-			foreach($birth_hidden[$a1] as $a3 => $a4){
-				$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
-			}
-		}
 	}
 }
 
@@ -375,7 +367,6 @@ for($n=0;$n<3;$n++){
 			$app_n2=$sche_dat[$tmp_ymd];
 			$app_n3=$memo_dat[$tmp_ymd];
 			$app_n4=$blog_dat[$tmp_ymd];
-			$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$days_sche[$tmp_ymd]}\">";
 		}
 
 		$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
@@ -700,12 +691,10 @@ $(function(){
 			<?}?>
 		</div>
 
-
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$day_time)?>[<?=$week[$day_w]?>]</span>
-
-			<span class="cal_days_sche"><span class="days_icon"></span><span id="days_sche" class="sche_b"><?=$days_sche?></span></span>
-			<span class="cal_days_birth"><?=$days_birth[substr($now_8,4,4)]?></span>
+			<span class="cal_days_sche"><span class="days_icon"></span><span id="days_sche" class="sche_in"><?=$days_sche?></span></span>
+			<span class="cal_days_birth"><?=$days_birth?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$day_8?>">
 		</div>
@@ -1437,16 +1426,16 @@ $(function(){
 			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$day_time+172800)?>[<?=$week[date("w",$day_time+172800)]?>]">
 		</div>
 		<div id="notice_box_1" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_8]?></span><br>
-			<span class="notice_box_birth"><?=$days_birth[$day_md]?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
+			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
 		<div id="notice_box_2" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_8_1]?></span><br>
-			<span class="notice_box_birth"><?=$days_birth[$day_md_1]?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span></span><br>
+			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
 		<div id="notice_box_3" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_2]?></span><br>
-			<span class="notice_box_birth"><?=$days_birth[$day_md_2]?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span></span><br>
+			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 
