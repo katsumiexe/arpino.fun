@@ -188,7 +188,7 @@ $(function(){
 	$('.blog_open_no').on('click',function () {
 		$(this).addClass('no_on');
 		$('.blog_open_yes').removeClass('yes_on');
-		$('#blog_status').val('1');
+		$('#blog_status').val('2');
 	});
 
 	$('.blog_list').on('click','.blog_next',function () {
@@ -269,13 +269,13 @@ $(function(){
 	});
 
 	$('#tag_1_tbl').on('change','.item_textbox,.rd',function(){
-		Tmp=$(this).attr('id');
 		$.post({
 			url:"./post/customer_detail_set4.php",
 			data:{
-				'tmp'		:Tmp,
 				'c_id'		:C_Id,
+				'cast_id'	:CastId,
 				'value'		:$(this).val(),
+				'item'		:$(this).attr('name').replace('cus',''),
 			},
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
@@ -364,49 +364,44 @@ $(function(){
 	});
 
 	$('#customer_regist_set').on('click',function () {
-		if($('#regist_name').val() =='' && $('#regist_nick').val() ==''){
-			alert('「名前」か「呼び名」どちらかは必要です');		
-			return false;
+		$.post({
+			url:"./post/customer_regist_set.php",
+			data:{
+				'group'		:$('#regist_group').val(),
+				'name'		:$('#regist_name').val(),
+				'nick'		:$('#regist_nick').val(),
+				'fav'		:$('#regist_fav').val(),
 
-		}else{
-			$.post({
-				url:"./post/customer_regist_set.php",
-				data:{
-					'group'		:$('#regist_group').val(),
-					'name'		:$('#regist_name').val(),
-					'nick'		:$('#regist_nick').val(),
-					'fav'		:$('#regist_fav').val(),
+				'yy'		:$('#reg_yy').val(),
+				'mm'		:$('#reg_mm').val(),
+				'dd'		:$('#reg_dd').val(),
+				'ag'		:$('#reg_ag').val(),
+				'img_code'	:base_64,
+			},
 
-					'yy'		:$('#reg_yy').val(),
-					'mm'		:$('#reg_mm').val(),
-					'dd'		:$('#reg_dd').val(),
-					'ag'		:$('#reg_ag').val(),
-					'img_code'	:base_64,
-				},
-			}).done(function(data, textStatus, jqXHR){
-				console.log(data);
-				$('.customer_all_in').append(data);
-				$('.customer_regist').animate({'top':'100vh'},200);
-				$('.set_back').fadeOut(100);
 
-				$('#regist_group').val('0');
-				$('#regist_name').val('');
-				$('#regist_nick').val('');
-				$('#regist_fav').val('0');
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
+			$('.customer_all_in').append(data);
+			$('.customer_regist').animate({'top':'100vh'},200);
+			$('.set_back').fadeOut(100);
 
-				$('#reg_yy').val('1980');
-				$('#reg_mm').val('01');
-				$('#reg_dd').val('01');
-				$('#reg_ag').val('30');
-				$('.reg_fav').css('color','#cccccc');
+			$('#regist_group').val('0');
+			$('#regist_name').val('');
+			$('#regist_nick').val('');
+			$('#regist_fav').val('0');
 
-			}).fail(function(jqXHR, textStatus, errorThrown){
-				console.log(textStatus);
-				console.log(errorThrown);
-			});
-		}
+			$('#reg_yy').val('1980');
+			$('#reg_mm').val('01');
+			$('#reg_dd').val('01');
+			$('#reg_ag').val('30');
+			$('.reg_fav').css('color','#cccccc');
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
 	});
-
 
 	$('#reg_yy,#reg_mm,#reg_dd').on('change', function(){
 		var Tmp=$('#reg_mm').val()+$('#reg_dd').val();
@@ -456,28 +451,9 @@ $(function(){
 
 	$('#regist_blog').on('click',function () {
 		if($('.blog_write').css('display') == 'none'){
-			var now = new Date();
-			var yy = now.getFullYear();
-			var mm = now.getMonth() + 1;
-			var mm = "0" + mm;
-			var dd = "0" + now.getDate();
-			var hh = "0" + now.getHours();
-			var ii = "0" + now.getMinutes();
-
 			$('.blog_write').slideDown(100);
 			$('.blog_list').hide();
-			$('#blog_yy').val(yy);
-			$('#blog_mm').val(mm.substr(-2));
-			$('#blog_dd').val(dd.substr(-2));
-			$('#blog_hh').val(hh.substr(-2));
-			$('#blog_ii').val(ii.substr(-2));
 
-			$('#blog_title').val('');
-			$('#blog_log').val('');
-			$('#blog_status').val('');
-			$('#blog_tag').val('5');
-
-			$('.blog_img').attr('src','./img/blog_no_image.png');
 
 		}else{
 			$('.blog_write').slideUp(50);
@@ -499,22 +475,32 @@ $(function(){
 			$('#blog_title').val($('#h_blog_title').val());
 			$('#blog_log').val(TmpLog);
 
-			$('#blog_status').val($('#h_blog_status').val());
+
+
 			if($('#h_blog_status').val() == 1){
 				$('.blog_open_yes').removeClass('yes_on');
 				$('.blog_open_no').addClass('no_on');
 			}
 
-			$('#blog_tag').val($('#h_blog_tag').val());
+			$('#blog_status').val($('#h_blog_status').val());
 
 			if($('#h_blog_img').val()){
 				$('.blog_img').attr('src','./img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
 				ImgId=$('#h_blog_img').val();
-
-			}else{
-				$('.blog_img').attr('src','./img/blog_no_image.png');
-				ImgId='';
 			}
+
+
+			$('#blog_tag').val($('#h_blog_tag').val());
+			$("#cvs1").css({'width':'60vw','height':'60vw','top':'10vw','left':'10vw'});
+
+			var ChgImg = new Image();
+			var cvs = document.getElementById('cvs1');
+			var ctx = cvs.getContext('2d');
+
+			ChgImg.src=$('#h_blog_img').val();
+			ChgImg.onload =function(){
+				ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,600, 600);
+			};
 
 		}else{
 			$('.blog_write').slideUp(50);
@@ -834,7 +820,6 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			$('#tag_1_tbl').html(data);
-			console.log(data);	
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -848,6 +833,7 @@ $(function(){
 		$.post({
 			url:"./post/blog_set.php",
 			data:{
+				'img_id':ImgId,
 				'ttl':$('#blog_title').val(),
 				'log':$('#blog_log').val(),
 				'tag':$('#blog_tag').val(),
@@ -860,7 +846,6 @@ $(function(){
 				'hh':$('#blog_hh').val(),
 				'ii':$('#blog_ii').val(),
 
-				'img_id':ImgId,
 				'img_code':base_64
 			},
 
@@ -957,45 +942,15 @@ $(function(){
 		}
 	});
 
+
 	$('.customer_detail').on('click','.jump_on',function(){
 		$('#sns_form').submit();
 	});
 
 	$('.blog_td_img').on('click',function(){
-		Task="blog";
+		var Task="blog";
 		$('.img_box').animate({'top':'10vw'},200);
 		$('.set_back').fadeIn(100);
-
-//----------------------------
-		var ChgImg = new Image();
-		var cvs = document.getElementById('cvs1');
-		var ctx = cvs.getContext('2d');
-
-
-
-		ChgImg.src	='./img/profile/'+ CastId +'/' + ImgId + '.png';
-		ImgWidth	=Width_l;
-		ImgHeight	=Width_l;
-		ImgTop		=Width_s;
-		ImgLeft		=Width_s;
-		Rote		=0;
-		Zoom		=100;
-
-		cvs_A		=800;
-		cvs_W		=800;
-		cvs_H		=800;
-		cvs_X		=0;
-		cvs_Y		=0;
-
-		css_l		=Width_l;
-		css_p		=Width_s;
-		css_A		=Width_l;
-		css_B		=Width_s;
-
-		$("#cvs1").attr({'width': 800,'height': 800}).css({'width':ImgWidth,'height':ImgHeight,'top':ImgTop,'left':ImgLeft});
-		ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,800, 800);
-		ImgCode = cvs.toDataURL("image/jpeg");
-//----------------------------
 	});
 
 	$('#set_new_img').on('click',function(){
@@ -1087,50 +1042,55 @@ $(function(){
 	$('#img_set').on('click',function(){	
 		if(ImgCode){
 			$('#wait').show();
+		
 			$.post({
 				url:"./post/img_set.php",
 				data:{
+					'cast_id'	:CastId,
 					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+
 					'img_top'	:ImgTop,
 					'img_left'	:ImgLeft,
+
 					'img_width'	:cvs_W,
 					'img_height':cvs_H,
+
 					'img_zoom'	:Zoom,
 					'img_rote'	:Rote,
+
 					'width_s'	:Width_s,
 					'width_l'	:Width_l,
 					'task'		:Task,
-					'post_id'	:C_Id,
 				},
-			}).done(function(data, textStatus, jqXHR){
-				base_64=data;
 
+			}).done(function(data, textStatus, jqXHR){
+
+console.log(ImgTop);
+console.log(ImgLeft);
+
+console.log(cvs_W);
+console.log(cvs_H);
+
+console.log(Width_s);
+console.log(Width_l);
+
+				base_64=data;
 				$('.img_box').animate({'top':'120vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 
-				console.log("cvs_w:"+cvs_W);
-				console.log("cvs_h:"+cvs_H);
-				console.log("css_A:"+css_A);
-				console.log("css_B:"+css_B);	
-				console.log("ImgLeft:"+ImgLeft);	
-				console.log("ImgTop:"+ImgTop);	
-				console.log("Width_l:"+Width_l);
-				console.log("Width_s:"+Width_s);
-				console.log("Zoom:"+Zoom);
-				console.log("Cid:"+C_Id);
-			
 				if(Task=="blog"){
-					$('.blog_img').attr('src',"data:image/jpg;base64,"+ base_64);
+					$('.blog_img').attr('src',"data:image/jpg;base64,"+base_64);
 					$('.set_back').fadeOut(200);
 
 				}else if(Task=="regist"){
-					$('.regist_img').attr('src',"data:image/jpg;base64,"+ base_64);
+					$('.regist_img').attr('src',"data:image/jpg;base64,"+base_64);
 
 				}else if(Task=="chg"){
-					$('.customer_detail_img').attr('src',"data:image/jpg;base64,"+ base_64);
+					$('.customer_detail_img').attr('src',ImgCode);
 					$('.set_back').fadeOut(200);
+
 
 				}else if(Task=="mail"){
 					if(base_64){
@@ -1152,6 +1112,17 @@ $(function(){
 				console.log(textStatus);
 				console.log(errorThrown);
 			});
+
+			console.log("cvs_w:"+cvs_W);
+			console.log("cvs_h:"+cvs_H);
+			console.log("css_A:"+css_A);
+			console.log("css_B:"+css_B);	
+			console.log("ImgLeft:"+ImgLeft);	
+			console.log("ImgTop:"+ImgTop);	
+			console.log("width_l:"+Width_l);
+			console.log("width_s:"+Width_s);
+			console.log("Zoom:"+Zoom);
+			$('#img_code').val(ImgCode)
 
 		}else{
 			$('#img_code').val('')
@@ -1378,17 +1349,18 @@ $(function(){
 
 	$('#memo_set').on('click',function () {
 		Log=$('.customer_memo_new_txt').val();
-		var TmpMemoId=$('#memo_chg_id').val();
-
+		var TmpMemoId=$('#memo_chg_id').val()
 		$.post({
 			url:"./post/customer_memo_set.php",
 			data:{
+				'cast_id'	:CastId,
 				'c_id'		:C_Id,
 				'log'		:Log,
 				'memo_id'	:TmpMemoId,
-			},
 
+			},
 		}).done(function(data, textStatus, jqXHR){
+
 			if($('#memo_chg_id').val('')){
 				$('#tr_memo_detail'+TmpMemoId).remove();
 				$('#tr_memo_log'+TmpMemoId).remove();
@@ -1458,6 +1430,9 @@ $(function(){
 			$('.mail_write_text').val('');
 //			$('.mail_img_view').attr('src','./img/customer_no_img.jpg');
 
+
+
+
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
@@ -1515,6 +1490,7 @@ $(function(){
 
 		}else if($(this).attr('id')=='customer_group'){
 			$('#clist'+C_Id).children('.customer_hidden_group').val($(this).val());
+
 		}
 
 		$.post({
@@ -1553,20 +1529,19 @@ $(function(){
 	});
 
 	$('#memo_del_set').on('click',function () {
-
-		Tmp=$('#memo_chg_id').val();
-
 		$.post({
 			url:"./post/customer_memo_del.php",
 			data:{
-				'memo_id'	:Tmp,
+				'cast_id'	:CastId,
+				'c_id'		:C_Id,
+				'memo_id'	:$('#memo_chg_id').val(),
 			},
 
 		}).done(function(data, textStatus, jqXHR){
 			$('.set_back,.customer_memo_del_back_in').fadeOut(500);
+			$('#tag_2_tbl').html(data);
 			$('#memo_chg_id').val('');
-			$('#tr_memo_detail' + Tmp).hide();
-			$('#tr_memo_log' + Tmp).hide();
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -1591,191 +1566,17 @@ $(function(){
 			url:"./post/calendar_set.php",
 			data:{
 				'c_month'	:$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'cast_id'	:CastId,
 				'pre'		:'1',
 			},
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-			$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
+			$('.cal').prepend(data.html).animate({'left':'-100vw'},200);
 			$(".cal").children().last().remove();
 			$('#c_month').val(data.date);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
 		});
-	});
-
-	$('.cal').on('click','.cal_next',function () {
-		$.post({
-			url:"./post/calendar_set.php",
-			data:{
-				'c_month'	:$('#c_month').val(),
-				'pre'		:'2',
-			},
-			dataType: 'json',
-
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-			$('.cal').append(data.html).animate({'left':'-100vw'},0);
-			$(".cal").children().first().remove();
-			$('#c_month').val(data.date);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-	});
-
-
-	$('.cal').draggable({
-		axis: 'x',
-		drag: function( event, ui ) {
-//			console.log(ui.position.left)
-		},
-		stop: function( event, ui ) {
-			if(ui.position.left > VwBase*(-90)){/*■先月*/
-				$('.cal').animate({'left':'0'},200);
-
-				$.post({
-					url:"./post/calendar_set.php",
-					data:{
-						'c_month'	:$('#c_month').val(),
-						'pre'		:'1',
-					},
-					dataType: 'json',
-
-				}).done(function(data, textStatus, jqXHR){
-					console.log(data);
-					$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
-					$(".cal").children().last().remove();
-					$('#c_month').val(data.date);
-
-				}).fail(function(jqXHR, textStatus, errorThrown){
-					console.log(textStatus);
-					console.log(errorThrown);
-				});
-
-			}else if(ui.position.left < VwBase*(-110)){/*■来月*/
-				$('.cal').animate({'left':'-200vw'},200);
-				$.post({
-					url:"./post/calendar_set.php",
-					data:{
-						'c_month'	:$('#c_month').val(),
-						'pre'		:'2',
-					},
-					dataType: 'json',
-
-				}).done(function(data, textStatus, jqXHR){
-					console.log(data);
-					$('.cal').append(data.html).animate({'left':'-100vw'},0);
-					$(".cal").children().first().remove();
-					$('#c_month').val(data.date);
-
-				}).fail(function(jqXHR, textStatus, errorThrown){
-					console.log(textStatus);
-					console.log(errorThrown);
-				});
-
-			}else{
-				$('.cal').animate({'left':'-100vw'},100);
-			}
-		},
-	});
-
-	$('.cal_weeks_prev').on('click',function (){
-/*		$('.cal_weeks_box_2').animate({'top':'0'},2000);*/
-		$.post({
-			url:"./post/chg_weeks.php",
-			data:{
-				'c_month':$('#c_month').val(),
-				'base_day':$('#base_day').val(),
-				'pre':'1',
-			},
-			dataType: 'json',
-
-		}).done(function(data, textStatus, jqXHR){
-			$('.cal_weeks_box_2').prepend(data.html).animate({'top':'-73.5vw'},2000);
-			$('.cal_weeks_box_2').children().slice(-7).remove();
-			$('#base_day').val(data.date);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-	});
-
-	$('.cal_weeks_next').on('click',function (){
-/*		$('.cal_weeks_box_2').animate({'top':'-73.5vw'},200);*/
-		$.post({
-			url:"./post/chg_weeks.php",
-			data:{
-				'c_month':$('#c_month').val(),
-				'base_day':$('#base_day').val(),
-				'pre':'2',
-			},
-			dataType: 'json',
-
-		}).done(function(data, textStatus, jqXHR){
-			$('.cal_weeks_box_2').children().slice(0,7).remove();
-			$('.cal_weeks_box_2').append(data.html).css({'top':'-73.5vw'});
-			$('#base_day').val(data.date);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-	});
-
-	$('.cal_weeks_box_2').draggable({
-		axis: 'y',
-		start: function( event, ui ) {
-			startPosition = ui.position.top;
-		},
-		drag: function( event, ui ) {
-		},
-		stop: function( event, ui ) {//前週
-			if(ui.position.top > VwBase*(-65)){
-				$('.cal_weeks_box_2').animate({'top':'0'},100);
-
-				$.post({
-					url:"./post/chg_weeks.php",
-					data:{
-						'c_month':$('#c_month').val(),
-						'base_day':$('#base_day').val(),
-						'pre':'1',
-					},
-					dataType: 'json',
-
-				}).done(function(data, textStatus, jqXHR){
-					$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
-					$('.cal_weeks_box_2').children().slice(-7).remove();
-					$('#base_day').val(data.date);
-				});
-
-			}else if(ui.position.top < VwBase*(-95)){//翌週
-				$('.cal_weeks_box_2').animate({'top':'-147vw'},100);
-
-				$.post({
-					url:"./post/chg_weeks.php",
-					data:{
-						'c_month'	:$('#c_month').val(),
-						'base_day'	:$('#base_day').val(),
-						'pre'		:'2',
-					},
-					dataType: 'json',
-
-				}).done(function(data, textStatus, jqXHR){
-					$('.cal_weeks_box_2').append(data.html).css('top','-73.5vw');
-					$('.cal_weeks_box_2').children().slice(0,7).remove();
-					$('#base_day').val(data.date);
-				});
-
-			}else{
-				$('.cal_weeks_box_2').animate({'top':'-73.5vw'},100);
-			}
-		},
 	});
 
 	$('.notice_ttl_in').on('click',function(){
@@ -1820,6 +1621,175 @@ $(function(){
 	});
 
 
+	$('.cal').on('click','.cal_next',function () {
+		$.post({
+			url:"./post/calendar_set.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'week_start':$('#week_start').val(),
+				'cast_id':CastId,	
+				'pre':'2',
+			},
+			dataType: 'json',
+		}).done(function(data, textStatus, jqXHR){
+			$('.cal').append(data.html).animate({'left':'-100vw'},200);
+			$(".cal").children().first().remove();
+			$('#c_month').val(data.date);
+		});
+	});
+
+
+	$('.cal_weeks_prev').on('click',function (){
+/*		$('.cal_weeks_box_2').animate({'top':'0'},2000);*/
+		$.post({
+			url:"./post/chg_weeks.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'base_day':$('#base_day').val(),
+				'cast_id':CastId,
+				'pre':'1',
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.cal_weeks_box_2').prepend(data.html).animate({'top':'-73.5vw'},2000);
+			$('.cal_weeks_box_2').children().slice(-7).remove();
+			$('#base_day').val(data.date);
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
+	$('.cal_weeks_next').on('click',function (){
+/*		$('.cal_weeks_box_2').animate({'top':'-73.5vw'},200);*/
+		$.post({
+			url:"./post/chg_weeks.php",
+			data:{
+				'c_month':$('#c_month').val(),
+				'base_day':$('#base_day').val(),
+				'cast_id':CastId,
+				'pre':'2',
+			},
+			dataType: 'json',
+
+		}).done(function(data, textStatus, jqXHR){
+			$('.cal_weeks_box_2').children().slice(0,7).remove();
+			$('.cal_weeks_box_2').append(data.html).css({'top':'-73.5vw'});
+			$('#base_day').val(data.date);
+		});
+	});
+
+	$('.cal_weeks_box_2').draggable({
+		axis: 'y',
+		start: function( event, ui ) {
+			startPosition = ui.position.top;
+		},
+		drag: function( event, ui ) {
+		},
+		stop: function( event, ui ) {//前週
+			if(ui.position.top > VwBase*(-65)){
+				$('.cal_weeks_box_2').animate({'top':'0'},100);
+
+				$.post({
+					url:"./post/chg_weeks.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'base_day':$('#base_day').val(),
+						'cast_id':CastId,
+						'pre':'1',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+					$('.cal_weeks_box_2').prepend(data.html).css('top','-73.5vw');
+					$('.cal_weeks_box_2').children().slice(-7).remove();
+					$('#base_day').val(data.date);
+				});
+
+			}else if(ui.position.top < VwBase*(-95)){//翌週
+				$('.cal_weeks_box_2').animate({'top':'-147vw'},100);
+
+				$.post({
+					url:"./post/chg_weeks.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'base_day':$('#base_day').val(),
+						'cast_id':CastId,
+						'pre':'2',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+					$('.cal_weeks_box_2').append(data.html).css('top','-73.5vw');
+					$('.cal_weeks_box_2').children().slice(0,7).remove();
+					$('#base_day').val(data.date);
+				});
+
+			}else{
+				$('.cal_weeks_box_2').animate({'top':'-73.5vw'},100);
+			}
+		},
+	});
+
+	$('.cal').draggable({
+		axis: 'x',
+		drag: function( event, ui ) {
+			console.log(ui.position.left)
+
+		},
+
+		stop: function( event, ui ) {
+			if(ui.position.left > VwBase*(-90)){/*■先月*/
+				$('.cal').animate({'left':'0'},200);
+				$.post({
+					url:"./post/calendar_set.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'week_start':$('#week_start').val(),
+						'cast_id':CastId,
+						'pre':'1',
+					},
+					dataType: 'json',
+
+				}).done(function(data, textStatus, jqXHR){
+
+					$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
+					$(".cal").children().last().remove();
+					$('#c_month').val(data.date);
+/*
+					console.log(data.sql);
+					console.log(data.html);
+*/
+					console.log($(".cal").children().last());
+
+				});
+
+			}else if(ui.position.left < VwBase*(-110)){/*■来月*/
+				$('.cal').animate({'left':'-200vw'},200);
+				$.post({
+					url:"./post/calendar_set.php",
+					data:{
+						'c_month':$('#c_month').val(),
+						'week_start':$('#week_start').val(),
+						'cast_id':CastId,
+						'pre':'2',
+					},
+					dataType: 'json',
+				}).done(function(data, textStatus, jqXHR){
+					$('.cal').append(data.html).animate({'left':'-100vw'},0);
+					$(".cal").children().first().remove();
+					$('#c_month').val(data.date);
+					console.log(data.sql);
+					console.log(data.html);
+				});
+
+			}else{
+				$('.cal').animate({'left':'-100vw'},100);
+			}
+		},
+	});
 
 	$('.log_item_set').on('click','.item_color',function (){
 		$('.color_picker,.icon_picker').slideUp(100);
@@ -2014,29 +1984,36 @@ $(function(){
 		$(this).addClass('cc8');
 
 		DaySet =$(this).attr('id').replace("c","");
-		console.log(DaySet);
+		$('#set_date').val(DaySet);
+	
+		ToMon	=$(this).attr('id').substr(5,2);
+		ToDay	=$(this).attr('id').substr(7,2);
+		ToMD	=$(this).attr('id').substr(5,4);
+		ToWeek	=$(this).attr('week');
+		$('.cal_days_date').text(ToMon+"月"+ToDay+"日["+ToWeek+"]");
 
-		$.post({
-			url:"./post/calendar_day_sel.php",
-			data:{
-			'set_date'	:DaySet,
-			},
-//			dataType: 'json',
+		var Tmp=$(this).attr('id').replace('c','cal_s_');
+		if($('.'+Tmp).val()){
+			$('.days_day').text($('.'+Tmp).val());
+		}else{
+			$('.days_day').text('休み');
+		}		
 
-		}).done(function(data, textStatus, jqXHR){
-console.log(data);
-			$('.cal_days_date').html(data.date);
-			$('.days_stime').html(data.stime);
-			$('.days_etime').html(data.stime);
-			$('.cal_days_birth').html(data.birth);
-			$('.cal_days_memo').val(data.mdmo);
+		var Tmp=$(this).attr('id').substr(5,4);
+		if($('.cal_b_'+Tmp).val()){
+			$('.cal_days_birth').html($('.cal_b_'+Tmp).val());
+		}else{
+			$('.cal_days_birth').text('');
+		}
 
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
+		var Tmp=$(this).attr('id').replace('c','cal_m_');
+		if($('.'+Tmp).val()){
+			$('.cal_days_memo').val($('.'+Tmp).val());
+		}else{
+			$('.cal_days_memo').val('');
+		}
+		console.log(Tmp);
 	});
-
 
 	$('.slide').draggable({
 		axis: 'x',
@@ -2307,10 +2284,8 @@ console.log(data);
 			'item_icon[]'	:ItemIcon,
 			'item_name[]'	:ItemName,
 			'item_price[]'	:ItemPrice
-
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			if(Chg){
 				$('#customer_log_td_'+Chg).remove();
 			}
@@ -2450,7 +2425,7 @@ console.log(data);
 		});
 	});
 
-	$('.ana').on('click','.ana_detail',function () {
+	$('.ana_detail').on('click',function () {
 		TMP=$(this).attr('id');
 		$('.ana_detail').removeClass('ana_on');
 		$('.ana_arrow').removeClass('ana_arrow_on');
@@ -2466,22 +2441,6 @@ console.log(data);
 		}else{
 			$('#l'+TMP).delay(300).fadeOut(0);
 		}
-	});
-
-	$('.ana_sel').on('change',function(){
-		Tmp=$(this).val();
-
-		$.post({
-			url:"./post/ana_chg.php",
-			data:{
-			't_month'	:Tmp,
-			},
-
-		}).done(function(data, textStatus, jqXHR){
-			$('.ana').html(data.html);
-			$('.ana_res_a').html(data.a);
-			$('.ana_res_b').html(data.b);
-		});
 	});
 
 	$('.tmpl_btn').on('click', function() {
