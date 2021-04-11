@@ -513,11 +513,12 @@ input:focus{
 	position		:relative;
 	display			:inline-block;
 	width			:34vw;
-	height			:5.5vw;
-	line-height		:5.5vw;
+	height			:5vw;
+	line-height		:5vw;
 	color			:#006000;
 	text-align		:left;
 	overflow-x		:hidden;
+	margin-bottom	:0.5vw;
 }
 
 .cal_days_birth{
@@ -526,7 +527,6 @@ input:focus{
 	top				:15vw;
 	left			:1vw;
 	width			:38vw;
-	line-height		:6vw;
 	text-align		:left;
 	height			:calc(100vh - 136vw);
 	overflow-y		:scroll;
@@ -558,32 +558,24 @@ input:focus{
 
 .days_icon{
 	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	left			:1vw;
-	bottom			:0;
-	margin			:auto;
-	width			:4.5vw;
-	height			:4vw;
-	line-height		:4vw;	
+	width			:5vw;
+	height			:5vw;
+	line-height		:5vw;	
 	text-align		:center;
 	font-family		:at_icon;
 	font-size		:4vw;
+	vertical-align	:top;
 }
 
 .days_birth{
-	position		:absolute;
-	top				:0;
-	bottom			:0;
-	right			:1vw;
-	margin			:auto;
 	display			:inline-block;
 	width			:27vw;
-	height			:4.5vw;
-	line-height		:4.5vw;	
+	height			:5vw;
+	line-height		:5vw;	
 	text-align		:left;
 	font-size		:3.5vw;
 	overflow		:hidden;
+	vertical-align	:top;
 }
 
 .days_day{
@@ -594,21 +586,16 @@ input:focus{
 	text-align		:left;
 	font-size		:3.5vw;
 	overflow		:hidden;
-	vertical-align:top;
+	vertical-align	:top;
 }
 
 .sche_in{
-	display		:inline-flex;
-	position	:absolute;
-	top			:0;
-	right		:1vw;
-	bottom		:0;
-	margin		:auto;
-	width		:27vw;
-	height		:5vw;
-	line-height	:5vw;
-	text-align	:left;
-	margin		:auto;
+	display			:inline-flex;
+	width			:27vw;
+	height			:5vw;
+	line-height		:5vw;
+	text-align		:left;
+	vertical-align	:top;
 }
 
 

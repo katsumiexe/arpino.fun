@@ -22,10 +22,10 @@ if($result = mysqli_query($mysqli,$sql)){
 	if($dat["stime"] && $dat["etime"]){
 		$dat["sche"]="<span class=\"sche_s\">{$dat["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$dat["etime"]}</span>";
 	}else{
-		$dat["sche"]="休み";
+		$dat["sche"]="<span class=\"sche_s\">休み</span>";
 	}
 }else{
-		$dat["sche"]="休み";
+		$dat["sche"]="<span class=\"sche_s\">休み</span>";
 }
 
 //---------------------------------------------------------------
@@ -34,6 +34,7 @@ $dat["date"]=substr($set_date,4,2)."月".substr($set_date,6,2)."日[".$week[$tmp
 
 $b_month=substr($set_date,4,4);
 
+$dat["birth"]="";
 $sql	 ="SELECT birth_day,id,name,nickname FROM wp01_0customer";
 $sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND birth_day LIKE '%{$b_month}'";
