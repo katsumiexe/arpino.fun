@@ -1,5 +1,6 @@
 <?
 include_once('../library/sql_post.php');
+
 $t_month	=$_POST["t_month"];
 
 $sql	 ="SELECT * FROM wp01_0schedule";

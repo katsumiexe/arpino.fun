@@ -437,10 +437,19 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["view_date"] > $now){
 			$row["status"]=3; 
 		}
+
+		$sql ="SELECT LEFT(`date`,10) AS t_date,COUNT(id) as cnt, value FROM wp01_0log";
+		$sql.=" WHERE value='{$row["id"]}'";
+		$sql.=" AND page='article.php'";
+		$sql.=" GROUP BY t_date, ua, ip";
+
+		if($result2 = mysqli_query($mysqli,$sql)){
+			while($cnt = mysqli_fetch_assoc($result2)){
+				$row["cnt"]++;
+			}
+		}
 		$blog[]=$row;
-	}
-	if(is_array($blog)){
-		$blog_max=count($blog);
+		$blog_max++;
 	}
 
 	if($blog_max>10){
@@ -638,6 +647,7 @@ $(function(){
 	<div class="slide">
 		<?if(file_exists("./img/profile/{$cast_data["id"]}/0_s.jpg")){?>
 		<img src="./img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
+
 		<?}else{?>
 		<img src="./img/cast_no_image.jpg?t_<?=time()?>" class="slide_img">
 		<?}?>
@@ -653,6 +663,7 @@ $(function(){
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
+
 
 	<?if($cast_page==1){?>
 	<div class="main_sch">
@@ -1072,7 +1083,7 @@ $(function(){
 						<span class="hist_tag_i"><?=$tag[$blog[$n]["tag"]]["tag_icon"]?></span>
 						<span class="hist_tag_name"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span>
 					</span>
-					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
+					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c"><?=$blog[$n]["cnt"]+0?></span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
 
@@ -1100,7 +1111,9 @@ $(function(){
 				<option value="<?=$a1?>"<?if($a1 == $ana_ym){?> selected="selected"<?}?>><?=$a2?></option>
 			<?}?>
 			</select>
-			<div class="ana_res">収入/予定：<span class="ana_res_a"><?=$ana_salary_all+$pay_item_all?></span>円<span class="ana_res_b">(<?=$ana_salary_y_all+$pay_item_yet?>円)</span></div>
+
+			<span class="ana_res">現在収入：</span><span id="ana_now" class="ana_res_a"><?=number_format($ana_salary_all+$pay_item_all)?>円</span>
+			<span class="ana_res">今月見込：</span><span id="ana_now" class="ana_res_a"><?=number_format($ana_salary_y_all+$pay_item_yet)?>円</span>
 		</div>
 
 		<table class="ana">
@@ -1120,7 +1133,6 @@ $(function(){
 				$f_day="ana_f";
 			}
 		?>
-
 		<tr>
 			<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
 			<td rowspan="2" class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_sche[$ana_c]?></td>

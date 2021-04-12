@@ -4295,10 +4295,7 @@ input[type=range]::-moz-range-thumb{
 	margin		:1vw;
 	border		:1px solid #303030;
 	background	:linear-gradient(135deg,#fafafa,#e0e0e0);
-
 }
-
-
 
 .filter_main{
 	display:block;

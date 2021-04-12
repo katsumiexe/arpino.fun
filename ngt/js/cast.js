@@ -2470,6 +2470,8 @@ $(function(){
 	$('.ana_sel').on('change',function(){
 		Tmp=$(this).val();
 
+		console.log(Tmp);
+		
 		$.post({
 			url:"./post/ana_chg.php",
 			data:{
