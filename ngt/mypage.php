@@ -159,12 +159,14 @@ if($result = mysqli_query($mysqli,$sql)){
 				$tmp_e=$sche_table_calc["out"][$row["etime"]];
 			}		
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
+			$ana_sche[$row["sche_date"]]="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
 
 		}else{
 			$sche_dat[$row["sche_date"]]="";
 			$ana_time[$row["sche_date"]]=0;
 			$stime[$row["sche_date"]]="";
 			$etime[$row["sche_date"]]="";
+			$ana_sche[$row["sche_date"]]="休み";
 		}
 
 		if($row["sche_date"] == $day_8){
@@ -1121,7 +1123,7 @@ $(function(){
 
 		<tr>
 			<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
-			<td class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$days_sche[$ana_c]?></td>
+			<td rowspan="2" class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_sche[$ana_c]?></td>
 			<td class="ana_time <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_time[$ana_c]?></td>
 			<td class="ana_pay <?=$f_day?> <?=$ana_line[$ana_week]?>">	
 				<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
@@ -1130,21 +1132,19 @@ $(function(){
 		</tr>
 
 		<tr>
-			<td id="lana_<?=$n?>" class="ana_list" colspan="4">
+			<td id="lana_<?=$n?>" class="ana_list" colspan="3">
 				<div id="dana_<?=$n?>" class="ana_list_div">
 					<span class="ana_list_c lc1">
-						<span class="ana_list_name">店舗</span>
 						<span class="ana_list_item">時給</span>
-						<span class="ana_list_pts"><?=$ana_salary[$ana_c]?></span>
+						<span class="ana_list_pts"><?=number_format($ana_salary[$ana_c])?>円</span>
 					</span>
 				<?$tmp_line=0;?>
 
 				<?foreach((array)$dat_ana[$ana_c] as $a1){?>
 					<?$tmp_lc=$tmp_line % 2;?>
 					<span class="ana_list_c lc<?=$tmp_lc?>">
-						<span class="ana_list_name"><?=$a1["nickname"]?>様</span>
-						<span class="ana_list_item"><?=$a1["log_comm"]?></span>
-						<span class="ana_list_pts"><?=$a1["pts"]?></span>
+						<span class="ana_list_item"><?=$a1["nickname"]?>様</span>
+						<span class="ana_list_pts"><?=number_format($a1["pts"])?>円</span>
 					</span>
 					<?$tmp_line++;?>
 				<? } ?>
