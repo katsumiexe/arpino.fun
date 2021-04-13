@@ -501,26 +501,34 @@ input:focus{
 	top				:9vw;
 	left			:1vw;
 	width			:34vw;
-	height			:7vw;
-	line-height		:7vw;
+	height			:6vw;
+	line-height		:6vw;
 	color			:#0000d0;
 	text-align		:left;
 	font-size:0;
 }
 
+
+.cal_days_birth_in{
+	position		:relative;
+	display			:inline-block;
+	width			:34vw;
+	height			:5vw;
+	line-height		:5vw;
+	color			:#006000;
+	text-align		:left;
+	overflow-x		:hidden;
+	margin-bottom	:0.5vw;
+}
+
 .cal_days_birth{
 	position		:absolute;
 	display			:inline-block;
-	top				:14vw;
+	top				:15vw;
 	left			:1vw;
 	width			:38vw;
-	line-height		:6vw;
-	font-size		:4vw;
-	color			:#303030;
 	text-align		:left;
-	height			:24vw;
-	height			:calc(100vh - 135vw);
-	overflow-x		:hidden;
+	height			:calc(100vh - 136vw);
 	overflow-y		:scroll;
 }
 
@@ -535,6 +543,7 @@ input:focus{
 	width			:61.5vw;
 	height			:42vw;
 	height			:calc(100vh - 114vw);
+	line-height		:6vw;
 	resize			:none;
 	background		:#fafafa;
 	font-size		:4.5vw;
@@ -550,28 +559,24 @@ input:focus{
 
 .days_icon{
 	display			:inline-block;
-	position		:absolute;
-	top				:0;
-	left			:1vw;
-	bottom			:0;
-	margin			:auto;
 	width			:5vw;
 	height			:5vw;
 	line-height		:5vw;	
 	text-align		:center;
 	font-family		:at_icon;
-	font-size		:5vw;
+	font-size		:4vw;
+	vertical-align	:top;
 }
 
 .days_birth{
-	position		:relative;
 	display			:inline-block;
-	width			:38vw;
-	height			:4.5vw;
-	line-height		:4.5vw;	
+	width			:27vw;
+	height			:5vw;
+	line-height		:5vw;	
 	text-align		:left;
 	font-size		:3.5vw;
 	overflow		:hidden;
+	vertical-align	:top;
 }
 
 .days_day{
@@ -582,8 +587,18 @@ input:focus{
 	text-align		:left;
 	font-size		:3.5vw;
 	overflow		:hidden;
-	vertical-align:top;
+	vertical-align	:top;
 }
+
+.sche_in{
+	display			:inline-flex;
+	width			:27vw;
+	height			:5vw;
+	line-height		:5vw;
+	text-align		:left;
+	vertical-align	:top;
+}
+
 
 .cal_td,.cal_th{
 	position		:relative;
@@ -4003,26 +4018,31 @@ input[type=range]::-moz-range-thumb{
 }
 
 .sche_s{
-	position	:absolute;
-	top			:0;
-	bottom		:0;
-	left		:0.5vw;
-	margin		:auto;
 	display		:inline-block;
+	font-size	:3.5vw;
 	width		:12vw;
+	flex-basis	:12vw;
 	height		:5vw;
 	line-height	:5vw;
 	text-align	:center;
 }
 
-.sche_e{
-	position	:absolute;
-	top			:0;
-	bottom		:0;
-	right		:0.5vw;
-	margin		:auto;
+.sche_m{
 	display		:inline-block;
+	font-size	:3.5vw;
+	width		:3vw;
+	flex-basis	:3vw;
+	height		:5vw;
+	line-height	:5vw;
+	text-align	:center;
+
+}
+
+.sche_e{
+	display		:inline-block;
+	font-size	:3.5vw;
 	width		:12vw;
+	flex-basis	:12vw;
 	height		:5vw;
 	line-height	:5vw;
 	text-align	:center;
@@ -4128,65 +4148,36 @@ input[type=range]::-moz-range-thumb{
 	line-height		:7vw;
 	width			:100%;
 	margin			:0;
+	border-bottom	:1px solid #303030;
 }
 
 .lc1{
 	background		:#fff0f4;
 }
 
-.ana_list_name{
-	display			:inline-block;
-	position		:absolute;
-	top				:1vw;
-	left			:1vw;
-	height			:4.5vw;
-	line-height		:4.5vw;
-	width			:32vw;
-	font-size		:3.5vw;
-	text-align		:left;
-}
-
-.ana_list_icon{
-	display			:inline-block;
-	position		:absolute;
-	top				:1vw;
-	right			:41vw;
-	height			:5vw;
-	line-height		:5vw;
-	width			:5vw;
-	border-bottom	:1px solid #303030;
-	font-size		:3.5vw;
-	font-family		:at_icon;
-	text-align		:center;
-}
-
 .ana_list_item{
 	display			:inline-block;
 	position		:absolute;
 	top				:1vw;
-	right			:16vw;
+	left			:1.5vw;
 	height			:5vw;
 	line-height		:5vw;
 	width			:27vw;
-	border-bottom	:1px solid #303030;
 	font-size		:3.5vw;
 	text-align		:left;
-	padding-left	:1vw;
 }
 	
 .ana_list_pts{
 	display			:inline-block;
 	position		:absolute;
 	top				:1vw;
-	right			:1vw;
+	right			:1.5vw;
 	height			:5vw;
 	line-height		:5vw;
 	width			:14vw;
-	border-bottom	:1px solid #303030;
 	font-size		:3.5vw;
 	font-family		:at_icon;
 	text-align		:right;
-	padding-right	:1vw;
 }
 
 .ana_line{
@@ -4304,10 +4295,7 @@ input[type=range]::-moz-range-thumb{
 	margin		:1vw;
 	border		:1px solid #303030;
 	background	:linear-gradient(135deg,#fafafa,#e0e0e0);
-
 }
-
-
 
 .filter_main{
 	display:block;

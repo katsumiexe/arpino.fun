@@ -143,6 +143,7 @@ $sql   	.=" ORDER BY id ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if($row["stime"] && $row["etime"]){
+			$days_sche[$row["sche_date"]]="<span class=\"sche_b\"><span class=\"sche_s\">".$row["stime"]."</span>-<span class=\"sche_e\">".$row["etime"]."</span></span>";
 			$sche_dat[$row["sche_date"]]="n2";
 
 			$stime[$row["sche_date"]]=$row["stime"];
@@ -159,26 +160,16 @@ if($result = mysqli_query($mysqli,$sql)){
 				$tmp_e=$sche_table_calc["out"][$row["etime"]];
 			}		
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
-			$ana_sche[$row["sche_date"]]="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
 
 		}else{
+			$days_sche[$row["sche_date"]]="<span class=\"sche_s\">休み</span>";
 			$sche_dat[$row["sche_date"]]="";
 			$ana_time[$row["sche_date"]]=0;
 			$stime[$row["sche_date"]]="";
 			$etime[$row["sche_date"]]="";
-			$ana_sche[$row["sche_date"]]="休み";
-		}
-
-		if($row["sche_date"] == $day_8){
-			$days_sche="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
 		}
 	}
 }
-
-if(!$days_sche){
-	$days_sche="休み";
-}
-
 
 if(is_array($ana_time)){
 	foreach($ana_time as $a1 => $a2){
@@ -253,10 +244,12 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if(trim($row["log"])){
 			$memo_dat[$row["date_8"]]="n3";
-	
-			if($row["date_8"] == $day_8){
-				$days_memo=$row["log"];
+			$cal_app[substr($row["date_8"],0,6)].="<input class=\"cal_m_{$row["date_8"]}\" type=\"hidden\" value=\"{$row["log"]}\">";
+/*
+			if($day_8 == $row["date_8"]){
+				$days_memo.=$row["log"];
 			}
+*/
 		}
 	}
 }
@@ -287,24 +280,33 @@ $sql	.=$app3;
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$birth_md	=substr($row["birth_day"],4,4);
-		$birth_dat[$birth_md]="n1";
+
+		if(!$row["birth_day"] || $row["birth_day"]=="0000-00-00"){
+			$row["yy"]="----";
+			$row["mm"]="--";
+			$row["dd"]="--";
+			$row["ag"]="--";
+
+		}else{
+			$row["yy"]=substr($row["birth_day"],0,4);
+			$row["mm"]=substr($row["birth_day"],5,2);
+			$row["dd"]=substr($row["birth_day"],8,2);
+			$row["ag"]= floor(($day_8-str_replace("-", "", $row["birth_day"]))/10000);
+		}
+
+		$birth=str_replace("-","",$row["birth_day"]);
+		$birth_y	=substr($birth,0,4);
+		$birth_m	=substr($birth,4,2);
+		$birth_d	=substr($birth,6,2);
+		$birth_dat[$birth_m.$birth_d]="n1";
+
+		$birth_hidden[$birth_m][$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
+		$days_birth[$birth_m.$birth_d].="<span class='days_birth'><span class='days_icon'></span><span class='days_text'>{$row["nickname"]}</span></span><br>";
 
 		$cd="";
 		for($n=0;$n<strlen($row["id"]);$n++){
 			$tmp=substr($row["id"],$n,1);
 			$cd.=$dec[$id_0][$tmp];
-		}
-
-		if(substr($day_8,4,4) ==$birth_md){
-			$tmp_age=ceil(($day_8-$row["birth_day"])/10000);
-			if(!$row["nickname"]){
-				$tmp_name=$row["name"]."様";
-			}else{	
-				$tmp_name=$row["nickname"];
-			} 
-			$days_birth.="<span id=\"c{$row["id"]}\" class=\"cal_days_birth_in\"><span class=\"days_icon\"></span><span class=\"days_birth\">{$tmp_name}({$tmp_age})</span></span><br>";
-		
 		}
 
 		if(file_exists("./img/cast/{$box_no}/c/{$cd}.png")){
@@ -316,6 +318,14 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		$customer[]=$row;
 		$cnt_coustomer++;
+	}
+
+	if($birth_hidden){
+		foreach($birth_hidden as $a1 => $a2){
+			foreach($birth_hidden[$a1] as $a3 => $a4){
+				$birth_app[$a1].="<input class=\"cal_b_{$a1}{$a3}\" type=\"hidden\" value=\"{$a4}\">";
+			}
+		}
 	}
 }
 
@@ -369,6 +379,7 @@ for($n=0;$n<3;$n++){
 			$app_n2=$sche_dat[$tmp_ymd];
 			$app_n3=$memo_dat[$tmp_ymd];
 			$app_n4=$blog_dat[$tmp_ymd];
+			$cal_app[substr($tmp_ymd,0,6)].="<input class=\"cal_s_{$tmp_ymd}\" type=\"hidden\" value=\"{$days_sche[$tmp_ymd]}\">";
 		}
 
 		$cal[$n].="<td id=\"c{$tmp_ymd}\" week=\"{$week[$tmp_w]}\" class=\"cal_td cc{$tmp_week} {$tmp_today[$tmp_ymd]} \">";
@@ -437,19 +448,10 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["view_date"] > $now){
 			$row["status"]=3; 
 		}
-
-		$sql ="SELECT LEFT(`date`,10) AS t_date,COUNT(id) as cnt, value FROM wp01_0log";
-		$sql.=" WHERE value='{$row["id"]}'";
-		$sql.=" AND page='article.php'";
-		$sql.=" GROUP BY t_date, ua, ip";
-
-		if($result2 = mysqli_query($mysqli,$sql)){
-			while($cnt = mysqli_fetch_assoc($result2)){
-				$row["cnt"]++;
-			}
-		}
 		$blog[]=$row;
-		$blog_max++;
+	}
+	if(is_array($blog)){
+		$blog_max=count($blog);
 	}
 
 	if($blog_max>10){
@@ -647,7 +649,6 @@ $(function(){
 	<div class="slide">
 		<?if(file_exists("./img/profile/{$cast_data["id"]}/0_s.jpg")){?>
 		<img src="./img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
-
 		<?}else{?>
 		<img src="./img/cast_no_image.jpg?t_<?=time()?>" class="slide_img">
 		<?}?>
@@ -663,7 +664,6 @@ $(function(){
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
-
 
 	<?if($cast_page==1){?>
 	<div class="main_sch">
@@ -706,8 +706,8 @@ $(function(){
 
 		<div class="cal_days">
 			<span class="cal_days_date"><?=date("m月d日",$day_time)?>[<?=$week[$day_w]?>]</span>
-			<span class="cal_days_sche"><span class="days_icon"></span><span id="days_sche" class="sche_in"><?=$days_sche?></span></span>
-			<span class="cal_days_birth"><?=$days_birth?></span>
+			<span class="cal_days_sche"><span class="days_icon"></span><?=$days_sche[$now_8]?></span>
+			<span class="cal_days_birth"><?=$days_birth[substr($now_8,4,4)]?></span>
 			<textarea class="cal_days_memo"><?=$days_memo?></textarea>
 			<input id="set_date" type="hidden" value="<?=$day_8?>">
 		</div>
@@ -1083,7 +1083,7 @@ $(function(){
 						<span class="hist_tag_i"><?=$tag[$blog[$n]["tag"]]["tag_icon"]?></span>
 						<span class="hist_tag_name"><?=$tag[$blog[$n]["tag"]]["tag_name"]?></span>
 					</span>
-					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c"><?=$blog[$n]["cnt"]+0?></span></span>
+					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c">0</span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
 
@@ -1111,9 +1111,7 @@ $(function(){
 				<option value="<?=$a1?>"<?if($a1 == $ana_ym){?> selected="selected"<?}?>><?=$a2?></option>
 			<?}?>
 			</select>
-
-			<span class="ana_res">現在収入：</span><span id="ana_now" class="ana_res_a"><?=number_format($ana_salary_all+$pay_item_all)?>円</span>
-			<span class="ana_res">今月見込：</span><span id="ana_now" class="ana_res_a"><?=number_format($ana_salary_y_all+$pay_item_yet)?>円</span>
+			<div class="ana_res">収入/予定：<span class="ana_res_a"><?=$ana_salary_all+$pay_item_all?></span>円<span class="ana_res_b">(<?=$ana_salary_y_all+$pay_item_yet?>円)</span></div>
 		</div>
 
 		<table class="ana">
@@ -1133,9 +1131,10 @@ $(function(){
 				$f_day="ana_f";
 			}
 		?>
+
 		<tr>
 			<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
-			<td rowspan="2" class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_sche[$ana_c]?></td>
+			<td class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$days_sche[$ana_c]?></td>
 			<td class="ana_time <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_time[$ana_c]?></td>
 			<td class="ana_pay <?=$f_day?> <?=$ana_line[$ana_week]?>">	
 				<span class="ana_icon"></span><span class="ana_pay_all"><?=$ana_all?></span>
@@ -1144,19 +1143,21 @@ $(function(){
 		</tr>
 
 		<tr>
-			<td id="lana_<?=$n?>" class="ana_list" colspan="3">
+			<td id="lana_<?=$n?>" class="ana_list" colspan="4">
 				<div id="dana_<?=$n?>" class="ana_list_div">
 					<span class="ana_list_c lc1">
+						<span class="ana_list_name">店舗</span>
 						<span class="ana_list_item">時給</span>
-						<span class="ana_list_pts"><?=number_format($ana_salary[$ana_c])?>円</span>
+						<span class="ana_list_pts"><?=$ana_salary[$ana_c]?></span>
 					</span>
 				<?$tmp_line=0;?>
 
 				<?foreach((array)$dat_ana[$ana_c] as $a1){?>
 					<?$tmp_lc=$tmp_line % 2;?>
 					<span class="ana_list_c lc<?=$tmp_lc?>">
-						<span class="ana_list_item"><?=$a1["nickname"]?>様</span>
-						<span class="ana_list_pts"><?=number_format($a1["pts"])?>円</span>
+						<span class="ana_list_name"><?=$a1["nickname"]?>様</span>
+						<span class="ana_list_item"><?=$a1["log_comm"]?></span>
+						<span class="ana_list_pts"><?=$a1["pts"]?></span>
 					</span>
 					<?$tmp_line++;?>
 				<? } ?>
@@ -1438,16 +1439,16 @@ $(function(){
 			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$day_time+172800)?>[<?=$week[date("w",$day_time+172800)]?>]">
 		</div>
 		<div id="notice_box_1" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_8]?></span><br>
+			<span class="notice_box_birth"><?=$days_birth[$day_md]?></span>
 		</div>
 		<div id="notice_box_2" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_8_1]?></span><br>
+			<span class="notice_box_birth"><?=$days_birth[$day_md_1]?></span>
 		</div>
 		<div id="notice_box_3" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
+			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche[$day_2]?></span><br>
+			<span class="notice_box_birth"><?=$days_birth[$day_md_2]?></span>
 		</div>
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
 
