@@ -42,20 +42,18 @@ if($result = mysqli_query($mysqli,$sql)){
 		$calendar_ck[$tmp]=1;
 	}
 }
-echo $sql;
-
 //■キャスト件数カウント
-$sql ="SELECT cast, genji, COUNT(id) AS cnt ,MAX(view_date) AS b_date ,FROM wp01_0posts";
+$sql ="SELECT cast, genji, COUNT(wp01_0posts.id) AS cnt ,MAX(view_date) AS b_date FROM wp01_0posts";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0posts.cast=wp01_0cast.id";
 $sql.=" WHERE status=0";
 $sql.=" AND view_date<='{$now}'";
-$sql.=" GROUP BY cast'";
+$sql.=" GROUP BY cast";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res)){
 		$cast_dat[$a1["cast"]]["cnt"]	=$a1["cnt"];
 		$cast_dat[$a1["cast"]]["name"]	=$a1["genji"];
-		$cast_dat[$a1["cast"]]["date"]	=$a1["b_date"];
+		$cast_dat[$a1["cast"]]["date"]	=str_replace("-",".",substr($a1["b_date"],0,16));
 
 		if (file_exists("./img/profile/{$a1["cast"]}/0_s.jpg")) {
 			$cast_dat[$a1["cast"]]["face"]	="./img/profile/{$a1["cast"]}/0_s.jpg";
@@ -64,7 +62,7 @@ if($res = mysqli_query($mysqli,$sql)){
 		}
 	}
 }
- 
+
 //■カテゴリ件数カウント
 $sql ="SELECT tag_name, tag_icon, wp01_0tag.id, COUNT(wp01_0posts.id) AS cnt FROM wp01_0tag";
 $sql.=" LEFT JOIN wp01_0posts ON wp01_0tag.id=wp01_0posts.tag";

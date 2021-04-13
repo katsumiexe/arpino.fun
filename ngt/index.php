@@ -8,34 +8,35 @@ $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
 $sql.=" ORDER BY wp01_0schedule.id ASC";
 
-if($row = mysqli_query($mysqli,$sql)){
-	while($result = mysqli_fetch_assoc($row)){
-		if($result["stime"] && $result["etime"]){
-			$result["sch_view"]=$result["stime"]." － ".$result["etime"];
 
-			if($day_8 < $result["ctime"]){
-				$result["new"]=1;
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		if($row["stime"] && $row["etime"]){
+			$row["sch_view"]=$row["stime"]." － ".$row["etime"];
 
-			}elseif($day_8 == $result["ctime"]){
-				$result["new"]=2;
+			if($day_8 < $row["ctime"] && $admin_config["coming_soon"]==1){
+				$row["new"]=1;
 
-			}elseif(strtotime($day_8) - strtotime($result["ctime"])<=2592000){
-				$result["new"]=3;
+			}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
+				$row["new"]=2;
+
+			}elseif((strtotime($day_8) - strtotime($row["ctime"]))/86400<$admin_config["new_commer_cnt"]){
+				$row["new"]=3;
 			}
 
-			if (file_exists("./img/profile/{$result["id"]}/0.webp")) {
-				$result["face"]="./img/profile/{$result["id"]}/0.webp";			
+			if (file_exists("./img/profile/{$row["id"]}/0.webp")) {
+				$row["face"]="./img/profile/{$row["id"]}/0.webp";			
 
-			}elseif (file_exists("./img/profile/{$result["id"]}/0.jpg")) {
-				$result["face"]="./img/profile/{$result["id"]}/0.jpg";			
+			}elseif (file_exists("./img/profile/{$row["id"]}/0.jpg")) {
+				$row["face"]="./img/profile/{$row["id"]}/0.jpg";			
 
 			}else{
-				$result["face"]="./img/cast_no_image.jpg";			
+				$row["face"]="./img/cast_no_image.jpg";			
 			}
-			$dat[$result["id"]]=$result;
+			$dat[$row["id"]]=$row;
 
 		}else{
-			$dat[$result["id"]]="";
+			$dat[$row["id"]]="";
 		}
 	}
 }

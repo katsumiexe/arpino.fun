@@ -34,10 +34,10 @@ include_once('./header.php');
 	<span class="sys_box_ttl">ACCESS</span><br>
 	<div class="access_table">
 		<div class="access_map">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d721.6854943560575!2d139.70315573035856!3d35.69525939181556!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd7751357e3fdec4b!2z44OX44Op44Km44OH44Kj44Ki!5e0!3m2!1sja!2sjp!4v1596258206301!5m2!1sja!2sjp" width="600" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="access_map_in"></iframe>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.203467095303!2d139.69973731446893!3d35.69661033673738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzQ3LjgiTiAxMznCsDQyJzA2LjkiRQ!5e0!3m2!1sja!2sjp!4v1618311196518!5m2!1sja!2sjp" width="600" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="access_map_in"></iframe>
 		</div>
 		<div class="access_sig">
-			<h1 class="access_h1">Piyo-Piyo.work</h1>
+			<h1 class="access_h1">Night☆Party</h1>
 			<div class="access_tag">住所</div>
 			<div class="access_box">
 				〒160-0021<br>
@@ -53,6 +53,12 @@ include_once('./header.php');
 			<div class="access_box">
 				<span>03</span>-<span>6457</span>-<span>6156</span>
 			</div>
+			<div class="access_tag">営業時間</div>
+			<div class="access_box">
+				20:00～LAST<br>
+			</div>
+
+
 		</div>
 	</div>
 </div>

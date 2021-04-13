@@ -220,7 +220,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		if(!$row["nickname"]){
 			$row["nickname"]=$row["name"];
 		}
-		
+
 		$dat_ana[$row["sdate"]][]	 =$row;
 		$pay_item[$row["sdate"]]	+=$row["pts"];
 
@@ -1128,7 +1128,7 @@ $(function(){
 		<?
 			$ana_c	=$ana_ym*100+$n;
 			$ana_week	=($week_01+$n-1)%7;
-			$ana_all = number_format($ana_salary[$ana_c] +$pay_item[$ana_c]);
+			$ana_all = number_format($ana_salary_y[$ana_c] +$pay_item[$ana_c]);
 			if($ana_c >$day_8){
 				$f_day="ana_f";
 			}
@@ -1149,7 +1149,7 @@ $(function(){
 				<div id="dana_<?=$n?>" class="ana_list_div">
 					<span class="ana_list_c lc1">
 						<span class="ana_list_item">時給</span>
-						<span class="ana_list_pts"><?=number_format($ana_salary[$ana_c])?>円</span>
+						<span class="ana_list_pts"><?=number_format($ana_salary_y[$ana_c])?>円</span>
 					</span>
 				<?$tmp_line=0;?>
 

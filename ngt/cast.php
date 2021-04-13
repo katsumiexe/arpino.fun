@@ -2,7 +2,7 @@
 include_once('./library/sql.php');
 $sort=array();
 
-$sql=" SELECT id, genji FROM wp01_0cast";
+$sql=" SELECT id, genji,ctime FROM wp01_0cast";
 $sql.=" WHERE cast_status=0";
 $sql.=" AND id>0";
 $sql.=" AND genji IS NOT NULL";
@@ -16,9 +16,10 @@ if($result = mysqli_query($mysqli,$sql)){
 		}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
 			$row["new"]=2;
 
-		}elseif(strtotime($day_8) - strtotime($row["ctime"])<$admin_config["new_commer"]){
+		}elseif((strtotime($day_8) - strtotime($row["ctime"]))/86400<$admin_config["new_commer_cnt"]){
 			$row["new"]=3;
 		}
+
 
 		if (file_exists("./img/profile/{$row["id"]}/0.jpg")) {
 			$row["face"]="./img/profile/{$row["id"]}/0.jpg";		
