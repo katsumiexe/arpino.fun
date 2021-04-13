@@ -2014,22 +2014,21 @@ $(function(){
 		$(this).addClass('cc8');
 
 		DaySet =$(this).attr('id').replace("c","");
-		console.log(DaySet);
 
 		$.post({
 			url:"./post/calendar_day_sel.php",
 			data:{
 			'set_date'	:DaySet,
 			},
-//			dataType: 'json',
+			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-console.log(data);
 			$('.cal_days_date').html(data.date);
-			$('.days_stime').html(data.stime);
-			$('.days_etime').html(data.stime);
+			$('#days_sche').html(data.sche);
 			$('.cal_days_birth').html(data.birth);
-			$('.cal_days_memo').val(data.mdmo);
+			$('.cal_days_memo').val(data.memo);
+
+			console.log(data.birth);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -2471,6 +2470,8 @@ console.log(data);
 	$('.ana_sel').on('change',function(){
 		Tmp=$(this).val();
 
+		console.log(Tmp);
+		
 		$.post({
 			url:"./post/ana_chg.php",
 			data:{

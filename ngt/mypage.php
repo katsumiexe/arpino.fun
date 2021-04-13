@@ -1112,8 +1112,8 @@ $(function(){
 			<?}?>
 			</select>
 
-			<span class="ana_res">現在収入：</span><span id="ana_now" class="ana_res_a"><?=number_format($ana_salary_all+$pay_item_all)?>円</span>
-			<span class="ana_res">今月見込：</span><span id="ana_now" class="ana_res_a"><?=number_format($ana_salary_y_all+$pay_item_yet)?>円</span>
+			<div class="ana_res">収入/予定：<span class="ana_res_a"><?=number_format($ana_salary_all+$pay_item_all)?></span>円
+			<span class="ana_res_b">(<?=number_format($ana_salary_y_all+$pay_item_yet)?>円)</span></div>
 		</div>
 
 		<table class="ana">
@@ -1133,6 +1133,7 @@ $(function(){
 				$f_day="ana_f";
 			}
 		?>
+
 		<tr>
 			<td rowspan="2" class="ana_month <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$n?>(<?=$week[$ana_week]?>)</td>
 			<td rowspan="2" class="ana_sche <?=$f_day?> <?=$ana_line[$ana_week]?>"><?=$ana_sche[$ana_c]?></td>
