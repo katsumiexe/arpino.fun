@@ -25,20 +25,24 @@ $tag_list	=$_REQUEST["tag_list"];
 $month		=$_REQUEST["month"];
 
 $n=0;
+
+if($blog_day) $month=substr($blog_day,0,6);
+
 if(!$month) $month=substr($day_8,0,6);
 
 //■カレンダーカウント
-$sql ="SELECT post_date FROM wp01_0posts";
+$sql ="SELECT view_date FROM wp01_0posts";
 $sql.=" WHERE status=0";
 $sql.=" AND view_date LIKE '".substr($month,0,4)."-".substr($month,4,2)."%'";
-$sql.=" AND post_date<='{$now}'";
+$sql.=" AND view_date<='{$now}'";
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1 = mysqli_fetch_assoc($res)){
-		$tmp=substr($a1["view_date"],8,2)+0;
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$tmp=substr($row["view_date"],8,2)+0;
 		$calendar_ck[$tmp]=1;
 	}
 }
+echo $sql;
 
 //■キャスト件数カウント
 $sql ="SELECT cast, genji, COUNT(id) AS cnt ,MAX(view_date) AS b_date ,FROM wp01_0posts";
@@ -128,6 +132,10 @@ if($cast_list){
 if($tag_list){
 	$sql.=" AND tag='{$tag_list}'";
 }
+if($blog_day){
+	$sql.=" AND view_date LIKE '".substr($blog_day,0,4)."-".substr($blog_day,4,2)."-".substr($blog_day,6,2)."%'";
+
+}
 
 $sql.=" ORDER BY view_date DESC";
 $sql.=" LIMIT {$pg_st},16";
@@ -136,17 +144,17 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
 		if (file_exists("./img/profile/{$row["cast"]}/0.webp")) {
-			$row["face"]="./img/profile/{$row["cast"]}/0.webp";			
+			$row["face"]="./img/profile/{$row["cast"]}/0.webp";
 
 		}elseif (file_exists("./img/profile/{$row["cast"]}/0.jpg")) {
-			$row["face"]="./img/profile/{$row["cast"]}/0.jpg";			
+			$row["face"]="./img/profile/{$row["cast"]}/0.jpg";
 
 		}else{
-			$row["face"]="./img/cast_no_image.jpg";			
+			$row["face"]="./img/cast_no_image.jpg";
 		}
 
 		if ($row["img"]) {
-			$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
+			$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";
 
 		}else{
 			$row["thumb"]="./img/blog_no_image.png";
@@ -154,10 +162,8 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,16);
 		$blog[]	=$row;
+		$count_blog++;
 	}
-}	
-if(is_array($blog)){
-	$count_blog=count($blog);
 }
 
 $v_month=date("Y年m月",strtotime($month."01"));
@@ -173,15 +179,24 @@ for($n=0;$n<$month_max ;$n++){
 	}
 	$tmp_days=$n-$month_w;
 	if($n>$month_w && $n<=$month_w+$month_e){
+		$ky=$month*100+$tmp_days;
+		if($calendar_ck[$tmp_days]){
+			$c_inc.="<td class=\"blog_calendar_d\"><a href=\"castblog.php?blog_day={$ky}\" class=\"cal1\">{$tmp_days}</a></td>";
+		
+		}else{
+			$c_inc.="<td class=\"blog_calendar_d\"><span class=\"cal\">{$tmp_days}<span></td>";
+		
+		}
 
-		$ky=$month."00"+$tmp_days;
-		$c_inc.="<td class=\"blog_calendar_d\"><a href=\"castblog.php?blog_day={$ky}&month={$month}{$c_para}{$t_para}\" class=\"cal{$calendar_ck[$tmp_days]}\">{$tmp_days}</a></td>";
+
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
 	}
 }
 include_once('./header.php');
 ?>
+
+
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>

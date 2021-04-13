@@ -12,7 +12,14 @@ if($staff_set == 4){
 	$sql .=" `del`=1";
 	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
 	mysqli_query($mysqli,$sql);
+
+	$sql  =" UPDATE wp01_0cast SET";
+	$sql .=" `cast_status`=4";
+	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
+	mysqli_query($mysqli,$sql);
+
 	$_POST["menu_post"]="staff";
+
 
 //■スタッフ登録or変更
 }elseif($staff_set){
