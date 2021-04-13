@@ -2025,8 +2025,9 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 console.log(data);
-			$('.days_date').html(data.date);
-			$('.days_sche').html(data.sche);
+			$('.cal_days_date').html(data.date);
+			$('.days_stime').html(data.stime);
+			$('.days_etime').html(data.stime);
 			$('.cal_days_birth').html(data.birth);
 			$('.cal_days_memo').val(data.mdmo);
 

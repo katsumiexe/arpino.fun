@@ -11,7 +11,7 @@ $week[6]="土";
 $set_date	=$_POST["set_date"];
 $dat=array();
 //---------------------------------------------------------------
-$sql	 ="SELECT * FROM wp01_0schedule";
+$sql	 ="SELECT stime,etime FROM wp01_0schedule";
 $sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND sche_date='{$set_date}'";
 $sql	.=" ORDER BY id DESC";
