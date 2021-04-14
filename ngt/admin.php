@@ -64,7 +64,8 @@ if($staff_set == 4){
 	$img_z		=$_POST["img_z"];
 	$img_r		=$_POST["img_r"];
 
-	if(!$staff_registday) $staff_registday=date("Y-m-d");
+	if(!$staff_registday) $staff_registday=date("Ymd");
+
 	$btime=$b_yy*10000+$b_mm*100+$b_dd;
 
 	if($staff_set == 2 || $staff_set == 3){
@@ -120,7 +121,7 @@ if($staff_set == 4){
 
 		}else{//新規１　かCAST追加3
 			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`)";
-			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_salary}')";
+			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}','{$cast_salary}')";
 			mysqli_query($mysqli,$sql);
 
 //■encode-------------------------------

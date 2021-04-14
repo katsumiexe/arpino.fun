@@ -72,7 +72,7 @@ $(function(){
 
 <header class="head">
 <h2>スタッフ登録</h2>
-<form action="" method='post' id="my-submenu-form">
+<form action="" method='post' id="" autocomplete="off">
 <button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
 <button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
 <input type="hidden" value="1" name="staff_set">
@@ -95,16 +95,37 @@ STAFF情報
 </td><td>
 	<div>フリガナ		</div><input type="text" name="staff_kana" class="w000" autocomplete="off">
 </td><td>
-	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_dd" value="01" size="2" maxlength="2" autocomplete="off">日
+	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_	dd" value="01" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td colspan="2">
-	<div>住所			</div><input type="text" name="staff_address" class="w000" autocomplete="off">
+	<div>住所			</div><span></span><input type="text" class="w000" autocomplete="impp">
 </td><td >
 	<div>性別			</div>
-<span class="sex_box"><input id="sex1" type="radio" name="staff_sex" value="1" class="sex_box_ck"><label for="sex1" class="sex_box_txt">男性</label></span>
-<span class="sex_box"><input id="sex2" type="radio" name="staff_sex" value="2" class="sex_box_ck"><label for="sex2" class="sex_box_txt">女性</label></span>
-<span class="sex_box"><input id="sex3" type="radio" name="staff_sex" value="3" class="sex_box_ck"><label for="sex3" class="sex_box_txt">他</label></span>
+
+<label for="sex1" class="ck_free">
+	<span class="check2">
+		<input id="sex1" type="radio" name="staff_sex" value="1" class="ck0" <?if($staff_sex+0<2){?>checked="checked"<?}?>>
+		<span class="check1"></span>
+	</span>
+	女性
+</label>
+
+<label for="sex2" class="ck_free">
+	<span class="check2">
+		<input id="sex2" type="radio" name="staff_sex" value="2" class="ck0" <?if($staff_sex == 2){?>checked="checked"<?}?>>
+		<span class="check1"></span>
+	</span>
+	男性
+</label>
+
+<label for="sex3" class="ck_free">
+	<span class="check2">
+		<input id="sex3" type="radio" name="staff_sex" value="3" class="ck0" <?if($staff_sex == 3){?>checked="checked"<?}?>>
+		<span class="check1"></span>
+	</span>
+	他
+</label>
 </td>
 </tr><tr>
 <td>
@@ -145,7 +166,7 @@ CAST情報
 <td>
 	<div>ログインID		</div><input type="text" name="cast_id" class="w000" autocomplete="off">
 </td><td>
-	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="off">
+	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="new_password">
 </td><td>
 	<div>給与		</div><input type="text" name="cast_pay" class="w000" autocomplete="off">
 	</td>

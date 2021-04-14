@@ -489,13 +489,6 @@ ul {
 	width			:70px;
 }
 
-.sex_box_ck{
-	position		:absolute;
-	top				:0;
-	left			:3px;
-	bottom			:0;
-	margin			:auto !important; 
-}
 
 .sex_box_txt{
 	position		:absolute;
@@ -506,11 +499,48 @@ ul {
 	margin			:auto;
 	height			:30px;
 	line-height		:30px;
-
 }
 
+.ck_free{
+	font-size	:14px;
+	position	:relative;
+	width		:120px;
+	padding-left:25px;
+	height		:30px;
+	line-height	:30px;
+	margin		:5px;
+}
 
+.ck0:checked + .check1{
+	display				:inline-block;
+}
 
+.check1{
+	display				:none;
+	position			:absolute;
+	left				:5px;
+	bottom				:0;
+	width				:20px;
+	height				:14px;
+	border-bottom		:4px solid #a00000;
+	border-left			:4px solid #a00000;
+	transform			:rotate(-50deg);
+	transform-origin	:left bottom
+}
+
+.check2{
+	display				:inline-block;
+	position			:absolute;
+	left				:5px;
+	top					:0;
+	bottom				:0;
+	margin				:auto;
+	width				:16px;
+	height				:16px;
+	border				:2px solid #303030;
+	background			:#f0f0f0;
+
+}
 
 @media screen and (max-width: 559px){
 .head_menu{
