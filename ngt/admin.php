@@ -52,6 +52,7 @@ if($staff_set == 4){
 	$cast_rank		=$_POST["cast_rank"];
 	$cast_sort		=$_POST["cast_sort"];
 
+	$cast_salary	=$_POST["cast_salary"];
 	$charm_table	=$_POST["charm_table"];
 	$options		=$_POST["options"];
 
@@ -106,6 +107,7 @@ if($staff_set == 4){
 
 			$sql.=" `ctime`='{$ctime}',";
 			$sql.=" `cast_rank`='{$cast_rank}',";
+			$sql.=" `cast_salary`='{$cast_salary}',";
 			$sql.=" `cast_sort`='{$cast_sort}'";
 			$sql.=" WHERE id='{$staff_id}'";
 			mysqli_query($mysqli,$sql);
@@ -117,8 +119,8 @@ if($staff_set == 4){
 			mysqli_query($mysqli,$sql);
 
 		}else{//新規１　かCAST追加3
-			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`)";
-			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}')";
+			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`)";
+			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_salary}')";
 			mysqli_query($mysqli,$sql);
 
 //■encode-------------------------------

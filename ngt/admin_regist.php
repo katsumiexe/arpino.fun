@@ -33,15 +33,6 @@ if($res1 = mysqli_query($mysqli,$sql)){
 <style>
 <!--
 
-.tbox{
-	height:100px;
-	resize:none;
-}
-.tbox2{
-	height:70px;
-	resize:none;
-}
-
 td{
 	vertical-align:top;
 }
@@ -57,85 +48,6 @@ td{
 
 #cast_l{
 	border-radius:0 10px 10px 0;
-}
-
-.c_s_box{
-	display				:inline-block;
-	height				:30px;
-	line-height			:30px;
-	width				:180px;
-	font-size			:0;
-	color				:#fafafa;
-	text-align			:left;
-	margin 0 50px;
-}
-.c_s_btn{
-	display				: inline-block;
-	height				:30px;
-	line-height			:30px;
-	width				:80px;
-	font-size			:16px;
-	text-align			:center;
-	background			:#cccccc;
-	color				:#fafafa;
-}
-
-.on_1{
-	background:#0000c0;
-}
-
-.on_2{
-	background:#c00000;
-}
-
-.ck_off:checked + label{
-	background		:linear-gradient(#c0c0f0,#8080ff);
-}
-
-.ck_box{
-	display			:inline-block;
-	width			:128px;
-	margin			:3px;
-	padding			:4px;
-	border-radius	:5px;
-	background		:#c0c0c0;
-	color			:#fafafa;
-	font-size		:14px;
-	text-align		:left;
-}
-
-.table_title{
-	background		:linear-gradient(#e0e0e0,#d0d0d0);
-	padding			:5px;
-	font-size		:14px;
-}
-
-
-.sex_box{
-	position		:relative;
-	display			:inline-block;
-	height			:30px;
-	width			:70px;
-}
-
-.sex_box_ck{
-	position		:absolute;
-	top				:0;
-	left			:3px;
-	bottom			:0;
-	margin			:auto !important; 
-}
-
-.sex_box_txt{
-	position		:absolute;
-	display			:inline-block;
-	top				:0px;
-	left			:25px;
-	bottom			:0;
-	margin			:auto;
-	height			:30px;
-	line-height		:30px;
-
 }
 
 -->

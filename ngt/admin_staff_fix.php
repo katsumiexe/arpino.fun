@@ -77,15 +77,6 @@ if($staff_data["id"]){
 <style>
 <!--
 
-.tbox{
-	height:100px;
-	resize:none;
-}
-.tbox2{
-	height:70px;
-	resize:none;
-}
-
 td{
 	vertical-align:top;
 }
@@ -103,6 +94,8 @@ td{
 	border-radius:0 10px 10px 0;
 }
 
+
+/*
 .c_s_box{
 	display				:inline-block;
 	height				:30px;
@@ -182,6 +175,7 @@ td{
 	font-size:14px;
 
 }
+*/
 -->
 </style>
 <link rel="stylesheet" href="./css/admin_image.css?t=<?=time()?>">

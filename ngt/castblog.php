@@ -183,9 +183,7 @@ for($n=0;$n<$month_max ;$n++){
 		
 		}else{
 			$c_inc.="<td class=\"blog_calendar_d\"><span class=\"cal\">{$tmp_days}<span></td>";
-		
 		}
-
 
 	}else{
 		$c_inc.="<td class=\"blog_calendar_d\"></td>";
@@ -200,6 +198,7 @@ include_once('./header.php');
 		<span class="footmark_icon"></span>
 		<span class="footmark_text">TOP</span>
 	</a>
+
 <?if($cast_list){?>
 	<span class="footmark_icon"></span>
 	<a href="./castblog.php" class="footmark_box box_a">
@@ -208,8 +207,8 @@ include_once('./header.php');
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"><?=$cast_count[$cast_list]["tag_icon"]?></span>
-		<span class="footmark_text"><?=$cast_count[$cast_list]["tag_name"]?></span>
+		<span class="footmark_icon"></span>
+		<span class="footmark_text"><?=$blog[0]["genji"]?></span>
 	</div>
 
 <?}elseif($tag_list){?>

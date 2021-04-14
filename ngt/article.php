@@ -91,7 +91,7 @@ include_once('./header.php');
 		<span class="footmark_text">BLOG</span>
 	</a>
 	<span class="footmark_icon"></span>
-	<a href=".castblog.php?cast_list=<?=$blog["cast"]?>" class="footmark_box box_a">
+	<a href="./castblog.php?cast_list=<?=$blog["cast"]?>" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
 		<span class="footmark_text"><?=$blog["genji"]?></span>
 	</a>
