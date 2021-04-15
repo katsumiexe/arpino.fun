@@ -1,6 +1,7 @@
 <?
 $sql	 ="SELECT * FROM wp01_0charm_table";
 $sql	.=" WHERE del=0";
+$sql	.=" AND view=0";
 $sql	.=" ORDER BY sort ASC";
 
 if($res = mysqli_query($mysqli,$sql)){
@@ -30,9 +31,7 @@ if($res1 = mysqli_query($mysqli,$sql)){
 
 ?>
 <style>
-<style>
 <!--
-
 td{
 	vertical-align:top;
 }
@@ -168,24 +167,27 @@ CAST情報
 </td><td>
 	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="new_password">
 </td><td>
-	<div>給与		</div><input type="text" name="cast_pay" class="w000" autocomplete="off">
+	<div>給与		</div><input type="text" name="cast_salary" class="w000" autocomplete="off">
 	</td>
 </tr>
 </table>
 
-<table style="width:720px;" class="cast_table table-layout: fixed;">
+<table style="width:720px;" class="cast_table" style="table-layout: fixed;">
 <tr>
-	<td class="table_title" colspan="3">NEWS登録</td>
+	<td class="table_title" colspan="2">NEWS登録</td>
 </tr>	
+
 <tr>
-	<td style="width:40%;">公開日
+	<td>公開日
 	<input type="text" id="news_date_yy" name="news_date_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
 	<input type="text" id="news_date_mm" name="news_date_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
 	<input type="text" id="news_date_dd" name="news_date_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
-	<td colspan="2"><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
+	</td>
+	<td><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
 </tr>
 </table>
-<table style="width:720px;" class="cast_table table-layout: fixed;">
+
+<table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
 	<?foreach((array)$charm_table as $a1 => $a2){?>
 <td>
@@ -205,7 +207,7 @@ CAST情報
 </table>
 
 <?foreach((array)$ck_main as $a1 => $a2){?>
-<table style="width:720px;" class="cast_table">
+<table style="width:720px; table-layout: fixed;" class="cast_table">
 	<tr>
 	<td class="table_title">
 <span class="table_title cast_table"><?=$a2["title"]?></span>

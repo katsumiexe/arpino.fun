@@ -209,7 +209,7 @@
 }
 
 
-.prof_title,.sche_title{
+.prof_title{
 	margin-top		:7px;
 	margin-left		:0;
 	width			:493px;
@@ -420,7 +420,7 @@
 }
 
 
-.prof_title,.sche_title,.blog_title{
+.prof_title,.blog_title{
 	width			:43.5vw;
 	height			:4vw;
 	line-height		:4vw;
@@ -711,7 +711,7 @@
 }
 
 
-.prof_title,.sche_title,.blog_title{
+.prof_title,.blog_title{
 	width			:93vw;
 	height			:8vw;
 	line-height		:8vw;

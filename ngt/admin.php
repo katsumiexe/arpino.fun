@@ -3,8 +3,10 @@
 include_once('./library/sql.php');
 include_once('./library/inc_code.php');
 
-$staff_set=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
-$staff_id=$_POST["staff_id"];
+$staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
+$staff_id	=$_POST["staff_id"];
+
+$menu_post	=$_POST["menu_post"];
 
 //■スタッフ削除
 if($staff_set == 4){
@@ -17,12 +19,12 @@ if($staff_set == 4){
 	$sql .=" `cast_status`=4";
 	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
 	mysqli_query($mysqli,$sql);
-
-	$_POST["menu_post"]="staff";
-
+	$menu_post="staff";
 
 //■スタッフ登録or変更
 }elseif($staff_set){
+	$menu_post="staff";
+
 	$c_s			=$_POST["c_s"];
 	$staff_name		=$_POST["staff_name"];
 	$staff_kana		=$_POST["staff_kana"];
@@ -87,8 +89,8 @@ if($staff_set == 4){
 
 	//新規STAFF
 	}else{
-		$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`mail`,`address`,`registday`)";
-		$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_mail}','{$staff_address}','{$staff_registday}')";
+		$sql="INSERT INTO wp01_0staff (`name`,`kana`,`birthday`,`sex`,`rank`,`position`,`group`,`tel`,`line`,`mail`,`address`,`registday`,`cast_salary`)";
+		$sql.="VALUES('{$staff_name}','{$staff_kana}','{$btime}','{$staff_sex}','{$staff_rank}','{$staff_position}','{$staff_group}','{$staff_tel}','{$staff_line}','{$staff_mail}','{$staff_address}','{$staff_registday}','{$cast_salary}')";
 		mysqli_query($mysqli,$sql);
 		$staff_id=mysqli_insert_id($mysqli);
 	}
@@ -254,12 +256,14 @@ if($staff_set == 4){
 	}
 
 }elseif($_POST["prof_name_new"] && $_POST["prof_style_new"]){
+	$menu_post="staff";
 	$sql="INSERT INTO wp01_0charm_table (`charm`,`sort`,`style`)";
 	$sql.="VALUES('{$_POST["prof_name_new"]}','{$_POST["prof_sort_new"]}','{$_POST["prof_style_new"]}')";
 	mysqli_query($mysqli,$sql);
 }
+if(!$menu_post) $menu_post="staff";
 
-$sel[$_POST["menu_post"]]="menu_sel";
+$sel[$menu_post]="menu_sel";
 ?>
 <html lang="ja">
 <head>
@@ -302,8 +306,8 @@ $sel[$_POST["menu_post"]]="menu_sel";
 </head>
 <body class="body">
 <div class="main">
-	<?if($_POST["menu_post"]){?>
-		<?=include_once("./admin_{$_POST["menu_post"]}.php");?>
+	<?if($menu_post){?>
+		<?=include_once("./admin_{$menu_post}.php");?>
 	<?}?>
 </div>
 <div class="left">

@@ -16,7 +16,6 @@ if($result = mysqli_query($mysqli,$sql)){
 				$dat2[$row["id"]][]=$row2;
 			}
 		}
-
 		$dat[]=$row;
 		$count_dat++;
 	}
@@ -44,12 +43,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 ?>
-
 <style>
 <!--
-
 .sel_contents{
 	display			:inline-block;
 	background		:#bbbbbb;
@@ -89,36 +85,27 @@ $(function(){
 });
 </script>
 <header class="head">
-<input id="sel_contents_0" value="1" type="radio" name="sel_contents" checked="checked"><label id="label_contents_0" for="sel_contents_0" class="sel_contents">イベント</label>
-<input id="sel_contents_1" value="2" type="radio" name="sel_contents"><label id="label_contents_1" for="sel_contents_1" class="sel_contents">NEWS</label>
-<input id="sel_contents_2" value="3" type="radio" name="sel_contents"><label id="label_contents_2" for="sel_contents_2" class="sel_contents">お知らせ</label>
-<input id="sel_contents_3" value="4" type="radio" name="sel_contents"><label id="label_contents_3" for="sel_contents_3" class="sel_contents">SYSTEM</label>
-<input id="sel_contents_4" value="5" type="radio" name="sel_contents"><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
-<input id="sel_contents_5" value="6" type="radio" name="sel_contents"><label id="label_contents_5" for="sel_contents_5" class="sel_contents">REQRUIT</label>
 </header>
 <div class="wrap">
 	<div class="main_box">
 
-<table>
+<table class="notice_table">
 <tr>
-<td>日時</td>
-<td>カテゴリ</td>
-<td>投稿者</td>
-<td>件名</td>
-<td>グループ</td>
+	<td class="notice_top">日時</td>
+	<td class="notice_top">カテゴリ</td>
+	<td class="notice_top">投稿者</td>
+	<td class="notice_top">件名</td>
+	<td class="notice_top">グループ</td>
 </tr>
-
-<?for($n=0;$n<$count_dat;$N++){?>
+<?for($n=0;$n<$count_dat;$n++){?>
 <tr>
-<td><?=$dat[$n]["date"]?></td>
-<td>カテゴリ</td>
-<td>投稿者</td>
-<td>件名</td>
-<td>グループ</td>
+	<td class="notice_140"><?=$dat[$n]["date"]?></td>
+	<td class="notice_80"><?=$dat[$n]["date"]?></td>
+	<td class="notice_140"><?=$dat[$n]["date"]?></td>
+	<td class="notice_250"><?=$dat[$n]["date"]?></td>
+	<td class="notice_80"><?=$dat[$n]["date"]?></td>
 </tr>
-
-
-
+<?}?>
 	</div>
 	<div class="sub_box">
 

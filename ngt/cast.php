@@ -20,7 +20,6 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["new"]=3;
 		}
 
-
 		if (file_exists("./img/profile/{$row["id"]}/0.jpg")) {
 			$row["face"]="./img/profile/{$row["id"]}/0.jpg";		
 
