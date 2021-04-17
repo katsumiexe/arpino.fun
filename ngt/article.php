@@ -38,6 +38,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	if ($blog["img"]) {
 		$blog["thumb"]="./img/profile/{$blog["cast"]}/{$blog["img"]}.png";			
 	}
+	$blog["log"]=str_replace("\n","<br>",$blog["log"]);
 	$blog["date"]=substr(str_replace("-",".",$blog["view_date"]),0,16);
 }
 
@@ -71,6 +72,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 
 		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,10);
+
 		$blog_new[]=$row;
 
 		$blog_new_count++;

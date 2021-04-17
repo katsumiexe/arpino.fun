@@ -794,7 +794,7 @@ ul {
 	width		:300px;
 	background	:#302520;
 	border		:1px solid #c8b880;
-	margin		:0 0 auto 28px;
+	margin		:0 0 auto 27px;
 	padding		:0;
 	text-align	:center;
 }
@@ -1038,17 +1038,17 @@ ul {
 
 .main_article{
 	display			:inline-block;
-	width			:846px;
+	width			:848px;
 	text-align		:left;
 	border			:1px solid #c8b880;
 	background		:#302520;
 	vertical-align	:top;
-	padding:2px;
+	padding			:2px;
 }
 
 .main_blog_title{
 	display			:inline-block;
-	width			:840px;
+	width			:842px;
 	height			:35px;
 	line-height		:35px;
 	background		:#c8b880;
@@ -1209,10 +1209,10 @@ ul {
 }
 
 .access_tag{
-	font-size	:15px;
+	font-size	:18px;
 	font-weight	:800;
 	width		:340px;
-	height		:20px;
+	height		:24px;
 	line-height	:20px;
 	padding		:0;
 	text-align	:left;
@@ -1222,8 +1222,8 @@ ul {
 }
 
 .access_box{
-	font-size		:14px;
-	line-height		:20px;
+	font-size		:16px;
+	line-height		:22px;
 	width			:340px;
 	padding			:0;
 	text-align		:left;

@@ -12,7 +12,7 @@ $hh=$_POST["hh"];
 $ii=$_POST["ii"];
 
 $view_date	=$yy."-".$mm."-".$dd." ".$hh.":".$ii.":00";
-$date_jst	=$yy.".".$mm.".".$dd." ".$hh.":".$ii;
+
 
 $ttl		=$_POST["ttl"];
 $log		=$_POST["log"];
@@ -31,16 +31,13 @@ if($status<1 && $now < $view_date){
 	$view_data=$status;
 }
 
-if($img_id){
-	$img_name=$img_id;
-	$tmp_img="./img/profile/{$cast_data["id"]}/{$img_name}.png";
-
-}elseif($img_code){
+if($img_code){
 	$img_name	 =time()+2121212121;
 	$img_name	 ="p".$img_name;
 	$img_link="../img/profile/{$cast_data["id"]}/{$img_name}";
 
 	$img	= imagecreatefromstring(base64_decode($img_code));	
+
 	$img2	= imagecreatetruecolor(600,600);
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);
 	imagepng($img2,$img_link.".png");
@@ -49,6 +46,10 @@ if($img_id){
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 200, 200, 600, 600);
 	imagepng($img2,$img_link."_s.png");
 	$tmp_img=substr($img_link,1).".png";
+
+}elseif($img_id){
+	$img_name	=$img_id;
+	$tmp_img	="./img/profile/{$cast_data["id"]}/{$img_name}.png";
 
 }else{
 	$tmp_img="./img/blog_no_image.png";
@@ -90,7 +91,6 @@ if($chg){
 $log=str_replace("\n","<br>",$log);
 
 $html=$sql;
-
 $html.="<div id=\"blog_hist_{$auto_0}\" class=\"blog_hist\">";
 $html.="<img id=\"b_img_{$img_name}\" src=\"{$tmp_img}\" class=\"hist_img\">";
 $html.="<span class=\"hist_date\">{$date_jst}</span>";
@@ -102,7 +102,7 @@ $html.="</div>";
 $html.="<div class=\"hist_log\">";
 
 if($img_name){
-$html.="<span class=\"hist_img_in\"><img src=\"./img/profile/{$cast_data["id"]}/{$img_name}.png\" class=\"hist_img_on\"></span><br>";
+$html.="<span class=\"hist_img_in\"><img src=\"./img/profile/{$cast_data["id"]}/{$img_name}.png?t={$now}\" class=\"hist_img_on\"></span><br>";
 }
 $html.="<span class=\"blog_log\">{$log}</span>";
 $html.="</div>";

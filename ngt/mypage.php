@@ -773,7 +773,9 @@ $(function(){
 						<input type="hidden" class="customer_hidden_web" value="<?=$customer[$n]["web"]?>">
 					</div>
 				<?}?>
-			<?}?>	
+			<?}else{?>	
+				<div class="no_data">登録はありません。</div>
+			<? } ?>
 		</div>
 
 
@@ -1062,7 +1064,6 @@ $(function(){
 							</td>
 						</tr>
 					</table>
-
 				</div>
 				<input id="blog_chg" type="hidden" value="" >
 			</div>
@@ -1086,7 +1087,6 @@ $(function(){
 					<span class="hist_watch"><span class="hist_i"></span><span class="hist_watch_c"><?=$blog[$n]["cnt"]+0?></span></span>
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
-
 				<div class="hist_log">
 					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
 					<span class="hist_img_in"><img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>.png?t_<?=time()?>" class="hist_img_on"></span>
@@ -1094,10 +1094,12 @@ $(function(){
 					<span class="blog_log"><?=$blog[$n]["log"]?></span>
 				</div>
 				<? } ?>
-
 				<?if($blog_max>10){?>
-				<div class="blog_ad"><img src="./img/page/ad/bn.jpg?t=<?=time()?>" style="width:100%;"></div>
-				<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
+					<div class="blog_ad"><img src="./img/page/ad/bn.jpg?t=<?=time()?>" style="width:100%;"></div>
+					<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
+				<? } ?>
+				<?if(!$blog_max){?>
+					<div class="no_data">投稿されているブログはありません</div>
 				<? } ?>
 			</div>
 		</div>

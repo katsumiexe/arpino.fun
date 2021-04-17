@@ -4337,6 +4337,19 @@ input[type=range]::-moz-range-thumb{
 	background:	linear-gradient(#ff0000,#dd0000);	
 }
 
+.no_data{
+	width		:80vw;
+	margin		:2vw auto;
+	border		:1px solid #303030;
+	height		:16vw;
+	line-height	:16vw;
+	text-align	:center;
+	background	:#f0f0f0;
+	color		:#303030;
+	font-size	:3.5vw;
+}
+
+
 
 .filter_fav_label{
 	display		:inline-block;
