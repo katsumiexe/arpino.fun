@@ -173,7 +173,7 @@ include_once('./header.php');
 </div>
 <div class="person_main">
 <?if($err){?>
-	<div class="person_err"><?=$err?></div>
+	<span class="no_blog"><?=$err?></span>
 <?}else{?>
 
 	<div class="person_left">

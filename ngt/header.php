@@ -43,7 +43,7 @@
 			<table class="head_b_table">
 				<tr>
 					<td colspan="2" class="head_b_1">
-						西武新宿駅徒歩5分<br>誰もが落ち着ける新スタイルのNew Club</span>
+						西武新宿駅徒歩5分　誰もが落ち着ける新スタイルのNew Club</span>
 					</td>
 				</tr>
 

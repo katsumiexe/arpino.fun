@@ -142,9 +142,8 @@ ul {
 
 .head_b_table{
 	position		:absolute;
-	right			:0px;
-	width			:300px;
-	margin-top		:5px;
+	bottom			:0;
+	right			:0;
 }
 
 .head_in{
@@ -174,7 +173,7 @@ ul {
 .head_b_1{
 	color			:#e0e0e0;
 	font-size		:15px;
-	line-height		:18px;
+	line-height		:20px;
 	text-align		:right;
 }
 
@@ -184,13 +183,11 @@ ul {
 	font-weight		:600;
 	height			:27px;
 	line-height		:27px;
-	text-align		:left;
+	text-align		:right;
 }
 
 .head_b_3{
 	width			:190px;
-	text-align		:right;
-
 }
 
 
@@ -1183,8 +1180,6 @@ ul {
 .access_sig{
 	display			:inline-block;
 	flex-basis		:400px;
-	height			:400px;
-//	background		:#909090;
 	font-size		:0;
 	text-align		:center;
 	border-radius	:10px;
@@ -1978,9 +1973,6 @@ ul {
 	vertical-align	:top;
 }
 
-
-
-
 .head_in{
 	width			:100vw;
 	height			:5vw;
@@ -2005,14 +1997,14 @@ ul {
 	font-size		:2.5vw;
 	height			:3.5vw;
 	line-height		:3.5vw;
-	width			:32vw;
+	width			:12vw;
 }
 
 .head_b_3{
 	font-size		:2.5vw;
 	height			:3.5vw;
 	line-height		:3.5vw;
-	width			:32vw;
+	width			:22vw;
 }
 
 
@@ -2611,58 +2603,57 @@ ul {
 }
 
 .access_table{
-	width		:92vw;
-	margin		:1vw auto 5vw auto;
+	width		:80vw;
+	margin		:2vw auto;
 	height		:auto;
 	flex-wrap	:wrap;
 }
 
 .access_map{
 	margin		:0 auto 2vw auto;
-	flex-basis	:86vw;
-	width		:86vw;
-	height		:96vw;
+	width		:80vw;
+	height		:80vw;
+	flex-basis	:80vw;
 }
 
 .access_map_in{
-	width		:86vw;
-	height		:96vw;
+	width		:80vw;
+	height		:80vw;
 }
 
 .access_sig{
-	width			:76vw;
-	flex-basis		:76vw;
+	width			:78vw;
+	flex-basis		:78vw;
 	margin			:1vw auto 2vw auto;
 	font-size		:0;
 	text-align		:center;
-	border-radius	:2vw;
 }
 
 .access_tag{
-	font-size		:4vw;
-	width			:70vw;
-	height			:8vw;
-	line-height		:8vw;
+	font-size		:3.5vw;
+	width			:78vw;
+	height			:5vw;
+	line-height		:5vw;
 	margin			:2vw auto 1vw auto;
+	padding-left	:1vw;
 }
 
 .access_box{
 	font-size		:3.5vw;
-	line-height		:5vw;
-	width			:70vw;
-	margin-bottom	:4vw;
-	margin			:1vw auto 2vw auto;
+	line-height		:6vw;
+	width			:74vw;
+	margin			:1vw auto 5vw auto;
 }
 
 
 .access_h1{
-	font-size	:5vw;
-	width		:70vw;
-	height		:10vw;
-	line-height	:10vw;
-	margin		:1vw auto 2vw auto;
+	font-size		:4.5vw;
+	width			:78vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:1vw auto 4vw auto;
+	padding-left	:1vw;
 }
-
 
 .sys_box{
     width			:90vw;

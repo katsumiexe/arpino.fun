@@ -34,15 +34,14 @@ if($result = mysqli_query($mysqli,$sql)){
 				$row["face"]="./img/cast_no_image.jpg";			
 			}
 			$dat[$row["id"]]=$row;
-
+			$dat_count++;
 		}else{
 			$dat[$row["id"]]="";
 		}
 	}
-}
-if(is_array($dat)){
 	krsort($dat);
 }
+
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
@@ -250,33 +249,36 @@ var Cnt=<?=$event_count?>-1;
 			<?}?>
 		</div>
 
-<?if($dat){?>
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
-			<? foreach($dat as $b1=> $b2){?>
-				<span class="main_b_1">
-					<img src="<?=$b2["face"]?>?t=<?=time()?>" class="main_b_1_1">
-					<span class="main_b_1_2">
-						<span class="main_b_1_2_h"></span>
-						<span class="main_b_1_2_f f_tr"></span>
-						<span class="main_b_1_2_f f_tl"></span>
-						<span class="main_b_1_2_f f_br"></span>
-						<span class="main_b_1_2_f f_bl"></span>
-						<span class="main_b_1_2_name"><?=$b2["genji"]?></span>
-						<span class="main_b_1_2_sch"><?=$b2["sch_view"]?></span>
+			<?if($dat_count>0){?>
+				<? foreach($dat as $b1=> $b2){?>
+					<span class="main_b_1">
+						<img src="<?=$b2["face"]?>?t=<?=time()?>" class="main_b_1_1">
+						<span class="main_b_1_2">
+							<span class="main_b_1_2_h"></span>
+							<span class="main_b_1_2_f f_tr"></span>
+							<span class="main_b_1_2_f f_tl"></span>
+							<span class="main_b_1_2_f f_br"></span>
+							<span class="main_b_1_2_f f_bl"></span>
+							<span class="main_b_1_2_name"><?=$b2["genji"]?></span>
+							<span class="main_b_1_2_sch"><?=$b2["sch_view"]?></span>
+						</span>
+						<?if($b2["new"] == 1){?>
+						<span class="main_b_1_ribbon ribbon1">近日入店</span>
+						<?}elseif($b2["new"] == 2){?>
+						<span class="main_b_1_ribbon ribbon2">本日入店</span>
+						<?}elseif($b2["new"] == 3){?>
+						<span class="main_b_1_ribbon ribbon3">新人</span>
+						<?}?>
+					<a href="./person.php?post_id=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
 					</span>
-					<?if($b2["new"] == 1){?>
-					<span class="main_b_1_ribbon ribbon1">近日入店</span>
-					<?}elseif($b2["new"] == 2){?>
-					<span class="main_b_1_ribbon ribbon2">本日入店</span>
-					<?}elseif($b2["new"] == 3){?>
-					<span class="main_b_1_ribbon ribbon3">新人</span>
-					<?}?>
-				<a href="./person.php?post_id=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
-				</span>
+				<? } ?>
+			<? }else{ ?>
+				<span class="no_blog">予定はありません</span>
+
 			<? } ?>
 		</div>
-<? } ?>
 	</div>
 	<div class="main_c">
 		<div class="pc_only">
