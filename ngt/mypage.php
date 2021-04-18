@@ -161,17 +161,19 @@ if($result = mysqli_query($mysqli,$sql)){
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
 			$ana_sche[$row["sche_date"]]="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
 
+			if($row["sche_date"] == $day_8){
+				$days_sche="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
+			}
+
 		}else{
 			$sche_dat[$row["sche_date"]]="";
 			$ana_time[$row["sche_date"]]=0;
 			$stime[$row["sche_date"]]="";
 			$etime[$row["sche_date"]]="";
 			$ana_sche[$row["sche_date"]]="休み";
+			$days_sche="休み";
 		}
 
-		if($row["sche_date"] == $day_8){
-			$days_sche="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
-		}
 	}
 }
 
@@ -304,7 +306,6 @@ if($result = mysqli_query($mysqli,$sql)){
 				$tmp_name=$row["nickname"];
 			} 
 			$days_birth.="<span id=\"c{$row["id"]}\" class=\"cal_days_birth_in\"><span class=\"days_icon\"></span><span class=\"days_birth\">{$tmp_name}({$tmp_age})</span></span><br>";
-		
 		}
 
 		if(file_exists("./img/cast/{$box_no}/c/{$cd}.png")){
