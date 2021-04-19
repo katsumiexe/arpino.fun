@@ -12,20 +12,20 @@ $hh=$_POST["hh"];
 $ii=$_POST["ii"];
 
 $view_date	=$yy."-".$mm."-".$dd." ".$hh.":".$ii.":00";
-
+$date_js	=$yy.".".$mm.".".$dd." ".$hh.":".$ii;
 
 $ttl		=$_POST["ttl"];
 $log		=$_POST["log"];
 $tag		=$_POST["tag"];
 $cast_id	=$_POST["cast_id"];
 $chg		=$_POST["chg"];
-$status		=$_POST["status"];
+$status		=$_POST["status"]+0;
 
 $img_code	=$_POST["img_code"];
 $img_id		=$_POST["img_id"];
 
 if($status<1 && $now < $view_date){
-	$view_data=4;
+	$view_data=3;
 
 }else{
 	$view_data=$status;
@@ -64,7 +64,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		$tag_icon[$raw["id"]]=$raw["tag_icon"];
 	}
 }
-
 
 if($chg){
 	$sql ="UPDATE wp01_0posts SET";

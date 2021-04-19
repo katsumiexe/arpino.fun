@@ -867,6 +867,7 @@ $(function(){
 		}).done(function(data, textStatus, jqXHR){
 			$('.blog_write').slideUp(300);
 			$('.blog_list').show().prepend(data);
+			$('.no_data').hide();
 			var base_64='';
 
 		}).fail(function(jqXHR, textStatus, errorThrown){

@@ -13,6 +13,9 @@ $blog_status[1]="非公開";
 $blog_status[2]="削除";
 $blog_status[3]="予約";
 
+$local_st=date("Y-m-d")."T".date("H:i");
+$local_ed=date("Y-m-d",time()+3600)."T".date("H:i",time()+3600);
+
 //Sche-----------------------
 if($cast_data){
 $c_month=$_POST["c_month"];
@@ -1673,6 +1676,7 @@ $(function(){
 
 	<div class="customer_log_in">
 		<div class="customer_log_top">
+<!--
 			<select id="logset_yy" class="blog_4">
 				<?for($n=2018;$n<date("Y")+3;$n++){?>
 					<?$n1=substr("00".$n,-2,2)?>
@@ -1713,8 +1717,11 @@ $(function(){
 					<option value="<?=$n1?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
 				<?}?>
 			</select>
-		</div>
+-->
+<input type="datetime-local" value="<?=$local_st?>" style="box_local"><br>
+<input type="datetime-local" value="<?=$local_ed?>" style="box_local"><br>
 
+		</div>
 		<div class="customer_log_left">
 			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">
 				<span class="sel_log_icon"><?=$i_code[$log_item[0]["item_icon"]]?></span>

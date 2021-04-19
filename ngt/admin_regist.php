@@ -66,15 +66,29 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
+
+	$('#cast_l').on('click',function () {
+		$(this).addClass('on_2');
+		$('#staff_l').removeClass('on_1');
+		$('.cast_table').fadeIn(100);
+	});
+
+	$('.submit_btn').on('click',function () {
+		Tmp=$(this).attr('id');
+		$('#send').val(Tmp);
+		$('#form').submit();
+	});
 });
 </script>
 
 <header class="head">
 <h2>スタッフ登録</h2>
-<form action="" method='post' id="" autocomplete="off">
-<button type='submit' class='button button-primary button-large' name="set" value="保存">保存</button>
-<button type='submit' class='button button-primary button-large' name="del" value="削除">削除</button>
+
+<button id="set" type="button" class="submit_btn">保存</button>
+<button id="del" type="button" class="submit_btn">削除</button>
+<form id="form" action="" method="post" autocomplete="off">
 <input type="hidden" value="1" name="staff_set">
+<input id="send" type="hidden" value="" name="send">
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
