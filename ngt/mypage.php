@@ -13,8 +13,10 @@ $blog_status[1]="非公開";
 $blog_status[2]="削除";
 $blog_status[3]="予約";
 
-$local_st=date("Y-m-d")."T".date("H:i");
-$local_ed=date("Y-m-d",time()+3600)."T".date("H:i",time()+3600);
+
+$local_dt=date("Y-m-d");
+$local_st=date("H:00");
+$local_ed=date("H:00",time()+3600);
 
 //Sche-----------------------
 if($cast_data){
@@ -1718,8 +1720,9 @@ $(function(){
 				<?}?>
 			</select>
 -->
-<input type="datetime-local" value="<?=$local_st?>" class="box_local"><br>
-<input type="datetime-local" value="<?=$local_ed?>" class="box_local"><br>
+				<span class="local_tag">日時</span><input id="local_dt" type="date" value="<?=$local_dt?>" class="local_date">
+				<span class="local_tag">開始</span><input id="local_st" type="time" value="<?=$local_st?>" class="local_time">
+				<span class="local_tag">終了</span><input id="local_ed" type="time" value="<?=$local_ed?>" class="local_time">
 
 		</div>
 		<div class="customer_log_left">
@@ -1740,6 +1743,7 @@ $(function(){
 			</div>
 			<textarea id="sel_log_area" class="sel_log_area" placeholder="メモ："></textarea>
 		</div>
+
 		<div class="customer_log_right"></div>
 		<div class="customer_log_bottom">
 		<div id="sel_log_set" class="btn btn_c2">登録</div>

@@ -600,15 +600,6 @@ input:focus{
 	font-size		:3.5vw;
 }
 
-.box_local{
-	font-size	:4.5vw;
-	height		:8vw;
-	width		:56vw;
-	margin		:1vw;
-	border		:1px solid #303030;
-	padding:2vw;
-}
-
 
 .cal_td,.cal_th{
 	position		:relative;
@@ -1719,12 +1710,13 @@ input:focus{
 
 
 .customer_log_top{
-	display			:inline-block;
-	width			:92vw;
-	text-align		:right;
-	padding			:1.5vw;
-	margin:0 auto;
+	position		:relative;
+	display			:flex;
+	flex-wrap		:wrap;
+	margin			:0 auto;
+	width			:80vw;
 }
+
 .customer_log_left{
 	position		:relative;
 	display			:inline-block;
@@ -1764,6 +1756,40 @@ input:focus{
 	font-size:0;
 }
 
+.local_tag{
+	display		:inline-block;
+	font-size	:4.5vw;
+	height		:8vw;
+	width		:12vw;
+	flex-basis	:10vw;
+	margin		:1vw;
+	background	:#0000d0;
+	padding		:1vw;
+	border		:1px solid #303030;
+	color:#fafafa;
+}
+
+.local_date{
+	display		:inline-block;
+	font-size	:4.5vw;
+	height		:8vw;
+	width		:50vw;
+	flex-basis	:50vw;
+	margin		:1vw;
+	border		:1px solid #303030;
+	padding-left:1vw;
+}
+
+.local_time{
+	display		:inline-block;
+	font-size	:4.5vw;
+	height		:8vw;
+	width		:25vw;
+	flex-basis	:25vw;
+	margin		:1vw 3vw 1vw 1vw;
+	border		:1px solid #303030;
+	padding-left:1vw;
+}
 
 .log_list_del{
 	display:none;

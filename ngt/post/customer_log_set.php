@@ -18,15 +18,17 @@ $ii_s		=substr('00'.$_POST["ii_s"],-2,2);
 
 $hh_e		=substr('00'.$_POST["hh_e"],-2,2);
 $ii_e		=substr('00'.$_POST["ii_e"],-2,2);
+$sdate		=$yy.$mm.$dd;
+$stime		=$hh_s.$ii_s;
+$etime		=$hh_e.$ii_e;
 
 $c_id		=$_POST["c_id"];
 $log		=$_POST["log"];
 $chg		=$_POST["chg"];
 $del		=$_POST["del"];
 
-$sdate	=$yy.$mm.$dd;
-$stime	=$hh_s.$ii_s;
-$etime	=$hh_e.$ii_e;
+$local_st	=$_POST["local_st"];
+$local_ed	=$_POST["local_ed"];
 
 if($del > 0){//■削除
 	$sql="DELETE FROM wp01_0cast_log WHERE log_id='{$del}'";
@@ -96,7 +98,8 @@ if($item_name){
 	mysqli_query($mysqli,$sql_log);
 	$dat.=$app."</span></td></tr>";
 }
-echo $sql_log;
+
 echo $dat;
 exit();
 ?>
+

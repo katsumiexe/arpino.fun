@@ -2301,6 +2301,9 @@ $(function(){
 			'hh_e'	:$('#logset_hh_e').val(),
 			'ii_e'	:$('#logset_ii_e').val(),
 
+			'local_st'	:$('#local_st').val(),
+			'local_ed'	:$('#local_ed').val(),
+
 			'cast_id'	:CastId,
 			'c_id'		:C_Id,
 			'item_color[]'	:ItemColor,
