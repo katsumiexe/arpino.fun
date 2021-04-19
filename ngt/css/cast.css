@@ -603,9 +603,10 @@ input:focus{
 .box_local{
 	font-size	:4.5vw;
 	height		:8vw;
-	width		:35vw;
+	width		:56vw;
 	margin		:1vw;
 	border		:1px solid #303030;
+	padding:2vw;
 }
 
 

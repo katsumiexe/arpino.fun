@@ -1718,8 +1718,8 @@ $(function(){
 				<?}?>
 			</select>
 -->
-<input type="datetime-local" value="<?=$local_st?>" style="box_local"><br>
-<input type="datetime-local" value="<?=$local_ed?>" style="box_local"><br>
+<input type="datetime-local" value="<?=$local_st?>" class="box_local"><br>
+<input type="datetime-local" value="<?=$local_ed?>" class="box_local"><br>
 
 		</div>
 		<div class="customer_log_left">
