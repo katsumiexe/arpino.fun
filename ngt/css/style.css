@@ -1074,15 +1074,40 @@ ul {
 }
 
 .foot_in{
-	display		:inline-flex;
-	justify-content: center;
-	width		:100vw;
-	max-width	:1200px;
+	display		:block;
+	width		:1200px;
 	margin		:0 auto;
 	font-size	:0;
 	padding-bottom:20px;
 }
 
+.foot_a{
+	display		:block;
+	width		:1200px;
+	margin		:10px auto;
+	font-size	:0;
+	text-align	:center;
+}
+
+.foot_a_in{
+	display		:inline-block;
+	width		:100px;
+	height		:30px;
+	line-height	:30px;
+	text-align	:center;
+	font-size	:18px;
+	color		:#fafaf0;
+}
+
+.foot_c_in{
+	display		:inline-block;
+	width		:200px;
+	height		:30px;
+	line-height	:30px;
+	text-align	:center;
+	font-size	:18px;
+	color		:#fafaf0;
+}
 
 .signet{
 	display		:block;
@@ -1093,33 +1118,12 @@ ul {
 	text-align	:center;
 	color		:#888986;
 	font-size	:13px;
-	border-top:1px solid #585956;	
-}
-
-
-
-.foot_left{
-	flex-basis	:40%;
-	text-align	:left;
+	border-top	:1px solid #585956;	
 }
 
 .foot_logo{
-	width		:60%;
-}
-
-.foot_right{
-	flex-basis	:60%;
-	text-align	:left;
-	font-size	:14px;
-	color		:#888986;
-}
-
-.foot_right_in{
-	display		:inline-block;
-	width		:45%;
-	height		:24px;
-	line-height	:24px;
-	text-align	:left;
+	width		:400px;
+	margin		:20px auto;
 }
 
 .to_top{
@@ -2026,36 +2030,50 @@ ul {
 
 
 .foot{
-	margin		:10px auto 0 auto;
-	border-top	:5px solid #302520;
+	margin		:2vw auto 0 auto;
+	border-top	:1vw solid #302520;
 }
 
-.foot_left{
-	flex-basis	:30%;
-	text-align:right;
+.foot_in{
+	width		:100vw;
+	padding-bottom:5vw;
+}
+
+.foot_a{
+	width		:100vw;
+	margin		:2vw auto;
+}
+
+.foot_a_in{
+	width		:30vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
+}
+
+.foot_c_in{
+	width		:80vw;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
+	text-align:left;
+}
+
+.signet{
+	display		:block;
+	width		:100%;
+	height		:40px;
+	line-height	:40px;
+	margin		:0 auto;
+	text-align	:center;
+	color		:#888986;
+	font-size	:13px;
+	border-top	:1px solid #585956;	
 }
 
 .foot_logo{
-	width		:90%;
-}
-
-.foot_middle{
-	flex-basis	:25%;
-	font-size	:2vw;
-	padding		:1vw;
-	line-height	:4vw;
-}
-
-.foot_right{
-	flex-basis	:40%;
-	font-size	:1.5vw;
-}
-
-.foot_right_in{
-	display		:inline-block;
-	width		:45%;
-	height		:2vw;
-	line-height	:2vw;
+	width		:40vw;
+	margin		:3vw auto;
 }
 
 .menu{

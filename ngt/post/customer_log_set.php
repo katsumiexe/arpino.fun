@@ -9,26 +9,16 @@ $item_icon	=$_POST["item_icon"];
 $item_color	=$_POST["item_color"];
 $item_price	=$_POST["item_price"];
 
-$yy			=substr('0000'.$_POST["yy"],-4,4);
-$mm			=substr('00'.$_POST["mm"],-2,2);
-$dd			=substr('00'.$_POST["dd"],-2,2);
-
-$hh_s		=substr('00'.$_POST["hh_s"],-2,2);
-$ii_s		=substr('00'.$_POST["ii_s"],-2,2);
-
-$hh_e		=substr('00'.$_POST["hh_e"],-2,2);
-$ii_e		=substr('00'.$_POST["ii_e"],-2,2);
-$sdate		=$yy.$mm.$dd;
-$stime		=$hh_s.$ii_s;
-$etime		=$hh_e.$ii_e;
-
 $c_id		=$_POST["c_id"];
 $log		=$_POST["log"];
 $chg		=$_POST["chg"];
 $del		=$_POST["del"];
 
-$local_st	=$_POST["local_st"];
-$local_ed	=$_POST["local_ed"];
+$sdate	=str_replace("-","",$_POST["local_dt"]);
+$stime	=str_replace(":","",$_POST["local_st"]);
+$etime	=str_replace(":","",$_POST["local_ed"]);
+
+var_dump($_POST);
 
 if($del > 0){//■削除
 	$sql="DELETE FROM wp01_0cast_log WHERE log_id='{$del}'";
@@ -38,6 +28,7 @@ if($del > 0){//■削除
 	mysqli_query($mysqli,$sql);
 	exit();
 }
+
 
 if($chg){//■変更
 	$sql=" UPDATE wp01_0cast_log SET";

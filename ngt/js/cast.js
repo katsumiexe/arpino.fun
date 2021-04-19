@@ -2284,28 +2284,20 @@ $(function(){
 			ItemPrice[N]	=$(this).children('.sel_log_price_s').text();
 			N++;
 		});
+console.log($('#local_ed').val());
 
 		$.post({
 			url:"./post/customer_log_set.php",
 			data:{
 
-			'chg'	:Chg,
-			'log'	:$('#sel_log_area').val(),
-			'yy'	:$('#logset_yy').val(),
-			'mm'	:$('#logset_mm').val(),
-			'dd'	:$('#logset_dd').val(),
-
-			'hh_s'	:$('#logset_hh_s').val(),
-			'ii_s'	:$('#logset_ii_s').val(),
-
-			'hh_e'	:$('#logset_hh_e').val(),
-			'ii_e'	:$('#logset_ii_e').val(),
-
+			'chg'		:Chg,
+			'log'		:$('#sel_log_area').val(),
+			'local_dt'	:$('#local_dt').val(),
 			'local_st'	:$('#local_st').val(),
 			'local_ed'	:$('#local_ed').val(),
 
-			'cast_id'	:CastId,
-			'c_id'		:C_Id,
+			'cast_id'		:CastId,
+			'c_id'			:C_Id,
 			'item_color[]'	:ItemColor,
 			'item_icon[]'	:ItemIcon,
 			'item_name[]'	:ItemName,

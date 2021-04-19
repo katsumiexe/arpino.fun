@@ -43,9 +43,9 @@ $month_ed		=date("Ymd",strtotime($calendar[3]));
 
 $ana_ym=$_POST["ana_ym"];
 if(!$ana_ym) $ana_ym=substr($day_8,0,6);
-
 $ana_t=date("t",strtotime($ana_1));
 
+$c_id=$_POST["c_id"];
 
 //analytics-----------------------
 $week_01		=date("w",strtotime($c_month));
@@ -320,6 +320,10 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["face"]="<img src=\"./img/customer_no_image.png?t=".time()."\" class=\"mail_img\">";
 		}
 
+		if($c_id==$row["id"]){
+			$easy_cas=$row;
+		}
+
 		$customer[]=$row;
 		$cnt_coustomer++;
 	}
@@ -510,7 +514,10 @@ if($result = mysqli_query($mysqli,$sql)){
 	font-family: at_icon;
 	src: url("./font/font_0/fonts/icomoon.ttf") format('truetype');
 }
+
+<? } ?>
 </style>
+
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">
 <link rel="stylesheet" href="./css/easytalk.css?t=<?=time()?>">
@@ -909,21 +916,21 @@ $(function(){
 		</table>
 		<table class="customer_sns">
 			<tr>
+				<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_line" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_twitter" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_insta" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_facebook" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_web" class="customer_sns_btn"></span></td>
-				<td class="customer_sns_1"><span id="customer_mail" class="customer_sns_btn"></span></td>
 				<td class="customer_sns_1"><span id="customer_tel" class="customer_sns_btn"></span></td>
 			</tr>
 			<tr class="customer_sns_tr">
+				<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_line" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_twitter" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_insta" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_facebook" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_web" class="sns_arrow_a"></span></td>
-				<td class="customer_sns_2"><span id="a_customer_mail" class="sns_arrow_a"></span></td>
 				<td class="customer_sns_2"><span id="a_customer_tel" class="sns_arrow_a"></span></td>
 			</tr>
 		</table>
@@ -980,6 +987,10 @@ $(function(){
 				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
+		<?if($n < 2){ ?>
+			<div class="no_data">送信履歴はありません。</div>
+		<? } ?>
+
 		<div class="mail_detail">
 			<div class="mail_detail_in"></div>
 			<div class="mail_write">
