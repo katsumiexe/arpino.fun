@@ -1678,52 +1678,11 @@ $(function(){
 
 	<div class="customer_log_in">
 		<div class="customer_log_top">
-<!--
-			<select id="logset_yy" class="blog_4">
-				<?for($n=2018;$n<date("Y")+3;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n?>"<?if($n == date("Y",$jst)){?> selected="selected"<?}?>><?=$n?></option>
-				<?}?>
-			</select><span class="customer_log_ymd">年</span>
-			<select id="logset_mm" class="blog_2">
-				<?for($n=1;$n<13;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n1?>"<?if($n == date("m",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select><span class="customer_log_ymd">月</span>
-			<select id="logset_dd" class="blog_2">
-				<?for($n=1;$n<32;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n1?>"<?if($n == date("d",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select><span class="customer_log_ymd">日</span>　
-			<span class="customer_log_st">開始</span><select id="logset_hh_s" class="blog_2">
-				<?for($n=0;$n<24;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n1?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select><span class="customer_log_h">：</span><select id="logset_ii_s" class="blog_2">
-				<?for($n=0;$n<60;$n++){?>
-				<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n1?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select><br>
-　			<span class="customer_log_ed">終了</span><select id="logset_hh_e" class="blog_2">
-				<?for($n=0;$n<24;$n++){?>
-					<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n1?>"<?if($n == date("H",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select><span class="customer_log_h">：</span><select id="logset_ii_e" class="blog_2">
-				<?for($n=0;$n<60;$n++){?>
-				<?$n1=substr("00".$n,-2,2)?>
-					<option value="<?=$n1?>"<?if($n == date("i",$jst)+0){?> selected="selected"<?}?>><?=$n1?></option>
-				<?}?>
-			</select>
--->
-				<span class="local_tag">日時</span><input id="local_dt" type="date" value="<?=$local_dt?>" class="local_date">
-				<span class="local_tag">開始</span><input id="local_st" type="time" value="<?=$local_st?>" class="local_time">
-				<span class="local_tag">終了</span><input id="local_ed" type="time" value="<?=$local_ed?>" class="local_time">
-
+			<span class="local_tag">日時</span><input id="local_dt" type="date" value="<?=$local_dt?>" class="local_date">
+		</div>
+		<div class="customer_log_top">
+			<span class="local_tag">開始</span><input id="local_st" type="time" value="<?=$local_st?>" class="local_time">
+			<span class="local_tag">終了</span><input id="local_ed" type="time" value="<?=$local_ed?>" class="local_time">
 		</div>
 		<div class="customer_log_left">
 			<div id="sel_log_main" class="sel_log_option" class="sel_log_option" style="color:<?=$c_code[$log_item[0]["item_color"]]?>;border:1px solid <?=$c_code[$log_item[0]["item_color"]]?>">

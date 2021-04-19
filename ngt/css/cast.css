@@ -1708,15 +1708,6 @@ input:focus{
 	margin:5vw auto 1vw auto;
 }
 
-
-.customer_log_top{
-	position		:relative;
-	display			:flex;
-	flex-wrap		:wrap;
-	margin			:0 auto;
-	width			:80vw;
-}
-
 .customer_log_left{
 	position		:relative;
 	display			:inline-block;
@@ -1759,36 +1750,47 @@ input:focus{
 .local_tag{
 	display		:inline-block;
 	font-size	:4.5vw;
-	height		:8vw;
-	width		:12vw;
-	flex-basis	:10vw;
-	margin		:1vw;
+	height		:6vw;
+	line-height	:6vw;
+	width		:10vw;
+	margin		:0.5vw;
 	background	:#0000d0;
 	padding		:1vw;
-	border		:1px solid #303030;
-	color:#fafafa;
+	color		:#fafafa;
+	vertical-align:top;
 }
+
+.customer_log_top{
+	position		:relative;
+	display			:block;
+	margin			:0 auto;
+	width			:85vw;
+	height			:10vw;
+	text-align		:left;
+	font-size		:0;
+}
+
 
 .local_date{
 	display		:inline-block;
 	font-size	:4.5vw;
 	height		:8vw;
-	width		:50vw;
-	flex-basis	:50vw;
-	margin		:1vw;
+	width		:60vw;
+	margin		:0.5vw;
 	border		:1px solid #303030;
 	padding-left:1vw;
+	vertical-align:top;
 }
 
 .local_time{
 	display		:inline-block;
 	font-size	:4.5vw;
 	height		:8vw;
-	width		:25vw;
-	flex-basis	:25vw;
-	margin		:1vw 3vw 1vw 1vw;
+	width		:23vw;
+	margin		:0.5vw 1.5vw 0.5vw 0vw;
 	border		:1px solid #303030;
 	padding-left:1vw;
+	vertical-align:top;
 }
 
 .log_list_del{
