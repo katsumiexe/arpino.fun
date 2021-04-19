@@ -108,8 +108,6 @@ $(function(){
 <?}?>
 	</div>
 	<div class="sub_box">
-
-
 	</div>
 </div>
 <footer class="foot"></footer>
