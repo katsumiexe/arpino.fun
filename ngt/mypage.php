@@ -575,7 +575,7 @@ $(function(){
 	Customer_mail='<?=$easy_cas["mail"]?>';
 
 	$.post({
-		url:Dir + "/post/easytalk_hist.php",
+		url:"/post/easytalk_hist.php",
 		data:{
 			'cast_id'	:CastId,
 			'c_id'		:Customer_id
@@ -1004,11 +1004,10 @@ $(function(){
 		<?if($n < 2){ ?>
 			<div class="no_data">送信履歴はありません。</div>
 		<? } ?>
-
 		<div class="mail_detail">
 			<div class="mail_detail_in"></div>
 			<div class="mail_write">
-				<div class="mail_img_in"><img src="" class="mail_img_view">	</div>
+				<div class="mail_img_in"><img src="./img/blog_no_image.png" class="mail_img_view">	</div>
 				<textarea class="mail_write_text"></textarea><br>
 				<div class="mail_write_in">
 					<div class="mail_detail_btn_img"></div>

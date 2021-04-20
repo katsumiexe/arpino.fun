@@ -66,7 +66,7 @@ if($send==1){
 
 	$body	.=$cast_name."さんからのメッセージが届いています\n";
 	$body	.="下記のURLから内容をご確認ください。\n";
-	$body	.="https://arpino.fun/wp/easytalk/?ss=".$ssid_key."\n\n\n";
+	$body	.="https://arpino.fun/ngt/easytalk.php?ss=".$ssid_key."\n\n\n";
 
 	$body	.="===========================\n";
 	$body	.="Night Party\n";
@@ -91,20 +91,25 @@ if($send==1){
 
 
 if($img_code){
-	$link	="../img/cast/".$tmp_dir."/m/".$ssid_key.".png";
+	$link	="../img/cast/{$tmp_dir}/m/{$ssid_key}.png";
 	$img2	=imagecreatetruecolor(600,600);
 	$img	=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);
-	imagepng($img2,$link);
+	if(imagepng($img2,$link)){
+//	if(imagepng($img2)){
+	echo "true!!!!";
+	}else{
+	echo "FAiL!!!!";
+	}
 	$img_key=$ssid_key;
 }
 
-$sql	 ="INSERT INTO wp01_0castmail";
-$sql	.="(send_date,customer_id,cast_id,send_flg,log,img_1)";
+$sql	 ="INSERT INTO wp01_0easytalk";
+$sql	.="(send_date,customer_id,cast_id,send_flg,log,img)";
 $sql	.="VALUES";
-$sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img_key}')";
-mysqli_query($mysqli,$sql);
+$sql	.="('{$now}','{$customer_id}','{$$cast_data["id"]}','{$send}','{$log}','{$img_key}')";
 
+mysqli_query($mysqli,$sql);
 $log=str_replace("\n","<br>",$log);
 
 $dat.="<div class=\"mail_box_b\">";		
@@ -114,6 +119,7 @@ $dat.=$log;
 $dat.="</div>";
 
 if($img_code){
+$link=substr($link,1);
 $dat.="<img src=\"{$link}\" class=\"mail_box_stamp\">";		
 }
 $dat.="</div>";
