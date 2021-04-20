@@ -1,6 +1,10 @@
 <?
 include_once('./library/sql_cast.php');
 include_once('./library/inc_code.php');
+/*
+ini_set( 'display_errors', 1 );
+ini_set('error_reporting', E_ALL);
+*/
 $week[0]="日";
 $week[1]="月";
 $week[2]="火";
@@ -323,6 +327,18 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($c_id==$row["id"]){
 			$easy_cas=$row;
 		}
+		if(!$row["birth_day"] || $row["birth_day"]=="00000000"){
+			$row["yy"]="----";
+			$row["mm"]="--";
+			$row["dd"]="--";
+			$row["ag"]="--";
+
+		}else{
+			$row["yy"]=substr($row["birth_day"],0,4);
+			$row["mm"]=substr($row["birth_day"],4,2);
+			$row["dd"]=substr($row["birth_day"],6,2);
+			$row["ag"]= floor(($now_8-$row["birth_day"])/10000);
+		}
 
 		$customer[]=$row;
 		$cnt_coustomer++;
@@ -498,6 +514,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$row["last_date"]=date("m.d H:i",strtotime($row["last_date"]));
 		$mail_data[]=$row;
 	}
+
 	if(is_array($mail_data)){
 		$cnt_mail_data=count($mail_data);
 	}
@@ -514,10 +531,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	font-family: at_icon;
 	src: url("./font/font_0/fonts/icomoon.ttf") format('truetype');
 }
-
-<? } ?>
 </style>
-
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">
 <link rel="stylesheet" href="./css/easytalk.css?t=<?=time()?>">
@@ -553,11 +567,10 @@ $(function(){
 	$('.sort_alert').show();
 <?}?>
 
-
 <?if($easy_cas["id"]){?>
 	$('.mail_detail').css({'right':'0'});
+
 	Customer_id='<?=$easy_cas["id"]?>';
-	
 	Customer_Name='<?=$easy_cas["name"]?>';
 	Customer_mail='<?=$easy_cas["mail"]?>';
 
@@ -579,6 +592,7 @@ $(function(){
 			$('.head_mymenu_comm').addClass('arrow_mail')
 		});
 	});
+
 <?}?>
 <?if($c_sort["c_sort_asc"] ==1){?> 
 	$('.sort_circle').css({'left':'10vw','border-radius':'0 10px 10px 0'});

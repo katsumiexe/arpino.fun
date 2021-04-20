@@ -92,7 +92,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 	$customer[$s]=$row;
 
-	if(!$row["birth_day"] || $row["birth_day"]=="0000-00-00"){
+	if(!$row["birth_day"] || $row["birth_day"]=="00000000"){
 		$customer[$s]["yy"]="----";
 		$customer[$s]["mm"]="--";
 		$customer[$s]["dd"]="--";
@@ -100,9 +100,9 @@ if($result = mysqli_query($mysqli,$sql)){
 
 	}else{
 		$customer[$s]["yy"]=substr($row["birth_day"],0,4);
-		$customer[$s]["mm"]=substr($row["birth_day"],5,2);
-		$customer[$s]["dd"]=substr($row["birth_day"],8,2);
-		$customer[$s]["ag"]= floor(($now_ymd-str_replace("-", "", $row["birth_day"]))/10000);
+		$customer[$s]["mm"]=substr($row["birth_day"],4,2);
+		$customer[$s]["dd"]=substr($row["birth_day"],6,2);
+		$customer[$s]["ag"]= floor(($now_8-$row["birth_day"])/10000);
 	}
 	$s++;
 }
