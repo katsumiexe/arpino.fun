@@ -575,9 +575,8 @@ $(function(){
 	Customer_mail='<?=$easy_cas["mail"]?>';
 
 	$.post({
-		url:"/post/easytalk_hist.php",
+		url:"./post/easytalk_hist.php",
 		data:{
-			'cast_id'	:CastId,
 			'c_id'		:Customer_id
 		},
 
@@ -591,6 +590,7 @@ $(function(){
 			$('.head_mymenu_ttl').text(Customer_Name),
 			$('.head_mymenu_comm').addClass('arrow_mail')
 		});
+		console.log(data);
 	});
 
 <?}?>

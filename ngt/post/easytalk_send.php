@@ -1,7 +1,6 @@
 <?
 include_once('../library/sql_post.php');
 
-$cast_name		=$_POST['cast_name'];
 $send			=$_POST['send'];
 $log			=$_POST['log'];
 $sid			=$_POST['sid'];
@@ -34,7 +33,7 @@ if($send==1){
 	mb_internal_encoding("UTF-8");
 
 	$to			=$customer_mail;
-	$title		="[Night Party]".$cast_name."さんより";
+	$title		="[Night Party]{$cast_data["genji"]}さんより";
 
 	$from_mail	="info@arpino.fun";
 	$from		="NightParty";
@@ -52,7 +51,7 @@ if($send==1){
 	$body	.=$customer_name."様\n\n";
 	}
 
-	$body	.=$cast_name."さんからのメッセージが届いています\n";
+	$body	.=$cast_data["genji"]."さんからのメッセージが届いています\n";
 	$body	.="下記のURLから内容をご確認ください。\n";
 	$body	.="https://arpino.fun/ngt/easytalk.php?ss=".$ssid_key."\n\n\n";
 
@@ -77,7 +76,6 @@ if($send==1){
 	}
 }
 
-
 if($img_code){
 	$link	="../img/cast/{$box_no}/m/{$ssid_key}.png";
 	$link2	="../img/{$ssid_key}.png";
@@ -85,19 +83,13 @@ if($img_code){
 	$img	=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);
 	imagepng($img2,$link);
-
-	if(imagepng($img2,$link2)){
-	echo "true!!!!";
-	}else{
-	echo "FAiL!!!!";
-	}
 	$img_key=$ssid_key;
 }
 
 $sql	 ="INSERT INTO wp01_0easytalk";
 $sql	.="(send_date,customer_id,cast_id,send_flg,log,img)";
 $sql	.="VALUES";
-$sql	.="('{$now}','{$customer_id}','{$$cast_data["id"]}','{$send}','{$log}','{$img_key}')";
+$sql	.="('{$now}','{$customer_id}','{$cast_data["id"]}','{$send}','{$log}','{$img_key}')";
 
 mysqli_query($mysqli,$sql);
 $log=str_replace("\n","<br>",$log);
