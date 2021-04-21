@@ -1,9 +1,7 @@
 <?
 include_once('../library/sql_post.php');
 
-$cast_id		=$_POST['cast_id'];
 $cast_name		=$_POST['cast_name'];
-
 $send			=$_POST['send'];
 $log			=$_POST['log'];
 $sid			=$_POST['sid'];
@@ -15,7 +13,7 @@ $customer_mail	=$_POST['customer_mail'];
 
 $now_dat		=date("Y.m.d H:i");
 
-$n0=($cast_id % 720)+1;
+$n0=($cast_data["id"] % 720)+1;
 $n1=rand(1, 720);
 $n2=rand(1, 720);
 $n3=rand(1, 720);
@@ -23,21 +21,11 @@ $n4=($customer_id % 720)+1;
 $n5=rand(1, 9);
 
 $ssid_key.=$rnd[$n0].$rnd[$n1].$rnd[$n2].$rnd[$n3].$rnd[$n4].$dec[$n5][$send];
-
-$id_8=substr("00000000".$cast_id,-8);
-$id_0	=$cast_id % 20;
-
-for($n=0;$n<8;$n++){
-	$tmp_id=substr($id_8,$n,1);
-	$tmp_dir.=$dec[$id_0][$tmp_id];
-}
-
 if($send==1){
 	$sql	 ="INSERT INTO wp01_0ssid";
 	$sql	.="(ssid,cast_id,customer_id,`date`,`mail`)";
 	$sql	.="VALUES";
-	$sql	.="('{$ssid_key}','{$cast_id}','{$customer_id}','{$now}','{$customer_mail}')";
-
+	$sql	.="('{$ssid_key}','{$cast_data["id"]}','{$customer_id}','{$now}','{$customer_mail}')";
 	mysqli_query($mysqli,$sql);
 
 //------------------------------------------------
@@ -91,12 +79,14 @@ if($send==1){
 
 
 if($img_code){
-	$link	="../img/cast/{$tmp_dir}/m/{$ssid_key}.png";
+	$link	="../img/cast/{$box_no}/m/{$ssid_key}.png";
+	$link2	="../img/{$ssid_key}.png";
 	$img2	=imagecreatetruecolor(600,600);
 	$img	=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);
-	if(imagepng($img2,$link)){
-//	if(imagepng($img2)){
+	imagepng($img2,$link);
+
+	if(imagepng($img2,$link2)){
 	echo "true!!!!";
 	}else{
 	echo "FAiL!!!!";
