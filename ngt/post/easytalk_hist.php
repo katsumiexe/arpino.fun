@@ -5,7 +5,7 @@ mail_hist
 include_once('../library/sql_post.php');
 $c_id		=$_POST['c_id'];
 $st			=($_POST['pg']+0)*10;
-$st=1;
+$st=0;
 $n=0;
 
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
@@ -29,12 +29,15 @@ if($result = mysqli_query($mysqli,$sql)){
 		$row["kidoku"]="<span class=\"kidoku\">既読</span>";
 		$row["bg"]=1;
 	}
+
 	if($row["img"]){
 		$row["stamp"]="<img src=\"./img/cast/{$box_no}/m/{$row["img"]}.png\" class=\"mail_box_stamp\">";
 	}
 	$dat[]=$row;
 	$count_dat++;
 }
+
+echo $sql;
 
 $sql	 ="UPDATE wp01_0easytalk SET";
 $sql	.=" watch_date='{$now}'";
@@ -50,9 +53,9 @@ if($row["face"]){
 	$face="./img/customer_no_image.png?t_".time();
 }
 
-for($n=0;$n<$count_dat+0;$n++){
-	if($dat[$n]["send_flg"] == 2){
+for($n=0;$n<$count_dat;$n++){
 
+	if($dat[$n]["send_flg"] == 2){
 		if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";
 		}

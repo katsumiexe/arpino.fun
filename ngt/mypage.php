@@ -495,14 +495,15 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 $sql	 ="SELECT nickname, M.customer_id, C.mail, M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
-$sql	.=" FROM wp01_0castmail AS M";
+$sql	.=" FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
-$sql	.=" LEFT JOIN wp01_0castmail AS M2 ON (M.customer_id = M2.customer_id AND M.send_date < M2.send_date)";
+$sql	.=" LEFT JOIN wp01_0easytalk AS M2 ON (M.customer_id = M2.customer_id AND M.send_date < M2.send_date)";
 $sql	.=" WHERE M.cast_id='{$cast_data["id"]}'";
 $sql	.=" AND M2.send_date IS NULL";
 $sql	.=" AND M.del='0'";
 $sql	.=" GROUP BY M.customer_id";
 $sql	.=" ORDER BY last_date DESC";
+
 $n=0;
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
@@ -981,6 +982,7 @@ $(function(){
 	<div class="main">
 		<?for($n=0;$n<$cnt_mail_data;$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
+
 				<?if($mail_data[$n]["face"]){?>
 					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t=<?=time()?>" class="mail_img">
 				<?}else{?>
@@ -993,17 +995,15 @@ $(function(){
 				<?if($mail_data[$n]["r_count"]>0 || $mail_data[$n]["r_count"]=="9+"){?>
 					<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
 				<?}?>
-
 				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
-
 				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_1"]?>'><? } ?>
-				<?if($a1["img_2"]){?><input id="img_b<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_2"]?>'><? } ?>
-				<?if($a1["img_3"]){?><input id="img_c<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_3"]?>'><? } ?>
 			</div>
 		<?}?>
-		<?if($n < 2){ ?>
+
+		<?if($n < 1){ ?>
 			<div class="no_data">送信履歴はありません。</div>
 		<? } ?>
+
 		<div class="mail_detail">
 			<div class="mail_detail_in"></div>
 			<div class="mail_write">

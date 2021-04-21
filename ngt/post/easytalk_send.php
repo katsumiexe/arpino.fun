@@ -9,7 +9,6 @@ $img_code		=$_POST['img_code'];
 $customer_id	=$_POST['customer_id'];
 $customer_name	=$_POST['customer_name'];
 $customer_mail	=$_POST['customer_mail'];
-
 $now_dat		=date("Y.m.d H:i");
 
 $n0=($cast_data["id"] % 720)+1;
@@ -18,8 +17,8 @@ $n2=rand(1, 720);
 $n3=rand(1, 720);
 $n4=($customer_id % 720)+1;
 $n5=rand(1, 9);
-
 $ssid_key.=$rnd[$n0].$rnd[$n1].$rnd[$n2].$rnd[$n3].$rnd[$n4].$dec[$n5][$send];
+
 if($send==1){
 	$sql	 ="INSERT INTO wp01_0ssid";
 	$sql	.="(ssid,cast_id,customer_id,`date`,`mail`)";

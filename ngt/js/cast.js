@@ -312,14 +312,11 @@ $(function(){
 				}
 */
 				$('.mail_detail').scrollTop(TMP_H);
-
 				$('.head_mymenu_ttl').text(Customer_Name),
 				$('.head_mymenu_comm').addClass('arrow_mail')
-
 			});
 		});
 	});
-	
 
 	$('.detail_modal_link').on('click','.modal_link_point',function () {
 		Img=$(this).attr('id').replace('point_','');
