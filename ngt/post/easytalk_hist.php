@@ -8,16 +8,7 @@ $st			=($_POST['pg']+0)*10;
 $st=0;
 $n=0;
 
-
-$id_8=substr("00000000".$cast_data["id"],-8);
-$id_0	=$_SESSION["id"] % 20;
-
-for($n=0;$n<8;$n++){
-	$tmp_id=substr($id_8,$n,1);
-	$tmp_dir.=$dec[$id_0][$tmp_id];
-}
-
-$sql	 ="SELECT * FROM wp01_0castmail AS M";
+$sql	 ="SELECT * FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 $sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_data["id"]}'";
 $sql	.=" AND M.del='0'";
@@ -38,11 +29,17 @@ if($result = mysqli_query($mysqli,$sql)){
 		$row["kidoku"]="<span class=\"kidoku\">既読</span>";
 		$row["bg"]=1;
 	}
-	$row["stamp"]="./img/cast/".$tmp_dir."/m/".$row["img_1"].".png";
+	if($row["img"]){
+		$row["stamp"]="<img src=\"./img/cast/{$box_no}/m/{$row["img"]}.png\" class=\"mail_box_stamp\">";
+	}
 	$dat[]=$row;
 }
 
-$sql	 ="UPDATE wp01_0castmail SET";
+
+
+
+
+$sql	 ="UPDATE wp01_0easytalk SET";
 $sql	.=" watch_date='{$now}'";
 $sql	.=" WHERE customer_id='{$c_id}'";
 $sql	.=" AND cast_id='{$cast_data["id"]}'";
@@ -71,11 +68,7 @@ if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !=
 		$html.="<div class=\"mail_box_log_in\">";
 		$html.=$dat[$n]["log"];
 		$html.="</div>";
-
-		if($dat[$n]["img_1"]){
-			$html.="<img src=\"".get_template_directory_uri()."/img/cast/{$tmp_dir}/m/{$dat[$n]["img_1"]}.png\" class=\"mail_box_stamp\">";		
-		}
-
+		$html.=$dat[$n]["stamp"];
 		$html.="</div>";
 		$html.="<span class=\"mail_box_date_a\">{$dat[$n]["send_date"]}　{$dat[$n]["new"]}</span>";
 		$html.="</div>";
@@ -86,10 +79,7 @@ if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !=
 		$html.="<div class=\"mail_box_log_in\">";
 		$html.=$dat[$n]["log"];
 		$html.="</div>";
-		if($dat[$n]["img_1"]){
-			$html.="<img src=\"{$dat[$n]["stamp"]}\" class=\"mail_box_stamp\">";		
-		}
-
+		$html.=$dat[$n]["stamp"];
 		$html.="</div>";
 		$html.="<span class=\"mail_box_date_b\">{$dat[$n]["kidoku"]}　{$dat[$n]["send_date"]}</span>";
 		$html.="</div>";
