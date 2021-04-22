@@ -381,6 +381,7 @@ $(function(){
 					'ag'		:$('#reg_ag').val(),
 					'img_code'	:base_64,
 				},
+
 			}).done(function(data, textStatus, jqXHR){
 				console.log(data);
 				$('.customer_all_in').append(data);

@@ -317,8 +317,8 @@ if($result = mysqli_query($mysqli,$sql)){
 			$days_birth.="<span id=\"c{$row["id"]}\" class=\"cal_days_birth_in\"><span class=\"days_icon\"></span><span class=\"days_birth\">{$tmp_name}({$tmp_age})</span></span><br>";
 		}
 
-		if(file_exists("./img/cast/{$box_no}/c/{$cd}.png")){
-			$row["face"]="<img src=\"./img/cast/{$box_no}/c/{$cd}.png?t=".time()."\" class=\"mail_img\">";
+		if($row["face"]){
+			$row["face"]="<img src=\"data:image/jpg;base64,{$row["face"]}\" class=\"mail_img\">";
 
 		}else{
 			$row["face"]="<img src=\"./img/customer_no_image.png?t=".time()."\" class=\"mail_img\">";
@@ -503,8 +503,6 @@ $sql	.=" AND M2.send_date IS NULL";
 $sql	.=" AND M.del='0'";
 $sql	.=" GROUP BY M.customer_id";
 $sql	.=" ORDER BY last_date DESC";
-
-
 
 $n=0;
 if($result = mysqli_query($mysqli,$sql)){
@@ -693,7 +691,6 @@ $(function(){
 			<li id="m99" class="menu_1 menu_out"><span class="menu_i"></span><span class="menu_s">ログアウト</span></li>
 		</ul>
 	</div>
-
 
 	<?if($cast_page==1){?>
 	<div class="main_sch">

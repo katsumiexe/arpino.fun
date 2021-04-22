@@ -56,22 +56,20 @@ if($img_rote ==90){
 }else{
 	$img = imagecreatefromstring(base64_decode($img_code));
 }
-	
 ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, $size, $size, $tmp_width, $tmp_height);
 
 $tmpfname = tempnam('tmp', 'pngtmp_');
 $tmp=imagepng($img2, $tmpfname);
 $data = @file_get_contents($tmpfname);
 unlink($tmpfname);
+
 if($data) $img_64 = base64_encode($data);
 
 if($task=="chg"){
-	for($n=0;$n<strlen($post_id);$n++){
-		$tmp=substr($post_id,$n,1);
-		$cd.=$dec[$id_0][$tmp];
-	}
-	$img_link="../img/cast/{$box_no}/c/{$cd}.png";
-	imagepng($img2,$img_link);
+	$sql ="UPDATE wp01_0customer SET";
+	$sql .=" `face`='{$img_64}'";
+	$sql .=" WHERE `id`='{$post_id}'";
+	mysqli_query($mysqli,$sql);
 }
 
 echo $img_64;

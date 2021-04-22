@@ -161,9 +161,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 							<div class="mail_box_log_in">
 								<?=$dat[$n]["log"]?>
 							</div>
-							<?if($dat[$n]["img"]){?>
-								<img src="<?=$dat[$n]["stamp"]?>" class="mail_box_stamp">		
-							<?}?>
+							<?=$dat[$n]["stamp"]?>"
 						</div>
 						<span class="mail_box_date_a"><?=$dat[$n]["send_date"]?></span>
 					</div>
@@ -174,7 +172,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 							<div aclass="mail_box_log_in">
 								<?=$dat[$n]["log"]?>
 							</div>
-								<?=$dat[$n]["stamp"]?>		
+							<?=$dat[$n]["stamp"]?>"
 						</div>
 						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
 					</div>
@@ -190,7 +188,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 		<table class="send_img_table">
 			<tr>
 				<td class="send_img_td">
-					<img id="send_img" src="./img/customer_no_img.jpg?t_<?=time()?>" class="mail_img_view">
+					<img id="send_img" src="./img/blog_no_image.jpg?t_<?=time()?>" class="mail_img_view">
 				</td>
 				<td>
 					<textarea id="send_msg" class="mail_write_text"></textarea>
