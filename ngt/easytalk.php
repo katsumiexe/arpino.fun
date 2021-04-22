@@ -188,7 +188,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 		<table class="send_img_table">
 			<tr>
 				<td class="send_img_td">
-					<img id="send_img" src="./img/blog_no_image.jpg?t_<?=time()?>" class="mail_img_view">
+					<img id="send_img" src="./img/blog_no_image.png?t_<?=time()?>" class="mail_img_view">
 				</td>
 				<td>
 					<textarea id="send_msg" class="mail_write_text"></textarea>
