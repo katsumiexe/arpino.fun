@@ -16,28 +16,27 @@ $sql	.=" ORDER BY mail_id DESC";
 $sql	.=" LIMIT {$st},10";
 
 if($result = mysqli_query($mysqli,$sql)){
-	$row = mysqli_fetch_assoc($result);
+	while($row = mysqli_fetch_assoc($result)){
 
-	$row["log"]=str_replace("\n","<br>",$row["log"]);
-	$row["send_date"]=substr(str_replace("-",".",$row["send_date"]),0,16);
+		$row["log"]=str_replace("\n","<br>",$row["log"]);
+		$row["send_date"]=substr(str_replace("-",".",$row["send_date"]),0,16);
 
-	if($row[$n]["watch_date"] =='0000-00-00 00:00:00'){
-		$row["kidoku"]="<span class=\"midoku\">未読</span>";
-		$row["new"]="<span class=\"mail_new\">NEW!</span>";
+		if($row[$n]["watch_date"] =='0000-00-00 00:00:00'){
+			$row["kidoku"]="<span class=\"midoku\">未読</span>";
+			$row["new"]="<span class=\"mail_new\">NEW!</span>";
 
-	}else{
-		$row["kidoku"]="<span class=\"kidoku\">既読</span>";
-		$row["bg"]=1;
+		}else{
+			$row["kidoku"]="<span class=\"kidoku\">既読</span>";
+			$row["bg"]=1;
+		}
+
+		if($row["img"]){
+			$row["stamp"]="<img src=\"./img/cast/{$box_no}/m/{$row["img"]}.png\" class=\"mail_box_stamp\">";
+		}
+		$dat[]=$row;
+		$count_dat++;
 	}
-
-	if($row["img"]){
-		$row["stamp"]="<img src=\"./img/cast/{$box_no}/m/{$row["img"]}.png\" class=\"mail_box_stamp\">";
-	}
-	$dat[]=$row;
-	$count_dat++;
 }
-
-echo $sql;
 
 $sql	 ="UPDATE wp01_0easytalk SET";
 $sql	.=" watch_date='{$now}'";
@@ -48,7 +47,7 @@ $sql	.=" AND send_flg=2";
 mysqli_query($mysqli,$sql);
 
 if($row["face"]){
-	$face="./img/cast/".$tmp_dir."/c/".$row["face"]."?t_".time();
+	$face="./img/cast/{$box_no}/c/{$row["face"]}?t_".time();
 }else{
 	$face="./img/customer_no_image.png?t_".time();
 }

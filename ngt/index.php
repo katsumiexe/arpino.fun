@@ -7,8 +7,6 @@ $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
 $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
 $sql.=" ORDER BY wp01_0schedule.id ASC";
-
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if($row["stime"] && $row["etime"]){
@@ -34,12 +32,14 @@ if($result = mysqli_query($mysqli,$sql)){
 				$row["face"]="./img/cast_no_image.jpg";			
 			}
 			$dat[$row["id"]]=$row;
-			$dat_count++;
 		}else{
 			$dat[$row["id"]]="";
 		}
 	}
-	krsort($dat);
+	if(is_array($dat)){
+		krsort($dat);
+		$dat_count=count($dat);
+	}
 }
 
 
@@ -71,11 +71,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		}elseif (file_exists("./img/page/event/{$a1["id"]}.png")) {
 			$a1["img"]="./img/page/event/{$a1["id"]}.png";
 		}
-
 		$event[]=$a1;
-	}
-	if (is_array($event)) {
-		$event_count=count($event);
+		$event_count++;
 	}
 }
 
@@ -92,9 +89,7 @@ if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
 		$a1["date"]=substr(str_replace("-",".",$a1["date"]),0,10);
 		$news[]=$a1;
-	}
-	if (is_array($news)) {
-		$news_count=count($news);
+		$news_count++;
 	}
 }
 
@@ -119,12 +114,10 @@ if($res2 = mysqli_query($mysqli,$sql)){
 		}
 
 		$info[]=$a1;
-
-	}
-	if (is_array($info)) {
-		$info_count=count($info);
+		$info_count++;
 	}
 }
+
 include_once('./header.php');
 ?>
 

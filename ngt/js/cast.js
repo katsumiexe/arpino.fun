@@ -301,6 +301,7 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			$.when(
 				$('.mail_detail_in').html(data),
 

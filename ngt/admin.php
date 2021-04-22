@@ -130,11 +130,10 @@ if($staff_set == 4){
 			$id_8	=substr("00000000".$staff_id,-8);
 			$id_0	=$staff_id % 20;
 			for($n=0;$n<8;$n++){
-				$rnd=rand(0,19);
 				$tmp_id=substr($id_8,$n,1);
 				$tmp_dir.=$dec[$id_0][$tmp_id];
 			}
-			$tmp_dir.=$tmp_id;
+			$tmp_dir.=$id_0;
 
 			$mk_dir="./img/cast/".$tmp_dir;
 			if(!is_dir($mk_dir)) {

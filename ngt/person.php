@@ -154,7 +154,6 @@ if(!$cast_data["id"]){
 }
 include_once('./header.php');
 ?>
-
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -175,7 +174,6 @@ include_once('./header.php');
 <?if($err){?>
 	<span class="no_blog"><?=$err?></span>
 <?}else{?>
-
 	<div class="person_left">
 		<div class="person_img_box">
 			<?=$face_a?>
@@ -193,7 +191,7 @@ include_once('./header.php');
 				<td class="prof_l">名前</td>
 				<td class="prof_r"><?=$cast_data["genji"]?></td>
 			</tr>
-	<?for($n=0;$n<$cnt_charm_table+0;$n++){?>
+		<?for($n=0;$n<$cnt_charm_table+0;$n++){?>
 		<?if($charm_table[$n]["style"] == 1){?>
 			<tr><td class="prof_0" colspan="2"></td></tr>
 			<tr><td class="prof_l2" colspan="2"><?=$charm_table[$n]["charm"]?></td></tr>
@@ -204,7 +202,7 @@ include_once('./header.php');
 			<td class="prof_r"><?=$charm_table[$n]["log"]?></td>
 			</tr>
 		<?}?>
-	<?}?>
+		<?}?>
 		</table>
 
 		<div class="sche_title">Schedule</div>

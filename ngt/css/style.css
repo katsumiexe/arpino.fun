@@ -2045,35 +2045,35 @@ ul {
 }
 
 .foot_a_in{
-	width		:30vw;
-	height		:6vw;
-	line-height	:6vw;
+	width		:15vw;
+	height		:5vw;
+	line-height	:5vw;
 	font-size	:3.5vw;
 }
 
 .foot_c_in{
-	width		:80vw;
-	height		:6vw;
-	line-height	:6vw;
+	width		:50vw;
+	height		:5vw;
+	line-height	:5vw;
 	font-size	:3.5vw;
-	text-align:left;
+	text-align	:left;
 }
 
 .signet{
 	display		:block;
-	width		:100%;
-	height		:40px;
-	line-height	:40px;
+	width		:100vw;
+	height		:5vw;
+	line-height	:5vw;
 	margin		:0 auto;
 	text-align	:center;
 	color		:#888986;
-	font-size	:13px;
+	font-size	:3.5vw;
 	border-top	:1px solid #585956;	
 }
 
 .foot_logo{
-	width		:40vw;
-	margin		:3vw auto;
+	width		:30vw;
+	margin		:1vw auto;
 }
 
 .menu{
@@ -2904,38 +2904,32 @@ ul {
 }
 
 .foot_in{
-	flex-wrap	:wrap;
 	width		:100vw;
 }
 
-.foot_left{
-	text-align:center;
-	flex-basis	:80%;
-}
-
-.foot_logo{
-	width		:80%;
-}
-
-.foot_middle{
-	flex-basis	:50%;
-	font-size	:4vw;
-	margin		:0;
-	padding		:5px;
-	line-height	:6vw;
-}
-
-.foot_right{
-	flex-basis	:95%;
+.foot_a{
+	width		:100vw;
 	text-align	:center;
+}
+
+.foot_a_in{
+	width		:15vw;
+	height		:5vw;
+	line-height	:5vw;
 	font-size	:3.5vw;
 }
 
-.foot_right_in{
-	display		:inline-block;
-	width		:45%;
+.foot_logo{
+	width		:50vw;
+}
+
+.foot_c_in{
+	display		:block;
+	width		:50vw;
 	height		:5vw;
 	line-height	:5vw;
+	font-size	:3.2vw;
+	margin		:0 auto;
 }
 
 .to_top{
@@ -2945,6 +2939,7 @@ ul {
 	width			:10vw;
 	border-radius	:1vw;
 }
+
 .to_top_in, .to_top_in2{
 	height			:3.5vw;
 	width			:3.5vw;

@@ -1,7 +1,25 @@
 <?
-include_once('./library/sql.php');
-$ss=$_REQUEST["ss"];
+$mysqli = mysqli_connect("localhost", "tiltowait_np", "kk1941", "tiltowait_np");
+if(!$mysqli){
+	$msg="接続エラー";
+	die("接続エラー");
+}
 
+$now		=date("Y-m-d H:i:s");
+$now_8		=date("Ymd");
+$now_w		=date("w");
+$now_count	=date("t");
+$now_month	=date("Y-m-01 00:00:00");
+
+$day_time	=time()-($start_time*3600);
+
+$day		=date("Y-m-d H:i:s",$day_time);
+$day_8		=date("Ymd",$day_time);
+$day_w		=date("w",$day_time);
+$day_count	=date("t",$day_time);
+$day_month	=date("Y-m-01 00:00:00",$day_time);
+
+$ss=$_REQUEST["ss"];
 if($ss){
 	$sql	 ="SELECT * FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$ss}'";
@@ -12,26 +30,12 @@ if($ss){
 	if($res = mysqli_query($mysqli,$sql)){
 		$ssid = mysqli_fetch_assoc($res);
 
-		$sql	 ="UPDATE wp01_0ssid SET";
-		$sql	.=" del='1'";
-		$sql	.=" WHERE id <'{$ssid["id"]}'";
-		$sql	.=" AND cast_id='{$ssid["cast_id"]}'";
-		$sql	.=" AND customer_id='{$ssid["customer_id"]}'";
-
-		mysqli_query($mysqli,$sql);
-
-		if (file_exists("./img/page/{$ssid["cast_id"]}/0_s.jpg")) {
-			$face_link="./img/page/{$ssid["cast_id"]}/0_s.jpg";			
-
-		}else{
-			$face_link="./img/page/noimage.jpg";			
-		}
-
 		$sql ="SELECT * FROM wp01_0encode"; 
-		if($res = mysqli_query($mysqli,$sql)){
-			while($a1 = mysqli_fetch_assoc($res)){
-				$enc[$a1["key"]]				=$a1["value"];
-				$dec[$a1["gp"]][$a1["value"]]	=$a1["key"];
+		if($result = mysqli_query($mysqli,$sql)){
+			while($row = mysqli_fetch_assoc($result)){
+				$enc[$row["key"]]				=$row["value"];
+				$dec[$row["gp"]][$row["value"]]	=$row["key"];	
+				$rnd[$row["id"]]				=$row["value"];
 			}
 		}
 
@@ -40,11 +44,27 @@ if($ss){
 
 		for($n=0;$n<8;$n++){
 			$tmp_id=substr($id_8,$n,1);
-			$tmp_dir.=$dec[$id_0][$tmp_id];
+			$box_no.=$dec[$id_0][$tmp_id];
+		}
+		$box_no.=$id_0;
+
+
+		$sql	 ="UPDATE wp01_0ssid SET";
+		$sql	.=" del='1'";
+		$sql	.=" WHERE id <'{$ssid["id"]}'";
+		$sql	.=" AND cast_id='{$ssid["cast_id"]}'";
+		$sql	.=" AND customer_id='{$ssid["customer_id"]}'";
+		mysqli_query($mysqli,$sql);
+
+		if (file_exists("./img/profile/{$ssid["cast_id"]}/0_s.jpg")) {
+			$face_link="./img/profile/{$ssid["cast_id"]}/0_s.jpg";			
+
+		}else{
+			$face_link="./img/cast_no_image.jpg";			
 		}
 
 		$n=0;
-		$sql	 ="SELECT * FROM wp01_0castmail";
+		$sql	 ="SELECT * FROM wp01_0easytalk";
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
 		$sql	.=" ORDER BY mail_id DESC";
 		$sql	.=" LIMIT 10";
@@ -66,16 +86,18 @@ if($ss){
 					$dat[$n]["border"]="<div class=\"mail_border\">----------ここから新着--------------</div>";
 					$html=$dat[$n]["watch_date"];
 				}
-
-				$dat[$n]["stamp"]="./img/cast/".$tmp_dir."/m/".$dat[$n]["img_1"].".png";
+				if($dat[$n]["img"]){
+					$dat[$n]["stamp"]="<img src=\"./img/cast/{$box_no}/m/{$dat[$n]["img"]}.png\" class=\"mail_box_stamp\">";
+				}
 				$n++;
 			}
 		}
 
-		$sql	 ="UPDATE wp01_0castmail SET";
+		$sql	 ="UPDATE wp01_0easytalk SET";
 		$sql	.=" watch_date='{$now}'";
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
-		$wpdb->query($sql);
+		mysqli_query($mysqli,$sql);
+
 
 	}else{
 		$err=1;
@@ -90,7 +112,7 @@ if($ss){
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Easy-Talk</title>
+<title>EasyTalk</title>
 <script>
 const Dir='.'; 
 const ImgSrc="./img/customer_no_img.jpg?t_<?=time()?>";
@@ -139,7 +161,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 							<div class="mail_box_log_in">
 								<?=$dat[$n]["log"]?>
 							</div>
-							<?if($dat[$n]["img_1"]){?>
+							<?if($dat[$n]["img"]){?>
 								<img src="<?=$dat[$n]["stamp"]?>" class="mail_box_stamp">		
 							<?}?>
 						</div>
@@ -149,12 +171,10 @@ const CastId="<?=$ssid["cast_id"]?>";
 				<?}else{?>
 					<div class="mail_box_b">		
 						<div class="mail_box_log_2 bg<?=$dat[$n]["bg"]?>">
-							<div class="mail_box_log_in">
+							<div aclass="mail_box_log_in">
 								<?=$dat[$n]["log"]?>
 							</div>
-							<?if($dat[$n]["img_1"]){?>
-								<img src="<?=$dat[$n]["stamp"]?>" class="mail_box_stamp">		
-							<?}?>
+								<?=$dat[$n]["stamp"]?>		
 						</div>
 						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
 					</div>

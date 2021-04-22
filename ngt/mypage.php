@@ -504,6 +504,8 @@ $sql	.=" AND M.del='0'";
 $sql	.=" GROUP BY M.customer_id";
 $sql	.=" ORDER BY last_date DESC";
 
+
+
 $n=0;
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
