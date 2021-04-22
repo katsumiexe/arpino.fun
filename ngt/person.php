@@ -92,7 +92,12 @@ if($res = mysqli_query($mysqli,$sql)){
 
 	if($res = mysqli_query($mysqli,$sql)){
 		while($a1 = mysqli_fetch_assoc($res)){
+			if($a1["style"] == 1){
+				$check_ex[$a1["id"]]=1;
+			}
+
 			$check_main[]=$a1;
+
 		}
 
 		if (is_array($check_main)) {
@@ -108,9 +113,15 @@ if($res = mysqli_query($mysqli,$sql)){
 
 	if($res = mysqli_query($mysqli,$sql)){
 		while($a1 = mysqli_fetch_assoc($res)){
+	
+		if($a1["sel"] == 1){
+			$check_ex[$a1["host_id"]]=1;
+		}
 			$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
 		}
 	}
+
+
 
 	$sql ="SELECT P.id,view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
 	$sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
@@ -132,7 +143,6 @@ if($res = mysqli_query($mysqli,$sql)){
 			}else{
 				$row["face"]="./img/cast_no_image.jpg";
 			}
-
 
 			if ($row["img"]) {
 				$row["thumb"]="./img/profile/{$row["cast"]}/{$row["img"]}_s.png";			
@@ -210,14 +220,16 @@ include_once('./header.php');
 			<?=$list?>
 		</table>
 		<?for($n=0;$n<$cnt_check_main+0;$n++){?>
-			<div class="prof_title"><?=$check_main[$n]["title"]?></div>
-			<div class="check_box">
-				<?foreach($check_list[$check_main[$n]["id"]] as $a1 => $a2){?>
-					<?if($check_main[$n]["style"]==1 || $check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]== 1){?>
-						<div class="check_set<?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]?>"><?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["list_title"]?></div>
+			<?if($check_ex[$check_main[$n]["id"]]== 1){?>	
+				<div class="prof_title"><?=$check_main[$n]["title"]?></div>
+				<div class="check_box">
+					<?foreach($check_list[$check_main[$n]["id"]] as $a1 => $a2){?>
+						<?if($check_main[$n]["style"]==1 || $check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]== 1){?>
+							<div class="check_set<?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]?>"><?=$check_list[$check_main[$n]["id"]][$a2["list_sort"]]["list_title"]?></div>
+						<? } ?>
 					<? } ?>
-				<? } ?>
-			</div>
+				</div>
+			<?}?>
 		<?}?>
 	</div>
 
