@@ -11,9 +11,7 @@ $fav	=$_POST["fav"];
 $sql_log ="UPDATE wp01_0customer SET";
 $sql_log .=" fav='{$fav}'";
 $sql_log .=" WHERE id={$c_id}";
-
-echo($sql_log);
-$wpdb->query($sql_log);
+mysqli_query($mysqli,$sql_log);
 
 exit();
 ?>

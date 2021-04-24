@@ -32,12 +32,13 @@ if($id == "customer_detail_ag"){
 	$ag		= floor(($now_8-$tmp)/10000);
 }
 
-$birth	=$yy."-".$mm."-".$dd;
+$birth	=$yy.$mm.$dd;
 
 $sql_log ="UPDATE wp01_0customer SET";
 $sql_log .=" birth_day='{$birth}'";
 $sql_log .=" WHERE id={$c_id}";
-$wpdb->query($sql_log);
+mysqli_query($mysqli,$sql_log);
+
 
 $dat["yy"]=$yy;
 $dat["mm"]=$mm;
