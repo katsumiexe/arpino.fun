@@ -46,8 +46,6 @@ $dat["dd"]=$dd;
 $dat["ag"]=$ag;
 $dat["dt"]=$dt2;
 
-
-
 echo json_encode($dat);
 exit();
 ?>

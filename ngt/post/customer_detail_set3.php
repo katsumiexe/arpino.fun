@@ -13,5 +13,6 @@ $sql_log .=" fav='{$fav}'";
 $sql_log .=" WHERE id={$c_id}";
 mysqli_query($mysqli,$sql_log);
 
+echo $sql_log;
 exit();
 ?>

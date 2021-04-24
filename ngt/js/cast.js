@@ -229,7 +229,7 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-/*			colsole.log(data);*/
+			console.log(data);
 			$('#h_customer_fav').val(Fav);
 			$('#clist'+C_Id).children('.customer_hidden_fav').val(Fav);
 
@@ -602,6 +602,7 @@ $(function(){
 				}
 			};
 		})(file);
+
 		reader.readAsDataURL(file);
 
 		$('#upd').fileExif(function(exif) {
@@ -1542,6 +1543,7 @@ $(function(){
 			},
 			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			$('#customer_detail_yy').val(data.yy),
 			$('#customer_detail_mm').val(data.mm),
 			$('#customer_detail_dd').val(data.dd),
@@ -1550,6 +1552,9 @@ $(function(){
 			$('#clist'+C_Id).children('.customer_hidden_mm').val(data.mm);
 			$('#clist'+C_Id).children('.customer_hidden_dd').val(data.dd);
 			$('#clist'+C_Id).children('.customer_hidden_ag').val(data.ag);
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
 		});
 	});
 
