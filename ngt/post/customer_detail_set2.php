@@ -2,7 +2,7 @@
 /*
 誕生日変更
 */
-require_once ("./post_inc.php");
+include_once('../library/sql_post.php');
 
 $c_id	=$_POST["c_id"];
 $id		=$_POST["id"];
