@@ -1,0 +1,50 @@
+div.out{
+	border:2px solid #606060;
+	border-radius:5px;
+	background-color:#f0e5ff;
+	padding:5px;
+	margin:10px;
+	width:400px;
+}
+
+div.out2{
+	border:2px solid #606060;
+	border-radius:5px;
+	background-color:#f0e5ff;
+	padding:5px;
+	margin:10px;
+	width:400px;
+	height:100px;
+}
+
+.title1{
+	padding:5px;
+	width:50px;
+	display:inline-block;
+}
+
+.in1{
+	width:330px;
+	padding:5px;
+}
+
+.in2{
+	width:310px;
+	height:300px;
+	border:1px solid #000000;
+	background-color:#ffffff;
+	padding:5px;
+	float:left;
+}
+
+.btn{
+	text-align:center;
+	width:160px;
+}
+
+.btn2{
+	text-align:center;
+	width:40px;
+	padding:0 auto; 
+}
+

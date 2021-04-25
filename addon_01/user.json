@@ -1,0 +1,29 @@
+[
+	{
+		"set_name":"arai",
+		"address":"info@vernis.co.jp",
+		"enter":"0",
+		"history":"10",
+		"title":"★電話占いVERNIS★",
+		"quote":"0",
+		"label":"1",
+		"star":"1",
+		"signet":"1",
+		"staff":"1",
+		"name":"担当：新井"
+	},
+	{
+		"set_name":"user",
+		"address":"info@vernis.co.jp",
+		"enter":"0",
+		"history":"10",
+		"title":"★電話占いVERNIS★",
+		"quote":"0",
+		"label":"1",
+		"star":"1",
+		"signet":"1",
+		"staff":"1",
+		"name":"担当：いなぞう"
+	}
+
+]

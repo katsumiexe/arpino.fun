@@ -1,0 +1,83 @@
+/* タブメニュー */
+#tab-menu {
+	list-style: none;
+	font-size: 0;
+	padding-inline-start: 10px;
+}
+#tab-menu li {
+	display: inline-block;
+	padding: 3px;
+	background: #fff0e0;
+	border-radius:10px 10px 0px 0px;
+	vertical-align: bottom;
+	color: #ff3040;
+	font-size: 16;
+	width:90px;
+	text-align:center;
+	border-top: 3px solid #ff9060; 
+	border-left: 3px solid #ff9060; 
+	border-right: 3px solid #ff9060; 
+}
+
+#tab-menu li.new {
+	background: #ff6090;
+	padding: 5px 5px 15px 5px;
+	color: #fff;
+}
+
+#tab-menu li.active {
+	padding: 3px 3px 10px 3px;
+	background: #ff9060;
+	color: #fff;
+}
+
+#tab-box {
+	width:634px;
+	padding: 10px;
+	border: 3px solid #ff9060;
+}
+#tab-box div {
+	display: none;
+}
+#tab-box div.active {
+	display: block;
+}
+
+.name{
+	width:650px;
+	background: #ff9060;
+	padding: 5px;
+	font-size: 16px;
+}
+
+.no{
+	text-align:center;
+}
+
+.title{
+	vertical-align:top;
+}
+
+textarea{
+	width:400px;
+	height:90px;
+}
+
+label{
+	width:44px;
+	display:inline-block;
+	text-align:left;
+	vertical-align:middle;
+	font-size:13px;
+	padding:3px; 
+}
+
+.user_select{
+	width:150px;
+	height:30px;
+	font-size:20px;
+	
+
+}
+
+
