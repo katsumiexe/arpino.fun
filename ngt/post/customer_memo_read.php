@@ -30,7 +30,7 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 if(!$dat){
-	$dat="<tr><td class=\"customer_memo_td1\" style=\"text-align:center;\"><br>まだ何もありません<br><br></td></tr>";
+	$dat="<tr><td class=\"customer_memo_td1 nodata\" style=\"text-align:center;\"><br>まだ何もありません<br><br></td></tr>";
 }
 echo $dat;
 exit();

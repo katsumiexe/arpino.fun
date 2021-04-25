@@ -1395,6 +1395,9 @@ $(function(){
 				$('#tr_memo_detail'+TmpMemoId).remove();
 				$('#tr_memo_log'+TmpMemoId).remove();
 				$('#memo_chg_id').val('');
+
+			}else{
+				$('.nodata').hide();
 			}
 
 			$('.set_back').fadeOut(200);
@@ -2013,8 +2016,8 @@ $(function(){
 	$('.cal').on('click','.cal_td',function (){
 		$('.cal_td').removeClass('cc8');
 		$(this).addClass('cc8');
-
 		DaySet =$(this).attr('id').replace("c","");
+		$('#set_date').val(DaySet);
 
 		$.post({
 			url:"./post/calendar_day_sel.php",
@@ -2028,6 +2031,7 @@ $(function(){
 			$('#days_sche').html(data.sche);
 			$('.cal_days_birth').html(data.birth);
 			$('.cal_days_memo').val(data.memo);
+
 
 			console.log(data.birth);
 
