@@ -5,25 +5,27 @@ $send			=$_POST['send'];
 $log			=$_POST['log'];
 $sid			=$_POST['sid'];
 $img_code		=$_POST['img_code'];
-
-$customer_id	=$_POST['customer_id'];
-$customer_name	=$_POST['customer_name'];
-$customer_mail	=$_POST['customer_mail'];
 $now_dat		=date("Y.m.d H:i");
 
-$n0=($cast_data["id"] % 720)+1;
-$n1=rand(1, 720);
-$n2=rand(1, 720);
-$n3=rand(1, 720);
-$n4=($customer_id % 720)+1;
-$n5=rand(1, 9);
-$ssid_key.=$rnd[$n0].$rnd[$n1].$rnd[$n2].$rnd[$n3].$rnd[$n4].$dec[$n5][$send];
-
 if($send==1){
+	$cast_id		=$cast_data["id"]
+	$customer_id	=$_POST['customer_id'];
+	$customer_name	=$_POST['customer_name'];
+	$customer_mail	=$_POST['customer_mail'];
+
+
+	$n0=($cast_id % 720)+1;
+	$n1=rand(1, 720);
+	$n2=rand(1, 720);
+	$n3=rand(1, 720);
+	$n4=($customer_id % 720)+1;
+	$n5=rand(1, 9);
+	$ssid_key.=$rnd[$n0].$rnd[$n1].$rnd[$n2].$rnd[$n3].$rnd[$n4].$dec[$n5][$send];
+
 	$sql	 ="INSERT INTO wp01_0ssid";
 	$sql	.="(ssid,cast_id,customer_id,`date`,`mail`)";
 	$sql	.="VALUES";
-	$sql	.="('{$ssid_key}','{$cast_data["id"]}','{$customer_id}','{$now}','{$customer_mail}')";
+	$sql	.="('{$ssid_key}','{}','{$customer_id}','{$now}','{$customer_mail}')";
 	mysqli_query($mysqli,$sql);
 
 //------------------------------------------------
@@ -59,10 +61,14 @@ if($send==1){
 	$body	.="https://arpino.fun/wp\n";
 	$body	.="080-1111-1111\n";
 	$body	.="info@piyo-piyo.work\n";
-	mb_send_mail($to, $title, $body, $header);
-//------------------------------------------------
 
+	mb_send_mail($to, $title, $body, $header);
+
+//------------------------------------------------
 }else{
+
+	$ssid_key=
+
 	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$sid}'";
 	$sql	.=" LIMIT 1";
@@ -72,12 +78,29 @@ if($send==1){
 
 		$customer_id=$row["customer_id"];
 		$cast_id	=$row["cast_id"];
+
+		$sql ="SELECT * FROM wp01_0encode"; 
+		if($result = mysqli_query($mysqli,$sql)){
+			while($row = mysqli_fetch_assoc($result)){
+				$enc[$row["key"]]	=$row["value"];
+				$dec[$row["gp"]][$row["value"]]	=$row["key"];	
+				$rnd[$row["id"]]	=$row["key"];	
+			}
+		}
+
+		$id_8=substr("00000000".$cast_id,-8);
+		$id_0	=$cast_id % 20;
+
+		for($n=0;$n<8;$n++){
+			$tmp_id=substr($id_8,$n,1);
+			$box_no.=$dec[$id_0][$tmp_id];
+		}
+		$box_no.=$id_0;
 	}
 }
 
 if($img_code){
 	$link	="../img/cast/{$box_no}/m/{$ssid_key}.png";
-	$link2	="../img/{$ssid_key}.png";
 	$img2	=imagecreatetruecolor(600,600);
 	$img	=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img, 0, 0, 0, 0, 600, 600, 600, 600);

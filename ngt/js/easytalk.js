@@ -1,5 +1,4 @@
 $(function(){ 
-
 	var VwBase	=$(window).width()/100;
 	var VhBase	=$(window).height()/100;
 	
