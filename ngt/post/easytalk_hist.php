@@ -17,7 +17,6 @@ $sql	.=" LIMIT {$st},10";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
 		$row["send_date"]=substr(str_replace("-",".",$row["send_date"]),0,16);
 
@@ -38,22 +37,13 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-$sql	 ="UPDATE wp01_0easytalk SET";
-$sql	.=" watch_date='{$now}'";
-$sql	.=" WHERE customer_id='{$c_id}'";
-$sql	.=" AND cast_id='{$cast_data["id"]}'";
-$sql	.=" AND watch_date='0000-00-00 00:00:00'";
-$sql	.=" AND send_flg=2";
-mysqli_query($mysqli,$sql);
-
-if($row["face"]){
-	$face="./img/cast/{$box_no}/c/{$row["face"]}?t_".time();
+if($dat[0]["face"]){
+	$face="data:image/jpg;base64,{$dat[0]["face"]}";
 }else{
 	$face="./img/customer_no_image.png?t_".time();
 }
 
 for($n=0;$n<$count_dat;$n++){
-
 	if($dat[$n]["send_flg"] == 2){
 		if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";
@@ -84,6 +74,17 @@ for($n=0;$n<$count_dat;$n++){
 		$html.="</div>";
 	}
 }
+
+
+$sql	 ="UPDATE wp01_0easytalk SET";
+$sql	.=" watch_date='{$now}'";
+$sql	.=" WHERE customer_id='{$c_id}'";
+$sql	.=" AND cast_id='{$cast_data["id"]}'";
+$sql	.=" AND watch_date='0000-00-00 00:00:00'";
+$sql	.=" AND send_flg=2";
+mysqli_query($mysqli,$sql);
+
+
 echo $html;
 exit();
 ?>

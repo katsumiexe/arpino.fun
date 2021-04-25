@@ -977,13 +977,15 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
+
 	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
 	<div class="main">
 		<?for($n=0;$n<$cnt_mail_data;$n++){?>
 			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 
 				<?if($mail_data[$n]["face"]){?>
-					<img src="./img/cast/<?=$box_no?>/c/<?=$mail_data[$n]["face"]?>?t=<?=time()?>" class="mail_img">
+					<img src="data:image/jpg;base64,<?=$mail_data[$n]["face"]?>" class="mail_img">
+
 				<?}else{?>
 					<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t=<?=time()?>" class="mail_img">
 				<? } ?>
@@ -995,7 +997,7 @@ $(function(){
 					<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
 				<?}?>
 				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
-				<?if($a1["img_1"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img_1"]?>'><? } ?>
+				<?if($a1["img"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img"]?>'><? } ?>
 			</div>
 		<?}?>
 

@@ -942,6 +942,8 @@ input[type=range]::-moz-range-thumb{
 	line-height		:6vw;
 	border-radius	:1vw 1vw 4vw 1vw;
 	padding			:2vw;
+	min-height		:12vw;
+		
 }
 
 .mail_box_log_2{
@@ -949,7 +951,8 @@ input[type=range]::-moz-range-thumb{
 	font-size		:3.5vw;
 	line-height		:6vw;
 	border-radius	:1vw 1vw 1vw 4vw;
-	padding			:2vw
+	padding			:2vw;
+	min-height		:12vw;
 }
 
 .mail_box_log_in {

@@ -161,7 +161,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 							<div class="mail_box_log_in">
 								<?=$dat[$n]["log"]?>
 							</div>
-							<?=$dat[$n]["stamp"]?>"
+							<?=$dat[$n]["stamp"]?>
 						</div>
 						<span class="mail_box_date_a"><?=$dat[$n]["send_date"]?></span>
 					</div>
@@ -169,10 +169,10 @@ const CastId="<?=$ssid["cast_id"]?>";
 				<?}else{?>
 					<div class="mail_box_b">		
 						<div class="mail_box_log_2 bg<?=$dat[$n]["bg"]?>">
-							<div aclass="mail_box_log_in">
+							<div class="mail_box_log_in">
 								<?=$dat[$n]["log"]?>
 							</div>
-							<?=$dat[$n]["stamp"]?>"
+							<?=$dat[$n]["stamp"]?>
 						</div>
 						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
 					</div>
