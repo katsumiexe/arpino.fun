@@ -1395,7 +1395,6 @@ $(function(){
 				$('#tr_memo_detail'+TmpMemoId).remove();
 				$('#tr_memo_log'+TmpMemoId).remove();
 				$('#memo_chg_id').val('');
-
 			}else{
 				$('.nodata').hide();
 			}
