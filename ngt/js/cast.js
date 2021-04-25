@@ -1437,25 +1437,20 @@ $(function(){
 	});
 
 
-
-
 	$('.mail_detail_btn_send').on('click',function(){
+
 		$.post({
 			url:"./post/easytalk_send.php",
 			data:{
 				'log'			:$('.mail_write_text').val(),
 				'send'			:'1',
-				'img_code'		:$('.mail_img_view').attr('src').replace("data:image/jpg;base64,", ""),
-
-				'cast_id'		:CastId,
-				'cast_name'		:CastName,
+				'img_code'		:$('#img_hidden').val(),
 
 				'customer_id'	:Customer_id,
 				'customer_name'	:Customer_Name,
 				'customer_mail'	:Customer_mail,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.mail_detail_in').append(data)
 			$('.mail_write_text').val('');
 //			$('.mail_img_view').attr('src','./img/customer_no_img.jpg');

@@ -1745,6 +1745,7 @@ $(function(){
 <input id="img_zoom" type="hidden" name="img_zoom" value="100">
 <input id="img_url" type="hidden" name="img_url" value="">
 <input id="img_code" type="hidden" name="img_code" value="">
+<input id="img_hidden" type="hidden" name="img_hidden" value="">
 
 <input id="h_blog_id" type="hidden" value="">
 <input id="h_blog_yy" type="hidden" value="">
