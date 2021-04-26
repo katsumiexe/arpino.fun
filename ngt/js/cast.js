@@ -296,7 +296,6 @@ $(function(){
 		$.post({
 			url:"./post/easytalk_hist.php",
 			data:{
-				'cast_id'	:CastId,
 				'c_id'		:Customer_id
 			},
 
@@ -1455,7 +1454,8 @@ $(function(){
 		}).done(function(data, textStatus, jqXHR){
 			$('.mail_detail_in').append(data)
 			$('.mail_write_text').val('');
-//			$('.mail_img_view').attr('src','./img/customer_no_img.jpg');
+			$('#img_hidden').val('');
+			$('.mail_img_view').attr('src','./img/blog_no_image.png');
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

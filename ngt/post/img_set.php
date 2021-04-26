@@ -4,7 +4,6 @@
 */
 
 include_once('../library/sql_post.php');
-
 $img_code	=$_POST["img_code"];
 $img_top	=$_POST["img_top"];
 $img_left	=$_POST["img_left"];

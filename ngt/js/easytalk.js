@@ -1,6 +1,6 @@
 $(function(){ 
-	var VwBase	=$(window).width()/100;
-	var VhBase	=$(window).height()/100;
+	var Width_l	=$('.img_box_out2').width();
+	var Width_s	=$('.img_box_out1').width();
 	
 	var Fav			=0;
 	var cvs_A		=0;
@@ -14,7 +14,7 @@ $(function(){
 
 	$('#send_mail').on('click',function(){
 		$.post({
-			url:Dir + "/post/easytalk_send.php",
+			url:"./post/easytalk_send.php",
 			data:{
 				'send'		:'2',
 				'cast_id'	:CastId,
@@ -32,10 +32,11 @@ $(function(){
 			console.log(errorThrown);
 		});
 	});
+
 	$(window).scroll(function () {
 		if ($(this).scrollTop() < 50) {
 			$.post({
-				url:Dir + "/post/easytalk_hist.php",
+				url:"./post/easytalk_hist.php",
 				data:{
 					'pg':$('#easytalk_page').val()
 				},
@@ -112,21 +113,19 @@ $(function(){
 					$('#img_top').val(css_B);
 					$('#img_left').val(css_B);
 
-						ImgWidth	=css_A;
-						ImgHeight	=css_A;
-						ImgTop		=css_B;
-						ImgLeft		=css_B;
-						Rote		=0;
-						Zoom		=100;
+					ImgWidth	=css_A;
+					ImgHeight	=css_A;
+					ImgTop		=css_B;
+					ImgLeft		=css_B;
+					Rote		=0;
+					Zoom		=100;
 				}
 			};
 		})(file);
 		reader.readAsDataURL(file);
 
 		$('#upd').fileExif(function(exif) {
-
 			if (exif['Orientation']) {
-
 				switch (exif['Orientation']) {
 				case 3:
 					Rote = 180;
@@ -167,34 +166,35 @@ $(function(){
 
 	$('#img_set').on('click',function(){	
 		if(ImgCode){
-
-			console.log(Rote);
-			
 			$('#wait').show();
 			$.post({
-				url:Dir + "/post/img_set.php",
+				url:"./post/img_set.php",
 				data:{
-					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
-					'img_top'	:ImgTop,
-					'img_left'	:ImgLeft,
-					'img_zoom'	:$('.zoom_box').text(),
-					'img_rote'	:Rote,
-					'vw_base'	:Base_s/10,
+					'img_code'		:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+					'img_top'		:ImgTop,
+					'img_left'		:ImgLeft,
+					'img_width'		:cvs_W,
+					'img_height'	:cvs_H,
+					'img_zoom'		:$('.zoom_box').text(),
+					'img_rote'		:Rote,
+					'width_s'		:Width_s,
+					'width_l'		:Width_l,
 				},
-
 			}).done(function(data, textStatus, jqXHR){
 				base_64=data;
+
 				$('.img_box').animate({'top':'120vh'},200);
 				var cvs = document.getElementById('cvs1');
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
+
 				if(base_64){
 					$('.mail_img_view').attr('src',"data:image/jpg;base64,"+base_64);
 					$('#img_code').val(base_64);
 
 				}else{
-					$('.mail_img_view').attr('src',ImgSrc);
-					$('#img_code').val();
+					$('.mail_img_view').attr('src','blog_no_image.png');
+					$('#img_code').val('');
 
 				}
 				$('.set_back').fadeOut(200);	

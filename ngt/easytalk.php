@@ -114,7 +114,7 @@ if($ss){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EasyTalk</title>
 <script>
-const Dir='.'; 
+
 const ImgSrc="./img/customer_no_img.jpg?t_<?=time()?>";
 const CastId="<?=$ssid["cast_id"]?>";
 </script>
@@ -199,6 +199,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 		<button id="send_mail" type="button" class="send_btn">メールを返信する</button>
 		<input type="hidden" id="ssid" name="ss" value="<?=$ss?>">
 		<input type="hidden" id="img_code">
+
 		<? } ?>
 	</div>
 </div>
@@ -233,7 +234,6 @@ const CastId="<?=$ssid["cast_id"]?>";
 	</div>
 	<input id="upd" type="file" accept="image/*" style="display:none;">
 	<canvas id="cvs2" width="800px" height="800px;"></canvas>
-
 </div>
 </body>	
 </html>

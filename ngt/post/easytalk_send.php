@@ -1,7 +1,9 @@
 <?
 include_once('../library/sql_post.php');
+/*
 ini_set( 'display_errors', 1 );
 ini_set('error_reporting', E_ALL);
+*/
 
 $send			=$_POST['send'];
 $log			=$_POST['log'];
@@ -16,16 +18,18 @@ if($send==1){
 	$customer_mail	=$_POST['customer_mail'];
 
 }else{
-	$sid	=$_POST['sid'];
+	$sid			=$_POST['sid'];
+
 	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$sid}'";
 	$sql	.=" LIMIT 1";
 	if($result = mysqli_query($mysqli,$sql)){
 		$row = mysqli_fetch_assoc($result);
-		$cast_id		=$row["id"];
-		$customer_id	=$row['customer_name'];
+		$cast_id		=$row["cast_id"];
+		$customer_id	=$row['customer_id'];
 	}
 }
+
 //----------------------------------------
 $sql ="SELECT * FROM wp01_0encode"; 
 if($result = mysqli_query($mysqli,$sql)){

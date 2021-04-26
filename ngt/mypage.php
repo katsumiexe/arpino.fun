@@ -977,47 +977,45 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
+		<div class="main">
+			<?for($n=0;$n<$cnt_mail_data;$n++){?>
+				<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
 
-	<script src="./js/easytalk_cast.js?t=<?=time()?>"></script>
-	<div class="main">
-		<?for($n=0;$n<$cnt_mail_data;$n++){?>
-			<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
+					<?if($mail_data[$n]["face"]){?>
+						<img src="data:image/jpg;base64,<?=$mail_data[$n]["face"]?>" class="mail_img">
 
-				<?if($mail_data[$n]["face"]){?>
-					<img src="data:image/jpg;base64,<?=$mail_data[$n]["face"]?>" class="mail_img">
+					<?}else{?>
+						<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t=<?=time()?>" class="mail_img">
+					<? } ?>
 
-				<?}else{?>
-					<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t=<?=time()?>" class="mail_img">
-				<? } ?>
+					<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
+					<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
+					<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$n]["nickname"]?></span>
+					<?if($mail_data[$n]["r_count"]>0 || $mail_data[$n]["r_count"]=="9+"){?>
+						<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
+					<?}?>
+					<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
+					<?if($a1["img"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img"]?>'><? } ?>
+				</div>
+			<?}?>
 
-				<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
-				<span class="mail_log"><?=$mail_data[$n]["log_p"]?></span>
-				<span class="mail_gp"></span><span id="mail_name<?=$s?>" class="mail_name"><?=$mail_data[$n]["nickname"]?></span>
-				<?if($mail_data[$n]["r_count"]>0 || $mail_data[$n]["r_count"]=="9+"){?>
-					<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
-				<?}?>
-				<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
-				<?if($a1["img"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img"]?>'><? } ?>
-			</div>
-		<?}?>
+			<?if($n < 1){ ?>
+				<div class="no_data">送信履歴はありません。</div>
+			<? } ?>
 
-		<?if($n < 1){ ?>
-			<div class="no_data">送信履歴はありません。</div>
-		<? } ?>
-
-		<div class="mail_detail">
-			<div class="mail_detail_in"></div>
-			<div class="mail_write">
-				<div class="mail_img_in"><img src="./img/blog_no_image.png" class="mail_img_view">	</div>
-				<textarea class="mail_write_text"></textarea><br>
-				<div class="mail_write_in">
-					<div class="mail_detail_btn_img"></div>
-					<div class="mail_detail_btn_send">送信</div>
-					<div class="mail_detail_btn_del"></div>
+			<div class="mail_detail">
+				<div class="mail_detail_in"></div>
+				<div class="mail_write">
+					<div class="mail_img_in"><img src="./img/blog_no_image.png" class="mail_img_view">	</div>
+					<textarea class="mail_write_text"></textarea><br>
+					<div class="mail_write_in">
+						<div class="mail_detail_btn_img"></div>
+						<div class="mail_detail_btn_send">送信</div>
+						<div class="mail_detail_btn_del"></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<?}elseif($cast_page==4){?>
 		<div class="main">

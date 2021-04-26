@@ -20,7 +20,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
 		$row["send_date"]=substr(str_replace("-",".",$row["send_date"]),0,16);
 
-		if($row[$n]["watch_date"] =='0000-00-00 00:00:00'){
+		if($row["watch_date"] =='0000-00-00 00:00:00'){
 			$row["kidoku"]="<span class=\"midoku\">未読</span>";
 			$row["new"]="<span class=\"mail_new\">NEW!</span>";
 
