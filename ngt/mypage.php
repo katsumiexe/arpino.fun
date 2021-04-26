@@ -496,11 +496,12 @@ if($result = mysqli_query($mysqli,$sql)){
 
 $sql	 ="SELECT nickname, M.customer_id, C.mail, M.log, MAX(M.send_date) AS last_date,COUNT((M.send_flg = 2 and M.watch_date='0000-00-00 00:00:00') or null) AS r_count,face,M.send_flg";
 $sql	.=" FROM wp01_0easytalk AS M";
-$sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
+$sql	.=" INNER JOIN wp01_0customer AS C ON M.customer_id=C.id AND C.cast_id=M.cast_id";
 $sql	.=" LEFT JOIN wp01_0easytalk AS M2 ON (M.customer_id = M2.customer_id AND M.send_date < M2.send_date)";
 $sql	.=" WHERE M.cast_id='{$cast_data["id"]}'";
 $sql	.=" AND M2.send_date IS NULL";
 $sql	.=" AND M.del='0'";
+$sql	.=" AND C.del='0'";
 $sql	.=" GROUP BY M.customer_id";
 $sql	.=" ORDER BY last_date DESC";
 
@@ -584,7 +585,6 @@ $(function(){
 	}).done(function(data, textStatus, jqXHR){
 		$.when(
 			$('.mail_detail_in').html(data),
-
 		).done(function(){
 			TMP_H=$('.mail_write').offset().top;
 			$('.mail_detail').scrollTop(TMP_H);
@@ -593,7 +593,6 @@ $(function(){
 		});
 		console.log(data);
 	});
-
 <?}?>
 <?if($c_sort["c_sort_asc"] ==1){?> 
 	$('.sort_circle').css({'left':'10vw','border-radius':'0 10px 10px 0'});
