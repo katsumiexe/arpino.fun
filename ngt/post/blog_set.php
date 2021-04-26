@@ -1,5 +1,10 @@
 <?
 include_once('../library/sql_post.php');
+
+ini_set( 'display_errors', 1 );
+ini_set('error_reporting', E_ALL);
+
+
 $blog_st[0]="<span class=\"hist_status hist_0\">公開</span>";
 $blog_st[1]="<span class=\"hist_status hist_1\">非公開</span>";
 $blog_st[2]="<span class=\"hist_status hist_2\">削除</span>";
@@ -12,17 +17,19 @@ $hh=$_POST["hh"];
 $ii=$_POST["ii"];
 
 $view_date	=$yy."-".$mm."-".$dd." ".$hh.":".$ii.":00";
-$date_js	=$yy.".".$mm.".".$dd." ".$hh.":".$ii;
+$date_jst	=$yy.".".$mm.".".$dd." ".$hh.":".$ii;
 
 $ttl		=$_POST["ttl"];
 $log		=$_POST["log"];
 $tag		=$_POST["tag"];
 $cast_id	=$_POST["cast_id"];
 $chg		=$_POST["chg"];
-$status		=$_POST["status"]+0;
+$status		=$_POST["status"];
 
 $img_code	=$_POST["img_code"];
 $img_id		=$_POST["img_id"];
+
+if(!$status) $status=0;
 
 if($status<1 && $now < $view_date){
 	$view_data=3;
@@ -101,7 +108,7 @@ $html.="</div>";
 $html.="<div class=\"hist_log\">";
 
 if($img_name){
-$html.="<span class=\"hist_img_in\"><img src=\"./img/profile/{$cast_data["id"]}/{$img_name}.png?t={$now}\" class=\"hist_img_on\"></span><br>";
+$html.="<span class=\"hist_img_in\"><img src=\"./img/profile/{$cast_data["id"]}/{$img_name}.png\" class=\"hist_img_on\"></span><br>";
 }
 $html.="<span class=\"blog_log\">{$log}</span>";
 $html.="</div>";

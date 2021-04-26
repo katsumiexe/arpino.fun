@@ -2,11 +2,13 @@
 /*
 mail_hist
 */
+
 include_once('../library/sql_post.php');
 $c_id		=$_POST['c_id'];
 $st			=($_POST['pg']+0)*10;
-$st=0;
-$n=0;
+$st			=0;
+$n			=0;
+
 
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
@@ -43,7 +45,7 @@ if($dat[0]["face"]){
 	$face="./img/customer_no_image.png?t_".time();
 }
 
-for($n=0;$n<$count_dat;$n++){
+for($n=$count_dat-1;$n>-1;$n--){
 	if($dat[$n]["send_flg"] == 2){
 		if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";
@@ -75,7 +77,6 @@ for($n=0;$n<$count_dat;$n++){
 	}
 }
 
-
 $sql	 ="UPDATE wp01_0easytalk SET";
 $sql	.=" watch_date='{$now}'";
 $sql	.=" WHERE customer_id='{$c_id}'";
@@ -83,8 +84,6 @@ $sql	.=" AND cast_id='{$cast_data["id"]}'";
 $sql	.=" AND watch_date='0000-00-00 00:00:00'";
 $sql	.=" AND send_flg=2";
 mysqli_query($mysqli,$sql);
-
-
 echo $html;
 exit();
 ?>
