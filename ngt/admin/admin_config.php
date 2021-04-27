@@ -1,7 +1,6 @@
 <?
 $sql ="SELECT * FROM wp01_0check_main";
 $sql.=" ORDER BY sort ASC";
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$c_main_dat[$row["id"]]=$row;
@@ -9,18 +8,14 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 $sql ="SELECT * FROM wp01_0config";
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$config[$row["config_key"]]=$row["config_value"];
 	}
 }
 
-
-
 $sql ="SELECT * FROM wp01_0check_list";
 $sql.=" ORDER BY host_id ASC, list_sort ASC";
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$c_list_dat[$row["host_id"]][$row["id"]]=$row;
@@ -28,11 +23,9 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 $sql ="SELECT * FROM wp01_0charm_table";
 $sql.=" WHERE del=0";
 $sql.=" ORDER BY sort ASC";
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$charm_dat[$row["id"]]=$row;

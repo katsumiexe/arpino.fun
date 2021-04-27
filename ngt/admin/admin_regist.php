@@ -29,13 +29,21 @@ if($res1 = mysqli_query($mysqli,$sql)){
 	}
 }
 
+$sql	 ="SELECT * FROM wp01_0tag";
+$sql	.=" WHERE del=0";
+$sql	.=" and tag_group='cast_group'";
+$sql	.=" ORDER BY sort ASC";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$cast_group[$row["id"]]=$row["tag_name"];
+	}
+}
 ?>
 <style>
 <!--
 td{
 	vertical-align:top;
 }
-
 
 #sel_staff,#sel_cast{
 	display:none;
@@ -80,10 +88,8 @@ $(function(){
 	});
 });
 </script>
-
 <header class="head">
 <h2>スタッフ登録</h2>
-
 <button id="set" type="button" class="submit_btn">保存</button>
 <button id="del" type="button" class="submit_btn">削除</button>
 <form id="form" action="" method="post" autocomplete="off">
@@ -152,13 +158,20 @@ STAFF情報
 <td>
 	<div>役職			</div><input type="text" name="staff_position" class="w000" autocomplete="off">
 </td><td>
-	<div>グループ		</div><input type="text" name="staff_group" class="w000" autocomplete="off">
-</td><td>
 	<div>ランク			</div><input type="text" name="staff_rank" class="w000" autocomplete="off">
+</td><td>
+	<?if(is_array($cast_group)){?>
+	<div>グループ		</div>
+	<select name="staff_group" class="w000" autocomplete="off">
+	<option value="">選択</option>
+	<?foreach($cast_group as $a1 => $a2){?>
+	<option value="<?=$a1?>"><?=$a2?></option>
+	<?}?>
+	</select>
+	<?}?>
 </td>
 </tr>
 </table>
-
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
 <td class="table_title" colspan="3">
@@ -190,7 +203,6 @@ CAST情報
 <tr>
 	<td class="table_title" colspan="2">NEWS登録</td>
 </tr>	
-
 <tr>
 	<td>公開日
 	<input type="text" id="news_date_yy" name="news_date_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 

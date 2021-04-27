@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../../library/sql_post.php');
 $list		=$_POST['list'];
 foreach($list as $a1 => $a2){
 	$a1++;

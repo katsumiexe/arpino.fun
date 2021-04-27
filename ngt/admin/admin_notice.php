@@ -9,7 +9,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$sql	 ="SELECT id, genji, cast_group, K.status FROM wp01_0notice_ck AS K";
 		$sql	.=" LEFT JOIN  wp01_0cast AS C ON K.cast_id=C.id";
 		$sql	.=" WHERE C.del=0";
-		$sql	.=" AND notice_id=$row["id"]";
+		$sql	.=" AND notice_id={$row["id"]}";
 
 		if($result2 = mysqli_query($mysqli,$sql)){
 			while($row2 = mysqli_fetch_assoc($result2)){
@@ -33,15 +33,16 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 //■グループ名・カテゴリ名----
-$sql	 ="SELECT id, genji, cast_group, cast_status FROM wp01_0cast";
+$sql	 ="SELECT id, tag_group, tag_name, sort FROM wp01_0tag";
 $sql	.=" WHERE del=0";
-$sql	.=" ORDER BY id ASC";
+$sql	.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$cast_dat[]=$row;
+		$tag[$row["tag_group"]][$row["tag_id"]]=$row["tag_name"];
 	}
 }
+
 
 ?>
 <style>

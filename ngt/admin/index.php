@@ -1,7 +1,7 @@
 <?
 //ini_set( 'display_errors', 1 );
-include_once('./library/sql.php');
-include_once('./library/inc_code.php');
+include_once('../library/sql.php');
+include_once('../library/inc_code.php');
 
 $staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
 $staff_id	=$_POST["staff_id"];
@@ -201,6 +201,7 @@ if($staff_set == 4){
 
 //■img-------------------------------
 		if($img_c){
+			$link="../img/profile/".$staff_id;
 			if($staff_set == 1){
 				$a3=0;
 				foreach($img_c as $a1 => $a2){
@@ -226,8 +227,6 @@ if($staff_set == 4){
 						}else{
 							$img = imagecreatefromstring(base64_decode($img_c[$a1]));
 						}
-
-						$link="./img/profile/".$staff_id;
 
 						$img2 		= imagecreatetruecolor(600,800);
 						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
@@ -272,8 +271,6 @@ if($staff_set == 4){
 							$img = imagecreatefromstring(base64_decode($img_c[$i]));
 						}
 
-						$link="./img/profile/".$staff_id;
-
 						$img2 		= imagecreatetruecolor(600,800);
 						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
 						imagejpeg($img2,$link."/".$i.".jpg",100);
@@ -302,7 +299,6 @@ if($staff_set == 4){
 	mysqli_query($mysqli,$sql);
 }
 if(!$menu_post) $menu_post="staff";
-
 $sel[$menu_post]="menu_sel";
 ?>
 <html lang="ja">
@@ -320,22 +316,22 @@ $sel[$menu_post]="menu_sel";
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url("./font/font_1/fonts/icomoon.ttf") format('truetype');
+	src: url("../font/font_1/fonts/icomoon.ttf") format('truetype');
 }
 
 @font-face {
 	font-family: at_frame1;
-	src: url("./font/font_3/fonts/icomoon.ttf") format('truetype');
+	src: url("../font/font_3/fonts/icomoon.ttf") format('truetype');
 }
 
 @font-face {
 	font-family: at_frame2;
-	src: url("./font/border/frame2.ttf") format('truetype');
+	src: url("../font/border/frame2.ttf") format('truetype');
 }
 
 @font-face {
 	font-family: at_font1;
-	src: url("./font/Courgette-Regular.ttf") format('truetype');
+	src: url("../font/Courgette-Regular.ttf") format('truetype');
 }
 
 .menu_sel{
@@ -367,7 +363,7 @@ $sel[$menu_post]="menu_sel";
 		<div class="menu_c"></div>
 	</div>
 </div>
-<form id="form_menu" method="post" action="./admin.php">
+<form id="form_menu" method="post" action="./index.php">
 <input id="menu_post" type="hidden" name="menu_post">
 <?$_POST="";?>
 </form>

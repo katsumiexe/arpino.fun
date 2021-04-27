@@ -6,14 +6,14 @@ $sql	.=" ORDER BY cast_sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
-		if (file_exists("./img/profile/{$res["id"]}/0.webp")) {
-			$res["face"]="./img/profile/{$res["id"]}/0.webp";			
+		if (file_exists("../img/profile/{$res["id"]}/0.webp")) {
+			$res["face"]="../img/profile/{$res["id"]}/0.webp";			
 
-		}elseif (file_exists("./img/profile/{$res["id"]}/0.jpg")) {
-			$res["face"]="./img/profile/{$res["id"]}/0.jpg";			
+		}elseif (file_exists("../img/profile/{$res["id"]}/0.jpg")) {
+			$res["face"]="../img/profile/{$res["id"]}/0.jpg";			
 
 		}else{
-			$res["face"]="./img/cast_no_image.jpg";			
+			$res["face"]="../img/cast_no_image.jpg";			
 		}
 		$dat[]=$res;
 	}
