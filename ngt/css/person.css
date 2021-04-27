@@ -520,6 +520,14 @@
 	font-size		:2.5vw;
 }
 
+.person_blog_tag{
+	width			:14vw;
+	height			:4vw;
+	line-height		:4vw;
+    border-radius	:1vw;
+	padding-left	:0.5vw;
+}
+
 .person_blog_comm{
 	top				:0.5vw;
 	right			:0.5vw;

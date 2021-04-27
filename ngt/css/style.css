@@ -2543,15 +2543,15 @@ ul {
 	left			:0;
 	height			:3vw;
 	line-height		:3vw;
-	width			:2vw;
-	font-size		:2vw;
+	width			:3vw;
+	font-size		:2.5vw;
 }
 
 .blog_list_tcomm{
-	left			:3vw;
-	height			:3vw;
-	line-height		:3vw;
-	font-size		:1.8vw;
+	left			:4.5vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:2vw;
 }
 
 .blog_list_castimg{
@@ -2566,7 +2566,6 @@ ul {
 	overflow	:hidden;
 }
 
-
 .blog_list_date{
 	right		:6vw;
 	bottom		:0vw;
@@ -2578,8 +2577,6 @@ ul {
 	bottom		:2.5vw;
 	font-size	:2vw;
 }
-
-
 
 .blog_calendar_m{
 	height			:8vw;
