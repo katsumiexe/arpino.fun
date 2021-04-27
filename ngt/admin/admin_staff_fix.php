@@ -55,23 +55,30 @@ if($staff_data["id"]){
 		}
 	}
 
-
 	$sql	 ="SELECT * FROM wp01_0charm_sel";
 	$sql	.=" WHERE cast_id='{$staff_id}'";
-
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$charm_list[$row["list_id"]]=$row;
 		}
 	}
 
-
-
 	for($n=0;$n<4;$n++){
 		if(file_exists("./img/profile/{$staff_id}/{$n}.jpg")){
 			$face[$n]="./img/profile/{$staff_id}/{$n}.jpg?t=".time();		
 		}
 	}
+
+$sql	 ="SELECT * FROM wp01_0tag";
+$sql	.=" WHERE del=0";
+$sql	.=" and tag_group='cast_group'";
+$sql	.=" ORDER BY sort ASC";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$cast_group[$row["id"]]=$row["tag_name"];
+	}
+}
+
 }
 ?>
 <style>
@@ -289,9 +296,17 @@ $(function(){
 	<input type="text" name="staff_position" value="<?=$staff_data["position"]?>" class="w000" autocomplete="off">
 </td>
 <td>
-	<div class="td_tag">グループ</div>
-	<input type="text" name="staff_group" value="<?=$staff_data["group"]?>" class="w000" autocomplete="off">
+	<?if(is_array($cast_group)){?>
+	<div>グループ		</div>
+	<select name="staff_group" class="w000" autocomplete="off">
+	<option value="">選択</option>
+	<?foreach($cast_group as $a1 => $a2){?>
+	<option value="<?=$a1?>"<?if($staff_data["group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
+	<?}?>
+	</select>
+	<?}?>
 </td>
+
 <td>
 	<div class="td_tag">ランク	</div>
 	<input type="text" name="staff_rank" value="<?=$staff_data["rank"]?>" class="w000" autocomplete="off">

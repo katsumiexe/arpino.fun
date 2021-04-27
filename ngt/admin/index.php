@@ -68,6 +68,7 @@ if($staff_set == 4){
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
 	$btime=$b_yy*10000+$b_mm*100+$b_dd;
+
 	if($staff_set == 2 || $staff_set == 3){
 		$sql="UPDATE wp01_0staff SET";
 		$sql.=" `name`='{$staff_name}',";
@@ -291,13 +292,13 @@ if($staff_set == 4){
 			}
 		}
 	}
-
 }elseif($_POST["prof_name_new"] && $_POST["prof_style_new"]){
 	$menu_post="staff";
 	$sql="INSERT INTO wp01_0charm_table (`charm`,`sort`,`style`)";
 	$sql.="VALUES('{$_POST["prof_name_new"]}','{$_POST["prof_sort_new"]}','{$_POST["prof_style_new"]}')";
 	mysqli_query($mysqli,$sql);
 }
+
 if(!$menu_post) $menu_post="staff";
 $sel[$menu_post]="menu_sel";
 ?>
@@ -308,12 +309,13 @@ $sel[$menu_post]="menu_sel";
 <title>Night-party</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
+<script src="../js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 <script src="./js/admin.js?t=<?=time()?>"></script>
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/admin.css?t=<?=time()?>">
 <style>
+
 @font-face {
 	font-family: at_icon;
 	src: url("../font/font_1/fonts/icomoon.ttf") format('truetype');

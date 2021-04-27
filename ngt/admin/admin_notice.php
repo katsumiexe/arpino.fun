@@ -1,6 +1,6 @@
 <?
 $sql	 ="SELECT * FROM wp01_0notice";
-$sql	.=" WHERE N.del=0";
+$sql	.=" WHERE del=0";
 $sql	.=" ORDER BY `date` DESC";
 $sql	.=" LIMIT 10";
 if($result = mysqli_query($mysqli,$sql)){
@@ -21,30 +21,40 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
 //■キャストリスト----
-$sql	 ="SELECT id, genji, cast_group, cast_status FROM wp01_0cast";
-$sql	.=" WHERE del=0";
-$sql	.=" ORDER BY id ASC";
+$sql	 ="SELECT * FROM wp01_0staff AS S ";
+$sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
+$sql	.=" WHERE S.del=0";
+$sql	.=" ORDER BY S.sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$cast_dat[]=$row;
+		if($row["genji"]){
+			$row["user_name"]=$row["genji"];
+
+		}else{
+			$row["user_name"]=$row["name"];
+		
+		}
+		$staff_dat[]=$row;
 	}
 }
+
 
 //■グループ名・カテゴリ名----
 $sql	 ="SELECT id, tag_group, tag_name, sort FROM wp01_0tag";
 $sql	.=" WHERE del=0";
+$sql	.=" AND( tag_group='cast_group' OR tag_group='category')";
 $sql	.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$tag[$row["tag_group"]][$row["tag_id"]]=$row["tag_name"];
+		$tag[$row["tag_group"]][$row["id"]]=$row["tag_name"];
 	}
 }
-
-
 ?>
+
 <style>
 <!--
 .sel_contents{
@@ -109,6 +119,10 @@ $(function(){
 <?}?>
 	</div>
 	<div class="sub_box">
+<?foreach($tag["cast_group"] as $a1 => $a2){?>
+<span class=""><?=$a1?><?=$a2?></span><br>
+<?}?>
+
 	</div>
 </div>
 <footer class="foot"></footer>
