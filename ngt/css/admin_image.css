@@ -82,10 +82,10 @@
 	background	:linear-gradient(#c0c0c0,#909090);
 	position	:absolute;
 	top			:7px;
-	left		:5px;
+	left		:25px;
 	height		:25px;
 	line-height	:25px;
-	width		:55px;
+	width		:40px;
 	text-align	:center;
 	color		:#fafafa;
 	overflow	:hidden;
@@ -361,8 +361,8 @@ input[type=range]::-moz-range-thumb{
 	font-size		:0;
 	position		:absolute;
 	top				:40px;
-	left			:5px;
-	width			:160px;
+	left			:25px;
+	width			:130px;
 	height			:22px;
 }
 

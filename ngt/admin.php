@@ -67,9 +67,7 @@ if($staff_set == 4){
 	$img_r		=$_POST["img_r"];
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
-
 	$btime=$b_yy*10000+$b_mm*100+$b_dd;
-
 	if($staff_set == 2 || $staff_set == 3){
 		$sql="UPDATE wp01_0staff SET";
 		$sql.=" `name`='{$staff_name}',";
@@ -203,52 +201,95 @@ if($staff_set == 4){
 
 //■img-------------------------------
 		if($img_c){
-			$a3=0;
+			if($staff_set == 1){
+				$a3=0;
+				foreach($img_c as $a1 => $a2){
+					if($a2){
+						$tmp_width	=ceil(1200*(100/$img_z[$a1]));
+						$tmp_height	=ceil(1600*(100/$img_z[$a1]));
 
-			foreach($img_c as $a1 => $a2){
+						$tmp_left	=floor((20-$img_x[$a1])*(1200/150)*100/$img_z[$a1]);
+						$tmp_top	=floor((20-$img_y[$a1])*(1600/200)*100/$img_z[$a1]);
 
-				if($a2 || $chg_check[$a3]==1){
+						if($img_r[$a1] ==90){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
+							$img		= imagerotate($new_img, 270, 0, 0);
 
-					$tmp_width	=ceil(1200*(100/$img_z[$a1]));
-					$tmp_height	=ceil(1600*(100/$img_z[$a1]));
+						}elseif($img_r[$a1] ==180){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
+							$img		= imagerotate($new_img, 180, 0, 0);
 
-					$tmp_left	=floor((20-$img_x[$a1])*(1200/150)*100/$img_z[$a1]);
-					$tmp_top	=floor((20-$img_y[$a1])*(1600/200)*100/$img_z[$a1]);
+						}elseif($img_r[$a1] ==270){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
+							$img		= imagerotate($new_img, 90, 0, 0);
 
-					if($img_r[$a1] ==90){
-						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-						$img		= imagerotate($new_img, 270, 0, 0);
+						}else{
+							$img = imagecreatefromstring(base64_decode($img_c[$a1]));
+						}
 
-					}elseif($img_r[$a1] ==180){
-						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-						$img		= imagerotate($new_img, 180, 0, 0);
+						$link="./img/profile/".$staff_id;
 
-					}elseif($img_r[$a1] ==270){
-						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
-						$img		= imagerotate($new_img, 90, 0, 0);
+						$img2 		= imagecreatetruecolor(600,800);
+						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
+						imagejpeg($img2,$link."/".$a3.".jpg",100);
+						imagedestroy($img2);
 
-					}else{
-						$img = imagecreatefromstring(base64_decode($img_c[$a1]));
+						$img2_s 		= imagecreatetruecolor(180,240);
+						ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
+	//					imagewebp($img2_s,$link."/".$a3."_s.webp");
+						imagejpeg($img2_s,$link."/".$a3."_s.jpg");
+						imagedestroy($img2_s);
+
+						$img2_n 		= imagecreatetruecolor(30,40);
+						ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
+						imagejpeg($img2_n,$link."/".$a3."_n.jpg",100);
+						imagedestroy($img2_n);
+						$a3++;
 					}
+				}
+			}else{
+				for($i=0;$i<4;$i++){
+					if($img_c[$i]){
+						$tmp_width	=ceil(1200*(100/$img_z[$i]));
+						$tmp_height	=ceil(1600*(100/$img_z[$i]));
 
-					$link="./img/profile/".$staff_id;
+						$tmp_left	=floor((20-$img_x[$i])*(1200/150)*100/$img_z[$i]);
+						$tmp_top	=floor((20-$img_y[$i])*(1600/200)*100/$img_z[$i]);
 
-					$img2 		= imagecreatetruecolor(600,800);
-					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-					imagejpeg($img2,$link."/".$a3.".jpg",100);
-					imagedestroy($img2);
+						if($img_r[$i] ==90){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$i]));	
+							$img		= imagerotate($new_img, 270, 0, 0);
 
-					$img2_s 		= imagecreatetruecolor(180,240);
-					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
-//					imagewebp($img2_s,$link."/".$a3."_s.webp");
-					imagejpeg($img2_s,$link."/".$a3."_s.jpg");
-					imagedestroy($img2_s);
+						}elseif($img_r[$i] ==180){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$i]));	
+							$img		= imagerotate($new_img, 180, 0, 0);
 
-					$img2_n 		= imagecreatetruecolor(30,40);
-					ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
-					imagejpeg($img2_n,$link."/".$a3."_n.jpg",100);
-					imagedestroy($img2_n);
-					$a3++;
+						}elseif($img_r[$i] ==270){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$i]));
+							$img		= imagerotate($new_img, 90, 0, 0);
+
+						}else{
+							$img = imagecreatefromstring(base64_decode($img_c[$i]));
+						}
+
+						$link="./img/profile/".$staff_id;
+
+						$img2 		= imagecreatetruecolor(600,800);
+						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
+						imagejpeg($img2,$link."/".$i.".jpg",100);
+						imagedestroy($img2);
+
+						$img2_s 		= imagecreatetruecolor(180,240);
+						ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
+	//					imagewebp($img2_s,$link."/".$a3."_s.webp");
+						imagejpeg($img2_s,$link."/".$i."_s.jpg");
+						imagedestroy($img2_s);
+
+						$img2_n 		= imagecreatetruecolor(30,40);
+						ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
+						imagejpeg($img2_n,$link."/".$i."_n.jpg",100);
+						imagedestroy($img2_n);
+					}
 				}
 			}
 		}
