@@ -5,12 +5,10 @@ $sql	.=" ORDER BY `date` DESC";
 $sql	.=" LIMIT 10";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-
 		$sql	 ="SELECT id, genji, cast_group, K.status FROM wp01_0notice_ck AS K";
 		$sql	.=" LEFT JOIN  wp01_0cast AS C ON K.cast_id=C.id";
 		$sql	.=" WHERE C.del=0";
 		$sql	.=" AND notice_id={$row["id"]}";
-
 		if($result2 = mysqli_query($mysqli,$sql)){
 			while($row2 = mysqli_fetch_assoc($result2)){
 				$dat2[$row["id"]][]=$row2;
@@ -20,7 +18,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		$count_dat++;
 	}
 }
-
 
 //■キャストリスト----
 $sql	 ="SELECT * FROM wp01_0staff AS S ";
@@ -40,7 +37,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		$staff_dat[]=$row;
 	}
 }
-
 
 //■グループ名・カテゴリ名----
 $sql	 ="SELECT id, tag_group, tag_name, sort FROM wp01_0tag";
@@ -83,10 +79,48 @@ input[type=radio]:checked + label{
 }
 
 .sub_box{
-	display:inline-block;
-	flex-basis:400px;
-	background:#008040;
-	min-height:calc(100vh - 80px);
+	display			:inline-block;
+	flex-basis		:400px;
+	background		:#008040;
+	min-height		:calc(100vh - 80px);
+}
+
+.cate_title{
+	display			:inline-block;
+	width			:200px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:15px;
+	background		:#d00000;
+	padding-left	:5px;
+	text-align		:left;
+	margin			:10px 3px 0 3px;
+	color			:#fafafa;
+}
+
+.cate_box{
+	display			:inline-block;
+	width			:200px;
+	height			:40px;
+	line-height		:40px;
+	font-size		:15px;
+	background		:#d00000;
+	padding-left	:5px;
+	text-align		:left;
+	margin			:10px 3px 0 3px;
+	color			:#fafafa;
+}
+.cate_list{
+	display			:inline-block;
+	width			:200px;
+	height			:35px;
+	line-height		:40px;
+	font-size		:15px;
+	background		:#fafafa;
+	padding-left	:5px;
+	text-align		:left;
+	border-bottom	:1px solid #202020;
+	margin			:3px;
 }
 
 -->
@@ -99,30 +133,34 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="main_box">
-
-<table class="notice_table">
-<tr>
-	<td class="notice_top">日時</td>
-	<td class="notice_top">カテゴリ</td>
-	<td class="notice_top">投稿者</td>
-	<td class="notice_top">件名</td>
-	<td class="notice_top">グループ</td>
-</tr>
-<?for($n=0;$n<$count_dat;$n++){?>
-<tr>
-	<td class="notice_140"><?=$dat[$n]["date"]?></td>
-	<td class="notice_80"><?=$dat[$n]["date"]?></td>
-	<td class="notice_140"><?=$dat[$n]["date"]?></td>
-	<td class="notice_250"><?=$dat[$n]["date"]?></td>
-	<td class="notice_80"><?=$dat[$n]["date"]?></td>
-</tr>
-<?}?>
+		<table class="notice_table">
+			<tr>
+				<td class="notice_top">日時</td>
+				<td class="notice_top">カテゴリ</td>
+				<td class="notice_top">投稿者</td>
+				<td class="notice_top">件名</td>
+				<td class="notice_top">グループ</td>
+			</tr>
+			<?for($n=0;$n<$count_dat;$n++){?>
+			<tr>
+				<td class="notice_140"><?=$dat[$n]["date"]?></td>
+				<td class="notice_80"><?=$dat[$n]["date"]?></td>
+				<td class="notice_140"><?=$dat[$n]["date"]?></td>
+				<td class="notice_250"><?=$dat[$n]["date"]?></td>
+				<td class="notice_80"><?=$dat[$n]["date"]?></td>
+			</tr>
+			<?}?>
+		</table>
 	</div>
 	<div class="sub_box">
-<?foreach($tag["cast_group"] as $a1 => $a2){?>
-<span class=""><?=$a1?><?=$a2?></span><br>
-<?}?>
-
+		<div class="cate_title">カテゴリー</div>
+		<?foreach($tag["cast_group"] as $a1 => $a2){?>
+			<span class="cate_list"><?=$a1?><?=$a2?></span><br>
+		<?}?>
+		<div class="cate_title">スタッフ</div>
+		<?foreach($staff_dat as $a1 => $a2){?>
+			<span class="cate_list"><?=$a1?><?=$a2["user_name"]?></span><br>
+		<?}?>
 	</div>
 </div>
 <footer class="foot"></footer>
