@@ -1481,7 +1481,6 @@ $(function(){
 			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
 		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
-
 		<div class="notice_list">
 			<?foreach((array)$notice as $n =>$a2){?>
 				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>">
