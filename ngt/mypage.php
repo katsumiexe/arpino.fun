@@ -417,6 +417,52 @@ $sql	.=" ORDER BY date DESC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
+
+		$sql	 ="SELECT * FROM wp01_0notice_res";
+		$sql	.=" WHERE del='0'";
+		$sql	.=" AND notice_id='{$row["id"]}'";
+		$sql	.=" AND (target='1' OR notice_id='{$cast_data["id"]}')";
+		$sql	.=" ORDER BY date DESC";
+
+		if($result2 = mysqli_query($mysqli,$sql)){
+			while($row2 = mysqli_fetch_assoc($result2)){
+				$sql	 ="SELECT * FROM wp01_0notice_attarch";
+				$sql	.=" WHERE del='0'";
+				$sql	.=" AND notice_id='{$row2["id"]}'";
+				$sql	.=" AND block='2'";
+				$sql	.=" ORDER BY id ASC";
+
+				if($result3 = mysqli_query($mysqli,$sql)){
+					while($row3 = mysqli_fetch_assoc($result3)){
+						if($row3["type"]== 1){
+							$notice_res_img[$row2["id"]]=$row3;
+
+						}else{
+							$notice_res_attach[$row2["id"]]=$row3;
+						}
+					}
+				}
+				$notice_res[$row["id"]]=$row2;
+			}
+		}
+
+		$sql	 ="SELECT * FROM wp01_0notice_attarch";
+		$sql	.=" WHERE del='0'";
+		$sql	.=" AND notice_id='{$row["id"]}'";
+		$sql	.=" AND block='1'";
+		$sql	.=" ORDER BY id ASC";
+
+		if($result2 = mysqli_query($mysqli,$sql)){
+			while($row2 = mysqli_fetch_assoc($result2)){
+				if($row2["type"]== 1){
+					$notice_img[$row["id"]]=$row2;
+
+				}else{
+					$notice_attach[$row["id"]]=$row2;
+				}
+			}
+		}
+
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
 		$notice[$row["id"]]=$row;
 	}
