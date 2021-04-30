@@ -413,7 +413,7 @@ $sql	.=" LEFT JOIN wp01_0notice_ck ON wp01_0notice.id=wp01_0notice_ck.notice_id"
 $sql	.=" WHERE del='0'";
 $sql	.=" AND cast_id='{$cast_data["id"]}'";
 $sql	.=" AND status>0";
-$sql	.=" ORDER BY date DESC";
+$sql	.=" ORDER BY wp01_0notice.date DESC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
