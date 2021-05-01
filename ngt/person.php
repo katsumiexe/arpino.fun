@@ -180,6 +180,7 @@ include_once('./header.php');
 	<span class="footmark_text"><?=$cast_data["genji"]?></span>
 <?}?>
 </div>
+
 <div class="person_main">
 <?if($err){?>
 	<span class="no_blog"><?=$err?></span>
@@ -215,7 +216,7 @@ include_once('./header.php');
 		<?}?>
 		</table>
 
-		<div class="sche_title">Schedule</div>
+		<div class="prof_title">Schedule</div>
 		<table class="sche">
 			<?=$list?>
 		</table>
