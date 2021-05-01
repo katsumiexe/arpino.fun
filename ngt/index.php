@@ -41,7 +41,7 @@ if($result = mysqli_query($mysqli,$sql)){
 if(is_array($dat)){
 	foreach($dat as $a1 => $a2){
 		if($a2){
-			$sch_dat[$a1]=$a2
+			$sch_dat[$a1]=$a2;
 			$dat_count++;
 		}
 	}
