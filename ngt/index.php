@@ -42,6 +42,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+var_dump($dat);
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
