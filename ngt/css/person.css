@@ -143,13 +143,13 @@
 	position		:absolute;
 	top				:0px;
 	bottom			:0px;
-	right			:5px;
+	left			:30px;
 	width			:30px;
 	height			:20px;	
 	line-height		:20px;	
 	overflow		:hidden;
 	font-size		:13px;
-	text-align		:right;
+	text-align		:left;
 	color			:#302520;
 }
 
@@ -538,16 +538,16 @@
 }
 
 .person_blog_date{
-	top				:0.5vw;
+	top				:1vw;
 	left			:12.5vw;
-	width			:23vw;
+	width			:14vw;
 	height			:3vw;
 	line-height		:3vw;
 	font-size		:2vw;
 }
 
 .person_blog_tag{
-	width			:14vw;
+	width			:20vw;
 	height			:3.5vw;
 	line-height		:3.5vw;
     border-radius	:1vw;
@@ -555,16 +555,14 @@
 }
 
 .person_blog_i{
-	top				:0.5vw;
-	left			:0.5vw;
-	width			:2.5vw;
-	height			:2.5vw;	
-	line-height		:2.5vw;	
+	width			:4vw;
+	height			:3.5vw;	
+	line-height		:3.5vw;	
 	font-size		:2.5vw;
 }
 
 .person_blog_c{
-	left			:4vw;
+	left			:4.5vw;
 	width			:8vw;
 	height			:3.5vw;	
 	line-height		:3.5vw;	
