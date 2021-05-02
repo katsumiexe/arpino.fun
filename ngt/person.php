@@ -193,6 +193,24 @@ include_once('./header.php');
 		<div class="person_img_list">
 			<?=$face_b?>
 		</div>
+
+		<div class="person_left_blog">
+			<div class="blog_title">Blog</div>
+			<?for($s=0;$s<$cnt_blog+0;$s++){?>
+				<a href="./article.php?post_id=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
+					<img src="<?=$blog[$s]["thumb"]?>" class="person_blog_img">
+					<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$s]["tag_name"]?></span></span>
+					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+					<span class="person_blog_title"><?=$blog[$s]["title"]?></span>
+				</a>
+			<?}?>
+
+			<?if($cnt_blog == 0){?>
+				<div class="person_blog">
+					<span class="person_blog_no">まだありません</span>
+				</div>
+			<?}?>
+		</div>
 	</div>
 
 	<div class="person_middle">
@@ -233,23 +251,21 @@ include_once('./header.php');
 			<?}?>
 		<?}?>
 	</div>
-
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
-			<?for($s=0;$s<$cnt_blog+0;$s++){?>
-				<a href="./article.php?post_id=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
-					<img src="<?=$blog[$s]["thumb"]?>" class="person_blog_img">
-					<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$s]["tag_name"]?></span></span>
-					<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
-					<span class="person_blog_title"><?=$blog[$s]["title"]?></span>
-				</a>
-			<?}?>
-			<?if($cnt_blog == 0){?>
-				<div class="person_blog">
-					<span class="person_blog_no">まだありません</span>
-				</div>
-			<?}?>
-		</div>
+		<?for($s=0;$s<$cnt_blog+0;$s++){?>
+			<a href="./article.php?post_id=<?=$blog[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
+				<img src="<?=$blog[$s]["thumb"]?>" class="person_blog_img">
+				<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$s]["tag_name"]?></span></span>
+				<span class="person_blog_date"><?=$blog[$s]["date"]?></span>
+				<span class="person_blog_title"><?=$blog[$s]["title"]?></span>
+			</a>
+		<?}?>
+		<?if($cnt_blog == 0){?>
+			<div class="person_blog">
+				<span class="person_blog_no">まだありません</span>
+			</div>
+		<?}?>
 	</div>
 <?}?>
 </div>

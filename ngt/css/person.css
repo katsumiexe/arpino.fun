@@ -51,9 +51,11 @@
 	border-bottom	:1px solid #C8B880;
 	color			:#C8B880;
 	background		:#302520;
-		
 }
 
+.person_left_blog{
+	display:none;
+}
 
 .person_blog_no{
 	display			:inline-block;
@@ -408,8 +410,17 @@
 }
 
 .person_right{
+	display:none;
+}
+
+.person_left_blog{
 	display		:block;
-	text-align	:center;
+	position	:absolute;
+	top			:55vw;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	width		:50vw;
 }
 
 .prof{
@@ -422,7 +433,6 @@
 	width:45vw;
 }
 
-
 .prof_title,.blog_title{
 	width			:43vw;
 	height			:4vw;
@@ -433,8 +443,6 @@
 	border-radius	:1vw 1vw 0 0; 
 	border			:0.5vw solid #c8b880;
 }
-
-
 
 .prof_l{
 	padding		:0 0.5vw;
@@ -643,12 +651,16 @@
 }
 
 .person_right{
+	display		:show;
 	width		:96vw;
 	flex-basis	:96vw;
 	min-height	:0;	
 	margin		:0 auto;
 }
 
+.person_left_blog{
+	display		:none;
+}
 
 .person_img_box{
 	top				:0;
