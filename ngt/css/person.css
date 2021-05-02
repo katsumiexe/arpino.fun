@@ -444,6 +444,11 @@
 	border			:0.5vw solid #c8b880;
 }
 
+.blog_title{
+	width			:46vw;
+
+}
+
 .prof_l{
 	padding		:0 0.5vw;
 	height		:4vw;
@@ -516,11 +521,20 @@
 	height			:12vw;	
 }
 
-.person_blog_img{
-	top				:0vw;
-	left			:0vw;
-	width			:12vw;
+.person_blog_no{
+	width			:48vw;
 	height			:12vw;	
+	font-size		:2vw;	
+	text-align:center;
+}
+
+
+
+.person_blog_img{
+	top				:0.5vw;
+	left			:0.5vw;
+	width			:11vw;
+	height			:11vw;	
 }
 
 .person_blog_date{
@@ -529,42 +543,33 @@
 	width			:23vw;
 	height			:3vw;
 	line-height		:3vw;
-	font-size		:2.5vw;
+	font-size		:2vw;
 }
 
 .person_blog_tag{
 	width			:14vw;
-	height			:4vw;
-	line-height		:4vw;
+	height			:3.5vw;
+	line-height		:3.5vw;
     border-radius	:1vw;
 	padding-left	:0.5vw;
 }
 
-.person_blog_comm{
-	top				:0.5vw;
-	right			:0.5vw;
-	width			:9vw;
-	height			:3.5vw;	
-	line-height		:3.5vw;	
-	border			:1px solid #C8B880;
-	border-radius	:0.5vw;
-}
-
 .person_blog_i{
+	top				:0.5vw;
 	left			:0.5vw;
-	width			:3vw;
-	height			:3vw;	
-	line-height		:3vw;	
-	font-size		:3vw;
+	width			:2.5vw;
+	height			:2.5vw;	
+	line-height		:2.5vw;	
+	font-size		:2.5vw;
 }
 
 .person_blog_c{
-	right			:0.5vw;
-	width			:4vw;
+	left			:4vw;
+	width			:8vw;
 	height			:3.5vw;	
 	line-height		:3.5vw;	
 	overflow		:hidden;
-	font-size		:2.5vw;
+	font-size		:2vw;
 }
 
 .person_blog_title{
@@ -573,7 +578,7 @@
 	width			:34vw;
 	height			:6vw;	
 	line-height		:3.5vw;	
-	font-size		:2.5vw;
+	font-size		:2vw;
 }
 
 
@@ -815,6 +820,12 @@
 	height			:20vw;
 	margin-top		:0.5vw;
 	
+}
+
+.person_blog_no{
+	width			:96vw;
+	height			:20vw;	
+	font-size		:4vw;	
 }
 
 

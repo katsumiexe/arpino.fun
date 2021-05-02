@@ -1,0 +1,374 @@
+.img_box_flex{
+	display		:flex;
+	justify-content: space-around;
+	flex-wrap	:wrap;
+	width		:400px;
+	height		:650px;
+	margin		:10px;
+}
+
+.img_box_in{
+	position	:relative;
+	display		:inline-block;
+	flex-basis	:194px;
+	height		:311px;
+	overflow	:hidden;
+}
+
+.img_box_table{
+	position		:absolute;
+	top				:0;
+	left			:-192px;
+	width			:386px;
+	background		:#fafafa;
+	height			:311px;
+	border			:2px solid #906000;
+}
+
+.r_img_box_table{
+	flex-basis		:192px;
+	max-width		:192px;
+	height			:311px;
+	max-height		:311px;
+	overflow		:hidden;
+	background		:#fafafa;
+}
+
+
+.img_box_td_1{
+	border			:2px solid #906000;
+	width			:190px;
+	max-width		:190px;
+	min-width		:190px;
+	height			:240px;
+	position		:relative;
+	padding			:0;
+}
+
+.img_box_td_1_in{
+	display:block;
+	width			:190px;
+	height			:240px;
+	padding			:0;
+	margin			:0;
+	overflow		:hidden;
+}
+
+
+.img_box_td_2{
+	border			:2px solid #906000;
+	max-width		:190px;
+	width			:190px;
+	background		:#906000;
+	position		:relative;
+	padding			:0;
+	text-align		:center;
+	vertical-align	:middle;
+}
+
+.img_up_img{
+	display		:inline-block;
+	position	:absolute;
+	top			:20px;
+	left		:20px;
+	background	:#009000;
+	width		:150px;
+	height		:200px;
+}
+
+
+.img_up_file{
+	display		:inline-block;
+	background	:linear-gradient(#c0c0c0,#909090);
+	position	:absolute;
+	top			:7px;
+	left		:25px;
+	height		:25px;
+	line-height	:25px;
+	width		:40px;
+	text-align	:center;
+	color		:#fafafa;
+	overflow	:hidden;
+	padding		:0 5px;
+	border-radius:3px;
+	text-align	:center;
+	font-size	:20px;
+	font-family:at_icon;
+}
+
+.img_up_rote,.img_up_reset,.img_up_del{
+	display		:inline-block;
+	background	:linear-gradient(#c0c0c0,#909090);
+	position	:absolute;
+	top			:7px;
+	left		:80px;
+	height		:25px;
+	line-height	:25px;
+	width		:25px;
+	text-align	:center;
+	color		:#fafafa;
+	border-radius:3px;
+	cursor		:pointer;
+	font-size	:16px;
+	font-family:at_icon;
+}
+
+.img_up_reset{
+	left		:110px;
+}
+
+.img_up_del{
+	left		:140px;
+}
+
+.img_up_al,.img_up_al2{
+	display		:inline-block;
+	background	:#ffe0f0;
+	color		:#d00000;
+	position	:absolute;
+	top			:2px;
+	height		:63px;
+	line-height	:63px;
+	width		:20px;
+	text-align	:center;
+	cursor		:pointer;
+	font-size	:14px;
+	font-family	:at_icon;
+}
+
+.img_up_al{
+	right		:0px;
+}
+.img_up_al2{
+	left		:0px;
+}
+
+.img_up_al_in,.img_up_al2_in{
+	position		:absolute;
+	top				:0;
+	bottom			:0;
+	margin			:auto;
+	transform		:rotate(45deg);
+	transform-origin:center;
+	width			:10px;
+	height			:10px;
+}
+
+.img_up_al_in{
+	right			:5px;
+	border-top		:5px solid #d00000;
+	border-right	:5px solid #d00000;
+}
+
+.img_up_al2_in{
+	left			:5px;
+	border-bottom	:5px solid #d00000;
+	border-left		:5px solid #d00000;
+}
+
+.img_box_out1{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	left		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:5;
+}
+
+.img_box_out2{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	left		:20px;
+	width		:150px;
+	height		:20px;
+	border-bottom:1px solid #ff0000;
+	z-index		:5;
+}
+
+.img_box_out3{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:0;
+	right		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:5;
+}
+
+.img_box_out4{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:20px;
+	left		:0;
+	width		:20px;
+	height		:200px;
+	border-right:1px solid #ff0000;
+	z-index		:5;
+}
+
+.img_box_out5{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	top			:20px;
+	right		:0;
+	width		:20px;
+	height		:200px;
+	border-left	:1px solid #ff0000;
+	z-index		:5;
+}
+
+.img_box_out6{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	left		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:5;
+}
+
+.img_box_out7{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	left		:20px;
+	width		:150px;
+	height		:20px;
+	border-top	:1px solid #ff0000;
+	z-index		:5;
+}
+
+.img_box_out8{
+	position	:absolute;
+	background	:rgba(255,255,255,0.6);
+	bottom		:0;
+	right		:0;
+	width		:20px;
+	height		:20px;
+	z-index		:5;
+}
+
+.cvw_0{
+	position	:absolute;
+	background	:#f0f0f0;
+}
+
+input[type=range] {
+	-webkit-appearance:none;
+	background		:#f17766;
+	height			:6px;
+	width			:80px;
+	display			:inline-block;
+	border			:none;
+	margin			:8px 5px;
+	border-radius	:0;
+}
+
+input[type=range]::-webkit-slider-thumb{
+	-webkit-appearance	:none;
+	background			:#f17766;
+	height				:14px;
+	width				:14px;
+	border-radius		:50%;
+	border				:2px solid #ffffff;
+}
+
+input[type=range]::-ms-tooltip{
+	display:none;
+}
+
+input[type=range]::-moz-range-track{
+	height:0;
+}
+
+input[type=range]::-moz-range-thumb{
+	background		:#f17766;
+	height			:14px;
+	width			:14px;
+	border-radius	:50%;
+	border			:2px solid #ffffff;
+}
+
+.zoom_mi{
+	display				:inline-block;
+	height				:20px;
+	line-height			:22px;
+	flex-basis			:15px;
+	border				:1px solid #f17766;
+	border-radius		:5px 0 0 5px;
+	text-align			:center;
+	cursor				:pointer;
+	background			:#ffe0f0;
+	color				:#f17766;
+	font-size			:14px;
+	font-weight			:600;
+}		
+
+.zoom_pu{
+	display				:inline-block;
+	height				:20px;
+	line-height			:22px;
+	flex-basis			:15px;
+	border				:1px solid #f17766;
+	border-radius		:0 5px 5px 0;
+	text-align			:center;
+	cursor				:pointer;
+	background			:#ffe0f0;
+	color				:#f17766;
+	font-size			:14px;
+	font-weight			:600;
+}
+
+.zoom_rg{
+	display				:inline-block;
+	height				:20px;
+	line-height			:20px;
+	flex				:1;
+	border				:1px solid #f17766;
+	background			:#ffe0f0
+}
+
+.zoom_box{
+	border				:1px solid #f17766;
+	color				:#f17766;
+	display				:inline-block;
+	height				:20px;
+	line-height			:22px;
+	flex-basis			:35px;
+	text-align			:center;
+	margin-left			:5px;
+	background			:#ffffff;
+	font-weight			:600;
+	font-size			:13px;
+}
+
+.img_box_in2{
+	display			:inline-block;
+	font-size		:20px;
+	color			:#fafafa;
+	font-weight		:600;
+	width			:100%;
+	height			:65px;
+	line-height		:65px;
+	text-align		:center;
+}
+
+.img_box_in3{
+	display			:flex;
+	flex-wrap		:nowrap;
+	font-size		:0;
+	position		:absolute;
+	top				:40px;
+	left			:25px;
+	width			:130px;
+	height			:22px;
+}
+
+.cvs0{
+	width			:150px;
+	height			:200px;
+
+}
+
