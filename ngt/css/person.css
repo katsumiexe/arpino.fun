@@ -24,7 +24,6 @@
 	position	:relative;
 	width		:380px;
 	flex-basis	:380px;
-	min-height	:600px;	
 	text-align	:left;
 }
 
@@ -32,8 +31,7 @@
 	font-size		:0;
 	display			:inline-block;
 	position		:relative;
-	flex			:1;
-	min-height		:500px;	
+	flex-basis		:520px;
 	text-align		:left;
 }
 
@@ -41,7 +39,6 @@
 	display			:inline-block;
 	position		:relative;
 	flex-basis		:300px;
-	min-height		:100px;	
 	margin-top		:8px;
 	text-align		:center;
 }
@@ -391,23 +388,28 @@
 @media screen and (max-width: 959px){
 
 .person_main{
-//	display		:block;
-	flex-wrap:wrap;
-	width		:100vw;
-	margin		:0 auto;
+	flex-wrap		:wrap;
+	width			:100vw;
+	margin			:0 auto;
+}
+
+.person_left{
+	width			:50vw;
+	flex-basis		:50vw;
+	min-height		:auto;
+	margin			:0 1vw;
+}
+
+.person_middle{
+	flex			:auto;
+	flex-basis		:46vw;
+	text-align		:center;
+	min-height		:auto;
 }
 
 .person_right{
 	display		:block;
 	text-align	:center;
-
-}
-
-.person_middle{
-	flex:auto;
-	flex-basis:46vw;
-	text-align:center;
-	min-height:auto;
 }
 
 .prof{
@@ -573,13 +575,6 @@
 }
 
 
-.person_left{
-	width:50vw;
-	flex-basis:50vw;
-	min-height:auto;
-	margin:0 1vw;
-}
-
 .person_img_box{
 	top				:0;
 	left			:0;
@@ -630,10 +625,6 @@
 
 }
 @media screen and (max-width: 559px){
-
-.person_main{
-	display:inline-block;
-}
 
 .person_left{
 	width		:96vw;
@@ -691,7 +682,6 @@
 
 
 .person_main{
-//	display		:block;
 	flex-wrap	:wrap;
 	width		:100vw;
 	margin		:0 auto;
