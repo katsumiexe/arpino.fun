@@ -56,11 +56,12 @@ ul {
 
 .menu{
 	display		:inline-flex;
+	justify-content: space-between;	
 	text-align	:center;
 	width		:1200px;
 	margin		:0 auto;
 	font-size	:0;
-	padding:0;
+	padding		:0;
 }
 
 .main{
@@ -1095,6 +1096,7 @@ ul {
 	line-height	:30px;
 	text-align	:center;
 	font-size	:18px;
+	font-weight	:600;
 	color		:#b8a870;
 }
 
