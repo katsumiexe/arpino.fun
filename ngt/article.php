@@ -126,13 +126,14 @@ include_once('./header.php');
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
 			<div class="sub_blog_in">
-			<div class="blog_h1"><?=$blog["genji"]?></div>
+			<div class="blog_title"><?=$blog["genji"]?></div>
 				<img src="<?=$blog["face"]?>" class="blog_cast_img">
-				<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">プロフィール</a>
+				<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a>
 			</div>
 
 			<div class="sub_blog_in">
-			<div class="blog_h1">新着</div>
+
+			<div class="blog_title">新着</div>
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">
@@ -141,6 +142,8 @@ include_once('./header.php');
 					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>
 			<?}?>
+
+
 			</div>
 		</div>
 	</div>
