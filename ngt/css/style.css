@@ -153,11 +153,10 @@ ul {
 	width			:1200px;
 	height			:70px;
 	margin			:0 auto;
-
 }
 
 .head_tel{
-	display		:none;
+	display			:none;
 }
 
 .head_b_ttl{
@@ -205,7 +204,6 @@ ul {
 	overflow	:hidden;
 	cursor		:pointer;
 	font-family	:at_font1;
-
 }
 
 .menu-item a{
@@ -519,6 +517,16 @@ ul {
 	width			:493px;
 	height			:30px;
 	line-height		:30px;
+	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	margin			:10px auto 0 auto;
+	font-size		:18px;
+	font-weight		:600;
+	padding-left	:10px;
+	text-align		:left;
+	border			:1px solid #c8b880;
+	border-radius	:5px 5px 0 0;
+	color			:#483800;
+	text-shadow		:1px 1px 0 #ffffff;
 }
 
 .prof_title{
@@ -3212,12 +3220,11 @@ ul {
 .check_box{
 	display			:inline-flex;
 	flex-wrap		:wrap;
-	margin-bottom	:10px;
+	margin			:0 auto 10px auto;
 	width			:495px;
 	background		:#404040;
 	padding			:5px;
 }
-
 
 .check_set1,.check_set{
 	display			:inline-block;
@@ -3415,7 +3422,7 @@ ul {
 }
 
 
-.prof_title,.blog_title{
+.prof_title,.blog_title,.check_title{
 	width			:43vw;
 	height			:4vw;
 	line-height		:4vw;
@@ -4002,7 +4009,7 @@ ul {
 }
 
 
-.prof_title,.blog_title{
+.prof_title,.blog_title,.check_title{
 	width			:93vw;
 	height			:8vw;
 	line-height		:8vw;

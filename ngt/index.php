@@ -1,12 +1,13 @@
 <?php
 include_once('./library/sql.php');
 
-$sql=" SELECT sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
+$sql=" SELECT wp01_0cast.id,sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
 $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
 $sql.=" ORDER BY wp01_0cast.cast_sort ASC, wp01_0schedule.id ASC";
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if($row["stime"] && $row["etime"]){
@@ -41,12 +42,13 @@ if($result = mysqli_query($mysqli,$sql)){
 if(is_array($dat)){
 	foreach($dat as $a1 => $a2){
 		if($a2){
-			$sch_dat[$a1]=$a2;
+			$sch_dat[]=$a2;
 			$dat_count++;
 		}
 	}
-	krsort($dat);
 }
+
+
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
@@ -250,7 +252,7 @@ var Cnt=<?=$event_count?>-1;
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<?if($dat_count>0){?>
-				<? foreach($sche_dat as $b1=> $b2){?>
+				<? foreach($sch_dat as $b2){?>
 					<span class="main_b_1">
 						<img src="<?=$b2["face"]?>?t=<?=time()?>" class="main_b_1_1">
 						<span class="main_b_1_2">
