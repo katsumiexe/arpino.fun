@@ -45,9 +45,7 @@ if($dat[0]["face"]){
 	$face="./img/customer_no_image.png?t_".time();
 }
 
-
 for($n=$count_dat-1;$n>-1;$n--){
-
 	if($dat[$n]["send_flg"] == 2){
 		if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";
