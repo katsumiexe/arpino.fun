@@ -54,7 +54,6 @@ for($n=0;$n<$blog_max;$n++){
 }
 
 if($blog[10]["date"]){
-$html.="<div class=\"blog_ad\"><img src=\"{$url}/img/ad/bn.jpg\" style=\"width:100%;\"></div>";
 $html.="<div id=\"blog_next_{$blog[10]["date"]}\" class=\"blog_next\">続きを読む</div>";
 }
 echo $html;

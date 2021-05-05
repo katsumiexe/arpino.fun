@@ -506,11 +506,11 @@ $(function(){
 			$('#blog_tag').val($('#h_blog_tag').val());
 
 			if($('#h_blog_img').val()){
-				$('.blog_img').attr('src','./img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
+				$('.blog_img').attr('src','../img/profile/'+ CastId +'/' + $('#h_blog_img').val() + '_s.png');
 				ImgId=$('#h_blog_img').val();
 
 			}else{
-				$('.blog_img').attr('src','./img/blog_no_image.png');
+				$('.blog_img').attr('src','../img/blog_no_image.png');
 				ImgId='';
 			}
 

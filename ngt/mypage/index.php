@@ -668,11 +668,11 @@ $(function(){
 			<span class="regist_txt">変更</span>
 		</div>
 	<?}?>
+
 	</div>
 	<div class="slide">
 		<?if(file_exists("../img/profile/{$cast_data["id"]}/0_s.jpg")){?>
 		<img src="../img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
-
 		<?}else{?>
 		<img src="../img/cast_no_image.jpg?t_<?=time()?>" class="slide_img">
 		<?}?>
@@ -801,7 +801,6 @@ $(function(){
 				<div class="no_data">登録はありません。</div>
 			<? } ?>
 		</div>
-
 
 		<div class="tmpl_send_box">
 			<div class="tmpl_send_box_in">
@@ -1587,7 +1586,6 @@ $(function(){
 	</div>
 
 	<div class="customer_regist">
-
 		<div class="customer_regist_ttl">新規顧客登録</div>
 		<span class="customer_regist_no">×</span>
 		<table class="customer_regist_base">
