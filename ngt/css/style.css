@@ -101,21 +101,21 @@ ul {
 }
 
 .head{
-	position	:absolute;
-	top			:0;
-	left		:0;
-	right		:0;
-	display		:block;
-	width		:100vw;
-	min-width	:1200px;
+	position		:absolute;
+	top				:0;
+	left			:0;
+	right			:0;
+	display			:block;
+	width			:100vw;
+	min-width		:1200px;
 
-    margin		:10px auto 0 auto;
-	height		:170px;
-	margin		:auto;
-	background	:linear-gradient(#3a3a3a,#1a1a1a);
-	text-align	:center;
-	z-index		:120;
-	padding		:0;
+    margin			:10px auto 0 auto;
+	height			:170px;
+	margin			:auto;
+	background		:linear-gradient(#3a3a3a,#1a1a1a);
+	text-align		:center;
+	z-index			:120;
+	padding			:0;
 }
 
 .head_top{
@@ -3094,7 +3094,6 @@ ul {
 	color			:#c0b890;
 }
 
-
 .prof_l2{
 	padding			:0 5px;
 	height			:30px;
@@ -3102,7 +3101,7 @@ ul {
 	font-size		:16px;
 	background		:#404040;
 	color			:#f0d8a8;
-	border-spacing: 0;
+	border-spacing	:0;
 }
 
 
@@ -3309,7 +3308,7 @@ ul {
 	width			:48vw;
 	height			:12vw;	
 	font-size		:2vw;	
-	text-align:center;
+	text-align		:center;
 }
 
 .person_blog_img{
@@ -3363,8 +3362,8 @@ ul {
 
 
 .sche_block1{
-	width:7vw;
-	padding-left:1vw;
+	width			:7vw;
+	padding-left	:1vw;
 }
 
 
@@ -3437,15 +3436,15 @@ ul {
 @media screen and (max-width: 559px){
 
 .menu{
-	align-content: flex-start;
-	flex-wrap	:wrap;
-	position	:absolute;
-	top			:14vw;
-	left		:-46vw;
-	width		:40.5vw;
-	height		:100vh;
-	background	:#303030;
-	border		:1vw solid #303030;
+	align-content	:flex-start;
+	flex-wrap		:wrap;
+	position		:absolute;
+	top				:14vw;
+	left			:-46vw;
+	width			:40.5vw;
+	height			:100vh;
+	background		:#303030;
+	border			:1vw solid #303030;
 }
 
 .head{
