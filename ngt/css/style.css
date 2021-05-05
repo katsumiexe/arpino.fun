@@ -485,7 +485,7 @@ ul {
 	min-height		:90vh;
 }
 .prof{
-	margin-bottom	:10px;
+	margin			:0 auto 10px auto;
 	width			:505px;
 	border-spacing: 0 5px;
 }
@@ -1583,7 +1583,7 @@ ul {
 	position		:absolute;
 	top				:7px;
 	left			:65px;
-	color			:#c8b880;
+	color			:#e0e0e0;
 	width			:160px;
 	height			:15px;
 	line-height		:15px;
@@ -1937,6 +1937,377 @@ ul {
 	padding		:10px;
 	line-height	:20px;
 }
+
+
+.person_main{
+	display		:flex;
+	width		:1200px;
+	margin		:0 auto;
+	text-align	:center;
+	font-size	:0;
+}
+
+.person_err{
+	display		:inline-block;
+	position	:relative;
+	flex-basis	:1;
+	min-height	:600px;	
+	font-size	:18px;
+	text-align	:center;
+	margin		:50px auto;
+	border		:1px solid #c8b880;
+	background	:252018;
+	color		:#c8b880;
+}
+
+
+.person_left{
+	display		:inline-block;
+	position	:relative;
+	width		:380px;
+	flex-basis	:380px;
+	text-align	:left;
+}
+
+.person_middle{
+	font-size		:0;
+	display			:inline-block;
+	position		:relative;
+	flex-basis		:520px;
+	text-align		:left;
+}
+
+.person_right{
+	display			:inline-block;
+	position		:relative;
+	flex-basis		:300px;
+	margin-top		:8px;
+	text-align		:center;
+}
+
+.person_blog{
+	display			:inline-block;
+	position		:relative;
+	width			:300px;
+	height			:90px;	
+	border-bottom	:1px solid #C8B880;
+	color			:#C8B880;
+	background		:#302520;
+}
+
+.person_left_blog{
+	display:none;
+}
+
+.person_blog_no{
+	display			:inline-block;
+	position		:relative;
+	width			:300px;
+	height			:90px;	
+	line-height		:90px;	
+	border-bottom	:1px solid #C8B880;
+	color			:#C8B880;
+	background		:#323232;
+	font-size		:16px;	
+}
+
+.person_blog_img{
+	position		:absolute;
+	top				:5px;
+	left			:5px;
+	width			:80px;
+	height			:80px;	
+	background		:#e0e0e0;
+}
+
+.person_blog_date{
+	display			:inline-block;
+	position		:absolute;
+	top				:5px;
+	left			:90px;
+	width			:100px;
+	height			:24px;
+	line-height		:24px;
+	font-size		:12px;
+	text-align		:left;
+	color			:#e0e0e0;
+}
+
+.person_blog_tag{
+	display			:inline-block;
+	position		:absolute;
+	top				:5px;
+	right			:5px;
+	width			:115px;
+	height			:24px;
+	line-height		:24px;
+	font-size		:12px;
+	text-align		:left;
+	color			:#252015;
+	padding-left	:5px;
+	border-radius	:5px;
+	background		:#c8b880;
+}
+
+.person_blog_comm{
+	display			:inline-block;
+	position		:absolute;
+	top				:5px;
+	right			:5px;
+	width			:60px;
+	height			:20px;	
+	line-height		:20px;	
+	text-align		:left;
+	color			:#302520;
+	background		:#C8B880;
+	border			:1px solid #C8B880;
+	border-radius	:5px;
+}
+
+.person_blog_i{
+	display			:inline-block;
+	position		:absolute;
+	top				:0px;
+	bottom			:0px;
+	left			:3px;
+	width			:16px;
+	height			:20px;	
+	line-height		:20px;	
+	margin			:auto;
+	font-size		:14px;
+	text-align		:center;
+	font-family		:at_icon;
+	color			:#302520;
+}
+
+.person_blog_c{
+	display			:inline-block;
+	position		:absolute;
+	top				:0px;
+	bottom			:0px;
+	left			:30px;
+	width			:30px;
+	height			:20px;	
+	line-height		:20px;	
+	overflow		:hidden;
+	font-size		:13px;
+	text-align		:left;
+	color			:#302520;
+}
+
+.person_blog_title{
+	display			:inline-block;
+	position		:absolute;
+	top				:35px;
+	left			:90px;
+	width			:200px;
+	height			:45px;	
+	line-height		:23px;	
+	text-align		:left;
+	font-size		:15px;
+	overflow		:hidden;
+}
+
+.person_img_box{
+	position		:absolute;
+	top				:7px;
+	left			:0;
+	width			:360px;
+	height			:480px;	
+}
+
+.person_img_main,.person_img_top{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	width			:360px;
+	height			:480px;	
+}
+.person_img_top{
+	opacity			:0;
+}
+
+.person_img_list{
+	position		:absolute;
+	display			:inline-flex;
+	top				:495px;
+	left			:0px;
+	width			:368px;
+	height			:112px;
+	font-size		:0;
+}
+
+.person_img_sub{
+	width			:84px;
+	height			:112px;
+	margin-right 	:8px;
+}
+
+
+
+.prof_l{
+	border-bottom	:1px solid #C8B880;
+	padding			:0 5px;
+	height			:30px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:16px;
+	background		:#404040;
+	color			:#f0d8a8;
+	vertical-align	:top;
+}
+
+.prof_r{
+	border-bottom	:1px solid #C8B880;
+	padding			:0 5px;
+	height			:30px;
+	line-height		:30px;
+	font-size		:16px;
+	background		:#282828;
+	color			:#c0b890;
+}
+
+.prof_l2{
+	padding			:0 5px;
+	height			:30px;
+	line-height		:30px;
+	font-size		:16px;
+	background		:#404040;
+	color			:#f0d8a8;
+	border-spacing	:0;
+}
+
+
+.prof_r2{
+	border-bottom	:1px solid #C8B880;
+	padding			:5px;
+	line-height		:28px;
+	font-size		:16px;
+	background		:#282828;
+	color			:#c0b890;
+	border-spacing	: 0;
+}
+
+.prof_0{
+	height			:0;
+}
+
+.sche{
+	border-collapse: collapse;
+	width:505px;
+	margin:0 auto;
+}
+
+.sche_l_1,
+.sche_l_2,
+.sche_l_3,
+.sche_l_4,
+.sche_l_5
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#404040;
+	color			:#f0d8a8;
+}
+
+.sche_l_0{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#444444;
+	color			:#f0a080;
+}
+
+.sche_l_6{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#444444;
+	color			:#90b8c0;
+}
+
+
+.sche_r_1,
+.sche_r_2,
+.sche_r_3,
+.sche_r_4,
+.sche_r_5
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#c0b890;
+}
+
+.sche_r_0
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#f0a080;
+}
+
+.sche_r_6
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#90b8c0;
+}
+
+
+.sche_block1{
+	display			:inline-block;
+	width			:42px;
+	padding-left	:10px;
+	text-align		:left;
+}
+
+
+.check_box{
+	display			:flex;
+	flex-wrap		:wrap;
+	margin			:0 auto 10px auto;
+	width			:495px;
+	background		:#404040;
+	padding			:5px;
+}
+
+.check_set1,.check_set{
+	display			:inline-block;
+	overflow		:hidden;
+	background		:#999999;
+	color			:#d0d0d0;
+	font-size		:18px;
+	height			:30px;
+	line-height		:30px;
+	border-radius	:5px;
+	flex-basis		:155px;
+	margin			:5px;
+	text-align		:center;
+}
+
+
+
 
 .img_news_top{
 	width:100%;
@@ -2874,372 +3245,6 @@ ul {
 	width:45vw;
 }
 
-.person_main{
-	display		:flex;
-	width		:1200px;
-	margin		:0 auto;
-	text-align	:center;
-	font-size	:0;
-}
-
-.person_err{
-	display		:inline-block;
-	position	:relative;
-	flex-basis	:1;
-	min-height	:600px;	
-	font-size	:18px;
-	text-align	:center;
-	margin		:50px auto;
-	border		:1px solid #c8b880;
-	background	:252018;
-	color		:#c8b880;
-}
-
-
-.person_left{
-	display		:inline-block;
-	position	:relative;
-	width		:380px;
-	flex-basis	:380px;
-	text-align	:left;
-}
-
-.person_middle{
-	font-size		:0;
-	display			:inline-block;
-	position		:relative;
-	flex-basis		:520px;
-	text-align		:left;
-}
-
-.person_right{
-	display			:inline-block;
-	position		:relative;
-	flex-basis		:300px;
-	margin-top		:8px;
-	text-align		:center;
-}
-
-.person_blog{
-	display			:inline-block;
-	position		:relative;
-	width			:300px;
-	height			:90px;	
-	border-bottom	:1px solid #C8B880;
-	color			:#C8B880;
-	background		:#302520;
-}
-
-.person_left_blog{
-	display:none;
-}
-
-.person_blog_no{
-	display			:inline-block;
-	position		:relative;
-	width			:300px;
-	height			:90px;	
-	line-height		:90px;	
-	border-bottom	:1px solid #C8B880;
-	color			:#C8B880;
-	background		:#323232;
-	font-size		:16px;	
-}
-
-.person_blog_img{
-	position		:absolute;
-	top				:5px;
-	left			:5px;
-	width			:80px;
-	height			:80px;	
-	background		:#e0e0e0;
-}
-
-.person_blog_date{
-	display			:inline-block;
-	position		:absolute;
-	top				:5px;
-	left			:90px;
-	width			:100px;
-	height			:24px;
-	line-height		:24px;
-	font-size		:12px;
-	text-align		:left;
-	color			:#e0e0e0;
-}
-
-.person_blog_tag{
-	display			:inline-block;
-	position		:absolute;
-	top				:5px;
-	right			:5px;
-	width			:115px;
-	height			:24px;
-	line-height		:24px;
-	font-size		:12px;
-	text-align		:left;
-	color			:#252015;
-	padding-left	:5px;
-	border-radius	:5px;
-	background		:#c8b880;
-}
-
-.person_blog_comm{
-	display			:inline-block;
-	position		:absolute;
-	top				:5px;
-	right			:5px;
-	width			:60px;
-	height			:20px;	
-	line-height		:20px;	
-	text-align		:left;
-	color			:#302520;
-	background		:#C8B880;
-	border			:1px solid #C8B880;
-	border-radius	:5px;
-}
-
-.person_blog_i{
-	display			:inline-block;
-	position		:absolute;
-	top				:0px;
-	bottom			:0px;
-	left			:3px;
-	width			:16px;
-	height			:20px;	
-	line-height		:20px;	
-	margin			:auto;
-	font-size		:14px;
-	text-align		:center;
-	font-family		:at_icon;
-	color			:#302520;
-}
-
-.person_blog_c{
-	display			:inline-block;
-	position		:absolute;
-	top				:0px;
-	bottom			:0px;
-	left			:30px;
-	width			:30px;
-	height			:20px;	
-	line-height		:20px;	
-	overflow		:hidden;
-	font-size		:13px;
-	text-align		:left;
-	color			:#302520;
-}
-
-.person_blog_title{
-	display			:inline-block;
-	position		:absolute;
-	top				:35px;
-	left			:90px;
-	width			:200px;
-	height			:45px;	
-	line-height		:23px;	
-	text-align		:left;
-	font-size		:15px;
-	overflow		:hidden;
-}
-
-.person_img_box{
-	position		:absolute;
-	top				:7px;
-	left			:0;
-	width			:360px;
-	height			:480px;	
-}
-
-.person_img_main,.person_img_top{
-	position		:absolute;
-	top				:0;
-	left			:0;
-	width			:360px;
-	height			:480px;	
-}
-.person_img_top{
-	opacity			:0;
-}
-
-.person_img_list{
-	position		:absolute;
-	display			:inline-flex;
-	top				:495px;
-	left			:0px;
-	width			:368px;
-	height			:112px;
-	font-size		:0;
-}
-
-.person_img_sub{
-	width			:84px;
-	height			:112px;
-	margin-right 	:8px;
-}
-
-
-
-.prof_l{
-	border-bottom	:1px solid #C8B880;
-	padding			:0 5px;
-	height			:30px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:16px;
-	background		:#404040;
-	color			:#f0d8a8;
-	vertical-align	:top;
-}
-
-.prof_r{
-	border-bottom	:1px solid #C8B880;
-	padding			:0 5px;
-	height			:30px;
-	line-height		:30px;
-	font-size		:16px;
-	background		:#282828;
-	color			:#c0b890;
-}
-
-.prof_l2{
-	padding			:0 5px;
-	height			:30px;
-	line-height		:30px;
-	font-size		:16px;
-	background		:#404040;
-	color			:#f0d8a8;
-	border-spacing	:0;
-}
-
-
-.prof_r2{
-	border-bottom	:1px solid #C8B880;
-	padding			:5px;
-	line-height		:28px;
-	font-size		:16px;
-	background		:#282828;
-	color			:#c0b890;
-	border-spacing	: 0;
-}
-
-.prof_0{
-	height			:0;
-}
-
-.sche{
-	border-collapse: collapse;
-	width:505px;
-}
-
-.sche_l_1,
-.sche_l_2,
-.sche_l_3,
-.sche_l_4,
-.sche_l_5
-{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
-	background		:#404040;
-	color			:#f0d8a8;
-}
-
-.sche_l_0{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
-	background		:#444444;
-	color			:#f0a080;
-}
-
-.sche_l_6{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
-	background		:#444444;
-	color			:#90b8c0;
-}
-
-
-.sche_r_1,
-.sche_r_2,
-.sche_r_3,
-.sche_r_4,
-.sche_r_5
-{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:28px;
-	line-height		:28px;
-	font-size		:14px;
-	background		:#282828;
-	color			:#c0b890;
-}
-
-.sche_r_0
-{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:28px;
-	line-height		:28px;
-	font-size		:14px;
-	background		:#282828;
-	color			:#f0a080;
-}
-
-.sche_r_6
-{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:28px;
-	line-height		:28px;
-	font-size		:14px;
-	background		:#282828;
-	color			:#90b8c0;
-}
-
-
-.sche_block1{
-	display			:inline-block;
-	width			:42px;
-	padding-left	:10px;
-	text-align		:left;
-}
-
-
-.check_box{
-	display			:inline-flex;
-	flex-wrap		:wrap;
-	margin			:0 auto 10px auto;
-	width			:495px;
-	background		:#404040;
-	padding			:5px;
-}
-
-.check_set1,.check_set{
-	display			:inline-block;
-	overflow		:hidden;
-	background		:#999999;
-	color			:#d0d0d0;
-	font-size		:18px;
-	height			:30px;
-	line-height		:30px;
-	border-radius	:5px;
-	flex-basis		:155px;
-	margin			:5px;
-	text-align		:center;
-}
-
 .prof_l{
 	padding		:0 0.5vw;
 	height		:4vw;
@@ -3753,8 +3758,8 @@ ul {
 
 .all_cast_last{
 	top				:1vw;
-	left			:29vw;
-	width			:40vw;
+	left			:22vw;
+	width			:60vw;
 	height			:6vw;
 	line-height		:6vw;
 	font-size		:4vw;

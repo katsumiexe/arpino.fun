@@ -271,7 +271,7 @@ var Cnt=<?=$event_count?>-1;
 						<?}elseif($b2["new"] == 3){?>
 						<span class="main_b_1_ribbon ribbon3">新人</span>
 						<?}?>
-					<a href="./person.php?post_id=<?=$b1?>" id="i<?=$b1?>" class="main_b_1_0"></a>
+					<a href="./person.php?post_id=<?=$b2["cast_id"]?>" id="i<?=$b1?>" class="main_b_1_0"></a>
 					</span>
 				<? } ?>
 			<? }else{ ?>

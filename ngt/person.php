@@ -251,6 +251,7 @@ include_once('./header.php');
 			<?=$list?>
 		</table>
 	</div>
+
 	<div class="person_right">
 		<div class="blog_title">Blog</div>
 		<?for($s=0;$s<$cnt_blog+0;$s++){?>

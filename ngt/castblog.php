@@ -306,13 +306,12 @@ include_once('./header.php');
 					<a href="./castblog.php?cast_list=<?=$a1?>" class="all_cast">
 						<span class="all_cast_img"><img src="<?=$cast_dat[$a1]["face"]?>?t=<?=time()?>" class="all_cast_img_in"></span>
 						<span class="all_cast_name"><?=$cast_dat[$a1]["name"]?></span>
-						<span class="all_cast_last">更新：<?=$cast_dat[$a1]["date"]?></span>
+						<span class="all_cast_last"><?=$cast_dat[$a1]["date"]?> 更新</span>
 						<span class="all_cast_count"><?=$cast_dat[$a1]["cnt"]?></span>
 					</a>
 				<?}?>
 			</div>
 			<?}?>
-
 		</div>
 	</div>
 </div>
