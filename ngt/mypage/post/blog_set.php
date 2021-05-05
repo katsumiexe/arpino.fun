@@ -41,7 +41,7 @@ if($status<1 && $now < $view_date){
 if($img_code){
 	$img_name	 =time()+2121212121;
 	$img_name	 ="p".$img_name;
-	$img_link="../img/profile/{$cast_data["id"]}/{$img_name}";
+	$img_link="../../img/profile/{$cast_data["id"]}/{$img_name}";
 
 	$img	= imagecreatefromstring(base64_decode($img_code));	
 
@@ -56,10 +56,10 @@ if($img_code){
 
 }elseif($img_id){
 	$img_name	=$img_id;
-	$tmp_img	="./img/profile/{$cast_data["id"]}/{$img_name}.png";
+	$tmp_img	="../img/profile/{$cast_data["id"]}/{$img_name}.png";
 
 }else{
-	$tmp_img="./img/blog_no_image.png";
+	$tmp_img="../img/blog_no_image.png";
 }
 
 $sql ="SELECT id, tag_name, tag_icon FROM wp01_0tag";

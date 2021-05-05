@@ -233,13 +233,9 @@ include_once('./header.php');
 		<?}?>
 		</table>
 
-		<div class="prof_title">Schedule</div>
-		<table class="sche">
-			<?=$list?>
-		</table>
 		<?for($n=0;$n<$cnt_check_main+0;$n++){?>
 			<?if($check_ex[$check_main[$n]["id"]]== 1){?>	
-				<div class="prof_title"><?=$check_main[$n]["title"]?></div>
+				<div class="check_title"><?=$check_main[$n]["title"]?></div>
 				<div class="check_box">
 					<?foreach($check_list[$check_main[$n]["id"]] as $a1 => $a2){?>
 						<?if($check_main[$n]["style"]==1 || $check_list[$check_main[$n]["id"]][$a2["list_sort"]]["sel"]== 1){?>
@@ -249,6 +245,11 @@ include_once('./header.php');
 				</div>
 			<?}?>
 		<?}?>
+
+		<div class="prof_title">Schedule</div>
+		<table class="sche">
+			<?=$list?>
+		</table>
 	</div>
 	<div class="person_right">
 		<div class="blog_title">Blog</div>

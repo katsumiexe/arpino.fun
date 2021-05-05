@@ -529,7 +529,7 @@ if($result = mysqli_query($mysqli,$sql)){
 <style>
 @font-face {
 	font-family: at_icon;
-	src: url("./font/font_0/fonts/icomoon.ttf") format('truetype');
+	src: url("../font/font_0/fonts/icomoon.ttf") format('truetype');
 }
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -604,7 +604,7 @@ $(function(){
 
 <? if(!$cast_data){ ?>
 	<div class="login_box">
-		<form action="./mypage.php" method="post">
+		<form method="post">
 			<span class="login_name">IDCODE</span>
 			<input type="text" class="login" name="log_in_set">
 			<span class="login_name">PASSWORD</span>
@@ -670,11 +670,11 @@ $(function(){
 	<?}?>
 	</div>
 	<div class="slide">
-		<?if(file_exists("./img/profile/{$cast_data["id"]}/0_s.jpg")){?>
-		<img src="./img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
+		<?if(file_exists("../img/profile/{$cast_data["id"]}/0_s.jpg")){?>
+		<img src="../img/profile/<?=$cast_data["id"]?>/0_s.jpg?t_<?=time()?>" class="slide_img">
 
 		<?}else{?>
-		<img src="./img/cast_no_image.jpg?t_<?=time()?>" class="slide_img">
+		<img src="../img/cast_no_image.jpg?t_<?=time()?>" class="slide_img">
 		<?}?>
 		<div class="slide_name"><?=$cast_data["genji"]?></div>
 		<ul class="menu">
@@ -982,7 +982,7 @@ $(function(){
 						<img src="data:image/jpg;base64,<?=$mail_data[$n]["face"]?>" class="mail_img">
 
 					<?}else{?>
-						<img id="mail_img<?=$s?>" src="./img/customer_no_image.png?t=<?=time()?>" class="mail_img">
+						<img id="mail_img<?=$s?>" src="../img/customer_no_image.png?t=<?=time()?>" class="mail_img">
 					<? } ?>
 
 					<span class="mail_date"><?=$mail_data[$n]["last_date"]?></span>
@@ -992,7 +992,7 @@ $(function(){
 						<span class="mail_count"><?=$mail_data[$n]["r_count"]?></span>
 					<?}?>
 					<input type="hidden" class="mail_address" value="<?=$mail_data[$n]["mail"]?>">
-					<?if($a1["img"]){?><input id="img_a<?=$s?>" type="hidden" value='./img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img"]?>'><? } ?>
+					<?if($a1["img"]){?><input id="img_a<?=$s?>" type="hidden" value='../img/cast/mail/<?=$cast_data["id"]?>/<?=$a1["img"]?>'><? } ?>
 				</div>
 			<?}?>
 
@@ -1003,7 +1003,7 @@ $(function(){
 			<div class="mail_detail">
 				<div class="mail_detail_in"></div>
 				<div class="mail_write">
-					<div class="mail_img_in"><img src="./img/blog_no_image.png" class="mail_img_view">	</div>
+					<div class="mail_img_in"><img src="../img/blog_no_image.png" class="mail_img_view">	</div>
 					<textarea class="mail_write_text"></textarea><br>
 					<div class="mail_write_in">
 						<div class="mail_detail_btn_img"></div>
@@ -1069,7 +1069,7 @@ $(function(){
 						<tr>
 							<td  class="blog_td_img" rowspan="2">
 							<span class="blog_img_pack">
-							<img src="./img/blog_no_image.png?t=<?=time()?>" class="blog_img">
+							<img src="../img/blog_no_image.png?t=<?=time()?>" class="blog_img">
 
 							</span>
 							<span class="customer_camera"></span>
@@ -1099,10 +1099,10 @@ $(function(){
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
 					<input type="hidden" class="hidden_tag" value="<?=$blog[$n]["tag"]?>">
 					<input type="hidden" class="hidden_status" value="<?=$blog[$n]["status"]?>">
-					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
-					<img id="b_img_<?=$blog[$n]["img"]?>" src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
+					<?if(file_exists("../img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
+					<img id="b_img_<?=$blog[$n]["img"]?>" src="../img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>_s.png?t_<?=time()?>" class="hist_img">
 					<?}else{?>
-					<img id="b_img_" src="./img/blog_no_image.png?t_<?=time()?>" class="hist_img">
+					<img id="b_img_" src="../img/blog_no_image.png?t_<?=time()?>" class="hist_img">
 					<?}?>
 					<span class="hist_date"><?=$blog[$n]["date"]?></span>
 					<span class="hist_title"><?=$blog[$n]["title"]?></span>
@@ -1114,14 +1114,14 @@ $(function(){
 					<span class="hist_status hist_<?=$blog[$n]["status"]?>"><?=$blog_status[$blog[$n]["status"]]?></span>
 				</div>
 				<div class="hist_log">
-					<?if(file_exists("./img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
-					<span class="hist_img_in"><img src="./img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>.png?t_<?=time()?>" class="hist_img_on"></span>
+					<?if(file_exists("../img/profile/{$cast_data["id"]}/{$blog[$n]["img"]}.png")){?>
+					<span class="hist_img_in"><img src="../img/profile/<?=$cast_data["id"]?>/<?=$blog[$n]["img"]?>.png?t_<?=time()?>" class="hist_img_on"></span>
 					<?}?>
 					<span class="blog_log"><?=$blog[$n]["log"]?></span>
 				</div>
 				<? } ?>
 				<?if($blog_max>10){?>
-					<div class="blog_ad"><img src="./img/page/ad/bn.jpg?t=<?=time()?>" style="width:100%;"></div>
+					<div class="blog_ad"><img src="../img/page/ad/bn.jpg?t=<?=time()?>" style="width:100%;"></div>
 					<div id="blog_next_<?=$blog[10]["date"]?>" class="blog_next">続きを読む</div>
 				<? } ?>
 				<?if(!$blog_max){?>
@@ -1593,7 +1593,7 @@ $(function(){
 		<table class="customer_regist_base">
 			<tr>
 				<td id="set_new_img" class="customer_base_img" rowspan="3">
-					<span class="regist_img_pack"><img src="./img/customer_no_image.png?t=<?=time()?>" class="regist_img"></span>					
+					<span class="regist_img_pack"><img src="../img/customer_no_image.png?t=<?=time()?>" class="regist_img"></span>					
 					<span class="customer_camera"></span>
 				</td>
 				<td class="customer_base_tag">タグ</td>
@@ -1758,10 +1758,10 @@ $(function(){
 <input id="upd" type="file" accept="image/*" style="display:none;">
 <input id="base_day" type="hidden" value="<?=$base_day?>" dd="<?=date("Ymd",$base_day)?>">
 <input id="cast_id" type="hidden" value="<?=$cast_data["id"]?>">
-<form id="logout" action="./mypage.php" method="post">
+<form id="logout" method="post">
 	<input type="hidden" value="1" name="log_out">
 </form>
-<form id="menu_sel" action="mypage.php" method="post">
+<form id="menu_sel" method="post">
 	<input id="cast_page" type="hidden" value="" name="cast_page">
 	<input type="hidden" value="<?=$c_month?>" name="c_month">
 </form>
