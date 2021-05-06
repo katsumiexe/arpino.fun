@@ -276,10 +276,10 @@ var Cnt=<?=$event_count?>-1;
 				<? } ?>
 			<? }else{ ?>
 				<span class="no_blog">予定はありません</span>
-
 			<? } ?>
 		</div>
 	</div>
+
 	<div class="main_c">
 		<div class="pc_only">
 			<?for($n=0;$n<$info_count;$n++){?>

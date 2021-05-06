@@ -190,7 +190,6 @@ if(!$days_sche){
 	$days_sche="休み";
 }
 
-
 if(is_array($ana_time)){
 	foreach($ana_time as $a1 => $a2){
 		if($a1<=$day_8){
@@ -1455,40 +1454,42 @@ $(function(){
 </div>
 
 	<?}else{?>
-	<div class="main">
-		<div class="notice_ttl">
-			<div class="notice_ttl_day"><span id="notice_day"><?=date("m月d日",$day_time)?>[<?=$week[date("w",$day_time)]?>]</span></div>
-			<div id="notice_ttl_1" class="notice_ttl_in notice_sel">本日</div>
-			<div id="notice_ttl_2" class="notice_ttl_in">明日</div>
-			<div id="notice_ttl_3" class="notice_ttl_in">明後日</div>
-			<input id="h_notice_ttl_1" type="hidden" value="<?=date("m月d日",$day_time)?>[<?=$week[date("w",$day_time)]?>]">
-			<input id="h_notice_ttl_2" type="hidden" value="<?=date("m月d日",$day_time+86400)?>[<?=$week[date("w",$day_time+86400)]?>]">
-			<input id="h_notice_ttl_3" type="hidden" value="<?=date("m月d日",$day_time+172800)?>[<?=$week[date("w",$day_time+172800)]?>]">
+		<div class="main">
+			<div class="notice_ttl">
+				<div class="notice_ttl_day"><span id="notice_day"><?=date("m月d日",$day_time)?>[<?=$week[date("w",$day_time)]?>]</span></div>
+				<div id="notice_ttl_0" class="notice_ttl_in notice_sel">本日</div>
+				<div id="notice_ttl_1" class="notice_ttl_in">明日</div>
+				<div id="notice_ttl_2" class="notice_ttl_in">明後日</div>
+			</div>
+
+<?for($i=0;$i<3;$i++){?>
+<?$tmp_8=date("Ymd",$day_time+(86400*$i))?>
+			<input id="h_notice_ttl_<?=$i?>" type="hidden" value="<?=date("m月d日",$day_time+(86400*$i))?>[<?=$week[date("w",$day_time+(86400*$i))]?>]">
+			<div id="notice_box_<?=$i?>" class="notice_box">
+				<span class="notice_box_sche"><span class="notice_icon"></span><?=$ana_sche[$tmp_8]?></span><br>
+				<span class="notice_box_birth"><?=$days_birth[$tmp_8]?></span>
+			</div>
+<?}?>
+
+
+			<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
+			<div class="notice_list">
+				<?foreach((array)$notice as $n =>$a2){?>
+					<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item nt<?=$notice[$n]["status"]?>">
+						<span class="notice_d"><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日</span>
+						<span class="notice_t"><?=$notice[$n]["title"]?></span>
+						<span class="notice_yet<?=$notice[$n]["status"]?>"></span>
+					</div>
+				<? } ?>
+			</div>
+			<div  class="notice_box_log"></div>
+
+		<div class="notice_write_box">
+		<img src="../img/blog_no_image.png?t=<?=time()?>" class="notice_write_box_img">
+		<div class="notice_write_box_send">送信</div>
+		<textarea class="notice_write_box_txt"></textarea>
 		</div>
-		<div id="notice_box_1" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span><?=$days_sche?></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
 		</div>
-		<div id="notice_box_2" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
-		</div>
-		<div id="notice_box_3" class="notice_box">
-			<span class="notice_box_sche"><span class="notice_icon"></span></span><br>
-			<span class="notice_box_birth"><?=$days_birth?></span>
-		</div>
-		<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>
-		<div class="notice_list">
-			<?foreach((array)$notice as $n =>$a2){?>
-				<div id="notice_box_title<?=$notice[$n]["id"]?>" class="notice_box_item<?=$notice[$n]["status"]?>">
-					<span class="notice_d"><?=substr($notice[$n]["date"],5,2)?>月<?=substr($notice[$n]["date"],8,2)?>日</span>
-					<span class="notice_t"><?=$notice[$n]["title"]?></span>
-					<span class="notice_yet<?=$notice[$n]["status"]?>"></span>
-				</div>
-				<input id="notice_box_hidden<?=$notice[$n]["id"]?>" type="hidden" value="<?=$notice[$n]["log"]?>">
-			<? } ?>
-		</div>
-		<div id="notice_box_log<?=$notice[$n]["id"]?>" class="notice_box_log"></div>
 	<? } ?>
 </div>
 

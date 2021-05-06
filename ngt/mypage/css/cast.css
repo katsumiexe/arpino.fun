@@ -288,7 +288,7 @@ input:focus{
 	margin			:0.5vw;
 }
 
-.notice_box_item2,.notice_box_item1{
+.notice_box_item{
 	display			:inline-block;
 	position		:relative;
 	height			:7vw;
@@ -302,7 +302,7 @@ input:focus{
 	cursor			:pointer;
 }
 
-.notice_box_item1{
+.nt1{
 	color			:#000000;
 	background		:#d0c0ff;
 	font-weight		:600;
@@ -330,7 +330,7 @@ input:focus{
 
 .notice_box_log{
 	display				:inline-block;
-	margin				:0 auto 3vw auto;
+	margin				:0 auto 25vw auto;
 	width				:93vw;
 	font-size			:4vw;
 	background			:#fafafa;
@@ -397,7 +397,56 @@ input:focus{
 	overflow		:hidden;
 }
 
+.notice_write_box_img{
+	position	:absolute;
+	top			:1vw;
+	left		:1vw;
+	width		:14vw;
+	height		:14vw;
 
+}
+
+.notice_write_box_send{
+	position	:absolute;
+	display		:inline-block;
+	top			:16vw;
+	left		:1vw;
+	width		:14vw;
+	height		:5vw;
+	line-height	:5vw;
+	background	:#d00000;
+	font-size	:3.5vw;
+	font-weight	:600;
+	color		:#fafafa;
+}
+
+.notice_write_box{
+	position:fixed;
+	bottom	:0;
+	left	:0;
+	right	:0;
+	width	:100vw;
+	height	:22vw;
+	background:#907000;
+}
+
+.notice_write_box_txt{
+	position		:absolute;
+	display			:inline-block;
+	top				:0.5vw;
+	right			:0.5vw;
+	border			:1px solid #303030;
+	transform		: scale(0.8,0.8);
+	transform-origin: top right;
+	width			:105vw;
+	height			:26vw;
+	line-height		:8vw;
+	resize			:none;
+	background		:#8afa60;
+	font-size		:5vw;
+	color			:#303030;
+	padding			:1vw;
+}
 
 .cal_box{
 	display			:inline-block;
