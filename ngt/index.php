@@ -79,7 +79,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$a1["img"]="./img/page/event/{$a1["id"]}.png";
 		}
 		$event[]=$a1;
-		$event_count++;
+		$count_event++;
 	}
 }
 
@@ -96,7 +96,7 @@ if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
 		$a1["date"]=substr(str_replace("-",".",$a1["date"]),0,10);
 		$news[]=$a1;
-		$news_count++;
+		$count_news++;
 	}
 }
 
@@ -130,32 +130,32 @@ include_once('./header.php');
 
 <style>
 .slide_img{
-	width		:calc( 1200px * <?=$slide_count?>);
+	width		:calc( 1200px * <?=$count_slide?>);
 }
 
 .slide_point{
-	width		:calc( 70px + 30px * <?=$slide_count?>);
+	width		:calc( 70px + 30px * <?=$count_slide?>);
 }
 
 @media screen and (max-width: 959px){
 .slide_img{
-	width		:calc( 98vw * <?=$slide_count?>);
+	width		:calc( 98vw * <?=$count_slide?>);
 }
 .slide_point{
-	width		:calc( 25vw + 5vw * <?=$slide_count?>);
+	width		:calc( 25vw + 5vw * <?=$count_slide?>);
 }
 }
 </style>
 <script>
-var Cnt=<?=$event_count?>-1;
+var Cnt=<?=$count_event?>-1;
 </script>
 <script src="./js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
-<?if($event_count>0){?>
+<?if($count_event>0){?>
 	<div class="slide">
 		<div class="slide_img">
 		
-			<?for($n=0;$n<$event_count;$n++){?>
+			<?for($n=0;$n<$count_event;$n++){?>
 				<?if($event[$n]["link"]){?>
 					<a href="<?=$event[$n]["link"]?>"><img src="<?=$event[$n]["img"]?>" class="top_img"></a>;
 				<?}else{?>	
@@ -164,9 +164,9 @@ var Cnt=<?=$event_count?>-1;
 			<?}?>	
 		</div>
 
-<?if($event_count >1){?>
+<?if($count_event >1){?>
 		<div class="slide_point">
-			<?for($n=0;$n<$event_count;$n++){?>
+			<?for($n=0;$n<$count_event;$n++){?>
 				<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
 			<?}?>
 		</div>
@@ -176,11 +176,11 @@ var Cnt=<?=$event_count?>-1;
 
 
 	<div class="main_b">
-		<?if($news_count){?>
+		<?if($count_news){?>
 		<div class="main_b_title">新着情報<a href="./news_list.php" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
 
-			<?for($n=0;$n<$news_count;$n++){?>
+			<?for($n=0;$n<$count_news;$n++){?>
 
 				<?if($news[$n]["contents_url"]){?>
 					<table  class="main_b_notice" colspan="3">

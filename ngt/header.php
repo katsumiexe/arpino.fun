@@ -60,12 +60,12 @@
 	</div>
 	<div class="head_in">
 		<ul id="menu-main" class="menu">
-			<li class="menu-item"><a href="./index.php">Top Page</a></li>
-			<li class="menu-item"><a href="./system.php">Sytem</a></li>
-			<li class="menu-item"><a href="./cast.php">Cast</a></li>
-			<li class="menu-item"><a href="./castblog.php">Blog</a></li>
-			<li class="menu-item"><a href="./access.php">Access</a></li>
-			<li class="menu-item"><a href="./recruit.php">Recruit</a></li>
+			<li class="menu_item"><a href="./index.php">Top Page</a></li>
+			<li class="menu_item"><a href="./system.php">Sytem</a></li>
+			<li class="menu_item"><a href="./cast.php">Cast</a></li>
+			<li class="menu_item"><a href="./castblog.php">Blog</a></li>
+			<li class="menu_item"><a href="./access.php">Access</a></li>
+			<li class="menu_item"><a href="./recruit.php">Recruit</a></li>
 		</ul>
 		<div class="head_menu">
 			<div class="menu_a"></div>

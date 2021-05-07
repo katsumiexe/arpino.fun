@@ -6,18 +6,22 @@ if($code){
 	$app=" AND tag='{$code}'";
 }
 
-$sql	 ="SELECT * FROM wp01_0contents";
-$sql	.=" WHERE page='news'";
-$sql	.=" AND status=0";
-$sql	.=" ORDER BY display_date DESC";
-$sql	.=" LIMIT 20";
+$sql	 ="SELECT tag_name, tag_icon, date,category, contents_key, title, contents, contents_url FROM wp01_0contents";
+$sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
+$sql	.=" WHERE status=0";
+$sql	.=" AND display_date<'{$now}'";
+$sql	.=" AND page='news'";
+$sql	.=" ORDER BY date DESC";
+$sql	.=" LIMIT 5";
 
-if($result = mysqli_query($mysqli,$sql)){
-	while($row = mysqli_fetch_assoc($result)){
-		$dat[]=$row;
-		$count_dat++;
+if($res1 = mysqli_query($mysqli,$sql)){
+	while($a1 = mysqli_fetch_assoc($res1)){
+		$a1["date"]=substr(str_replace("-",".",$a1["date"]),0,10);
+		$news[]=$a1;
+		$count_news++;
 	}
 }
+
 
 $sql	 ="SELECT * FROM wp01_0tag";
 $sql	.=" WHERE tag_group='news'";
@@ -30,6 +34,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$count_tag++;
 	}
 }
+echo $sql;
 include_once('./header.php');
 
 ?>
@@ -51,9 +56,9 @@ include_once('./header.php');
 
 <div class="main_top_flex">
 <div class="news_main_a">
-<?if($count_dat>0){?>
+<?if($count_news>0){?>
 	<div class="main_b_top">
-		<?for($n=0;$n<$news_count;$n++){?>
+		<?for($n=0;$n<$count_news;$n++){?>
 			<?if($news[$n]["contents_url"]){?>
 				<table  class="main_b_notice" colspan="3">
 				<tr>
@@ -114,8 +119,8 @@ include_once('./header.php');
 <div class="news_main_b">
 <?if($tag){?>
 <ul>
-<?for($n=0;$n<$tag_count;$n++){?>
-<li id="tag<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></li>
+<?for($n=0;$n<$count_tag;$n++){?>
+<li id="tag<?=$tag[$n]["id"]?>" class="news_tag"><?=$tag[$n]["tag_name"]?></li>
 <?}?>
 </ul>
 <?}?>
