@@ -177,7 +177,7 @@ var Cnt=<?=$event_count?>-1;
 
 	<div class="main_b">
 		<?if($news_count){?>
-		<div class="main_b_title">新着情報<a href="./new_list.php" class="new_all">一覧≫</a></div>
+		<div class="main_b_title">新着情報<a href="./news_list.php" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
 
 			<?for($n=0;$n<$news_count;$n++){?>

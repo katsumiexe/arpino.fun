@@ -30,6 +30,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$count_tag++;
 	}
 }
+include_once('./header.php');
 
 ?>
 <div class="footmark">
@@ -44,7 +45,11 @@ if($result = mysqli_query($mysqli,$sql)){
 	</div>
 </div>
 
-<div class="news_main">
+
+
+
+
+<div class="main_top_flex">
 <div class="news_main_a">
 <?if($count_dat>0){?>
 	<div class="main_b_top">

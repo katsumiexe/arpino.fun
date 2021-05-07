@@ -94,7 +94,7 @@ ul {
 .main_top_flex{
 	display			:inline-flex;
 	justify-content	:space-between;
-	align-items		: flex-start;
+	align-items		:flex-start;
 	text-align		:center;
 	width			:1200px;
 	margin			:0 auto;
@@ -2307,6 +2307,14 @@ ul {
 	text-align		:center;
 }
 
+.news_main_a{
+	flex-basis:870px;
+	background:#fa0afa;
+}
+.news_main_b{
+	flex-basis:300px;
+	background:#fafafa;
+}
 
 
 
