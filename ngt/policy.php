@@ -17,11 +17,10 @@ include_once('./header.php');
 	</a>
 	<span class="footmark_icon"></span>
 	<div class="footmark_box">
-		<span class="footmark_icon"></span>
+		<span class="footmark_icon"></span>
 		<span class="footmark_text">プライバシーポリシー</span>
 	</div>
 </div>
-
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
