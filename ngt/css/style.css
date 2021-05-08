@@ -2317,13 +2317,22 @@ ul {
 }
 
 .news_tag{
-	width			:290px;
+	display		:flex;
+	width		:300px;
+	flex-wrap	:wrap;
+}
+
+.news_tag_list{
+	display:block;
+	width			:300px;
+	flex-basis		:300px;
 	text-align		:center;
-	height			:30px;
-	line-height		:30px;
+	height			:40px;
+	line-height		:40px;
 	background		:#fafafa;
 	font-size		:18px;
 	border-bottom	:1px solid #c8b880;
+
 }
 
 .img_news_top{

@@ -81,6 +81,25 @@ $(document).ready(function () {
 		};
 	});
 
+	$('.news_tag_list').on('click',function(){
+		if($(this).hasClass('news_tag_list_on')){
+			$(this).removeClass('news_tag_list_on');		
+			Tmp=0;
+		}else{
+			$('.news_tag_list').removeClass('news_tag_list_on');		
+			$(this).addClass('news_tag_list_on');		
+			Tmp=$(this).attr('id').replace('tag','');
+			$.post({
+				url:"./post/news_tag_list.php",
+				data:{
+					'tag':Tmp,
+				},
+			}).done(function(data, textStatus, jqXHR){
+				$('.main_d').html(data);		
+			});
+		};
+	});
+
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 100) {
 			$('.to_top').slideDown(100);

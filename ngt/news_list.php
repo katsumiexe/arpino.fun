@@ -118,11 +118,11 @@ include_once('./header.php');
 </div>
 <div class="news_main_b">
 <?if($tag){?>
-<ul>
+<div class="news_tag">
 <?for($n=0;$n<$count_tag;$n++){?>
-<li id="tag<?=$tag[$n]["id"]?>" class="news_tag"><?=$tag[$n]["tag_name"]?></li>
+<div id="tag<?=$tag[$n]["id"]?>" class="news_tag_list"><?=$tag[$n]["tag_name"]?></div>
 <?}?>
-</ul>
+</div>
 <?}?>
 </div>
 </div>
