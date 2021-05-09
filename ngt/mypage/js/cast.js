@@ -308,8 +308,6 @@ $(function(){
 				TMP_H=$('.mail_detail_in_btm').offset().top;
 				$('.mail_detail_in').animate({ scrollTop: 20000 }, 1000);
 
-console.log(TMP_H);
-
 /*
 				if(TMP_H ==0){
 					TMP_H=$('.mail_detail_in').height();
