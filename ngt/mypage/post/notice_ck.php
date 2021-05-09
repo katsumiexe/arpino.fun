@@ -3,6 +3,7 @@
 お知らせ見た処理
 */
 include_once('../../library/sql_post.php');
+
 $n_id	=$_POST["n_id"];
 
 $sql	 ="UPDATE wp01_0notice_ck SET";
@@ -13,6 +14,9 @@ $sql	.=" AND notice_id='{$n_id}'";
 $sql	.=" LIMIT 1";
 
 mysqli_query($mysqli,$sql);	
+
+echo $sql;
+
 
 $sql	 ="SELECT * FROM wp01_0notice";
 $sql	.=" WHERE del='0'";
