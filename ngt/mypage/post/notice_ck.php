@@ -12,11 +12,7 @@ $sql	.=" view_date='{$now}'";
 $sql	.=" WHERE cast_id='{$cast_data["id"]}'";
 $sql	.=" AND notice_id='{$n_id}'";
 $sql	.=" LIMIT 1";
-
 mysqli_query($mysqli,$sql);	
-
-echo $sql;
-
 
 $sql	 ="SELECT * FROM wp01_0notice";
 $sql	.=" WHERE del='0'";

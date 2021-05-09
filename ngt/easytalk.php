@@ -48,7 +48,6 @@ if($ss){
 		}
 		$box_no.=$id_0;
 
-
 		$sql	 ="UPDATE wp01_0ssid SET";
 		$sql	.=" del='1'";
 		$sql	.=" WHERE id <'{$ssid["id"]}'";

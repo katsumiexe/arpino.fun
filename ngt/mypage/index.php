@@ -976,7 +976,6 @@ $(function(){
 		<div class="main">
 			<?for($n=0;$n<$cnt_mail_data;$n++){?>
 				<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
-
 					<?if($mail_data[$n]["face"]){?>
 						<img src="data:image/jpg;base64,<?=$mail_data[$n]["face"]?>" class="mail_img">
 
@@ -1001,15 +1000,13 @@ $(function(){
 
 			<div class="mail_detail">
 				<div class="mail_detail_in"></div>
-				<div class="mail_write">
-					<div class="mail_img_in"><img src="../img/blog_no_image.png" class="mail_img_view">	</div>
-					<textarea class="mail_write_text"></textarea><br>
-					<div class="mail_write_in">
-						<div class="mail_detail_btn_img"></div>
-						<div class="mail_detail_btn_send">送信</div>
-						<div class="mail_detail_btn_del"></div>
-					</div>
-				</div>
+			</div>
+				<div class="mail_detail_in_btm"></div>
+
+			<div class="write_box">
+				<img id="easytalk_img" src="../img/blog_no_image.png" class="write_box_img">
+				<div id="easytalk_send" class="write_box_send">送信</div>
+				<textarea id="easytalk_text" class="write_box_txt"></textarea>
 			</div>
 		</div>
 
@@ -1485,10 +1482,10 @@ $(function(){
 			</div>
 			<div  class="notice_box_log"></div>
 
-		<div class="notice_write_box">
-		<img src="../img/blog_no_image.png?t=<?=time()?>" class="notice_write_box_img">
-		<div class="notice_write_box_send">送信</div>
-		<textarea class="notice_write_box_txt"></textarea>
+		<div class="write_box">
+		<img id="notice_img" src="../img/blog_no_image.png?t=<?=time()?>" class="write_box_img">
+		<div id="notice_send" class="write_box_send">送信</div>
+		<textarea id="notice_text" class="write_box_txt"></textarea>
 		</div>
 		</div>
 	<? } ?>

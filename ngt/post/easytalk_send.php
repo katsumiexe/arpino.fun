@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../library/sql.php');
 /*
 ini_set( 'display_errors', 1 );
 ini_set('error_reporting', E_ALL);
@@ -19,7 +19,6 @@ if($send==1){
 
 }else{
 	$sid			=$_POST['sid'];
-
 	$sql	 ="SELECT cast_id, customer_id FROM wp01_0ssid";
 	$sql	.=" WHERE ssid='{$sid}'";
 	$sql	.=" LIMIT 1";

@@ -166,6 +166,7 @@ ul {
 }
 
 .mail_box_log_in{
+	display			:inline-block;
 	width			:570px;
 	font-size		:15px;
 	line-height		:25px;
@@ -941,7 +942,7 @@ input[type=range]::-moz-range-thumb{
 	font-size		:3.5vw;
 	line-height		:6vw;
 	border-radius	:1vw 1vw 4vw 1vw;
-	padding			:2vw;
+	padding			:0vw;
 	min-height		:12vw;
 		
 }
@@ -951,7 +952,7 @@ input[type=range]::-moz-range-thumb{
 	font-size		:3.5vw;
 	line-height		:6vw;
 	border-radius	:1vw 1vw 1vw 4vw;
-	padding			:2vw;
+	padding			:0vw;
 	min-height		:12vw;
 }
 
@@ -959,7 +960,7 @@ input[type=range]::-moz-range-thumb{
     font-size	:3.5vw;
     line-height	:5vw;
     padding		:1vw;
-	width		:60vw;
+	width		:62vw;
 }
 
 .main_sub{

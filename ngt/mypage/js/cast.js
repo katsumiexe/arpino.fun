@@ -305,20 +305,21 @@ $(function(){
 				$('.mail_detail_in').html(data),
 
 			).done(function(){
-				TMP_H=$('.mail_write').offset().top;
+				TMP_H=$('.mail_detail_in_btm').offset().top;
+				$('.mail_detail_in').animate({ scrollTop: 20000 }, 1000);
+
+console.log(TMP_H);
+
 /*
 				if(TMP_H ==0){
 					TMP_H=$('.mail_detail_in').height();
 				}
 */
-				$('.mail_detail').scrollTop(TMP_H);
 				$('.head_mymenu_ttl').text(Customer_Name),
 				$('.head_mymenu_comm').addClass('arrow_mail')
 			});
 		});
 	});
-
-
 
 	$('.detail_modal_link').on('click','.modal_link_point',function () {
 		Img=$(this).attr('id').replace('point_','');
@@ -931,6 +932,11 @@ $(function(){
 		});
 	});
 
+	$('#regist_schedule').on('click',function(){
+		$('.cal_weeks').animate({'top':'18vw'},200);
+		$('.set_back').fadeIn(100);
+	});
+
 	$('.customer_sns_btn').on('click',function(){
 		if($('.customer_sns_box').css('display') !== 'none'){
 			$('.pg3').animate({'margin-top':'82vw'},200);
@@ -1065,14 +1071,14 @@ $(function(){
 	});
 
 
-	$('.mail_detail_btn_img').on('click',function(){
+	$('#easytalk_img').on('click',function(){
 		$('.img_box').animate({'top':'10vw'},200);
 		$('.set_back').fadeIn(100);
 		Task="mail";
 
-		if($('.mail_img_view').css('display') === 'inline'){
+		if($('#easytalk_img').attr('src') != '../img/blog_no_image.png'){
 
-			Img=$('.mail_img_view').attr("src");
+			Img=$('#easytalk_img').attr("src");
 			var ChgImg = new Image();
 			var cvs = document.getElementById('cvs1');
 			var ctx = cvs.getContext('2d');
@@ -1092,7 +1098,6 @@ $(function(){
 			css_A=60*VwBase;
 			css_B=10*VwBase;
 
-
 			ImgTop		=css_p;
 			ImgLeft		=css_p;
 
@@ -1101,12 +1106,6 @@ $(function(){
 			ImgCode = cvs.toDataURL("image/jpeg");
 		}
 	});
-
-	$('#regist_schedule').on('click',function(){
-		$('.cal_weeks').animate({'top':'18vw'},200);
-		$('.set_back').fadeIn(100);
-	});
-
 
 	$('#img_set').on('click',function(){	
 		if(ImgCode){
@@ -1158,9 +1157,9 @@ $(function(){
 
 				}else if(Task=="mail"){
 					if(base_64){
-						$('.mail_img_view').show().attr('src',"data:image/jpg;base64,"+base_64);
+						$('#easytalk_img').attr('src',"data:image/jpg;base64,"+base_64);
 					}else{
-						$('.mail_img_view').hide().attr('src',"");
+						$('#easytalk_img').attr('src',"");
 					}
 					$('.set_back').fadeOut(200);
 				}
@@ -1461,12 +1460,12 @@ $(function(){
 	});
 
 
-	$('.mail_detail_btn_send').on('click',function(){
+	$('#easytalk_send').on('click',function(){
 
 		$.post({
 			url:"./post/easytalk_send.php",
 			data:{
-				'log'			:$('.mail_write_text').val(),
+				'log'			:$('#easytalk_text').val(),
 				'send'			:'1',
 				'img_code'		:$('#img_hidden').val(),
 
@@ -1474,11 +1473,16 @@ $(function(){
 				'customer_name'	:Customer_Name,
 				'customer_mail'	:Customer_mail,
 			},
+
 		}).done(function(data, textStatus, jqXHR){
 			$('.mail_detail_in').append(data)
-			$('.mail_write_text').val('');
+			$('#easytalk_text').val('');
 			$('#img_hidden').val('');
-			$('.mail_img_view').attr('src','../img/blog_no_image.png');
+			$('#easytalk_img').attr('src','../img/blog_no_image.png');
+
+			TMP_H=$('.mail_detail_in_btm').offset().top;
+			$('.mail_detail_in').scrollTop(TMP_H);
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

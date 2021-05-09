@@ -104,7 +104,7 @@ if($img_code){
 	$img2	=imagecreatetruecolor(600,600);
 	$img_src=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img_src, 0, 0, 0, 0, 600, 600, 600, 600);
-	imagepng($img2,$link);
+	imagepng($img2,"../".$link);
 	$img_key=$ssid_key;
 	$link_url="<img src=\"{$link}\" class=\"mail_box_stamp\">";
 }
@@ -114,7 +114,6 @@ $sql	.="(send_date,customer_id,cast_id,send_flg,log,img)";
 $sql	.="VALUES";
 $sql	.="('{$now}','{$customer_id}','{$cast_id}','{$send}','{$log}','{$img_key}')";
 mysqli_query($mysqli,$sql);
-echo $sql;
 
 $log=str_replace("\n","<br>",$log);
 $dat.="<div class=\"mail_box_b\">";		
