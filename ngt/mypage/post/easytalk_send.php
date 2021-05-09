@@ -1,5 +1,5 @@
 <?
-include_once('../library/sql_post.php');
+include_once('../../library/sql_post.php');
 /*
 ini_set( 'display_errors', 1 );
 ini_set('error_reporting', E_ALL);
@@ -100,11 +100,11 @@ if($send==1){
 //------------------------------------------------
 
 if($img_code){
-	$link	="./img/cast/{$box_no2}/m/{$ssid_key}.png";
+	$link	="../img/cast/{$box_no2}/m/{$ssid_key}.png";
 	$img2	=imagecreatetruecolor(600,600);
 	$img_src=imagecreatefromstring(base64_decode($img_code));
 	ImageCopyResampled($img2, $img_src, 0, 0, 0, 0, 600, 600, 600, 600);
-	imagepng($img2,".".$link);
+	imagepng($img2,$link);
 	$img_key=$ssid_key;
 	$link_url="<img src=\"{$link}\" class=\"mail_box_stamp\">";
 }

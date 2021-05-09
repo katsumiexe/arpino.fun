@@ -1478,7 +1478,7 @@ $(function(){
 			$('.mail_detail_in').append(data)
 			$('.mail_write_text').val('');
 			$('#img_hidden').val('');
-			$('.mail_img_view').attr('src','./img/blog_no_image.png');
+			$('.mail_img_view').attr('src','../img/blog_no_image.png');
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
