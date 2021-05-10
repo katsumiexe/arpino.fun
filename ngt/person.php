@@ -95,9 +95,7 @@ if($res = mysqli_query($mysqli,$sql)){
 			if($a1["style"] == 1){
 				$check_ex[$a1["id"]]=1;
 			}
-
 			$check_main[]=$a1;
-
 		}
 
 		if (is_array($check_main)) {
