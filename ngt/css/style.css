@@ -1278,32 +1278,33 @@ ul {
 
 .sys_box_log{
 	margin			:0 auto 30px auto;
-    display			:block;
-	padding			:5px 10px;
+    display			:flex;
+	flex-wrap		:wrap;
 	color			:#c8b880;
 	font-size		:18px;
 	line-height		:32px;
-	text-align		:left;
+	text-align		:center;
 }
 
 .system_title{
 	display			:inline-block;
-	height			:24px;
-	line-height		:24px;
+	height			:30px;
+	line-height		:30px;
 	font-size		:20px;
 	font-weight		:800;
-	width			:780px;
+	flex-basis		:780px
 	text-align		:left;
 	border-left		:10px solid #c8b880;
 	padding-left	:5px;
 }
 
 .system_box{
-	display			:inline-block;
-	margin-bottom	:30px ;
+	display			:block;
+	margin			:0 auto 30px auto;
 	width			:780px;
+	flex-basis		:780px
 	text-align		:left;
-	padding-left	:20px;
+	padding			:10px;
 }
 
 .system_box_1{
@@ -3129,7 +3130,6 @@ ul {
 
 .sys_box_log{
 	width			:80vw;
-	padding			:1vw 2vw;
 	font-size		:4vw;
 	line-height		:6vw;
 	margin			:0 auto;
@@ -3138,14 +3138,20 @@ ul {
 .system_title{
 	height			:6vw;
 	line-height		:6vw;
+	flex-basis		:78vw
 	font-size		:4vw;
-	width			:80vw;
+	width			:78vw;
+	border-left		:2vw solid #c8b880;
+	padding-left	:1vw;
+	margin-bottom	:2vw;
 }
 
 .system_box{
-	margin-bottom	:5vw;
-	width			:80vw;
+	margin			:0 auto 5vw auto;
+	width			:78vw;
+	flex-basis		:78vw
 	text-align		:left;
+	padding			:1vw;
 }
 
 .system_box_1{
