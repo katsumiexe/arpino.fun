@@ -1292,7 +1292,7 @@ ul {
 	line-height		:30px;
 	font-size		:20px;
 	font-weight		:800;
-	flex-basis		:780px
+	flex-basis		:780px;
 	text-align		:left;
 	border-left		:10px solid #c8b880;
 	padding-left	:5px;
@@ -1302,9 +1302,10 @@ ul {
 	display			:block;
 	margin			:0 auto 30px auto;
 	width			:780px;
-	flex-basis		:780px
+	flex-basis		:780px;
 	text-align		:left;
 	padding			:10px;
+	text-align		:left;
 }
 
 .system_box_1{
@@ -3138,7 +3139,7 @@ ul {
 .system_title{
 	height			:6vw;
 	line-height		:6vw;
-	flex-basis		:78vw
+	flex-basis		:78vw;
 	font-size		:4vw;
 	width			:78vw;
 	border-left		:2vw solid #c8b880;
@@ -3149,7 +3150,7 @@ ul {
 .system_box{
 	margin			:0 auto 5vw auto;
 	width			:78vw;
-	flex-basis		:78vw
+	flex-basis		:78vw;
 	text-align		:left;
 	padding			:1vw;
 }
