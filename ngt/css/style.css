@@ -1262,12 +1262,12 @@ ul {
 
 
 .sys_box_ttl{
-    display			:inline-block;
+    display			:block;
 	font-size		:24px;
 	width			:1000px;
 	height			:30px;
 	line-height		:30px;
-	margin			:10px 30px;
+	margin			:10px auto;
 	font-weight		:800;
 	color			:#c8b880;
 	text-shadow		:1px 1px 0px rgba(30,30,30,0);
@@ -1277,12 +1277,12 @@ ul {
 }
 
 .sys_box_log{
-	margin			:0 20px 30px 20px;
+	margin			:0 auto 30px auto;
     display			:block;
 	padding			:5px 10px;
 	color			:#c8b880;
 	font-size		:18px;
-	line-height		:30px;
+	line-height		:32px;
 	text-align		:left;
 }
 
@@ -2797,12 +2797,12 @@ ul {
 }
 
 .main_e{
-	width			:96vw;
+	width			:92vw;
 	margin			:1vw auto;
 }
 
 .main_e_in{
-	width			:89vw;
+	width			:85vw;
 	padding			:3vw 3vw 8vw 3vw;
 	margin			:0.5vw auto;
 	min-height		:20vw;
@@ -3097,9 +3097,9 @@ ul {
 
 .sys_box_ttl{
 	font-size		:5vw;
-	width			:80vw;
+	width			:77vw;
 	height			:7vw;
-	line-height		:7vw;
+	line-height		:8vw;
 	margin			:2vw auto;
 	padding			:1vw 2vw;
 	border-bottom	:double 1vw #c8b880;
@@ -3128,11 +3128,11 @@ ul {
 
 
 .sys_box_log{
-	width			:82vw;
+	width			:80vw;
 	padding			:1vw 2vw;
 	font-size		:4vw;
 	line-height		:6vw;
-	margin			:0 2vw;
+	margin			:0 auto;
 }
 
 .system_title{
@@ -3618,7 +3618,7 @@ ul {
 
 
 
-.menu-item {
+.menu_item {
 	height			:10vw;
 	line-height		:10vw;
 	width			:40vw;
@@ -3626,7 +3626,7 @@ ul {
 	margin			:0;
 }
 
-.menu-item a{
+.menu_item a{
 	color		:#c8b880;
 	font-size	:4.5vw;
 	display		:inline-block;

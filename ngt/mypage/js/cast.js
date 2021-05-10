@@ -280,18 +280,20 @@ $(function(){
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
 
-
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
 		});
 	});
 
+
 	$('.mail_hist').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
 		Customer_mail=$(this).children('.mail_address').val();
+		TMP_H=$('.mail_detail_in_btm').offset().top;
+		console.log(TMP_H);
 
 		$.post({
 			url:"./post/easytalk_hist.php",
@@ -300,14 +302,16 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
+			TMP_H=$('.mail_detail_in_btm').offset().top;
+			console.log(TMP_H);
 			$.when(
 				$('.mail_detail_in').html(data),
 
 			).done(function(){
 				TMP_H=$('.mail_detail_in_btm').offset().top;
-				$('.mail_detail_in').animate({ scrollTop: 20000 }, 1000);
+				console.log(TMP_H);
 
+				$('.mail_detail').animate({ scrollTop:TMP_H}, 2000);
 /*
 				if(TMP_H ==0){
 					TMP_H=$('.mail_detail_in').height();
@@ -1479,7 +1483,7 @@ $(function(){
 			$('#easytalk_img').attr('src','../img/blog_no_image.png');
 
 			TMP_H=$('.mail_detail_in_btm').offset().top;
-			$('.mail_detail_in').scrollTop(TMP_H);
+			$('.mail_detail').animate({ scrollTop:TMP_H}, 2000);
 
 
 		}).fail(function(jqXHR, textStatus, errorThrown){

@@ -1000,8 +1000,8 @@ $(function(){
 
 			<div class="mail_detail">
 				<div class="mail_detail_in"></div>
-			</div>
 				<div class="mail_detail_in_btm"></div>
+			</div>
 
 			<div class="write_box">
 				<img id="easytalk_img" src="../img/blog_no_image.png" class="write_box_img">
