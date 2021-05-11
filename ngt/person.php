@@ -39,7 +39,7 @@ if($res = mysqli_query($mysqli,$sql)){
 		}
 
 	}else{
-		$face_a="<img src=\"./img/profile/noimage.jpg\" class=\"person_img_main\">";
+		$face_a="<img src=\"./img/cast_no_image.jpg\" class=\"person_img_main\">";
 	}
 
 	$sql	 ="SELECT * FROM wp01_0schedule";
