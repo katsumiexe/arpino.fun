@@ -117,7 +117,7 @@ mysqli_query($mysqli,$sql);
 
 $log=str_replace("\n","<br>",$log);
 $dat.="<div class=\"mail_box_b\">";		
-$dat.="<div class=\"mail_box_log_{$send} bg\">";		
+$dat.="<div class=\"mail_box_log_2 bg\">";		
 $dat.="<div class=\"mail_box_log_in\">";		
 $dat.=$log;		
 $dat.="</div>";
