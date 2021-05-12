@@ -55,10 +55,10 @@ $(function(){
 						cvs_Y=0;
 
 						css_A=Math.ceil(img_H*Base_l/img_W);
-						css_B=Math.ceil( ( Base_l - (img_H*Base_l/img_W)) / 2 );
+						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
+						css_Y=Math.ceil( Base_s - ( css_A - Base_h) / 2 );
 
-						$("#cvs"+Tmp).attr({'width': img_A,'height': img_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
-						ctx.drawImage(img, 0,0, img_W, img_H, cvs_X, cvs_Y, img_W, img_H);
+
 /*
 						cvs_W=1200;
 						cvs_H=img_H*(cvs_W/img_W);
@@ -76,6 +76,15 @@ $(function(){
 */
 
 					}else{
+						img_A=img_W;
+						cvs_Y=Math.ceil((img_W-img_H)/2);
+						cvs_X=0;
+
+						css_A=Math.ceil(img_W*Base_h/img_H);
+						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
+						css_Y=Math.ceil( Base_s - ( css_A - Base_h) / 2 );
+
+/*
 						cvs_H=1600;
 						cvs_W=img_W*(cvs_H/img_H);
 						cvs_A=Math.ceil(cvs_W);
@@ -89,20 +98,23 @@ $(function(){
 						css_A=css_W;
 						css_B=Math.ceil(Base_s-(css_A-150)/2);
 						css_C=Math.ceil(Base_s-(css_A-200)/2);
+*/
 					}				
 
-					$("#cvs"+Tmp).attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C});
-					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
+					$("#cvs"+Tmp).attr({'width': img_A,'height': img_A}).css({'width': css_A,'height': css_A,'left': css_X,'top': css_Y});
+					ctx.drawImage(img, 0,0, img_W, img_H, cvs_X, cvs_Y, img_W, img_H);
 
 					ImgCode = cvs.toDataURL("image/jpeg");
-					ImgCode=ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+					ImgCode=ImgCode.replace(/^data:image\/jpeg;base64,/, "");
+
 
 					ImgWidth[Tmp]		=css_A;
-					ImgLeft[Tmp]		=css_B;
-					ImgTop[Tmp]			=css_C;
+					ImgLeft[Tmp]		=css_X;
+					ImgTop[Tmp]			=css_Y;
+					Zoom[Tmp]			=100;
 
 					Rote[Tmp]			=0;
-					Zoom[Tmp]			=100;
+
 
 					$('#c_'+Tmp).val(ImgCode);
 					$('#r_'+Tmp).val(0);
@@ -110,13 +122,14 @@ $(function(){
 					$('#w_'+Tmp).val(img_W);
 					$('#h_'+Tmp).val(img_H);
 
-					$('#x_'+Tmp).val(css_B);
-					$('#y_'+Tmp).val(css_C);
+					$('#x_'+Tmp).val(css_X);
+					$('#y_'+Tmp).val(css_Y);
 
 					$('#zoom'+Tmp).val(100);
 					$('#zoom_box'+Tmp).text(100);
 				}
-			};
+
+			}
 		})(file);
 		reader.readAsDataURL(file);
 	});
@@ -158,6 +171,7 @@ $(function(){
 
 	$('.zoom_mi').on( 'click', function () {
 		Tmp=$(this).attr("id").replace('mi','');
+
 		Zoom[Tmp]--;
 		if(Zoom[Tmp] <100){
 			Zoom[Tmp]=100;
@@ -167,7 +181,7 @@ $(function(){
 		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
 		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
-		$('#zoom'+Tmp).val(Zoom[Tmp]);
+//		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
 	$( '.zoom_pu' ).on( 'click', function () {
@@ -187,6 +201,7 @@ $(function(){
 	$( '.range_bar' ).on( 'input', function () {
 
 		Tmp=$(this).attr("id").replace('zoom','');
+
 		Zoom[Tmp]=$(this).val();
 		if(Zoom[Tmp] > 200){
 			Zoom[Tmp]=200;
@@ -196,10 +211,11 @@ $(function(){
 		}
 
 		var css_An	=Math.floor(Zoom[Tmp]*css_A/100);
+
 		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
 		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
-		$('#zoom'+Tmp).val(Zoom[Tmp]);
+//		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
 	$('.img_up_reset').on( 'click', function () {
@@ -207,16 +223,18 @@ $(function(){
 
 		Zoom[Tmp]	=100;
 		Rote[Tmp]	=0;
+
 		css_A		=ImgWidth[Tmp];
-		css_B		=ImgLeft[Tmp];
-		css_C		=ImgTop[Tmp];
+		css_X		=ImgLeft[Tmp];
+		css_Y		=ImgTop[Tmp];
 
-		$("#cvs"+Tmp).css({'width': css_A,'height': css_A,'left': css_B,'top': css_C, 'transform':'rotate(0deg)'});
+		$("#cvs"+Tmp).css({'width': ImgWidth[Tmp],'height': ImgWidth[Tmp],'left': ImgLeft[Tmp],'top': ImgTop[Tmp], 'transform':'rotate(0deg)'});
 		$('#zoom_box'+Tmp).text(100);
-		$('#zoom'+Tmp).val(100);
+//		$('#zoom'+Tmp).val(100);
 
-		$('#x_'+Tmp).val(css_B);
-		$('#y_'+Tmp).val(css_C);
+		$('#x_'+Tmp).val(ImgLeft[Tmp]);
+		$('#y_'+Tmp).val(ImgTop[Tmp]);
 		$('#r_'+Tmp).val(0);
 	});
 });
+
