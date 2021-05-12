@@ -134,7 +134,7 @@ if($staff_set == 4){
 			}
 			$tmp_dir.=$id_0;
 
-			$mk_dir="./img/cast/".$tmp_dir;
+			$mk_dir="../img/cast/".$tmp_dir;
 			if(!is_dir($mk_dir)) {
 				mkdir($mk_dir."/c/", 0777, TRUE);
 				chmod($mk_dir."/c/", 0777);
@@ -143,7 +143,7 @@ if($staff_set == 4){
 				chmod($mk_dir."/m/", 0777);
 			}
 
-			$link="./img/profile/".$staff_id;
+			$link="../img/profile/".$staff_id;
 			if(!is_dir($link)) {
 				mkdir($link, 0777, TRUE);
 				chmod($link, 0777);
@@ -205,13 +205,15 @@ if($staff_set == 4){
 			$link="../img/profile/".$staff_id;
 			if($staff_set == 1){
 				$a3=0;
+
+
 				foreach($img_c as $a1 => $a2){
 					if($a2){
-						$tmp_width	=ceil(1200*(100/$img_z[$a1]));
-						$tmp_height	=ceil(1600*(100/$img_z[$a1]));
+						$tmp_width	=ceil($img_w[$a1]*(100/$img_z[$a1]));
+						$tmp_height	=ceil($img_h[$a1]*(100/$img_z[$a1]));
 
-						$tmp_left	=floor((20-$img_x[$a1])*(1200/150)*100/$img_z[$a1]);
-						$tmp_top	=floor((20-$img_y[$a1])*(1600/200)*100/$img_z[$a1]);
+						$tmp_left	=floor((20-$img_x[$a1])*($img_w[$a1]/150)*100/$img_z[$a1]);
+						$tmp_top	=floor((20-$img_y[$a1])*($img_h[$a1]/200)*100/$img_z[$a1]);
 
 						if($img_r[$a1] ==90){
 							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
