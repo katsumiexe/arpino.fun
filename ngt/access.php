@@ -75,5 +75,3 @@ include_once('./header.php');
 <?}?>
 <br>
 <?include_once('./footer.php'); ?>
-
-
