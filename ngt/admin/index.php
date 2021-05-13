@@ -65,6 +65,16 @@ if($staff_set == 4){
 	$img_y		=$_POST["img_y"];
 	$img_z		=$_POST["img_z"];
 	$img_r		=$_POST["img_r"];
+	$img_v		=$_POST["img_v"];
+
+echo "img_w".$img_w[0]."<br>\n";
+echo "img_h".$img_h[0]."<br>\n";
+echo "img_x".$img_x[0]."<br>\n";
+echo "img_y".$img_y[0]."<br>\n";
+echo "img_z".$img_z[0]."<br>\n";
+echo "img_r".$img_r[0]."<br>\n";
+echo "img_v".$img_v[0]."<br>\n";
+
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
 	$btime=$b_yy*10000+$b_mm*100+$b_dd;
@@ -206,14 +216,26 @@ if($staff_set == 4){
 			if($staff_set == 1){
 				$a3=0;
 
-
 				foreach($img_c as $a1 => $a2){
 					if($a2){
+/*
 						$tmp_width	=ceil($img_w[$a1]*(100/$img_z[$a1]));
 						$tmp_height	=ceil($img_h[$a1]*(100/$img_z[$a1]));
 
 						$tmp_left	=floor((20-$img_x[$a1])*($img_w[$a1]/150)*100/$img_z[$a1]);
 						$tmp_top	=floor((20-$img_y[$a1])*($img_h[$a1]/200)*100/$img_z[$a1]);
+*/
+
+						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
+						$tmp_height	=ceil( ( 200 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
+
+						$tmp_left	=floor( ($img_x[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+						$tmp_top	=floor( ($img_y[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+
+echo "W:".$tmp_width."<br>\n";
+echo "H:".$tmp_height."<br>\n";
+echo "X:".$tmp_left."<br>\n";
+echo "Y:".$tmp_top."<br>\n";
 
 						if($img_r[$a1] ==90){
 							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	

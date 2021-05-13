@@ -279,12 +279,16 @@ CAST情報
 						<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
 					</div>
 					<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
+					<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
+
 					<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
 					<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
-					<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
+
 					<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
 					<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
+
 					<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
+					<input id="v_<?=$n?>"type="hidden" value="" name="img_v[<?=$n?>]">
 				</td>
 			</tr>
 		</table>

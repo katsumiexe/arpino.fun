@@ -50,6 +50,7 @@ $(function(){
 
 					if(img_H*3> img_W*4){
 						img_A=img_H;
+						img_B=150/img_W;
 
 						cvs_X=Math.ceil((img_H-img_W)/2);
 						cvs_Y=0;
@@ -77,6 +78,8 @@ $(function(){
 
 					}else{
 						img_A=img_W;
+						img_B=200/img_H;
+
 						cvs_Y=Math.ceil((img_W-img_H)/2);
 						cvs_X=0;
 
@@ -116,6 +119,7 @@ $(function(){
 					Rote[Tmp]			=0;
 
 
+
 					$('#c_'+Tmp).val(ImgCode);
 					$('#r_'+Tmp).val(0);
 
@@ -127,6 +131,8 @@ $(function(){
 
 					$('#zoom'+Tmp).val(100);
 					$('#zoom_box'+Tmp).text(100);
+					$('#v_'+Tmp).val(img_B);
+
 				}
 
 			}
@@ -181,7 +187,7 @@ $(function(){
 		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
 		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
-//		$('#zoom'+Tmp).val(Zoom[Tmp]);
+		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
 	$( '.zoom_pu' ).on( 'click', function () {
@@ -215,7 +221,7 @@ $(function(){
 		$("#cvs"+Tmp).css({'width':css_An,'height':css_An});
 
 		$('#zoom_box'+Tmp).text(Zoom[Tmp]);
-//		$('#zoom'+Tmp).val(Zoom[Tmp]);
+		$('#zoom'+Tmp).val(Zoom[Tmp]);
 	});
 
 	$('.img_up_reset').on( 'click', function () {
@@ -230,7 +236,7 @@ $(function(){
 
 		$("#cvs"+Tmp).css({'width': ImgWidth[Tmp],'height': ImgWidth[Tmp],'left': ImgLeft[Tmp],'top': ImgTop[Tmp], 'transform':'rotate(0deg)'});
 		$('#zoom_box'+Tmp).text(100);
-//		$('#zoom'+Tmp).val(100);
+		$('#zoom'+Tmp).val(100);
 
 		$('#x_'+Tmp).val(ImgLeft[Tmp]);
 		$('#y_'+Tmp).val(ImgTop[Tmp]);
