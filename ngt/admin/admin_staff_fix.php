@@ -324,22 +324,22 @@ CAST情報
 </td>
 </tr><tr>
 <td>
-	<div>CAST名			</div><input id="genji" type="text" name="genji" class="w000" autocomplete="off">
+	<div>CAST名			</div><input id="genji" type="text" name="genji" value="<?=$staff_data["genji"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>フリガナ		</div><input type="text" name="genji_kana" class="w000" autocomplete="off">
+	<div>フリガナ		</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
-	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
+	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["ctime_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
+	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["ctime_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
+	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["ctime_dd"]?>" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td>
-	<div>ログインID		</div><input type="text" name="cast_id" class="w000" autocomplete="off">
+	<div>ログインID		</div><input type="text" name="cast_id" value="<?=$staff_data["cast_id"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="new_password">
+	<div>ログインPASS	</div><input type="text" name="cast_pass" value="<?=$staff_data["cast_pass"]?>" class="w000" autocomplete="new_password">
 </td><td>
-	<div>給与		</div><input type="text" name="cast_salary" class="w000" autocomplete="off">
+	<div>給与		</div><input type="text" name="cast_salary" value="<?=$staff_data["cast_salary"]?>" class="w000" autocomplete="off">
 	</td>
 </tr>
 </table>

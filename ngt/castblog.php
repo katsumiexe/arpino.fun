@@ -232,7 +232,7 @@ include_once('./header.php');
 <?}?>
 </div>
 <div class="main_top_flex">
-	<div class="main_article_out">
+	<div class="main_flex_a">
 		<h2 class="main_blog_title"> Cast Blog</h2>
 
 		<div class="main_article">
@@ -261,7 +261,7 @@ include_once('./header.php');
 		<?=$p_list?>
 	</div>
 
-	<div class="sub_blog">
+	<div class="main_flex_b">
 		<table id="c" class="blog_calendar">
 			<tr>
 				<td id="c_prev"class="blog_calendar_n"><a href="./castblog.php?month=<?=$p_month?><?=$c_para?><?=$t_para?>" class="carendar_pn"></a></td>
@@ -280,7 +280,7 @@ include_once('./header.php');
 			</tr>
 		</table>
 
-		<div class="sub_blog_pack">
+		<div class="sub_blog">
 			<?if($tag_count){?>
 			<div class="sub_blog_in">
 				<div class="blog_h1">カテゴリー</div>
@@ -313,6 +313,7 @@ include_once('./header.php');
 			</div>
 			<?}?>
 		</div>
+
 	</div>
 </div>
 </div>

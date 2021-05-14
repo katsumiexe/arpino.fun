@@ -197,10 +197,10 @@ ul {
 	height		:50px;
 	line-height	:50px;
 	width		:130px;
-	flex		:1;
+	flex-basis	:190px;
 	background	:#252018;
 	border		:1px solid #c8b880;
-	margin		:10px 5px;
+	margin		:10px 0;
 	text-align	:center;
 	overflow	:hidden;
 	cursor		:pointer;
@@ -849,7 +849,7 @@ ul {
 	background		:#302520;
 	margin			:0;
 	vertical-align	:top;
-	padding			:10px;
+	padding			:9px;
 }
 
 .main_d_1{
@@ -1066,7 +1066,7 @@ ul {
 
 .main_article{
 	display			:inline-block;
-	width			:858px;
+	width			:867px;
 	text-align		:left;
 	border			:1px solid #c8b880;
 	background		:#302520;
@@ -1076,7 +1076,7 @@ ul {
 
 .main_blog_title{
 	display			:inline-block;
-	width			:852px;
+	width			:862px;
 	height			:35px;
 	line-height		:35px;
 	background		:#c8b880;
@@ -1388,7 +1388,7 @@ ul {
 .blog_list{
 	display			:inline-block;
 	position		:relative;
-	width			:417px;
+	width			:427px;
 	height			:110px;
 	font-size		:0;
 	margin			:2px;
@@ -1763,7 +1763,7 @@ ul {
 	table-layout	:fixed;
 	background		:#fafafa;
 	background		:#302520;
-	margin-bottom	:20px;
+	margin			:0 0 20px auto;
 	border-radius	:10px 10px 0 0;
 }
 
@@ -2115,6 +2115,7 @@ ul {
 }
 
 .person_img_box{
+	display			:inline-block;
 	position		:relative;
 	margin-top		:7px;
 	width			:360px;
@@ -2134,7 +2135,7 @@ ul {
 }
 
 .person_img_list{
-	display			:flex;
+	display			:inline-flex;
 	margin-top		:10px;
 	width			:368px;
 	height			:112px;
@@ -2310,15 +2311,17 @@ ul {
 	text-align		:center;
 }
 
-.news_main_a{
+.main_flex_a{
 	display		:block;
-	flex-basis	:870px;
+	flex-basis	:875px;
 	background	:#fa0afa;
+	text-align	:left;
 }
-.news_main_b{
+.main_flex_b{
 	display		:block;
-	flex-basis	:300px;
+	flex-basis	:305px;
 	background	:#fafafa;
+	text-align	:right;
 }
 
 .news_tag{
@@ -3287,11 +3290,7 @@ ul {
 
 .person_left_blog{
 	display		:block;
-	position	:absolute;
-	top			:55vw;
-	left		:0;
-	right		:0;
-	margin		:auto;
+	margin		:1vw auto;
 	width		:50vw;
 }
 
@@ -3440,6 +3439,7 @@ ul {
 
 
 .person_img_box{
+
 	top				:0;
 	left			:0;
 	width			:39vw;
@@ -3447,7 +3447,7 @@ ul {
 
 }
 
-.person_img_main{
+.person_img_main,.person_img_top{
 	top				:0;
 	left			:0;
 	width			:39vw;
@@ -3461,6 +3461,8 @@ ul {
 	left			:40vw;
 	width			:9vw;
 	height			:52vw;
+	vertical-align	:top;
+	margin:7px
 }
 
 .person_img_sub{
@@ -4019,7 +4021,7 @@ ul {
 	width			:75vw;
 	height			:100vw;	
 }
-.person_img_main{
+.person_img_main,.person_img_top{
 	top				:0;
 	left			:0;
 	width			:75vw;
