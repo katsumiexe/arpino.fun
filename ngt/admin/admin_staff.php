@@ -461,7 +461,7 @@ input[type=range]::-moz-range-thumb{
 }
 
 .box_sort{
-	width		:30px;
+	width		:40px;
 	text-align	:right;
 	padding		:5px;
 }
@@ -510,7 +510,7 @@ $(function(){
 
 </script>
 <header class="head">
-<h2>スタッフ一覧</h2>
+<h2 class="head_ttl">スタッフ一覧</h2>
 <input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 <input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 

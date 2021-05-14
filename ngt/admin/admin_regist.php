@@ -88,13 +88,14 @@ $(function(){
 	});
 });
 </script>
-<header class="head">
-<h2>スタッフ登録</h2>
-<button id="set" type="button" class="submit_btn">保存</button>
-<button id="del" type="button" class="submit_btn">削除</button>
 <form id="form" action="" method="post" autocomplete="off">
 <input type="hidden" value="1" name="staff_set">
 <input id="send" type="hidden" value="" name="send">
+<header class="head">
+<h2 class="head_ttl">スタッフ登録</h2>
+<button id="set" type="button" class="submit_btn">保存</button>
+<button id="del" type="button" class="submit_btn">削除</button>
+
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>

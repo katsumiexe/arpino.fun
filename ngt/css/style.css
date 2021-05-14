@@ -2115,9 +2115,8 @@ ul {
 }
 
 .person_img_box{
-	position		:absolute;
-	top				:7px;
-	left			:0;
+	position		:relative;
+	margin-top		:7px;
 	width			:360px;
 	height			:480px;	
 }
@@ -2129,15 +2128,14 @@ ul {
 	width			:360px;
 	height			:480px;	
 }
+
 .person_img_top{
 	opacity			:0;
 }
 
 .person_img_list{
-	position		:absolute;
-	display			:inline-flex;
-	top				:495px;
-	left			:0px;
+	display			:flex;
+	margin-top		:10px;
 	width			:368px;
 	height			:112px;
 	font-size		:0;

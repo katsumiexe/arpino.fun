@@ -64,8 +64,8 @@ if($staff_data["id"]){
 	}
 
 	for($n=0;$n<4;$n++){
-		if(file_exists("./img/profile/{$staff_id}/{$n}.jpg")){
-			$face[$n]="./img/profile/{$staff_id}/{$n}.jpg?t=".time();		
+		if(file_exists("../img/profile/{$staff_id}/{$n}.jpg")){
+			$face[$n]="../img/profile/{$staff_id}/{$n}.jpg?t=".time();		
 		}
 	}
 
@@ -226,93 +226,96 @@ $(function(){
 	});
 });
 </script>
-<header class="head">
-<h2>スタッフ登録</h2>
-<button type='button' class='btn_fix'>修正</button>
-<button type='button' class='btn_del'>削除</button>
 
-<form id="form_fix" action="" method='post' id="my-submenu-form">
-
+<form id="form" action="" method="post" autocomplete="off">
 <input type="hidden" value="<?=$staff_id?>" name="staff_id">
 <input id="fix_flg" type="hidden" value="2" name="staff_set">
+<header class="head">
+<h2 class="head_ttl">スタッフ登録</h2>
+<button id="set" type="button" class="submit_btn">保存</button>
+<button id="del" type="button" class="submit_btn">削除</button>
 
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 </div>
-<div class="c_s_box">
-　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">昇順</label>
-　<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">降順</label>
-</div>
 </header>
+
 <div class="wrap">
 <div class="main_box">
 <table style="width:720px; table-layout: fixed;">
 <tr>
-	<td class="table_title" colspan="3">
-		STAFF情報
-	</td>
-</tr>
-<tr>
-	<td>
-		<div class="td_tag">名前</div>
-		<input type="text" name="staff_name" value="<?=$staff_data["name"]?>" class="w000" autocomplete="off">
-	</td>
-	<td>
-		<div class="td_tag">フリガナ</div><input type="text" name="staff_kana" value="<?=$staff_data["kana"]?>" class="w000" autocomplete="off">
-	</td>
-	<td>
-		<div class="td_tag">生年月日</div><input type="text" id="b_yy" name="b_yy" class="w60" value="<?=$staff_data["b_yy"]?>" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="<?=$staff_data["b_mm"]?>" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_dd" value="<?=$staff_data["b_dd"]?>" size="2" maxlength="2" autocomplete="off">日
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<div class="td_tag">住所</div><input type="text" name="staff_address" value="<?=$staff_data["address"]?>" class="w000" autocomplete="off">
-	</td>
-	<td>
-		<div class="td_tag">性別</div>
-		<span class="sex_box"><input id="sex1" type="radio" name="staff_sex" value="1" <?if($staff_data["sex"] ==1){?> checked="checked"<?}?> class="sex_box_ck"><label for="sex1" class="sex_box_txt">男性</label></span>
-		<span class="sex_box"><input id="sex2" type="radio" name="staff_sex" value="2" <?if($staff_data["sex"] ==2){?> checked="checked"<?}?> class="sex_box_ck"><label for="sex2" class="sex_box_txt">女性</label></span>
-		<span class="sex_box"><input id="sex3" type="radio" name="staff_sex" value="3" <?if($staff_data["sex"] ==3){?> checked="checked"<?}?> class="sex_box_ck"><label for="sex3" class="sex_box_txt">他</label></span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<div class="td_tag">電話番号</div>
-		<input type="text" name="staff_tel" value="<?=$staff_data["tel"]?>" class="w000" autocomplete="off">
-	</td>
-	<td>
-		<div class="td_tag">メールアドレス</div>
-		<input type="text" name="staff_mail" value="<?=$staff_data["mail"]?>" class="w000" autocomplete="off">
-	</td>
-	<td>
-		<div class="td_tag">LINE</div>
-		<input type="text" name="staff_line" value="<?=$staff_data["line"]?>" class="w000" autocomplete="off">
-	</td>
-</tr>
-<tr>
-<td>
-	<div class="td_tag">役職</div>
-	<input type="text" name="staff_position" value="<?=$staff_data["position"]?>" class="w000" autocomplete="off">
+<td class="table_title" colspan="3">
+STAFF情報
 </td>
+</tr><tr>
 <td>
+	<div>名前			</div><input type="text" name="staff_name" value="<?=$staff_data["name"]?>" class="w000" autocomplete="off">
+</td><td>
+	<div>フリガナ		</div><input type="text" name="staff_kana" value="<?=$staff_data["kana"]?>" class="w000" autocomplete="off">
+</td><td>
+	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_	dd" value="01" size="2" maxlength="2" autocomplete="off">日
+</td>
+</tr><tr>
+<td colspan="2">
+	<div>住所			</div><span></span><input type="text" name="staff_address " value="<?=$staff_data["address"]?>" class="w000">
+</td><td >
+	<div>性別			</div>
+
+<label for="sex1" class="ck_free">
+	<span class="check2">
+		<input id="sex1" type="radio" name="staff_sex" value="1" class="ck0" <?if($staff_data["sex"]+0<2){?>checked="checked"<?}?>>
+		<span class="check1"></span>
+	</span>
+	女性
+</label>
+
+<label for="sex2" class="ck_free">
+	<span class="check2">
+		<input id="sex2" type="radio" name="staff_sex" value="2" class="ck0" <?if($staff_data["sex"]+0==2){?>checked="checked"<?}?>>
+		<span class="check1"></span>
+	</span>
+	男性
+</label>
+
+<label for="sex3" class="ck_free">
+	<span class="check2">
+		<input id="sex3" type="radio" name="staff_sex" value="3" class="ck0" <?if($staff_data["sex"]+0 == 3){?>checked="checked"<?}?>>
+		<span class="check1"></span>
+	</span>
+	他
+</label>
+</td>
+</tr><tr>
+<td>
+	<div>電話番号		</div><input type="text" name="staff_tel" value="<?=$staff_data["tel"]?>" class="w000" autocomplete="off">
+</td><td>
+	<div>メールアドレス	</div><input type="text" name="staff_mail" value="<?=$staff_data["mail"]?>" class="w000" autocomplete="off">
+</td><td>
+	<div>LINE			</div><input type="text" name="staff_line" value="<?=$staff_data["line"]?>" class="w000" autocomplete="off">
+</td>
+</tr><tr>
+<td>
+	<div>役職			</div><input type="text" name="staff_position" value="<?=$staff_data["position"]?>" class="w000" autocomplete="off">
+</td><td>
+	<div>ランク			</div><input type="text" name="staff_rank" value="<?=$staff_data["rank"]?>" class="w000" autocomplete="off">
+</td><td>
 	<?if(is_array($cast_group)){?>
 	<div>グループ		</div>
 	<select name="staff_group" class="w000" autocomplete="off">
 	<option value="">選択</option>
 	<?foreach($cast_group as $a1 => $a2){?>
-	<option value="<?=$a1?>"<?if($staff_data["group"] == $a1){?> selected="selected"<?}?>><?=$a2?></option>
+	<option value="<?=$a1?>"<?if($staff_data["group"]==$a1){?> selected="selected"<?}?>><?=$a2?></option>
 	<?}?>
 	</select>
 	<?}?>
 </td>
-
-<td>
-	<div class="td_tag">ランク	</div>
-	<input type="text" name="staff_rank" value="<?=$staff_data["rank"]?>" class="w000" autocomplete="off">
-</td>
 </tr>
 </table>
+
+
+
+
 
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
@@ -321,49 +324,44 @@ CAST情報
 </td>
 </tr><tr>
 <td>
-	<div class="td_tag">CAST名</div><input id="genji" type="text" name="genji" value="<?=$staff_data["genji"]?>" class="w000" autocomplete="off">
+	<div>CAST名			</div><input id="genji" type="text" name="genji" class="w000" autocomplete="off">
 </td><td>
-	<div class="td_tag">フリガナ</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
+	<div>フリガナ		</div><input type="text" name="genji_kana" class="w000" autocomplete="off">
 </td><td>
-	<div class="td_tag">入店日</div>
-	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["c_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["c_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["c_dd"]?>" size="2" maxlength="2" autocomplete="off">日
+	<div>入店日		</div>
+	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
+	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
+	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td>
-	<div class="td_tag">ログインID</div><input type="text" name="cast_id" value="<?=$staff_data["cast_id"]?>" class="w000" autocomplete="off">
+	<div>ログインID		</div><input type="text" name="cast_id" class="w000" autocomplete="off">
 </td><td>
-	<div class="td_tag">ログインPASS</div><input type="text" name="cast_pass" value="<?=$staff_data["cast_pass"]?>" class="w000" autocomplete="off">
+	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="new_password">
 </td><td>
-	<div class="td_tag">給与</div><input type="text" name="cast_salary" value="<?=$staff_data["cast_salary"]?>" class="w000" autocomplete="off">
+	<div>給与		</div><input type="text" name="cast_salary" class="w000" autocomplete="off">
 	</td>
 </tr>
 </table>
 
-<?if($charm_main){?>
-	<table style="width:720px;" class="cast_table table-layout: fixed;">
-	<tr>
-		<td class="table_title" colspan="3">プロフィール</td>
-	</tr>	
-	<tr>
-		<?foreach($charm_main as $a1 => $a2){?>
-			<td>
-				<div class="td_tag"><?=$a2["charm"]?></div>
-				<?if($a2["style"] == 1){?>
-					<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"><?=$charm_list[$a1]["log"]?></textarea>
-				<? }else{ ?>
-					<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" value="<?=$charm_list[$a1]["log"]?>" autocomplete="off">
-				<? } ?>
-			</td>
-			<?if(($cnt+0) % 2 ==1){?>
-				</tr><tr>
-			<?}?>
-			<?$cnt++;?>
-		<? } ?>
-	</tr>
-	</table>
-<? } ?>
+<table style="width:720px; table-layout: fixed;" class="cast_table">
+<tr>
+	<?foreach((array)$charm_table as $a1 => $a2){?>
+<td>
+	<div><?=$a2["charm"]?></div>
+	<?if($a2["style"] == 1){?>
+		<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
+	<? }else{ ?>
+		<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" autocomplete="off">
+	<? } ?>
+</td>
+<?if(($cnt+0) % 2 ==1){?>
+</tr><tr>
+<?}?>
+<?$cnt++;?>
+	<? } ?>
+</tr>
+</table>
 
 <?if($ck_main){?>
 <?foreach($ck_main as $a1 => $a2){?>
