@@ -111,6 +111,7 @@ include_once('./header.php');
 	<div class="news_main_b">
 		<?if($tag){?>
 			<div class="news_tag">
+					<div id="tag0" class="news_tag_list">全て</div>
 				<?for($n=0;$n<$count_tag;$n++){?>
 					<div id="tag<?=$tag[$n]["id"]?>" class="news_tag_list"><?=$tag[$n]["tag_name"]?></div>
 				<?}?>

@@ -2365,17 +2365,18 @@ ul {
 
 .news_main_a{
 	order:1;
-	flex-basis	:96vwx;
+	flex-basis	:96vw;
 }
 
 .news_main_b{
 	order:0;
-	flex-basis	:96vwx;
+	flex-basis	:96vw;
 }
 
 .news_tag{
 	display		:flex;
-	width		:96vw;
+	width		:94vw;
+	margin:0 auto;
 }
 
 .news_tag_list{
@@ -3990,10 +3991,8 @@ ul {
 .person_left{
 	width		:96vw;
 	flex-basis	:96vw;
-	height		:102vw;
-	min-height	:102vw;
 	text-align	:center;
-	margin		:0 auto;
+	margin		:0 2vw;
 }
 
 .person_middle{
@@ -4016,16 +4015,16 @@ ul {
 }
 
 .person_img_box{
-	top				:0;
-	left			:0.5vw;
-	width			:75vw;
-	height			:100vw;	
+	margin			:1vw;
+	width			:69vw;
+	height			:92vw;	
+	
 }
 .person_img_main,.person_img_top{
 	top				:0;
 	left			:0;
-	width			:75vw;
-	height			:100vw;	
+	width			:69vw;
+	height			:92vw;	
 }
 
 .person_img_list{
@@ -4034,14 +4033,14 @@ ul {
 	top				:0;
 	left			:77.5vw;
 	width			:18vw;
-	height			:102vw;
+	height			:95vw;
+	margin			:1vw
 }
 
 .person_img_sub{
 	width			:18vw;
-	height			:24vw;
-	margin-right	:0;
-	margin-bottom	:1.3vw;
+	height			:22vw;
+	margin-bottom	:1.3333vw;
 }
 
 
