@@ -1,7 +1,10 @@
 <?
-//ini_set( 'display_errors', 1 );
 include_once('../library/sql.php');
 include_once('../library/inc_code.php');
+/*
+ini_set( 'display_errors', 1 );
+ini_set('error_reporting', E_ALL);
+*/
 
 $staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
 $staff_id	=$_POST["staff_id"];

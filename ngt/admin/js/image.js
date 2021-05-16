@@ -140,10 +140,22 @@ $(function(){
 		reader.readAsDataURL(file);
 	});
 
-	$(".cvs0").draggable();
+	$(".cvs0").draggable({
+		drag: function( event, ui ){
+
+			if(ui.position.left > 20){
+				ui.position.left=20;
+			}
+
+			if(ui.position.top > 20){
+				ui.position.top=20;
+			}
+		}
+	});
+
+
 	$(".cvs0").on("mousemove", function() {
 		Tmp=$(this).attr("id").replace('cvs','');
-
 		$('#x_'+Tmp).val($(this).css("left"));
 		$('#y_'+Tmp).val($(this).css("top"));
 	});

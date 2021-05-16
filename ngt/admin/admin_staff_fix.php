@@ -211,29 +211,29 @@ $(function(){
 		$(this).parents('.img_box_table').next('.chg_check').val('1');
 	});
 
-	$('.btn_fix').on('click',function(){
+	$('#fix_set').on('click',function(){
 		$('#fix_flg').val('2');
-		$('#form_fix').submit();
+		$('#fix_form').submit();
 	});
 
-	$('.btn_del').on('click',function(){
+	$('#fix_del').on('click',function(){
 		if(!confirm('削除します。よろしいですか')){
 		    return false;
 		}else{
 			$('#fix_flg').val('4');
-			$('#form_fix').submit();
+			$('#fix_form').submit();
 		}
 	});
 });
 </script>
 
-<form id="form" action="" method="post" autocomplete="off">
+<form id="fix_form" action="" method="post" autocomplete="off">
 <input type="hidden" value="<?=$staff_id?>" name="staff_id">
 <input id="fix_flg" type="hidden" value="2" name="staff_set">
 <header class="head">
 <h2 class="head_ttl">スタッフ登録</h2>
-<button id="set" type="button" class="submit_btn">保存</button>
-<button id="del" type="button" class="submit_btn">削除</button>
+<button id="fix_set" type="button" class="submit_btn">保存</button>
+<button id="fix_del" type="button" class="submit_btn">削除</button>
 
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
@@ -329,9 +329,9 @@ CAST情報
 	<div>フリガナ		</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
-	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["ctime_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["ctime_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["ctime_dd"]?>" size="2" maxlength="2" autocomplete="off">日
+	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="<?=$staff_data["c_yy"]?>" size="4" maxlength="4" autocomplete="off">年 
+	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="<?=$staff_data["c_mm"]?>" size="2" maxlength="2" autocomplete="off">月 
+	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="<?=$staff_data["c_dd"]?>" size="2" maxlength="2" autocomplete="off">日
 </td>
 </tr><tr>
 <td>
@@ -425,12 +425,13 @@ CAST情報
 				</tr>
 			</table>
 			<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
+			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
 			<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">
 			<input id="h_<?=$n?>"type="hidden" value="" name="img_h[<?=$n?>]">
-			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
 			<input id="x_<?=$n?>"type="hidden" value="" name="img_x[<?=$n?>]">
 			<input id="y_<?=$n?>"type="hidden" value="" name="img_y[<?=$n?>]">
 			<input id="r_<?=$n?>"type="hidden" value="" name="img_r[<?=$n?>]">
+			<input id="v_<?=$n?>"type="hidden" value="" name="img_v[<?=$n?>]">
 		</div>
 	<?}?>
 	</div>
