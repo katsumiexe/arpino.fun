@@ -1,5 +1,10 @@
 $(document).ready(function () {
 	$('.main').fadeIn(2000);
+
+	if($('.main_b_notice').length >0){
+			$('.no_news').hide();
+	}
+
 	$('.head_menu').on('click',function(){
 		if($(this).hasClass('on')){
 			$(this).removeClass('on');
@@ -82,23 +87,27 @@ $(document).ready(function () {
 	});
 
 	$('.news_tag_list').on('click',function(){
-		if($(this).hasClass('news_tag_list_on')){
-			$(this).removeClass('news_tag_list_on');		
-			Tmp=0;
+
+		$('.news_tag_list').removeClass('cast_tag_box_sel');
+		$(this).addClass('cast_tag_box_sel');
+
+		if($(this).attr('id') == 'tag0'){
+			$('.main_b_notice').show();
+
+			if($('.main_b_notice').length ==0){
+					$('.no_news').show();
+			}
+
 		}else{
-			$('.news_tag_list').removeClass('news_tag_list_on');		
-			$(this).addClass('news_tag_list_on');		
-			Tmp=$(this).attr('id').replace('tag','');
-			$.post({
-				url:"./post/news_tag_list.php",
-				data:{
-					'tag':Tmp,
-				},
-			}).done(function(data, textStatus, jqXHR){
-				$('.main_d').html(data);		
-			});
-		};
-	});
+			$('.main_b_notice,.no_news').hide();
+			$('.'+$(this).attr('id')).show();
+
+			if($('.'+$(this).attr('id')).length ==0){
+					$('.no_news').show();
+			}
+		}
+	});	
+
 
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 100) {
@@ -112,5 +121,7 @@ $(document).ready(function () {
 		$('body, html').animate({ scrollTop: 0 }, 500);
 		return false;
 	});
+
+
 
 });
