@@ -1,8 +1,5 @@
 <?php
 include_once('./library/sql.php');
-ini_set( 'display_errors', 1 );
-ini_set('error_reporting', E_ALL);
-
 
 $code=$_REQUEST["code"];
 
@@ -28,7 +25,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	$start_year=substr($row["display_date"],0,4);
 }
 
-$sql	 ="SELECT tag_name, tag_icon, date,category, contents_key, title, contents, contents_url FROM wp01_0contents";
+$sql	 ="SELECT tag_name, tag, tag_icon, date,category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status=0";
 $sql	.=" AND display_date<'{$now}'";
@@ -67,8 +64,6 @@ include_once('./header.php');
 		<span class="footmark_text">NEWS</span>
 	</div>
 </div>
-
-
 <?if($now_year > $start_year){?>
 <form id="year_sel">
 <select>
@@ -119,7 +114,7 @@ include_once('./header.php');
 					</tr>
 					</table>
 				<?}else{?>
-					<table class="main_b_notice">
+					<table class="main_b_notice tag<?=$news[$n]["tag"]?>">
 						<tr>
 							<td  class="main_b_td_1">
 								<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
