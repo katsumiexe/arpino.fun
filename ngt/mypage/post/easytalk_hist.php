@@ -10,6 +10,8 @@ include_once('../../library/sql_post.php');
 $c_id		=$_POST['c_id'];
 $st			=($_POST['pg']+0)*10;
 
+$pg			=$_POST['pg']+1;
+
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 $sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_data["id"]}'";
@@ -41,8 +43,7 @@ if($result = mysqli_query($mysqli,$sql)){
 
 if($count_dat>10){
 	$count_dat=10;
-	$st++;
-	$html="<div id=\"mail_pg{$st}\" class=\"mail_box_next\">続きを読む</div>";		
+	$html="<input type=\"hidden\" value=\"{$pg}\" class=\"mail_page_hidden\">";		
 }
 
 for($n=$count_dat-1;$n>-1;$n--){
@@ -52,6 +53,7 @@ for($n=$count_dat-1;$n>-1;$n--){
 
 if($dat[0]["face"]){
 	$face="data:image/jpg;base64,{$dat[0]["face"]}";
+
 }else{
 	$face="../img/customer_no_image.png?t_".time();
 }

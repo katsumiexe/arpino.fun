@@ -2532,7 +2532,20 @@ console.log($('#local_ed').val());
 	});
 
 	$('.mail_detail').scroll(function() {
-		Pnt= $('.mail_detail_in').scrollTop();
+		Pnt= $(this).scrollTop();
 		console.log(Pnt);
+		if(Pnt<50){
+
+		$.post({
+			url:"./post/easytalk_hist.php",
+			data:{
+				'ct'		:Customer_id,
+				'c_id'		:Customer_id,
+			},
+		});
+
+		
+		}
 	});
 });
+
