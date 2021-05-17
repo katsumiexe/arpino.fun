@@ -534,7 +534,7 @@ if($result = mysqli_query($mysqli,$sql)){
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">
-<link rel="stylesheet" href="../css/easytalk.css?t=<?=time()?>">
+<link rel="stylesheet" href="./css/easytalk.css?t=<?=time()?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

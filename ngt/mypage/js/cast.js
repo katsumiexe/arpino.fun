@@ -311,7 +311,7 @@ $(function(){
 				TMP_H=$('.mail_detail_in_btm').offset().top;
 				console.log(TMP_H);
 
-				$('.mail_detail').animate({ scrollTop:TMP_H}, 2000);
+				$('.mail_detail').animate({ scrollTop:TMP_H}, 0);
 /*
 				if(TMP_H ==0){
 					TMP_H=$('.mail_detail_in').height();
@@ -1483,7 +1483,7 @@ $(function(){
 			$('#easytalk_img').attr('src','../img/blog_no_image.png');
 
 			TMP_H=$('.mail_detail_in_btm').offset().top;
-			$('.mail_detail').animate({ scrollTop:TMP_H}, 2000);
+			$('.mail_detail').animate({ scrollTop:TMP_H}, 500);
 
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
@@ -2530,5 +2530,12 @@ console.log($('#local_ed').val());
 		var Str_B = Str_A.substr(Str_P, Str_A.length);
 		var Str_A = $('#tmpl_send').val(Str_T + bN + Str_B);
 	});
+
+
+	$('.mail_detail_in').scroll(function() {
+		Pnt= $('.mail_box_next').scrollTop();
+		console.log(Pnt);
+	});
+
 
 });

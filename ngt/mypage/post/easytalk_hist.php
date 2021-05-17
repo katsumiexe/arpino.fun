@@ -9,15 +9,13 @@ ini_set('error_reporting', E_ALL);
 include_once('../../library/sql_post.php');
 $c_id		=$_POST['c_id'];
 $st			=($_POST['pg']+0)*10;
-$st			=0;
-$n			=0;
 
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
 $sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_data["id"]}'";
 $sql	.=" AND M.del='0'";
 $sql	.=" ORDER BY mail_id DESC";
-$sql	.=" LIMIT {$st},10";
+$sql	.=" LIMIT {$st},11";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
@@ -36,10 +34,21 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["img"]){
 			$row["stamp"]="<img src=\"../img/cast/{$box_no}/m/{$row["img"]}.png\" class=\"mail_box_stamp\">";
 		}
-		$dat[]=$row;
+		$dat_r[]=$row;
 		$count_dat++;
 	}
 }
+
+if($count_dat>10){
+	$count_dat=10;
+	$st++;
+	$html="<div id=\"mail_pg{$st}\" class=\"mail_box_next\">続きを読む</div>";		
+}
+
+for($n=$count_dat-1;$n>-1;$n--){
+	$dat[]=$dat_r[$n];
+}
+
 
 if($dat[0]["face"]){
 	$face="data:image/jpg;base64,{$dat[0]["face"]}";
