@@ -2531,11 +2531,8 @@ console.log($('#local_ed').val());
 		var Str_A = $('#tmpl_send').val(Str_T + bN + Str_B);
 	});
 
-
 	$('.mail_detail').scroll(function() {
 		Pnt= $('.mail_detail_in').scrollTop();
 		console.log(Pnt);
 	});
-
-
 });
