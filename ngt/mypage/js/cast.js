@@ -2532,8 +2532,8 @@ console.log($('#local_ed').val());
 	});
 
 
-	$('.mail_detail_in').scroll(function() {
-		Pnt= $('.mail_box_next').scrollTop();
+	$('.mail_detail').scroll(function() {
+		Pnt= $('.mail_detail_in').scrollTop();
 		console.log(Pnt);
 	});
 
