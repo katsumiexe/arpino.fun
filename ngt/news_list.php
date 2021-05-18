@@ -7,30 +7,32 @@ if($code){
 	$app=" AND tag='{$code}'";
 }
 
-$now_year=$_POST["now_year"];
-
-if(!$now_year) $now_year=date("Y");
-
+$sel_year=$_POST["now_year"];
+if(!$sel_year) $sel_year=date("Y");
+$now_year=date("Y");
 $start_year=date("Y");
 
+$sel=$_POST["sel"]+0;
 
-$sql	 ="SELECT display_date FROM wp01_0contents";
-$sql	.=" WHERE status=0";
+$sql	 ="SELECT `date` FROM wp01_0contents";
+$sql	.=" WHERE `status`=0";
 $sql	.=" AND page='news'";
+$sql	.=" AND `date`>'2010-01-01 00:00:00'";
 $sql	.=" ORDER BY date ASC";
 $sql	.=" LIMIT 1";
 
 if($result = mysqli_query($mysqli,$sql)){
 	$row = mysqli_fetch_assoc($result);
-	$start_year=substr($row["display_date"],0,4);
+	$start_year=substr($row["date"],0,4);
 }
 
-$sql	 ="SELECT tag_name, tag, tag_icon, date,category, contents_key, title, contents, contents_url FROM wp01_0contents";
+
+$sql	 ="SELECT tag_name, tag, tag_icon, `date`,category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status=0";
-$sql	.=" AND display_date<'{$now}'";
+$sql	.=" AND `date` LIKE '{$sel_year}%'";
 $sql	.=" AND page='news'";
-$sql	.=" ORDER BY display_date DESC";
+$sql	.=" ORDER BY `date` DESC";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
@@ -53,6 +55,17 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 include_once('./header.php');
 ?>
+<style>
+<?if($sel > 0){?>
+.main_b_notice{
+	display:none;
+}
+.tag<?=$sel?>{
+	display:block !important;
+}
+<?}?>
+
+</style>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -64,16 +77,6 @@ include_once('./header.php');
 		<span class="footmark_text">NEWS</span>
 	</div>
 </div>
-<?if($now_year > $start_year){?>
-<form id="year_sel">
-<select>
-<?for($n=$start_year;$n<$now_year+1;$n++){?>
-<option value="<?=$n?>" <?if($now_year == $n){?>selected="selcted"<?}?>><?=$n?></option>
-<?}?>
-<select>
-<input id="sel" type="hidden" value="0">
-</form>
-<?}?>
 <div class="main_top_flex">
 	<div class="news_main_a">
 		<div class="main_b_top">
@@ -95,6 +98,7 @@ include_once('./header.php');
 					</td>
 					</tr>
 					</table>
+
 
 				<?}elseif($news[$n]["category"]){?>
 					<table  class="main_b_notice tag<?=$news[$n]["tag"]?>">">
@@ -134,11 +138,25 @@ include_once('./header.php');
 
 	</div>
 	<div class="news_main_b">
+	<div class="news_main_b_year">
+<?if($now_year > $start_year){?>
+<form id="form_year" method="post">
+<select id="sel_year" name="now_year" class="sel_year">
+<?for($n=$start_year;$n<$now_year+1;$n++){?>
+<option value="<?=$n?>" <?if($sel_year == $n){?>selected="selcted"<?}?>><?=$n?></option>
+<?}?>
+<select>
+<input id="sel" type="hidden" name="sel" value="0">
+</form>
+<?}?>
+
+
+	</div>
 		<?if($tag){?>
 			<div class="news_tag">
-					<div id="tag0" class="news_tag_list cast_tag_box_sel">全て</div>
+					<div id="tag0" class="news_tag_list<?if($sel+0== 0){?> cast_tag_box_sel<?}?>">全て</div>
 				<?for($n=0;$n<$count_tag;$n++){?>
-					<div id="tag<?=$tag[$n]["id"]?>" class="news_tag_list"><?=$tag[$n]["tag_name"]?></div>
+					<div id="tag<?=$tag[$n]["id"]?>" class="news_tag_list<?if($sel+0== $tag[$n]["id"]){?> cast_tag_box_sel<?}?>"><?=$tag[$n]["tag_name"]?></div>
 				<?}?>
 			</div>
 		<?}?>

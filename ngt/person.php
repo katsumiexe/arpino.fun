@@ -15,6 +15,7 @@ $week[6]="(土)";
 3　停止
 */
 
+
 $t_day=date("Ymd",$day_time);
 $n_day=date("Ymd",$day_time+(86400*7));
 

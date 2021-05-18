@@ -352,6 +352,10 @@ ul {
 	color			:#c8b880;
 }
 
+.news_main_b_year{
+	width:100%;
+	text-align:right;
+}
 
 .cast_tag_box{
 	display			:inline-block;
@@ -2365,6 +2369,14 @@ ul {
 }
 .sp_only{
 	display		:none;
+}
+
+.sel_year{
+	font-size		:18px;
+	height			:30px;
+	line-height		:30px;
+	width			:100px;
+	margin:5px;
 }
 
 @media screen and (max-width: 959px){

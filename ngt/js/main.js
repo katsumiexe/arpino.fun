@@ -87,6 +87,8 @@ $(document).ready(function () {
 	});
 
 	$('.news_tag_list').on('click',function(){
+		Tmp=$(this).attr('id').replace('tag','');
+		$('#sel').val(Tmp);
 
 		$('.news_tag_list').removeClass('cast_tag_box_sel');
 		$(this).addClass('cast_tag_box_sel');
@@ -98,6 +100,7 @@ $(document).ready(function () {
 					$('.no_news').show();
 			}
 
+
 		}else{
 			$('.main_b_notice,.no_news').hide();
 			$('.'+$(this).attr('id')).show();
@@ -108,6 +111,9 @@ $(document).ready(function () {
 		}
 	});	
 
+	$('#sel_year').on('change',function(){
+		$('#form_year').submit();
+	});
 
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 100) {
