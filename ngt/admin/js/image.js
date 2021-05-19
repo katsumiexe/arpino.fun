@@ -18,6 +18,12 @@ $(function(){
 	var cvs		=[];
 	var ctx		=[];
 
+	var css_inX=[];
+	var css_inY=[];
+
+	var css_outX=[];
+	var css_outY=[];
+
 	var Base_s	=20;
 	var Base_l	=150;
 	var Base_h	=200;
@@ -53,28 +59,18 @@ $(function(){
 						img_B=150/img_W;
 
 						cvs_X=Math.ceil((img_H-img_W)/2);
-						cvs_Y=0;
+						cvs_Y=0+Base_s;
 
 						css_A=Math.ceil(img_H*Base_l/img_W);
 						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
 						css_Y=Math.ceil( Base_s - ( css_A - Base_h) / 2 );
 
+						css_inX[Tmp]=( css_A - Base_l) / 2;
+						css_inY[Tmp]= 0;
 
-/*
-						cvs_W=1200;
-						cvs_H=img_H*(cvs_W/img_W);
-						cvs_A=Math.ceil(cvs_H);
+						css_outX[Tmp]=(( css_A - Base_l) / 2)+ Base_l;
+						css_outY[Tmp]= + css_A;
 
-						cvs_X=Math.ceil((cvs_H-cvs_W)/2);
-						cvs_Y=0;
-
-						css_W=Base_l;
-						css_H=Math.ceil(img_H*(css_W/img_W));
-
-						css_A=css_H;
-						css_B=Math.ceil(Base_s-(css_A-150)/2);
-						css_C=Math.ceil(Base_s-(css_A-200)/2);
-*/
 
 					}else{
 						img_A=img_W;
@@ -87,22 +83,14 @@ $(function(){
 						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
 						css_Y=Math.ceil( Base_s - ( css_A - Base_h) / 2 );
 
-/*
-						cvs_H=1600;
-						cvs_W=img_W*(cvs_H/img_H);
-						cvs_A=Math.ceil(cvs_W);
+						css_inX[Tmp]=0;
+						css_inY[Tmp]=( css_A - Base_h) / 2;
 
-						cvs_Y=Math.ceil((cvs_W-cvs_H)/2);
-						cvs_X=0;
+						c[Tmp]= css_A;
+						css_outY[Tmp]=( ( css_A - Base_H) / 2 ) + Base_l;
 
-						css_H=Base_h;
-						css_W=Math.ceil(img_W*(css_H/img_H));
+					}
 
-						css_A=css_W;
-						css_B=Math.ceil(Base_s-(css_A-150)/2);
-						css_C=Math.ceil(Base_s-(css_A-200)/2);
-*/
-					}				
 
 					$("#cvs"+Tmp).attr({'width': img_A,'height': img_A}).css({'width': css_A,'height': css_A,'left': css_X,'top': css_Y});
 					ctx.drawImage(img, 0,0, img_W, img_H, cvs_X, cvs_Y, img_W, img_H);
@@ -142,22 +130,36 @@ $(function(){
 
 	$(".cvs0").draggable({
 		drag: function( event, ui ){
+		var Tmp=$(this).attr("id").replace('cvs','');
 
-			if(ui.position.left > 20){
-				ui.position.left=20;
+console.log(css_inX[Tmp]);
+
+			if(ui.position.left > Base_s-css_inX[Tmp]*Zoom[Tmp]/100){
+				ui.position.left=Math.ceil(Base_s-css_inX[Tmp]*Zoom[Tmp]/100);
 			}
 
-			if(ui.position.top > 20){
-				ui.position.top=20;
+
+			if(ui.position.left < Base_s-(css_inX[Tmp]-css_outX[Tmp])*Zoom[Tmp]/100){
+				ui.position.left=Math.ceil(Base_s-(css_inX[Tmp]-css_outX[Tmp])*Zoom[Tmp]/100);
 			}
+
+			if(ui.position.top > Base_s-css_inY[Tmp]*Zoom[Tmp]/100){
+				ui.position.top=Math.ceil(Base_s-css_inY[Tmp]*Zoom[Tmp]/100);
+			}
+
+
+
 		}
 	});
 
 
 	$(".cvs0").on("mousemove", function() {
-		Tmp=$(this).attr("id").replace('cvs','');
-		$('#x_'+Tmp).val($(this).css("left"));
-		$('#y_'+Tmp).val($(this).css("top"));
+		var Tmp=$(this).attr("id").replace('cvs','');
+		var TL=$(this).css("left");
+		var TT=$(this).css("top");
+
+		$('#x_'+Tmp).val(TL);
+		$('#y_'+Tmp).val(TT);
 	});
 
 	$('.img_up_del').on('click',function(){	

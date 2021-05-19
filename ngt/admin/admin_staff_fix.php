@@ -401,12 +401,20 @@ CAST情報
 				</tr>
 				<tr>
 					<td class="img_box_td_2">
-						<span class="img_box_in2">写真変更</span>
+						<span class="img_up_al">
+						<span class="img_up_al_in"></span>
+						</span>
+						<div class="img_box_td_in">写真変更</div>
 						<span class="img_up_al2">
 						<span class="img_up_al2_in"></span>
 						</span>
+
 					</td>
 					<td class="img_box_td_2">
+						<span class="img_up_al">
+						<span class="img_up_al_in"></span>
+						</span>
+						<div class="img_box_td_in">
 						<label for="upd<?=$n?>" class="img_up_file"></label>
 						<span id="rote<?=$n?>" type="button" class="img_up_rote"></span>
 						<span id="reset<?=$n?>" type="button" class="img_up_reset"></span>
@@ -416,11 +424,11 @@ CAST情報
 							<div class="zoom_rg"><input id="zoom<?=$n?>" type="range" name="img_z[<?=$n?>]" min="100" max="200" step="1" value="100" class="range_bar"></div>
 							<div id="pu<?=$n?>" class="zoom_pu">+</div><div id="zoom_box<?=$n?>" class="zoom_box">100</div>
 						</div>
-<?if($face[$n]){?>
-						<span class="img_up_al">
-						<span class="img_up_al_in"></span>
+						</div>
+						<span class="img_up_al2">
+						<span class="img_up_al2_in"></span>
 						</span>
-<?}?>
+
 					</td>
 				</tr>
 			</table>

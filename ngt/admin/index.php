@@ -216,8 +216,8 @@ echo "img_v".$img_v[0]."<br>\n";
 //■img-------------------------------
 		if($img_c){
 			$link="../img/profile/".$staff_id;
-			if($staff_set == 1){
-				$a3=0;
+//			if($staff_set == 1){
+//				$a3=0;
 
 				foreach($img_c as $a1 => $a2){
 					if($a2){
@@ -227,6 +227,11 @@ echo "img_v".$img_v[0]."<br>\n";
 
 						$tmp_left	=floor((20-$img_x[$a1])*($img_w[$a1]/150)*100/$img_z[$a1]);
 						$tmp_top	=floor((20-$img_y[$a1])*($img_h[$a1]/200)*100/$img_z[$a1]);
+echo "W:".$tmp_width."<br>\n";
+echo "H:".$tmp_height."<br>\n";
+echo "X:".$tmp_left."<br>\n";
+echo "Y:".$tmp_top."<br>\n";
+
 */
 
 						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
@@ -235,10 +240,6 @@ echo "img_v".$img_v[0]."<br>\n";
 						$tmp_left	=floor( ($img_x[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
 						$tmp_top	=floor( ($img_y[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
 
-echo "W:".$tmp_width."<br>\n";
-echo "H:".$tmp_height."<br>\n";
-echo "X:".$tmp_left."<br>\n";
-echo "Y:".$tmp_top."<br>\n";
 
 						if($img_r[$a1] ==90){
 							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
@@ -258,45 +259,48 @@ echo "Y:".$tmp_top."<br>\n";
 
 						$img2 		= imagecreatetruecolor(600,800);
 						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-						imagejpeg($img2,$link."/".$a3.".jpg",100);
+						imagejpeg($img2,$link."/".$a1.".jpg",100);
 						imagedestroy($img2);
 
 						$img2_s 		= imagecreatetruecolor(180,240);
 						ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
-	//					imagewebp($img2_s,$link."/".$a3."_s.webp");
-						imagejpeg($img2_s,$link."/".$a3."_s.jpg");
+	//					imagewebp($img2_s,$link."/".$a1."_s.webp");
+						imagejpeg($img2_s,$link."/".$a1."_s.jpg");
 						imagedestroy($img2_s);
 
 						$img2_n 		= imagecreatetruecolor(30,40);
 						ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
-						imagejpeg($img2_n,$link."/".$a3."_n.jpg",100);
+						imagejpeg($img2_n,$link."/".$a1."_n.jpg",100);
 						imagedestroy($img2_n);
-						$a3++;
+//						$a3++;
 					}
 				}
+/*
 			}else{
-				for($i=0;$i<4;$i++){
-					if($img_c[$i]){
-						$tmp_width	=ceil(1200*(100/$img_z[$i]));
-						$tmp_height	=ceil(1600*(100/$img_z[$i]));
+				foreach($img_c as $a1 => $a2){
+					if($a2){
 
-						$tmp_left	=floor((20-$img_x[$i])*(1200/150)*100/$img_z[$i]);
-						$tmp_top	=floor((20-$img_y[$i])*(1600/200)*100/$img_z[$i]);
+						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
+						$tmp_height	=ceil( ( 200 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
 
-						if($img_r[$i] ==90){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$i]));	
+						$tmp_left	=floor( ($img_x[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+						$tmp_top	=floor( ($img_y[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+
+
+						if($img_r[$a1] ==90){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
 							$img		= imagerotate($new_img, 270, 0, 0);
 
-						}elseif($img_r[$i] ==180){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$i]));	
+						}elseif($img_r[$a1] ==180){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
 							$img		= imagerotate($new_img, 180, 0, 0);
 
-						}elseif($img_r[$i] ==270){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$i]));
+						}elseif($img_r[$a1] ==270){
+							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
 							$img		= imagerotate($new_img, 90, 0, 0);
 
 						}else{
-							$img = imagecreatefromstring(base64_decode($img_c[$i]));
+							$img = imagecreatefromstring(base64_decode($img_c[$a1]));
 						}
 
 						$img2 		= imagecreatetruecolor(600,800);
@@ -317,6 +321,7 @@ echo "Y:".$tmp_top."<br>\n";
 					}
 				}
 			}
+*/
 		}
 	}
 }elseif($_POST["prof_name_new"] && $_POST["prof_style_new"]){
