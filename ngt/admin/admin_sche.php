@@ -4,6 +4,14 @@ $start_time	=$admin_config["start_time"];
 $start_week	=$admin_config["start_week"];
 */
 
+$week[0]="日";
+$week[1]="月";
+$week[2]="火";
+$week[3]="水";
+$week[4]="木";
+$week[5]="金";
+$week[6]="土";
+
 $ck_date=$_POST["sk_date"];
 if(!$ck_date) $ck_date=substr($day_8,0,4)."-".substr($day_8,4,2)."-".substr($day_8,6,2);
 
@@ -13,7 +21,7 @@ $st_day=date("Ymd",$tmp_d-($tmp_week-$start_week)*86400);
 $ed_day=date("Ymd",$tmp_d-($tmp_week-$start_week)*86400+518400);
 
 
-$sql =" SELECT id, genji FROM wp01_0cast";
+$sql =" SELECT id, genji,genji_kana FROM wp01_0cast";
 $sql.=" WHERE cast_status<2";
 $sql.=" AND del=0";
 $sql.=" ORDER BY id ASC";
@@ -69,7 +77,6 @@ td{
 	background	:#f0f0ff;
 	text-align	:center;
 	font-size	:14px;
-	background	:#fafafa;
 }
 
 .td_sort{
@@ -90,8 +97,8 @@ td{
 	background	:#fafafa;
 }
 
-.td_80{
-	width		:80px;
+.td_100{
+	width		:100px;
 	background	:#fafafa;
 	text-align	:center;
 }
@@ -154,6 +161,17 @@ $(function(){
 	<div class="main_box">
 
 <table>
+<tr>
+<td class="td_top" colspan="2">キャスト名</td>
+
+<?for($n=0;$n<7;$n++){?>
+<td class="td_top">
+<?=date("m年d月",strtotime($st_day)+($n*86400))?>
+[<?=$week[date("w",strtotime($st_day)+($n*86400))]?>]
+</td>
+<?}?>
+</tr>
+
 <?foreach($cast_dat as $a1=> $a2){?>
 <tr>
 <td class="td_60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
@@ -163,7 +181,7 @@ $(function(){
 	$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
 	if(!$sche_dat[$a2["id"]][$tmp_day]) $sche_dat[$a2["id"]][$tmp_day]="休み";
 ?>
-<td class="td_80"><?=$sche_dat[$a2["id"]][$tmp_day]?></td>
+<td class="td_100"><?=$sche_dat[$a2["id"]][$tmp_day]?></td>
 <?}?>
 </tr>
 <?}?>
