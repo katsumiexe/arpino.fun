@@ -1,4 +1,52 @@
 <?
+/*
+$start_time	=$admin_config["start_time"];
+$start_week	=$admin_config["start_week"];
+*/
+
+$ck_date=$_POST["sk_date"];
+if(!$ck_date) $ck_date=substr($day_8,0,4)."-".substr($day_8,4,2)."-".substr($day_8,6,2);
+
+$tmp_d=strtotime($ck_date);
+$tmp_week=date("w",$tmp_d);
+$st_day=date("Ymd",$tmp_d-($tmp_week+$start_week)*86400)
+$ed_day=date("Ymd",$tmp_d-($tmp_week+$start_week)*86400+604800)
+
+$sql=" SELECT C.id, genji, ctime, stime, etime, cast_id, sort FROM wp01_0cast AS C";
+$sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
+$sql.=" LEFT JOIN wp01_0sch_table AS T ON S.stime=T.name";
+$sql.=" WHERE sche_date>='{$st_day}'";
+$sql.=" AND sche_date<'{$ed_day}'";
+$sql.=" AND C.del=0";
+
+$sql.=" ORDER BY S.id ASC, C.id ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		if($row["stime"] && $row["etime"]){
+			$cast_dat[$row["id"]]["sch"]="{$row["stime"]} － {$row["etime"]}";
+			$cast_dat[$row["id"]]["sort"]=$row["sort"];
+
+		}else{
+			$cast_dat[$row["id"]]["sch"]="休み";
+			$cast_dat[$row["id"]]["sort"]=9999;
+		}
+
+		if (file_exists("../img/profile/{$row["id"]}/0.jpg")) {
+			$cast_dat[$row["id"]]["face"]="../img/profile/{$row["id"]}/0.jpg";			
+
+
+		}else{
+			$cast_dat[$row["id"]]["face"]="../img/cast_no_image.jpg";			
+		}
+
+
+
+	}
+}
+asort($sort);
+
 ?>
 <style>
 <!--
@@ -48,9 +96,9 @@ input[type=radio]:checked + label{
 	width			: calc(100vw - 180px);
 	height			:30px;
 	background		:#00d000;
-	z-index:10;
-
+	z-index			:10;
 }
+
 .wrap{
 	display			:inline-flex;
 	margin			:50px 0 30px 0;
@@ -68,15 +116,18 @@ $(function(){
 });
 </script>
 <header class="head">
-<input id="sel_contents_0" value="1" type="radio" name="sel_contents" checked="checked"><label id="label_contents_0" for="sel_contents_0" class="sel_contents">イベント</label>
-<input id="sel_contents_1" value="2" type="radio" name="sel_contents"><label id="label_contents_1" for="sel_contents_1" class="sel_contents">NEWS</label>
-<input id="sel_contents_2" value="3" type="radio" name="sel_contents"><label id="label_contents_2" for="sel_contents_2" class="sel_contents">お知らせ</label>
-<input id="sel_contents_3" value="4" type="radio" name="sel_contents"><label id="label_contents_3" for="sel_contents_3" class="sel_contents">SYSTEM</label>
-<input id="sel_contents_4" value="5" type="radio" name="sel_contents"><label id="label_contents_4" for="sel_contents_4" class="sel_contents">ACCESS</label>
-<input id="sel_contents_5" value="6" type="radio" name="sel_contents"><label id="label_contents_5" for="sel_contents_5" class="sel_contents">REQRUIT</label>
+<input id="sel_date" type="date" name="sche_date" value="<?=$sel_date?>" class="sel_date">
+<?=$st_day?> - <?=$ed_day?><br>
 </header>
 <div class="wrap">
 	<div class="main_box">
+<table>
+<?foreach($cast_dat as $a1=> $a2){?>
+<tr>
+<td></td>
+</tr>
+<?}?>
+</table>
 	</div>
 </div>
 <footer class="foot"></footer> 
