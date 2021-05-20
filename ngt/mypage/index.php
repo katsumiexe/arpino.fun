@@ -1007,6 +1007,7 @@ $(function(){
 				<img id="easytalk_img" src="../img/blog_no_image.png" class="write_box_img">
 				<div id="easytalk_send" class="write_box_send">送信</div>
 				<textarea id="easytalk_text" class="write_box_txt"></textarea>
+				<input id="easytalk_page" type="hidden" value="">
 			</div>
 		</div>
 

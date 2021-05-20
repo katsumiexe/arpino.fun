@@ -303,13 +303,14 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			TMP_H=$('.mail_detail_in_btm').offset().top;
-			console.log(TMP_H);
+			$('#easytalk_page').val('1');
+
 			$.when(
 				$('.mail_detail_in').html(data),
 
 			).done(function(){
 				TMP_H=$('.mail_detail_in_btm').offset().top;
-				console.log(TMP_H);
+
 
 				$('.mail_detail').animate({ scrollTop:TMP_H}, 0);
 /*
@@ -2534,17 +2535,22 @@ console.log($('#local_ed').val());
 	$('.mail_detail').scroll(function() {
 		Pnt= $(this).scrollTop();
 		console.log(Pnt);
+
 		if(Pnt<50){
+			console.log($(this).offset().bottom);
+			Tmp=$('#easytalk_page').val();
 
-		$.post({
-			url:"./post/easytalk_hist.php",
-			data:{
-				'ct'		:Customer_id,
-				'c_id'		:Customer_id,
-			},
-		});
-
-		
+			$.post({
+				url:"./post/easytalk_hist.php",
+				data:{
+					'st'		:Tmp,
+					'c_id'		:Customer_id,
+				},
+			}).done(function(data, textStatus, jqXHR){
+				Tmp++;
+				$('#easytalk_page').val(Tmp);
+				$('.mail_detail_in').prepend(data);
+			});
 		}
 	});
 });

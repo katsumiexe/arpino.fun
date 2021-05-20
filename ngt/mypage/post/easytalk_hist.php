@@ -9,7 +9,6 @@ ini_set('error_reporting', E_ALL);
 include_once('../../library/sql_post.php');
 $c_id		=$_POST['c_id'];
 $st			=($_POST['pg']+0)*10;
-
 $pg			=$_POST['pg']+1;
 
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
