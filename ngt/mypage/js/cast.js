@@ -343,7 +343,6 @@ $(function(){
 		$('.link_point_on').removeClass('link_point_on');
 	});
 
-
 	$('.regist_mail_set').on('click',function () {
 		$('.mail_write').slideDown();
 	});
