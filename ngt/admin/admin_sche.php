@@ -9,43 +9,45 @@ if(!$ck_date) $ck_date=substr($day_8,0,4)."-".substr($day_8,4,2)."-".substr($day
 
 $tmp_d=strtotime($ck_date);
 $tmp_week=date("w",$tmp_d);
-$st_day=date("Ymd",$tmp_d-($tmp_week+$start_week)*86400)
-$ed_day=date("Ymd",$tmp_d-($tmp_week+$start_week)*86400+604800)
+$st_day=date("Ymd",$tmp_d-($tmp_week-$start_week)*86400);
+$ed_day=date("Ymd",$tmp_d-($tmp_week-$start_week)*86400+518400);
 
-$sql=" SELECT C.id, genji, ctime, stime, etime, cast_id, sort FROM wp01_0cast AS C";
-$sql.=" LEFT JOIN wp01_0schedule AS S ON C.id=S.cast_id";
-$sql.=" LEFT JOIN wp01_0sch_table AS T ON S.stime=T.name";
+
+$sql =" SELECT id, genji FROM wp01_0cast";
+$sql.=" WHERE cast_status<2";
+$sql.=" AND del=0";
+$sql.=" ORDER BY id ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		if (file_exists("../img/profile/{$row["id"]}/0.jpg")) {
+			$row["face"]="../img/profile/{$row["id"]}/0.jpg";			
+
+		}else{
+			$row["face"]="../img/cast_no_image.jpg";			
+		}
+		$row["sch"]="休み";
+		$cast_dat[]=$row;
+	}
+}
+
+$sql ="SELECT cast_id, stime, etime, sche_date FROM wp01_0schedule";
 $sql.=" WHERE sche_date>='{$st_day}'";
-$sql.=" AND sche_date<'{$ed_day}'";
-$sql.=" AND C.del=0";
-
-$sql.=" ORDER BY S.id ASC, C.id ASC";
+$sql.=" AND sche_date<='{$ed_day}'";
+$sql.=" ORDER BY id ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
 		if($row["stime"] && $row["etime"]){
-			$cast_dat[$row["id"]]["sch"]="{$row["stime"]} － {$row["etime"]}";
-			$cast_dat[$row["id"]]["sort"]=$row["sort"];
+			$sche_dat[$row["cast_id"]][$row["sche_date"]]="{$row["stime"]}<br>｜<br>{$row["etime"]}";
 
 		}else{
-			$cast_dat[$row["id"]]["sch"]="休み";
-			$cast_dat[$row["id"]]["sort"]=9999;
+			$sche_dat[$row["cast_id"]][$row["sche_date"]]="休み";
 		}
-
-		if (file_exists("../img/profile/{$row["id"]}/0.jpg")) {
-			$cast_dat[$row["id"]]["face"]="../img/profile/{$row["id"]}/0.jpg";			
-
-
-		}else{
-			$cast_dat[$row["id"]]["face"]="../img/cast_no_image.jpg";			
-		}
-
-
-
 	}
 }
-asort($sort);
 
 ?>
 <style>
@@ -58,57 +60,86 @@ input[type="checkbox"],input[type="radio"]{
 	display:none;
 }
 
-.sel_contents{
-	display			:inline-block;
-	background		:#bbbbbb;
-	width			:150px;
-	height			:30px;
-	line-height		:30px;
-	margin			:5px;
-	border-radius	:5px;
-	color			:#fafafa;
-	font-size		:18px;
-	font-weight		:600;
-	text-align		:center;
-}
-
-input[type=radio]:checked + label{
-	background		:linear-gradient(#ff0000,#d00000);
+td{
+	border:1px solid #303030;
 }
 
 
-.head{
-	display			:inline-block;
-	position		:fixed;
-	top				:0;
-	left			:180px;
-	width			:calc(100vw - 180px);
-	height			:50px;
-	background		:#0000d0;
-	z-index:10;
+.td_top{
+	background	:#f0f0ff;
+	text-align	:center;
+	font-size	:14px;
+	background	:#fafafa;
 }
 
-.foot{
-	display			:inline-block;
-	position		:fixed;
-	bottom			:0;
-	left			:180px;
-	width			: calc(100vw - 180px);
-	height			:30px;
-	background		:#00d000;
-	z-index			:10;
+.td_sort{
+	width		:30px;
+	text-align	:center;
+	background	:#a06000;
+	color		:#fafafa;
 }
 
-.wrap{
-	display			:inline-flex;
-	margin			:50px 0 30px 0;
-	width			:1200px;
-
+.td_40{
+	width		:40px;
+	background	:#fafafa;
+	text-align:center;
 }
 
-.icon{
-	font-family:at_icon;
+.td_60{
+	width		:60px;
+	background	:#fafafa;
 }
+
+.td_80{
+	width		:80px;
+	background	:#fafafa;
+	text-align	:center;
+}
+
+.td_200{
+	width		:200px;
+	background	:#fafafa;
+}
+
+
+.td_sort_up,.td_sort_down{
+	display		:inline-block;
+	position	:absolute;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	width		:30px;
+	height		:22px;
+	line-height	:22px;
+	background	:#d0d0d0;
+	text-align	:center;
+}
+
+.td_sort_down{
+	bottom:5px;
+}
+
+.td_sort_up{
+	top:5px;
+}
+
+.td_sort_middle{
+	display		:inline-block;
+	position	:absolute;
+	left		:0;
+	right		:0;
+	margin		:auto;
+	top			:0;
+	bottom		:0;
+	height		:26px;
+	background	:#fafafa;
+	border		:1px solid #303030;
+	text-align	:right;
+	width		:24px;
+	padding		:2px;
+}
+
+
 -->
 </style>
 <script>
@@ -121,10 +152,19 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="main_box">
+
 <table>
 <?foreach($cast_dat as $a1=> $a2){?>
 <tr>
-<td></td>
+<td class="td_60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+<td class="td_200"><?=$a2["genji"]?><br>[<?=$a2["genji_kana"]?>]</td>
+<?for($n=0;$n<7;$n++){?>
+<?
+	$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
+	if(!$sche_dat[$a2["id"]][$tmp_day]) $sche_dat[$a2["id"]][$tmp_day]="休み";
+?>
+<td class="td_80"><?=$sche_dat[$a2["id"]][$tmp_day]?></td>
+<?}?>
 </tr>
 <?}?>
 </table>
