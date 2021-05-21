@@ -2341,13 +2341,11 @@ ul {
 .main_flex_a{
 	display		:block;
 	flex-basis	:875px;
-	background	:#fa0afa;
 	text-align	:left;
 }
 .main_flex_b{
 	display		:block;
 	flex-basis	:305px;
-	background	:#fafafa;
 	text-align	:right;
 }
 
@@ -2508,6 +2506,17 @@ ul {
 
 .main_b_td_3{
 	width:5vw;
+}
+
+.main_flex_a{
+	flex-basis	:98vw;
+	text-align	:center;
+	margin		:0 auto;
+}
+.main_flex_b{
+	flex-basis	:98vw;
+	text-align	:center;
+	margin		:0 auto;
 }
 
 

@@ -2519,9 +2519,6 @@ console.log($('#local_ed').val());
 	$('.mail_detail').scroll(function() {
 		Pnt= $(this).scrollTop();
 		Hgt= $('.mail_detail_in').height();
-
-console.log(Hgt+"▲"+Pnt);
-
 		if(Pnt==0){
 			Tmp=$('#easytalk_page').val()-0;
 
