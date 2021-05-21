@@ -55,25 +55,25 @@ $(function(){
 	})
 
 	$('.slide_dot').on('click',function () {
-		TMP=$(this).attr('id').replace('dot','');
-		Left=TMP * (-100);
+		var TMP=$(this).attr('id').replace('dot','');
+		var Left=TMP * (-100);
 		$('.slide_img').animate({'left':Left+"%"},500);
 		$('.slide_dot').removeClass('dot_on');
 		$(this).addClass('dot_on');
-		TopCnt=TMP;
+		var TopCnt=TMP;
 		clearInterval(timerId);
-		timerId = setInterval(Fnc_s,TMR);
+		var timerId = setInterval(Fnc_s,TMR);
 	});
 });
 
 function Fnc_s() {
-	TopCnt++;
+	let TopCnt++;
 	if(TopCnt>Cnt){
-		TopCnt=0;
+		let TopCnt=0;
 //		clearInterval(timerId);
 //		timerId = setInterval(Fnc_s,TMR);
 	}
-	var Left=TopCnt * (-100);
+	let Left=TopCnt * (-100);
 	$('.slide_img').animate({'left':Left+"%"},1000)
 	$('.slide_dot').removeClass('dot_on'),
 	$('#dot'+TopCnt).addClass('dot_on')

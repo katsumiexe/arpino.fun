@@ -8,8 +8,7 @@ ini_set('error_reporting', E_ALL);
 */
 include_once('../../library/sql_post.php');
 $c_id		=$_POST['c_id'];
-$st			=($_POST['pg']+0)*10;
-$pg			=$_POST['pg']+1;
+$st			=($_POST['st']+0)*10;
 
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
@@ -35,7 +34,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["img"]){
 			$row["stamp"]="<img src=\"../img/cast/{$box_no}/m/{$row["img"]}.png\" class=\"mail_box_stamp\">";
 		}
-		$dat_r[]=$row;
+		$dat[]=$row;
 		$count_dat++;
 	}
 }
@@ -45,10 +44,11 @@ if($count_dat>10){
 	$html="<input type=\"hidden\" value=\"{$pg}\" class=\"mail_page_hidden\">";		
 }
 
+/*
 for($n=$count_dat-1;$n>-1;$n--){
 	$dat[]=$dat_r[$n];
 }
-
+*/
 
 if($dat[0]["face"]){
 	$face="data:image/jpg;base64,{$dat[0]["face"]}";
@@ -57,7 +57,7 @@ if($dat[0]["face"]){
 	$face="../img/customer_no_image.png?t_".time();
 }
 
-for($n=$count_dat-1;$n>-1;$n--){
+for($n=0;$n<$count_dat;$n++){
 	if($dat[$n]["send_flg"] == 2){
 		if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";

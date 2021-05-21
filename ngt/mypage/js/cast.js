@@ -292,35 +292,22 @@ $(function(){
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
 		Customer_mail=$(this).children('.mail_address').val();
+
+		$('#easytalk_page').val('1');
 		TMP_H=$('.mail_detail_in_btm').offset().top;
 		console.log(TMP_H);
 
 		$.post({
 			url:"./post/easytalk_hist.php",
 			data:{
-				'c_id'		:Customer_id
+				'c_id'		:Customer_id,
+				'st'		:'0',
 			},
 
 		}).done(function(data, textStatus, jqXHR){
+			$('.mail_detail_in').html(data),
 			TMP_H=$('.mail_detail_in_btm').offset().top;
-			$('#easytalk_page').val('1');
-
-			$.when(
-				$('.mail_detail_in').html(data),
-
-			).done(function(){
-				TMP_H=$('.mail_detail_in_btm').offset().top;
-
-
-				$('.mail_detail').animate({ scrollTop:TMP_H}, 0);
-/*
-				if(TMP_H ==0){
-					TMP_H=$('.mail_detail_in').height();
-				}
-*/
-				$('.head_mymenu_ttl').text(Customer_Name),
-				$('.head_mymenu_comm').addClass('arrow_mail')
-			});
+			$('.mail_detail').scrollTop(TMP_H);
 		});
 	});
 
@@ -2507,8 +2494,6 @@ console.log($('#local_ed').val());
 	$('.ana_sel').on('change',function(){
 		Tmp=$(this).val();
 
-		console.log(Tmp);
-		
 		$.post({
 			url:"./post/ana_chg.php",
 			data:{
@@ -2533,11 +2518,12 @@ console.log($('#local_ed').val());
 
 	$('.mail_detail').scroll(function() {
 		Pnt= $(this).scrollTop();
-		console.log(Pnt);
+		Hgt= $('.mail_detail_in').height();
 
-		if(Pnt<50){
-			console.log($(this).offset().bottom);
-			Tmp=$('#easytalk_page').val();
+console.log(Hgt+"▲"+Pnt);
+
+		if(Pnt==0){
+			Tmp=$('#easytalk_page').val()-0;
 
 			$.post({
 				url:"./post/easytalk_hist.php",
@@ -2548,7 +2534,7 @@ console.log($('#local_ed').val());
 			}).done(function(data, textStatus, jqXHR){
 				Tmp++;
 				$('#easytalk_page').val(Tmp);
-				$('.mail_detail_in').prepend(data);
+				$('.mail_detail_in').append(data);
 			});
 		}
 	});
