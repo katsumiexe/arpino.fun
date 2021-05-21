@@ -125,16 +125,16 @@ include_once('./header.php');
 
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
-			<table class="sub_blog_in">
+			<table">
 				<tr>
 					<td colspan="2" class="blog_title"><?=$blog["genji"]?></td>
 				</tr>
 				<tr>
-					<td rowspan="8"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
+					<td rowspan="8" style="width:40vw"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
 					<td> </td>
 				</tr>
-				<?for($n=0;$n<7;$n++){?>
-				<tr><td> </td></tr>
+				<?for($n=0;$n<6;$n++){?>
+				<tr><td>あいうえお</td></tr>
 				<?}?>
 				<tr><td><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
 			</table>
