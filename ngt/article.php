@@ -125,9 +125,9 @@ include_once('./header.php');
 
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
-			<table">
+			<table class="sub_blog_in">
 				<tr>
-					<td colspan="2" class="blog_title"><?=$blog["genji"]?></td>
+					<td colspan="2" class="blog_cast_name"><?=$blog["genji"]?></td>
 				</tr>
 				<tr>
 					<td rowspan="8" style="width:40vw"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
