@@ -43,7 +43,6 @@ include_once('./header.php');
 				〒160-0021<br>
 				東京都新宿区歌舞伎町1-1-1 新宿ビルB1F<br>
 			</div>
-
 			<div class="access_tag">アクセス</div>
 			<div class="access_box">
 				JR線 新宿駅東口より徒歩3分<br> 
