@@ -6,6 +6,7 @@ $sql	.=" WHERE status=0";
 $sql	.=" AND id='{$code}'";
 $sql	.=" LIMIT 1";
 
+
 if($res0 = mysqli_query($mysqli,$sql)){
 $event = mysqli_fetch_assoc($res0);
 
