@@ -292,34 +292,22 @@ $(function(){
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
 		Customer_mail=$(this).children('.mail_address').val();
+
+		$('#easytalk_page').val('1');
 		TMP_H=$('.mail_detail_in_btm').offset().top;
 		console.log(TMP_H);
 
 		$.post({
 			url:"./post/easytalk_hist.php",
 			data:{
-				'c_id'		:Customer_id
+				'c_id'		:Customer_id,
+				'st'		:'0',
 			},
 
 		}).done(function(data, textStatus, jqXHR){
+			$('.mail_detail_in').html(data),
 			TMP_H=$('.mail_detail_in_btm').offset().top;
-			console.log(TMP_H);
-			$.when(
-				$('.mail_detail_in').html(data),
-
-			).done(function(){
-				TMP_H=$('.mail_detail_in_btm').offset().top;
-				console.log(TMP_H);
-
-				$('.mail_detail').animate({ scrollTop:TMP_H}, 0);
-/*
-				if(TMP_H ==0){
-					TMP_H=$('.mail_detail_in').height();
-				}
-*/
-				$('.head_mymenu_ttl').text(Customer_Name),
-				$('.head_mymenu_comm').addClass('arrow_mail')
-			});
+			$('.mail_detail').scrollTop(TMP_H);
 		});
 	});
 
@@ -341,7 +329,6 @@ $(function(){
 		$('.detail_modal').animate({'top':'110vh'},100);
 		$('.link_point_on').removeClass('link_point_on');
 	});
-
 
 	$('.regist_mail_set').on('click',function () {
 		$('.mail_write').slideDown();
@@ -2507,8 +2494,6 @@ console.log($('#local_ed').val());
 	$('.ana_sel').on('change',function(){
 		Tmp=$(this).val();
 
-		console.log(Tmp);
-		
 		$.post({
 			url:"./post/ana_chg.php",
 			data:{
@@ -2533,18 +2518,21 @@ console.log($('#local_ed').val());
 
 	$('.mail_detail').scroll(function() {
 		Pnt= $(this).scrollTop();
-		console.log(Pnt);
-		if(Pnt<50){
+		Hgt= $('.mail_detail_in').height();
+		if(Pnt==0){
+			Tmp=$('#easytalk_page').val()-0;
 
-		$.post({
-			url:"./post/easytalk_hist.php",
-			data:{
-				'ct'		:Customer_id,
-				'c_id'		:Customer_id,
-			},
-		});
-
-		
+			$.post({
+				url:"./post/easytalk_hist.php",
+				data:{
+					'st'		:Tmp,
+					'c_id'		:Customer_id,
+				},
+			}).done(function(data, textStatus, jqXHR){
+				Tmp++;
+				$('#easytalk_page').val(Tmp);
+				$('.mail_detail_in').append(data);
+			});
 		}
 	});
 });

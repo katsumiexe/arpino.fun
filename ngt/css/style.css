@@ -521,6 +521,23 @@ ul {
 	border-spacing: 0 5px;
 }
 
+.blog_cast_name{
+	width			:858px;
+	height			:40px;
+	line-height		:40px;
+	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+	font-size		:18px;
+	font-weight		:600;
+	padding-left	:10px;
+	text-align		:left;
+	border			:1px solid #c8b880;
+	margin-block-start	:0;
+	margin-block-end	:0;
+	border-radius:5px 5px 0 0;
+	color			:#483800;
+	text-shadow	:1px 1px 0 #ffffff;	
+
+}
 
 .main_b_title,.main_b_title_l,.sche_title,.blog_title{
 	position		:relative;
@@ -2341,13 +2358,11 @@ ul {
 .main_flex_a{
 	display		:block;
 	flex-basis	:875px;
-	background	:#fa0afa;
 	text-align	:left;
 }
 .main_flex_b{
 	display		:block;
 	flex-basis	:305px;
-	background	:#fafafa;
 	text-align	:right;
 }
 
@@ -2508,6 +2523,17 @@ ul {
 
 .main_b_td_3{
 	width:5vw;
+}
+
+.main_flex_a{
+	flex-basis	:98vw;
+	text-align	:center;
+	margin		:0 auto;
+}
+.main_flex_b{
+	flex-basis	:98vw;
+	text-align	:center;
+	margin		:0 auto;
 }
 
 
@@ -3527,6 +3553,19 @@ ul {
 }
 
 
+.blog_cast_name{
+	width			:43vw;
+	height			:4vw;
+	line-height		:4vw;
+	margin			:0 auto;
+	font-size		:2.5vw;
+	padding-left	:1vw;
+	border-radius	:1vw 1vw 0 0; 
+	border			:0.5vw solid #c8b880;
+
+}
+
+
 }
 @media screen and (max-width: 559px){
 
@@ -3734,6 +3773,15 @@ ul {
 .access_table{
 	flex-wrap	:wrap;
 	width		:86vw;
+}
+
+.blog_cast_name{
+	width			:95vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:0 auto;
+	font-size		:4vw;
+	padding-left	:1vw;
 }
 
 
@@ -3980,8 +4028,9 @@ ul {
 }
 
 .blog_cast_img{
-	width		:86vw;
-	margin		:5vw 5vw 2vw 5vw;
+	width		:39vw;
+	height		:54vw;
+
 }
 .blog_cast_link{
 	width		:86vw;

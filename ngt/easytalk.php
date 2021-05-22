@@ -114,7 +114,6 @@ if($ss){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EasyTalk</title>
 <script>
-
 const ImgSrc="./img/customer_no_img.jpg?t_<?=time()?>";
 const CastId="<?=$ssid["cast_id"]?>";
 </script>
@@ -134,7 +133,6 @@ const CastId="<?=$ssid["cast_id"]?>";
 }
 </style>
 </head>
-
 <body class="body">
 <header class="head_easytalk"></header>
 <div class="main_easytalk">

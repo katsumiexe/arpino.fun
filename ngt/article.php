@@ -125,14 +125,21 @@ include_once('./header.php');
 
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
-			<div class="sub_blog_in">
-			<div class="blog_title"><?=$blog["genji"]?></div>
-				<img src="<?=$blog["face"]?>" class="blog_cast_img">
-				<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a>
-			</div>
+			<table class="sub_blog_in">
+				<tr>
+					<td colspan="2" class="blog_cast_name"><?=$blog["genji"]?></td>
+				</tr>
+				<tr>
+					<td rowspan="8" style="width:40vw"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
+					<td> </td>
+				</tr>
+				<?for($n=0;$n<6;$n++){?>
+				<tr><td>あいうえお</td></tr>
+				<?}?>
+				<tr><td><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
+			</table>
 
 			<div class="sub_blog_in">
-
 			<div class="blog_title">新着</div>
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">

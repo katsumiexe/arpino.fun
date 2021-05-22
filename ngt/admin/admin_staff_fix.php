@@ -432,6 +432,7 @@ CAST情報
 					</td>
 				</tr>
 			</table>
+
 			<input type="hidden" value="<?if($face[$n]){?>0<?}else{?>1<?}?>" class="chg_check" name="chg_check[<?=$n?>]">
 			<input id="c_<?=$n?>"type="hidden" value="" name="img_c[<?=$n?>]">
 			<input id="w_<?=$n?>"type="hidden" value="" name="img_w[<?=$n?>]">

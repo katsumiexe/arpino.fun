@@ -1,6 +1,6 @@
 .img_box_flex{
 	display		:flex;
-	justify-content: space-around;
+	justify-content:space-around;
 	flex-wrap	:wrap;
 	width		:400px;
 	height		:650px;
@@ -22,7 +22,7 @@
 	width			:386px;
 	background		:#fafafa;
 	height			:311px;
-	border			:2px solid #906000;
+	border			:2px solid #909090;
 	border-spacing	: 0;
 }
 
@@ -33,12 +33,10 @@
 	max-height		:311px;
 	overflow		:hidden;
 	background		:#fafafa;
-
 }
 
-
 .img_box_td_1{
-	border			:2px solid #906000;
+	border			:2px solid #909090;
 	width			:190px;
 	max-width		:190px;
 	min-width		:190px;
@@ -58,11 +56,11 @@
 
 
 .img_box_td_2{
-	position:relative;
-	border			:2px solid #906000;
+	position		:relative;
+	border			:2px solid #909090;
 	width			:190px;
-	max-width			:190px;
-	background		:#906000;
+	max-width		:190px;
+	background		:#e0e0e0;
 	padding:0;
 }
 
@@ -71,30 +69,28 @@
 	position	:absolute;
 	top			:20px;
 	left		:20px;
-	background	:#009000;
+	background	:linear-gradinet(#9090b0,#8080c0);
 	width		:150px;
 	height		:200px;
 }
 
-
-
 .img_up_file{
-	display		:inline-block;
-	background	:linear-gradient(#c0c0c0,#909090);
-	position	:absolute;
-	top			:5px;
-	left		:5px;
-	height		:25px;
-	line-height	:25px;
-	width		:35px;
-	text-align	:center;
-	color		:#fafafa;
-	overflow	:hidden;
-	padding		:0 5px;
-	border-radius:3px;
-	text-align	:center;
-	font-size	:20px;
-	font-family:at_icon;
+	display			:inline-block;
+	background		:linear-gradient(#c0c0c0,#909090);
+	position		:absolute;
+	top				:5px;
+	left			:5px;
+	height			:25px;
+	line-height		:25px;
+	width			:35px;
+	text-align		:center;
+	color			:#fafafa;
+	overflow		:hidden;
+	padding			:0 5px;
+	border-radius	:3px;
+	text-align		:center;
+	font-size		:20px;
+	font-family		:at_icon;
 }
 
 .img_up_rote,.img_up_reset,.img_up_del{
@@ -129,7 +125,7 @@
 	bottom		:0;
 	right		:0;
 	left		:0;
-	background	:#008000;
+	background	:##fafafa;
 	width		:144px;
 	height		:63px;
 	margin		:auto;
@@ -140,8 +136,7 @@
 	top			:0;
 	bottom		:0;
 	display		:inline-block;
-	background	:#ffe0f0;
-	color		:#d00000;
+	background	:##fafafa;
 	height		:63px;
 	width		:20px;
 	text-align	:center;
@@ -170,14 +165,14 @@
 
 .img_up_al_in{
 	right			:5px;
-	border-top		:5px solid #d00000;
-	border-right	:5px solid #d00000;
+	border-top		:5px solid #ffffff;
+	border-right	:5px solid #ffffff;
 }
 
 .img_up_al2_in{
 	left			:5px;
-	border-bottom	:5px solid #d00000;
-	border-left		:5px solid #d00000;
+	border-bottom	:5px solid #ffffff;
+	border-left		:5px solid #ffffff;
 }
 
 .img_box_out1{
@@ -271,7 +266,7 @@
 
 input[type=range] {
 	-webkit-appearance:none;
-	background		:#f17766;
+	background		:#909090;
 	height			:6px;
 	width			:70px;
 	display			:inline-block;
@@ -282,7 +277,7 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-thumb{
 	-webkit-appearance	:none;
-	background			:#f17766;
+	background			:#909090;
 	height				:14px;
 	width				:14px;
 	border-radius		:50%;
@@ -298,7 +293,7 @@ input[type=range]::-moz-range-track{
 }
 
 input[type=range]::-moz-range-thumb{
-	background		:#f17766;
+	background		:#909090;
 	height			:14px;
 	width			:14px;
 	border-radius	:50%;
@@ -310,12 +305,12 @@ input[type=range]::-moz-range-thumb{
 	height				:20px;
 	line-height			:22px;
 	flex-basis			:18px;
-	border				:1px solid #f17766;
+	border				:1px solid #909090;
 	border-radius		:5px 0 0 5px;
 	text-align			:center;
 	cursor				:pointer;
-	background			:#ffe0f0;
-	color				:#f17766;
+	background			:#e0e0e0;
+	color				:#909090;
 	font-size			:14px;
 	font-weight			:600;
 }		
@@ -325,12 +320,12 @@ input[type=range]::-moz-range-thumb{
 	height				:20px;
 	line-height			:22px;
 	flex-basis			:18px;
-	border				:1px solid #f17766;
+	border				:1px solid #909090;
 	border-radius		:0 5px 5px 0;
 	text-align			:center;
 	cursor				:pointer;
-	background			:#ffe0f0;
-	color				:#f17766;
+	background			:#e0e0e0;
+	color				:#909090;
 	font-size			:14px;
 	font-weight			:600;
 }
@@ -340,13 +335,13 @@ input[type=range]::-moz-range-thumb{
 	height				:20px;
 	line-height			:20px;
 	flex-basis			:80px;
-	border				:1px solid #f17766;
-	background			:#ffe0f0
+	border				:1px solid #909090;
+	background			:#e0e0e0
 }
 
 .zoom_box{
-	border				:1px solid #f17766;
-	color				:#f17766;
+	border				:1px solid #909090;
+	color				:#909090;
 	display				:inline-block;
 	height				:20px;
 	line-height			:22px;

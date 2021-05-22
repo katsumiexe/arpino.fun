@@ -22,7 +22,7 @@ function custom_menu_tarot(){
 }
 	
 function set_tarot(){
-global $wpdb;
+	global $wpdb;
 /*
 	$n=0;
 	$sql	 ="SELECT * FROM tarot_group";
