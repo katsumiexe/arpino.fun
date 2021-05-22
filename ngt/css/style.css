@@ -4033,8 +4033,8 @@ ul {
 
 }
 .blog_cast_link{
-	width		:86vw;
-	margin		:0 5vw 5vw 5vw;
+	width		:40vw;
+	margin		:1vw auto 0 auto; ;
 
 	height		:8vw;
 	line-height	:8vw;
