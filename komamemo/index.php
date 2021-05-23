@@ -34,12 +34,10 @@
 <?for($n=1;$n<10;$n++){?>
 <tr>
 <?for($s=1;$s<10;$s++){?>
-<td id="c<?=$s?><?=$n?>" class="masu"></td>
+<td id="c<?=$s?><?=$n?>" class="masu"><img src="./img/koma/k<?=$s?>a.png" class="koma"></td>
 <?}?>
 </tr>
 <?}?>
 </table>
 </body>
 </html>
-
-<img src="../img/koma/k<?=$s?>a.png" class="koma">
