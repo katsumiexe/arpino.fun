@@ -10,7 +10,8 @@
 	table-layout	:fixed;
 	border-collapse	:collapse;
 	border			:2px solid #000000;
-	background		:linear-gradient(90deg, #D49E68, #DFB892 40%,#DEB690,100%)
+	background		:linear-gradient(90deg, #D49E68, #DFB892 40%,#DEB690 100%)
+
 	
 }
 
@@ -18,6 +19,11 @@
 	border			:1px solid #000000;
 	width			:8vw;
 	height			:9vw;
+}
+
+.koma{
+	width	:8vw;
+	height	:9vw;
 }
 </style>
 
@@ -35,3 +41,5 @@
 </table>
 </body>
 </html>
+
+<img src="../img/koma/k<?=$s?>a.png" class="koma">
