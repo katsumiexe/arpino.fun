@@ -80,12 +80,11 @@ if($result = mysqli_query($mysqli,$sql)){
 </tr>
 <?}?>
 </table>
+
 <?for($t=1;$t<41;$t++){?>
 <img src="koma/<?=$base[$t]["img"]?><?=$row["style_".$t]?>.png" class="koma c<?=$row["column_".$t]?> l<?=$row["line_".$t]?> s<?=$row["style_".$t]?> u<?=$row["user_".$t]?>">
 <? } ?>
 </div>
-<div>
-</div>
-
+<div></div>
 </body>
 </html>
