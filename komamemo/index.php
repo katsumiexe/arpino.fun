@@ -1,3 +1,22 @@
+<?php
+include_once('./library/sql.php');
+
+$sql="SELECT * FROM komamemo_base";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($res = mysqli_fetch_assoc($result)){
+		$base[$res["id"]]=$res;
+	}
+}
+
+
+$sql="SELECT * FROM komamemo_log WHERE host='2' ORDER BY id DESC LIMIT 1";
+
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,19 +28,19 @@
 
 .main{
 	position:relative;
-	width	:77.5vw;
-	height	:86.5vw;
+	width	:74vw;
+	height	:91.5vw;
 }
 
 .ban{
 	position			:absolute;
 	table-layout		:fixed;
 	border-collapse		:collapse;
-	border-top			:0.5vw solid #000000;
-	border-left			:0.5vw solid #000000;
+	border-top			:1vw solid #000000;
+	border-left			:1vw solid #000000;
 	border-right		:1vw solid #000000;
 	border-bottom		:1vw solid #000000;
-	background			:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%)
+	background			:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
 }
 
 .masu{
@@ -31,7 +50,22 @@
 }
 
 .koma{
+	position:absolute;
 	width	:8vw;
+
+}
+<?for($e=1;$e<10;$e++){?>
+<?$e1=66-8.5*($e-1);?>
+.c<?=$e?>{left:<?=$e1?>vw;}
+<?}?>
+
+<?for($e=1;$e<10;$e++){?>
+<?$e1=1+10*($e-1);?>
+.l<?=$e?>{top:<?=$e1?>vw;}
+<?}?>
+
+.u2{
+	transform:rotate(180deg);
 }
 </style>
 </head>
@@ -46,8 +80,12 @@
 </tr>
 <?}?>
 </table>
-<img src="./img/koma/k<?=$s?>a.png" class="koma">
+<?for($t=1;$t<41;$t++){?>
+<img src="koma/<?=$base[$t]["img"]?><?=$row["style_".$t]?>.png" class="koma c<?=$row["column_".$t]?> l<?=$row["line_".$t]?> s<?=$row["style_".$t]?> u<?=$row["user_".$t]?>">
+<? } ?>
 </div>
+<div>
+</div>
+
 </body>
 </html>
-
