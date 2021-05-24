@@ -178,7 +178,7 @@ td{
 	font-weight	:600;
 	color		:#303030;
 	background	:#D49E68;
-	text-align	:left;
+	text-align	:center;
 }
 
 .waku_main{
