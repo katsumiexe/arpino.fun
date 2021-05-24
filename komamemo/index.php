@@ -1,7 +1,30 @@
 <?php
 include_once('./library/sql.php');
 
-if($dat["id"]){
+if($_POST["set"]){
+	$title	=$_POST["title"];
+	$place	=$_POST["place"];
+	$first	=$_POST["first"];
+	$second	=$_POST["second"];
+	$kami	=$_POST["kami"];
+	if(!$title) $title="対局";
+	if(!$place) $place="将棋会館";
+	if(!$first) $first="名無しさん";
+	if(!$second) $second="名無し先生";
+	include_once('./library/start.php');
+
+	$cast["id"]		=$tmp_auto;
+	$cast["title"]	=$title;
+	$cast["place"]	=$place;
+	$cast["first"]	=$first;
+	$cast["second"]	=$second;
+	$cast["cast_time"]=$time();
+
+	$_SESSION=$cast;
+}
+
+
+if($cast["id"]){
 	$sql="SELECT * FROM komamemo_base";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
@@ -9,19 +32,17 @@ if($dat["id"]){
 		}
 	}
 
-	$sql="SELECT * FROM komamemo_log WHERE host='{$dat["id"]}' ORDER BY id DESC LIMIT 1";
+	$sql="SELECT * FROM komamemo_log WHERE host_id='{$cast["id"]}' ORDER BY log_id ASC";
 	if($result = mysqli_query($mysqli,$sql)){
-		$row = mysqli_fetch_assoc($result);
+		while($row = mysqli_fetch_assoc($result)){
+			$dat[$row["koma_id"]]=$row;
+		}
 	}
-}elseif($_POST["set"]){
-	
-	include_once('./library/set.php');
-
 }
 
+
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -196,10 +217,30 @@ td{
 	height	:86vw;
 }
 
+.top_box{
+	font-size:4.5vw;;
+}
+
+.box_text{
+	height:6vw;
+	font-size:4.5vw;
+	width:50vw;
+}
+
+.box_tag{
+	display:inline-block;
+	width:20vw;
+	height:6vw;
+	font-size:4vw;
+	line-height:6vw;
+}
+
+
 </style>
 </head>
 <body class="body">
 <div class="main">
+<?if($base){?>
 <table class="waku">
 <tr>
 <td class="waku_top" colspan="12"></td>
@@ -237,10 +278,11 @@ td{
 				<?}?>
 			<?}?>
 			<?for($t=1;$t<41;$t++){?>
-				<span cc="<?=$row["column_".$t]?>" ll="<?=$row["line_".$t]?>" class="koma c<?=$row["column_".$t]?> l<?=$row["line_".$t]?> s<?=$row["style_".$t]?> u<?=$row["user_".$t]?>"><img src="koma/<?=$base[$t]["img"]?><?=$row["style_".$t]?>.png" class="koma_img"></span>
+				<span cc="<?=$dat[$t]["column"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
 			<? } ?>
 		</div>
 	</td>
+
 	<td class="waku_line">
 		<span class="waku_line_in">1</span>
 		<span class="waku_line_in">2</span>
@@ -272,7 +314,25 @@ td{
 <div class="memo"></div>
 </td>
 </tr>
-</table>
+</table>	
+<?}else{?>
+<form id="set_form" method="post">
+<div class="top_box">
+<span class="box_tag">タイトル</span><input type="text" name="title" value="対局" class="box_text"><br>
+<span class="box_tag">場所</span><input type="text" name="title" value="将棋会館" class="box_text"><br>
+<span class="box_tag">先手</span><input type="text" name="first" value="名無しさん" class="box_text"><br>
+<span class="box_tag">後手</span><input type="text" name="second" value="名無し先生" class="box_text"><br>
+<span class="box_tag">上座</span>
+<select name="kami" class="box_text">
+<option value="1">先手</option>
+<option value="2" selected>後手</option>
+</select>
+<br>
+<input type="hidden" value="set" name="set">
+<button id="send_btn" type="submit">開始</button>
+</div>
+</form>
+<?}?>
 </div>
 </body>
 </html>
