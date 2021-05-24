@@ -72,16 +72,13 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 
 		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,10);
-
 		$blog_new[]=$row;
-
 		$blog_new_count++;
 	}
 }
 
 include_once('./header.php');
 ?>
-
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -125,18 +122,19 @@ include_once('./header.php');
 
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
+
 			<table class="sub_blog_in">
 				<tr>
 					<td colspan="2" class="blog_cast_name"><?=$blog["genji"]?></td>
 				</tr>
+
 				<tr>
-					<td rowspan="8" style="width:40vw"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
-					<td> </td>
+					<td class="blog_cast_left" rowspan="7"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td><td class="blog_cast_sche">あいうえお</td>
+					<?for($n=0;$n<6;$n++){?>
+						<tr><td class="blog_cast_sche">あいうえお</td></tr>
+					<?}?>
 				</tr>
-				<?for($n=0;$n<6;$n++){?>
-				<tr><td>あいうえお</td></tr>
-				<?}?>
-				<tr><td><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
+				<tr><td colspan="2" class="blog_cast_prof"><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
 			</table>
 
 			<div class="sub_blog_in">
@@ -144,7 +142,8 @@ include_once('./header.php');
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">
-					<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog_new[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog_new[$s]["tag_name"]?></span></span>
+					<span class="person_blog_tag">
+					<span class="blog_list_icon"><?=$blog_new[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog_new[$s]["tag_name"]?></span></span>
 					<span class="person_blog_date"><?=$blog_new[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>

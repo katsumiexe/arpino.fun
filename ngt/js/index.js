@@ -67,13 +67,13 @@ $(function(){
 });
 
 function Fnc_s() {
-	let TopCnt++;
+	TopCnt++;
 	if(TopCnt>Cnt){
 		let TopCnt=0;
 //		clearInterval(timerId);
 //		timerId = setInterval(Fnc_s,TMR);
 	}
-	let Left=TopCnt * (-100);
+	var Left=TopCnt * (-100);
 	$('.slide_img').animate({'left':Left+"%"},1000)
 	$('.slide_dot').removeClass('dot_on'),
 	$('#dot'+TopCnt).addClass('dot_on')
