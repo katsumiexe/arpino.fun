@@ -1,22 +1,27 @@
 <?php
 include_once('./library/sql.php');
 
-$sql="SELECT * FROM komamemo_base";
-
-if($result = mysqli_query($mysqli,$sql)){
-	while($res = mysqli_fetch_assoc($result)){
-		$base[$res["id"]]=$res;
+if($dat["id"]){
+	$sql="SELECT * FROM komamemo_base";
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
+			$base[$res["id"]]=$res;
+		}
 	}
-}
 
+	$sql="SELECT * FROM komamemo_log WHERE host='{$dat["id"]}' ORDER BY id DESC LIMIT 1";
+	if($result = mysqli_query($mysqli,$sql)){
+		$row = mysqli_fetch_assoc($result);
+	}
+}elseif($_POST["set"]){
+	
+	include_once('./library/set.php');
 
-$sql="SELECT * FROM komamemo_log WHERE host='2' ORDER BY id DESC LIMIT 1";
-
-if($result = mysqli_query($mysqli,$sql)){
-	$row = mysqli_fetch_assoc($result);
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -63,7 +68,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	display			:block;
 	width			:8vw;
 	height			:9vw;
-	background			:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
+	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
 }
 
 .koma{
@@ -97,13 +102,13 @@ if($result = mysqli_query($mysqli,$sql)){
 	position		:relative;
 	width			:8vw;
 	height			:7vw;
-	margin-bottom	:1.5vw;
+	margin-bottom	:3vw;
 	text-align		:left;
 }
 
 .m_koma_c{
 	position		:absolute;
-	bottom			:0;
+	bottom			:-1vw;
 	right			:0;
 	display			:inline-block;
 	width			:4.5vw;
@@ -115,7 +120,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	font-weight		:600;
 	background		:rgba(120,40,60,0.6);
 	font-size		:3vw;
-
 }
 
 <?for($e=1;$e<10;$e++){?>
@@ -174,10 +178,16 @@ td{
 
 .waku_line{
 	width		:4vw;
+	background	:#D49E68;
+}
+.waku_line_in{
+	display		:inline-block;
+	width		:3vw;
+	height		:9.5vw;
+	line-height	:9.5vw;
 	font-size	:3vw;
 	font-weight	:600;
 	color		:#303030;
-	background	:#D49E68;
 	text-align	:center;
 }
 
@@ -192,18 +202,10 @@ td{
 <div class="main">
 <table class="waku">
 <tr>
-<td class="waku_top" colspan="13"></td>
+<td class="waku_top" colspan="12"></td>
 </tr>
 <tr>
-	<td class="waku_left" rowspan="10">
-		<span class="m_koma"><img src="koma/k91.png" class="koma_img_r u2"><span class="m_koma_c">6</span></span>
-		<span class="m_koma"><img src="koma/k81.png" class="koma_img_r u2"></span>
-		<span class="m_koma"><img src="koma/k71.png" class="koma_img_r u2"><span class="m_koma_c">2</span></span>
-		<span class="m_koma"><img src="koma/k61.png" class="koma_img_r u2"></span>
-		<span class="m_koma"><img src="koma/k51.png" class="koma_img_r u2"></span>
-		<span class="m_koma"><img src="koma/k41.png" class="koma_img_r u2"></span>
-		<span class="m_koma"><img src="koma/k31.png" class="koma_img_r u2"></span>
-	</td>
+	<td></td>
 	<td class="waku_column">九</td>
 	<td class="waku_column">八</td>
 	<td class="waku_column">七</td>
@@ -214,61 +216,61 @@ td{
 	<td class="waku_column">二</td>
 	<td class="waku_column">一</td>
 	<td></td>
-	<td class="waku_right" rowspan="10">
+	<td></td>
+</tr>
+<tr>
+	<td class="waku_left">
+		<span class="m_koma"><img src="koma/k91.png" class="koma_img_r u2"><span class="m_koma_c">6</span></span>
+		<span class="m_koma"><img src="koma/k81.png" class="koma_img_r u2"></span>
+		<span class="m_koma"><img src="koma/k71.png" class="koma_img_r u2"><span class="m_koma_c">2</span></span>
+		<span class="m_koma"><img src="koma/k61.png" class="koma_img_r u2"></span>
+		<span class="m_koma"><img src="koma/k51.png" class="koma_img_r u2"></span>
+		<span class="m_koma"><img src="koma/k41.png" class="koma_img_r u2"></span>
+		<span class="m_koma"><img src="koma/k31.png" class="koma_img_r u2"></span>
+	</td>
+
+	<td class="waku_main" colspan="9">
+		<div class="ban">
+			<?for($n=1;$n<10;$n++){?>
+				<?for($s=1;$s<10;$s++){?>
+					<div class="masu" style="top:<?=($n-1)*9.5+0.5?>vw; left:<?=($s-1)*8.5+0.5?>vw;" ></div>
+				<?}?>
+			<?}?>
+			<?for($t=1;$t<41;$t++){?>
+				<span cc="<?=$row["column_".$t]?>" ll="<?=$row["line_".$t]?>" class="koma c<?=$row["column_".$t]?> l<?=$row["line_".$t]?> s<?=$row["style_".$t]?> u<?=$row["user_".$t]?>"><img src="koma/<?=$base[$t]["img"]?><?=$row["style_".$t]?>.png" class="koma_img"></span>
+			<? } ?>
+		</div>
+	</td>
+	<td class="waku_line">
+		<span class="waku_line_in">1</span>
+		<span class="waku_line_in">2</span>
+		<span class="waku_line_in">3</span>
+		<span class="waku_line_in">4</span>
+		<span class="waku_line_in">5</span>
+		<span class="waku_line_in">6</span>
+		<span class="waku_line_in">7</span>
+		<span class="waku_line_in">8</span>
+		<span class="waku_line_in">9</span>
+	</td>
+	<td class="waku_right">
 		<span class="m_koma"><img src="koma/k31.png" class="koma_img_r"></span>
 		<span class="m_koma"><img src="koma/k41.png" class="koma_img_r"></span>
 		<span class="m_koma"><img src="koma/k51.png" class="koma_img_r"></span>
 		<span class="m_koma"><img src="koma/k61.png" class="koma_img_r"></span>
 		<span class="m_koma"><img src="koma/k71.png" class="koma_img_r"><span class="m_koma_c">2</span></span>
-		<span class="m_koma"><img src="koma/k81.png" class="koma_img_r"></span>
-		<span class="m_koma"><img src="koma/k91.png" class="koma_img_r"><span class="m_koma_c">6</span></span>
+		<span class="m_koma"><img src="koma/k81.png" class="koma_img_r"><span class="m_koma_c">4</span></span>
+		<span class="m_koma"><img src="koma/k91.png" class="koma_img_r"><span class="m_koma_c">18</span></span>
 	</td>
 </tr>
 <tr>
-<td class="waku_main" colspan="9" rowspan="9">
-<div class="ban">
-<?for($n=1;$n<10;$n++){?>
-<?for($s=1;$s<10;$s++){?>
-<div class="masu" style="top:<?=($n-1)*9.5+0.5?>vw; left:<?=($s-1)*8.5+0.5?>vw;" ></div>
-<?}?>
-<?}?>
-<?for($t=1;$t<41;$t++){?>
-<span cc="<?=$row["column_".$t]?>" ll="<?=$row["line_".$t]?>" class="koma c<?=$row["column_".$t]?> l<?=$row["line_".$t]?> s<?=$row["style_".$t]?> u<?=$row["user_".$t]?>"><img src="koma/<?=$base[$t]["img"]?><?=$row["style_".$t]?>.png" class="koma_img"></span>
-<? } ?>
-</div>
+<td class="waku_bottom" colspan="12">
 </td>
-	<td class="waku_line">1</td>
 </tr>
 <tr>
-	<td class="waku_line">2</td>
-</tr>
-<tr>
-	<td class="waku_line">3</td>
-</tr>
-<tr>
-	<td class="waku_line">4</td>
-</tr>
-<tr>
-	<td class="waku_line">5</td>
-</tr>
-<tr>
-	<td class="waku_line">6</td>
-</tr>
-<tr>
-	<td class="waku_line">7</td>
-</tr>
-<tr>
-	<td class="waku_line">8</td>
-</tr>
-<tr>
-	<td class="waku_line">9</td>
-</tr>
-
-<tr>
-<td class="waku_bottom" colspan="13"></td>
-</tr>
-<tr>
-<td class="waku_comm" colspan="13"></td>
+<td class="waku_comm" colspan="12">
+<div class="hist"></div>
+<div class="memo"></div>
+</td>
 </tr>
 </table>
 </div>

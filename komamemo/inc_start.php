@@ -1,4 +1,7 @@
-INSERT INTO(host_id,koma_id,culomn_to,line_to,user)VALUES
+<?
+$set=$_POST["set"];
+
+$sql="INSERT INTO(host_id,koma_id,culomn_to,line_to,user)VALUES
 ('{$set}','1','5','1','2'),
 ('{$set}','3','8','2','2'),
 ('{$set}','5','2','2','2'),
@@ -46,5 +49,6 @@ INSERT INTO(host_id,koma_id,culomn_to,line_to,user)VALUES
 ('{$set}','37','6','7','1'),
 ('{$set}','38','7','7','1'),
 ('{$set}','39','8','7','1'),
-('{$set}','40','9','7','1')
+('{$set}','40','9','7','1')";
 
+?>

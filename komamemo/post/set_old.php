@@ -1,6 +1,4 @@
 <?php
-include_once('./library/sql.php');
-/*
 $sql="
 insert into komamemo_log(
 host,branch,date,
