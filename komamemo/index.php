@@ -130,7 +130,7 @@ if($cast["id"]){
 <form id="set_form" method="post">
 <div class="top_box">
 <span class="box_tag">タイトル</span><input type="text" name="title" value="対局" class="box_text"><br>
-<span class="box_tag">場所</span><input type="text" name="title" value="将棋会館" class="box_text"><br>
+<span class="box_tag">場所</span><input type="text" name="place" value="将棋会館" class="box_text"><br>
 <span class="box_tag">先手</span><input type="text" name="first" value="名無しさん" class="box_text"><br>
 <span class="box_tag">後手</span><input type="text" name="second" value="名無し先生" class="box_text"><br>
 <span class="box_tag">上座</span>

@@ -1,5 +1,8 @@
 $(function(){
 	var KB=[0,1,2,3,3,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9];
+	var Coma=["▲","△"];
+	var Masu_L=["","一","二","三","四","五","六","七","八","九"];
+
 	var Te_Count=0;
 	var Player='';
 	var Opponent='';
@@ -83,7 +86,7 @@ $(function(){
 				}
 			}
 
-
+			Te_Count++;
 			$.post({
 				url:"./post/move_get.php",
 				data:{
@@ -92,11 +95,10 @@ $(function(){
 					'move_ll'	:Tmp_ll,
 					'move_cc'	:Tmp_cc,
 					'move_ch'	:Tmp_ch,
+					'count'		:Te_Count,
 				},
 
 			}).done(function(data, textStatus, jqXHR){
-				console.log("▽"+data);
-
 				TmpId	="";
 				Tmp2	="";
 				Tmp		="";
@@ -106,7 +108,6 @@ $(function(){
 
 				Tmp_C	="";
 				Tmp_L	="";
-				Te_Count++;
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);
@@ -185,6 +186,7 @@ $(function(){
 			}
 
 
+			Te_Count++;
 			$.post({
 				url:"./post/move_get.php",
 				data:{
@@ -192,9 +194,12 @@ $(function(){
 					'move_ll'	:Tmp_ll,
 					'move_cc'	:Tmp_cc,
 					'move_ch'	:Tmp_ch,
+					'count'		:Te_Count,
 				},
 
 			}).done(function(data, textStatus, jqXHR){
+
+console.log("□"+Coma[Player]  + Tmp_cc+ Masu_L[Tmp_ll]);
 
 				TmpId	="";
 				Tmp2	="";
@@ -205,7 +210,6 @@ $(function(){
 
 				Tmp_C	="";
 				Tmp_L	="";
-				Te_Count++;
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);
