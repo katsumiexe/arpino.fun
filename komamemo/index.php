@@ -94,14 +94,14 @@ if($cast["id"]){
 			<?}?>
 			<div class="masu_cl"></div>
 			<?for($n=1;$n<10;$n++){?>
-				<?for($s=1;$s<10;$s++){?>
-					<div class="masu"></div>
+				<?for($s=9;$s>0;$s--){?>
+					<div class="masu" cc="<?=$s?>" ll="<?=$n?>"></div>
 				<?}?>
 				<div class="masu_l"><?=$masu_l[$n]?></div>
 			<?}?>
 
 			<?for($t=1;$t<41;$t++){?>
-				<span id="koma<?=$t?>" cc="<?=$dat[$t]["column"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
+				<span id="koma<?=$t?>" cc="<?=$dat[$t]["colum"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
 			<? } ?>
 		</div>
 	</td>

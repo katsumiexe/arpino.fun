@@ -21,19 +21,22 @@ $(function(){
 
 		if($('.koma_on').hasClass('u' + Player) && $(this).hasClass('u' + Opponent)){
 
-			Tmp_T=$(this).css('top');
-			Tmp_L=$(this).css('left');
-			TmpId=$(this).attr('id').replace('c','');
+			TmpId	=$(this).attr('id').replace('c','');
 			Tmp2	=$(this).attr('id').replace('koma','');
 			Tmp		=$('.koma_on').attr('id').replace('koma','');
+
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
 
-			$('.koma').removeClass('koma_on');
-			$('.koma_on').animate({'left':Tmp_L,'top':Tmp_T},400);
+			Tmp_C	=72-$(this).attr('cc')*8;
+			Tmp_L	=$(this).attr('ll') *9 -5 ;
+			$('.koma_on').animate({'left':Tmp_C+'vw','top':Tmp_L+'vw'},300);
+
 			$(this).fadeOut(400);
+			$('.koma').removeClass('koma_on');
 
 			if($(this).hasClass('s0')){
+console.log("□");
 
 				if(	KB[Tmp] == 9 ||	KB[Tmp] == 8){
 
@@ -47,12 +50,13 @@ $(function(){
 
 					//■恐怖成確認
 					}else if(Tmp_ll < 4 && Player ==0){
-					
+						Tmp_ch=2;
+
 					}else if(Tmp_ll > 6 && Player ==1){
+						Tmp_ch=2;
 
 					}
 				} else if(KB[Tmp] == 7){
-
 					//■K無条件成
 					if(Tmp_ll < 3 && Player ==0){
 						Tmp_ch=1;
@@ -63,15 +67,19 @@ $(function(){
 
 					//■K成確認
 					}else if(Tmp_ll == 3 && Player ==0){
-					
+						Tmp_ch=2;
+
 					}else if(Tmp_ll == 7 && Player ==1){
+						Tmp_ch=2;
 
 					}
 
-				} else	if(	KB[Tmp] == 3 ||	KB[Tmp] == 4 ||	KB[Tmp] == 6){
+				}else	if(	KB[Tmp] == 3 ||	KB[Tmp] == 4 ||	KB[Tmp] == 6){
 					if(Tmp_ll < 4 && Player ==0){
-					
+						Tmp_ch=2;
+
 					}else if(Tmp_ll > 6 && Player ==1){
+						Tmp_ch=2;
 
 					}
 				}
@@ -87,10 +95,24 @@ $(function(){
 					'move_cc'	:Tmp_cc,
 					'move_ch'	:Tmp_ch,
 				},
-				dataType: 'json',
 
 			}).done(function(data, textStatus, jqXHR){
+				console.log("▽"+data);
+
+				TmpId	="";
+				Tmp2	="";
+				Tmp		="";
+				Tmp_cc	="";
+				Tmp_ll	="";
+				Tmp_ch	="";
+
+				Tmp_C	="";
+				Tmp_L	="";
 				Te_Count++;
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
 			});
 
 
@@ -105,10 +127,12 @@ $(function(){
 
 	$('.masu').on('click',function(){
 		if($('.koma').hasClass('koma_on')){
-			Tmp_T=$(this).css('top');
-			Tmp_L=$(this).css('left');
-			$('.koma_on').animate({'left':Tmp_L,'top':Tmp_T},300);
+			Tmp_C	=72-$(this).attr('cc')*8;
+			Tmp_L	=$(this).attr('ll') *9 -5 ;
+			
+			$('.koma_on').animate({'left':Tmp_C+'vw','top':Tmp_L+'vw'},300);
 			$('.koma').removeClass('koma_on');
+			Te_Count++;
 		}
 	});
 });
