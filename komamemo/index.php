@@ -1,30 +1,31 @@
 <?php
 include_once('./library/sql.php');
 
-if($_POST["logout"]){
+if($_REQUEST["logout"]){
 	session_destroy();
-}elseif($_POST["set"]){
+	$cast="";
+
+}elseif($_POST["set"] && !$cast["id"]){
 	$title	=$_POST["title"];
 	$place	=$_POST["place"];
 	$first	=$_POST["first"];
 	$second	=$_POST["second"];
 	$kami	=$_POST["kami"];
+
 	if(!$title) $title="対局";
 	if(!$place) $place="将棋会館";
 	if(!$first) $first="名無しさん";
 	if(!$second) $second="名無し先生";
 	include_once('./library/start.php');
 
-	$cast["id"]		=$tmp_auto;
-	$cast["title"]	=$title;
-	$cast["place"]	=$place;
-	$cast["first"]	=$first;
-	$cast["second"]	=$second;
-	$cast["cast_time"]=time();
-	$_SESSION=$cast;
+	$cast["id"]			=$tmp_auto;
+	$cast["title"]		=$title;
+	$cast["place"]		=$place;
+	$cast["first"]		=$first;
+	$cast["second"]		=$second;
+	$cast["cast_time"]	=time();
+	$_SESSION			=$cast;
 }
-
-
 if($cast["id"]){
 	$sql="SELECT * FROM komamemo_base";
 	if($result = mysqli_query($mysqli,$sql)){
@@ -56,89 +57,6 @@ if($cast["id"]){
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/style.css?t=<?=time()?>">
 <style>
-.body{
-	text-align			:center;
-	margin				:0;
-	padding				:0;
-	line-height			:1.2;
-	color				:#333;
-	font-size			:0;
-	font-family			:"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
-	text-align			:center;
-	width				:100vw;
-}
-.main{
-
-}
-
-
-.ban{
-	display:block;
-	position:relative;
-	width	:77vw;
-	height	:86vw;
-	background			:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
-	background:#000000;
-}
-
-.masu{
-	position		:absolute;
-	display			:block;
-	width			:8vw;
-	height			:9vw;
-	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
-}
-
-.koma{
-	display			:inline-block;
-	position		:absolute;
-	width			:8vw;
-	height			:9vw;
-	overflow		:hidden;
-}
-
-.koma_on{
-	background:rgba(200,100,100,0.5);
-}
-
-.koma_img{
-	position		:absolute;
-	top				:0;
-	left			:0;
-	right			:0;
-	bottom			:0;
-	margin			:auto;
-	width			:8vw;
-}
-
-.koma_img_r{
-	width			:6vw;
-}
-
-.m_koma{
-	display			:inline-block;
-	position		:relative;
-	width			:8vw;
-	height			:7vw;
-	margin-bottom	:3vw;
-	text-align		:left;
-}
-
-.m_koma_c{
-	position		:absolute;
-	bottom			:-1vw;
-	right			:0;
-	display			:inline-block;
-	width			:4.5vw;
-	height			:4.5vw;
-	line-height		:4.5vw;
-	text-align		:center;
-	border-radius	:2vw;
-	color			:#fafafa;
-	font-weight		:600;
-	background		:rgba(120,40,60,0.6);
-	font-size		:3vw;
-}
 
 <?for($e=1;$e<10;$e++){?>
 <?$e1=69.5-8.5*($e-1);?>
@@ -149,95 +67,11 @@ if($cast["id"]){
 <?$e1=0.5+9.5*($e-1);?>
 .l<?=$e?>{top:<?=$e1?>vw;}
 <?}?>
-
-.u2{
-	transform:rotate(180deg);
-}
-
-td{
-	padding	:0;
-
-}
-.waku{
-	margin: 0 auto;
-	border-collapse: collapse;
-	border-spacing: 0px;
-	font-size:0;
-	padding:0;
-}
-
-.waku_top,.waku_bottom{
-	height:8vw;
-	background:#ff0000;
-}
-
-.waku_left,.waku_right{
-	width		:8vw;
-	background	:#ff00ff;
-	position	:relative;
-}
-
-.waku_left{
-	vertical-align:top;
-}
-
-.waku_right{
-	vertical-align:bottom;
-}
-
-.waku_column{
-	height		:4vw;
-	line-height	:5vw;
-	font-size	:3vw;
-	font-weight	:600;
-	color		:#303030;
-	background	:#D49E68;
-}
-
-.waku_line{
-	width		:4vw;
-	background	:#D49E68;
-}
-.waku_line_in{
-	display		:inline-block;
-	width		:3vw;
-	height		:9.5vw;
-	line-height	:9.5vw;
-	font-size	:3vw;
-	font-weight	:600;
-	color		:#303030;
-	text-align	:center;
-}
-
-.waku_main{
-	width	:77vw;
-	height	:86vw;
-}
-
-.top_box{
-	font-size:4.5vw;;
-}
-
-.box_text{
-	height:6vw;
-	font-size:4.5vw;
-	width:50vw;
-}
-
-.box_tag{
-	display:inline-block;
-	width:20vw;
-	height:6vw;
-	font-size:4vw;
-	line-height:6vw;
-}
-
-
 </style>
 </head>
 <body class="body">
 <div class="main">
-<?if($base){?>
+<?if($cast["id"]){?>
 <table class="waku">
 <tr>
 <td class="waku_top" colspan="12"></td>
@@ -275,10 +109,11 @@ td{
 				<?}?>
 			<?}?>
 			<?for($t=1;$t<41;$t++){?>
-				<span cc="<?=$dat[$t]["column"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
+				<span id="koma<?=$t?>"  cc="<?=$dat[$t]["column"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
 			<? } ?>
 		</div>
 	</td>
+
 
 	<td class="waku_line">
 		<span class="waku_line_in">1</span>
@@ -302,12 +137,12 @@ td{
 	</td>
 </tr>
 <tr>
-<td class="waku_bottom" colspan="12"><a hrf="./index.php?logout=1;">あいうえお</a></td>
+<td class="waku_bottom" colspan="12"><a href="./index.php?logout=1;" style="font-size:4vw;">あいうえお</a></td>
 </tr>
 <tr>
 <td class="waku_comm" colspan="12">
 <div class="hist"></div>
-<div class="memo"><?=var_dump($_SESSION)?></div>
+<div class="memo"></div>
 </td>
 </tr>
 </table>	
@@ -316,7 +151,7 @@ td{
 <form id="set_form" method="post">
 <div class="top_box">
 <span class="box_tag">タイトル</span><input type="text" name="title" value="対局" class="box_text"><br>
-<span class="box_tag">場所</span><input type="text" name="title" value="将棋会館" class="box_text"><br>
+<span class="box_tag">場所</span><input type="text" name="place" value="将棋会館" class="box_text"><br>
 <span class="box_tag">先手</span><input type="text" name="first" value="名無しさん" class="box_text"><br>
 <span class="box_tag">後手</span><input type="text" name="second" value="名無し先生" class="box_text"><br>
 <span class="box_tag">上座</span>

@@ -1,0 +1,182 @@
+*{
+-webkit-appearance: none;
+-webkit-text-size-adjust: 100%;
+}
+
+input:focus{
+	border-color:#fafafa;
+	background:#f0f0ff;
+}
+
+.body{
+	text-align			:center;
+	margin				:0;
+	padding				:0;
+	line-height			:1.2;
+	color				:#333;
+	font-size			:0;
+	font-family			:"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+	text-align			:center;
+	width				:100vw;
+}
+
+
+.main{
+
+}
+
+
+.ban{
+	display:block;
+	position:relative;
+	width	:77vw;
+	height	:86vw;
+	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
+	background		:#000000;
+}
+
+.masu{
+	position		:absolute;
+	display			:block;
+	width			:8vw;
+	height			:9vw;
+	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
+}
+
+.koma{
+	display			:inline-block;
+	position		:absolute;
+	width			:8vw;
+	height			:9vw;
+	overflow		:hidden;
+}
+
+.koma_on{
+	background:rgba(200,100,100,0.5);
+}
+
+.koma_img{
+	position		:absolute;
+	top				:0;
+	left			:0;
+	right			:0;
+	bottom			:0;
+	margin			:auto;
+	width			:8vw;
+}
+
+.koma_img_r{
+	width			:6vw;
+}
+
+.m_koma{
+	display			:inline-block;
+	position		:relative;
+	width			:8vw;
+	height			:7vw;
+	margin-bottom	:3vw;
+	text-align		:left;
+}
+
+.m_koma_c{
+	position		:absolute;
+	bottom			:-1vw;
+	right			:0;
+	display			:inline-block;
+	width			:4.5vw;
+	height			:4.5vw;
+	line-height		:4.5vw;
+	text-align		:center;
+	border-radius	:2vw;
+	color			:#fafafa;
+	font-weight		:600;
+	background		:rgba(120,40,60,0.6);
+	font-size		:3vw;
+}
+
+.u1{
+	transform:rotate(180deg);
+}
+
+td{
+	padding	:0;
+
+}
+.waku{
+	margin: 0 auto;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	font-size:0;
+	padding:0;
+}
+
+.waku_top,.waku_bottom{
+	height:8vw;
+	background:#ff0000;
+}
+
+.waku_left,.waku_right{
+	width		:8vw;
+	background	:#ff00ff;
+	position	:relative;
+}
+
+.waku_left{
+	vertical-align:top;
+}
+
+.waku_right{
+	vertical-align:bottom;
+}
+
+.waku_column{
+	height		:4vw;
+	line-height	:5vw;
+	font-size	:3vw;
+	font-weight	:600;
+	color		:#303030;
+	background	:#D49E68;
+}
+
+.waku_line{
+	width		:4vw;
+	background	:#D49E68;
+}
+.waku_line_in{
+	display		:inline-block;
+	width		:3vw;
+	height		:9.5vw;
+	line-height	:9.5vw;
+	font-size	:3vw;
+	font-weight	:600;
+	color		:#303030;
+	text-align	:center;
+}
+
+.waku_main{
+	width	:77vw;
+	height	:86vw;
+}
+
+.top_box{
+	font-size:4.5vw;;
+}
+
+.box_text{
+	height		:9vw;
+	font-size	:4.5vw;
+	width		:70vw;
+	margin		:1vw;
+}
+
+.box_tag{
+	display		:inline-block;
+	width		:20vw;
+	height		:9vw;
+	line-height	:9vw;
+	font-size	:4vw;
+	line-height	:6vw;
+	text-align:right;
+	margin-right:1.5vw;
+}
+
