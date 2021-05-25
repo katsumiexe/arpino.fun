@@ -36,8 +36,6 @@ $(function(){
 			$('.koma').removeClass('koma_on');
 
 			if($(this).hasClass('s0')){
-console.log("□");
-
 				if(	KB[Tmp] == 9 ||	KB[Tmp] == 8){
 
 					//■恐怖無条件成
@@ -127,12 +125,92 @@ console.log("□");
 
 	$('.masu').on('click',function(){
 		if($('.koma').hasClass('koma_on')){
+
+			Tmp		=$('.koma_on').attr('id').replace('koma','');
+			Tmp_cc	=$(this).attr('cc');
+			Tmp_ll	=$(this).attr('ll');
+
 			Tmp_C	=72-$(this).attr('cc')*8;
 			Tmp_L	=$(this).attr('ll') *9 -5 ;
-			
+
 			$('.koma_on').animate({'left':Tmp_C+'vw','top':Tmp_L+'vw'},300);
 			$('.koma').removeClass('koma_on');
-			Te_Count++;
+
+			if($(this).hasClass('s0')){
+				if(	KB[Tmp] == 9 ||	KB[Tmp] == 8){
+
+					//■恐怖無条件成
+					if(Tmp_ll == 1 && Player ==0){
+						Tmp_ch=1;
+
+					}else if(Tmp_ll == 9 && Player ==1){
+						Tmp_ch=1;
+
+
+					//■恐怖成確認
+					}else if(Tmp_ll < 4 && Player ==0){
+						Tmp_ch=2;
+
+					}else if(Tmp_ll > 6 && Player ==1){
+						Tmp_ch=2;
+
+					}
+				} else if(KB[Tmp] == 7){
+					//■K無条件成
+					if(Tmp_ll < 3 && Player ==0){
+						Tmp_ch=1;
+
+					}else if(Tmp_ll >7 && Player ==1){
+						Tmp_ch=1;
+
+
+					//■K成確認
+					}else if(Tmp_ll == 3 && Player ==0){
+						Tmp_ch=2;
+
+					}else if(Tmp_ll == 7 && Player ==1){
+						Tmp_ch=2;
+
+					}
+
+				}else	if(	KB[Tmp] == 3 ||	KB[Tmp] == 4 ||	KB[Tmp] == 6){
+					if(Tmp_ll < 4 && Player ==0){
+						Tmp_ch=2;
+
+					}else if(Tmp_ll > 6 && Player ==1){
+						Tmp_ch=2;
+
+					}
+				}
+			}
+
+
+			$.post({
+				url:"./post/move_get.php",
+				data:{
+					'move_id'	:Tmp,
+					'move_ll'	:Tmp_ll,
+					'move_cc'	:Tmp_cc,
+					'move_ch'	:Tmp_ch,
+				},
+
+			}).done(function(data, textStatus, jqXHR){
+
+				TmpId	="";
+				Tmp2	="";
+				Tmp		="";
+				Tmp_cc	="";
+				Tmp_ll	="";
+				Tmp_ch	="";
+
+				Tmp_C	="";
+				Tmp_L	="";
+				Te_Count++;
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+			});
 		}
 	});
 });
