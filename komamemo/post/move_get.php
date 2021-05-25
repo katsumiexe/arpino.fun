@@ -12,4 +12,6 @@ $now_w		=date("w");
 $now_count	=date("t");
 $now_month	=date("Y-m-01 00:00:00");
 
+$sql="INSERT INTO komamemo('' )";
+
 ?>
