@@ -1,6 +1,4 @@
 $(function(){
-
-
 	Base_h=Math.floor($('.masu').height());
 	Base_w=Math.floor($('.masu').width());
 
