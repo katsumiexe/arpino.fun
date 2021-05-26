@@ -1,5 +1,6 @@
 $(function(){
 
+
 	Base_h=Math.floor($('.masu').height());
 	Base_w=Math.floor($('.masu').width());
 
@@ -13,25 +14,25 @@ $(function(){
 
 	$('.ban').css({'width':Base_w * 9+ Base_wb,'height':Base_h * 9+ Base_hb});
 
-$('.c1').css('left',Base_w*8);
-$('.c2').css('left',Base_w*7);
-$('.c3').css('left',Base_w*6);
-$('.c4').css('left',Base_w*5);
-$('.c5').css('left',Base_w*4);
-$('.c6').css('left',Base_w*3);
-$('.c7').css('left',Base_w*2);
-$('.c8').css('left',Base_w*1);
-$('.c9').css('left',0);
+	$('.c1').css('left',Base_w*8);
+	$('.c2').css('left',Base_w*7);
+	$('.c3').css('left',Base_w*6);
+	$('.c4').css('left',Base_w*5);
+	$('.c5').css('left',Base_w*4);
+	$('.c6').css('left',Base_w*3);
+	$('.c7').css('left',Base_w*2);
+	$('.c8').css('left',Base_w*1);
+	$('.c9').css('left',0);
 
-$('.l1').css('top',Base_h*0+Base_hb);
-$('.l2').css('top',Base_h*1+Base_hb);
-$('.l3').css('top',Base_h*2+Base_hb);
-$('.l4').css('top',Base_h*3+Base_hb);
-$('.l5').css('top',Base_h*4+Base_hb);
-$('.l6').css('top',Base_h*5+Base_hb);
-$('.l7').css('top',Base_h*6+Base_hb);
-$('.l8').css('top',Base_h*7+Base_hb);
-$('.l9').css('top',Base_h*8+Base_hb);
+	$('.l1').css('top',Base_h*0+Base_hb);
+	$('.l2').css('top',Base_h*1+Base_hb);
+	$('.l3').css('top',Base_h*2+Base_hb);
+	$('.l4').css('top',Base_h*3+Base_hb);
+	$('.l5').css('top',Base_h*4+Base_hb);
+	$('.l6').css('top',Base_h*5+Base_hb);
+	$('.l7').css('top',Base_h*6+Base_hb);
+	$('.l8').css('top',Base_h*7+Base_hb);
+	$('.l9').css('top',Base_h*8+Base_hb);
 
 	KH=$('#koma1').height();
 	KW=$('#koma1').width();
@@ -62,9 +63,9 @@ $('.l9').css('top',Base_h*8+Base_hb);
 	$('.koma').attr('cc')
 
 	var KB=[0,1,2,3,3,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9];
-	var Coma=["▲","△"];
+	var PC=["▲","△"];
 	var Masu_L=["","一","二","三","四","五","六","七","八","九"];
-
+	var Koma={'10':'玉','20':'玉','30':'飛','40':'角','50':'金','60':'銀','70':'桂','80':'香','90':'歩','31':'竜','41':'馬','61':'成銀','71':'成桂','81':'成香','91':'と'};
 	var Te_Count=0;
 	var Player='';
 	var Opponent='';
@@ -91,7 +92,7 @@ $('.l9').css('top',Base_h*8+Base_hb);
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
 
-			Tmp_C	=72-Base_w*($(this).attr('cc'));
+			Tmp_C	=Base_w*(9-$(this).attr('cc'));
 			Tmp_L	=Base_h*($(this).attr('ll')-1)+Base_hb;
 
 			$('.koma_on').animate({'left':Tmp_C,'top':Tmp_L},300);
@@ -198,8 +199,6 @@ $('.l9').css('top',Base_h*8+Base_hb);
 			$('.koma_on').animate({'left':Tmp_C,'top':Tmp_L},300);
 			$('.koma').removeClass('koma_on');
 
-
-
 			if($(this).hasClass('s0')){
 				if(	KB[Tmp] == 9 ||	KB[Tmp] == 8){
 
@@ -248,6 +247,8 @@ $('.l9').css('top',Base_h*8+Base_hb);
 				}
 			}
 
+			STT= KB[Tmp]*10 
+			console.log(PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT] )
 
 			Te_Count++;
 			$.post({
