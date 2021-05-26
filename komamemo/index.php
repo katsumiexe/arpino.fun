@@ -92,6 +92,7 @@ if($cast["id"]){
 			<?for($n=9;$n>0;$n--){?>
 			<div class="masu_c"><?=$n?></div>
 			<?}?>
+
 			<div class="masu_cl"></div>
 			<?for($n=1;$n<10;$n++){?>
 				<?for($s=9;$s>0;$s--){?>
@@ -100,9 +101,12 @@ if($cast["id"]){
 				<div class="masu_l"><?=$masu_l[$n]?></div>
 			<?}?>
 
+
 			<?for($t=1;$t<41;$t++){?>
 				<span id="koma<?=$t?>" cc="<?=$dat[$t]["colum"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
 			<? } ?>
+
+
 		</div>
 	</td>
 	<td class="waku_right">
@@ -121,6 +125,10 @@ if($cast["id"]){
 <tr>
 <td class="waku_comm" colspan="11">
 <div class="hist" style="font-size:4vw;">
+一<span id="k_l1" style="font-size:4vw;"></span><br>
+二<span id="k_l2" style="font-size:4vw;"></span><br>
+三<span id="k_l3" style="font-size:4vw;"></span><br>
+
 駒縦<span id="k_size_h" style="font-size:4vw;"></span><br>
 駒横<span id="k_size_w" style="font-size:4vw;"></span><br>
 桝縦<span id="m_size_h" style="font-size:4vw;"></span><br>

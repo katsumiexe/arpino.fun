@@ -1,4 +1,9 @@
 $(function(){
+
+	Base_h=Math.floor($('.masu').height());
+	Base_w=Math.floor($('.masu').width());
+	$('.koma,.masu').css({'width':Base_w,'height':Base_h});
+
 	KH=$('#koma1').height();
 	KW=$('#koma1').width();
 	
@@ -10,8 +15,15 @@ $(function(){
 	$('#m_size_h').text(MH);
 	$('#m_size_w').text(MW);
 
-console.log(KH);
-console.log(KW);
+	K1=$('#koma1').css('top');
+	K2=$('#koma3').css('top');
+	K3=$('#koma25').css('top');
+
+	$('#k_l1').text(K1);
+	$('#k_l2').text(K2);
+	$('#k_l3').text(K3);
+
+	$('.koma').attr('cc')
 
 	var KB=[0,1,2,3,3,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9];
 	var Coma=["▲","△"];
@@ -20,7 +32,6 @@ console.log(KW);
 	var Te_Count=0;
 	var Player='';
 	var Opponent='';
-
 
 	var Tmp_ch	="";
 	var Tmp_T	="";
@@ -32,7 +43,6 @@ console.log(KW);
 	var Tmp_ll	="";
 
 	$('.koma').on('click',function(){
-
 		Player		=Te_Count % 2
 		Opponent	=(Te_Count+1) % 2
 
