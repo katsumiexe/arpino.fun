@@ -1,0 +1,94 @@
+<?php
+include_once('./library/sql.php');
+
+$sql="SELECT * FROM komamemo_base";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($res = mysqli_fetch_assoc($result)){
+		$base[$res["id"]]=$res;
+	}
+}
+
+
+$sql="SELECT * FROM komamemo_log WHERE host='2' ORDER BY id DESC LIMIT 1";
+
+if($result = mysqli_query($mysqli,$sql)){
+	$row = mysqli_fetch_assoc($result);
+}
+
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+.main{
+	margin:0 auto;
+	position:relative;
+	width	:74vw;
+	height	:91.5vw;
+}
+
+.ban{
+	position			:absolute;
+	table-layout		:fixed;
+	border-collapse		:collapse;
+	border-top			:1vw solid #000000;
+	border-left			:1vw solid #000000;
+	border-right		:1vw solid #000000;
+	border-bottom		:1vw solid #000000;
+	background			:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
+}
+
+.masu{
+	border			:0.5vw solid #000000;
+	width			:8vw;
+	height			:9vw;
+}
+
+.koma{
+	position			:absolute;
+	width				:8vw;
+	height				:9vw;
+	background-repeat	:no-repeat;
+	background-position	:center;
+
+}
+<?for($e=1;$e<10;$e++){?>
+<?$e1=65-8*($e-1);?>
+.c<?=$e?>{left:<?=$e1?>vw;}
+<?}?>
+
+<?for($e=1;$e<10;$e++){?>
+<?$e1=1+10*($e-1);?>
+.l<?=$e?>{top:<?=$e1?>vw;}
+<?}?>
+
+.u2{
+	transform:rotate(180deg);
+}
+</style>
+</head>
+<body>
+
+<div class="main">
+<table class="ban">
+<?for($n=1;$n<10;$n++){?>
+<tr>
+<?for($s=1;$s<10;$s++){?>
+<td id="c<?=$s?><?=$n?>" class="masu"></td>
+<?}?>
+</tr>
+<?}?>
+</table>
+<?for($t=1;$t<41;$t++){?>
+<span class="koma c<?=$row["column_".$t]?> l<?=$row["line_".$t]?> s<?=$row["style_".$t]?> u<?=$row["user_".$t]?>" style="background-image: url("./koma/<?=$base[$t]["img"]?><?=$row["style_".$t]?>.png")"></span>
+<? } ?>
+</div>
+<div></div>
+</body>
+</html>
