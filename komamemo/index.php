@@ -61,7 +61,6 @@ if($cast["id"]){
 <title>Document</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="./js/jquery.ui.touch-punch.min.js?t=<?=time()?>"></script>
 <script src="./js/main.js?t=<?=time()?>"></script>
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -125,9 +124,14 @@ if($cast["id"]){
 <tr>
 <td class="waku_comm" colspan="11">
 <div class="hist" style="font-size:4vw;">
+
 一<span id="k_l1" style="font-size:4vw;"></span><br>
 二<span id="k_l2" style="font-size:4vw;"></span><br>
 三<span id="k_l3" style="font-size:4vw;"></span><br>
+
+七<span id="k_l7" style="font-size:4vw;"></span><br>
+八<span id="k_l8" style="font-size:4vw;"></span><br>
+休<span id="k_l9" style="font-size:4vw;"></span><br>
 
 駒縦<span id="k_size_h" style="font-size:4vw;"></span><br>
 駒横<span id="k_size_w" style="font-size:4vw;"></span><br>

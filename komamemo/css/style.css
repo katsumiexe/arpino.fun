@@ -36,11 +36,12 @@ input:focus{
 	background		:#000000;
 }
 
+
 .masu{
 	display			:inline-block;
 	width			:8vw;
 	height			:9vw;
-//	box-sizing		:border-box;
+	box-sizing		:border-box;
 	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
 	border			:1px solid #303030;
 }
@@ -51,7 +52,7 @@ input:focus{
 	height			:4vw;
 	line-height		:4vw;
 	text-align		:center;
-//	box-sizing		:border-box;
+	box-sizing		:border-box;
 	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
 	border-bottom	:1px solid #303030;
 	vertical-align	:top;
@@ -63,7 +64,7 @@ input:focus{
 	width			:4vw;
 	height			:4vw;
 	text-align		:center;
-//	box-sizing		:border-box;
+	box-sizing		:border-box;
 	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
 	vertical-align	:top;
 }
@@ -73,7 +74,7 @@ input:focus{
 	height			:9vw;
 	line-height		:9vw;
 	text-align		:center;
-//	box-sizing		:border-box;
+	box-sizing		:border-box;
 	background		:linear-gradient(100deg, #D49E68, #DFB892 40%,#DEB690 100%);
 	border-left		:1px solid #303030;
 	vertical-align	:top;

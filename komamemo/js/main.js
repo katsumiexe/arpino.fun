@@ -2,7 +2,36 @@ $(function(){
 
 	Base_h=Math.floor($('.masu').height());
 	Base_w=Math.floor($('.masu').width());
+
+	Base_hb=Math.floor($('.masu_c').height());
+	Base_wb=Math.floor($('.masu_l').width());
+
 	$('.koma,.masu').css({'width':Base_w,'height':Base_h});
+	$('.masu_c').css({'width':Base_w,'height':Base_hb});
+	$('.masu_l').css({'width':Base_wb,'height':Base_h});
+	$('.masu_cl').css({'width':Base_wb,'height':Base_hb});
+
+	$('.ban').css({'width':Base_w * 9+ Base_wb,'height':Base_h * 9+ Base_hb});
+
+$('.c1').css('left',Base_w*8);
+$('.c2').css('left',Base_w*7);
+$('.c3').css('left',Base_w*6);
+$('.c4').css('left',Base_w*5);
+$('.c5').css('left',Base_w*4);
+$('.c6').css('left',Base_w*3);
+$('.c7').css('left',Base_w*2);
+$('.c8').css('left',Base_w*1);
+$('.c9').css('left',0);
+
+$('.l1').css('top',Base_h*0+Base_hb);
+$('.l2').css('top',Base_h*1+Base_hb);
+$('.l3').css('top',Base_h*2+Base_hb);
+$('.l4').css('top',Base_h*3+Base_hb);
+$('.l5').css('top',Base_h*4+Base_hb);
+$('.l6').css('top',Base_h*5+Base_hb);
+$('.l7').css('top',Base_h*6+Base_hb);
+$('.l8').css('top',Base_h*7+Base_hb);
+$('.l9').css('top',Base_h*8+Base_hb);
 
 	KH=$('#koma1').height();
 	KW=$('#koma1').width();
@@ -19,9 +48,16 @@ $(function(){
 	K2=$('#koma3').css('top');
 	K3=$('#koma25').css('top');
 
+	K7=$('#koma35').css('top');
+	K8=$('#koma4').css('top');
+	K9=$('#koma2').css('top');
+
 	$('#k_l1').text(K1);
 	$('#k_l2').text(K2);
 	$('#k_l3').text(K3);
+	$('#k_l7').text(K7);
+	$('#k_l8').text(K8);
+	$('#k_l9').text(K9);
 
 	$('.koma').attr('cc')
 
@@ -55,9 +91,10 @@ $(function(){
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
 
-			Tmp_C	=72-$(this).attr('cc')*8;
-			Tmp_L	=$(this).attr('ll') *9 -5 ;
-			$('.koma_on').animate({'left':Tmp_C+'vw','top':Tmp_L+'vw'},300);
+			Tmp_C	=72-Base_w*($(this).attr('cc'));
+			Tmp_L	=Base_h*($(this).attr('ll')-1)+Base_hb;
+
+			$('.koma_on').animate({'left':Tmp_C,'top':Tmp_L},300);
 
 			$(this).fadeOut(400);
 			$('.koma').removeClass('koma_on');
@@ -155,11 +192,13 @@ $(function(){
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
 
-			Tmp_C	=72-$(this).attr('cc')*8;
-			Tmp_L	=$(this).attr('ll') *9 -5 ;
+			Tmp_C	=Base_w*(9-$(this).attr('cc'));
+			Tmp_L	=Base_h*($(this).attr('ll')-1)+Base_hb;
 
-			$('.koma_on').animate({'left':Tmp_C+'vw','top':Tmp_L+'vw'},300);
+			$('.koma_on').animate({'left':Tmp_C,'top':Tmp_L},300);
 			$('.koma').removeClass('koma_on');
+
+
 
 			if($(this).hasClass('s0')){
 				if(	KB[Tmp] == 9 ||	KB[Tmp] == 8){
@@ -222,8 +261,6 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
-
-console.log("□"+Coma[Player]  + Tmp_cc+ Masu_L[Tmp_ll]);
 
 				TmpId	="";
 				Tmp2	="";
