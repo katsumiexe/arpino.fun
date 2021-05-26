@@ -215,3 +215,22 @@ td{
 .l8{top:67vw;}
 .l9{top:76vw;}
 
+
+.hist_log{
+	font-size		:3.5vw;
+	height			:5vw;
+	line-height		:5vw;
+	border-bottom	:1px solid #303030;
+	width			:45vw;
+	margin			:0.5vw auto;
+	text-align		:left;
+}
+
+.hist_count{
+	height			:5vw;
+	line-height		:5vw;
+	width			:4vw;
+	padding-right	:1vw;
+	text-align		:right;
+}
+

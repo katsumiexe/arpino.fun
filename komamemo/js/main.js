@@ -159,6 +159,8 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
+				$('.hist').append("<div id=\"hist"+Te_Count+"\" class=\"hist_log\"><span class=\"hist_count\">"+Te_Count+"</span>"+PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT]+"</div>");
+
 				TmpId	="";
 				Tmp2	="";
 				Tmp		="";
@@ -260,6 +262,7 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
+				$('.hist').append("<div id=\"hist"+Te_Count+"\" class=\"hist_log\"><span class=\"hist_count\">"+Te_Count+"</span>"+PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT]+"</div>");
 
 				TmpId	="";
 				Tmp2	="";
