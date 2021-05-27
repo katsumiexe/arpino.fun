@@ -109,7 +109,7 @@ input:focus{
 }
 
 .m_koma{
-	display			:inline-block;
+	display			:none;
 	position		:relative;
 	width			:8vw;
 	height			:7vw;
@@ -118,10 +118,10 @@ input:focus{
 }
 
 .m_koma_c{
+	display			:none;
 	position		:absolute;
 	bottom			:-1vw;
 	right			:0;
-	display			:inline-block;
 	width			:4.5vw;
 	height			:4.5vw;
 	line-height		:4.5vw;

@@ -86,22 +86,19 @@ $(function(){
 			TmpId	=$(this).attr('id').replace('c','');
 			Tmp2	=$(this).attr('id').replace('koma','');
 
-console.log(Tmp_cc);
-console.log($(this).attr('cc'));
-
 			if($(this).attr('cc') == Tmp_cc && $(this).attr('ll') == Tmp_ll){
 				Dou="同";
 
 			}else{
 				Dou="";
-			
 			}
-			
+		
 			Tmp		=$('.koma_on').attr('id').replace('koma','');
 			Tmp_ss	=$('.koma_on').attr('ss');
 
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
+			Tmp_kk	=$(this).attr('kk');
 
 			Tmp_ss	=$(this).attr('ss');
 
@@ -111,8 +108,16 @@ console.log($(this).attr('cc'));
 			$('.koma_on').attr({'ll':Tmp_ll,'cc':Tmp_cc}).animate({'left':Tmp_C,'top':Tmp_L},300);
 
 			$(this).fadeOut(400);
-			$('.koma').removeClass('koma_on');
+			Koma_re[Player][Tmp_kk]++;
+			$('#re'+Player+Tmp_kk).show()
 
+		if(Koma_re[Player][Tmp_kk]>1){
+			$('#ct'+Player+Tmp_kk).show()
+
+		}
+
+
+			$('.koma').removeClass('koma_on');
 			if($(this).hasClass('s0')){
 				if(	KB[Tmp] == 9 ||	KB[Tmp] == 8){
 
@@ -147,19 +152,17 @@ console.log($(this).attr('cc'));
 						Tmp_ch=2;
 					}
 
-				}else	if(	KB[Tmp] == 3 ||	KB[Tmp] == 4 ||	KB[Tmp] == 6){
+				}else if(KB[Tmp] == 3 || KB[Tmp] == 4 || KB[Tmp] == 6){
 					if(Tmp_ll < 4 && Player ==0){
 						Tmp_ch=2;
 
 					}else if(Tmp_ll > 6 && Player ==1){
 						Tmp_ch=2;
-
 					}
 				}
 			}
 
 			STT= KB[Tmp]+Tmp_ss; 
-console.log(STT);
 
 			Te_Count++;
 			$.post({
@@ -272,7 +275,6 @@ console.log(STT);
 				Tmp2	="";
 				Tmp		="";
 				Tmp_ch	="";
-
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);
