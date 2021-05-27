@@ -73,7 +73,7 @@ if($cast["id"]){
 
 <table class="waku">
 <tr>
-<td class="waku_top" colspan="11"></td>
+<td class="waku_top" colspan="3"></td>
 </tr>
 <tr>
 	<td class="waku_left">
@@ -86,7 +86,7 @@ if($cast["id"]){
 		<span class="m_koma"><img src="koma/k30.png" class="koma_img_r u1"></span>
 	</td>
 
-	<td class="waku_main" colspan="9">
+	<td class="waku_main">
 		<div class="ban">
 			<?for($n=9;$n>0;$n--){?>
 			<div class="masu_c"><?=$n?></div>
@@ -102,7 +102,7 @@ if($cast["id"]){
 
 
 			<?for($t=1;$t<41;$t++){?>
-				<span id="koma<?=$t?>" cc="<?=$dat[$t]["colum"]?>" ll="<?=$dat[$t]["line"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
+				<span id="koma<?=$t?>" cc="<?=$dat[$t]["colum"]?>" ll="<?=$dat[$t]["line"]?>" ss="<?=$dat[$t]["style"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
 			<? } ?>
 		</div>
 	</td>
@@ -117,15 +117,17 @@ if($cast["id"]){
 	</td>
 </tr>
 <tr>
-<td class="waku_bottom" colspan="11"><a href="./index.php?logout=1;">あいうえお</a></td>
+	<td class="waku_bottom" colspan="3"><a href="./index.php?logout=1" style="font-size:4vw;">あいうえお</a></td>
 </tr>
 <tr>
-<td class="waku_comm" colspan="11">
-<div class="hist" style="font-size:4vw;">
-
-</div>
-<div class="memo"></div>
-</td>
+	<td class="waku_comm" colspan="3">
+		<div class="hist">
+			<div class="hist_in"></div>
+		</div>
+		<div class="memo">
+			<div class="memo_in"></div>
+		</div>
+	</td>
 </tr>
 </table>	
 

@@ -76,24 +76,39 @@ $(function(){
 	var Tmp		="";
 	var Tmp_cc	="";
 	var Tmp_ll	="";
+	var Dou		="";
 
 	$('.koma').on('click',function(){
 		Player		=Te_Count % 2
 		Opponent	=(Te_Count+1) % 2
 
 		if($('.koma_on').hasClass('u' + Player) && $(this).hasClass('u' + Opponent)){
-
 			TmpId	=$(this).attr('id').replace('c','');
 			Tmp2	=$(this).attr('id').replace('koma','');
+
+console.log(Tmp_cc);
+console.log($(this).attr('cc'));
+
+			if($(this).attr('cc') == Tmp_cc && $(this).attr('ll') == Tmp_ll){
+				Dou="同";
+
+			}else{
+				Dou="";
+			
+			}
+			
 			Tmp		=$('.koma_on').attr('id').replace('koma','');
+			Tmp_ss	=$('.koma_on').attr('ss');
 
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
 
+			Tmp_ss	=$(this).attr('ss');
+
 			Tmp_C	=Base_w*(9-$(this).attr('cc'));
 			Tmp_L	=Base_h*($(this).attr('ll')-1)+Base_hb;
 
-			$('.koma_on').animate({'left':Tmp_C,'top':Tmp_L},300);
+			$('.koma_on').attr({'ll':Tmp_ll,'cc':Tmp_cc}).animate({'left':Tmp_C,'top':Tmp_L},300);
 
 			$(this).fadeOut(400);
 			$('.koma').removeClass('koma_on');
@@ -108,15 +123,14 @@ $(function(){
 					}else if(Tmp_ll == 9 && Player ==1){
 						Tmp_ch=1;
 
-
 					//■恐怖成確認
 					}else if(Tmp_ll < 4 && Player ==0){
 						Tmp_ch=2;
 
 					}else if(Tmp_ll > 6 && Player ==1){
 						Tmp_ch=2;
-
 					}
+
 				} else if(KB[Tmp] == 7){
 					//■K無条件成
 					if(Tmp_ll < 3 && Player ==0){
@@ -125,14 +139,12 @@ $(function(){
 					}else if(Tmp_ll >7 && Player ==1){
 						Tmp_ch=1;
 
-
 					//■K成確認
 					}else if(Tmp_ll == 3 && Player ==0){
 						Tmp_ch=2;
 
 					}else if(Tmp_ll == 7 && Player ==1){
 						Tmp_ch=2;
-
 					}
 
 				}else	if(	KB[Tmp] == 3 ||	KB[Tmp] == 4 ||	KB[Tmp] == 6){
@@ -145,6 +157,9 @@ $(function(){
 					}
 				}
 			}
+
+			STT= KB[Tmp]+Tmp_ss; 
+console.log(STT);
 
 			Te_Count++;
 			$.post({
@@ -159,23 +174,16 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
-				$('.hist').append("<div id=\"hist"+Te_Count+"\" class=\"hist_log\"><span class=\"hist_count\">"+Te_Count+"</span>"+PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT]+"</div>");
-
+				$('.hist_in').append("<div id=\"hist"+Te_Count+"\" class=\"hist_log\"><span class=\"hist_count\">"+Te_Count+"</span>:"+PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Dou + Koma[STT]+"</div>");
 				TmpId	="";
 				Tmp2	="";
 				Tmp		="";
-				Tmp_cc	="";
-				Tmp_ll	="";
 				Tmp_ch	="";
-
-				Tmp_C	="";
-				Tmp_L	="";
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);
 				console.log(errorThrown);
 			});
-
 
 		}else if($(this).hasClass('koma_on')){
 			$(this).removeClass('koma_on');
@@ -190,13 +198,15 @@ $(function(){
 		if($('.koma').hasClass('koma_on')){
 
 			Tmp		=$('.koma_on').attr('id').replace('koma','');
+			Tmp_ss	=$('.koma_on').attr('ss');
+
 			Tmp_cc	=$(this).attr('cc');
 			Tmp_ll	=$(this).attr('ll');
-
+	
 			Tmp_C	=Base_w*(9-$(this).attr('cc'));
 			Tmp_L	=Base_h*($(this).attr('ll')-1)+Base_hb;
 
-			$('.koma_on').animate({'left':Tmp_C,'top':Tmp_L},300);
+			$('.koma_on').attr({'ll':Tmp_ll,'cc':Tmp_cc}).animate({'left':Tmp_C,'top':Tmp_L},300);
 			$('.koma').removeClass('koma_on');
 
 			if($(this).hasClass('s0')){
@@ -209,15 +219,14 @@ $(function(){
 					}else if(Tmp_ll == 9 && Player ==1){
 						Tmp_ch=1;
 
-
 					//■恐怖成確認
 					}else if(Tmp_ll < 4 && Player ==0){
 						Tmp_ch=2;
 
 					}else if(Tmp_ll > 6 && Player ==1){
 						Tmp_ch=2;
-
 					}
+
 				} else if(KB[Tmp] == 7){
 					//■K無条件成
 					if(Tmp_ll < 3 && Player ==0){
@@ -226,14 +235,12 @@ $(function(){
 					}else if(Tmp_ll >7 && Player ==1){
 						Tmp_ch=1;
 
-
 					//■K成確認
 					}else if(Tmp_ll == 3 && Player ==0){
 						Tmp_ch=2;
 
 					}else if(Tmp_ll == 7 && Player ==1){
 						Tmp_ch=2;
-
 					}
 
 				}else	if(	KB[Tmp] == 3 ||	KB[Tmp] == 4 ||	KB[Tmp] == 6){
@@ -242,14 +249,11 @@ $(function(){
 
 					}else if(Tmp_ll > 6 && Player ==1){
 						Tmp_ch=2;
-
 					}
 				}
 			}
 
-			STT= KB[Tmp]*10 
-			console.log(PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT] )
-
+			STT= KB[Tmp]+Tmp_ss; 
 			Te_Count++;
 			$.post({
 				url:"./post/move_get.php",
@@ -262,17 +266,13 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
-				$('.hist').append("<div id=\"hist"+Te_Count+"\" class=\"hist_log\"><span class=\"hist_count\">"+Te_Count+"</span>"+PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT]+"</div>");
+				$('.hist_in').append("<div id=\"hist"+Te_Count+"\" class=\"hist_log\"><span class=\"hist_count\">"+Te_Count+"</span>:"+PC[Player] + Tmp_cc + Masu_L[Tmp_ll] + Koma[STT]+"</div>");
 
 				TmpId	="";
 				Tmp2	="";
 				Tmp		="";
-				Tmp_cc	="";
-				Tmp_ll	="";
 				Tmp_ch	="";
 
-				Tmp_C	="";
-				Tmp_L	="";
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(textStatus);

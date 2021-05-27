@@ -215,22 +215,54 @@ td{
 .l8{top:67vw;}
 .l9{top:76vw;}
 
+.memo{
+	display			:inline-block;
+	font-size		:4vw;
+	width		 	:50vw;
+	height			:calc(100vh - 120vw);
+	background		:#d0e0f0;
+	padding			:0;
+	margin			:0;
+	vertical-align	:top;
+}
+
+.hist{
+	display			:inline-block;
+	font-size		:4vw;
+	width		 	:38vw;
+	height			:calc(100vh - 120vw);
+	background		:#f0c090;
+	padding			:0;
+	margin			:0;
+	vertical-align	:top;
+	overflow-y		:scroll;
+	overflow-x		:hidden;
+	text-align		:right;
+}
+
+.hist_in{
+	display			:inline-block;
+	font-size		:3.5vw;
+	width		 	:35vw;
+}
 
 .hist_log{
-	font-size		:3.5vw;
-	height			:5vw;
-	line-height		:5vw;
+	height			:6vw;
+	line-height		:6vw;
 	border-bottom	:1px solid #303030;
-	width			:45vw;
+	width			:35vw;
 	margin			:0.5vw auto;
 	text-align		:left;
 }
 
 .hist_count{
-	height			:5vw;
-	line-height		:5vw;
-	width			:4vw;
+	display			:inline-block;
+	height			:6vw;
+	line-height		:6vw;
+	width			:6vw;
 	padding-right	:1vw;
 	text-align		:right;
 }
+
+
 
