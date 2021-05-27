@@ -281,5 +281,3 @@ console.log(STT);
 		}
 	});
 });
-
-
