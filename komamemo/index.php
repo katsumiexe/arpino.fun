@@ -1,7 +1,6 @@
 <?php
 include_once('./library/sql.php');
 
-
 $masu_l[1]="一";
 $masu_l[2]="二";
 $masu_l[3]="三";
@@ -14,6 +13,7 @@ $masu_l[9]="九";
 
 if($_POST["logout"]){
 	session_destroy();
+
 }elseif($_POST["set"]){
 	$title	=$_POST["title"];
 	$place	=$_POST["place"];
@@ -77,13 +77,13 @@ if($cast["id"]){
 </tr>
 <tr>
 	<td class="waku_left">
-		<span id="re1k9" class="m_koma"><img src="koma/k90.png" class="koma_img_r u1"><span id="ct1k9" class="m_koma_c"></span></span>
-		<span id="re1k8" class="m_koma"><img src="koma/k80.png" class="koma_img_r u1"><span id="ct1k8" class="m_koma_c"></span></span>
-		<span id="re1k7" class="m_koma"><img src="koma/k70.png" class="koma_img_r u1"><span id="ct1k7" class="m_koma_c"></span></span>
-		<span id="re1k6" class="m_koma"><img src="koma/k60.png" class="koma_img_r u1"><span id="ct1k6" class="m_koma_c"></span></span>
-		<span id="re1k5" class="m_koma"><img src="koma/k50.png" class="koma_img_r u1"><span id="ct1k5" class="m_koma_c"></span></span>
-		<span id="re1k4" class="m_koma"><img src="koma/k40.png" class="koma_img_r u1"><span id="ct1k4" class="m_koma_c"></span></span>
-		<span id="re1k3" class="m_koma"><img src="koma/k30.png" class="koma_img_r u1"><span id="ct1k3" class="m_koma_c"></span></span>
+		<span id="re19" class="m_koma"><img src="koma/k90.png" class="koma_img_r u1"><span id="ct19" class="m_koma_c"></span></span>
+		<span id="re18" class="m_koma"><img src="koma/k80.png" class="koma_img_r u1"><span id="ct18" class="m_koma_c"></span></span>
+		<span id="re17" class="m_koma"><img src="koma/k70.png" class="koma_img_r u1"><span id="ct17" class="m_koma_c"></span></span>
+		<span id="re16" class="m_koma"><img src="koma/k60.png" class="koma_img_r u1"><span id="ct16" class="m_koma_c"></span></span>
+		<span id="re15" class="m_koma"><img src="koma/k50.png" class="koma_img_r u1"><span id="ct15" class="m_koma_c"></span></span>
+		<span id="re14" class="m_koma"><img src="koma/k40.png" class="koma_img_r u1"><span id="ct14" class="m_koma_c"></span></span>
+		<span id="re13" class="m_koma"><img src="koma/k30.png" class="koma_img_r u1"><span id="ct13" class="m_koma_c"></span></span>
 	</td>
 
 	<td class="waku_main">
@@ -103,23 +103,24 @@ if($cast["id"]){
 
 
 			<?for($t=1;$t<41;$t++){?>
-				<span id="koma<?=$t?>" kk="<?=$base[$t]["img"]?>" cc="<?=$dat[$t]["colum"]?>" ll="<?=$dat[$t]["line"]?>" ss="<?=$dat[$t]["style"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
+				<span id="koma<?=$t?>" kk="<?=substr($base[$t]["img"],-1,1)?>" cc="<?=$dat[$t]["colum"]?>" ll="<?=$dat[$t]["line"]?>" ss="<?=$dat[$t]["style"]?>" class="koma c<?=$dat[$t]["colum"]?> l<?=$dat[$t]["line"]?> s<?=$dat[$t]["style"]?> u<?=$dat[$t]["user"]?>"><img src="koma/<?=$base[$t]["img"]?><?=$dat[$t]["style"]?>.png" class="koma_img"></span>
 			<? } ?>
 		</div>
 	</td>
 	<td class="waku_right">
-		<span id="re0k3" class="m_koma"><img src="koma/k30.png" class="koma_img_r"><span id="ct0k3" class="m_koma_c"></span></span>
-		<span id="re0k4" class="m_koma"><img src="koma/k40.png" class="koma_img_r"><span id="ct0K4" class="m_koma_c"></span></span>
-		<span id="re0k5" class="m_koma"><img src="koma/k50.png" class="koma_img_r"><span id="ct0K5" class="m_koma_c"></span></span>
-		<span id="re0k6" class="m_koma"><img src="koma/k60.png" class="koma_img_r"><span id="ct0k6" class="m_koma_c"></span></span>
-		<span id="re0k7" class="m_koma"><img src="koma/k70.png" class="koma_img_r"><span id="ct0k7" class="m_koma_c"></span></span>
-		<span id="re0k8" class="m_koma"><img src="koma/k80.png" class="koma_img_r"><span id="ct0k8" class="m_koma_c"></span></span>
-		<span id="re0k9" class="m_koma"><img src="koma/k90.png" class="koma_img_r"><span id="ct0k9" class="m_koma_c"></span></span>
+		<span id="re03" class="m_koma"><img src="koma/k30.png" class="koma_img_r"><span id="ct03" class="m_koma_c"></span></span>
+		<span id="re04" class="m_koma"><img src="koma/k40.png" class="koma_img_r"><span id="ct04" class="m_koma_c"></span></span>
+		<span id="re05" class="m_koma"><img src="koma/k50.png" class="koma_img_r"><span id="ct05" class="m_koma_c"></span></span>
+		<span id="re06" class="m_koma"><img src="koma/k60.png" class="koma_img_r"><span id="ct06" class="m_koma_c"></span></span>
+		<span id="re07" class="m_koma"><img src="koma/k70.png" class="koma_img_r"><span id="ct07" class="m_koma_c"></span></span>
+		<span id="re08" class="m_koma"><img src="koma/k80.png" class="koma_img_r"><span id="ct08" class="m_koma_c"></span></span>
+		<span id="re09" class="m_koma"><img src="koma/k90.png" class="koma_img_r"><span id="ct09" class="m_koma_c"></span></span>
 	</td>
 </tr>
 <tr>
 	<td class="waku_bottom" colspan="3"><a href="./index.php?logout=1" style="font-size:4vw;">あいうえお</a></td>
 </tr>
+
 <tr>
 	<td class="waku_comm" colspan="3">
 		<div class="hist">
