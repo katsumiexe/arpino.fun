@@ -77,6 +77,7 @@ $(function(){
 	var Tmp_cc	="";
 	var Tmp_ll	="";
 	var Dou		="";
+	var Koma_re=[];
 
 	$('.koma').on('click',function(){
 		Player		=Te_Count % 2
