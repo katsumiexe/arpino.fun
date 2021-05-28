@@ -866,9 +866,9 @@ ul {
 
 .sub_blog_cast{
 	display		:inline-flex;
+	flex-wrap	:wrap;
 	width		:300px;
 	background	:#302520;
-	background	:#d0f0ff;
 	margin-bottom:30px;
 	padding		:0;
 	text-align	:center;
@@ -1952,12 +1952,16 @@ ul {
 .blog_cast_left{
 	display:inline-block;
 	width		:300px;
+	flex-basis:300px;
 }
 
 
 .blog_cast_right{
 	display		:inline-block;
 	border-spacing: 0 2px;
+	width		:270px;
+	flex-basis	:270px;
+	margin		:0 auto 15px auto;
 }
 
 
@@ -2312,83 +2316,65 @@ ul {
 }
 
 
+.schep_l_0,
 .schep_l_1,
 .schep_l_2,
 .schep_l_3,
 .schep_l_4,
-.schep_l_5
+.schep_l_5,
+.schep_l_6
 {
 	border-bottom	:2px solid #202020;
 	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
+	height			:36px;
+	line-height		:36px;
+	width			:120px;
+	font-size		:16px;
 	background		:#404040;
 	color			:#f0d8a8;
 }
 
 .schep_l_0{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
 	background		:#444444;
 	color			:#f0a080;
 }
 
 .schep_l_6{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
 	background		:#444444;
 	color			:#90b8c0;
 }
 
 
+.schep_r_0,
 .schep_r_1,
 .schep_r_2,
 .schep_r_3,
 .schep_r_4,
-.schep_r_5
+.schep_r_5,
+.schep_r_6
+
 {
 	border-bottom	:2px solid #202020;
 	padding-left	:10px;
-	height			:28px;
-	line-height		:28px;
+	height			:36px;
+	line-height		:36px;
 	font-size		:14px;
 	background		:#282828;
 	color			:#c0b890;
 	text-align		:left;
+	width			:180px;
 }
 
 .schep_r_0
 {
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:28px;
-	line-height		:28px;
-	font-size		:14px;
 	background		:#282828;
 	color			:#f0a080;
-	text-align		:left;
 }
 
 .schep_r_6
 {
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:28px;
-	line-height		:28px;
-	font-size		:14px;
 	background		:#282828;
 	color			:#90b8c0;
-	text-align		:left;
 }
 
 .sche_r_1,
@@ -3892,6 +3878,7 @@ ul {
 }
 
 .sub_blog_in,.sub_blog_cast{
+	flex-wrap	:nowrap;
 
 	width			: calc( 96vw + 2px);
 	flex-basis		: calc( 96vw + 2px);
@@ -4126,6 +4113,8 @@ ul {
 .blog_cast_right{
 	border-spacing: 0 0.5vw;
 	margin:1vw;
+	width:53vw;
+	flex-basis	:53vw;
 	flex-basis	:53vw;
 
 }
@@ -4351,6 +4340,7 @@ ul {
 	height		:7vw;
 	line-height	:7vw;
 	width		:20vw;
+	width		:15vw;
 	font-size	:3vw;
 }
 
@@ -4367,6 +4357,7 @@ ul {
 	height		:7vw;
 	line-height	:7vw;
 	width		:32vw;
+	width		:28vw;
 	font-size	:3vw;
 }
 
