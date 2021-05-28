@@ -102,9 +102,9 @@ for($n=0;$n<7;$n++){
 	$list_week=date("w",strtotime($t_sch));
 
 	if($tmp_s && $tmp_e){
-		$list[$n]="<td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
+		$list[$n]="<td class=\"schep_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"schep_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
 	}else{
-		$list[$n]="<td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
+		$list[$n]="<td class=\"schep_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"schep_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
 	}
 }
 
@@ -154,25 +154,23 @@ include_once('./header.php');
 
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
-
-			<table class="sub_blog_in">
-				<tr>
-					<td colspan="3" class="blog_cast_name"><?=$blog["genji"]?></td>
-				</tr>
-
-				<tr>
-					<td class="blog_cast_left" rowspan="7"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
-					<?=$list[0]?>
-				</tr>
-					<?for($n=1;$n<7;$n++){?>
+			<div class="blog_title"><?=$blog["genji"]?></div>
+			<div class="sub_blog_cast">
+				<div class="blog_cast_left">
+					<img src="<?=$blog["face"]?>" class="blog_cast_img">
+					<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a>
+				</div>
+				<table class="blog_cast_right">
+					<?for($n=0;$n<7;$n++){?>
 						<tr><?=$list[$n]?></tr>
 					<?}?>
-				</tr>
-				<tr><td colspan="3" class="blog_cast_prof"><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
-			</table>
+				</table>
+			</div>
+		</div>
+		<div class="sub_blog_pack">
 
-			<div class="sub_blog_in">
 			<div class="blog_title">新着</div>
+			<div class="sub_blog_in">
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">

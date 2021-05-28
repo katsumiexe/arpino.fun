@@ -606,6 +606,7 @@ ul {
 }
 
 .blog_title{
+	display:inline-block;
 	margin:0;
 	width			:290px;
 	height			:30px;
@@ -859,6 +860,20 @@ ul {
 	margin-bottom:30px;
 	padding		:0;
 	text-align	:center;
+	border-spacing:0 2px;
+	border		:1px solid #c8b880;
+}
+
+.sub_blog_cast{
+	display		:inline-flex;
+	width		:300px;
+	background	:#302520;
+	background	:#d0f0ff;
+	margin-bottom:30px;
+	padding		:0;
+	text-align	:center;
+	border-spacing:0 2px;
+	border		:1px solid #c8b880;
 }
 
 .main_c{
@@ -1934,6 +1949,18 @@ ul {
 	color		:#302520;
 }
 
+.blog_cast_left{
+	display:inline-block;
+	width		:300px;
+}
+
+
+.blog_cast_right{
+	display		:inline-block;
+	border-spacing: 0 2px;
+}
+
+
 .blog_cast_img{
 	width		:270px;
 	margin		:15px 15px 5px 15px;
@@ -2193,8 +2220,6 @@ ul {
 	margin-right 	:8px;
 }
 
-
-
 .prof_l{
 	border-bottom	:1px solid #C8B880;
 	padding			:0 5px;
@@ -2286,6 +2311,85 @@ ul {
 	color			:#90b8c0;
 }
 
+
+.schep_l_1,
+.schep_l_2,
+.schep_l_3,
+.schep_l_4,
+.schep_l_5
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#404040;
+	color			:#f0d8a8;
+}
+
+.schep_l_0{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#444444;
+	color			:#f0a080;
+}
+
+.schep_l_6{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
+	background		:#444444;
+	color			:#90b8c0;
+}
+
+
+.schep_r_1,
+.schep_r_2,
+.schep_r_3,
+.schep_r_4,
+.schep_r_5
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#c0b890;
+	text-align		:left;
+}
+
+.schep_r_0
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#f0a080;
+	text-align		:left;
+}
+
+.schep_r_6
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:28px;
+	line-height		:28px;
+	font-size		:14px;
+	background		:#282828;
+	color			:#90b8c0;
+	text-align		:left;
+}
 
 .sche_r_1,
 .sche_r_2,
@@ -2761,16 +2865,15 @@ ul {
 .sub_blog_pack{
 	display			:flex;
 	justify-content	:space-between;
-	width			:96vw;
+	width			:97vw;
 	margin			:0 auto;
 }
 
-.sub_blog_in{
+.sub_blog_in,.sub_blog_cast{
 	width		:47vw;
 	flex-basis	:47vw;
 	margin-bottom:0;
 }
-
 
 
 .slide{
@@ -3545,24 +3648,10 @@ ul {
 	font-size		:2.5vw;
 	padding-left	:1vw;
 	border-radius	:1vw 1vw 0 0; 
-	border			:0.5vw solid #c8b880;
 }
 
 .blog_title{
 	width			:46vw;
-
-}
-
-
-.blog_cast_name{
-	width			:43vw;
-	height			:4vw;
-	line-height		:4vw;
-	margin			:0 auto;
-	font-size		:2.5vw;
-	padding-left	:1vw;
-	border-radius	:1vw 1vw 0 0; 
-	border			:0.5vw solid #c8b880;
 
 }
 
@@ -3776,14 +3865,6 @@ ul {
 	width		:86vw;
 }
 
-.blog_cast_name{
-	width			:95vw;
-	height			:8vw;
-	line-height		:8vw;
-	margin			:0 auto;
-	font-size		:4vw;
-	padding-left	:1vw;
-}
 
 
 .main_blog_title{
@@ -3810,9 +3891,11 @@ ul {
 	font-size	:5vw;
 }
 
-.sub_blog_in{
-	width		:96vw;
-	margin-bottom:5vw;
+.sub_blog_in,.sub_blog_cast{
+
+	width			: calc( 96vw + 2px);
+	flex-basis		: calc( 96vw + 2px);
+	margin-bottom	:5vw;
 }
 
 .blog_h1{
@@ -4029,21 +4112,25 @@ ul {
 }
 
 .blog_cast_img{
-	width		:42vw;
-	height		:56vw;
-	margin		:0;
-	padding		:0;
+	width		:34.5vw;
+	height		:46vw;
+	margin		:1vw;
 }
 
 .blog_cast_left{
-	width		:42vw;
-	height		:56vw;
+	width		:38vw;
+	flex-basis	:38vw;
+	margin		:1vw;
 }
 
 .blog_cast_right{
-	width		:51vw;
+	border-spacing: 0 0.5vw;
+	margin:1vw;
+	flex-basis	:53vw;
+
 }
 
+/*
 .blog_cast_sche{
 	height		:7.5vw;
 	font-size	:3.5vw;
@@ -4059,13 +4146,14 @@ ul {
 	margin		:0 auto;
 	background	:#302520;
 }
+*/
 
 .blog_cast_link{
-	width		:95vw;
-	margin		:2vw auto 0 auto;
-	height		:9vw;
-	line-height	:9vw;
-	font-size	:4.5vw;
+	width		:34.5vw;
+	margin		:0.5vw auto;
+	height		:6vw;
+	line-height	:6vw;
+	font-size	:3.5vw;
 	font-weight	:600;
 }
 
@@ -4173,13 +4261,14 @@ ul {
 
 
 .prof_title,.blog_title,.check_title{
-	width			:93vw;
+	width			: calc( 94vw + 2px);
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto;
 	font-size		:5vw;
 	padding-left	:2vw;
 	border-radius:1vw 1vw 0 0; 
+
 }
 
 
@@ -4226,14 +4315,11 @@ ul {
 .sche_l_5,
 .sche_l_6
 {
-
 	padding-left:1.5vw;
 	height		:8vw;
 	line-height	:8vw;
 	width		:30vw;
 	font-size	:4vw;
-
-
 }
 
 
@@ -4250,6 +4336,38 @@ ul {
 	line-height	:8vw;
 	width		:auto;
 	font-size	:4vw;
+}
+
+
+.schep_l_0,
+.schep_l_1,
+.schep_l_2,
+.schep_l_3,
+.schep_l_4,
+.schep_l_5,
+.schep_l_6
+{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:20vw;
+	font-size	:3vw;
+}
+
+
+.schep_r_0,
+.schep_r_1,
+.schep_r_2,
+.schep_r_3,
+.schep_r_4,
+.schep_r_5,
+.schep_r_6
+{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:32vw;
+	font-size	:3vw;
 }
 
 
