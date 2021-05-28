@@ -77,6 +77,38 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
+$t_day=date("Ymd",$day_time);
+$n_day=date("Ymd",$day_time+(86400*7));
+
+$sql	 ="SELECT * FROM wp01_0schedule";
+$sql	.=" WHERE sche_date>='{$t_day}'";
+$sql	.=" AND sche_date<'{$n_day}'";
+$sql	.=" AND cast_id='{$blog["cast"]}'";
+$sql	.=" ORDER BY id ASC";
+
+if($res = mysqli_query($mysqli,$sql)){
+	while($a0 = mysqli_fetch_assoc($res)){
+		$sch[$a0["sche_date"]]=$a0;
+	}
+}
+
+for($n=0;$n<7;$n++){
+	$t_sch=date("Ymd",$day_time+(86400*$n));
+	$tmp_s=$sch[$t_sch]["stime"];
+	$tmp_e=$sch[$t_sch]["etime"];
+
+	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
+	$list_week=date("w",strtotime($t_sch));
+
+	if($tmp_s && $tmp_e){
+		$list[$n]="<td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
+	}else{
+		$list[$n]="<td class=\"sche_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"sche_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
+	}
+}
+
+
 include_once('./header.php');
 ?>
 <div class="footmark">
@@ -125,16 +157,18 @@ include_once('./header.php');
 
 			<table class="sub_blog_in">
 				<tr>
-					<td colspan="2" class="blog_cast_name"><?=$blog["genji"]?></td>
+					<td colspan="3" class="blog_cast_name"><?=$blog["genji"]?></td>
 				</tr>
 
 				<tr>
-					<td class="blog_cast_left" rowspan="7"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td><td class="blog_cast_sche">あいうえお</td>
-					<?for($n=0;$n<6;$n++){?>
-						<tr><td class="blog_cast_sche">あいうえお</td></tr>
+					<td class="blog_cast_left" rowspan="7"><img src="<?=$blog["face"]?>" class="blog_cast_img"></td>
+					<?=$list[0]?>
+				</tr>
+					<?for($n=1;$n<7;$n++){?>
+						<tr><?=$list[$n]?></tr>
 					<?}?>
 				</tr>
-				<tr><td colspan="2" class="blog_cast_prof"><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
+				<tr><td colspan="3" class="blog_cast_prof"><a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a></td></tr>
 			</table>
 
 			<div class="sub_blog_in">
