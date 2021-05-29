@@ -183,17 +183,18 @@ ul {
 
 .head_b_1{
 	color			:#888986;
-	font-size		:15px;
-	line-height		:20px;
+	font-size		:18px;
+	height			:40px;
+	line-height		:30px;
 	text-align		:right;
 }
 
 .head_b_2,.head_b_3{
 	color			:#c0b078;
-	font-size		:22px;
+	font-size		:24px;
 	font-weight		:600;
-	height			:27px;
-	line-height		:27px;
+	height			:30px;
+	line-height		:30px;
 	text-align		:right;
 }
 
@@ -847,10 +848,12 @@ ul {
 
 
 .sub_blog{
-	display		:inline-block;
+	display		:flex;
+	flex-wrap	:wrap;
+	justify-content	:space-between;
 	width		:302px;
-	margin:0;
-	text-align:right
+	margin		:0;
+	text-align	:right
 }
 
 .sub_blog_in{
@@ -2626,7 +2629,7 @@ ul {
 	margin		:0 auto;
 }
 .main_flex_b{
-	flex-basis	:98vw;
+	flex-basis	:97vw;
 	text-align	:center;
 	margin		:0 auto;
 }
@@ -2730,14 +2733,14 @@ ul {
 
 
 .main_article{
-	width			:95vw;
+	width			:95.5vw;
 	margin			:0 auto 3vw auto;
-	padding:0.5vw;
+	padding			:0.5vw;
 }
 
 
 .main_blog_title{
-	width			:95vw;
+	width			:95.5vw;
 	height			:4vw;
 	line-height		:4vw;
 	margin			:0 auto;
@@ -2757,8 +2760,8 @@ ul {
 .blog_h1{
 	display			:inline-block;
 	width			:46vw;
-	height			:4vw;
-	line-height		:4vw;
+	height			:5vw;
+	line-height		:5vw;
 	font-size		:3vw;
 	padding-left	:1vw;
 }
@@ -2848,12 +2851,14 @@ ul {
 }
 
 .sub_blog{
-	width		:98vw;
+	flex-wrap	:nowrap;
+	width		:97vw;
 	text-align	:center
 }
 
 .sub_blog_pack{
 	display			:flex;
+	flex-wrap		:wrap;
 	justify-content	:space-between;
 	width			:97vw;
 	margin			:0 auto;
@@ -2862,8 +2867,68 @@ ul {
 .sub_blog_in,.sub_blog_cast{
 	width		:47vw;
 	flex-basis	:47vw;
-	margin-bottom:0;
+	margin		:0 auto;
 }
+
+.blog_cast_left{
+	width		:17vw;
+	flex-basis	:17vw;
+	margin		:0vw;
+	padding:0;
+}
+
+.blog_cast_right{
+	border-spacing: 0 0.2vw;
+	margin:0.8vw 0vw;
+	width:30vw;
+}
+
+.blog_cast_img{
+	width		:15vw;
+	height		:20vw;
+	margin		:1vw;
+}
+
+.schep_l_0,
+.schep_l_1,
+.schep_l_2,
+.schep_l_3,
+.schep_l_4,
+.schep_l_5,
+.schep_l_6
+{
+	padding-left:0.5vw;
+	height		:3.5vw;
+	line-height	:3.5vw;
+	width		:12vw;
+	font-size	:2vw;
+}
+
+
+.schep_r_0,
+.schep_r_1,
+.schep_r_2,
+.schep_r_3,
+.schep_r_4,
+.schep_r_5,
+.schep_r_6
+{
+	padding-left:0.5vw;
+	height		:3.5vw;
+	line-height	:3.5vw;
+	width		:17vw;
+	font-size	:2vw;
+}
+
+.blog_cast_link{
+	width		:15vw;
+	margin		:0.7vw auto;
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:2.5vw;
+	font-weight	:600;
+}
+
 
 
 .slide{
@@ -3099,7 +3164,7 @@ ul {
 .blog_list{
 	width			:calc(46.5vw - 2px);
 	height			:15vw;
-	border			:1px solid #c8d880;
+	border			:1px solid #c8b880;
 	margin			:0.5vw;
 }
 
@@ -3574,8 +3639,8 @@ ul {
 
 
 .sche_block1{
-	width			:7vw;
-	padding-left	:1vw;
+	width			:5vw;
+	padding-left	:0.5vw;
 }
 
 
@@ -3843,6 +3908,10 @@ ul {
 
 .main{
 	padding-top		:14vw;
+}
+
+.sub_blog{
+	flex-wrap:wrap;
 }
 
 .sub_blog_pack{
