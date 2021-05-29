@@ -206,8 +206,8 @@ ul {
 	display		:inline-block;
 	height		:50px;
 	line-height	:50px;
-	width		:130px;
-	flex-basis	:190px;
+	width		:160px;
+	flex-basis	:160px;
 	background	:#252018;
 	border		:1px solid #c8b880;
 	margin		:10px 0;
@@ -1682,6 +1682,10 @@ ul {
 	font-size		:0;
 	border-bottom	:1px solid #c8b880;
 	color			:#c8b880;
+}
+
+.all_tag:last-child{
+	border:none;
 }
 
 .all_tag_name{
@@ -3310,7 +3314,7 @@ ul {
 .system_title{
 	height			:6vw;
 	line-height		:6vw;
-	flex-basis		:78vw
+	flex-basis		:78vw;
 	font-size		:4vw;
 	width			:78vw;
 	border-left		:2vw solid #c8b880;
@@ -3641,8 +3645,8 @@ ul {
 
 }
 
-
 }
+
 @media screen and (max-width: 559px){
 
 .menu{
@@ -3985,8 +3989,12 @@ ul {
 	margin			:0;
 	border			:none;
 	border-bottom	:1px solid #c8b880;
-
 }
+.blog_list:last-child{
+	border:none;
+}
+
+
 
 .blog_list_img{
 	top				:1vw;
@@ -4099,15 +4107,16 @@ ul {
 }
 
 .blog_cast_img{
-	width		:34.5vw;
-	height		:46vw;
-	margin		:1vw;
+	width		:37.5vw;
+	height		:50vw;
+	margin		:0.5vw;
 }
 
 .blog_cast_left{
-	width		:38vw;
-	flex-basis	:38vw;
+	width		:40vw;
+	flex-basis	:40vw;
 	margin		:1vw;
+	padding:0;
 }
 
 .blog_cast_right{
@@ -4115,9 +4124,41 @@ ul {
 	margin:1vw;
 	width:53vw;
 	flex-basis	:53vw;
-	flex-basis	:53vw;
-
 }
+
+.schep_l_0,
+.schep_l_1,
+.schep_l_2,
+.schep_l_3,
+.schep_l_4,
+.schep_l_5,
+.schep_l_6
+{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:19vw;
+	font-size	:3vw;
+}
+
+
+.schep_r_0,
+.schep_r_1,
+.schep_r_2,
+.schep_r_3,
+.schep_r_4,
+.schep_r_5,
+.schep_r_6
+{
+	padding-left:1vw;
+	height		:7vw;
+	line-height	:7vw;
+	width		:32vw;
+	width		:auto;
+	font-size	:3vw;
+}
+
+
 
 /*
 .blog_cast_sche{
@@ -4138,7 +4179,7 @@ ul {
 */
 
 .blog_cast_link{
-	width		:34.5vw;
+	width		:37.5vw;
 	margin		:0.5vw auto;
 	height		:6vw;
 	line-height	:6vw;
@@ -4327,39 +4368,6 @@ ul {
 	font-size	:4vw;
 }
 
-
-.schep_l_0,
-.schep_l_1,
-.schep_l_2,
-.schep_l_3,
-.schep_l_4,
-.schep_l_5,
-.schep_l_6
-{
-	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
-	width		:20vw;
-	width		:15vw;
-	font-size	:3vw;
-}
-
-
-.schep_r_0,
-.schep_r_1,
-.schep_r_2,
-.schep_r_3,
-.schep_r_4,
-.schep_r_5,
-.schep_r_6
-{
-	padding-left:1vw;
-	height		:7vw;
-	line-height	:7vw;
-	width		:32vw;
-	width		:28vw;
-	font-size	:3vw;
-}
 
 
 .sche_block1{

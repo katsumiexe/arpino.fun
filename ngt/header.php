@@ -63,6 +63,7 @@
 			<li class="menu_item"><a href="./index.php">Top Page</a></li>
 			<li class="menu_item"><a href="./system.php">Sytem</a></li>
 			<li class="menu_item"><a href="./cast.php">Cast</a></li>
+			<li class="menu_item"><a href="./schedule.php">Schedule</a></li>
 			<li class="menu_item"><a href="./castblog.php">Blog</a></li>
 			<li class="menu_item"><a href="./access.php">Access</a></li>
 			<li class="menu_item"><a href="./recruit.php">Recruit</a></li>
