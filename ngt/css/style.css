@@ -1343,12 +1343,14 @@ ul {
 
 .sys_box_log{
 	margin			:0 auto 30px auto;
+ 	width:990px;
     display			:flex;
+    display			:block;
 	flex-wrap		:wrap;
 	color			:#c8b880;
 	font-size		:18px;
 	line-height		:32px;
-	text-align		:center;
+	text-align		:left;
 }
 
 .system_title{
@@ -1994,7 +1996,7 @@ ul {
 .rec{
 	margin:0 auto;
 	display		:flex;
-	width		:600px;
+	width		:900px;
 	border		:1px solid #303030;
 }
 
@@ -2006,13 +2008,13 @@ ul {
 .rec_l{
 	display		:inline-block;
 	text-align	:left;
-	flex-basis	:120px;
+	flex-basis	:200px;
 	background	:#c8b880;
 	background	:#d0d0d0;
 	color		:#202020;
-	font-size	:14px;
+	font-size	:18px;
 	padding		:10px;
-	line-height	:20px;
+	line-height	:30px;
 	font-weight	:600;
 }
 
@@ -2022,9 +2024,9 @@ ul {
 	flex		:1;
 	background	:#fafafa;
 	color		:#202020;
-	font-size	:14px;
+	font-size	:18px;
 	padding		:10px;
-	line-height	:20px;
+	line-height	:30px;
 }
 
 
@@ -2525,6 +2527,22 @@ ul {
 	border-bottom	:none;
 	border-right	:1px solid #000000;
 }
+
+.menu_item{
+	display		:inline-block;
+	height		:4vw;
+	line-height	:4vw;
+	width		:13vw;
+	flex-basis	:13vw;
+	margin		:0.5vw 0;
+}
+
+.menu_item a{
+	font-size	:2.2vw;
+	height		:4vw;	
+	line-height	:4vw;
+}
+
 
 .rec_img{
 	width:100vw;
