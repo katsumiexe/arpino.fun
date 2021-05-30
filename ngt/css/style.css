@@ -3795,7 +3795,7 @@ ul {
 }
 
 .blog_title{
-	width			:46vw;
+	width			:44vw;
 
 }
 
@@ -4451,7 +4451,8 @@ ul {
 
 
 .prof_title,.blog_title,.check_title{
-	width			: calc( 94vw + 2px);
+	width			: calc( 92vw + 2px);
+	flex-basis		: calc( 92vw + 2px);
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto;
@@ -4459,12 +4460,6 @@ ul {
 	padding-left	:2vw;
 	border-radius:1vw 1vw 0 0; 
 }
-
-.blog_title{
-	flex-basis		: calc( 94vw + 2px);
-}
-
-
 
 .prof_l{
 	padding		:0 0.5vw;
@@ -4540,7 +4535,7 @@ ul {
 
 
 .person_blog{
-	width			:96vw;
+	width			:94vw;
 	height			:20vw;
 	margin-top		:0.5vw;
 	
@@ -4618,9 +4613,9 @@ ul {
 .person_blog_title{
 	top				:8vw;
 	left			:22vw;
-	width			:73vw;
+	width			:71vw;
 	height			:11vw;	
-	font-size		:4vw;
+	font-size		:3.8vw;
 	line-height		:5.5vw;	
 }
 
