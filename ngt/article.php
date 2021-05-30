@@ -168,7 +168,6 @@ include_once('./header.php');
 			</div>
 		</div>
 		<div class="sub_blog_pack">
-
 			<div class="blog_title">新着</div>
 			<div class="sub_blog_in">
 			<?for($s=0;$s<$blog_new_count;$s++){?>
@@ -180,10 +179,9 @@ include_once('./header.php');
 					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>
 			<?}?>
-
-
 			</div>
 		</div>
 	</div>
+
 </div>
 <?include_once('./footer.php'); ?>

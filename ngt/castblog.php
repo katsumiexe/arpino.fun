@@ -231,6 +231,7 @@ include_once('./header.php');
 	</div>
 <?}?>
 </div>
+
 <div class="main_top_flex">
 	<div class="main_flex_a">
 		<h2 class="main_blog_title"> Cast Blog</h2>
@@ -299,6 +300,7 @@ include_once('./header.php');
 				<? } ?>
 			</div>
 			<?}?>
+
 			<?if($cast_dat){?>
 			<div class="sub_blog_in">
 				<div class="blog_h1">CAST一覧</div>
@@ -313,7 +315,6 @@ include_once('./header.php');
 			</div>
 			<?}?>
 		</div>
-
 	</div>
 </div>
 </div>
