@@ -4367,7 +4367,8 @@ ul {
 	width		:96vw;
 	flex-basis	:96vw;
 	text-align	:center;
-	margin		:0 2vw;
+	margin		:0 auto;
+	background	:#d0e0ff;
 }
 
 .person_middle{
@@ -4390,35 +4391,33 @@ ul {
 }
 
 .person_img_box{
-	margin			:1vw;
-	width			:69vw;
-	height			:92vw;	
-	
+	margin			:0;
+	width			:75vw;
+	height			:100vw;	
 }
+
 .person_img_main,.person_img_top{
 	top				:0;
 	left			:0;
-	width			:69vw;
-	height			:92vw;	
+	width			:75vw;
+	height			:100vw;	
 }
 
 .person_img_list{
 	align-content	:flex-start;
 	flex-wrap		:wrap;
 	top				:0;
-	left			:77.5vw;
+	right			:0;
 	width			:18vw;
-	height			:95vw;
-	margin			:1vw
+	height			:100vw;
+	margin			:0vw
 }
 
 .person_img_sub{
 	width			:18vw;
-	height			:22vw;
-	margin-bottom	:1.3333vw;
+	height			:24vw;
+	margin-bottom	:1vw;
 }
-
-
 
 .person_main{
 	flex-wrap	:wrap;

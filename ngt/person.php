@@ -197,6 +197,7 @@ include_once('./header.php');
 					<span class="person_blog_title"><?=$blog[$s]["title"]?></span>
 				</a>
 			<?}?>
+
 			<?if($cnt_blog == 0){?>
 				<div class="person_blog">
 					<span class="person_blog_no">まだありません</span>
@@ -213,16 +214,16 @@ include_once('./header.php');
 				<td class="prof_r"><?=$cast_data["genji"]?></td>
 			</tr>
 		<?for($n=0;$n<$cnt_charm_table+0;$n++){?>
-		<?if($charm_table[$n]["style"] == 1){?>
-			<tr><td class="prof_0" colspan="2"></td></tr>
-			<tr><td class="prof_l2" colspan="2"><?=$charm_table[$n]["charm"]?></td></tr>
-			<tr><td class="prof_r2" colspan="2"><?=$charm_table[$n]["log"]?></td></tr>
-		<?}else{?>
-			<tr>
-			<td class="prof_l"><?=$charm_table[$n]["charm"]?></td>
-			<td class="prof_r"><?=$charm_table[$n]["log"]?></td>
-			</tr>
-		<?}?>
+			<?if($charm_table[$n]["style"] == 1){?>
+				<tr><td class="prof_0" colspan="2"></td></tr>
+				<tr><td class="prof_l2" colspan="2"><?=$charm_table[$n]["charm"]?></td></tr>
+				<tr><td class="prof_r2" colspan="2"><?=$charm_table[$n]["log"]?></td></tr>
+			<?}else{?>
+				<tr>
+				<td class="prof_l"><?=$charm_table[$n]["charm"]?></td>
+				<td class="prof_r"><?=$charm_table[$n]["log"]?></td>
+				</tr>
+			<?}?>
 		<?}?>
 		</table>
 
