@@ -1087,10 +1087,10 @@ $(function(){
 							</td>
 						</tr>
 					</table>
+
 				</div>
 				<input id="blog_chg" type="hidden" value="" >
 			</div>
-
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">
