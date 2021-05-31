@@ -110,7 +110,7 @@ $html.="<div class=\"hist_log\">";
 
 
 if($img_name){
-$html.="<span class=\"hist_img_in\"><img src=\"./img/profile/{$cast_data["id"]}/{$img_name}.png\" class=\"hist_img_on\"></span><br>";
+$html.="<span class=\"hist_img_in\"><img src=\"../img/profile/{$cast_data["id"]}/{$img_name}.png\" class=\"hist_img_on\"></span><br>";
 }
 $html.="<span class=\"blog_log\">{$log}</span>";
 $html.="</div>";

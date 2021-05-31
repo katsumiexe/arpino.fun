@@ -467,7 +467,7 @@ $(function(){
 			$('#blog_status').val('');
 			$('#blog_tag').val('5');
 
-			$('.blog_img').attr('src','./img/blog_no_image.png');
+			$('.blog_img').attr('src','../img/blog_no_image.png');
 
 		}else{
 			$('.blog_write').slideUp(50);
