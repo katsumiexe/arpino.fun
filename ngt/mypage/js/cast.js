@@ -492,6 +492,8 @@ $(function(){
 			console.log(errorThrown);
 		});
 
+
+
 	});
 
 	$('#regist_blog_fix').on('click',function () {
@@ -565,49 +567,8 @@ $(function(){
 					img_H=img.height;
 					img_S2=60*VwBase;
 
-					if(img_H> img_4){
-						img_A=img_H;
-						img_B=300/img_W;
-
-						cvs_X=Math.ceil((img_H-img_W)/2);
-						cvs_Y=0+Base_s;
-
-						css_A=Math.ceil(img_H*Base_l/img_W);
-						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
-						css_Y=Math.ceil( Base_s - ( css_A - Base_h) / 2 );
-
-						css_inX[Tmp]=( css_A - Base_l) / 2;
-						css_inY[Tmp]= 0;
-
-						css_outX[Tmp]=(( css_A - Base_l) / 2)+ Base_l;
-						css_outY[Tmp]= + css_A;
-
-
-					}else{
-						img_A=img_W;
-
-						img_B=/img_H;
-
-						cvs_Y=Math.ceil((img_W-img_H)/2);
-						cvs_X=0;
-
-						css_A=Math.ceil(img_W*Base_h/img_H);
-						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
-						css_Y=Math.ceil( Base_s - ( css_A - Base_h) / 2 );
-
-						css_inX[Tmp]=0;
-						css_inY[Tmp]=( css_A - Base_h) / 2;
-
-						c[Tmp]= css_A;
-						css_outY[Tmp]=( ( css_A - Base_H) / 2 ) + Base_l;
-
-					}
-
-
-
-/*
 					if(img_H > img_W){
-						cvs_W=img_W;
+						cvs_W=600;
 						cvs_H=Math.ceil(img_H*(cvs_W/img_W));
 						cvs_A=cvs_H;
 
@@ -615,17 +576,15 @@ $(function(){
 						cvs_Y=0;
 
 						css_W=Width_l;
-						css_H=Math.ceil(img_W*(css_H/img_H));
+						css_H=Math.ceil(img_H*(css_W/img_W));
 						css_A=css_H;
 
 						css_B=Math.ceil(Width_s - (css_A-Width_l)/2);
 
 
 					}else{
-						cvs_H=img_H;
-
+						cvs_H=600;
 						cvs_W=Math.ceil(img_W*(cvs_H/img_H));
-
 						cvs_A=cvs_W;
 
 						cvs_Y=Math.ceil((cvs_W-cvs_H)/2);
@@ -638,8 +597,6 @@ $(function(){
 						css_B=Math.ceil(Width_s - (css_A-Width_l)/2);
 
 					}				
-
-*/
 
 					$("#cvs1").attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
 					ctx.drawImage(img, 0,0, img_W, img_H,cvs_X, cvs_Y, cvs_W, cvs_H);
@@ -2355,6 +2312,7 @@ $(function(){
 			ItemPrice[N]	=$(this).children('.sel_log_price_s').text();
 			N++;
 		});
+console.log($('#local_ed').val());
 
 		$.post({
 			url:"./post/customer_log_set.php",
@@ -2561,6 +2519,9 @@ $(function(){
 	$('.mail_detail').scroll(function() {
 		Pnt= $(this).scrollTop();
 		Hgt= $('.mail_detail_in').height();
+
+console.log(Hgt+"▲"+Pnt);
+
 		if(Pnt==0){
 			Tmp=$('#easytalk_page').val()-0;
 
