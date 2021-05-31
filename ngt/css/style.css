@@ -2066,7 +2066,8 @@ ul {
 
 
 .person_left{
-	display		:inline-block;
+	display		:inline-flex;
+	justify-content: space-between;
 	position	:relative;
 	width		:380px;
 	flex-basis	:380px;
@@ -2224,7 +2225,7 @@ ul {
 	height			:480px;	
 }
 
-.person_img_main,.person_img_top{
+.person_	img_main,.person_img_top{
 	position		:absolute;
 	top				:0;
 	left			:0;
@@ -4364,11 +4365,10 @@ ul {
 }
 
 .person_left{
-	width		:96vw;
-	flex-basis	:96vw;
+	width		:95vw;
+	flex-basis	:95vw;
 	text-align	:center;
 	margin		:0 auto;
-	background	:#d0e0ff;
 }
 
 .person_middle{
@@ -4394,6 +4394,7 @@ ul {
 	margin			:0;
 	width			:75vw;
 	height			:100vw;	
+	flex-basis		:75vw;
 }
 
 .person_img_main,.person_img_top{
@@ -4410,13 +4411,14 @@ ul {
 	right			:0;
 	width			:18vw;
 	height			:100vw;
-	margin			:0vw
+	margin			:0vw;
+	flex-basis		:18vw;
 }
 
 .person_img_sub{
 	width			:18vw;
 	height			:24vw;
-	margin-bottom	:1vw;
+	margin-bottom	:1.3vw;
 }
 
 .person_main{
@@ -4534,7 +4536,7 @@ ul {
 
 
 .person_blog{
-	width			:94vw;
+	width			:96vw;
 	height			:20vw;
 	margin-top		:0.5vw;
 	
