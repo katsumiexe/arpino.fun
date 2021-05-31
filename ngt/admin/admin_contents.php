@@ -8,6 +8,7 @@ if(!$post_id) $post_id="event";
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE page={$post_id}";
 $sql	.=" ORDER BY id DESC";
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		$dat[$res["id"]]=$res;

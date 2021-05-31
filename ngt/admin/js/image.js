@@ -18,8 +18,8 @@ $(function(){
 	var cvs		=[];
 	var ctx		=[];
 
-	var css_inX=[];
-	var css_inY=[];
+	var css_inX	=[];
+	var css_inY	=[];
 
 	var css_outX=[];
 	var css_outY=[];

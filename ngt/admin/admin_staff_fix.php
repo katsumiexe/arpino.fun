@@ -14,6 +14,7 @@ if($res = mysqli_query($mysqli,$sql) ){
 		$staff_data["b_mm"]=substr($staff_data["birthday"],4,2);
 		$staff_data["b_dd"]=substr($staff_data["birthday"],6,2);
 	}
+
 	if($staff_data["ctime"]){
 		$staff_data["c_yy"]=substr($staff_data["ctime"],0,4);
 		$staff_data["c_mm"]=substr($staff_data["ctime"],4,2);
@@ -346,13 +347,13 @@ CAST情報
 
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
-	<?foreach((array)$charm_table as $a1 => $a2){?>
+	<?foreach((array)$charm_main as $a1 => $a2){?>
 <td>
 	<div><?=$a2["charm"]?></div>
 	<?if($a2["style"] == 1){?>
-		<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
+		<textarea name="charm_main[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
 	<? }else{ ?>
-		<input type="text" name="charm_table[<?=$a2["id"]?>]" class="w000" autocomplete="off">
+		<input type="text" name="charm_main[<?=$a2["id"]?>]" class="w000" autocomplete="off">
 	<? } ?>
 </td>
 <?if(($cnt+0) % 2 ==1){?>
