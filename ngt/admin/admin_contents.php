@@ -16,28 +16,13 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($res["id"] == "$sel_id"){
 			$dat_sel=$res;
 		}
-	}
 
-	if(is_array($dat)){
 		$dat_count=count($dat);
 	}
+
 }
 
 if($post_id == "news"){
-	$sql	 ="SELECT * FROM wp01_0tag";
-	$sql	.=" WHERE tag_group='{$post_id}'";
-	$sql	.=" ORDER BY sort ASC";
-
-	if($result = mysqli_query($mysqli,$sql)){
-		while($res = mysqli_fetch_assoc($result)){
-			$tag[]=$res;
-		}
-
-		if(is_array($tag)){
-			$tag_count=count($tag);
-		}
-	}
-
 	$sql	 ="SELECT * FROM wp01_0tag";
 	$sql	.=" WHERE tag_group='news'";
 	$sql	.=" AND del=0";
@@ -115,10 +100,15 @@ $(function(){
 </form>
 </header>
 
+.main_table{
+	width
+
+}
 
 <div class="wrap">
 	<?if($post_id == "news"){?>
 		<div class="main_box">
+
 			<table class="news_table">
 				<tr>
 					<td class="news_td_date">
