@@ -37,6 +37,18 @@ if($post_id == "news"){
 			$tag_count=count($tag);
 		}
 	}
+
+	$sql	 ="SELECT * FROM wp01_0tag";
+	$sql	.=" WHERE tag_group='news'";
+	$sql	.=" AND del=0";
+	$sql	.=" ORDER BY sort ASC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$tag[]=$row;
+			$count_tag++;
+		}
+	}
 }
 
 ?>
@@ -82,7 +94,7 @@ $(function(){
 //	$('#e_yy, #t_yy').datetimepicker();
 
 	$('.sel_contents').on('click',function(){
-		Tmp=$(this).attr('id').replace('c_','');
+		Tmp=$(this).attr('id');
 		$('#sel_ck').val(Tmp);
 		$('#form').submit();
 	});
@@ -96,13 +108,61 @@ $(function(){
 <div id="system" class="sel_contents <?if($post_id == "system"){?> sel_ck<?}?>">SYSTEM</div>
 <div id="access" class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
 <div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
+
 <form id="form" method="post">
-<input id="sel_ck" type="hidden" name="post_id">
-<input type="hidden" name="menu_post" value="contents">
+	<input id="sel_ck" type="hidden" name="post_id">
+	<input type="hidden" name="menu_post" value="contents">
 </form>
 </header>
+
 <div class="wrap">
-	<?if($post_id == "event"){?>
+	<?if($post_id == "news"){?>
+		<div class="main_box">
+			<table>
+				<tr>
+					<td>
+						<span class="tag">表示時間</span>
+						<input type="text" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+					</td>
+
+					<td>
+						<select name="tag">
+							<?for($n=0;$n<$tag_count;$n++){?>
+								<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
+							<? } ?>	
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="tag">タイトル</span>
+						<input type="text" name="event_title" value="<?=$dat_sel["title"]?>"> 
+					</td>
+					<td>
+						<span class="tag">URL</span>
+						<input type="text" name="event_url" value="<?=$dat_sel["contents_url"]?>"> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<textarea class="textarea"><?=$dat_sel["contents"]?></textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+			<div class="sub_box">
+				<?forech($tag as $a1 => $a2){?>
+
+					<div class="yser_box">
+					<input id="rd<?=$a1?>"  type="radio" style="display:inline-block;">
+					<lebel for="rd<?=$a1?>">
+					</div>
+				<?}?>
+
+
+
+ 
+	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<table>
 				<tr>
@@ -148,6 +208,7 @@ $(function(){
 				</tr>
 			</table>
 		</div>
+
 		<div class="sub_box">
 			<?foreach($dat as $a1 => $a2){?>
 				<table>
@@ -165,5 +226,7 @@ $(function(){
 			<? } ?>
 		</div>
 	<? } ?>
+
+
 </div>
 <footer class="foot"></footer>
