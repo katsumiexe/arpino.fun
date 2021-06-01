@@ -119,12 +119,12 @@ $(function(){
 	<?if($post_id == "news"){?>
 		<div class="main_box">
 			<table>
+
 				<tr>
 					<td>
-						<span class="tag">表示時間</span>
-						<input type="text" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+						<div class="news_tag">公開日</div>
+						<input type="date" name="n_date" class="w60" value="" autocomplete="off"> 
 					</td>
-
 					<td>
 						<select name="tag">
 							<?for($n=0;$n<$tag_count;$n++){?>
@@ -135,12 +135,13 @@ $(function(){
 				</tr>
 				<tr>
 					<td>
-						<span class="tag">タイトル</span>
+						<span class="news_tag">タイトル</span>
 						<input type="text" name="event_title" value="<?=$dat_sel["title"]?>"> 
 					</td>
+				</tr>
+				<tr>
 					<td>
-						<span class="tag">URL</span>
-						<input type="text" name="event_url" value="<?=$dat_sel["contents_url"]?>"> 
+						<span class="news_tag">リンク</span>
 					</td>
 				</tr>
 				<tr>
@@ -150,14 +151,15 @@ $(function(){
 				</tr>
 			</table>
 		</div>
-			<div class="sub_box">
-				<?forech($tag as $a1 => $a2){?>
 
-					<div class="yser_box">
-					<input id="rd<?=$a1?>"  type="radio" style="display:inline-block;">
-					<lebel for="rd<?=$a1?>">
-					</div>
-				<?}?>
+		<div class="sub_box">
+			<?forech($tag as $a1 => $a2){?>
+				<div class="yser_box">
+				<input id="rd<?=$a1?>"  type="radio" style="display:inline-block;">
+				<lebel for="rd<?=$a1?>">
+				</div>
+			<?}?>
+		</div>
 
 
 
