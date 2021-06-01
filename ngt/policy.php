@@ -31,8 +31,8 @@ include_once('./header.php');
 <div class="corner_in box_in_2"></div>
 <div class="corner_in box_in_3"></div>
 <div class="corner_in box_in_4"></div>
-<div class="sys_box_ttl"><?=$dat["title"]?></div>
-<div class="sys_box_log"><?=$dat["contents"]?></div>
+<span class="sys_box_ttl"><?=$dat["title"]?></span><br>
+<span class="sys_box_log"><?=$dat["contents"]?></span><br>
 </div>
 <div class="corner box_1"></div>
 <div class="corner box_2"></div>

@@ -9,6 +9,7 @@ $sql	.=" LIMIT 1";
 $res = mysqli_query($mysqli,$sql);
 $dat = mysqli_fetch_assoc($res);
 
+get_header();
 ?>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">

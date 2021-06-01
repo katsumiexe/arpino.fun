@@ -72,45 +72,16 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 
 		$row["date"]=substr(str_replace("-",".",$row["view_date"]),0,10);
+
 		$blog_new[]=$row;
+
 		$blog_new_count++;
 	}
 }
 
-
-$t_day=date("Ymd",$day_time);
-$n_day=date("Ymd",$day_time+(86400*7));
-
-$sql	 ="SELECT * FROM wp01_0schedule";
-$sql	.=" WHERE sche_date>='{$t_day}'";
-$sql	.=" AND sche_date<'{$n_day}'";
-$sql	.=" AND cast_id='{$blog["cast"]}'";
-$sql	.=" ORDER BY id ASC";
-
-if($res = mysqli_query($mysqli,$sql)){
-	while($a0 = mysqli_fetch_assoc($res)){
-		$sch[$a0["sche_date"]]=$a0;
-	}
-}
-
-for($n=0;$n<7;$n++){
-	$t_sch=date("Ymd",$day_time+(86400*$n));
-	$tmp_s=$sch[$t_sch]["stime"];
-	$tmp_e=$sch[$t_sch]["etime"];
-
-	$list_day=substr($t_sch,4,2)."/".substr($t_sch,6,2);
-	$list_week=date("w",strtotime($t_sch));
-
-	if($tmp_s && $tmp_e){
-		$list[$n]="<td class=\"schep_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"schep_r_".$list_week."\"><span class=\"sche_block1\">".$tmp_s."</span>－<span class=\"sche_block1\">".$tmp_e."</span></td>";
-	}else{
-		$list[$n]="<td class=\"schep_l_".$list_week."\">".$list_day." ".$week[$list_week]."</td><td class=\"schep_r_".$list_week."\"><span class=\"sche_block1\">休み</span></td>";
-	}
-}
-
-
 include_once('./header.php');
 ?>
+
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -154,28 +125,19 @@ include_once('./header.php');
 
 	<div class="sub_blog">
 		<div class="sub_blog_pack">
+			<div class="sub_blog_in">
 			<div class="blog_title"><?=$blog["genji"]?></div>
-			<div class="sub_blog_cast">
-				<div class="blog_cast_left">
-					<img src="<?=$blog["face"]?>" class="blog_cast_img">
-					<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a>
-				</div>
-				<table class="blog_cast_right">
-					<?for($n=0;$n<7;$n++){?>
-						<tr><?=$list[$n]?></tr>
-					<?}?>
-				</table>
+				<img src="<?=$blog["face"]?>" class="blog_cast_img">
+				<a href="./person.php?post_id=<?=$blog["cast"]?>" class="blog_cast_link">Profile</a>
 			</div>
-		</div>
-		<div class="sub_blog_pack">
+
+			<div class="sub_blog_in">
 
 			<div class="blog_title">新着</div>
-			<div class="sub_blog_in">
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">
-					<span class="person_blog_tag">
-					<span class="blog_list_icon"><?=$blog_new[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog_new[$s]["tag_name"]?></span></span>
+					<span class="person_blog_tag"><span class="blog_list_icon"><?=$blog_new[$s]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog_new[$s]["tag_name"]?></span></span>
 					<span class="person_blog_date"><?=$blog_new[$s]["date"]?></span>
 					<span class="person_blog_title"><?=$blog_new[$s]["title"]?></span>
 				</a>

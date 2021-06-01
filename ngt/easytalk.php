@@ -48,6 +48,7 @@ if($ss){
 		}
 		$box_no.=$id_0;
 
+
 		$sql	 ="UPDATE wp01_0ssid SET";
 		$sql	.=" del='1'";
 		$sql	.=" WHERE id <'{$ssid["id"]}'";
@@ -56,7 +57,7 @@ if($ss){
 		mysqli_query($mysqli,$sql);
 
 		if (file_exists("./img/profile/{$ssid["cast_id"]}/0_s.jpg")) {
-			$face_link="./img/profile/{$ssid["cast_id"]}/0_s.jpg";
+			$face_link="./img/profile/{$ssid["cast_id"]}/0_s.jpg";			
 
 		}else{
 			$face_link="./img/cast_no_image.jpg";			
@@ -67,7 +68,6 @@ if($ss){
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
 		$sql	.=" ORDER BY mail_id DESC";
 		$sql	.=" LIMIT 10";
-
 		if($res = mysqli_query($mysqli,$sql)){
 			while($a1 = mysqli_fetch_assoc($res)){
 				$dat[$n]=$a1;
@@ -114,6 +114,7 @@ if($ss){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EasyTalk</title>
 <script>
+
 const ImgSrc="./img/customer_no_img.jpg?t_<?=time()?>";
 const CastId="<?=$ssid["cast_id"]?>";
 </script>
@@ -133,6 +134,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 }
 </style>
 </head>
+
 <body class="body">
 <header class="head_easytalk"></header>
 <div class="main_easytalk">
