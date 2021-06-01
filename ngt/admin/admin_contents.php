@@ -115,13 +115,13 @@ $(function(){
 </form>
 </header>
 
+
 <div class="wrap">
 	<?if($post_id == "news"){?>
 		<div class="main_box">
-			<table>
-
+			<table class="news_table">
 				<tr>
-					<td>
+					<td class="news_td_date">
 						<div class="news_tag">公開日</div>
 						<input type="date" name="n_date" class="w60" value="" autocomplete="off"> 
 					</td>
