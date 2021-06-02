@@ -1,3 +1,12 @@
+<?
+$mysqli = mysqli_connect("210.150.110.204", "blue_db", "0909", "blue_db");
+if(!$mysqli){
+	die('ERROR!');
+}
+mysqli_set_charset($mysqli,'UTF8'); 
+
+
+?>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -170,9 +179,9 @@ input[type=radio]:checked + label{
 }
 
 .notice_log{
-	margin			:10px 42px;
+	margin			:0 42px;
 	width			:716px;
-	height			:400px;
+	height			:500px;
 	padding			:10px;
 	font-size		:14px;
 	line-height		:24px;
@@ -219,7 +228,37 @@ input[type=radio]:checked + label{
 	width		:450px
 }
 
+.copy_box{
+	display:block;
+	width			:716px;
+	margin:10px auto 0px auto;
+}
 
+.copy{
+	height:24px;
+	background:#d0d8ff;
+}
+
+.del_btn{
+	position:absolute;
+	top		:0;
+	bottom	:0;
+	right	:5px;
+	margin	:auto;
+	height	:24px;
+	width	:50px;
+	background	:#ff6080;
+}
+
+.submit_btn{
+	position	:absolute;
+	top			:0;
+	bottom		:0;
+	right		:70px;
+	margin		:auto;
+	height		:24px;
+	width		:50px;
+}
 -->
 </style>	
 <script>
@@ -228,7 +267,20 @@ $(function(){
 		var Tmp=$(this).children('.notice_hidden').html();
 		$('.notice_log').html(Tmp);
 	});
+
+	$('#log_copy').on('click', function(){
+		$('.notice_log').select();
+		document.execCommand('copy');
+		alert('本文をコピーしました');
+	});
+
+	$('#title_copy').on('click', function(){
+		$('#status_text').select();
+		document.execCommand('copy');
+		alert('タイトルをコピーしました');
+	});
 });
+
 </script>
 </head>
 <body>
@@ -286,12 +338,18 @@ $(function(){
 			<td class="notice_st w250"><span class="notice_tag_title">占い師名</span><input id="status_name" type="text" class="status_text"></td>
 			<td class="notice_st w250"><span class="notice_tag_title">カテゴリ</span><input id="status_cate" type="text" class="status_text"></td>
 		</tr><tr>
-			<td class="notice_st" colspan="3"><span class="notice_tag_title">TITLE</span><input id="status_text" type="text" class="status_title"></td>
+			<td class="notice_st" colspan="3" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_text" type="text" class="status_title"><button id="title_copy" class="copy" type="button">COPY</button>
+			<button class="submit_btn" type="button">登録</button>
+			<button class="del_btn" type="button">削除</button>
+			</td>
 		</tr>
 		</table>
+		<div class="copy_box"><button id="log_copy" class="copy" type="button">COPY</button></div>
 		<textarea class="notice_log"></textarea>
+
+
+
 	</div>
 </div>
 </body>
 </html>
-
