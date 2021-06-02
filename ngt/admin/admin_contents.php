@@ -6,9 +6,11 @@ $post_id		=$_POST["post_id"];
 if(!$post_id) $post_id="event";
 
 $sql	 ="SELECT * FROM wp01_0contents";
-$sql	.=" WHERE page={$post_id}";
+$sql	.=" WHERE page='{$post_id}'";
 $sql	.=" ORDER BY id DESC";
 
+
+echo $sql;
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
 		$dat[$res["id"]]=$res;
@@ -16,10 +18,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($res["id"] == "$sel_id"){
 			$dat_sel=$res;
 		}
-
-		$dat_count=count($dat);
 	}
-
 }
 
 if($post_id == "news"){
@@ -30,16 +29,15 @@ if($post_id == "news"){
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
-			$tag[]=$row;
-			$count_tag++;
+			$tag[$row["id"]]=$row;
 		}
 	}
 }
 
 ?>
 <style>
-<!--
 
+<!--
 .sel_contents{
 	display			:inline-block;
 	background		:#bbbbbb;
@@ -72,6 +70,35 @@ if($post_id == "news"){
 	min-height:calc(100vh - 80px);
 }
 
+.news_tag{
+	font-size	:14px;
+	height		:16px;
+	text-align	:left;
+	padding		:5px; 
+}
+
+
+.news_contents{
+	width		:800px;
+	height		:58px;
+	line-height	:24px;
+	font-size	:16px;
+	resize		:none;
+	padding		:5px;
+	background	:#fafafa;
+}
+
+.news_tag_label{
+	width		:160px;
+	height		:30px;
+	line-height	:30px;
+	font-size	:14px;
+	background	:#fafafa;
+	border		:1px solid #303030;
+	margin		:1px;
+	display		:inline-block;
+	padding		:0 10px;
+}
 -->
 </style>
 <script>
@@ -99,61 +126,43 @@ $(function(){
 	<input type="hidden" name="menu_post" value="contents">
 </form>
 </header>
-
-.main_table{
-	width
-
-}
-
 <div class="wrap">
 	<?if($post_id == "news"){?>
 		<div class="main_box">
-
+<?foreach($dat as $a1 => $a2){?>
 			<table class="news_table">
 				<tr>
-					<td class="news_td_date">
+					<td >
 						<div class="news_tag">公開日</div>
-						<input type="date" name="n_date" class="w60" value="" autocomplete="off"> 
+						<input type="date" name="n_date" class="w140" value="<?=$b2["display_date"]?>" autocomplete="off"> 
 					</td>
+
 					<td>
-						<select name="tag">
-							<?for($n=0;$n<$tag_count;$n++){?>
-								<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
+						<div class="news_tag">タグ</div>
+						<select name="tag" class="w150">
+							<?foreach($tag as $b1 => $b2){?>
+								<option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
 							<? } ?>	
 						</select>
 					</td>
 				</tr>
+				
 				<tr>
-					<td>
-						<span class="news_tag">タイトル</span>
-						<input type="text" name="event_title" value="<?=$dat_sel["title"]?>"> 
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="news_tag">リンク</span>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<textarea class="textarea"><?=$dat_sel["contents"]?></textarea>
+					<td colspan="2">
+						<div class="news_tag">タイトル</div>
+						<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
 					</td>
 				</tr>
 			</table>
+<?}?>
 		</div>
 
 		<div class="sub_box">
-			<?forech($tag as $a1 => $a2){?>
-				<div class="yser_box">
-				<input id="rd<?=$a1?>"  type="radio" style="display:inline-block;">
-				<lebel for="rd<?=$a1?>">
-				</div>
+			<?foreach($tag as $a1 => $a2){?>
+				<input id="rd<?=$a2["id"]?>" type="radio"><label for="rd<?=$a1?>" class="news_tag_label"><?=$a2["tag_name"]?></label><br>
 			<?}?>
 		</div>
 
-
-
- 
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<table>
@@ -195,7 +204,7 @@ $(function(){
 				</tr>
 				<tr>
 					<td>
-						<textarea class="textarea"><?=$dat_sel["contents"]?></textarea>
+						<textarea class="news_textarea"><?=$dat_sel["contents"]?></textarea>
 					</td>
 				</tr>
 			</table>

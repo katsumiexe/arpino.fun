@@ -206,9 +206,8 @@ CAST情報
 </tr>	
 <tr>
 	<td>公開日
-	<input type="text" id="news_date_yy" name="news_date_yy" class="w60" value="<?=date("Y")?>" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="news_date_mm" name="news_date_mm" class="w40" value="<?=date("m")?>" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="news_date_dd" name="news_date_dd" class="w40" value="<?=date("d")?>" size="2" maxlength="2" autocomplete="off">日
+	<input type="date" id="news_date_c" name="news_date_c" class="w100" value="<?=date("Y-m-d")?>" autocomplete="off">年 
+
 	</td>
 	<td><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
 </tr>

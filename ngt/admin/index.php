@@ -173,6 +173,18 @@ echo "img_v".$img_v[0]."<br>\n";
 			$sql.="('{$staff_id}','同伴','6','59','2000','7')";
 			mysqli_query($mysqli,$sql);
 
+
+			if($_REQUEST["news_date_c"] && $_REQUEST["news_box"]){
+				$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
+				$p_date=$_REQUEST["news_date_c"]." 00:00:00";
+				$sql =" INSERT INTO wp01_0contents";
+				$sql .="(`date`, display_date, page, category, contents_key, title, contents,tag)";
+				$sql .=" VALUES('{$now}','{$p_date}','news','person','{$staff_id}','{$title}','{$news_box}','2')";
+				mysqli_query($mysqli,$sql);
+			}
+
+
+/*
 			if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
 				$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
 
@@ -185,6 +197,8 @@ echo "img_v".$img_v[0]."<br>\n";
 				$sql .=" VALUES('{$now}','{$p_date}','news','person','{$staff_id}','{$title}','{$news_box}','2')";
 				mysqli_query($mysqli,$sql);
 			}
+*/
+
 		}
 			
 //■options-------------------------------
