@@ -3574,7 +3574,6 @@ ul {
 }
 
 .person_middle{
-	flex			:auto;
 	flex-basis		:46vw;
 	text-align		:center;
 	min-height		:auto;
@@ -4001,12 +4000,12 @@ ul {
 
 .sub_blog{
 	flex-wrap		:wrap;
-	flex-basis		:calc(94vw + 2px);
 
 }
 
 .sub_blog_pack{
-	width:96vw;
+	width			:calc(94vw + 2px);
+	flex-basis		:calc(94vw + 2px);
 }
 
 
@@ -4426,13 +4425,6 @@ ul {
 	display		:block;
 	text-align	:center;
 
-}
-
-.person_middle{
-	flex:auto;
-	flex-basis:46vw;
-	text-align:center;
-	min-height:auto;
 }
 
 .prof{
