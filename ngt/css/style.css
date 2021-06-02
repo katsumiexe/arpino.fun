@@ -2763,7 +2763,7 @@ ul {
 
 
 .main_top_flex{
-	width		:96vw;
+	width		:calc(94vw + 2px);
 	flex-wrap	:wrap;
 }
 
@@ -3754,7 +3754,6 @@ ul {
 	align-content	:flex-start;
 	flex-wrap		:wrap;
 	top				:0;
-	left			:40vw;
 	width			:9vw;
 	height			:52vw;
 	vertical-align	:top;
@@ -4001,8 +4000,8 @@ ul {
 }
 
 .sub_blog{
-	flex-wrap:wrap;
-	flex-basis			:94vw;
+	flex-wrap		:wrap;
+	flex-basis		:calc(94vw + 2px);
 
 }
 
@@ -4298,8 +4297,8 @@ ul {
 	padding-left:1vw;
 	height		:7vw;
 	line-height	:7vw;
-	width		:19vw;
-	font-size	:3vw;
+	width		:20vw;
+	font-size	:3.5vw;
 }
 
 
@@ -4316,7 +4315,7 @@ ul {
 	line-height	:7vw;
 	width		:32vw;
 	width		:auto;
-	font-size	:3vw;
+	font-size	:3.5vw;
 }
 
 
@@ -4352,11 +4351,11 @@ ul {
 	display		:block;
 	width		:88vw;
 	min-height	:20vw;
-	font-size	:3.5vw;
+	font-size	:4vw;
 	color		:#c8c0b0;
 	text-align	:left;
 	margin		:0 auto;
-	line-height	:6vw;
+	line-height	:7vw;
 }
 
 .blog_img{
@@ -4405,10 +4404,6 @@ ul {
 }
 
 .person_img_list{
-	align-content	:flex-start;
-	flex-wrap		:wrap;
-	top				:0;
-	right			:0;
 	width			:18vw;
 	height			:100vw;
 	margin			:0vw;
@@ -4530,24 +4525,17 @@ ul {
 
 
 .sche_block1{
-	width:13vw;
+	width:12vw;
 	padding-left:1vw;
 }
 
 
 .person_blog{
-	width			:96vw;
+	width			:94vw;
 	height			:20vw;
 	margin-top		:0.5vw;
 	
 }
-
-.person_blog_no{
-	width			:96vw;
-	height			:20vw;	
-	font-size		:4vw;	
-}
-
 
 .person_blog_tag{
 	width			:26vw;
@@ -4565,7 +4553,7 @@ ul {
 }
 
 .person_blog_no{
-	width			:96vw;
+	width			:94vw;
 	height			:20vw;
 	line-height		:20vw;
 	margin			:0;
@@ -4583,9 +4571,9 @@ ul {
 	top				:1vw;
 	left			:22vw;
 	width			:34vw;
-	height			:6vw;	
-	line-height		:6vw;	
-	font-size		:3.5vw;
+	height			:4vw;	
+	line-height		:4vw;	
+	font-size		:3.2vw;
 }
 
 .person_blog_comm{
