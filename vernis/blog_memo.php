@@ -202,6 +202,21 @@ input[type=radio]:checked + label{
 	height		:24px;
 	font-size	:13px;
 	margin		:3px 3px 3px 0; 
+	width		:180px
+}
+
+.status_date{
+	height		:24px;
+	font-size	:13px;
+	margin		:3px 3px 3px 0; 
+	width		:125px
+}
+
+.status_title{
+	height		:24px;
+	font-size	:13px;
+	margin		:3px 3px 3px 0; 
+	width		:450px
 }
 
 
@@ -267,14 +282,13 @@ $(function(){
 
 		<table class="notice_table2">
 		<tr>
-			<td class="notice_st w200"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_text"></td>
+			<td class="notice_st w200"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_date"></td>
 			<td class="notice_st w250"><span class="notice_tag_title">占い師名</span><input id="status_name" type="text" class="status_text"></td>
 			<td class="notice_st w250"><span class="notice_tag_title">カテゴリ</span><input id="status_cate" type="text" class="status_text"></td>
 		</tr><tr>
-			<td class="notice_st" colspan="3"><span class="notice_tag_title">TITLE</span><input id="status_text" type="text" class="status_text"></td>
+			<td class="notice_st" colspan="3"><span class="notice_tag_title">TITLE</span><input id="status_text" type="text" class="status_title"></td>
 		</tr>
 		</table>
-
 		<textarea class="notice_log"></textarea>
 	</div>
 </div>
