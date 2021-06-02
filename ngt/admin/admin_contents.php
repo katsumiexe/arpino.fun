@@ -88,6 +88,11 @@ if($post_id == "news"){
 	background	:#fafafa;
 }
 
+.news_table{
+	margin:5px auto;
+	background:#eaeaea;
+}
+
 .news_tag_label{
 	width		:160px;
 	height		:30px;
@@ -130,13 +135,16 @@ $(function(){
 	<?if($post_id == "news"){?>
 		<div class="main_box">
 <?foreach($dat as $a1 => $a2){?>
+<form action="./index.php" method="post">
+<input type="hidden" value="contents" name="set_id">
+<input type="hidden" value="news" name="post_id">
+
 			<table class="news_table">
 				<tr>
-					<td >
+					<td>
 						<div class="news_tag">公開日</div>
 						<input type="date" name="n_date" class="w140" value="<?=$b2["display_date"]?>" autocomplete="off"> 
 					</td>
-
 					<td>
 						<div class="news_tag">タグ</div>
 						<select name="tag" class="w150">
@@ -145,15 +153,20 @@ $(function(){
 							<? } ?>	
 						</select>
 					</td>
+					<td>
+						<div class="news_tag">変更</div>
+						<div class="news_tag">削除</div>
+					</td>
 				</tr>
-				
 				<tr>
-					<td colspan="2">
+					<td colspan="3">
 						<div class="news_tag">タイトル</div>
 						<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
 					</td>
 				</tr>
 			</table>
+</form>
+
 <?}?>
 		</div>
 
