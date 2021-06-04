@@ -543,7 +543,7 @@ ul {
 .main_b_title,.main_b_title_l,.sche_title,.blog_title{
 	position		:relative;
 	display			:inline-block;
-	width			:858px;
+	width			:860px;
 	height			:40px;
 	line-height		:40px;
 	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
