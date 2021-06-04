@@ -552,7 +552,6 @@ ul {
 	font-weight		:600;
 	padding-left	:10px;
 	text-align		:left;
-//	border			:1px solid #c8b880;
 	margin-block-start	:0;
 	margin-block-end	:0;
 	border-radius:5px 5px 0 0;
@@ -2931,11 +2930,13 @@ ul {
 
 
 .sub_blog{
-	flex-wrap	:nowrap;
 	width			: calc( 94vw + 2px);
 	flex-basis		: calc( 94vw + 2px);
-	text-align	:center;
+	text-align		:center;
+
+	flex-wrap		:nowrap;
 	justify-content	:space-between;
+	align-items		:flex-start;
 }
 
 .sub_blog_pack_a{
@@ -3272,26 +3273,26 @@ ul {
 .blog_list_title{
 	top				:0.5vw;
 	left			:15vw;
-	width			:29vw;
-	height			:7vw;
-	line-height		:3.5vw;
+	width			:30vw;
+	height			:5.8vw;
+	line-height		:3vw;
 	font-size		:2.5vw;
 }
 
 .blog_list_cast{
 	bottom			:0.5vw;
 	right			:0.5vw;
-	width			:32vw;
-	height			:4.5vw;
+	width			:30vw;
+	height			:7vw;
 }
 
 .blog_list_tag{
-	bottom			:0.5vw;
-	left			:1vw;
+	bottom			:4vw;
+	left			:0vw;
 	height			:3vw;
 	border-radius	:0.5vw;
-	padding			:0 1vw;
-	width			:15vw;
+	padding			:0 0.5vw;
+	width			:14vw;
 }
 
 .blog_list_icon{
@@ -3304,8 +3305,8 @@ ul {
 
 .blog_list_tcomm{
 	left			:4.5vw;
-	height			:3.5vw;
-	line-height		:3.5vw;
+	height			:3vw;
+	line-height		:3vw;
 	font-size		:1.8vw;
 }
 
@@ -3322,14 +3323,14 @@ ul {
 }
 
 .blog_list_date{
-	right		:6vw;
-	bottom		:0vw;
+	right		:0vw;
+	bottom		:5.5vw;
 	font-size	:1.5vw;
 }
 
 .blog_list_castname{
-	right		:7vw;
-	bottom		:2.5vw;
+	right		:6vw;
+	bottom		:0vw;
 	font-size	:2vw;
 }
 
@@ -4026,12 +4027,12 @@ ul {
 
 
 .main_blog_title{
-	width			:93vw;
+	width			:92vw;
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto;
 	font-size		:4vw;
-	padding-left	:1vw;
+	padding-left	:2vw;
 }
 
 .page_box{
@@ -4051,19 +4052,19 @@ ul {
 
 .sub_blog_in,.sub_blog_cast{
 	flex-wrap	:nowrap;
-	width			: calc( 94vw + 2px);
-	flex-basis		: calc( 94vw + 2px);
+	width			: calc( 94vw + 0px);
+	flex-basis		: calc( 94vw + 0px);
 	margin-bottom	:5vw;
 }
 
 .blog_h1{
 	display		:inline-block;
-	width			: calc( 93vw + 2px);
-	flex-basis		: calc( 93vw + 2px);
+	width			: 92vw;
+	flex-basis		: 92vw;
 	height		:8vw;
-	line-height	:9vw;
-	font-size	:5vw;
-	padding-left:1vw;
+	line-height	:8vw;
+	font-size	:4vw;
+	padding-left:2vw;
 }
 
 .all_tag{
@@ -4453,7 +4454,7 @@ ul {
 	height			:8vw;
 	line-height		:8vw;
 	margin			:0 auto;
-	font-size		:5vw;
+	font-size		:4vw;
 	padding-left	:2vw;
 	border-radius:1vw 1vw 0 0; 
 }
@@ -4527,7 +4528,7 @@ ul {
 
 .sche_block1{
 	width:12vw;
-	padding-left:1vw;
+	padding-left:0.5vw;
 }
 
 
