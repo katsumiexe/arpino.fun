@@ -18,8 +18,6 @@ if($res = mysqli_query($mysqli,$sql)){
 		$sql.=" WHERE m_id='{$row["id"]}' "; 
 		$sql.=" ORDER BY id DESC"; 
 
-echo $sql."<br>\n";
-
 		$s=0;
 		if($res2 = mysqli_query($mysqli,$sql)){
 			while($row2 = mysqli_fetch_assoc($res2)){
@@ -27,8 +25,6 @@ echo $sql."<br>\n";
 				$s++;
 			}
 		}
-
-
 		$count_dat++;
 	}
 }
@@ -291,8 +287,15 @@ input[type=radio]:checked + label{
 <script>
 $(function(){ 
 	$('.tr_list').on('click',function(){ 
-		var Tmp=$(this).children('.notice_hidden').html();
-		$('.notice_log').html(Tmp);
+
+		var Tmp_log=$(this).children('.notice_hidden').html();
+		var Tmp_ttl=$(this).children('.n_title').html();
+		var Tmp_date=$(this).children('.n_date').html();
+		var Tmp_id=$(this).children('.n_id').html();
+
+
+		$('.notice_log').html(Tmp_log);
+		$('#status_text').val(Tmp_ttl);
 	});
 
 	$('#log_copy').on('click', function(){
@@ -314,7 +317,6 @@ $(function(){
 <header class="head">
 </header>
 <div class="wrap">
-
 	<div class="sub_box">
 		<ul class="cate_ul c_blue">
 			<li class="cate_title">MENU</li>
@@ -340,7 +342,8 @@ $(function(){
 		<table class="notice_table">
 			<tr>
 				<td class="notice_top w30">No</td>
-				<td class="notice_top w130">日時</td>
+				<td class="notice_top w40">ID</td>
+				<td class="notice_top w100">日時</td>
 				<td class="notice_top w220">件名</td>
 				<td class="notice_top w160">投稿者</td>
 				<td class="notice_top w100">カテゴリ</td>
@@ -348,11 +351,12 @@ $(function(){
 			</tr>
 			<?for($n=0;$n<$count_dat;$n++){?>
 			<tr class="tr_list">
-				<td class="notice_list"><?print($n+1)?></td>
-				<td class="notice_list"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
-				<td class="notice_list"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
-				<td class="notice_list"><?=$dat[$n]["ope_id"]?>:<?=$dat[$n]["ope_name"]?></td>
-				<td class="notice_list"><?=$sub[$dat[$n]["id"]][0]["category"]?></td>
+				<td class="notice_list n_no"><?print($n+1)?></td>
+				<td class="notice_list n_no"><?=$dat[$n]["id"]?></td>
+				<td class="notice_list n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
+				<td class="notice_list n_title"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
+				<td class="notice_list n_ope"><?=$dat[$n]["ope_id"]?>:<?=$dat[$n]["ope_name"]?></td>
+				<td class="notice_list n_category"><?=$sub[$dat[$n]["id"]][0]["category"]?></td>
 				<td class="notice_list"></td>
 				<td class="notice_hidden"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
 			</tr>
@@ -373,7 +377,7 @@ $(function(){
 		</table>
 		<div class="copy_box"><button id="log_copy" class="copy" type="button">COPY</button></div>
 		<textarea class="notice_log"></textarea>
-
+		<input id="tmp" type="hidden">
 
 
 	</div>
