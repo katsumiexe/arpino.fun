@@ -1,5 +1,14 @@
 <?
 
+/*
+st
+0 表示
+1 表示前
+2 非表示
+3 削除
+*/
+
+
 $sel_id			=$_POST["sel_id"];
 $post_id		=$_POST["post_id"];
 
@@ -7,19 +16,23 @@ if(!$post_id) $post_id="event";
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE page='{$post_id}'";
+$sql	.=" AND status<3'";
 $sql	.=" ORDER BY id DESC";
-
-
 echo $sql;
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
-		$dat[$res["id"]]=$res;
 
+		$res["news_date"]=substr($res["display_date"],0,10);
+		if($res["status"] ==0 && $res["news_date"] > date("Y-m-d")){
+			$res["status"]=1;
+		}
+		$dat[$res["id"]]=$res;
 		if($res["id"] == "$sel_id"){
-			$dat_sel=$res;
+			$dat_sel=$res;	
 		}
 	}
 }
+var_dump($dat[58]);
 
 if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0tag";
@@ -71,10 +84,13 @@ if($post_id == "news"){
 }
 
 .news_tag{
-	font-size	:14px;
-	height		:16px;
-	text-align	:left;
-	padding		:5px; 
+	display		:inline-block;
+	font-size	:16px;
+	height		:30px;
+	line-height	:30px;
+	text-align	:right;
+	padding-right:5px; 
+	width		:60px;
 }
 
 
@@ -104,6 +120,14 @@ if($post_id == "news"){
 	display		:inline-block;
 	padding		:0 10px;
 }
+
+.news_tag_btn{
+	width:80px;
+	background:#909090;
+	color:#ffffff;
+	margin:0 5px;
+}
+
 -->
 </style>
 <script>
@@ -116,7 +140,33 @@ $(function(){
 		$('#form').submit();
 	});
 
+	$('.news_tag_btn').on('click',function(){
+		Tmp	=$(this).attr('id').substr(0,3);
+		Tmp2=$(this).attr('id').substr(3);
+
+		if(Tmp == 'chg'){
+			if (confirm('変更します。よろしいですか')) {
+				$('#form'+Tmp2).submit();
+			}
+
+		}else if(Tmp == 'del'){
+			if (confirm('削除します。よろしいですか')) {
+				$('#form'+Tmp2).submit();
+			}
+
+		}else if(Tmp == 'cov'){
+			if (confirm('非表示にします。よろしいですか')) {
+				$('#form'+Tmp2).submit();
+			}
+
+		}else if(Tmp == 'dis'){
+			if (confirm('表示にします。よろしいですか')) {
+				$('#form'+Tmp2).submit();
+			}
+		}
+	});
 });
+
 </script>
 <header class="head">
 <div id="event" class="sel_contents <?if($post_id == "event"){?> sel_ck<?}?>">イベント</div>
@@ -135,36 +185,35 @@ $(function(){
 	<?if($post_id == "news"){?>
 		<div class="main_box">
 <?foreach($dat as $a1 => $a2){?>
-<form action="./index.php" method="post">
-<input type="hidden" value="contents" name="set_id">
-<input type="hidden" value="news" name="post_id">
-
-			<table class="news_table">
-				<tr>
-					<td>
-						<div class="news_tag">公開日</div>
-						<input type="date" name="n_date" class="w140" value="<?=$b2["display_date"]?>" autocomplete="off"> 
-					</td>
-					<td>
-						<div class="news_tag">タグ</div>
-						<select name="tag" class="w150">
-							<?foreach($tag as $b1 => $b2){?>
-								<option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
-							<? } ?>	
-						</select>
-					</td>
-					<td>
-						<div class="news_tag">変更</div>
-						<div class="news_tag">削除</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<div class="news_tag">タイトル</div>
-						<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
-					</td>
-				</tr>
-			</table>
+<form id="from<?=$a1?>" action="./index.php" method="post">
+	<input type="hidden" value="contents" name="set_id">
+	<input type="hidden" value="news" name="post_id">
+	<input id="upd<?=$a1?>" type="hidden" value="" name="news_upd">
+	<table class="news_table">
+		<tr>
+			<td>
+				<span class="news_tag">公開日</span><input type="date" name="n_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+			</td>
+			<td>
+				<span class="news_tag">タグ</span><select name="tag" class="w150">
+					<?foreach($tag as $b1 => $b2){?>
+						<option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
+					<? } ?>	
+				</select>
+			</td>
+			<td>
+				<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+				<button id="cov<?=$a1?>" type="button" class="news_tag_btn">非表示</button>
+				<button id="del<?=$a1?>" type="button" class="news_tag_btn">削除</button>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div class="news_tag">タイトル</div>
+				<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
+			</td>
+		</tr>
+	</table>
 </form>
 
 <?}?>

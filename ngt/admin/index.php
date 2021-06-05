@@ -69,7 +69,7 @@ if($staff_set == 4){
 	$img_z		=$_POST["img_z"];
 	$img_r		=$_POST["img_r"];
 	$img_v		=$_POST["img_v"];
-
+/*
 echo "img_w".$img_w[0]."<br>\n";
 echo "img_h".$img_h[0]."<br>\n";
 echo "img_x".$img_x[0]."<br>\n";
@@ -77,6 +77,7 @@ echo "img_y".$img_y[0]."<br>\n";
 echo "img_z".$img_z[0]."<br>\n";
 echo "img_r".$img_r[0]."<br>\n";
 echo "img_v".$img_v[0]."<br>\n";
+*/
 
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
