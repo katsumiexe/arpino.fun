@@ -5,6 +5,33 @@ if(!$mysqli){
 }
 mysqli_set_charset($mysqli,'UTF8'); 
 
+$sql="SELECT * FROM blog_memo_master AS M"; 
+$sql.=" ORDER BY id DESC"; 
+$sql.=" LIMIT 20"; 
+
+if($res = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($res)){
+
+		$dat[]=$row;
+
+		$sql="SELECT * FROM blog_memo_slave"; 
+		$sql.=" WHERE m_id='{$row["id"]}' "; 
+		$sql.=" ORDER BY id DESC"; 
+
+echo $sql."<br>\n";
+
+		$s=0;
+		if($res2 = mysqli_query($mysqli,$sql)){
+			while($row2 = mysqli_fetch_assoc($res2)){
+				$sub[$row["id"]][$s]=$row2;
+				$s++;
+			}
+		}
+
+
+		$count_dat++;
+	}
+}
 
 ?>
 <html lang="ja">
@@ -322,12 +349,12 @@ $(function(){
 			<?for($n=0;$n<$count_dat;$n++){?>
 			<tr class="tr_list">
 				<td class="notice_list"><?print($n+1)?></td>
-				<td class="notice_list"><?=$dat[$n]["date"]?></td>
-				<td class="notice_list"><?=$dat[$n]["title"]?></td>
-				<td class="notice_list"><?=$dat[$n]["writer"]?></td>
-				<td class="notice_list"><?=$dat[$n]["category"]?></td>
+				<td class="notice_list"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
+				<td class="notice_list"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
+				<td class="notice_list"><?=$dat[$n]["ope_id"]?>:<?=$dat[$n]["ope_name"]?></td>
+				<td class="notice_list"><?=$sub[$dat[$n]["id"]][0]["category"]?></td>
 				<td class="notice_list"></td>
-				<td class="notice_hidden"><?=$dat[$n]["log"]?></td>
+				<td class="notice_hidden"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
 			</tr>
 			<?}?>
 		</table>

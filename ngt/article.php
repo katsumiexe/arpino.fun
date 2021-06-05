@@ -170,7 +170,7 @@ include_once('./header.php');
 		<div class="sub_blog_pack_b">
 
 			<div class="blog_title">新着</div>
-			<div class="sub_blog_in2">
+			<div class="sub_blog_in">
 			<?for($s=0;$s<$blog_new_count;$s++){?>
 				<a href="./article.php?post_id=<?=$blog_new[$s]["id"]?>" id="i<?=$b1?>" class="person_blog">
 					<img src="<?=$blog_new[$s]["thumb"]?>" class="person_blog_img">

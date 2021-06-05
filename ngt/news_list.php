@@ -18,7 +18,7 @@ $sql	 ="SELECT `date` FROM wp01_0contents";
 $sql	.=" WHERE `status`=0";
 $sql	.=" AND page='news'";
 $sql	.=" AND `date`>'2010-01-01 00:00:00'";
-$sql	.=" ORDER BY date ASC";
+$sql	.=" ORDER BY display_date ASC";
 $sql	.=" LIMIT 1";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -26,17 +26,26 @@ if($result = mysqli_query($mysqli,$sql)){
 	$start_year=substr($row["date"],0,4);
 }
 
-
-$sql	 ="SELECT tag_name, tag, tag_icon, `date`,category, contents_key, title, contents, contents_url FROM wp01_0contents";
+$sql	 ="SELECT tag_name, tag, tag_icon, `display_date`,category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status=0";
 $sql	.=" AND `date` LIKE '{$sel_year}%'";
 $sql	.=" AND page='news'";
-$sql	.=" ORDER BY `date` DESC";
+$sql	.=" ORDER BY `display_date` DESC";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
-		$a1["date"]=substr(str_replace("-",".",$a1["date"]),0,10);
+		$a1["date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
+		if($a1["category"] == "person"){
+			$a1["news_link"]="./person.php?post_id={$a1["contents_key"]}";
+
+		}elseif($a1["category"] == "outer"){
+			$a1["news_link"]=$a1["contents_key"];
+
+		}elseif($a1["category"] == "event"){
+			$a1["news_link"]="./event.php?post_id={$a1["contents_key"]}";
+		}
+		
 		$news[]=$a1;
 		$count_news++;
 	}
@@ -83,28 +92,27 @@ include_once('./header.php');
 			<?for($n=0;$n<$count_news;$n++){?>
 				<?if($news[$n]["contents_url"]){?>
 					<table class="main_b_notice tag<?=$news[$n]["tag"]?>">">
-					<tr>
-					<td  class="main_b_td_1">
-						<span class="main_b_notice_date"><?=$news[$n]["date"]?></span>
-						<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
-					</td>
-					<td  class="main_b_td_2">
-						<a href="<?=$news[$n]["contents_url"]?>" class="main_b_notice_link">
-							<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
-						</a>
-					</td>
-					<td  class="main_b_td_3">
-						<span class="main_b_notice_arrow"><a href="<?=$news[$n]["contents_url"]?>" class="main_b_notice_alink">	</a></span>
-					</td>
-					</tr>
+						<tr>
+							<td  class="main_b_td_1">
+								<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
+								<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
+							</td>
+							<td  class="main_b_td_2">
+								<a href="<?=$news[$n]["contents_url"]?>" class="main_b_notice_link">
+									<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
+								</a>
+							</td>
+							<td  class="main_b_td_3">
+								<span class="main_b_notice_arrow"><a href="<?=$news[$n]["contents_url"]?>" class="main_b_notice_alink">	</a></span>
+							</td>
+						</tr>
 					</table>
-
 
 				<?}elseif($news[$n]["category"]){?>
 					<table  class="main_b_notice tag<?=$news[$n]["tag"]?>">">
 					<tr>
 					<td  class="main_b_td_1">
-						<span class="main_b_notice_date"><?=$news[$n]["date"]?></span>
+						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
 						<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
 					</td>
 					<td  class="main_b_td_2">

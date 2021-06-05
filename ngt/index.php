@@ -84,17 +84,27 @@ if($res0 = mysqli_query($mysqli,$sql)){
 }
 
 
-$sql	 ="SELECT tag_name, tag_icon, date,category, contents_key, title, contents, contents_url FROM wp01_0contents";
+$sql	 ="SELECT tag_name, tag_icon, date, display_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status=0";
 $sql	.=" AND display_date<'{$now}'";
 $sql	.=" AND page='news'";
-$sql	.=" ORDER BY date DESC";
+$sql	.=" ORDER BY display_date DESC";
 $sql	.=" LIMIT 5";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
-		$a1["date"]=substr(str_replace("-",".",$a1["date"]),0,10);
+		$a1["date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
+		if($a1["category"] == "person"){
+			$a1["news_link"]="./person.php?post_id={$a1["contents_key"]}";
+
+		}elseif($a1["category"] == "outer"){
+			$a1["news_link"]=$a1["contents_key"];
+
+		}elseif($a1["category"] == "event"){
+			$a1["news_link"]="./event.php?post_id={$a1["contents_key"]}";
+		}
+		
 		$news[]=$a1;
 		$count_news++;
 	}
@@ -154,7 +164,7 @@ var Cnt=<?=$count_event?>-1;
 <?if($count_event>0){?>
 	<div class="slide">
 		<div class="slide_img">
-		
+
 			<?for($n=0;$n<$count_event;$n++){?>
 				<?if($event[$n]["link"]){?>
 					<a href="<?=$event[$n]["link"]?>"><img src="<?=$event[$n]["img"]?>" class="top_img"></a>;
@@ -164,16 +174,15 @@ var Cnt=<?=$count_event?>-1;
 			<?}?>	
 		</div>
 
-<?if($count_event >1){?>
-		<div class="slide_point">
-			<?for($n=0;$n<$count_event;$n++){?>
-				<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
-			<?}?>
-		</div>
-<?}?>
+		<?if($count_event >1){?>
+			<div class="slide_point">
+				<?for($n=0;$n<$count_event;$n++){?>
+					<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
+				<?}?>
+			</div>
+		<?}?>
 	</div>
 <?}?>
-
 
 	<div class="main_b">
 		<?if($count_news){?>
@@ -182,38 +191,21 @@ var Cnt=<?=$count_event?>-1;
 
 			<?for($n=0;$n<$count_news;$n++){?>
 
-				<?if($news[$n]["contents_url"]){?>
+				<?if($news[$n]["category"]){?>
 					<table  class="main_b_notice" colspan="3">
 					<tr>
 					<td  class="main_b_td_1">
 						<span class="main_b_notice_date"><?=$news[$n]["date"]?></span>
 						<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
 					</td>
-					<td  class="main_b_td_2">
-						<a href="<?=$news[$n]["contents_url"]?>" class="main_b_notice_link">
-							<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
-						</a>
-					</td>
-					<td  class="main_b_td_3">
-						<span class="main_b_notice_arrow"><a href="<?=$news[$n]["contents_url"]?>" class="main_b_notice_alink">	</a></span>
-					</td>
-					</tr>
-					</table>
 
-				<?}elseif($news[$n]["category"]){?>
-					<table  class="main_b_notice" colspan="3">
-					<tr>
-					<td  class="main_b_td_1">
-						<span class="main_b_notice_date"><?=$news[$n]["date"]?></span>
-						<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
-					</td>
 					<td  class="main_b_td_2">
-						<a href="<?=$news[$n]["category"]?>.php?post_id=<?=$news[$n]["contents_key"]?>" class="main_b_notice_link">
+						<a href="<?=$news[$n]["news_link"]?>" class="main_b_notice_link">
 							<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
 						</a>
 					</td>
 					<td class="main_b_td_3">
-						<span class="main_b_notice_arrow"><a href="<?=$news[$n]["category"]?>.php?post_id=<?=$news[$n]["contents_key"]?>" class="main_b_notice_alink">	</a></span>
+						<span class="main_b_notice_arrow"><a href="<?=$news[$n]["news_link"]?>" class="main_b_notice_alink">	</a></span>
 					</td>
 					</tr>
 					</table>
@@ -222,11 +214,11 @@ var Cnt=<?=$count_event?>-1;
 					<table class="main_b_notice" colspan="2">
 						<tr>
 							<td  class="main_b_td_1">
-								<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
-								<span class="main_b_notice_tag" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
+								<span class="main_b_notice_date"><?=$news[$n]["date"]?></span>
+								<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
 							</td>
 							<td  class="main_b_td_2">
-								<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
+								<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
 							</td>
 						</tr>
 					</table>

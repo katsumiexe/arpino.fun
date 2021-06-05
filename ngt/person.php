@@ -1,14 +1,12 @@
 <?php
 include_once('./library/sql.php');
 
-
 /*
 0　通常
 1　休職
 2　退職
 3　停止
 */
-
 
 $t_day=date("Ymd",$day_time);
 $n_day=date("Ymd",$day_time+(86400*7));
