@@ -72,8 +72,8 @@ input[type=radio]:checked + label{
 
 .sub_box{
 	display			:inline-block;
-	flex-basis		:250px;
-	background		:#008040;
+	flex-basis		:350px;
+	background		:#f0f0f0;
 	min-height		:calc(100vh - 80px);	
 }
 
@@ -145,12 +145,22 @@ input[type=radio]:checked + label{
 }
 
 
-.notice_table{
+.notice_table,.list_table{
 	border-collapse: collapse;
-	margin			:5px auto;
+	margin			:2px auto;
 	background		:#fafafa;
 	border			:1px solid #303030;
 }
+
+.list_table{
+	cursor			:pointer;
+}
+
+.list_table:hover{
+	background		:#f0e8d0;
+}
+
+
 
 .notice_table2{
 	border-collapse: separate;
@@ -175,8 +185,10 @@ input[type=radio]:checked + label{
 	color			:#202020;
 	height			:20px;
 	line-height		:20px;
+	max-height		:20px;
 	padding-left	:5px;
 	font-size		:14px;
+	overflow		:hidden;
 }
 
 .notice_hidden{
@@ -184,6 +196,7 @@ input[type=radio]:checked + label{
 }
 
 .w30{width:30px;}
+.w80{width:80px;}
 .w100{width:100px;}
 .w130{width:130px;}
 .w150{width:150px;}
@@ -192,14 +205,11 @@ input[type=radio]:checked + label{
 .w220{width:220px;}
 .w250{width:250px;}
 
-
-.tr_list{
-	cursor			:pointer;
+.n_title{
+	width:310px;
+	overflow:hidden;
 }
 
-.tr_list:hover{
-	background		:#f0e8d0;
-}
 
 .notice_log{
 	margin			:0 42px;
@@ -234,7 +244,6 @@ input[type=radio]:checked + label{
 	height		:24px;
 	font-size	:13px;
 	margin		:3px 3px 3px 0; 
-	width		:180px
 }
 
 .status_date{
@@ -286,26 +295,47 @@ input[type=radio]:checked + label{
 </style>	
 <script>
 $(function(){ 
-	$('.tr_list').on('click',function(){ 
-
-		var Tmp_log=$(this).children('.notice_hidden').html();
-		var Tmp_ttl=$(this).children('.n_title').html();
-		var Tmp_date=$(this).children('.n_date').html();
-		var Tmp_id=$(this).children('.n_id').html();
+	$('.list_table').on('click',function(){ 
 
 
-		$('.notice_log').html(Tmp_log);
-		$('#status_text').val(Tmp_ttl);
+		<table class="list_table">
+			<tr class="tr_list">
+				<td class="notice_list n_no"><?=$dat[$n]["id"]?></td>
+				<td class="notice_list n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
+				<td class="notice_list n_opeid"><?=$dat[$n]["ope_id"]?></td>
+				<td class="notice_list n_opename"><?=$dat[$n]["ope_name"]?></td>
+			</tr><tr>
+				<td class="notice_list n_title"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
+				<td class="notice_hidden"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
+			</tr>
+		</table>
+
+
+		var Tmp_no=$(this).children().children('.n_no').html();
+		var Tmp_date=$(this).children().children('.n_date').html();
+		var Tmp_opeid=$(this).children().children('.n_opeid').html();
+		var Tmp_opename=$(this).children().children('.n_opename').html();
+
+		var Tmp_ttl=$(this).children().children('.n_title').html();
+		var Tmp_log=$(this).children().children('.notice_hidden').html();
+
+		$('#status_no').val(Tmp_no);
+		$('#status_date').val(Tmp_date);
+		$('#base_opeid').val(Tmp_opeid);
+		$('#base_name').html(Tmp_opename);
+
+		$('#status_ttl').val(Tmp_ttl);
+		$('#status_log').html(Tmp_log);
 	});
 
 	$('#log_copy').on('click', function(){
-		$('.notice_log').select();
+		$('#status_log').select();
 		document.execCommand('copy');
 		alert('本文をコピーしました');
 	});
 
 	$('#title_copy').on('click', function(){
-		$('#status_text').select();
+		$('#status_title').select();
 		document.execCommand('copy');
 		alert('タイトルをコピーしました');
 	});
@@ -318,6 +348,32 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="sub_box">
+		<table class="notice_table">
+			<tr>
+				<td class="notice_top w30">No</td>
+				<td class="notice_top w100">日時</td>
+				<td class="notice_top w80">OPE_ID</td>
+				<td class="notice_top w100">投稿者</td>
+			</tr><tr>
+				<td class="notice_top" colspan="4">件名</td>
+			</tr>
+		</table>
+		
+	<?for($n=0;$n<$count_dat;$n++){?>
+		<table class="list_table">
+			<tr class="tr_list">
+				<td class="notice_list w30 n_no"><?=$dat[$n]["id"]?></td>
+				<td class="notice_list w100 n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
+				<td class="notice_list w80 n_opeid"><?=$dat[$n]["ope_id"]?></td>
+				<td class="notice_list w100 n_opename"><?=$dat[$n]["ope_name"]?></td>
+			</tr><tr>
+				<td class="notice_list n_title" colspan="4"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
+				<td class="notice_hidden" colspan="4"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
+			</tr>
+		</table>
+	<?}?>
+
+<!--
 		<ul class="cate_ul c_blue">
 			<li class="cate_title">MENU</li>
 			<li class="cate_li c_blue2">投稿</li>
@@ -336,50 +392,26 @@ $(function(){
 			<?foreach($staff_dat as $a1 => $a2){?>
 			<li class="cate_li c_pink2"><?=$a2["user_name"]?></li><?}?>
 		</ul>
+-->
 	</div>
 
 	<div class="main_box">
-		<table class="notice_table">
-			<tr>
-				<td class="notice_top w30">No</td>
-				<td class="notice_top w40">ID</td>
-				<td class="notice_top w100">日時</td>
-				<td class="notice_top w220">件名</td>
-				<td class="notice_top w160">投稿者</td>
-				<td class="notice_top w100">カテゴリ</td>
-				<td class="notice_top w30"></td>
-			</tr>
-			<?for($n=0;$n<$count_dat;$n++){?>
-			<tr class="tr_list">
-				<td class="notice_list n_no"><?print($n+1)?></td>
-				<td class="notice_list n_no"><?=$dat[$n]["id"]?></td>
-				<td class="notice_list n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
-				<td class="notice_list n_title"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
-				<td class="notice_list n_ope"><?=$dat[$n]["ope_id"]?>:<?=$dat[$n]["ope_name"]?></td>
-				<td class="notice_list n_category"><?=$sub[$dat[$n]["id"]][0]["category"]?></td>
-				<td class="notice_list"></td>
-				<td class="notice_hidden"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
-			</tr>
-			<?}?>
-		</table>
-
 		<table class="notice_table2">
 		<tr>
-			<td class="notice_st w200"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_date"></td>
-			<td class="notice_st w250"><span class="notice_tag_title">占い師名</span><input id="status_name" type="text" class="status_text"></td>
-			<td class="notice_st w250"><span class="notice_tag_title">カテゴリ</span><input id="status_cate" type="text" class="status_text"></td>
+			<td class="notice_st w100"><input id="status_no" type="text" class="status_text w80"></td>
+			<td class="notice_st w180"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_date"></td>
+			<td class="notice_st w150"><span class="notice_tag_title">IDCODE</span><input id="base_opeid" type="text" class="status_text w80"></td>
+			<td id="base_name" class="notice_st w150"></td>
 		</tr><tr>
-			<td class="notice_st" colspan="3" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_text" type="text" class="status_title"><button id="title_copy" class="copy" type="button">COPY</button>
+
+			<td class="notice_st" colspan="3" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_title" type="text" class="status_title"><button id="title_copy" class="copy" type="button">COPY</button>
 			<button class="submit_btn" type="button">登録</button>
 			<button class="del_btn" type="button">削除</button>
 			</td>
 		</tr>
 		</table>
 		<div class="copy_box"><button id="log_copy" class="copy" type="button">COPY</button></div>
-		<textarea class="notice_log"></textarea>
-		<input id="tmp" type="hidden">
-
-
+		<textarea id="status_log" class="notice_log"></textarea>
 	</div>
 </div>
 </body>
