@@ -66,7 +66,6 @@ input[type=radio]:checked + label{
 .main_box{
 	display			:inline-block;
 	flex-basis		:800px;
-	background		:#e0e000;
 	min-height		:calc(100vh - 80px);
 }
 
@@ -167,7 +166,7 @@ input[type=radio]:checked + label{
 	margin			:5px auto;
 	background		:#fafafa;
 	border			:1px solid #303030;
-	
+	width:800px;
 }
 
 .notice_top{
@@ -196,6 +195,7 @@ input[type=radio]:checked + label{
 }
 
 .w30{width:30px;}
+.w50{width:30px;}
 .w80{width:80px;}
 .w100{width:100px;}
 .w130{width:130px;}
@@ -297,27 +297,13 @@ input[type=radio]:checked + label{
 $(function(){ 
 	$('.list_table').on('click',function(){ 
 
+		var Tmp_no=$(this).children().children().children('.n_no').html();
+		var Tmp_date=$(this).children().children().children('.n_date').html();
+		var Tmp_opeid=$(this).children().children().children('.n_opeid').html();
+		var Tmp_opename=$(this).children().children().children('.n_opename').html();
 
-		<table class="list_table">
-			<tr class="tr_list">
-				<td class="notice_list n_no"><?=$dat[$n]["id"]?></td>
-				<td class="notice_list n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
-				<td class="notice_list n_opeid"><?=$dat[$n]["ope_id"]?></td>
-				<td class="notice_list n_opename"><?=$dat[$n]["ope_name"]?></td>
-			</tr><tr>
-				<td class="notice_list n_title"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
-				<td class="notice_hidden"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
-			</tr>
-		</table>
-
-
-		var Tmp_no=$(this).children().children('.n_no').html();
-		var Tmp_date=$(this).children().children('.n_date').html();
-		var Tmp_opeid=$(this).children().children('.n_opeid').html();
-		var Tmp_opename=$(this).children().children('.n_opename').html();
-
-		var Tmp_ttl=$(this).children().children('.n_title').html();
-		var Tmp_log=$(this).children().children('.notice_hidden').html();
+		var Tmp_ttl=$(this).children().children().children('.n_title').html();
+		var Tmp_log=$(this).children().children().children('.notice_hidden').html();
 
 		$('#status_no').val(Tmp_no);
 		$('#status_date').val(Tmp_date);
@@ -326,6 +312,7 @@ $(function(){
 
 		$('#status_ttl').val(Tmp_ttl);
 		$('#status_log').html(Tmp_log);
+
 	});
 
 	$('#log_copy').on('click', function(){
@@ -335,7 +322,7 @@ $(function(){
 	});
 
 	$('#title_copy').on('click', function(){
-		$('#status_title').select();
+		$('#status_ttl').select();
 		document.execCommand('copy');
 		alert('タイトルをコピーしました');
 	});
@@ -398,13 +385,14 @@ $(function(){
 	<div class="main_box">
 		<table class="notice_table2">
 		<tr>
-			<td class="notice_st w100"><input id="status_no" type="text" class="status_text w80"></td>
-			<td class="notice_st w180"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_date"></td>
+			<td class="notice_st w50"></td>
+			<td class="notice_st w200"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_date"></td>
 			<td class="notice_st w150"><span class="notice_tag_title">IDCODE</span><input id="base_opeid" type="text" class="status_text w80"></td>
 			<td id="base_name" class="notice_st w150"></td>
+			<td class="notice_st"></td>
 		</tr><tr>
 
-			<td class="notice_st" colspan="3" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_title" type="text" class="status_title"><button id="title_copy" class="copy" type="button">COPY</button>
+			<td class="notice_st" colspan="5" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_ttl" type="text" class="status_title"><button id="title_copy" class="copy" type="button">COPY</button>
 			<button class="submit_btn" type="button">登録</button>
 			<button class="del_btn" type="button">削除</button>
 			</td>

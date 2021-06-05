@@ -89,6 +89,7 @@ $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status=0";
 $sql	.=" AND display_date<'{$now}'";
 $sql	.=" AND page='news'";
+$sql	.=" AND status=0";
 $sql	.=" ORDER BY display_date DESC";
 $sql	.=" LIMIT 5";
 
