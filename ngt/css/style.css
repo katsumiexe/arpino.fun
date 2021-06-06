@@ -518,7 +518,7 @@ ul {
 }
 .prof{
 	margin			:0 auto 10px auto;
-	width			:505px;
+	width			:500px;
 	border-spacing: 0 5px;
 }
 
@@ -540,51 +540,57 @@ ul {
 
 }
 
-.main_b_title,.main_b_title_l,.sche_title,.blog_title{
-	position		:relative;
-	display			:inline-block;
-	width			:860px;
-	height			:40px;
-	line-height		:40px;
-	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
-	margin			:10px auto;
-	font-size		:18px;
-	font-weight		:600;
-	padding-left	:10px;
-	text-align		:left;
+.main_b_title,.main_b_title_l,.sche_title,.blog_title,.prof_title,.check_title{
+	position			:relative;
+	display				:inline-block;
+	height				:40px;
+	line-height			:40px;
+	background			:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
+//	margin				:10px auto;
+	font-size			:18px;
+	font-weight			:600;
+	padding-left		:10px;
+	text-align			:left;
+/*
 	margin-block-start	:0;
 	margin-block-end	:0;
-	border-radius:5px 5px 0 0;
-	color			:#483800;
-	text-shadow	:1px 1px 0 #ffffff;	
-}
-
-.prof_title,.check_title{
-	margin-top		:7px;
-	margin-left		:0;
-	width			:493px;
-	height			:30px;
-	line-height		:30px;
-	background		:linear-gradient(#c8b880 0%, #e0d098 50% , #c8b880 100%);
-	margin			:10px auto 0 auto;
-	font-size		:18px;
-	font-weight		:600;
-	padding-left	:10px;
-	text-align		:left;
-//	border			:1px solid #c8b880;
-	border-radius	:5px 5px 0 0;
-	color			:#483800;
-	text-shadow		:1px 1px 0 #ffffff;
+*/
+	margin:0 auto;
+	border-radius		:5px 5px 0 0;
+	color				:#483800;
+	text-shadow			:1px 1px 0 #ffffff;	
 }
 
 .prof_title{
 	font-family		:at_font1;
+	width			:490px;
 }
 
+.check_title{
+	width			:490px;
+
+}
+
+.main_b_title{
+	width			:860px;
+}
 
 .main_b_title_l{
 	width			:600px;
 }
+
+.sche_title{
+	margin-top		:20px;
+	margin-left		:0;
+	width			:410px;
+	font-family		: at_font1;
+}
+
+.blog_title{
+	width			:290px;
+	font-family		:at_font1;
+}
+
 
 .new_all{
 	position		:absolute;
@@ -593,27 +599,6 @@ ul {
 	right			:10px;
 	font-size		:14px;
 	color			:#483800;
-}
-
-
-
-.sche_title{
-	margin-top		:20px;
-	margin-left		:0;
-	width			:410px;
-	height			:30px;
-	line-height		:30px;
-	font-family		: at_font1;
-}
-
-.blog_title{
-	display			:inline-block;
-	margin			:0;
-	flex-basis		:300px;
-	height			:30px;
-	line-height		:30px;
-	font-family		:at_font1;
-
 }
 
 
@@ -2042,11 +2027,13 @@ ul {
 
 
 .person_main{
-	display		:flex;
-	width		:1200px;
-	margin		:0 auto;
-	text-align	:center;
-	font-size	:0;
+	display			:flex;
+	justify-content	:space-between;
+	width			:1200px;
+	margin			:0 auto;
+	text-align		:center;
+	font-size		:0;
+
 }
 
 .person_err{
@@ -2064,32 +2051,34 @@ ul {
 
 
 .person_left{
-	display		:inline-flex;
-	justify-content: space-between;
-	position	:relative;
-	width		:380px;
-	flex-basis	:380px;
-	text-align	:left;
+	display			:flex;
+	justify-content	:space-between;
+	flex-wrap		:wrap;
+
+	position		:relative;
+	width			:360px;
+	flex-basis		:360px;
+	text-align		:center;
 }
 
 .person_middle{
 	font-size		:0;
-	display			:inline-block;
+	display			:block;
 	position		:relative;
-	flex-basis		:520px;
+	flex-basis		:500px;
 	text-align		:left;
 }
 
 .person_right{
-	display			:inline-block;
+	display			:block;
 	position		:relative;
 	flex-basis		:300px;
-	margin-top		:8px;
 	text-align		:center;
 }
 
 .person_blog{
-	display			:inline-block;
+	margin			:0 auto;
+	display			:block;
 	position		:relative;
 	width			:300px;
 	height			:90px;	
@@ -2218,12 +2207,11 @@ ul {
 .person_img_box{
 	display			:inline-block;
 	position		:relative;
-	margin-top		:7px;
 	width			:360px;
 	height			:480px;	
 }
 
-.person_	img_main,.person_img_top{
+.person_img_main,.person_img_top{
 	position		:absolute;
 	top				:0;
 	left			:0;
@@ -2298,8 +2286,24 @@ ul {
 
 .sche{
 	border-collapse: collapse;
-	width:505px;
+	width:500px;
 	margin:0 auto;
+}
+
+.sche_l_0,
+.sche_l_1,
+.sche_l_2,
+.sche_l_3,
+.sche_l_4,
+.sche_l_5,
+.sche_l_6
+{
+	border-bottom	:2px solid #202020;
+	padding-left	:10px;
+	height			:26px;
+	line-height		:30px;
+	width			:150px;
+	font-size		:14px;
 }
 
 .sche_l_1,
@@ -2308,37 +2312,21 @@ ul {
 .sche_l_4,
 .sche_l_5
 {
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
 	background		:#404040;
 	color			:#f0d8a8;
 }
 
+
 .sche_l_0{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
 	background		:#444444;
 	color			:#f0a080;
 }
 
 .sche_l_6{
-	border-bottom	:2px solid #202020;
-	padding-left	:10px;
-	height			:26px;
-	line-height		:30px;
-	width			:150px;
-	font-size		:14px;
 	background		:#444444;
 	color			:#90b8c0;
 }
+
 
 
 .schep_l_0,
@@ -2452,7 +2440,7 @@ ul {
 	display			:flex;
 	flex-wrap		:wrap;
 	margin			:0 auto 10px auto;
-	width			:495px;
+	width			:490px;
 	background		:#404040;
 	padding			:5px;
 }
@@ -4387,7 +4375,7 @@ ul {
 }
 
 .person_right{
-	display		:show;
+	display		:block;
 	width		:96vw;
 	flex-basis	:96vw;
 	min-height	:0;	
