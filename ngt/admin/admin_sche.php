@@ -20,6 +20,14 @@ $tmp_week=date("w",$tmp_d);
 $st_day=date("Ymd",$tmp_d-($tmp_week-$start_week)*86400);
 $ed_day=date("Ymd",$tmp_d-($tmp_week-$start_week)*86400+518400);
 
+$sql =" SELECT * FROM wp01_0sch_table";
+$sql .=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$sch_table[$row["in_out"]][$row["sort"]]=$row["name"];
+	}
+}
 
 $sql =" SELECT id, genji,genji_kana FROM wp01_0cast";
 $sql.=" WHERE cast_status<2";
@@ -49,10 +57,12 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
 		if($row["stime"] && $row["etime"]){
-			$sche_dat[$row["cast_id"]][$row["sche_date"]]="{$row["stime"]}<br>｜<br>{$row["etime"]}";
-
+			$stime[$row["cast_id"]][$row["sche_date"]]=$row["stime"];
+			$etime[$row["cast_id"]][$row["sche_date"]]=$row["etime"];
+	
 		}else{
-			$sche_dat[$row["cast_id"]][$row["sche_date"]]="休み";
+			$stime[$row["cast_id"]][$row["sche_date"]]="休み";
+			$etime[$row["cast_id"]][$row["sche_date"]]="";
 		}
 	}
 }
@@ -89,7 +99,7 @@ td{
 .td_40{
 	width		:40px;
 	background	:#fafafa;
-	text-align:center;
+	text-align	:center;
 }
 
 .td_60{
@@ -145,8 +155,27 @@ td{
 	width		:24px;
 	padding		:2px;
 }
+.box_inout{
+	display			:block;
+	height			:30px;
+	width			:100%;
+	margin			:10px 3px;
+}
 
+.tag_inout{
+	display			:inline-block;
+	height			:30px;
+	line-height		:30px;
+	width			:20px;
+	font-size		:15px;
+	font-weight		:700;
+	text-align		:center;
+	vertical-align	:top;
+}
 
+.sel_inout{
+	width:80px;
+}
 -->
 </style>
 <script>
@@ -158,34 +187,51 @@ $(function(){
 <?=$st_day?> - <?=$ed_day?><br>
 </header>
 <div class="wrap">
-	<div class="main_box">
-
+<div class="main_box">
 <table>
-<tr>
-<td class="td_top" colspan="2">キャスト名</td>
-
-<?for($n=0;$n<7;$n++){?>
-<td class="td_top">
-<?=date("m年d月",strtotime($st_day)+($n*86400))?>
-[<?=$week[date("w",strtotime($st_day)+($n*86400))]?>]
-</td>
-<?}?>
-</tr>
-
+	<tr>
+		<td class="td_top" colspan="2">キャスト名</td>
+		<?for($n=0;$n<7;$n++){?>
+		<td class="td_top">
+			<?=date("m年d月",strtotime($st_day)+($n*86400))?>
+			[<?=$week[date("w",strtotime($st_day)+($n*86400))]?>]
+		</td>
+		<?}?>
+	</tr>
 <?foreach($cast_dat as $a1=> $a2){?>
 <tr>
-<td class="td_60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
-<td class="td_200"><?=$a2["genji"]?><br>[<?=$a2["genji_kana"]?>]</td>
-<?for($n=0;$n<7;$n++){?>
-<?
-	$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
-	if(!$sche_dat[$a2["id"]][$tmp_day]) $sche_dat[$a2["id"]][$tmp_day]="休み";
-?>
-<td class="td_100"><?=$sche_dat[$a2["id"]][$tmp_day]?></td>
-<?}?>
+	<td class="w60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+	<td class="w200"><?=$a2["genji"]?><br>[<?=$a2["genji_kana"]?>]</td>
+	<?for($n=0;$n<7;$n++){?>
+		<?
+			$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
+			if(!$stime[$a2["id"]][$tmp_day]) $stime[$a2["id"]][$tmp_day]="休み";
+		?>
+		<td class="td_inout w120">
+			<div class="box_inout">
+				<span class="tag_inout">入</span>
+				<select class="sel_inout">
+				<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>休み</option>
+					<?foreach($sch_table["in"] as $b2){?>
+						<option value="<?=$b2?>" <?if($b2 == $stime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
+					<?}?>
+				</select>
+			</div>
+
+			<div class="box_inout">
+				<span class="tag_inout">退</span>
+				<select class="sel_inout">
+					<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>　</option>
+					<?foreach($sch_table["out"] as $b2){?>
+						<option value="<?=$b2?>" <?if($b2 == $etime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
+					<?}?>
+				</select>
+			</div>
+		</td>
+	<?}?>
 </tr>
 <?}?>
 </table>
-	</div>
+</div>
 </div>
 <footer class="foot"></footer> 

@@ -52,6 +52,10 @@ input[type="checkbox"],input[type="radio"]{
 	width:40px;
 }
 
+.w60{
+	width:60px;
+}
+
 .w120{
 	width:120px;
 }

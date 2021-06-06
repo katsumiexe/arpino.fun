@@ -2053,7 +2053,8 @@ ul {
 .person_left{
 	display			:flex;
 	justify-content	:space-between;
-	flex-wrap		:wrap;
+	align-content	:flex-start;
+ 	flex-wrap		:wrap;
 
 	position		:relative;
 	width			:360px;
@@ -2226,7 +2227,7 @@ ul {
 .person_img_list{
 	display			:inline-flex;
 	margin-top		:10px;
-	width			:368px;
+	width			:360px;
 	height			:112px;
 	font-size		:0;
 }
@@ -2454,8 +2455,8 @@ ul {
 	height			:30px;
 	line-height		:30px;
 	border-radius	:5px;
-	flex-basis		:155px;
-	margin			:5px;
+	flex-basis		:150px;
+	margin			:6px;
 	text-align		:center;
 }
 
