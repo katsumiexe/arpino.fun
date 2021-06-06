@@ -3143,9 +3143,9 @@ ul {
 
 
 .main_d_title,.main_b_title{
-	width			:91.5vw;
+	width			:calc( 91.5vw + 2px );
 	height			:8vw;
-	line-height		:9vw;
+	line-height		:8vw;
 	margin			:0 auto;
 	font-size		:4vw;
 	padding-left	:2.5vw;
@@ -4204,7 +4204,8 @@ ul {
 }
 
 .blog_list_tag{
-	bottom			:1vw;
+	bottom			:1.5vw;
+	left			:1vw;
 	height			:6vw;
 	border-radius	:1vw;
 	padding			:0 1vw;
@@ -4280,8 +4281,8 @@ ul {
 .blog_cast_right{
 	border-spacing: 0 0.5vw;
 	margin:1vw 1vw 1vw 0.5vw;
-	width:53vw;
-	flex-basis	:53vw;
+	width:52vw;
+	flex-basis	:52vw;
 }
 
 .schep_l_0,
@@ -4429,15 +4430,26 @@ ul {
 .prof{
 	border-spacing: 0px 1vw;
 	margin:0vw auto 1vw auto;
-	width:95.5vw;
+	width:94vw;
 }
 .sche{
 	margin:0vw auto 1vw auto;
-	width:95.5vw;
+	width:94vw;
 }
 
 
-.prof_title,.blog_title,.check_title{
+.prof_title,.check_title{
+	width			:92vw;
+	flex-basis		:92vw;
+	height			:8vw;
+	line-height		:8vw;
+	margin			:0 auto;
+	font-size		:4vw;
+	padding-left	:2vw;
+	border-radius:1vw 1vw 0 0; 
+}
+
+.blog_title{
 	width			: calc( 92vw + 2px);
 	flex-basis		: calc( 92vw + 2px);
 	height			:8vw;
@@ -4447,6 +4459,8 @@ ul {
 	padding-left	:2vw;
 	border-radius:1vw 1vw 0 0; 
 }
+
+
 
 .prof_l{
 	padding		:0 0.5vw;
@@ -4602,7 +4616,7 @@ ul {
 .check_box{
 	margin-bottom	:5vw;
 	width			:93vw;
-	padding			:1.25vw;
+	padding			:0.5vw;
 }
 
 .check_set1,.check_set{

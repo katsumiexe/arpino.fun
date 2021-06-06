@@ -246,12 +246,15 @@ include_once('./header.php');
 					</span>
 					<span class="blog_list_title"><?=$blog[$n]["title"]?></span>
 					<span class="blog_list_cast">
-					<span class="blog_list_tag"><span class="blog_list_icon"><?=$blog[$n]["tag_icon"]?></span><span class="blog_list_tcomm"><?=$blog[$n]["tag_name"]?></span></span>
-					<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
-					<span class="blog_list_castname"><?=$blog[$n]["genji"]?></span>
-					<span class="blog_list_frame_a">
-					<img src="<?=$blog[$n]["face"]?>?t=<?=time()?>" class="blog_list_castimg">
-					</span>
+						<span class="blog_list_tag">
+							<span class="blog_list_icon"><?=$blog[$n]["tag_icon"]?></span>
+							<span class="blog_list_tcomm"><?=$blog[$n]["tag_name"]?></span>
+						</span>
+						<span class="blog_list_date"><?=$blog[$n]["date"]?></span>
+						<span class="blog_list_castname"><?=$blog[$n]["genji"]?></span>
+						<span class="blog_list_frame_a">
+							<img src="<?=$blog[$n]["face"]?>?t=<?=time()?>" class="blog_list_castimg">
+						</span>
 					</span>
 				</a>
 			<? } ?>

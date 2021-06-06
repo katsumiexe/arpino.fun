@@ -65,15 +65,15 @@ input[type=radio]:checked + label{
 }
 .main_box{
 	display			:inline-block;
-	flex-basis		:720px;
+	flex-basis		:800px;
+	background		:#e0e000;
 	min-height		:calc(100vh - 80px);
-	margin			:0 15px;
 }
 
 .sub_box{
 	display			:inline-block;
-	flex-basis		:350px;
-	background		:#f0f0f0;
+	flex-basis		:250px;
+	background		:#008040;
 	min-height		:calc(100vh - 80px);	
 }
 
@@ -145,29 +145,19 @@ input[type=radio]:checked + label{
 }
 
 
-.notice_table,.list_table{
+.notice_table{
 	border-collapse: collapse;
-	margin			:2px auto;
+	margin			:5px auto;
 	background		:#fafafa;
 	border			:1px solid #303030;
 }
-
-.list_table{
-	cursor			:pointer;
-}
-
-.list_table:hover{
-	background		:#f0e8d0;
-}
-
-
 
 .notice_table2{
 	border-collapse: separate;
 	margin			:5px auto;
 	background		:#fafafa;
 	border			:1px solid #303030;
-	width:720px;
+	
 }
 
 .notice_top{
@@ -183,24 +173,19 @@ input[type=radio]:checked + label{
 .notice_list{
 	border			:1px solid #303030;
 	color			:#202020;
-	height			:18px;
-	line-height		:18px;
+	height			:20px;
+	line-height		:20px;
+	max-height		:20px;
 	padding-left	:5px;
-	font-size		:13px;
+	font-size		:14px;
+	overflow		:hidden;
 }
-.n_title{
-	width:310px;
-	overflow:hidden;
-}
-
-
 
 .notice_hidden{
 	display:none;
 }
 
 .w30{width:30px;}
-.w50{width:30px;}
 .w80{width:80px;}
 .w100{width:100px;}
 .w130{width:130px;}
@@ -209,11 +194,19 @@ input[type=radio]:checked + label{
 .w200{width:200px;}
 .w220{width:220px;}
 .w250{width:250px;}
-.w300{width:300px;}
+
+
+.tr_list{
+	cursor			:pointer;
+}
+
+.tr_list:hover{
+	background		:#f0e8d0;
+}
 
 .notice_log{
-	margin			:0;
-	width			:720px;
+	margin			:0 42px;
+	width			:716px;
 	height			:500px;
 	padding			:10px;
 	font-size		:14px;
@@ -271,11 +264,6 @@ input[type=radio]:checked + label{
 	background:#d0d8ff;
 }
 
-.new{
-	height:24px;
-	background:#d0a080;
-}
-
 .del_btn{
 	position:absolute;
 	top		:0;
@@ -296,65 +284,39 @@ input[type=radio]:checked + label{
 	height		:24px;
 	width		:50px;
 }
-
-.title_in{
-	width	:100%;
-	height	:20px;
-	overflow:hidden;
-}
 -->
 </style>	
 <script>
 $(function(){ 
-	$('.list_table').on('click',function(){ 
+	$('.tr_list').on('click',function(){ 
 
-		var Tmp_no=$(this).children().children().children('.n_no').html();
-		var Tmp_date=$(this).children().children().children('.n_date').html();
-		var Tmp_opeid=$(this).children().children().children('.n_opeid').html();
-		var Tmp_opename=$(this).children().children().children('.n_opename').html();
+		var Tmp_log=$(this).children('.notice_hidden').html();
+		var Tmp_ttl=$(this).children('.n_title').html();
+		var Tmp_date=$(this).children('.n_date').html();
+		var Tmp_id=$(this).children('.n_id').html();
+		var Tmp_opeid=$(this).children('.n_opeid').html();
+		var Tmp_opename=$(this).children('.n_opename').html();
 
-		var Tmp_ttl=$(this).children().children().children().children('.title_in').html();
-		var Tmp_log=$(this).children().children().children('.notice_hidden').html();
-
-		$('#status_no').val(Tmp_no);
+		$('.notice_log').html(Tmp_log);
+		$('#status_text').val(Tmp_ttl);
 		$('#status_date').val(Tmp_date);
-		$('#base_opeid').val(Tmp_opeid);
-		$('#base_name').html(Tmp_opename);
+		$('#status_id').val(Tmp_id);
 
-		$('#status_ttl').val(Tmp_ttl);
-		$('#status_log').html(Tmp_log);
+		$('#ope_id').val(Tmp_opeid);
+		$('#notice_name').html(Tmp_opename);
 
 	});
 
 	$('#log_copy').on('click', function(){
-		$('#status_log').select();
+		$('.notice_log').select();
 		document.execCommand('copy');
 		alert('本文をコピーしました');
 	});
 
 	$('#title_copy').on('click', function(){
-		$('#status_ttl').select();
+		$('#status_text').select();
 		document.execCommand('copy');
 		alert('タイトルをコピーしました');
-	});
-
-	$('.mm').on('change', function(){
-		Tmp=$(this).attr("id");
-		$.post({
-			url:"./post/blog_memo.php",
-			data:{
-				'chg':Tmp,
-				'log':$(this).val(),
-				'id':$('#status_no').val(),
-			},
-
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
 	});
 });
 
@@ -365,38 +327,6 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="sub_box">
-		<div class="sub_top">
-			<button class="new">新規作成</button>
-<>
-		</div>
-
-<!--
-		<table class="notice_table">
-			<tr>
-				<td class="notice_top w30">No</td>
-				<td class="notice_top w100">日時</td>
-				<td class="notice_top w80">OPE_ID</td>
-				<td class="notice_top w100">投稿者</td>
-			</tr><tr>
-				<td class="notice_top" colspan="4">件名</td>
-			</tr>
-		</table>
--->		
-	<?for($n=0;$n<$count_dat;$n++){?>
-		<table class="list_table">
-			<tr class="tr_list">
-				<td class="notice_list w30 n_no"><?=$dat[$n]["id"]?></td>
-				<td class="notice_list w100 n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
-				<td class="notice_list w80 n_opeid"><?=$dat[$n]["ope_id"]?></td>
-				<td class="notice_list w100 n_opename"><?=$dat[$n]["ope_name"]?></td>
-			</tr><tr>
-				<td class="notice_list n_title" colspan="4"><div class="title_in"><?=$sub[$dat[$n]["id"]][0]["title"]?></div></td>
-				<td class="notice_hidden" colspan="4"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
-			</tr>
-		</table>
-	<?}?>
-
-<!--
 		<ul class="cate_ul c_blue">
 			<li class="cate_title">MENU</li>
 			<li class="cate_li c_blue2">投稿</li>
@@ -415,28 +345,50 @@ $(function(){
 			<?foreach($staff_dat as $a1 => $a2){?>
 			<li class="cate_li c_pink2"><?=$a2["user_name"]?></li><?}?>
 		</ul>
--->
 	</div>
 
 	<div class="main_box">
+		<table class="notice_table">
+			<tr>
+				<td class="notice_top w30">No</td>
+				<td class="notice_top w40">ID</td>
+				<td class="notice_top w100">日時</td>
+				<td class="notice_top w220">件名</td>
+				<td class="notice_top w80">OPE_ID</td>
+				<td class="notice_top w100">投稿者</td>
+				<td class="notice_top w30"></td>
+			</tr>
+			<?for($n=0;$n<$count_dat;$n++){?>
+			<tr class="tr_list">
+				<td class="notice_list n_no"><?print($n+1)?></td>
+				<td class="notice_list n_no"><?=$dat[$n]["id"]?></td>
+				<td class="notice_list n_date"><?=$sub[$dat[$n]["id"]][0]["date"]?></td>
+				<td class="notice_list n_title"><?=$sub[$dat[$n]["id"]][0]["title"]?></td>
+				<td class="notice_list n_opeid"><?=$dat[$n]["ope_id"]?></td>
+				<td class="notice_list n_opename"><?=$dat[$n]["ope_name"]?></td>
+				<td class="notice_list"></td>
+				<td class="notice_hidden"><?=$sub[$dat[$n]["id"]][0]["log"]?></td>
+			</tr>
+			<?}?>
+		</table>
+
 		<table class="notice_table2">
 		<tr>
-			<td class="notice_st w200"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="mm status_date"></td>
-			<td class="notice_st w300">
-				<span class="notice_tag_title">IDCODE</span><input id="base_opeid" type="text" class="mm status_text w80">
-				<span id="base_name"></span>
-			</td>
-			<td class="notice_st"></td>
+			<td class="notice_st w180"><span class="notice_tag_title">日時</span><input id="status_date" type="date" class="status_date"></td>
+			<td class="notice_st w150"><span class="notice_tag_title">IDCODE</span><input id="ope_id" type="text" class="status_text W80"></td>
+			<td id="notice_name" class="notice_st w150"></td>
 		</tr><tr>
-			<td class="notice_st" colspan="4" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_ttl" type="text" class="mm status_title"><button id="title_copy" class="copy" type="button">COPY</button>
-			<button class="submit_btn" type="button">更新</button>
+			<td class="notice_st" colspan="3" style="position:relative;"><span class="notice_tag_title">TITLE</span><input id="status_text" type="text" class="status_title"><button id="title_copy" class="copy" type="button">COPY</button>
+			<button class="submit_btn" type="button">登録</button>
 			<button class="del_btn" type="button">削除</button>
 			</td>
 		</tr>
 		</table>
 		<div class="copy_box"><button id="log_copy" class="copy" type="button">COPY</button></div>
-		<textarea id="status_log" class="mm notice_log"></textarea>
-		<input id="status_no" type="hidden" >
+		<textarea class="notice_log"></textarea>
+		<input id="tmp" type="hidden">
+
+
 	</div>
 </div>
 </body>
