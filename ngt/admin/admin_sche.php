@@ -230,46 +230,45 @@ $(function(){
 		<?}?>
 	</tr>
 <?foreach($cast_dat as $a1=> $a2){?>
-
-<tr>
-	<td class="w60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
-	<td class="td_castname w160">
-		<div class="td_castname_in">
-		<?=$a2["genji"]?><br>
-		[<?=$a2["genji_kana"]?>]
-		</div>
-		<button type="button" class="sche_submit">更新</button>
-	</td>
-	<?for($n=0;$n<7;$n++){?>
-		<?
-			$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
-			if(!$stime[$a2["id"]][$tmp_day]) $stime[$a2["id"]][$tmp_day]="休み";
-		?>
-		<td class="td_inout w120">
-			<div class="box_inout">
-				<span class="tag_inout">入</span>
-				<select id ="s_<?=$a1?>_<?=$n?>" class="sel_inout">
-				<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>休み</option>
-					<?foreach($sch_table["in"] as $b2){?>
-						<option value="<?=$b2?>" <?if($b2 == $stime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
-					<?}?>
-				</select>
-				<input type="hidden" id="hs_<?=$a1?>_<?=$n?>" value="<?=$stime[$a2["id"]][$tmp_day]?>">
+	<tr>
+		<td class="w60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+		<td class="td_castname w160">
+			<div class="td_castname_in">
+			<?=$a2["genji"]?><br>
+			[<?=$a2["genji_kana"]?>]
 			</div>
-
-			<div class="box_inout">
-				<span class="tag_inout">退</span>
-				<select id ="e_<?=$a1?>_<?=$n?>" class="sel_inout">
-					<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>　</option>
-					<?foreach($sch_table["out"] as $b2){?>
-						<option value="<?=$b2?>" <?if($b2 == $etime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
-					<?}?>
-				</select>
-				<input type="hidden" id="he_<?=$a1?>_<?=$n?>" value="<?=$etime[$a2["id"]][$tmp_day]?>">
-			</div>
+			<button type="button" class="sche_submit">更新</button>
 		</td>
-	<?}?>
-</tr>
+		<?for($n=0;$n<7;$n++){?>
+			<?
+				$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
+				if(!$stime[$a2["id"]][$tmp_day]) $stime[$a2["id"]][$tmp_day]="休み";
+			?>
+			<td class="td_inout w120">
+				<div class="box_inout">
+					<span class="tag_inout">入</span>
+					<select id ="s_<?=$a1?>_<?=$n?>" class="sel_inout">
+					<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>休み</option>
+						<?foreach($sch_table["in"] as $b2){?>
+							<option value="<?=$b2?>" <?if($b2 == $stime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
+						<?}?>
+					</select>
+					<input type="hidden" id="hs_<?=$a1?>_<?=$n?>" value="<?=$stime[$a2["id"]][$tmp_day]?>">
+				</div>
+
+				<div class="box_inout">
+					<span class="tag_inout">退</span>
+					<select id ="e_<?=$a1?>_<?=$n?>" class="sel_inout">
+						<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>　</option>
+						<?foreach($sch_table["out"] as $b2){?>
+							<option value="<?=$b2?>" <?if($b2 == $etime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
+						<?}?>
+					</select>
+					<input type="hidden" id="he_<?=$a1?>_<?=$n?>" value="<?=$etime[$a2["id"]][$tmp_day]?>">
+				</div>
+			</td>
+		<?}?>
+	</tr>
 <?}?>
 </table>
 </div>
