@@ -183,16 +183,17 @@ td{
 }
 
 .td_castname_in{
-	width		:140px;
+	width		:150px;
 	text-align	:left;
 	font-size	:14px;
 	margin		:3px auto;
 }
 
-.sche_submit{
-	width		:140px;
-	font-size	:14px;
-	margin		:3px auto;
+.sche_submit,.sche_reset{
+	width		:65px;
+	font-size	:13px;
+	margin		:5px;
+	height		:30px;
 }
 
 
@@ -200,6 +201,47 @@ td{
 </style>
 <script>
 $(function(){ 
+	$('.sche_reset').on('click',function(){	
+		Tmp =$(this).attr("id").substr(3);
+		for(var i=0;i<7;i++){
+			$('#s_'+Tmp + "_" + i).val($('#hs_'+Tmp + "_" + i).val());
+			$('#e_'+Tmp + "_" + i).val($('#he_'+Tmp + "_" + i).val());
+		}
+		$(this).parents().siblings('td').css('background','#fafafa');
+	});
+
+	$('.sche_submit').on('click',function(){	
+		Tmp =$(this).attr("id").substr(3);
+
+		for(var i=0;i<7;i++){
+			if($('#s_'+Tmp + "_" + i).val() != $('#hs_'+Tmp + "_" + i).val()){
+				$('#hs_'+Tmp + "_" + i).val($('#s_'+Tmp + "_" + i).val());
+				$('#he_'+Tmp + "_" + i).val($('#e_'+Tmp + "_" + i).val());
+
+				Chg_s[i]=$('#s_'+Tmp + "_" + i).val();		
+				Chg_e[i]=$('#e_'+Tmp + "_" + i).val();		
+			}
+		}
+
+		$.post({
+			url:"./post/sch_chg.php",
+			data:{
+				'chg_s[]'	:Chg_s,
+				'chg_e[]'	:Chg_e,
+				'cast_id'	:castid,
+			},
+
+		}).done(function(data, textStatus, jqXHR){
+			$(this).parents().siblings('td').css('background','#fafafa');
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
+	});
+
+
+
 	$('.sel_inout').on('change',function(){	
 		Tmp =$(this).attr("id").substr(2);
 		if($('#s_'+Tmp).val() == $('#hs_'+Tmp).val() && $('#e_'+Tmp).val() == $('#he_'+Tmp).val() ){
@@ -237,7 +279,7 @@ $(function(){
 			<?=$a2["genji"]?><br>
 			[<?=$a2["genji_kana"]?>]
 			</div>
-			<button type="button" class="sche_submit">更新</button>
+			<button type="button" class="sche_submit">更新</button><button id="rs_<?=$a1?>" type="button" class="sche_reset">RESET</button>
 		</td>
 		<?for($n=0;$n<7;$n++){?>
 			<?
@@ -248,7 +290,7 @@ $(function(){
 				<div class="box_inout">
 					<span class="tag_inout">入</span>
 					<select id ="s_<?=$a1?>_<?=$n?>" class="sel_inout">
-					<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>休み</option>
+					<option value="休み" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>休み</option>
 						<?foreach($sch_table["in"] as $b2){?>
 							<option value="<?=$b2?>" <?if($b2 == $stime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
 						<?}?>
