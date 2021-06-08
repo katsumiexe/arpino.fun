@@ -24,6 +24,9 @@ $(function(){
 	var css_outX=[];
 	var css_outY=[];
 
+	var Tmp_Top=[];
+	var Tmp_Left=[];
+
 	var Base_s	=20;
 	var Base_l	=150;
 	var Base_h	=200;
@@ -59,7 +62,7 @@ $(function(){
 						img_B=150/img_W;
 
 						cvs_X=Math.ceil((img_H-img_W)/2);
-						cvs_Y=0+Base_s;
+						cvs_Y=0;
 
 						css_A=Math.ceil(img_H*Base_l/img_W);
 						css_X=Math.ceil( Base_s - ( css_A - Base_l) / 2 );
@@ -70,6 +73,7 @@ $(function(){
 
 						css_outX[Tmp]=(( css_A - Base_l) / 2)+ Base_l;
 						css_outY[Tmp]= + css_A;
+
 
 
 					}else{
@@ -94,6 +98,13 @@ $(function(){
 
 					$("#cvs"+Tmp).attr({'width': img_A,'height': img_A}).css({'width': css_A,'height': css_A,'left': css_X,'top': css_Y});
 					ctx.drawImage(img, 0,0, img_W, img_H, cvs_X, cvs_Y, img_W, img_H);
+		Tmp_Top[Tmp]	=css_inY[Tmp];
+		Tmp_Left[Tmp]	=css_inX[Tmp];
+
+console.log(img_W)
+console.log(img_H)
+console.log(cvs_X)
+console.log(cvs_Y)
 
 					ImgCode = cvs.toDataURL("image/jpeg");
 					ImgCode=ImgCode.replace(/^data:image\/jpeg;base64,/, "");
@@ -132,21 +143,39 @@ $(function(){
 		drag: function( event, ui ){
 		var Tmp=$(this).attr("id").replace('cvs','');
 
-console.log(css_inX[Tmp]);
+			if(ui.position.top > Base_s-css_inY[Tmp]*Zoom[Tmp]/100){
+				ui.position.top=Tmp_Top[Tmp];
+			}
 
 			if(ui.position.left > Base_s-css_inX[Tmp]*Zoom[Tmp]/100){
-				ui.position.left=Math.ceil(Base_s-css_inX[Tmp]*Zoom[Tmp]/100);
+				ui.position.left=Tmp_Left[Tmp];
 			}
 
-
-			if(ui.position.left < Base_s-(css_inX[Tmp]-css_outX[Tmp])*Zoom[Tmp]/100){
-				ui.position.left=Math.ceil(Base_s-(css_inX[Tmp]-css_outX[Tmp])*Zoom[Tmp]/100);
+			if(ui.position.top + css_A * Zoom[Tmp] / 100   < Base_s + Base_h  - css_inY[Tmp] * Zoom[Tmp] / 100 ){
+console.log(ui.position.top);
+				ui.position.top=Tmp_Top[Tmp];
 			}
 
+/*
 			if(ui.position.top > Base_s-css_inY[Tmp]*Zoom[Tmp]/100){
-				ui.position.top=Math.ceil(Base_s-css_inY[Tmp]*Zoom[Tmp]/100);
+				ui.position.top=Math.floor(Base_s-css_inY[Tmp]*Zoom[Tmp]/100);
 			}
 
+			if(ui.position.left > Base_s-css_inX[Tmp]*Zoom[Tmp]/100){
+				ui.position.left=Math.floor(Base_s-css_inX[Tmp]*Zoom[Tmp]/100);
+			}
+
+
+			if(ui.position.top + css_A * Zoom[Tmp] / 100   < Base_s + Base_h  - css_inY[Tmp] * Zoom[Tmp] / 100 ){
+console.log(ui.position.top);
+//				ui.position.top=Math.floor(Base_s + Base_h  - (css_A + css_inY[Tmp] * Zoom[Tmp] / 100));
+				ui.position.top;
+			}
+*/
+
+
+		Tmp_Top[Tmp]	=ui.position.top;
+		Tmp_Left[Tmp]	=ui.position.Left;
 
 
 		}
