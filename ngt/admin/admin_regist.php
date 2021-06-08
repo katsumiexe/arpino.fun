@@ -115,7 +115,7 @@ STAFF情報
 </td><td>
 	<div>フリガナ		</div><input type="text" name="staff_kana" class="w000" autocomplete="off">
 </td><td>
-	<div>生年月日		</div><input type="text" id="b_yy" name="b_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 <input type="text" class="w40" id="b_mm" name="b_mm" value="01" size="2" maxlength="2" autocomplete="off">月 <input type="text" class="w40" id="b_dd" name="b_	dd" value="01" size="2" maxlength="2" autocomplete="off">日
+	<div>生年月日		</div><input type="date" id="b_yy" name="b_date" class="w000" value="2000-01-01" autocomplete="off">
 </td>
 </tr><tr>
 <td colspan="2">
@@ -185,9 +185,7 @@ CAST情報
 	<div>フリガナ		</div><input type="text" name="genji_kana" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
-	<input type="text" id="ctime_yy" name="ctime_yy" class="w60" value="1990" size="4" maxlength="4" autocomplete="off">年 
-	<input type="text" id="ctime_mm" name="ctime_mm" class="w40" value="01" size="2" maxlength="2" autocomplete="off">月 
-	<input type="text" id="ctime_dd" name="ctime_dd" class="w40" value="01" size="2" maxlength="2" autocomplete="off">日
+	<input type="date" name="c_date" class="w000" value="<?=date("Y-m-d")?>" autocomplete="off">
 </td>
 </tr><tr>
 <td>
@@ -205,8 +203,8 @@ CAST情報
 	<td class="table_title" colspan="2">NEWS登録</td>
 </tr>	
 <tr>
-	<td>公開日
-	<input type="date" id="news_date_c" name="news_date_c" class="w100" value="<?=date("Y-m-d")?>" autocomplete="off">年 
+	<td style="width:350px;">公開日
+	<input type="date" id="news_date_c" name="news_date_c" class="w100" value="<?=date("Y-m-d")?>" autocomplete="off"> 
 
 	</td>
 	<td><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>

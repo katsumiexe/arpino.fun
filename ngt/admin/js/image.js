@@ -86,8 +86,8 @@ $(function(){
 						css_inX[Tmp]=0;
 						css_inY[Tmp]=( css_A - Base_h) / 2;
 
-						c[Tmp]= css_A;
-						css_outY[Tmp]=( ( css_A - Base_H) / 2 ) + Base_l;
+						css_outX[Tmp]= css_A;
+						css_outY[Tmp]=( ( css_A - Base_h) / 2 ) + Base_l;
 
 					}
 

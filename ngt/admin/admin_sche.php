@@ -241,14 +241,13 @@ $(function(){
 	});
 
 
-
 	$('.sel_inout').on('change',function(){	
 		Tmp =$(this).attr("id").substr(2);
 		if($('#s_'+Tmp).val() == $('#hs_'+Tmp).val() && $('#e_'+Tmp).val() == $('#he_'+Tmp).val() ){
 			$(this).parents('.td_inout').css('background','#fafafa');
 
 		}else{
-			$(this).parents('.td_inout').css('background','#ffffe0');
+			$(this).parents('.td_inout').css('background','#f0f0c0');
 		}
 	});
 });

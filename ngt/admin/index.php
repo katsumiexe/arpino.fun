@@ -41,18 +41,15 @@ if($staff_set == 4){
 	$staff_address	=$_POST["staff_address"];
 	$staff_registday=$_POST["staff_registday"];
 
-	$b_yy			=$_POST["b_yy"];
-	$b_mm			=$_POST["b_mm"];
-	$b_dd			=$_POST["b_dd"];
+	$b_date			=$_POST["b_date"];
 
 	$cast_id		=$_POST["cast_id"];
 	$cast_pass		=$_POST["cast_pass"];
 	$genji			=$_POST["genji"];
 	$genji_kana		=$_POST["genji_kana"];
 	$cast_mail		=$_POST["cast_mail"];
-	$ctime_yy		=$_POST["ctime_yy"];
-	$ctime_mm		=$_POST["ctime_mm"];
-	$ctime_dd		=$_POST["ctime_dd"];
+
+	$c_date			=$_POST["c_date"];
 
 	$cast_rank		=$_POST["cast_rank"];
 	$cast_sort		=$_POST["cast_sort"];
@@ -81,7 +78,7 @@ echo "img_v".$img_v[0]."<br>\n";
 
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
-	$btime=$b_yy*10000+$b_mm*100+$b_dd;
+	$btime=str_replace("-","",$b_date);
 
 	if($staff_set == 2 || $staff_set == 3){
 		$sql="UPDATE wp01_0staff SET";
@@ -110,7 +107,7 @@ echo "img_v".$img_v[0]."<br>\n";
 
 //■cast-------------------------------
 	if($c_s == 2){
-		$ctime=$ctime_yy*10000+$ctime_mm*100+$ctime_dd;
+		$ctime=str_replace("-","",$c_date);
 
 		if($staff_set == 2){//変更
 			$sql="UPDATE wp01_0cast SET";
