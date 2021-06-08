@@ -213,6 +213,10 @@ CAST情報
 
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
+	<td class="table_title" colspan="2">プロフィール</td>
+</tr>	
+
+<tr>
 	<?foreach((array)$charm_table as $a1 => $a2){?>
 <td>
 	<div><?=$a2["charm"]?></div>
