@@ -46,21 +46,16 @@ if($staff_data["id"]){
 	}
 
 
-	$sql	 ="SELECT * FROM wp01_0charm_table";
+	$sql	 ="SELECT T.id,T.sort,T.style,T.view,S.check_id FROM wp01_0charm_table AS T";
+	$sql	.=" LEFT JOIN wp01_0charm_sel AS S ON T.id=S.list_id ";
 	$sql	.=" WHERE del=0";
+	$sql	.=" AND (cast_id={$row["id"]} OR cast_id='')";
 	$sql	.=" ORDER BY sort ASC";
+
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$charm_main[$row["id"]]=$row;
-		}
-	}
-
-	$sql	 ="SELECT * FROM wp01_0charm_sel";
-	$sql	.=" WHERE cast_id='{$staff_id}'";
-	if($result = mysqli_query($mysqli,$sql)){
-		while($row = mysqli_fetch_assoc($result)){
-			$charm_list[$row["list_id"]]=$row;
 		}
 	}
 
@@ -314,10 +309,6 @@ STAFF情報
 </tr>
 </table>
 
-
-
-
-
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
 <td class="table_title" colspan="3">
@@ -351,9 +342,9 @@ CAST情報
 <td>
 	<div><?=$a2["charm"]?></div>
 	<?if($a2["style"] == 1){?>
-		<textarea name="charm_main[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off"></textarea>
+		<textarea name="charm_table[<?=$a2["id"]?>]" class="w000 tbox" autocomplete="off">c</textarea>
 	<? }else{ ?>
-		<input type="text" name="charm_main[<?=$a2["id"]?>]" class="w000" autocomplete="off">
+		<input type="text" name="charm_table[<?=$a2["id"]?>]" value="<?=$a2["log"]?>" class="w000" autocomplete="off">
 	<? } ?>
 </td>
 <?if(($cnt+0) % 2 ==1){?>
@@ -409,7 +400,6 @@ CAST情報
 						<span class="img_up_al2">
 						<span class="img_up_al2_in"></span>
 						</span>
-
 					</td>
 					<td class="img_box_td_2">
 						<span class="img_up_al">

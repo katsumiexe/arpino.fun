@@ -72,7 +72,8 @@ $(function(){
 						css_inY[Tmp]= 0;
 
 						css_outX[Tmp]=(( css_A - Base_l) / 2)+ Base_l;
-						css_outY[Tmp]= + css_A;
+						css_outX[Tmp]= Base_l;
+						css_outY[Tmp]= css_A;
 
 
 
@@ -91,7 +92,8 @@ $(function(){
 						css_inY[Tmp]=( css_A - Base_h) / 2;
 
 						css_outX[Tmp]= css_A;
-						css_outY[Tmp]=( ( css_A - Base_h) / 2 ) + Base_l;
+						css_outY[Tmp]=( ( css_A - Base_h) / 2 ) + Base_h;
+						css_outY[Tmp]=Base_h;
 
 					}
 
@@ -162,7 +164,7 @@ console.log("ou_x" + css_outX[Tmp]);
 				ui.position.top=Tmp_Top[Tmp];
 			}
 
-			if(ui.position.left < Base_s + Base_h - (css_outX[Tmp] + css_inX[Tmp])  * Zoom[Tmp] / 100 ){
+			if(ui.position.left < Base_s + Base_l - (css_outX[Tmp] + css_inX[Tmp])  * Zoom[Tmp] / 100 ){
 				ui.position.left=Tmp_Left[Tmp];
 			}
 
