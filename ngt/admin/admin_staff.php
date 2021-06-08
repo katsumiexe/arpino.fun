@@ -282,9 +282,9 @@ $(function(){
 <td class="td_100"><?=$dat[$n]["cast_id"]?></td>
 <td class="td_100"><?=$dat[$n]["ctime"]?></td>
 <td class="td_100"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
-<td class="td_60">
+<td class="td_60" style="position:relative;">
 	<form method="post">
-		<button type="submit">変更</button>
+		<button type="submit" class="staff_submit">変更</button>
 		<input type="hidden" value="staff_fix" name="menu_post">
 		<input type="hidden" name="staff_id" value="<?=$dat[$n]["staff_id"]?>">
 	</form>
@@ -294,3 +294,4 @@ $(function(){
 </tbody>
 </table>
 <footer class="foot"></footer> 
+
