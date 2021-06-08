@@ -151,10 +151,14 @@ console.log(cvs_Y)
 				ui.position.left=Tmp_Left[Tmp];
 			}
 
-			if(ui.position.top + css_A * Zoom[Tmp] / 100   < Base_s + Base_h  - css_inY[Tmp] * Zoom[Tmp] / 100 ){
-console.log(ui.position.top);
+			if(ui.position.top < Base_s + Base_h  - (css_outY[Tmp] + css_inY[Tmp]) * Zoom[Tmp] / 100 ){
 				ui.position.top=Tmp_Top[Tmp];
 			}
+
+			if(ui.position.left + css_outX[Tmp] * Zoom[Tmp] / 100   < Base_s + Base_h  - css_inX[Tmp] * Zoom[Tmp] / 100 ){
+				ui.position.left=Tmp_Left[Tmp];
+			}
+
 
 /*
 			if(ui.position.top > Base_s-css_inY[Tmp]*Zoom[Tmp]/100){
