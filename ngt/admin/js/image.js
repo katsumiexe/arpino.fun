@@ -106,6 +106,13 @@ console.log(img_H)
 console.log(cvs_X)
 console.log(cvs_Y)
 
+console.log("in_y" + css_inY[Tmp]);
+console.log("in_x" + css_inX[Tmp]);
+
+console.log("ou_y" + css_outY[Tmp]);
+console.log("ou_x" + css_outX[Tmp]);
+
+
 					ImgCode = cvs.toDataURL("image/jpeg");
 					ImgCode=ImgCode.replace(/^data:image\/jpeg;base64,/, "");
 
@@ -151,11 +158,11 @@ console.log(cvs_Y)
 				ui.position.left=Tmp_Left[Tmp];
 			}
 
-			if(ui.position.top < Base_s + Base_h  - (css_outY[Tmp] + css_inY[Tmp]) * Zoom[Tmp] / 100 ){
+			if(ui.position.top  < Base_s + Base_h - (css_outY[Tmp] + css_inY[Tmp]) * Zoom[Tmp] / 100 ){
 				ui.position.top=Tmp_Top[Tmp];
 			}
 
-			if(ui.position.left + css_outX[Tmp] * Zoom[Tmp] / 100   < Base_s + Base_h  - css_inX[Tmp] * Zoom[Tmp] / 100 ){
+			if(ui.position.left < Base_s + Base_h - (css_outX[Tmp] + css_inX[Tmp])  * Zoom[Tmp] / 100 ){
 				ui.position.left=Tmp_Left[Tmp];
 			}
 
