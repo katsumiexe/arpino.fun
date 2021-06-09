@@ -15,7 +15,7 @@ $start_year=date("Y");
 $sel=$_POST["sel"]+0;
 
 $sql	 ="SELECT `date` FROM wp01_0contents";
-$sql	.=" WHERE `status`=0";
+$sql	.=" WHERE `status`<3";
 $sql	.=" AND page='news'";
 $sql	.=" AND `date`>'2010-01-01 00:00:00'";
 $sql	.=" ORDER BY display_date ASC";
@@ -28,14 +28,14 @@ if($result = mysqli_query($mysqli,$sql)){
 
 $sql	 ="SELECT tag_name, tag, tag_icon, `display_date`,category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
-$sql	.=" WHERE status=0";
+$sql	.=" WHERE status<3";
 $sql	.=" AND `date` LIKE '{$sel_year}%'";
 $sql	.=" AND page='news'";
 $sql	.=" ORDER BY `display_date` DESC";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
-		$a1["date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
+		$a1["news_date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
 		if($a1["category"] == "person"){
 			$a1["news_link"]="./person.php?post_id={$a1["contents_key"]}";
 
@@ -107,33 +107,32 @@ include_once('./header.php');
 							</td>
 						</tr>
 					</table>
-
 				<?}elseif($news[$n]["category"]){?>
 					<table  class="main_b_notice tag<?=$news[$n]["tag"]?>">">
-					<tr>
-					<td  class="main_b_td_1">
-						<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
-						<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
-					</td>
-					<td  class="main_b_td_2">
-						<a href="<?=$news[$n]["category"]?>.php?post_id=<?=$news[$n]["contents_key"]?>" class="main_b_notice_link">
-							<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
-						</a>
-					</td>
-					<td class="main_b_td_3">
-						<span class="main_b_notice_arrow"><a href="<?=$news[$n]["category"]?>.php?post_id=<?=$news[$n]["contents_key"]?>" class="main_b_notice_alink">	</a></span>
-					</td>
-					</tr>
+						<tr>
+							<td  class="main_b_td_1">
+								<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
+								<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
+							</td>
+							<td  class="main_b_td_2">
+								<a href="<?=$news[$n]["category"]?>.php?post_id=<?=$news[$n]["contents_key"]?>" class="main_b_notice_link">
+									<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
+								</a>
+							</td>
+							<td class="main_b_td_3">
+								<span class="main_b_notice_arrow"><a href="<?=$news[$n]["category"]?>.php?post_id=<?=$news[$n]["contents_key"]?>" class="main_b_notice_alink">	</a></span>
+							</td>
+						</tr>
 					</table>
 				<?}else{?>
 					<table class="main_b_notice tag<?=$news[$n]["tag"]?>">
 						<tr>
 							<td  class="main_b_td_1">
 								<span class="main_b_notice_date"><?=$news[$n]["news_date"]?></span>
-								<span class="main_b_notice_tag" style="background:<?=$news[$n]["slug"]?>"><?=$news[$n]["name"]?></span>
+								<span class="main_b_notice_tag" style="background:<?=$news[$n]["tag_icon"]?>"><?=$news[$n]["tag_name"]?></span>
 							</td>
 							<td  class="main_b_td_2">
-								<span class="main_b_notice_title"><?=$news[$n]["post_title"]?></span>
+								<span class="main_b_notice_title"><?=$news[$n]["title"]?></span>
 							</td>
 						</tr>
 					</table>
@@ -143,23 +142,20 @@ include_once('./header.php');
 				<span class="person_blog_no">お知らせはまだありません</span>
 			</div>
 		</div>
-
 	</div>
 	<div class="news_main_b">
-	<div class="news_main_b_year">
-<?if($now_year > $start_year){?>
-<form id="form_year" method="post">
-<select id="sel_year" name="now_year" class="sel_year">
-<?for($n=$start_year;$n<$now_year+1;$n++){?>
-<option value="<?=$n?>" <?if($sel_year == $n){?>selected="selcted"<?}?>><?=$n?></option>
-<?}?>
-<select>
-<input id="sel" type="hidden" name="sel" value="0">
-</form>
-<?}?>
-
-
-	</div>
+		<div class="news_main_b_year">
+			<?if($now_year > $start_year){?>
+				<form id="form_year" method="post">
+					<select id="sel_year" name="now_year" class="sel_year">
+						<?for($n=$start_year;$n<$now_year+1;$n++){?>
+							<option value="<?=$n?>" <?if($sel_year == $n){?>selected="selcted"<?}?>><?=$n?></option>
+						<?}?>
+					</select>
+					<input id="sel" type="hidden" name="sel" value="0">
+				</form>
+			<?}?>
+		</div>
 		<?if($tag){?>
 			<div class="news_tag">
 					<div id="tag0" class="news_tag_list<?if($sel+0== 0){?> cast_tag_box_sel<?}?>">全て</div>
