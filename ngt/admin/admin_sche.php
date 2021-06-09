@@ -195,8 +195,6 @@ td{
 	margin		:5px;
 	height		:30px;
 }
-
-
 -->
 </style>
 <script>
@@ -221,12 +219,15 @@ $(function(){
 
 				Chg_s[i]=$('#s_'+Tmp + "_" + i).val();		
 				Chg_e[i]=$('#e_'+Tmp + "_" + i).val();		
+
+				Sch_d[i]=$('#d_'+Tmp + "_" + i).val();		
 			}
 		}
 
 		$.post({
 			url:"./post/sch_chg.php",
 			data:{
+				'sch_d[]'	:Sch_d,
 				'chg_s[]'	:Chg_s,
 				'chg_e[]'	:Chg_e,
 				'cast_id'	:Tmp,
@@ -283,7 +284,6 @@ $(function(){
 			</div>
 			<button id="ch_<?=$a2["id"]?>" type="button" class="sche_submit">更新</button><button id="rs_<?=$a1?>" type="button" class="sche_reset">RESET</button>
 		</td>
-
 		<?for($n=0;$n<7;$n++){?>
 			<?
 				$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
@@ -311,6 +311,8 @@ $(function(){
 					</select>
 					<input type="hidden" id="he_<?=$a1?>_<?=$n?>" value="<?=$etime[$a2["id"]][$tmp_day]?>">
 				</div>
+				<input type="hidden" id="d_<?=$a1?>_<?=$n?>" value="<?=$tmp_day?>">
+
 			</td>
 		<?}?>
 	</tr>
