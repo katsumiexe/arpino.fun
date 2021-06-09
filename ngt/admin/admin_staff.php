@@ -53,28 +53,6 @@ td{
 	color		:#fafafa;
 }
 
-.td_40{
-	width		:40px;
-	background	:#fafafa;
-	text-align:center;
-}
-
-.td_60{
-	width		:60px;
-	background	:#fafafa;
-}
-
-.td_100{
-	width		:100px;
-	background	:#fafafa;
-}
-
-.td_200{
-	width		:200px;
-	background	:#fafafa;
-}
-
-
 .td_sort_up,.td_sort_down{
 	display		:inline-block;
 	position	:absolute;
@@ -276,13 +254,13 @@ $(function(){
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
 <td class="td_sort">■</td>
-<td class="td_40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
-<td class="td_60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
-<td class="td_200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
-<td class="td_100"><?=$dat[$n]["cast_id"]?></td>
-<td class="td_100"><?=$dat[$n]["ctime"]?></td>
-<td class="td_100"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
-<td class="td_60" style="position:relative;">
+<td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
+<td class="w60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+<td class="w200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
+<td class="w100"><?=$dat[$n]["cast_id"]?></td>
+<td class="w100"><?=$dat[$n]["ctime"]?></td>
+<td class="w100"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
+<td class="w60" style="position:relative;">
 	<form method="post">
 		<button type="submit" class="staff_submit">変更</button>
 		<input type="hidden" value="staff_fix" name="menu_post">

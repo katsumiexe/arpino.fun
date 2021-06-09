@@ -33,34 +33,28 @@ if($news_id){
 	$sql	 ="UPDATE wp01_0contents SET";
 	$sql	.=" `title`='{$news_contents}',";
 	$sql	.=" `display_date`='{$news_date}',";
-	$sql	.=" `tag`='{$news_tag}'";
+	$sql	.=" `tag`='{$news_tag}',";
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
 	mysqli_query($mysqli,$sql);
-}
-
-
-
-$sql	 ="SELECT * FROM wp01_0contents";
-$sql	.=" WHERE page='{$post_id}'";
-$sql	.=" AND status<4";
-$sql	.=" ORDER BY display_date DESC";
 echo $sql;
-if($result = mysqli_query($mysqli,$sql)){
-	while($res = mysqli_fetch_assoc($result)){
-
-		$res["news_date"]=substr($res["display_date"],0,10);
-		if($res["status"] ==0 && $res["news_date"] > date("Y-m-d")){
-			$res["status"]=1;
-		}
-		$dat[$res["id"]]=$res;
-		if($res["id"] == "$sel_id"){
-			$dat_sel=$res;
-		}
-	}
 }
 
 if($post_id == "news"){
+	$sql	 ="SELECT * FROM wp01_0contents";
+	$sql	.=" WHERE page='{$post_id}'";
+	$sql	.=" AND status<4";
+	$sql	.=" ORDER BY display_date DESC";
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
+			$res["news_date"]=substr($res["display_date"],0,10);
+			if($res["status"] ==0 && $res["news_date"] > date("Y-m-d")){
+				$res["status"]=1;
+			}
+			$dat[$res["id"]]=$res;
+		}
+	}
+
 	$sql	 ="SELECT * FROM wp01_0tag";
 	$sql	.=" WHERE tag_group='news'";
 	$sql	.=" AND del=0";
@@ -69,6 +63,18 @@ if($post_id == "news"){
 	if($result = mysqli_query($mysqli,$sql)){
 		while($row = mysqli_fetch_assoc($result)){
 			$tag[$row["id"]]=$row;
+		}
+	}
+
+}else{
+	$sql	 ="SELECT * FROM wp01_0contents";
+	$sql	.=" WHERE page='{$post_id}'";
+	$sql	.=" AND status=0";
+	$sql	.=" ORDER BY sort ASC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
+			$dat[$res["sort"]]=$res;
 		}
 	}
 }
@@ -89,6 +95,7 @@ if($post_id == "news"){
 	font-size		:18px;
 	font-weight		:600;
 	text-align		:center;
+	cursor			:pointer;
 }
 
 .sel_ck{
@@ -96,27 +103,27 @@ if($post_id == "news"){
 }
 
 .main_box{
-	display:inline-block;
-	flex-basis:800px;
-	background:#e0e000;
-	min-height:calc(100vh - 80px);
+	display			:inline-block;
+	flex-basis		:800px;
+	background		:#e0e000;
+	min-height		:calc(100vh - 80px);
 }
 
 .sub_box{
-	display:inline-block;
-	flex-basis:400px;
-	background:#008040;
-	min-height:calc(100vh - 80px);
+	display			:inline-block;
+	flex-basis		:400px;
+	background		:#008040;
+	min-height		:calc(100vh - 80px);
 }
 
 .news_tag{
-	display		:inline-block;
-	font-size	:16px;
-	height		:30px;
-	line-height	:30px;
-	text-align	:right;
-	padding-right:5px; 
-	width		:60px;
+	display			:inline-block;
+	font-size		:16px;
+	height			:30px;
+	line-height		:30px;
+	text-align		:right;
+	padding-right	:5px; 
+	width			:60px;
 }
 
 
@@ -172,6 +179,11 @@ if($post_id == "news"){
 }
 
 .v0{
+	background		:#d0e0ff;
+	color			:#0000c0;
+	border			:2px solid #0000c0;
+}
+.v2{
 	background		:#ffe0f0;
 	color			:#d00000;
 	border			:2px solid #d00000;
@@ -184,13 +196,11 @@ if($post_id == "news"){
 	border			:2px solid #a08000;
 }
 
-.v2{
+.v3{
 	background		:#fafafa;
 	color			:#909090;
 	border			:2px solid #909090;
 }
-
-
 
 -->
 </style>
@@ -225,34 +235,18 @@ $(function(){
 				$('#f'+Tmp2).submit();
 				return false;
 			}
-
-		}else if(Tmp == 'cov'){
-			if (!confirm('非表示にします。よろしいですか')) {
-				return false;
-			}else{
-				$('#f'+Tmp2).submit();
-				return false;
-			}
-
-		}else if(Tmp == 'dis'){
-			if (!confirm('表示にします。よろしいですか')) {
-				return false;
-			}else{
-				$('#f'+Tmp2).submit();
-				return false;
-			}
 		}
 	});
 });
 </script>
-
 <header class="head">
-<div id="event" class="sel_contents <?if($post_id == "event"){?> sel_ck<?}?>">イベント</div>
-<div id="news" class="sel_contents <?if($post_id == "news"){?> sel_ck<?}?>">NEWS</div>
-<div id="info" class="sel_contents <?if($post_id == "info"){?> sel_ck<?}?>">お知らせ</div>
-<div id="system" class="sel_contents <?if($post_id == "system"){?> sel_ck<?}?>">SYSTEM</div>
-<div id="access" class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
+<div id="event"   class="sel_contents <?if($post_id == "event"){?> sel_ck<?}?>">イベント</div>
+<div id="news"    class="sel_contents <?if($post_id == "news"){?> sel_ck<?}?>">NEWS</div>
+<div id="info"    class="sel_contents <?if($post_id == "info"){?> sel_ck<?}?>">お知らせ</div>
+<div id="system"  class="sel_contents <?if($post_id == "system"){?> sel_ck<?}?>">SYSTEM</div>
+<div id="access"  class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
 <div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
+<div id="policy"  class="sel_contents <?if($post_id == "policy"){?> sel_ck<?}?>">ポリシー</div>
 
 <form id="form" method="post">
 	<input id="sel_ck" type="hidden" name="post_id">
@@ -285,9 +279,9 @@ $(function(){
 
 							<td>
 								<select class="w120" name="news_status">
-									<option value="0">表示</option>
-									<option value="2">注目</option>
-									<option value="3">非表示</option>
+									<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
+									<option value="2" <?if($a2["status"] == 2){?> selected="selected"<?}?>>注目</option>
+									<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 								</select>
 								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 							</td>
@@ -322,53 +316,117 @@ $(function(){
 			<?}?>
 		</div>
 
-	<?}elseif($post_id == "event"){?>
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+	<?}elseif($post_id == "info"){?>
 		<div class="main_box">
 			<table>
 				<tr>
-					<td>
-						<span class="tag">表示時間</span>
-						<input type="date" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
-					</td>
-
-					<td>
-						<span class="tag">イベント時間</span>
-						<input type="date" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
-					</td>
-
-					<td>
-						<span class="tag">タグ</span>
-						<select name="tag">
-							<?for($n=0;$n<$tag_count;$n++){?>
-								<option value="<?=$tag[$n]["id"]?>"><?=$tag[$n]["tag_name"]?></option>
-							<? } ?>	
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="tag">タイトル</span>
-						<input type="text" name="event_title" value="<?=$dat_sel["title"]?>"> 
-					</td>
-
-					<td>
-						<span class="tag">URL</span>
-						<input type="text" name="event_url" value="<?=$dat_sel["contents_url"]?>"> 
-					</td>
-
-					<td>
-						<span class="tag">Key</span>
-						<input type="text" name="event_key" value="<?=$dat_sel["contents_key"]?>"> 
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<textarea class="news_textarea"><?=$dat_sel["contents"]?></textarea>
-					</td>
+					<td style="width:60px;"><?=$a2["title"]?></td>
+					<td style="width:60px;"><?=$a2["contents"]?></td>
 				</tr>
 			</table>
 		</div>
+		<div class="sub_box"></div>
 
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+	<?}elseif($post_id == "policy"){?>
+		<div class="main_box">
+			<table>
+				<tr>
+					<td style="width:720px;"><input type="text" name="policy_title" value="<?=$dat[0]["title"]?>"></td>
+				</tr><tr>
+					<td style="width:720px;"><textarea name="policy_contents" class="w000"><?=$dat[0]["contents"]?></textarea></td>
+				</tr>
+			</table>
+		</div>
+		<div class="sub_box"></div>
+
+
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+	<?}elseif($post_id == "system"){?>
+		<div class="main_box">
+			<table>
+				<tr>
+					<td style="width:720px;"><input type="text" name="system_title" value="<?=$dat[0]["title"]?>"></td>
+				</tr><tr>
+					<td style="width:720px;"><textarea class="w000"><?=$dat[0]["contents"]?></textarea></td>
+				</tr>
+			</table>
+		</div>
+		<div class="sub_box"></div>
+
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+	<?}elseif($post_id == "recruit"){?>
+		<div class="main_box">
+			<table>
+				<tr>
+					<td style="width:80px;">TOPバナー<br>変更</td>
+					<td style="width:620px;"><input type="text" name="event_title" value="<?=$a2["title"]?>"></td>
+				</tr>
+				<tr>
+					<td style="width:80px;">メイン告知</td>
+					<td style="width:620px;"><textarea class="w000"><?=$dat[0]["top"]?></textarea></td>
+				</tr>
+			</table>
+
+			<table>
+				<tbody id="sort">
+				<?foreach($dat as $a1 => $a2){?>
+					<tr id="tr_<?=$a1?>" class="tr">
+						<td class="td_sort" style="width:60px;">■</td>
+						<td style="width:60px;"><?=$a2["sort"]?></td>
+						<td style="width:200px;"><input type="text" name="event_title" value="<?=$a2["title"]?>"></td>
+						<td><textarea name="event_contents" class="w000"><?=$a2["contents"]?>"</textarea></td>
+					</tr>
+				<? } ?>
+				</tbody>
+			</table>
+		</div>
+		<div class="sub_box"></div>
+
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+	<?}elseif($post_id == "event"){?>
+		<div class="main_box">
+			<?foreach($dat as $a1 => $a2){?>
+			<table>
+				<tr>
+					<td style="width:60px;"><?=$a2["id"]?></td>
+					<td>
+						<span class="tag">順</span>
+						<input type="text" name="event_sort" value="<?=$a2["sort"]?>"> 
+					</td>
+
+					<td>
+						<span class="tag">表示時間</span>
+						<input type="date" name="event_view_date" class="w000" value="<?=$a2["display_date"]?>" autocomplete="off">
+					</td>
+
+					<td>
+						<span class="news_tag">スタイル</span><select name="news_link" class="w150">
+							<option value="">なし</option>
+							<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
+							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+							<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="4">
+						<span class="tag">タイトル</span>
+						<input type="text" name="event_title" value="<?=$a2["title"]?>"> 
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<textarea class="news_textarea"><?=$a2["contents"]?></textarea>
+					</td>
+				</tr>
+			</table>
+			<? } ?>
+
+		</div>
 		<div class="sub_box">
 			<?foreach($dat as $a1 => $a2){?>
 				<table>
@@ -386,7 +444,5 @@ $(function(){
 			<? } ?>
 		</div>
 	<? } ?>
-
-
 </div>
 <footer class="foot"></footer>

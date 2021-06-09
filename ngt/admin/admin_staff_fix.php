@@ -329,9 +329,6 @@ CAST情報
 </tr>
 </table>
 
-
-
-
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
 	<td class="table_title" colspan="2">プロフィール</td>
@@ -355,7 +352,6 @@ CAST情報
 	<? } ?>
 </tr>
 </table>
-
 <?if($ck_main){?>
 <?foreach($ck_main as $a1 => $a2){?>
 	<table style="width:720px;" class="cast_table">

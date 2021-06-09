@@ -86,12 +86,13 @@ if($res0 = mysqli_query($mysqli,$sql)){
 
 $sql	 ="SELECT tag_name, tag_icon, date, display_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
-$sql	.=" WHERE status=0";
+$sql	.=" WHERE status<3";
 $sql	.=" AND display_date<'{$now}'";
 $sql	.=" AND page='news'";
-$sql	.=" AND status=0";
-$sql	.=" ORDER BY display_date DESC";
+$sql	.=" ORDER BY status DESC, display_date DESC";
 $sql	.=" LIMIT 5";
+
+echo $sql;
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){

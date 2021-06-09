@@ -215,6 +215,7 @@ $(function(){
 
 		for(var i=0;i<7;i++){
 			if($('#s_'+Tmp + "_" + i).val() != $('#hs_'+Tmp + "_" + i).val()){
+
 				$('#hs_'+Tmp + "_" + i).val($('#s_'+Tmp + "_" + i).val());
 				$('#he_'+Tmp + "_" + i).val($('#e_'+Tmp + "_" + i).val());
 
@@ -228,7 +229,7 @@ $(function(){
 			data:{
 				'chg_s[]'	:Chg_s,
 				'chg_e[]'	:Chg_e,
-				'cast_id'	:castid,
+				'cast_id'	:Tmp,
 			},
 
 		}).done(function(data, textStatus, jqXHR){
@@ -270,16 +271,19 @@ $(function(){
 		</td>
 		<?}?>
 	</tr>
+
 <?foreach($cast_dat as $a1=> $a2){?>
 	<tr>
 		<td class="w60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+
 		<td class="td_castname w160">
 			<div class="td_castname_in">
 			<?=$a2["genji"]?><br>
 			[<?=$a2["genji_kana"]?>]
 			</div>
-			<button type="button" class="sche_submit">更新</button><button id="rs_<?=$a1?>" type="button" class="sche_reset">RESET</button>
+			<button id="ch_<?=$a2["id"]?>" type="button" class="sche_submit">更新</button><button id="rs_<?=$a1?>" type="button" class="sche_reset">RESET</button>
 		</td>
+
 		<?for($n=0;$n<7;$n++){?>
 			<?
 				$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
