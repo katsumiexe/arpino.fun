@@ -8,61 +8,42 @@ st
 3 削除
 */
 
+/*-----news_status*/
 $st[0]="表示中";
 $st[1]="表示前";
-$st[2]="非表示";
-$st[3]="削除済";
+$st[2]="注目";
+$st[3]="非表示";
+$st[4]="削除";
 
 $sel_id			=$_POST["sel_id"];
 $post_id		=$_POST["post_id"];
-$news_id		=$_POST["news_id"];
-$log_id			=$_POST["log_id"];
-
-$news_upd		=$_POST["news_upd"];
-
-
-$news_contents	=$_POST["news_contents"];
-$news_tag		=$_POST["news_tag"];
-$news_date		=$_POST["news_date"]." 00:00:00";
-
 if(!$post_id) $post_id="event";
 
 
-if($log_id){
-	if($news_upd == "chg"){
-		$sql	 ="UPDATE wp01_0contents SET";
-		$sql	.=" `title`='{$news_contents}',";
-		$sql	.=" `display_date`='{$news_date}',";
-		$sql	.=" `tag`={$news_tag}";
-		$sql	.=" WHERE `id`='{$log_id}'";
-		mysqli_query($mysqli,$sql);
 
-echo $sql;
+$news_id		=$_POST["news_id"];
+$news_upd		=$_POST["news_upd"];
+$news_contents	=$_POST["news_contents"];
+$news_tag		=$_POST["news_tag"];
+$news_date		=$_POST["news_date"]." 00:00:00";
+$news_status	=$_POST["news_status"];
 
-	}elseif($news_upd == "del"){
-		$sql	 ="UPDATE wp01_0contents SET";
-		$sql	.=" status='3'";
-		$sql	.=" WHERE id='{$log_id}'";
-		mysqli_query($mysqli,$sql);
 
-	}elseif($news_upd == "cov"){
-		$sql	 ="UPDATE wp01_0contents SET";
-		$sql	.=" status='2'";
-		$sql	.=" WHERE id='{$log_id}'";
-		mysqli_query($mysqli,$sql);
-
-	}elseif($news_upd == "dis"){
-		$sql	 ="UPDATE wp01_0contents SET";
-		$sql	.=" status='0'";
-		$sql	.=" WHERE id='{$log_id}'";
-		mysqli_query($mysqli,$sql);
-	}
+if($news_id){
+	$sql	 ="UPDATE wp01_0contents SET";
+	$sql	.=" `title`='{$news_contents}',";
+	$sql	.=" `display_date`='{$news_date}',";
+	$sql	.=" `tag`='{$news_tag}'";
+	$sql	.=" status='{$news_status}'";
+	$sql	.=" WHERE `id`='{$news_id}'";
+	mysqli_query($mysqli,$sql);
 }
+
 
 
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE page='{$post_id}'";
-$sql	.=" AND status<3";
+$sql	.=" AND status<4";
 $sql	.=" ORDER BY display_date DESC";
 echo $sql;
 if($result = mysqli_query($mysqli,$sql)){
@@ -74,7 +55,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		}
 		$dat[$res["id"]]=$res;
 		if($res["id"] == "$sel_id"){
-			$dat_sel=$res;	
+			$dat_sel=$res;
 		}
 	}
 }
@@ -188,7 +169,6 @@ if($post_id == "news"){
 	text-align		:center;
 	font-weight		:600;
 	font-size		:15px;
-	margin-left		:30px;
 }
 
 .v0{
@@ -264,8 +244,8 @@ $(function(){
 		}
 	});
 });
-
 </script>
+
 <header class="head">
 <div id="event" class="sel_contents <?if($post_id == "event"){?> sel_ck<?}?>">イベント</div>
 <div id="news" class="sel_contents <?if($post_id == "news"){?> sel_ck<?}?>">NEWS</div>
@@ -286,11 +266,12 @@ $(function(){
 				<form id="f<?=$a1?>" action="./index.php" method="post">
 					<input type="hidden" name="post_id" value="news">
 					<input type="hidden" name="menu_post" value="contents">
-					<input type="hidden" name="log_id" value="<?=$a1?>">
+					<input type="hidden" name="news_id" value="<?=$a1?>">
 					<input id="upd<?=$a1?>" type="hidden" value="" name="news_upd">
 
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
+							<td style="width:80px;"><span class="st_view v<?=$a2["status"]?>"><?=$st[$a2["status"]]?></span></td>
 							<td style="width:220px;">
 								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
 							</td>
@@ -303,18 +284,16 @@ $(function(){
 							</td>
 
 							<td>
+								<select class="w120" name="news_status">
+									<option value="0">表示</option>
+									<option value="2">注目</option>
+									<option value="3">非表示</option>
+								</select>
 								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
-<?if($a2["status"]== 2){?>
-								<button id="dis<?=$a1?>" type="button" class="news_tag_btn">表示</button>
-<?}else{?>
-								<button id="cov<?=$a1?>" type="button" class="news_tag_btn">非表示</button>
-<?}?>
-								<button id="del<?=$a1?>" type="button" class="news_tag_btn">削除</button>
-								<span class="st_view v<?=$a2["status"]?>"><?=$st[$a2["status"]]?></span>
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td colspan="2">
 								<span class="news_tag">リンク</span><select name="news_link" class="w150">
 									<option value="">なし</option>
 									<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
@@ -324,11 +303,11 @@ $(function(){
 								</select>
 							</td>
 							<td colspan="2">
-								<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w400" value="<?=$a2["contents_key"]?>"> 
+								<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w300" value="<?=$a2["contents_key"]?>"> 
 							</td>
 						</tr>
 						<tr>
-							<td colspan="3">
+							<td colspan="4">
 								<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
 							</td>
 						</tr>
@@ -349,12 +328,12 @@ $(function(){
 				<tr>
 					<td>
 						<span class="tag">表示時間</span>
-						<input type="text" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+						<input type="date" id="t_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
 					</td>
 
 					<td>
 						<span class="tag">イベント時間</span>
-						<input type="text" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
+						<input type="date" id="e_yy" name="b_yy" class="w60" value="" autocomplete="off"> 
 					</td>
 
 					<td>
