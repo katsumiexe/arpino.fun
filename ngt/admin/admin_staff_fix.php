@@ -8,18 +8,8 @@ $sql	.=" LIMIT 1";
 
 if($res = mysqli_query($mysqli,$sql) ){
 	$staff_data = mysqli_fetch_assoc($res);
-
-	if($staff_data["birthday"]){
-		$staff_data["b_yy"]=substr($staff_data["birthday"],0,4);
-		$staff_data["b_mm"]=substr($staff_data["birthday"],4,2);
-		$staff_data["b_dd"]=substr($staff_data["birthday"],6,2);
-	}
-
-	if($staff_data["ctime"]){
-		$staff_data["c_yy"]=substr($staff_data["ctime"],0,4);
-		$staff_data["c_mm"]=substr($staff_data["ctime"],4,2);
-		$staff_data["c_dd"]=substr($staff_data["ctime"],6,2);
-	}
+	$staff_data["birthday"]=substr($staff_data["birthday"],0,4)."-".substr($staff_data["birthday"],4,2)."-".substr($staff_data["birthday"],6,2);
+	$staff_data["ctime"]=substr($staff_data["ctime"],0,4)."-".substr($staff_data["ctime"],4,2)."-".substr($staff_data["ctime"],6,2);
 }
 
 if($staff_data["id"]){
@@ -255,7 +245,7 @@ STAFF情報
 </td><td>
 	<div>フリガナ		</div><input type="text" name="staff_kana" value="<?=$staff_data["kana"]?>" class="w000" autocomplete="off">
 </td><td>
-	<div>生年月日		</div><input type="date" id="b_yy" name="b_date" class="w000" value="2000-01-01" autocomplete="off">
+	<div>生年月日		</div><input type="date" id="b_yy" name="b_date" class="w000" value="<?=$staff_data["birthday"]?>" autocomplete="off">
 </td>
 </tr><tr>
 <td colspan="2">
@@ -314,10 +304,6 @@ STAFF情報
 </tr>
 </table>
 
-
-
-
-
 <table style="width:720px; table-layout: fixed;" class="cast_table">
 <tr>
 <td class="table_title" colspan="3">
@@ -330,7 +316,7 @@ CAST情報
 	<div>フリガナ		</div><input type="text" name="genji_kana" value="<?=$staff_data["genji_kana"]?>" class="w000" autocomplete="off">
 </td><td>
 	<div>入店日		</div>
-	<input type="date" name="c_date" class="w000" value="<?=date("Y-m-d")?>" autocomplete="off">
+	<input type="date" name="c_date" class="w000" value="<?=$staff_data["ctime"]?>" autocomplete="off">
 </td>
 </tr><tr>
 <td>
