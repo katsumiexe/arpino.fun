@@ -30,7 +30,7 @@ body{
 	overflow:hidden;
 	margin:0 auto;
 
-	background:linear-gradient(135deg,#005CB5,#005CB5);
+	background:linear-gradient(135deg,#2030a0,#001080);
 }
 
 .box_b{
