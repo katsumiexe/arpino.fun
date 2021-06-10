@@ -18,15 +18,23 @@
 body{
 	text-align:center;
 }
-.box_a{
-	width:60vw;
+.box_b{
+	width:400px;
 	margin:0 auto;
 	border:1px solid #303030;
-	background:linear-gradient(200,200,200,0.2);
+	background:rgba(200,200,200,0.6);
+}
+
+.box_a{
+	width:100%;
+	margin:0;
+	border:1px solid #303030;
+	background:#ffffff;
 }
 </style>
 </head>
 <body>
+<div style="width:600px;">
 <img src="./howto.png" class="back">    
 <div class="box_a">
 あいうえお<br>
@@ -38,9 +46,19 @@ body{
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
 </div>
 <br>
-<br>
+<div class="box_b">
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+</div>
 <br>
 <div class="box_a">
 あいうえお<br>
@@ -52,45 +70,19 @@ body{
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
-</div>
-<div class="box_a">
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 </div>
 <br>
-<br>
-<br>
-<div class="box_a">
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
+<div class="box_b">
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 </div>
-<div class="box_a">
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-</div>
-<br>
-<br>
 <br>
 <div class="box_a">
 あいうえお<br>
@@ -102,7 +94,20 @@ body{
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
 </div>
+<br>
+<div class="box_b">
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+あいうえお<br>
+</div>
+<br>
 <div class="box_a">
 あいうえお<br>
 あいうえお<br>
@@ -113,22 +118,14 @@ body{
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
-</div>
-<br>
-<br>
-<br>
-<div class="box_a">
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
-あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 あいうえお<br>
 </div>
- 
+<br>
+<br>
+</div>
 </body>
 </html>
 
