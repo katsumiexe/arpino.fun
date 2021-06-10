@@ -195,6 +195,13 @@ td{
 	margin		:5px;
 	height		:30px;
 }
+
+.back_now{
+	background	:#808000;
+	color		:#fafafa;
+}
+
+
 -->
 </style>
 <script>
@@ -214,8 +221,9 @@ $(function(){
 	});
 
 	$('.sche_submit').on('click',function(){	
-		Tmp =$(this).attr("id").substr(3);
+		$(this).parents().siblings('td').css('background','#fafafa');
 
+		Tmp =$(this).attr("id").substr(3);
 		for(var i=0;i<7;i++){
 			if($('#s_'+Tmp + "_" + i).val() != $('#hs_'+Tmp + "_" + i).val()){
 
@@ -224,7 +232,6 @@ $(function(){
 
 				Chg_s[i]=$('#s_'+Tmp + "_" + i).val();		
 				Chg_e[i]=$('#e_'+Tmp + "_" + i).val();		
-
 				Sch_d[i]=$('#d_'+Tmp + "_" + i).val();		
 			}
 		}
@@ -244,7 +251,6 @@ console.log(Chg_e);
 
 		}).done(function(data, textStatus, jqXHR){
 			console.log(data);
-			$(this).parents().siblings('td').css('background','#fafafa');
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -272,10 +278,11 @@ console.log(Chg_e);
 <div class="wrap">
 <div class="main_box">
 <table>
+
 	<tr>
 		<td class="td_top" colspan="2">キャスト名</td>
 		<?for($n=0;$n<7;$n++){?>
-		<td class="td_top">
+		<td class="td_top<?if($day_8 == date("Ymd",strtotime($st_day)+($n*86400))){ ?> back_now<? } ?>">
 			<?=date("m年d月",strtotime($st_day)+($n*86400))?>
 			[<?=$week[date("w",strtotime($st_day)+($n*86400))]?>]
 

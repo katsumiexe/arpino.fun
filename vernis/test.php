@@ -15,6 +15,7 @@
 	height	:120vh;
 	margin	:auto;
 	z-index	:-1;
+	background:linear-gradient(135deg,#2030a0,#001080);
 }
 body{
 	text-align:center;

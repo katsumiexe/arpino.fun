@@ -8,7 +8,6 @@ ini_set('error_reporting', E_ALL);
 
 $staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
 $staff_id	=$_POST["staff_id"];
-
 $menu_post	=$_POST["menu_post"];
 
 //■スタッフ削除
