@@ -91,8 +91,6 @@ $sql	.=" AND page='news'";
 $sql	.=" ORDER BY status DESC, display_date DESC";
 $sql	.=" LIMIT 5";
 
-echo $sql;
-
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
 		$a1["date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
