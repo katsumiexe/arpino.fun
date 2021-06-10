@@ -199,6 +199,11 @@ td{
 </style>
 <script>
 $(function(){ 
+
+	var Chg_s=[];
+	var Chg_e=[];
+	var Sch_d=[];
+
 	$('.sche_reset').on('click',function(){	
 		Tmp =$(this).attr("id").substr(3);
 		for(var i=0;i<7;i++){
@@ -224,6 +229,10 @@ $(function(){
 			}
 		}
 
+console.log(Chg_s);
+console.log(Sch_d);
+console.log(Chg_e);
+
 		$.post({
 			url:"./post/sch_chg.php",
 			data:{
@@ -234,6 +243,7 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
+			console.log(data);
 			$(this).parents().siblings('td').css('background','#fafafa');
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
@@ -292,26 +302,26 @@ $(function(){
 			<td class="td_inout w120">
 				<div class="box_inout">
 					<span class="tag_inout">入</span>
-					<select id ="s_<?=$a1?>_<?=$n?>" class="sel_inout">
+					<select id ="s_<?=$a2["id"]?>_<?=$n?>" class="sel_inout">
 					<option value="休み" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>休み</option>
 						<?foreach($sch_table["in"] as $b2){?>
 							<option value="<?=$b2?>" <?if($b2 == $stime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
 						<?}?>
 					</select>
-					<input type="hidden" id="hs_<?=$a1?>_<?=$n?>" value="<?=$stime[$a2["id"]][$tmp_day]?>">
+					<input type="hidden" id="hs_<?=$a2["id"]?>_<?=$n?>" value="<?=$stime[$a2["id"]][$tmp_day]?>">
 				</div>
 
 				<div class="box_inout">
 					<span class="tag_inout">退</span>
-					<select id ="e_<?=$a1?>_<?=$n?>" class="sel_inout">
+					<select id ="e_<?=$a2["id"]?>_<?=$n?>" class="sel_inout">
 						<option value="" <?if($stime[$a2["id"]][$tmp_day]== "休み"){?> selected="selected"<?}?>>　</option>
 						<?foreach($sch_table["out"] as $b2){?>
 							<option value="<?=$b2?>" <?if($b2 == $etime[$a2["id"]][$tmp_day]){?> selected="selected"<?}?>><?=$b2?></option>
 						<?}?>
 					</select>
-					<input type="hidden" id="he_<?=$a1?>_<?=$n?>" value="<?=$etime[$a2["id"]][$tmp_day]?>">
+					<input type="hidden" id="he_<?=$a2["id"]?>_<?=$n?>" value="<?=$etime[$a2["id"]][$tmp_day]?>">
 				</div>
-				<input type="hidden" id="d_<?=$a1?>_<?=$n?>" value="<?=$tmp_day?>">
+				<input type="hidden" id="d_<?=$a2["id"]?>_<?=$n?>" value="<?=$tmp_day?>">
 
 			</td>
 		<?}?>
