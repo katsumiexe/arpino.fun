@@ -44,7 +44,8 @@ if($post_id == "news"){
 	$sql	.=" ORDER BY display_date DESC";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			$res["news_date"]=substr($res["display_date"],0,10);
+			$res["news_date"]	=substr($res["display_date"],0,10);
+			$res["event_date"]	=substr($res["display_date"],0,10);
 			if($res["status"] ==0 && $res["news_date"] > date("Y-m-d")){
 				$res["status"]=1;
 			}

@@ -234,21 +234,32 @@ $(function(){
 <?foreach($table_sort as $a1 => $a2){?>
 <?}?>
 </table>
+
+
+
 <div class="config_title">ニュース</div>
 <table class="config_sche">	
 <thead>
 	<tr>
+		<td class="config_sche_top">替</td>
+		<td class="config_sche_top">順番</td>
 		<td class="config_sche_top">名前</td>
-		<td class="config_sche_top">色</td>
+		<td class="config_sche_top">スタイル</td>
 		<td class="config_sche_top"></td>
 	</tr>
 </thead>
 <tbody id="news">
 <?foreach($tag_dat["news"] as $a1 => $a2){?>
+
 	<tr id="tr_n_<?=$a1?>" class="tr">
-	<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="news_name[<?=$a1?>]" value="<?=$a2["tag_name"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
-	<td class="config_prof_style bg<?=$a2["view"]?>"><input type="text" name="news_icon[<?=$a1?>]" value="<?=$a2["tag_icon"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
-		<td class="config_prof_style bg<?=$a2["view"]?>">		
+		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
+
+		<td class="config_prof_handle bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_sort bg<?=$a2["view"]?>"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
+
+		<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="news_name[<?=$a1?>]" value="<?=$a2["tag_name"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>"><input type="text" name="news_icon[<?=$a1?>]" value="<?=$a2["tag_icon"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>">
 			<button type="button" class="prof_btn view_btn bg<?=$a2["view"]?>">非表示</button>
 			<button type="button" class="prof_btn del_btn  bg<?=$a2["view"]?>">削除</button>
 		</td>
@@ -256,6 +267,22 @@ $(function(){
 <? } ?>
 </tbody>
 </table>
+
+<table class="config_sche">
+	<tr>
+	<form id="new_set" action="" method="post">
+	<input type="hidden" name="menu_post" value="config">
+	<input type="hidden" value="<?=$max_charm+1?>" name="prof_sort_new">
+		<td style="width:71px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
+		<td class="config_prof_name" style=" background:#ffe0f0"><input id="prof_name_new" type="text" name="prof_name_new" value="" class="prof_name"></td>
+		<td class="config_prof_style" style=" background:#ffe0f0"><input type="text" name="news_icon_new" value="<?=$a2["tag_icon"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+	</form>
+		<td class="config_prof_style" style=" background:#ffe0f0">
+			<button id="prof_set" type="submit" class="prof_btn">追加</button>
+		</td>
+	</tr>
+</table>
+
 
 <div class="config_title">インセンティブ</div>
 <table class="config_sche">	
@@ -267,6 +294,7 @@ $(function(){
 	</tr>
 <?}?>
 </table>
+
 
 <div class="config_title">プロフィール</div>
 <table class="config_sche">
