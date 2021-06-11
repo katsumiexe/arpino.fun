@@ -1122,16 +1122,17 @@ ul {
 
 .main_article{
 	display			:inline-block;
-	width			:870px;
+	width			:866px;
 	text-align		:left;
 	border			:1px solid #c8b880;
 	background		:#302520;
 	vertical-align	:top;
+	padding			:2px;
 }
 
 .main_blog_title{
 	display			:inline-block;
-	width			:862px;
+	width			:860px;
 	height			:35px;
 	line-height		:35px;
 	background		:#c8b880;
@@ -1445,7 +1446,7 @@ ul {
 .blog_list{
 	display			:inline-block;
 	position		:relative;
-	width			:427px;
+	width			:426px;
 	height			:110px;
 	font-size		:0;
 	margin			:2px;
@@ -2758,6 +2759,7 @@ ul {
 .main_article{
 	width			:94vw;
 	margin			:0 auto 3vw auto;
+	padding:0;
 }
 
 
