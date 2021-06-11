@@ -6,6 +6,7 @@ ini_set( 'display_errors', 1 );
 ini_set('error_reporting', E_ALL);
 */
 
+
 $staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
 $staff_id	=$_POST["staff_id"];
 $menu_post	=$_POST["menu_post"];
@@ -411,5 +412,6 @@ $sel[$menu_post]="menu_sel";
 <form id="form_menu" method="post" action="./index.php">
 <input id="menu_post" type="hidden" name="menu_post">
 <?$_POST="";?>
+
 </form>
 </html>
