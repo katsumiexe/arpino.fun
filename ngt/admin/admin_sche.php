@@ -201,6 +201,10 @@ td{
 	color		:#fafafa;
 }
 
+.line_now{
+	box-shadow	:3px 0 0 0 #808000 inset,-3px 0 0 0 #808000 inset;
+}
+
 
 -->
 </style>
@@ -225,7 +229,14 @@ $(function(){
 
 		Tmp =$(this).attr("id").substr(3);
 		for(var i=0;i<7;i++){
-			if($('#s_'+Tmp + "_" + i).val() != $('#hs_'+Tmp + "_" + i).val()){
+			if(
+				$('#s_'+Tmp + "_" + i).val() != $('#hs_'+Tmp + "_" + i).val() ||
+				$('#e_'+Tmp + "_" + i).val() != $('#he_'+Tmp + "_" + i).val()
+			){
+
+				if($('#s_'+Tmp + "_" + i).val() == "休み"){
+					$('#e_'+Tmp + "_" + i).val('');
+				}
 
 				$('#hs_'+Tmp + "_" + i).val($('#s_'+Tmp + "_" + i).val());
 				$('#he_'+Tmp + "_" + i).val($('#e_'+Tmp + "_" + i).val());
@@ -235,10 +246,6 @@ $(function(){
 				Sch_d[i]=$('#d_'+Tmp + "_" + i).val();		
 			}
 		}
-
-console.log(Chg_s);
-console.log(Sch_d);
-console.log(Chg_e);
 
 		$.post({
 			url:"./post/sch_chg.php",
@@ -306,7 +313,7 @@ console.log(Chg_e);
 				$tmp_day=date("Ymd",strtotime($st_day)+($n*86400));
 				if(!$stime[$a2["id"]][$tmp_day]) $stime[$a2["id"]][$tmp_day]="休み";
 			?>
-			<td class="td_inout w120">
+			<td class="td_inout w120<?if($day_8 == $tmp_day){ ?> line_now<? } ?>">
 				<div class="box_inout">
 					<span class="tag_inout">入</span>
 					<select id ="s_<?=$a2["id"]?>_<?=$n?>" class="sel_inout">

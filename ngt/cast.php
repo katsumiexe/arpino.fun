@@ -35,10 +35,10 @@ if($result = mysqli_query($mysqli,$sql)){
 }
 
 $sql=" SELECT stime, etime, cast_id,sort FROM wp01_0schedule AS S";
-$sql.=" LEFT JOIN wp01_0sch_table AS T ON S.stime=T.name";
+//$sql.=" LEFT JOIN wp01_0sch_table AS T ON S.stime=T.name";
 $sql.=" WHERE sche_date='{$day_8}'";
-$sql.=" AND in_out='in'";
-$sql.=" ORDER BY S.id ASC, T.sort ASC";
+//$sql.=" AND in_out='in'";
+$sql.=" ORDER BY S.id ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){

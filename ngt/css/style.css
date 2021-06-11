@@ -587,7 +587,7 @@ ul {
 }
 
 .blog_title{
-	width			:290px;
+	width			:292px;
 	font-family		:at_font1;
 }
 
@@ -2468,7 +2468,7 @@ ul {
 }
 .main_flex_b{
 	display		:block;
-	flex-basis	:305px;
+	flex-basis	:302px;
 	text-align	:right;
 }
 

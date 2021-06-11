@@ -19,15 +19,12 @@ $sel_id			=$_POST["sel_id"];
 $post_id		=$_POST["post_id"];
 if(!$post_id) $post_id="event";
 
-
-
 $news_id		=$_POST["news_id"];
 $news_upd		=$_POST["news_upd"];
 $news_contents	=$_POST["news_contents"];
 $news_tag		=$_POST["news_tag"];
 $news_date		=$_POST["news_date"]." 00:00:00";
 $news_status	=$_POST["news_status"];
-
 
 if($news_id){
 	$sql	 ="UPDATE wp01_0contents SET";
@@ -123,7 +120,7 @@ if($post_id == "news"){
 	line-height		:30px;
 	text-align		:right;
 	padding-right	:5px; 
-	width			:60px;
+	width			:50px;
 }
 
 
@@ -254,6 +251,7 @@ $(function(){
 </form>
 </header>
 <div class="wrap">
+
 	<?if($post_id == "news"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
@@ -264,11 +262,16 @@ $(function(){
 					<input id="upd<?=$a1?>" type="hidden" value="" name="news_upd">
 
 					<table class="news_table c<?=$a2["status"]?>">
+
 						<tr>
-							<td style="width:80px;"><span class="st_view v<?=$a2["status"]?>"><?=$st[$a2["status"]]?></span></td>
+							<td style="width:220px;">
+								<span class="news_tag">日付</span><input type="date" name="news_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+							</td>
+
 							<td style="width:220px;">
 								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
 							</td>
+
 							<td style="width:220px;">
 								<span class="news_tag">タグ</span><select name="news_tag" class="w150">
 									<?foreach($tag as $b1 => $b2){?>
@@ -283,11 +286,10 @@ $(function(){
 									<option value="2" <?if($a2["status"] == 2){?> selected="selected"<?}?>>注目</option>
 									<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 								</select>
-								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td>
 								<span class="news_tag">リンク</span><select name="news_link" class="w150">
 									<option value="">なし</option>
 									<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
@@ -297,7 +299,10 @@ $(function(){
 								</select>
 							</td>
 							<td colspan="2">
-								<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w300" value="<?=$a2["contents_key"]?>"> 
+								<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w280" value="<?=$a2["contents_key"]?>"> 
+							</td>
+							<td style="text-align:right;">
+								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 							</td>
 						</tr>
 						<tr>
