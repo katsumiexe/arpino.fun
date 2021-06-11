@@ -350,6 +350,7 @@ $(function(){
 	</tr>
 </table>
 
+
 <div class="config_title">オプション</div>
 <?foreach($c_main_dat as $a1 => $a2){?>
 	<table class="option_table">
@@ -359,7 +360,7 @@ $(function(){
 			<span class="option_tag">未選択</span>
 			<select class="option_select">
 				<option value="0">表示</option>
-				<option value="1">非表示</option>
+				<option value="1"<?if($a2["style"] == 1){?> selected="selected"<?}?>>非表示</option>
 			</select>
 			<span id="ad_<?=$a1?>" class="option_add">＋項目追加</span>
 			<span id="dl_<?=$a1?>" class="option_del">×オプション削除</span>
