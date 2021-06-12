@@ -46,7 +46,6 @@ if($res = mysqli_query($mysqli,$sql)){
 			$sch[$a0["sche_date"]]=$a0;
 		}
 	}
-
 	for($n=0;$n<7;$n++){
 		$t_sch=date("Ymd",$day_time+(86400*$n));
 		$tmp_s=$sch[$t_sch]["stime"];
@@ -95,7 +94,6 @@ if($res = mysqli_query($mysqli,$sql)){
 			$cnt_check_main=count($check_main);
 		}
 	}
-
 	$sql ="SELECT * FROM wp01_0check_list";
 	$sql.=" LEFT JOIN `wp01_0check_sel` ON wp01_0check_list.id=wp01_0check_sel.list_id";
 	$sql.=" AND del='0'";
@@ -111,8 +109,6 @@ if($res = mysqli_query($mysqli,$sql)){
 			$check_list[$a1["host_id"]][$a1["list_sort"]]=$a1;
 		}
 	}
-
-
 
 	$sql ="SELECT P.id,view_date, title, img, cast, genji,tag_name,tag_icon FROM wp01_0posts AS P";
 	$sql.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
