@@ -204,6 +204,15 @@ if($post_id == "news"){
 	border			:2px solid #909090;
 }
 
+.page_area{
+	width		:710px;
+	height		:500px;
+	resize		:none;
+	font-szie	:15px;
+	padding		:5px;
+	border:1px solid #303030;
+}
+
 -->
 </style>
 <script>
@@ -338,29 +347,9 @@ $(function(){
 		<div class="sub_box"></div>
 
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
-	<?}elseif($post_id == "policy"){?>
+	<?}elseif($post_id == "system" || $post_id == "access" || $post_id == "policy"){?>
 		<div class="main_box">
-			<table>
-				<tr>
-					<td style="width:720px;"><input type="text" name="policy_title" value="<?=$dat[0]["title"]?>"></td>
-				</tr><tr>
-					<td style="width:720px;"><textarea name="policy_contents" class="w000"><?=$dat[0]["contents"]?></textarea></td>
-				</tr>
-			</table>
-		</div>
-		<div class="sub_box"></div>
-
-
-<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
-	<?}elseif($post_id == "system"){?>
-		<div class="main_box">
-			<table>
-				<tr>
-					<td style="width:720px;"><input type="text" name="system_title" value="<?=$dat[0]["title"]?>"></td>
-				</tr><tr>
-					<td style="width:720px;"><textarea class="w000"><?=$dat[0]["contents"]?></textarea></td>
-				</tr>
-			</table>
+			<textarea class="page_area"><?=$dat[0]["contents"]?></textarea>
 		</div>
 		<div class="sub_box"></div>
 
