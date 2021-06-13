@@ -400,18 +400,15 @@ $(function(){
 			<?foreach($dat as $a1 => $a2){?>
 			<table>
 				<tr>
-					<td style="width:60px;"><?=$a2["id"]?></td>
-					<td>
-						<span class="tag">順</span>
-						<input type="text" name="event_sort" value="<?=$a2["sort"]?>"> 
+					<td rowspan="2" style="width:40px; background:#ff0000"><?=$a2["id"]?></td>
+					<td rowspan="2" style="width:40px; background:#008000">
+						<input type="text" name="event_sort" value="<?=$a2["sort"]?>" style="width:60px"> 
 					</td>
-
-					<td>
-						<span class="tag">表示時間</span>
-						<input type="date" name="event_view_date" class="w000" value="<?=$a2["display_date"]?>" autocomplete="off">
+					<td style="background:#90d0c0" style="width:200px;>
+						<span class="tag">公開日</span>
+						<input type="date" name="event_view_date" class="w200" value="<?=$a2["display_date"]?>" autocomplete="off">
 					</td>
-
-					<td>
+					<td style="background:#e0d0c0">
 						<span class="news_tag">スタイル</span><select name="news_link" class="w150">
 							<option value="">なし</option>
 							<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
@@ -421,17 +418,12 @@ $(function(){
 						</select>
 					</td>
 				</tr>
+				<tr>
 
-				<tr>
-					<td colspan="4">
-						<span class="tag">タイトル</span>
-						<input type="text" name="event_title" value="<?=$a2["title"]?>"> 
-					</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						<textarea class="news_textarea"><?=$a2["contents"]?></textarea>
-					</td>
+					<td class="w300" colspan="2">
+						<input type="text" class="w200">
+							
+					</td>	
 				</tr>
 			</table>
 			<? } ?>
