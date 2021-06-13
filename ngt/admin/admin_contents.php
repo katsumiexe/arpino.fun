@@ -267,7 +267,6 @@ $(function(){
 					<input id="upd<?=$a1?>" type="hidden" value="" name="news_upd">
 
 					<table class="news_table c<?=$a2["status"]?>">
-
 						<tr>
 							<td style="width:220px;">
 								<span class="news_tag">日付</span><input type="date" name="news_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
@@ -398,18 +397,19 @@ $(function(){
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
-			<table>
+			<table style="margin:5px; border:1px solid #303030;">
 				<tr>
-					<td rowspan="2" style="width:40px; background:#ff0000"><?=$a2["id"]?></td>
+					<td rowspan="2" style="width:30px; background:#ff0000"><?=$a2["id"]?></td>
 					<td rowspan="2" style="width:40px; background:#008000">
-						<input type="text" name="event_sort" value="<?=$a2["sort"]?>" style="width:60px"> 
+						<input type="text" name="event_sort" value="<?=$a2["sort"]?>" style="width:30px"> 
 					</td>
-					<td style="background:#90d0c0" style="width:200px;>
+					<td style="background:#90d0c0;width:300px;" colspan="3">
 						<span class="tag">公開日</span>
-						<input type="date" name="event_view_date" class="w200" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<input type="date" name="event_view_date" class="w150" value="<?=$a2["display_date"]?>" autocomplete="off">
 					</td>
-					<td style="background:#e0d0c0">
-						<span class="news_tag">スタイル</span><select name="news_link" class="w150">
+				</tr><tr>
+					<td>
+						<span class="news_tag">リンク</span><select name="news_link" class="w150">
 							<option value="">なし</option>
 							<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
 							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
@@ -417,18 +417,18 @@ $(function(){
 							<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
 					</td>
-				</tr>
-				<tr>
+					<td>
+						<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w280" value="<?=$a2["contents_key"]?>"> 
+					</td>
+					<td style="text-align:right;">
+						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+					</td>
 
-					<td class="w300" colspan="2">
-						<input type="text" class="w200">
-							
-					</td>	
 				</tr>
 			</table>
 			<? } ?>
-
 		</div>
+	
 		<div class="sub_box">
 			<?foreach($dat as $a1 => $a2){?>
 				<table>
