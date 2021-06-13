@@ -203,28 +203,38 @@ $(function(){
 	});
 
 	$('#fix_set').on('click',function(){
-		$('#fix_flg').val('2');
-		$('#fix_form').submit();
-	});
 
-	$('#fix_del').on('click',function(){
-		if(!confirm('削除します。よろしいですか')){
-		    return false;
+		if( $('#fix_select').val() == '5' ){
+			if(!confirm('削除します。よろしいですか\nデータはすべて削除され、復旧はできません。')){
+			    return false;
+			}else{
+				$('#fix_form').submit();
+			}
+
 		}else{
-			$('#fix_flg').val('4');
 			$('#fix_form').submit();
+
 		}
 	});
 });
 </script>
+
 
 <form id="fix_form" action="" method="post" autocomplete="off">
 <input type="hidden" value="<?=$staff_id?>" name="staff_id">
 <input id="fix_flg" type="hidden" value="2" name="staff_set">
 <header class="head">
 <h2 class="head_ttl">スタッフ登録</h2>
-<button id="fix_set" type="button" class="submit_btn">保存</button>
-<button id="fix_del" type="button" class="submit_btn">削除</button>
+<select id="fix_select" class="w100" name="cast_status">
+<option value="0">通常</option>
+<option<?if($staff_data["cast_status"] == 1){?> selected="selected"<?}?> value="1">準備</option>
+<option<?if($staff_data["cast_status"] == 2){?> selected="selected"<?}?> value="2">休職</option>
+<option<?if($staff_data["cast_status"] == 3){?> selected="selected"<?}?> value="3">退職</option>
+<option<?if($staff_data["cast_status"] == 4){?> selected="selected"<?}?> value="4">停止</option>
+<option<?if($staff_data["cast_status"] == 5){?> selected="selected"<?}?> value="5">削除</option>
+</select>
+
+<button id="fix_set" type="button" class="submit_btn">変更</button>
 
 <div class="c_s_box">
 　<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>

@@ -203,11 +203,12 @@ CAST情報
 	<td class="table_title" colspan="2">NEWS登録</td>
 </tr>	
 <tr>
-	<td style="width:350px;">公開日
-	<input type="date" id="news_date_c" name="news_date_c" class="w100" value="<?=date("Y-m-d")?>" autocomplete="off"> 
+	<td style="width:240px;"><div>公開日</div>
+	<input type="date" id="news_date_c" name="news_date_c" class="w000" value="<?=date("Y-m-d")?>" autocomplete="off"> 
 
 	</td>
-	<td><textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
+	<td><div>お知らせ内容</div>
+	<textarea id="news_box" name="news_box" class="w000 tbox2" autocomplete="off">[name]ちゃんが入店します</textarea></td>
 </tr>
 </table>
 

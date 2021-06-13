@@ -32,7 +32,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		}else{
 			$row["face"]="./img/cast_no_image.jpg";			
 		}
-		$row["sch"]		="休み";
+		$row["sch"]		="休み";	
 		$row["sort"]	=9999;
 
 		$cast_dat[$row["id"]]=$row;

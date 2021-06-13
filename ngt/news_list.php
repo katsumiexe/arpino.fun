@@ -18,7 +18,7 @@ $sql	 ="SELECT `date` FROM wp01_0contents";
 $sql	.=" WHERE `status`<3";
 $sql	.=" AND page='news'";
 $sql	.=" AND `date`>'2010-01-01 00:00:00'";
-$sql	.=" ORDER BY display_date ASC";
+$sql	.=" ORDER BY event_date ASC";
 $sql	.=" LIMIT 1";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -26,16 +26,18 @@ if($result = mysqli_query($mysqli,$sql)){
 	$start_year=substr($row["date"],0,4);
 }
 
-$sql	 ="SELECT tag_name, tag, tag_icon, `display_date`,category, contents_key, title, contents, contents_url FROM wp01_0contents";
+$sql	 ="SELECT tag_name, tag, tag_icon, `display_date`,event_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status<3";
-$sql	.=" AND `date` LIKE '{$sel_year}%'";
+$sql	.=" AND display_date<'{$now}'";
+$sql	.=" AND `event_date` LIKE '{$sel_year}%'";
 $sql	.=" AND page='news'";
-$sql	.=" ORDER BY `display_date` DESC";
+$sql	.=" ORDER BY `event_date` DESC";
+$sql	.=" LIMIT 5";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
-		$a1["news_date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
+		$a1["news_date"]=substr(str_replace("-",".",$a1["event_date"]),0,10);
 		if($a1["category"] == "person"){
 			$a1["news_link"]="./person.php?post_id={$a1["contents_key"]}";
 
@@ -107,6 +109,7 @@ include_once('./header.php');
 							</td>
 						</tr>
 					</table>
+
 				<?}elseif($news[$n]["category"]){?>
 					<table  class="main_b_notice tag<?=$news[$n]["tag"]?>">">
 						<tr>

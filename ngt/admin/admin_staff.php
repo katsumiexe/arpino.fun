@@ -228,7 +228,6 @@ $(function(){
 
 <input id="sel_sort" value="1" type="radio" name="sort"><label id="label_sort" for="sel_sort" class="c_s_btn">昇順</label>
 <input id="sel_ksort" value="2" type="radio" name="sort" checked="checked"><label id="label_ksort" for="sel_ksort" class="c_s_btn on_2">降順</label>
-
 <input id="sel_status_0" value="1" type="checkbox" name="sel_status_0"><label id="label_status_0" for="sel_status_0" class="sel_status">通常</label>
 <input id="sel_status_1" value="1" type="checkbox" name="sel_status_1"><label id="label_status_1" for="sel_status_1" class="sel_status">準備</label>
 <input id="sel_status_2" value="1" type="checkbox" name="sel_status_2"><label id="label_status_2" for="sel_status_2" class="sel_status">休職</label>
@@ -259,7 +258,8 @@ $(function(){
 <td class="w200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
 <td class="w100"><?=$dat[$n]["cast_id"]?></td>
 <td class="w100"><?=$dat[$n]["ctime"]?></td>
-<td class="w100"><?=$cast_status[$dat[$n]["cast_status"]]?></td>
+<td class="w100"><?=$cast_status_select[$dat[$n]["cast_status"]]?></td>
+
 <td class="w60" style="position:relative;">
 	<form method="post">
 		<button type="submit" class="staff_submit">変更</button>

@@ -6,6 +6,7 @@ $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
 $sql.=" LEFT JOIN wp01_0cast ON wp01_0schedule.cast_id=wp01_0cast.id";
 $sql.=" WHERE sche_date='{$day_8}'";
 $sql.=" AND del='0'";
+$sql.=" AND cast_status=0";
 $sql.=" ORDER BY wp01_0cast.cast_sort ASC, wp01_0schedule.id ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -83,17 +84,18 @@ if($res0 = mysqli_query($mysqli,$sql)){
 	}
 }
 
-$sql	 ="SELECT tag_name, tag_icon, date, display_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
+$sql	 ="SELECT tag_name, tag_icon, date, display_date,event_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
 $sql	.=" WHERE status<3";
 $sql	.=" AND display_date<'{$now}'";
 $sql	.=" AND page='news'";
-$sql	.=" ORDER BY status DESC, display_date DESC";
+$sql	.=" ORDER BY status DESC, event_date DESC";
 $sql	.=" LIMIT 5";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
-		$a1["date"]=substr(str_replace("-",".",$a1["display_date"]),0,10);
+		$a1["date"]=substr(str_replace("-",".",$a1["event_date"]),0,10);
+
 		if($a1["category"] == "person"){
 			$a1["news_link"]="./person.php?post_id={$a1["contents_key"]}";
 

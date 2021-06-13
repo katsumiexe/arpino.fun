@@ -144,7 +144,11 @@ if($post_id == "news"){
 	background:#f0ffc0;
 }
 .c2{
-	background:#d0d0d0;
+	background:#ffd0d8;
+}
+
+.c3{
+	background:#e0e0e0;
 }
 
 .news_tag_label{

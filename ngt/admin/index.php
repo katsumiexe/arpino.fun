@@ -11,21 +11,8 @@ $staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加�
 $staff_id	=$_POST["staff_id"];
 $menu_post	=$_POST["menu_post"];
 
-//■スタッフ削除
-if($staff_set == 4){
-	$sql  =" UPDATE wp01_0staff SET";
-	$sql .=" `del`=1";
-	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
-	mysqli_query($mysqli,$sql);
-
-	$sql  =" UPDATE wp01_0cast SET";
-	$sql .=" `cast_status`=4";
-	$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
-	mysqli_query($mysqli,$sql);
-	$menu_post="staff";
-
 //■スタッフ登録or変更
-}elseif($staff_set){
+if($staff_set){
 	$menu_post="staff";
 
 	$c_s			=$_POST["c_s"];
@@ -43,6 +30,7 @@ if($staff_set == 4){
 
 	$b_date			=$_POST["b_date"];
 
+	$cast_status	=$_POST["cast_status"];
 	$cast_id		=$_POST["cast_id"];
 	$cast_pass		=$_POST["cast_pass"];
 	$genji			=$_POST["genji"];
@@ -66,21 +54,18 @@ if($staff_set == 4){
 	$img_z		=$_POST["img_z"];
 	$img_r		=$_POST["img_r"];
 	$img_v		=$_POST["img_v"];
-/*
-echo "img_w".$img_w[0]."<br>\n";
-echo "img_h".$img_h[0]."<br>\n";
-echo "img_x".$img_x[0]."<br>\n";
-echo "img_y".$img_y[0]."<br>\n";
-echo "img_z".$img_z[0]."<br>\n";
-echo "img_r".$img_r[0]."<br>\n";
-echo "img_v".$img_v[0]."<br>\n";
-*/
-
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
 	$btime=str_replace("-","",$b_date);
 
-	if($staff_set == 2 || $staff_set == 3){
+	if($cast_status ==5){
+
+		$sql  =" UPDATE wp01_0staff SET";
+		$sql .=" `del`=1";
+		$sql .=" WHERE staff_id='{$_POST["staff_id"]}'";
+		mysqli_query($mysqli,$sql);
+
+	}elseif($staff_set == 2 || $staff_set == 3){
 		$sql="UPDATE wp01_0staff SET";
 		$sql.=" `name`='{$staff_name}',";
 		$sql.=" `kana`='{$staff_kana}',";
@@ -118,6 +103,8 @@ echo "img_v".$img_v[0]."<br>\n";
 			$sql.=" `cast_pass`='{$cast_pass}',";
 			$sql.=" `cast_mail`='{$cast_mail}',";
 
+			$sql.=" `cast_status`='{$cast_status}',";
+
 			$sql.=" `ctime`='{$ctime}',";
 			$sql.=" `cast_rank`='{$cast_rank}',";
 			$sql.=" `cast_salary`='{$cast_salary}',";
@@ -132,8 +119,8 @@ echo "img_v".$img_v[0]."<br>\n";
 			mysqli_query($mysqli,$sql);
 
 		}else{//新規１　かCAST追加3
-			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`)";
-			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$ctime}','{$cast_rank}','{$cast_sort}','{$cast_salary}')";
+			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`cast_status`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`)";
+			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$cast_status}','{$ctime}','{$cast_rank}','{$cast_sort}','{$cast_salary}')";
 			mysqli_query($mysqli,$sql);
 
 //■encode-------------------------------
@@ -176,8 +163,8 @@ echo "img_v".$img_v[0]."<br>\n";
 				$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
 				$p_date=$_REQUEST["news_date_c"]." 00:00:00";
 				$sql =" INSERT INTO wp01_0contents";
-				$sql .="(`date`, display_date, page, category, contents_key, title, contents,tag)";
-				$sql .=" VALUES('{$now}','{$p_date}','news','person','{$staff_id}','{$title}','{$news_box}','2')";
+				$sql .="(`date`, display_date, event_date, page, category, contents_key, title, contents,tag)";
+				$sql .=" VALUES('{$now}','{$p_date}','{$c_date}','news','person','{$staff_id}','{$title}','{$news_box}','2')";
 				mysqli_query($mysqli,$sql);
 			}
 
