@@ -323,10 +323,34 @@ echo "Y:".$tmp_top."<br>\n";
 */
 		}
 	}
+
 }elseif($_POST["prof_name_new"] && $_POST["prof_style_new"]){
 	$menu_post="staff";
 	$sql="INSERT INTO wp01_0charm_table (`charm`,`sort`,`style`)";
 	$sql.="VALUES('{$_POST["prof_name_new"]}','{$_POST["prof_sort_new"]}','{$_POST["prof_style_new"]}')";
+	mysqli_query($mysqli,$sql);
+
+}elseif($_POST["tag_name_new"]){
+
+	if(!$_POST["tag_color_new"]){
+		$_POST["tag_color_new"]="#c0a060";
+	}
+
+	$st=0;	
+	$sql="SELECT id,sort FROM wp01_0tag";
+	$sql.=" WHERE tag_group='news'";
+	$sql.=" ORDER BY sort ASC";
+	if($result = mysqli_query($mysqli,$sql)){
+		while($row = mysqli_fetch_assoc($result)){
+			$sql =" UPDATE wp01_0tag SET";
+			$sql.=" sort='{$st}'";
+			$sql.=" WHERE id='{$row["id"]}}'";
+			mysqli_query($mysqli,$sql);
+		}
+		$st++;
+	}
+	$sql	 ="INSERT INTO wp01_0charm_table (`tag_group`,`sort`,`tag_name`,`tag_icon`)";
+	$sql	.="VALUES('news','{$st}','{$_POST["tag_name_new"]}','{$_POST["tag_color_new"]}')";
 	mysqli_query($mysqli,$sql);
 }
 

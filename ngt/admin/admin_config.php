@@ -52,6 +52,8 @@ $sql.=" ORDER BY sort ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$tag_dat[$row["tag_group"]][$row["id"]]=$row;
+		$tag_count++;
+
 	}
 }
 
@@ -120,7 +122,17 @@ $(function(){
 			alert('プロフィール名がありません');
 			return false;
 		}else{
-			$('#new_set').submit()
+			$('#new_prof_set').submit()
+		}
+	});
+
+
+	$('#tag_set').on('click',function() {
+		if($('#tag_name_new').val()==''){
+			alert('タグ名がありません');
+			return false;
+		}else{
+			$('#new_tag_set').submit()
 		}
 	});
 
@@ -236,7 +248,8 @@ $(function(){
 <?}?>
 </table>
 
-<div class="config_title">ニュース</div>
+
+<div class="config_title">ニュースタグ</div>
 <table class="config_sche">	
 <thead>
 	<tr>
@@ -269,15 +282,19 @@ $(function(){
 
 <table class="config_sche">
 	<tr>
-	<form id="new_set" action="" method="post">
-	<input type="hidden" name="menu_post" value="config">
-	<input type="hidden" value="<?=$max_charm+1?>" name="prof_sort_new">
+	<form id="new_tag_set" action="" method="post">
+		<input type="hidden" name="menu_post" value="config">
+
+		<input type="hidden" value="<?=$tag_count+1?>" name="tag_sort_new">
+
 		<td style="width:71px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
-		<td class="config_prof_name" style=" background:#ffe0f0"><input id="prof_name_new" type="text" name="prof_name_new" value="" class="prof_name"></td>
-		<td class="config_prof_style" style=" background:#ffe0f0"><input type="text" name="news_icon_new" value="<?=$a2["tag_icon"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+
+		<td class="config_prof_name" style=" background:#ffe0f0"><input id="tag_name_new" type="text" name="tag_name_new" value="" class="prof_name"></td>
+		<td class="config_prof_style" style=" background:#ffe0f0"><input type="text" name="tag_color_new" value="" class="prof_name bg<?=$a2["view"]?>"></td>
+
 	</form>
 		<td class="config_prof_style" style=" background:#ffe0f0">
-			<button id="prof_set" type="submit" class="prof_btn">追加</button>
+			<button id="tag_set" type="button" class="prof_btn">追加</button>
 		</td>
 	</tr>
 </table>
@@ -329,7 +346,7 @@ $(function(){
 
 <table class="config_sche">
 	<tr>
-	<form id="new_set" action="" method="post">
+	<form id="new_prof_set" action="" method="post">
 	<input type="hidden" name="menu_post" value="config">
 	<input type="hidden" value="<?=$max_charm+1?>" name="prof_sort_new">
 		<td style="width:71px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
