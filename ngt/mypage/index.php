@@ -588,8 +588,8 @@ $(function(){
 		$.when(
 			$('.mail_detail_in').html(data),
 		).done(function(){
-			TMP_H=$('.mail_write').offset().top;
-			$('.mail_detail').scrollTop(TMP_H);
+			TMP_H=$('.mail_write').offset().top,
+			$('.mail_detail').scrollTop(TMP_H),
 			$('.head_mymenu_ttl').text(Customer_Name),
 			$('.head_mymenu_comm').addClass('arrow_mail')
 		});

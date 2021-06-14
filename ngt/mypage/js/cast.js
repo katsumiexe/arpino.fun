@@ -200,7 +200,6 @@ $(function(){
 				'blog_id':bId,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			if(data){
 				$('.blog_list').append(data);
 			}
@@ -227,7 +226,6 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('#h_customer_fav').val(Fav);
 			$('#clist'+C_Id).children('.customer_hidden_fav').val(Fav);
 
@@ -276,7 +274,7 @@ $(function(){
 				'value'		:$(this).val(),
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
+
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -294,7 +292,6 @@ $(function(){
 
 		$('#easytalk_page').val('1');
 		TMP_H=$('.mail_detail_in_btm').offset().top;
-		console.log(TMP_H);
 
 		$.post({
 			url:"./post/easytalk_hist.php",
@@ -373,7 +370,6 @@ $(function(){
 				},
 
 			}).done(function(data, textStatus, jqXHR){
-				console.log(data);
 				$('.customer_all_in').append(data);
 				$('.customer_regist').animate({'top':'100vh'},200);
 				$('.set_back').fadeOut(100);
@@ -484,7 +480,6 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			$('#tag_1_tbl').html(data);
-			console.log(data);	
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -846,7 +841,6 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			$('#tag_1_tbl').html(data);
-			console.log(data);	
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -877,7 +871,6 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('.blog_write').slideUp(300);
 			$('.blog_list').show().prepend(data);
 			$('.no_data').hide();
@@ -1129,17 +1122,6 @@ $(function(){
 				var ctx = cvs.getContext('2d');
 				ctx.clearRect(0, 0, cvs_A,cvs_A);
 
-				console.log("cvs_w:"+cvs_W);
-				console.log("cvs_h:"+cvs_H);
-				console.log("css_A:"+css_A);
-				console.log("css_B:"+css_B);	
-				console.log("ImgLeft:"+ImgLeft);	
-				console.log("ImgTop:"+ImgTop);	
-				console.log("Width_l:"+Width_l);
-				console.log("Width_s:"+Width_s);
-				console.log("Zoom:"+Zoom);
-				console.log("Cid:"+C_Id);
-			
 				if(Task=="blog"){
 					$('.blog_img').attr('src',"data:image/jpg;base64,"+ base_64);
 					$('.set_back').fadeOut(200);
@@ -1300,14 +1282,12 @@ $(function(){
 				dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$.each(data, function(a1, a2){
 				if(a2){
 					$('#c'+a1).children('.cal_i2').addClass('n2');
 				}else{
 					$('#c'+a1).children('.cal_i2').removeClass('n2');
 				}
-			  console.log(a1 + ':' + a2);
 			})
 			$('.sch_set_done').fadeIn(500).delay(1500).fadeOut(1000);
 			$('.cal_weeks').animate({'top':'100vh'},200);
@@ -1371,7 +1351,7 @@ $(function(){
 
 			TmpLog=$(this).parents().next('.customer_log_memo').html().replace(/(<br>|<br \/>)/gi, '\n');
 			TmpTag=$(this).parents().next().next('.customer_log_list').html();
-			console.log($(this).prev('.customer_log_date_detail').text());
+
 
 			$('#logset_yy').val($(this).prev('.customer_log_date_detail').text().substr(0,4));
 			$('#logset_mm').val($(this).prev('.customer_log_date_detail').text().substr(5,2));
@@ -1557,7 +1537,6 @@ $(function(){
 			},
 			dataType: 'json',
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('#customer_detail_yy').val(data.yy),
 			$('#customer_detail_mm').val(data.mm),
 			$('#customer_detail_dd').val(data.dd),
@@ -1616,7 +1595,7 @@ $(function(){
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
+
 			$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
 			$(".cal").children().last().remove();
 			$('#c_month').val(data.date);
@@ -1637,7 +1616,7 @@ $(function(){
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
+
 			$('.cal').append(data.html).animate({'left':'-100vw'},0);
 			$(".cal").children().first().remove();
 			$('#c_month').val(data.date);
@@ -1652,7 +1631,7 @@ $(function(){
 	$('.cal').draggable({
 		axis: 'x',
 		drag: function( event, ui ) {
-//			console.log(ui.position.left)
+
 		},
 		stop: function( event, ui ) {
 			if(ui.position.left > VwBase*(-90)){/*■先月*/
@@ -1667,7 +1646,7 @@ $(function(){
 					dataType: 'json',
 
 				}).done(function(data, textStatus, jqXHR){
-					console.log(data);
+
 					$('.cal').prepend(data.html).animate({'left':'-100vw'},0);
 					$(".cal").children().last().remove();
 					$('#c_month').val(data.date);
@@ -1688,7 +1667,6 @@ $(function(){
 					dataType: 'json',
 
 				}).done(function(data, textStatus, jqXHR){
-					console.log(data);
 					$('.cal').append(data.html).animate({'left':'-100vw'},0);
 					$(".cal").children().first().remove();
 					$('#c_month').val(data.date);
@@ -1829,8 +1807,6 @@ $(function(){
 		$('.notice_box_item').removeClass('notice_box_sel');
 		$(this).addClass('notice_box_sel');
 
-		console.log(Nid);	
-
 		$.post({
 			url:"./post/notice_ck.php",
 			data:{
@@ -1839,8 +1815,7 @@ $(function(){
 
 		}).done(function(data, textStatus, jqXHR){
 			$('.notice_box_log').html(data);
-			console.log(data);	
-			
+
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
 			console.log(errorThrown);
@@ -1874,8 +1849,11 @@ $(function(){
 			'clr'		:Cds,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Tmp)
-			console.log(data)
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+
 		});
 	});
 
@@ -1902,8 +1880,12 @@ $(function(){
 			'cds'		:Cds,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Tmp)
-			console.log(data)
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+
+
 		});
 	});
 
@@ -1918,7 +1900,6 @@ $(function(){
 			'name'		:Cds,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Cds)
 		});
 	});
 
@@ -1933,7 +1914,7 @@ $(function(){
 			'price'		:Cds,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Cds)
+
 		});
 	});
 
@@ -1966,7 +1947,7 @@ $(function(){
 			'name'		:Cds,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Cds)
+
 		});
 	});
 
@@ -1981,7 +1962,7 @@ $(function(){
 			'name'		:Cds,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Cds)
+
 		});
 	});
 
@@ -1994,8 +1975,6 @@ $(function(){
 			'cast_id'	:CastId,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Tmp)
-			console.log(data)
 		});
 	});
 
@@ -2008,8 +1987,7 @@ $(function(){
 			'cast_id'	:CastId,
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(Tmp)
-			console.log(data)
+
 		});
 	});
 
@@ -2027,7 +2005,6 @@ $(function(){
 
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			Tmp=$('#set_date').val().substr(0,6)
 			$('#para'+Tmp).append(data);
 			if(TmpLog){
@@ -2056,9 +2033,6 @@ $(function(){
 			$('#days_sche').html(data.sche);
 			$('.cal_days_birth').html(data.birth);
 			$('.cal_days_memo').val(data.memo);
-
-
-			console.log(data.birth);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);
@@ -2116,7 +2090,6 @@ $(function(){
 			$('.color_picker,.icon_picker').hide();
 			ChgList=$(this).sortable("toArray");
 			var Cnt=ChgList.length;
-			console.log(ChgList);
 
 			var N=0;
 			var ItemName	=[];
@@ -2160,7 +2133,6 @@ $(function(){
 		stop : function() {
 			ChgList=$(this).sortable("toArray");
 			var Cnt=ChgList.length;
-			console.log(ChgList);
 
 			var N=0;
 			var ItemName	=[];
@@ -2196,36 +2168,6 @@ $(function(){
         }
 	});
 
-/*
-	$('#item_set').on('click',function(){
-		var Cnt=10;
-		for(i=0;i<Cnt;i++){
-			ItemName[i]=$('#item_name_'+i).val();
-			ItemPrice[i]=$('#item_price_'+i).val();
-			ItemIcon[i]=$('#item_icon_hidden_'+i).val();
-			ItemColor[i]=$('#item_color_hidden_'+i).val();
-		}
-
-		$.post({
-			url:"./post/log_item_set.php",
-			data:{
-			'cast_id'		:CastId,
-			'chglist[]'		:ChgList,
-			'item_name[]'	:ItemName,
-			'item_price[]'	:ItemPrice,
-			'item_icon[]'	:ItemIcon,
-			'item_color[]'	:ItemColor,
-			},
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-	});
-*/
-
 	$('#new_set').on('click',function(){
 		$.post({
 			url:"./post/log_item_new.php",
@@ -2240,7 +2182,6 @@ $(function(){
 			dataType: 'json',
 
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
 			$('#item_count').val(data.sort);
 			$('#item_sort').append(data.html);
 			$('.color_picker,.icon_picker').hide();
@@ -2266,26 +2207,6 @@ $(function(){
 		$('#sel_log_box').slideUp(100);
 		$('.customer_log_right').append('<div class="sel_log_option_s" style="color:'+colorS+';border:1px solid '+colorS+'"><span class="sel_log_icon_s">'+iconS+'</span><span class="sel_log_comm_s">'+commS+'</span><span class="sel_log_price_s">'+priceS+'</span><span class="sel_log_del_s"></span></div>');
 	});
-
-
-/*
-		$.post({
-			url:"./post/log_select_set.php",
-			data:{
-			'cast_id'	:CastId,
-			'color'		:$(this).css('color'),
-			'icon'		:$(this).children('.sel_log_icon').text(),
-			'comm'		:$(this).children('.sel_log_comm').text(),
-			'price'		:$(this).children('.sel_log_price').text()
-			},
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-*/
 
 	$('.customer_log_right').on('click','.sel_log_del_s',function(){
 		$(this).parent().remove()
@@ -2313,7 +2234,7 @@ $(function(){
 			ItemPrice[N]	=$(this).children('.sel_log_price_s').text();
 			N++;
 		});
-console.log($('#local_ed').val());
+
 
 		$.post({
 			url:"./post/customer_log_set.php",
@@ -2334,7 +2255,7 @@ console.log($('#local_ed').val());
 
 			},
 		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
+
 			if(Chg){
 				$('#customer_log_td_'+Chg).remove();
 			}
@@ -2383,7 +2304,7 @@ console.log($('#local_ed').val());
 
 	$('#log_del_back').on('click',function () {
 		$('.customer_log_del_back_in').fadeOut(100);
-		console.log($('.customer_log_in').css('top'));
+
 		if($('.customer_log_in').css('top')>'300'){
 			$('.set_back').fadeOut(100);
 		}
@@ -2412,7 +2333,7 @@ console.log($('#local_ed').val());
 		}).done(function(data, textStatus, jqXHR){
 			$('.customer_all_in').html(data);
 			$('#customer_sort_ext').val(CastId);
-			console.log(CastId)
+
 			if($('#customer_sort_fil').val() > 0){
 				$('.sort_alert').show();
 			}else{
@@ -2538,7 +2459,6 @@ console.log($('#local_ed').val());
 				$('.mail_detail_in').prepend(data);
 				Hgt2= $('.mail_detail_in').height();
 				Tmp2=Hgt2-Hgt;
-				console.log(Hgt + "●" + Hgt2 + "●");
 				$('.mail_detail').scrollTop(Tmp2);
 			});
 		}
