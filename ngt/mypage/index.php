@@ -167,6 +167,7 @@ if($result = mysqli_query($mysqli,$sql)){
 			}else{
 				$tmp_e=$sche_table_calc["out"][$row["etime"]];
 			}		
+
 			$ana_time[$row["sche_date"]]=($tmp_e-$tmp_s)/100;
 			$ana_sche[$row["sche_date"]]="<span class=\"sche_s\">{$row["stime"]}</span><span class=\"sche_m\">-</span><span class=\"sche_e\">{$row["etime"]}</span>";
 
@@ -176,13 +177,14 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		}else{
 			$sche_dat[$row["sche_date"]]="";
-			$ana_time[$row["sche_date"]]=0;
 			$stime[$row["sche_date"]]="";
 			$etime[$row["sche_date"]]="";
+
+			$ana_time[$row["sche_date"]]=0;
 			$ana_sche[$row["sche_date"]]="休み";
+
 			$days_sche="休み";
 		}
-
 	}
 }
 
@@ -192,12 +194,14 @@ if(!$days_sche){
 
 if(is_array($ana_time)){
 	foreach($ana_time as $a1 => $a2){
-		if($a1<=$day_8){
-			$ana_salary[$a1]=$a2*$cast_data["cast_salary"];	
-			$ana_salary_all+=$a2*$cast_data["cast_salary"];	
+		if($ana_ym ==substr($a1,0,6)){
+			if($a1<=$day_8){
+				$ana_salary[$a1]=$a2*$cast_data["cast_salary"];	
+				$ana_salary_all+=$a2*$cast_data["cast_salary"];	
+			}
+				$ana_salary_y[$a1]=$a2*$cast_data["cast_salary"];	
+				$ana_salary_y_all+=$a2*$cast_data["cast_salary"];	
 		}
-			$ana_salary_y[$a1]=$a2*$cast_data["cast_salary"];	
-			$ana_salary_y_all+=$a2*$cast_data["cast_salary"];	
 	}
 }
 
@@ -973,6 +977,7 @@ $(function(){
 	</div>
 
 	<?}elseif($cast_page==3){?>
+
 		<div class="main">
 			<?for($n=0;$n<$cnt_mail_data;$n++){?>
 				<div id="mail_hist<?=$mail_data[$n]["customer_id"]?>" class="mail_hist <?if($mail_data[$n]["watch_date"] =="0000-00-00 00:00:00"){?> mail_yet<?}?>">
@@ -1091,6 +1096,7 @@ $(function(){
 				</div>
 				<input id="blog_chg" type="hidden" value="" >
 			</div>
+
 			<div class="blog_list">
 				<?for($n=0;$n<$blog_max;$n++){?>
 				<div id="blog_hist_<?=$blog[$n]["id"]?>" class="blog_hist">

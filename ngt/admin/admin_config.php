@@ -207,22 +207,26 @@ $(function(){
 <div class="config_title">スケジュール</div>
 <table class="config_sche">	
 	<tr>
-		<td colspan="2" class="config_sche_top">IN</td>
-		<td colspan="2" class="config_sche_top">OUT</td>
+		<td colspan="3" class="config_sche_top">IN</td>
+		<td colspan="3" class="config_sche_top">OUT</td>
 	</tr>
 	<tr>
 		<td class="config_sche_top">表示</td>
 		<td class="config_sche_top">時間</td>
+		<td>削除</td>
 		<td class="config_sche_top">表示</td>
 		<td class="config_sche_top">時間</td>
+		<td>削除</td>
 	</tr>
+
 <?foreach($table_sort as $a1 => $a2){?>
 <tr>
 <td class="config_sche_list"><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
 <td class="config_sche_list" style="border-right:1px solid #303030"><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
+<td></td>
 <td class="config_sche_list"><input type="text" name="out_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["name"]?>"></td>
 <td class="config_sche_list"><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
-</tr>
+<td></td></tr>
 <?}?>
 </table>
 
@@ -256,7 +260,7 @@ $(function(){
 		<td class="config_sche_top">替</td>
 		<td class="config_sche_top">順番</td>
 		<td class="config_sche_top">名前</td>
-		<td class="config_sche_top">スタイル</td>
+		<td class="config_sche_top">色コード</td>
 		<td class="config_sche_top"></td>
 	</tr>
 </thead>
@@ -322,7 +326,7 @@ $(function(){
 		<td class="config_sche_top"></td>
 	</tr>
 </thead>
-<tbody id="prof">
+<tbody id="prof" class="tb">
 <?foreach($charm_dat as $a1 => $a2){?>
 	<tr id="tr_<?=$a1?>" class="tr">
 		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">

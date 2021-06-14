@@ -127,9 +127,7 @@ $(function(){
 
 
 	$('.blog_list').on('click','.blog_hist',function () {
-
 		if($(this).next('.hist_log').css('display')=='none'){
-
 			var TMp=$(this).children('.hidden_tag').val();
 
 			$('.blog_hist').not(this).hide();
@@ -289,6 +287,7 @@ $(function(){
 
 	$('.mail_hist').on('click',function () {
 		$('.mail_detail').animate({'right':'0'},150);
+
 		Customer_id=$(this).attr('id').replace('mail_hist','');
 		Customer_Name=$(this).children('.mail_name').text();
 		Customer_mail=$(this).children('.mail_address').val();
@@ -656,8 +655,9 @@ $(function(){
 
 		$('#img_top').val(ImgTop);
 		$('#img_left').val(ImgLeft);
-
 	});
+
+
 
 	$('.head').on('click','.arrow_customer',function(){
 		$('.head_mymenu_comm').removeClass('arrow_customer');
@@ -1017,6 +1017,7 @@ $(function(){
 //----------------------------
 	});
 
+
 	$('#set_new_img').on('click',function(){
 		$('.img_box').animate({'top':'10vw'},200);
 		$('.set_back').fadeIn(100);
@@ -1093,8 +1094,10 @@ $(function(){
 			$("#cvs1").attr({'width': 300,'height': 300}).css({'width': '60vw','height': '60vw','left': '10vw','top': '10vw'});
 			ctx.drawImage(ChgImg, 0, 0, 600,600,0,0,300, 300);
 			ImgCode = cvs.toDataURL("image/jpeg");
+
 		}
 	});
+
 
 	$('#img_set').on('click',function(){	
 		if(ImgCode){
@@ -1103,14 +1106,18 @@ $(function(){
 				url:"./post/img_set.php",
 				data:{
 					'img_code'	:ImgCode.replace(/^data:image\/jpeg;base64,/, ""),
+
 					'img_top'	:ImgTop,
 					'img_left'	:ImgLeft,
 					'img_width'	:cvs_W,
 					'img_height':cvs_H,
+
 					'img_zoom'	:Zoom,
 					'img_rote'	:Rote,
+
 					'width_s'	:Width_s,
 					'width_l'	:Width_l,
+
 					'task'		:Task,
 					'post_id'	:C_Id,
 				},
@@ -1464,7 +1471,7 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.mail_detail_in').append(data)
+			$('.mail_detail_in').prepend(data)
 			$('#easytalk_text').val('');
 			$('#img_hidden').val('');
 			$('#easytalk_img').attr('src','../img/blog_no_image.png');
@@ -2531,10 +2538,17 @@ console.log(Hgt+"▲"+Pnt);
 					'st'		:Tmp,
 					'c_id'		:Customer_id,
 				},
+
 			}).done(function(data, textStatus, jqXHR){
 				Tmp++;
 				$('#easytalk_page').val(Tmp);
-				$('.mail_detail_in').append(data);
+				$('.mail_detail_in').prepend(data);
+				Hgt2= $('.mail_detail_in').height();
+
+				console.log(Hgt+"●"+Hgt2+ $('.mail_detail_in').height());
+				Tmp2=Hgt2-Hgt;
+	
+
 			});
 		}
 	});
