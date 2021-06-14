@@ -156,7 +156,7 @@ $(function(){
 			<option value="2" <?if($start_time=="2"){?> selected="selected"<?}?>>02時</option>
 			<option value="3" <?if($start_time=="3"){?> selected="selected"<?}?>>03時</option>
 			<option value="4" <?if($start_time=="4"){?> selected="selected"<?}?>>04時</option>
-			<option value="5" <?if($start_time=v"5"){?> selected="selected"<?}?>>05時</option>
+			<option value="5" <?if($start_time=="5"){?> selected="selected"<?}?>>05時</option>
 			<option value="6" <?if($start_time=="6"){?> selected="selected"<?}?>>06時</option>
 			<option value="7" <?if($start_time=="7"){?> selected="selected"<?}?>>07時</option>
 			<option value="8" <?if($start_time=="8"){?> selected="selected"<?}?>>08時</option>
@@ -214,9 +214,6 @@ $(function(){
 <?}?>
 </table>
 
-
-
-
 <div class="config_title">リボン</div>
 <table class="config_sche">	
 	<tr>
@@ -238,8 +235,6 @@ $(function(){
 <?foreach($table_sort as $a1 => $a2){?>
 <?}?>
 </table>
-
-
 
 <div class="config_title">ニュース</div>
 <table class="config_sche">	
@@ -298,7 +293,6 @@ $(function(){
 	</tr>
 <?}?>
 </table>
-
 
 <div class="config_title">プロフィール</div>
 <table class="config_sche">
@@ -362,8 +356,8 @@ $(function(){
 			<input id="sel_ttl_<?=$a1?>" type="text" name="" value="<?=$a2["title"]?>" class="option_ttl">
 			<span class="option_tag">未選択</span>
 			<select class="option_select">
-				<option value="0">表示</option>
-				<option value="1"<?if($a2["style"] == 1){?> selected="selected"<?}?>>非表示</option>
+				<option value="0">非表示</option>
+				<option value="1"<?if($a2["style"] == 1){?> selected="selected"<?}?>>表示</option>
 			</select>
 			<span id="ad_<?=$a1?>" class="option_add">＋項目追加</span>
 			<span id="dl_<?=$a1?>" class="option_del">×オプション削除</span>
