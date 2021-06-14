@@ -1455,9 +1455,7 @@ $(function(){
 		$('#tmpl_send').val(Tmp_2)
 	});
 
-
 	$('#easytalk_send').on('click',function(){
-
 		$.post({
 			url:"./post/easytalk_send.php",
 			data:{
@@ -1471,7 +1469,7 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.mail_detail_in').prepend(data)
+			$('.mail_detail_in').append(data)
 			$('#easytalk_text').val('');
 			$('#img_hidden').val('');
 			$('#easytalk_img').attr('src','../img/blog_no_image.png');
@@ -1514,19 +1512,15 @@ $(function(){
 		$('#memo_chg_id').val('');
 	});
 
-
 	$('#tag_2_tbl').on('click','.customer_memo_del',function () {
 		$('.set_back,.customer_memo_del_back_in').fadeIn(200);
-
 		Tmp=$(this).attr('id').replace("m_del","");
 		$('#memo_chg_id').val(Tmp);
 	});
 
-
 	$('#memo_del_back').on('click',function () {
 		$('.set_back,.customer_memo_del_back_in').fadeOut(100);
 	});
-
 
 	$('.cas_set').on('change',function () {
 		if($(this).attr('id')=='customer_detail_name'){
@@ -2527,8 +2521,6 @@ console.log($('#local_ed').val());
 		Pnt= $(this).scrollTop();
 		Hgt= $('.mail_detail_in').height();
 
-console.log(Hgt+"▲"+Pnt);
-
 		if(Pnt==0){
 			Tmp=$('#easytalk_page').val()-0;
 
@@ -2542,13 +2534,12 @@ console.log(Hgt+"▲"+Pnt);
 			}).done(function(data, textStatus, jqXHR){
 				Tmp++;
 				$('#easytalk_page').val(Tmp);
+
 				$('.mail_detail_in').prepend(data);
 				Hgt2= $('.mail_detail_in').height();
-
-				console.log(Hgt+"●"+Hgt2+ $('.mail_detail_in').height());
 				Tmp2=Hgt2-Hgt;
-	
-
+				console.log(Hgt + "●" + Hgt2 + "●");
+				$('.mail_detail').scrollTop(Tmp2);
 			});
 		}
 	});

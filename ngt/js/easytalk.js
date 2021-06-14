@@ -9,9 +9,8 @@ $(function(){
 	var Zoom		=100;
 	var Chg			='';
 
-	Tmp=$('.main_mail').height();
-	$('.main_mail').scrollTop(Tmp);
-
+	TMP_H=$('.mail_detail_in_btm').offset().top;
+	$('.main_mail').animate({ scrollTop:TMP_H}, 100);
 	$('#send_mail').on('click',function(){
 		$.post({
 			url:"./post/easytalk_send.php",
@@ -24,8 +23,12 @@ $(function(){
 			},
 
 		}).done(function(data, textStatus, jqXHR){
-			$('.main_mail').append(data);
+			$('.main_mail_in').append(data);
 			$('#send_msg').val('');
+
+			TMP_H=$('.mail_detail_in_btm').offset().top;
+			$('.main_mail').animate({ scrollTop:TMP_H}, 500);
+			console.log(TMP_H);
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(textStatus);

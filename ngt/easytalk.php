@@ -68,6 +68,7 @@ if($ss){
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}'";
 		$sql	.=" ORDER BY mail_id DESC";
 		$sql	.=" LIMIT 10";
+
 		if($res = mysqli_query($mysqli,$sql)){
 			while($a1 = mysqli_fetch_assoc($res)){
 				$dat[$n]=$a1;
@@ -97,7 +98,6 @@ if($ss){
 		$sql	.=" watch_date='{$now}'";
 		$sql	.=" WHERE customer_id='{$ssid["customer_id"]}' AND cast_id='{$ssid["cast_id"]}' AND send_flg='1' AND watch_date='0000-00-00 00:00:00'";
 		mysqli_query($mysqli,$sql);
-
 
 	}else{
 		$err=1;
@@ -139,6 +139,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 <header class="head_easytalk"></header>
 <div class="main_easytalk">
 	<div class="main_mail">
+	<div class="main_mail_in">
 		<?if($err==2){?>
 			<div class="err_msg">
 				タイムアウトしました<br>
@@ -150,39 +151,44 @@ const CastId="<?=$ssid["cast_id"]?>";
 				最新のメールからログインしてください。<br>
 			</div>
 		<?}else{?>
-			<?for($n=0;$n<count($dat);$n++){?>
-				<?if($dat[$n]["send_flg"] == 1){?>
-					<?=$dat[$n]["border"]?>
+
+			<?for($n1=$n-1;$n1>-1;$n1--){?>
+				<?if($dat[$n1]["send_flg"] == 1){?>
+					<?=$dat[$n1]["border"]?>
 					<div class="mail_box_a">		
 						<div class="mail_box_face">
 							<img src="<?=$face_link?>" class="mail_box_img">
 						</div>
 						<div class="mail_box_log_1">
 							<div class="mail_box_log_in">
-								<?=$dat[$n]["log"]?>
+								<?=$dat[$n1]["log"]?>
 							</div>
-							<?=$dat[$n]["stamp"]?>
+							<?=$dat[$n1]["stamp"]?>
 						</div>
-						<span class="mail_box_date_a"><?=$dat[$n]["send_date"]?></span>
+						<span class="mail_box_date_a"><?=$dat[$n1]["send_date"]?></span>
 					</div>
 
 				<?}else{?>
 					<div class="mail_box_b">		
-						<div class="mail_box_log_2 bg<?=$dat[$n]["bg"]?>">
+						<div class="mail_box_log_2 bg<?=$dat[$n1]["bg"]?>">
 							<div class="mail_box_log_in">
-								<?=$dat[$n]["log"]?>
+								<?=$dat[$n1]["log"]?>
 							</div>
-							<?=$dat[$n]["stamp"]?>
+							<?=$dat[$n1]["stamp"]?>
 						</div>
-						<span class="mail_box_date_b"><?=$dat[$n]["kidoku"]?>　<?=$dat[$n]["send_date"]?></span>
+						<span class="mail_box_date_b"><?=$dat[$n1]["kidoku"]?>　<?=$dat[$n1]["send_date"]?></span>
 					</div>
 				<? } ?>
 			<? } ?>
 		<? } ?>
 	</div>
+	<div class="mail_detail_in_btm"></div>
+	</div>
+
+
 	<div class="main_sub">
-		<img src="./img/ad/dummy1.png" class="easytalk_img">
-		<img src="./img/ad/dummy2.png" class="easytalk_img">
+		<img src="./img/page/info/24.png" class="easytalk_img">
+		<img src="./img/page/info/23.png" class="easytalk_img">
 
 		<?if(!$err){?>
 		<table class="send_img_table">
