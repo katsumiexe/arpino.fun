@@ -34,7 +34,6 @@ if($news_id){
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
 	mysqli_query($mysqli,$sql);
-echo $sql;
 }
 
 if($post_id == "news"){
@@ -213,6 +212,51 @@ if($post_id == "news"){
 	border:1px solid #303030;
 }
 
+td{
+	padding:0;
+}
+
+	.event_table{
+		width:810px;
+		margin:5px;
+		border:1px solid #303030;
+	}
+
+	.event_td_1,.event_td_2{
+		width:30px;
+		text-align:center;
+	}
+
+	.event_td_3,.event_td_5{
+		width:360px;
+		height:30px
+	}
+
+	.event_td_4{
+	}
+
+
+	.event_td_6{
+		position	:relative;
+		height		:120px;
+	}
+
+
+.img_chg{
+	position:absolute;
+	bottom	:5px ;
+	right	:5px;
+	width	:30px;
+	height	:30px;
+	line-height	:30px;
+	background:rgba(255,255,255,0.5)
+	border:1px solid #909090;
+	text-align:center;
+	color:#909090;
+	font-weight:800;
+	font-size:20px;
+}
+
 -->
 </style>
 <script>
@@ -386,37 +430,47 @@ $(function(){
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
-			<table style="margin:5px; border:1px solid #303030;">
+			<table class="event_table">
 				<tr>
-					<td rowspan="2" style="width:30px; background:#ff0000"><?=$a2["id"]?></td>
-					<td rowspan="2" style="width:40px; background:#008000">
+					<td rowspan="3"  class="event_td_1" style="background:#ff0000"><?=$a2["id"]?></td>
+					<td rowspan="3"  class="event_td_2" style="background:#008000">
 						<input type="text" name="event_sort" value="<?=$a2["sort"]?>" style="width:30px"> 
 					</td>
-					<td style="background:#90d0c0;width:300px;" colspan="3">
-						<span class="tag">公開日</span>
+
+					<td  class="event_td_3" style="background:#9000c0">
+						<span class="news_tag">公開日</span>
+
+						<span class="news_tag">公開日</span>
 						<input type="date" name="event_view_date" class="w150" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 					</td>
+					<td  class="event_td_4" rowspan="3" style="background:#ff00ff"></td>
 				</tr><tr>
-					<td>
-						<span class="news_tag">リンク</span><select name="news_link" class="w150">
+
+					<td  class="event_td_5" style="background:#908050">
+						<span class="news_tag">リンク</span><select name="news_link" class="w120">
 							<option value="">なし</option>
 							<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
 							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 							<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 							<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
-					</td>
-					<td>
-						<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w280" value="<?=$a2["contents_key"]?>"> 
-					</td>
-					<td style="text-align:right;">
-						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+						<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w120" value="<?=$a2["contents_key"]?>"> 
 					</td>
 
+
+				</tr><tr>
+					<td class="event_td_6" style="background:#d0a050">
+					<img src="<?=$a2["image"]?>"><span class="img_chg">×</span>
+					</td>
 				</tr>
 			</table>
 			<? } ?>
 		</div>
+	
+	
+
+
 	
 		<div class="sub_box">
 			<?foreach($dat as $a1 => $a2){?>
