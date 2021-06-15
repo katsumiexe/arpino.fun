@@ -222,26 +222,58 @@ if($post_id == "news"){
 
 td{
 	padding:0;
+	border-left:1px solid #303030;
 }
 
 	.event_table{
-		width:810px;
-		margin:5px;
-		border:1px solid #303030;
-		background:#fafafa;
+		width			:810px;
+		margin			:5px;
+		border			:1px solid #303030;
+		background		:#fafafa;
+		font-size		:0;
+		vertical-align	:top;
 	}
 
-	.event_td_1,.event_td_2{
-		width:30px;
-		text-align:center;
+	.event_td_0{
+
+		background		:#a0b0c0;
+		color			:#fafafa;
+		text-align		:right;
+		padding-right	:5px;
+		font-size		:16px;
 	}
+
+	.event_td_1{
+		background	:#a06000;
+		color		:#fafafa;
+		width		:30px;
+		text-align	:center;
+	}
+
+	.event_td_2{
+		width		:30px;
+		text-align	:center;
+	}
+
 
 	.event_td_3,.event_td_5{
 		width:360px;
-		height:30px
+		height:40px
 	}
 
 	.event_td_4{
+	}
+
+	.event_td_4_in{
+		resize			:none;
+		font-size		:14px;
+		line-height:1.5;
+		padding			:5px;
+		border			:1px solid #303030;
+		margin			:5px;
+		width			:370px;
+		height			:220px;
+		background		:#f0f0ff;
 	}
 
 
@@ -284,6 +316,14 @@ td{
 	right			:35px ;
 	font-size		:20px;
 }
+
+.event_set_btn{
+	width	:60px;
+	height	:30px;
+	margin	:0 5px;
+	
+}
+
 -->
 
 </style>
@@ -330,6 +370,9 @@ $(function(){
 <div id="access"  class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
 <div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
 <div id="policy"  class="sel_contents <?if($post_id == "policy"){?> sel_ck<?}?>">ポリシー</div>
+
+
+
 
 <form id="form" method="post">
 	<input id="sel_ck" type="hidden" name="post_id">
@@ -460,22 +503,23 @@ $(function(){
 			<?foreach($dat as $a1 => $a2){?>
 			<table class="event_table">
 				<tr>
-					<td rowspan="3"  class="event_td_1" style="background:#ff0000"><?=$a2["id"]?></td>
-					<td rowspan="3"  class="event_td_2" style="background:#008000">
+					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
+
+					<td class="event_td_3">
+						<span class="news_tag">公開日</span>
+						<input type="date" name="event_view_date" class="w150" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<button id="chg<?=$a1?>" type="button" class="event_set_btn">変更</button>
+						<button id="chg<?=$a1?>" type="button" class="event_set_btn">変更</button>
+					</td>
+
+					<td  class="event_td_4" rowspan="3"><textarea class="event_td_4_in"></textarea></td>
+				</tr><tr>
+					<td rowspan="2"  class="event_td_1">□</td>
+					<td rowspan="2"  class="event_td_2">
 						<input type="text" name="event_sort" value="<?=$a2["sort"]?>" style="width:30px"> 
 					</td>
 
-					<td  class="event_td_3" style="background:#9000c0">
-						<span class="news_tag">公開日</span>
-
-						<span class="news_tag">公開日</span>
-						<input type="date" name="event_view_date" class="w150" value="<?=$a2["display_date"]?>" autocomplete="off">
-						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
-					</td>
-					<td  class="event_td_4" rowspan="3" style="background:#ff00ff"></td>
-				</tr><tr>
-
-					<td  class="event_td_5" style="background:#908050">
+					<td  class="event_td_5">
 						<span class="news_tag">リンク</span><select name="news_link" class="w120">
 							<option value="">なし</option>
 							<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
@@ -483,10 +527,8 @@ $(function(){
 							<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 							<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
-						<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w120" value="<?=$a2["contents_key"]?>"> 
+						<input type="text" name="link_detail" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
-
-
 				</tr><tr>
 					<td class="event_td_6">
 					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>

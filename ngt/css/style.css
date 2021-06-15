@@ -153,6 +153,7 @@ ul {
 }
 
 .head_b_table{
+	border-collapse	:collapse;
 	position		:absolute;
 	bottom			:0;
 	right			:0;
@@ -184,17 +185,14 @@ ul {
 .head_b_1{
 	color			:#888986;
 	font-size		:18px;
-	height			:40px;
-	line-height		:30px;
 	text-align		:right;
 }
 
 .head_b_2,.head_b_3{
 	color			:#c0b078;
-	font-size		:24px;
+	font-size		:20px;
 	font-weight		:600;
-	height			:30px;
-	line-height		:30px;
+	height			:24px;
 	text-align		:right;
 }
 

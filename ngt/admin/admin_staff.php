@@ -35,7 +35,9 @@ input[type="checkbox"],input[type="radio"]{
 }
 
 td{
+	background	:#fafafa;
 	border:1px solid #303030;
+
 }
 
 
@@ -198,7 +200,7 @@ $(function(){
 			console.log(ChgList);
 			var Cnt = 1;
 			$(this).children('.tr').each(function(){
-				$(this).children('.td_40').children('.box_sort').val(Cnt);
+				$(this).children('.w40').children('.box_sort').val(Cnt);
 				Cnt++;
 			});
 
