@@ -36,6 +36,40 @@ $(function(){
 		});
 	});
 
+
+
+	$('.mail_detail').scroll(function() {
+		Pnt= $(this).scrollTop();
+		Hgt= $('.mail_detail_in').height();
+
+		if(Pnt==<20){
+			Tmp=$('#easytalk_page').val()-0;
+
+console.log(Pnt);
+
+			$.post({
+				url:"./post/easytalk_send.php",
+				data:{
+					'send'		:'2',
+					'cast_id'	:CastId,
+					'log'		:$('#send_msg').val(),
+					'sid'		:$('#ssid').val(),
+					'img_code'	:$('#img_code').val(),
+				},
+
+			}).done(function(data, textStatus, jqXHR){
+				Tmp++;
+				$('#easytalk_page').val(Tmp);
+
+				$('.mail_detail_in').prepend(data);
+				Hgt2= $('.mail_detail_in').height();
+				Tmp2=Hgt2-Hgt;
+				$('.mail_detail').scrollTop(Tmp2);
+			});
+		}
+	});
+
+
 	$(window).scroll(function () {
 		if ($(this).scrollTop() < 50) {
 			$.post({
