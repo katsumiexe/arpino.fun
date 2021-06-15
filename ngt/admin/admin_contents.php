@@ -71,6 +71,14 @@ if($post_id == "news"){
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
+
+			if (file_exists("../img/page/event/{$res["id"]}.jpg")) {
+				$res["img"]="../img/page/event/{$res["id"]}.jpg";			
+
+			}else{
+				$res["img"]="../img/cast_no_image.jpg";			
+			}
+
 			$dat[$res["sort"]]=$res;
 		}
 	}
@@ -220,6 +228,7 @@ td{
 		width:810px;
 		margin:5px;
 		border:1px solid #303030;
+		background:#fafafa;
 	}
 
 	.event_td_1,.event_td_2{
@@ -238,26 +247,45 @@ td{
 
 	.event_td_6{
 		position	:relative;
-		height		:120px;
+		height		:150px;
 	}
 
 
-.img_chg{
-	position:absolute;
-	bottom	:5px ;
-	right	:5px;
-	width	:30px;
-	height	:30px;
-	line-height	:30px;
-	background:rgba(255,255,255,0.5)
-	border:1px solid #909090;
-	text-align:center;
-	color:#909090;
-	font-weight:800;
-	font-size:20px;
+.event_img{
+	position		:absolute;
+	top				:0;
+	right			:0;
+	left			:0;
+	bottom			:0;
+	width			:350px;
+	height			:140px;
+	margin			:auto;
+	overflow		:hidden;
+	border:1px solid #000000;
 }
 
+.img_chg,.img_large{
+	position		:absolute;
+	top				:6px;
+	right			:8px;
+	width			:24px;
+	height			:24px;
+	line-height		:24px;
+	background		:rgba(255,255,255,0.5);
+	border			:1px solid #303030;
+	text-align		:center;
+	color			:#303030;
+	font-weight		:800;
+	font-size		:16px;
+	font-family		:at_icon;
+}
+
+.img_large{
+	right			:35px ;
+	font-size		:20px;
+}
 -->
+
 </style>
 <script>
 $(function(){ 
@@ -460,8 +488,9 @@ $(function(){
 
 
 				</tr><tr>
-					<td class="event_td_6" style="background:#d0a050">
-					<img src="<?=$a2["image"]?>"><span class="img_chg">×</span>
+					<td class="event_td_6">
+					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
+					<span class="img_large"></span><span class="img_chg"></span>
 					</td>
 				</tr>
 			</table>
