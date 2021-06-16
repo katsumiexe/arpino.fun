@@ -20,13 +20,17 @@ $post_id		=$_POST["post_id"];
 if(!$post_id) $post_id="event";
 
 $news_id		=$_POST["news_id"];
-$news_upd		=$_POST["news_upd"];
-$news_contents	=$_POST["news_contents"];
-$news_tag		=$_POST["news_tag"];
-$news_date		=$_POST["news_date"]." 00:00:00";
-$news_status	=$_POST["news_status"];
+$page_log		=$_POST["page_log"];
+$post_id_set	=$_POST["post_id_set"];
 
 if($news_id){
+	$news_id		=$_POST["news_id"];
+	$news_upd		=$_POST["news_upd"];
+	$news_contents	=$_POST["news_contents"];
+	$news_tag		=$_POST["news_tag"];
+	$news_date		=$_POST["news_date"]." 00:00:00";
+	$news_status	=$_POST["news_status"];
+
 	$sql	 ="UPDATE wp01_0contents SET";
 	$sql	.=" `title`='{$news_contents}',";
 	$sql	.=" `display_date`='{$news_date}',";
@@ -34,7 +38,17 @@ if($news_id){
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
 	mysqli_query($mysqli,$sql);
+
+}elseif($post_id_set){
+	$menu_post	="contents";
+	$post_id	=$_POST["post_id_set"];
+	$page_log	=$_POST["page_log"];
+
+	$sql	 ="INSERT INTO  wp01_0contents (`date`,`page`,`contents`";
+	$sql	.=" VALUES('{$now}','{$post_id}','{$page_log}')";
+	mysqli_query($mysqli,$sql);
 }
+
 
 if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0contents";
@@ -63,7 +77,7 @@ if($post_id == "news"){
 		}
 	}
 
-}else{
+}if($post_id == "event"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status=0";
@@ -79,6 +93,19 @@ if($post_id == "news"){
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
+			$dat[$res["sort"]]=$res;
+		}
+	}
+
+
+}else{
+	$sql	 ="SELECT * FROM wp01_0contents";
+	$sql	.=" WHERE page='{$post_id}'";
+	$sql	.=" AND status=0";
+	$sql	.=" ORDER BY id DESC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
 			$dat[$res["sort"]]=$res;
 		}
 	}
@@ -213,10 +240,11 @@ if($post_id == "news"){
 }
 
 .page_area{
-	width			:710px;
+	margin			:0 auto;
+	width			:780px;
 	height			:500px;
 	resize			:none;
-	font-szie		:15px;
+	font-size		:15px;
 	padding			:5px;
 	border			:1px solid #303030;
 }
@@ -280,14 +308,11 @@ td{
 		height			:220px;
 		background		:#f0f0ff;
 	}
-
-
 	.event_td_6{
 		position	:relative;
 		height		:150px;
 		border-right:1px solid #303030;
 	}
-
 
 .event_img{
 	position		:absolute;
@@ -334,6 +359,13 @@ td{
 	text-align	:right;
 	padding		:5px;
 }
+
+.page_top{
+	margin		:5px auto;
+	width		:780px;
+}
+
+
 -->
 </style>
 <script>
@@ -343,6 +375,14 @@ $(function(){
 		Tmp=$(this).attr('id');
 		$('#sel_ck').val(Tmp);
 		$('#form').submit();
+	});
+
+	$('#page_set_btn').on('click',function(){
+		if (!confirm('変更します。よろしいですか')) {
+			return false;
+		}else{
+			$('#page_set').submit();
+		}
 	});
 
 	$('.news_tag_btn').on('click',function(){
@@ -377,9 +417,6 @@ $(function(){
 <div id="access"  class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
 <div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
 <div id="policy"  class="sel_contents <?if($post_id == "policy"){?> sel_ck<?}?>">ポリシー</div>
-
-
-
 
 <form id="form" method="post">
 	<input id="sel_ck" type="hidden" name="post_id">
@@ -470,7 +507,11 @@ $(function(){
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "system" || $post_id == "access" || $post_id == "policy"){?>
 		<div class="main_box">
-			<textarea class="page_area"><?=$dat[0]["contents"]?></textarea>
+			<form id="page_set" method="post">
+				<div class="page_top"><span class="news_tag">Title</span><input type="text" name="page_title" class="w400" value="<?=$dat[0]["title"]?>"><button id="page_set_btn" type="button" class="event_set_btn">変更</button></div>			
+				<textarea class="page_area" name="page_log"><?=$dat[0]["contents"]?></textarea>
+				<div class="page_top"><span class="news_tag">リンク</span><input type="text" name="page_key" class="w400" value="<?=$dat[0]["contents_key"]?>"></div>								<input type="hidden" name="post_id_set" value="<?=$post_id?>">
+			</form>
 		</div>
 		<div class="sub_box"></div>
 
@@ -521,11 +562,10 @@ $(function(){
 					<td  class="event_td_4" rowspan="3"><textarea class="event_td_4_in"></textarea></td>
 				</tr><tr>
 
-					<td rowspan="2"  class="event_td_1">□</td>
+					<td rowspan="2"  class="event_td_1">●</td>
 					<td rowspan="2"  class="event_td_2">
 						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
-
 					<td  class="event_td_5">
 						<span class="news_tag">リンク</span><select name="news_link" class="w120">
 							<option value="">なし</option>
@@ -550,7 +590,7 @@ $(function(){
 			<?foreach($dat as $a1 => $a2){?>
 				<table>
 					<tr>
-						<Td><?=$a2["display_daye"]?></td>
+						<Td><?=$a2["display_date"]?></td>
 						<Td></td>
 					</tr>
 					<tr>
@@ -562,6 +602,7 @@ $(function(){
 				</table>
 			<? } ?>
 		</div>
+
 	<? } ?>
 </div>
 <footer class="foot"></footer>

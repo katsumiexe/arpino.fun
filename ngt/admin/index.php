@@ -6,6 +6,11 @@ ini_set( 'display_errors', 1 );
 ini_set('error_reporting', E_ALL);
 */
 
+/*
+#d0d0ff 
+#e6e6fa
+*/
+
 
 $staff_set	=$_POST["staff_set"];//１新規　２変更　３キャスト追加変更　４削除
 $staff_id	=$_POST["staff_id"];
