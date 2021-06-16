@@ -9,7 +9,7 @@ $st			=($_POST['st']+0)*10;
 
 $sql	 ="SELECT * FROM wp01_0easytalk AS M";
 $sql	.=" LEFT JOIN wp01_0customer AS C ON M.customer_id=C.id";
-$sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_data["id"]}'";
+$sql	.=" WHERE M.customer_id='{$c_id}' AND M.cast_id='{$cast_id}'";
 $sql	.=" AND M.del='0'";
 $sql	.=" ORDER BY mail_id DESC";
 $sql	.=" LIMIT {$st},11";
@@ -43,8 +43,8 @@ if($dat[0]["face"]){
 	$face="./img/customer_no_image.png?t_".time();
 }
 
-
 for($n=$count_dat-1;$n>-1;$n--){
+
 	if($dat[$n]["send_flg"] == 1){
 		if($dat[$n]["watch_date"] =="0000-00-00 00:00:00" && $dat[$n-1]["watch_date"] !="0000-00-00 00:00:00"){
 		$html.="<div class=\"mail_border\">----------ここから新着--------------</div>";

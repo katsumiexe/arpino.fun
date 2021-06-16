@@ -224,7 +224,7 @@ const CId="<?=$ssid["customer_id"]?>";
 	<input id="upd" type="file" accept="image/*" style="display:none;">
 	<canvas id="cvs2" width="800px" height="800px;"></canvas>
 </div>
-<input id="easytalk_page" type="hidden" value="1">
+<input id="easytalk_page" type="hidden" value="0">
 
 </body>	
 </html>
