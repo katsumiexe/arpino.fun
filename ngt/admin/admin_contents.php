@@ -131,7 +131,6 @@ if($post_id == "news"){
 	width			:50px;
 }
 
-
 .news_contents{
 	width		:800px;
 	height		:58px;
@@ -143,16 +142,15 @@ if($post_id == "news"){
 }
 
 .news_table{
-	margin:5px auto;
-	background:#fafafa;
-	border:1px solid #303030;
-	
-	
+	margin		:5px auto;
+	background	:#fafafa;
+	border		:1px solid #303030;
 }
 
 .c1{
 	background:#f0ffc0;
 }
+
 .c2{
 	background:#ffd0d8;
 }
@@ -215,16 +213,16 @@ if($post_id == "news"){
 }
 
 .page_area{
-	width		:710px;
-	height		:500px;
-	resize		:none;
-	font-szie	:15px;
-	padding		:5px;
-	border:1px solid #303030;
+	width			:710px;
+	height			:500px;
+	resize			:none;
+	font-szie		:15px;
+	padding			:5px;
+	border			:1px solid #303030;
 }
 
 td{
-	padding:0;
+	padding			:0;
 }
 
 	.event_table{
@@ -243,7 +241,7 @@ td{
 		text-align		:right;
 		padding-right	:5px;
 		font-size		:16px;
-		border-right:1px solid #303030;
+		border-right	:1px solid #303030;
 	}
 
 	.event_td_1{
