@@ -163,16 +163,6 @@ input[type=radio]:checked + label{
 	border			:1px solid #303030;
 }
 
-.notice_top{
-	background		:#b0c0d0;
-	border			:1px solid #303030;
-	color			:#fafafa;
-	height			:18px;
-	line-height		:18px;
-	padding-left	:5px;
-	font-size		:13px;
-}
-
 .notice_list{
 	border			:1px solid #303030;
 	color			:#202020;
@@ -184,21 +174,6 @@ input[type=radio]:checked + label{
 
 .notice_hidden{
 	display:none;
-}
-
-.w100{
-	width:100px;
-}
-.w120{
-	width:120px;
-}
-
-.w140{
-	width:140px;
-}
-
-.w240{
-	width:240px;
 }
 
 .tr_list{
@@ -239,11 +214,11 @@ $(function(){
 	<div class="main_box">
 		<table class="notice_table">
 			<tr>
-				<td class="notice_top w140">日時</td>
-				<td class="notice_top w240">件名</td>
-				<td class="notice_top w100">投稿者</td>
-				<td class="notice_top w120">カテゴリ</td>
-				<td class="notice_top w120">グループ</td>
+				<td class="td_top w150">日時</td>
+				<td class="td_top w250">件名</td>
+				<td class="td_top w100">投稿者</td>
+				<td class="td_top w100">カテゴリ</td>
+				<td class="td_top w120">グループ</td>
 			</tr>
 			<?for($n=0;$n<$count_dat;$n++){?>
 			<tr class="tr_list">

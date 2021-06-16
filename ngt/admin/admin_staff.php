@@ -40,60 +40,6 @@ td{
 
 }
 
-
-.td_top{
-	background	:#f0f0ff;
-	text-align	:center;
-	font-size	:14px;
-	background	:#fafafa;
-}
-
-.td_sort{
-	width		:30px;
-	text-align	:center;
-	background	:#a06000;
-	color		:#fafafa;
-}
-
-.td_sort_up,.td_sort_down{
-	display		:inline-block;
-	position	:absolute;
-	left		:0;
-	right		:0;
-	margin		:auto;
-	width		:30px;
-	height		:22px;
-	line-height	:22px;
-	background	:#d0d0d0;
-	text-align	:center;
-}
-
-.td_sort_down{
-	bottom:5px;
-}
-
-.td_sort_up{
-	top:5px;
-}
-
-.td_sort_middle{
-	display		:inline-block;
-	position	:absolute;
-	left		:0;
-	right		:0;
-	margin		:auto;
-	top			:0;
-	bottom		:0;
-	height		:26px;
-	background	:#fafafa;
-	border		:1px solid #303030;
-	text-align	:right;
-	width		:24px;
-	padding		:2px;
-}
-
-
-
 #sel_staff,#sel_cast{
 	display:none;
 }

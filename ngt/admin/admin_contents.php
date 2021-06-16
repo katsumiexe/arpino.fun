@@ -110,8 +110,8 @@ if($post_id == "news"){
 .main_box{
 	display			:inline-block;
 	flex-basis		:800px;
-	background		:#e0e000;
 	min-height		:calc(100vh - 80px);
+	background		:#e6e6fa;
 }
 
 .sub_box{
@@ -145,6 +145,9 @@ if($post_id == "news"){
 .news_table{
 	margin:5px auto;
 	background:#fafafa;
+	border:1px solid #303030;
+	
+	
 }
 
 .c1{
@@ -222,7 +225,6 @@ if($post_id == "news"){
 
 td{
 	padding:0;
-	border-left:1px solid #303030;
 }
 
 	.event_table{
@@ -236,29 +238,34 @@ td{
 
 	.event_td_0{
 
-		background		:#a0b0c0;
+		background		:#d0d0ff;
 		color			:#fafafa;
 		text-align		:right;
 		padding-right	:5px;
 		font-size		:16px;
+		border-right:1px solid #303030;
 	}
 
 	.event_td_1{
 		background	:#a06000;
 		color		:#fafafa;
-		width		:30px;
+		width		:40px;
 		text-align	:center;
+		font-size	:16px;
 	}
 
 	.event_td_2{
-		width		:30px;
+		width		:40px;
 		text-align	:center;
+		border-right:1px solid #303030;
 	}
 
 
 	.event_td_3,.event_td_5{
-		width:360px;
-		height:40px
+		position	:relative;
+		width		:360px;
+		height		:40px;
+		border-right:1px solid #303030;
 	}
 
 	.event_td_4{
@@ -271,7 +278,7 @@ td{
 		padding			:5px;
 		border			:1px solid #303030;
 		margin			:5px;
-		width			:370px;
+		width			:350px;
 		height			:220px;
 		background		:#f0f0ff;
 	}
@@ -280,6 +287,7 @@ td{
 	.event_td_6{
 		position	:relative;
 		height		:150px;
+		border-right:1px solid #303030;
 	}
 
 
@@ -293,7 +301,7 @@ td{
 	height			:140px;
 	margin			:auto;
 	overflow		:hidden;
-	border:1px solid #000000;
+	border			:1px solid #000000;
 }
 
 .img_chg,.img_large{
@@ -318,19 +326,21 @@ td{
 }
 
 .event_set_btn{
-	width	:60px;
-	height	:30px;
-	margin	:0 5px;
-	
+	width		:60px;
+	height		:30px;
+	margin		:0 5px;
 }
 
+.box_sort{
+	width		:30px;
+	text-align	:right;
+	padding		:5px;
+}
 -->
-
 </style>
 <script>
-$(function(){ 
-//	$('#e_yy, #t_yy').datetimepicker();
 
+$(function(){ 
 	$('.sel_contents').on('click',function(){
 		Tmp=$(this).attr('id');
 		$('#sel_ck').val(Tmp);
@@ -341,7 +351,6 @@ $(function(){
 		Tmp	=$(this).attr('id').substr(0,3);
 		Tmp2=$(this).attr('id').substr(3);
 		$('#upd'+Tmp2).val(Tmp);
-
 
 		if(Tmp == 'chg'){
 			if (!confirm('変更します。よろしいですか')) {
@@ -380,7 +389,6 @@ $(function(){
 </form>
 </header>
 <div class="wrap">
-
 	<?if($post_id == "news"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
@@ -514,9 +522,10 @@ $(function(){
 
 					<td  class="event_td_4" rowspan="3"><textarea class="event_td_4_in"></textarea></td>
 				</tr><tr>
+
 					<td rowspan="2"  class="event_td_1">□</td>
 					<td rowspan="2"  class="event_td_2">
-						<input type="text" name="event_sort" value="<?=$a2["sort"]?>" style="width:30px"> 
+						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
 
 					<td  class="event_td_5">
@@ -538,11 +547,7 @@ $(function(){
 			</table>
 			<? } ?>
 		</div>
-	
-	
 
-
-	
 		<div class="sub_box">
 			<?foreach($dat as $a1 => $a2){?>
 				<table>
