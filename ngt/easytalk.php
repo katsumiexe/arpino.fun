@@ -1,23 +1,5 @@
 <?
-$mysqli = mysqli_connect("localhost", "tiltowait_np", "kk1941", "tiltowait_np");
-if(!$mysqli){
-	$msg="接続エラー";
-	die("接続エラー");
-}
-
-$now		=date("Y-m-d H:i:s");
-$now_8		=date("Ymd");
-$now_w		=date("w");
-$now_count	=date("t");
-$now_month	=date("Y-m-01 00:00:00");
-
-$day_time	=time()-($start_time*3600);
-
-$day		=date("Y-m-d H:i:s",$day_time);
-$day_8		=date("Ymd",$day_time);
-$day_w		=date("w",$day_time);
-$day_count	=date("t",$day_time);
-$day_month	=date("Y-m-01 00:00:00",$day_time);
+include_once('./library/sql.php');
 
 $ss=$_REQUEST["ss"];
 if($ss){
@@ -117,6 +99,8 @@ if($ss){
 
 const ImgSrc="./img/customer_no_img.jpg?t_<?=time()?>";
 const CastId="<?=$ssid["cast_id"]?>";
+const CId="<?=$ssid["customer_id"]?>";
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -205,7 +189,6 @@ const CastId="<?=$ssid["cast_id"]?>";
 		<button id="send_mail" type="button" class="send_btn">メールを返信する</button>
 		<input type="hidden" id="ssid" name="ss" value="<?=$ss?>">
 		<input type="hidden" id="img_code">
-
 		<? } ?>
 	</div>
 </div>
@@ -241,5 +224,7 @@ const CastId="<?=$ssid["cast_id"]?>";
 	<input id="upd" type="file" accept="image/*" style="display:none;">
 	<canvas id="cvs2" width="800px" height="800px;"></canvas>
 </div>
+<input id="easytalk_page" type="hidden" value="1">
+
 </body>	
 </html>

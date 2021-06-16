@@ -2445,8 +2445,6 @@ $(function(){
 		if(Pnt==<20){
 			Tmp=$('#easytalk_page').val()-0;
 
-console.log(Pnt);
-
 			$.post({
 				url:"./post/easytalk_hist.php",
 				data:{

@@ -863,6 +863,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
+
 	<div class="main pg3">
 		<table id="tag_1_tbl" class="customer_memo"><tr><td></td></tr></table>
 		<table id="tag_2_tbl" class="customer_memo"><tr><td></td></tr></table>

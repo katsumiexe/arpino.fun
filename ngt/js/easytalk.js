@@ -10,7 +10,10 @@ $(function(){
 	var Chg			='';
 
 	TMP_H=$('.mail_detail_in_btm').offset().top;
-	$('.main_mail').animate({ scrollTop:TMP_H}, 100);
+	$('.main_mail_in').animate({ scrollTop:TMP_H}, 1000);
+
+console.log(TMP_H);
+
 	$('#send_mail').on('click',function(){
 		$.post({
 			url:"./post/easytalk_send.php",
@@ -36,55 +39,33 @@ $(function(){
 		});
 	});
 
-
-
-	$('.mail_detail').scroll(function() {
+	$('.main_easytalk').scroll(function() {
 		Pnt= $(this).scrollTop();
-		Hgt= $('.mail_detail_in').height();
+		Hgt= $('.mail_mail_in').height();
+console.log(Pnt+"■"+Hgt);
 
-		if(Pnt==<20){
+		if( Pnt < 20){
 			Tmp=$('#easytalk_page').val()-0;
-
-console.log(Pnt);
-
 			$.post({
-				url:"./post/easytalk_send.php",
+				url:"./post/easytalk_hist.php",
 				data:{
-					'send'		:'2',
-					'cast_id'	:CastId,
-					'log'		:$('#send_msg').val(),
-					'sid'		:$('#ssid').val(),
-					'img_code'	:$('#img_code').val(),
+					'st'		:Tmp,
+					'cast_id'	:Castid,
+					'c_id'		:Cid,
 				},
 
 			}).done(function(data, textStatus, jqXHR){
 				Tmp++;
 				$('#easytalk_page').val(Tmp);
 
-				$('.mail_detail_in').prepend(data);
-				Hgt2= $('.mail_detail_in').height();
+				$('.mail_mail_in').prepend(data);
+				Hgt2= $('.mail_mail_in').height();
 				Tmp2=Hgt2-Hgt;
-				$('.mail_detail').scrollTop(Tmp2);
+				$('.main_mail').scrollTop(Tmp2);
 			});
 		}
 	});
 
-
-	$(window).scroll(function () {
-		if ($(this).scrollTop() < 50) {
-			$.post({
-				url:"./post/easytalk_hist.php",
-				data:{
-					'pg':$('#easytalk_page').val()
-				},
-
-			}).done(function(data, textStatus, jqXHR){
-				Pg=$('#easytalk_page').val()-1+2;
-				$('#easytalk_page').val(Pg);
-				$('.mail_detail_in').prepend(data);
-			});
-		}
-	});
 
 	$('#upd').on('change', function(e){
 		var file = e.target.files[0];	
@@ -139,7 +120,6 @@ console.log(Pnt);
 
 						css_A=css_W;
 						css_B=Base_s-(css_A-Base_l)/2;
-
 					}				
 
 					$("#cvs1").attr({'width': cvs_A,'height': cvs_A}).css({'width': css_A,'height': css_A,'left': css_B,'top': css_B});
