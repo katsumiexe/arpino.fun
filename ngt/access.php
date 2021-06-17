@@ -1,6 +1,5 @@
 <?php
 include_once('./library/sql.php');
-
 $sql="SELECT * FROM wp01_0contents WHERE page='access' AND status='0' ORDER BY id DESC LIMIT 1";
 $res = mysqli_query($mysqli,$sql);
 $dat = mysqli_fetch_assoc($res);
