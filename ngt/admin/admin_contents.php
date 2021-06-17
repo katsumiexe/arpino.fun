@@ -109,14 +109,17 @@ if($post_id == "news"){
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
 
-			if (file_exists("../img/page/event/{$res["id"]}.jpg")) {
-				$res["img"]="../img/page/event/{$res["id"]}.jpg";			
+			if (file_exists("../img/page/event/contents/recruit.jpg")) {
+				$res["img"]="../img/page/event/contents/recruit.jpg";
+
+			}elseif (file_exists("../img/page/event/contents/recruit.png")) {
+				$res["img"]="../img/page/event/contents/recruit.png";
 
 			}else{
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
-			$dat[$res["sort"]]=$res;
+			$dat[$res["category"]][$res["sort"]]=$res;
 		}
 	}
 
