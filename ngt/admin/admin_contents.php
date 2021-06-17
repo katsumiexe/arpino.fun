@@ -40,15 +40,15 @@ if($news_id){
 	mysqli_query($mysqli,$sql);
 
 }elseif($post_id_set){
-	$menu_post	="contents";
 	$post_id	=$_POST["post_id_set"];
 	$page_log	=$_POST["page_log"];
+	$page_title	=$_POST["page_title"];
+	$page_key	=$_POST["page_key"];
 
-	$sql	 ="INSERT INTO  wp01_0contents (`date`,`page`,`contents`";
-	$sql	.=" VALUES('{$now}','{$post_id}','{$page_log}')";
+	$sql	 ="INSERT INTO  wp01_0contents (`date`,`page`,`title`,`contents`,`contents`_key");
+	$sql	.=" VALUES('{$now}','{$post_id}','{$page_title}','{$page_contents}','{$page_key}')";
 	mysqli_query($mysqli,$sql);
 }
-
 
 if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0contents";
@@ -159,7 +159,7 @@ if($post_id == "news"){
 }
 
 .news_contents{
-	width		:800px;
+	width		:780px;
 	height		:58px;
 	line-height	:24px;
 	font-size	:16px;
@@ -172,6 +172,11 @@ if($post_id == "news"){
 	margin		:5px auto;
 	background	:#fafafa;
 	border		:1px solid #303030;
+}
+
+.news_table td{
+	padding:5px;
+
 }
 
 .c1{
@@ -435,16 +440,16 @@ $(function(){
 
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
-							<td style="width:220px;">
-								<span class="news_tag">日付</span><input type="date" name="news_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+							<td style="width:200px">
+								<span class="news_tag">日付</span><input type="date" name="news_date" class="w140" value="<?=$a2["news_date"]?>" autocomplete="off"> 
 							</td>
 
-							<td style="width:220px;">
-								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w150" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+							<td style="width:200px">
+								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w140" value="<?=$a2["news_date"]?>" autocomplete="off"> 
 							</td>
 
-							<td style="width:220px;">
-								<span class="news_tag">タグ</span><select name="news_tag" class="w150">
+							<td style="width:200px">
+								<span class="news_tag">タグ</span><select name="news_tag" class="w140">
 									<?foreach($tag as $b1 => $b2){?>
 										<option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
 									<? } ?>	
@@ -510,7 +515,10 @@ $(function(){
 			<form id="page_set" method="post">
 				<div class="page_top"><span class="news_tag">Title</span><input type="text" name="page_title" class="w400" value="<?=$dat[0]["title"]?>"><button id="page_set_btn" type="button" class="event_set_btn">変更</button></div>			
 				<textarea class="page_area" name="page_log"><?=$dat[0]["contents"]?></textarea>
-				<div class="page_top"><span class="news_tag">リンク</span><input type="text" name="page_key" class="w400" value="<?=$dat[0]["contents_key"]?>"></div>								<input type="hidden" name="post_id_set" value="<?=$post_id?>">
+				<div class="page_top"><span class="news_tag">リンク</span><input type="text" name="page_key" class="w400" value="<?=$dat[0]["contents_key"]?>"></div>				
+
+				<input type="hidden" name="post_id_set" value="<?=$post_id?>">
+				<input type="hidden" name="menu_post" value="contents">
 			</form>
 		</div>
 		<div class="sub_box"></div>
