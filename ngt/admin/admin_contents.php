@@ -45,10 +45,13 @@ if($news_id){
 	$page_title	=$_POST["page_title"];
 	$page_key	=$_POST["page_key"];
 
-	$sql	 ="INSERT INTO  wp01_0contents (`date`,`page`,`title`,`contents`,`contents`_key");
-	$sql	.=" VALUES('{$now}','{$post_id}','{$page_title}','{$page_contents}','{$page_key}')";
+	$sql	 ="INSERT INTO  wp01_0contents (`date`,`page`,`title`,`contents`,`contents_key`)";
+	$sql	.=" VALUES('{$now}','{$post_id}','{$page_title}','{$page_log}','{$page_key}')";
 	mysqli_query($mysqli,$sql);
+echo $sql;
+
 }
+
 
 if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0contents";
@@ -97,6 +100,25 @@ if($post_id == "news"){
 		}
 	}
 
+}elseif($post_id == "recruit"){
+	$sql	 ="SELECT * FROM wp01_0contents";
+	$sql	.=" WHERE page='{$post_id}'";
+	$sql	.=" AND status=0";
+	$sql	.=" ORDER BY sort ASC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
+
+			if (file_exists("../img/page/event/{$res["id"]}.jpg")) {
+				$res["img"]="../img/page/event/{$res["id"]}.jpg";			
+
+			}else{
+				$res["img"]="../img/cast_no_image.jpg";			
+			}
+
+			$dat[$res["sort"]]=$res;
+		}
+	}
 
 }else{
 	$sql	 ="SELECT * FROM wp01_0contents";
@@ -106,7 +128,7 @@ if($post_id == "news"){
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			$dat[$res["sort"]]=$res;
+			$dat[]=$res;
 		}
 	}
 }
