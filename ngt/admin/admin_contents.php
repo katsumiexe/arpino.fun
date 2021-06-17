@@ -119,7 +119,7 @@ if($post_id == "news"){
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
-			$dat[$res["category"]][$res["sort"]]=$res;
+			$dat[$res["sort"]]=$res;
 		}
 	}
 
@@ -131,7 +131,14 @@ if($post_id == "news"){
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
+			if($res["category"] == "top){"
+				$recuruit_title	=$res["title"];
+				$recuruit_log	=$res["log"];
+
+			}else{
 			$dat[]=$res;
+			
+			}
 		}
 	}
 }
@@ -395,6 +402,42 @@ td{
 	width		:780px;
 }
 
+.recuruit_table td{
+	padding		:5px;
+	text-ali	gn	:center;
+}
+
+.recuruit_table{
+	border			:1px solid #303030;
+	margin			:0 auoto;
+	border-collapse	:separate;
+	border-spacing	:0 5px;;
+}
+
+
+.recuruit_table td{
+	padding		:3px;
+	text-align	:"center";
+	
+}
+
+.recruit_tr{
+	background	:#fafafa;
+}
+
+.recruit_td1{
+	width		:30px;
+}
+
+.recruit_td2{
+	width		:30px;
+	text-align	:center;
+}
+
+.recruit_td3{
+	width		:700px;
+	text-align	:center;
+}
 
 -->
 </style>
@@ -554,22 +597,34 @@ $(function(){
 			<table>
 				<tr>
 					<td style="width:80px;">TOPバナー<br>変更</td>
-					<td style="width:620px;"><input type="text" name="event_title" value="<?=$a2["title"]?>"></td>
+					<td style="width:620px;"></td>
 				</tr>
 				<tr>
 					<td style="width:80px;">メイン告知</td>
-					<td style="width:620px;"><textarea class="w000"><?=$dat[0]["top"]?></textarea></td>
+					<td style="width:620px;"><textarea class="w000"><?=$dat[0]["contents"]?></textarea></td>
 				</tr>
 			</table>
 
-			<table>
+
+			<table class="recuruit_table">
+				<tr>
+					<td colspan="2"></td>
+					<td style="width:620px;">
+						<input type="text" name="event_title" value="<?=$recuest_title?>">
+						<textarea class="w000"><?=$recuest_contents?></textarea>
+					</td>
+				</tr>
+
 				<tbody id="sort">
 				<?foreach($dat as $a1 => $a2){?>
 					<tr id="tr_<?=$a1?>" class="tr">
-						<td class="td_sort" style="width:60px;">■</td>
-						<td style="width:60px;"><?=$a2["sort"]?></td>
-						<td style="width:200px;"><input type="text" name="event_title" value="<?=$a2["title"]?>"></td>
-						<td><textarea name="event_contents" class="w000"><?=$a2["contents"]?>"</textarea></td>
+						<td class="recruit_td1" style="width:40px;">■</td>
+						<td class="recruit_td2" ><?=$a2["sort"]?></td>
+
+						<td class="recruit_td3">
+							<input type="text" name="event_title" value="<?=$a2["title"]?>">
+							<textarea name="event_contents" class="w000"><?=$a2["contents"]?>"</textarea>
+						</td>
 					</tr>
 				<? } ?>
 				</tbody>
@@ -602,10 +657,10 @@ $(function(){
 					<td  class="event_td_5">
 						<span class="news_tag">リンク</span><select name="news_link" class="w120">
 							<option value="">なし</option>
-							<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
+							<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>ページ</option>
 							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-							<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-							<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+							<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="outer"  <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
 						<input type="text" name="link_detail" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
