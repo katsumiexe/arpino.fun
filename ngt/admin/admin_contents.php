@@ -127,16 +127,17 @@ if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status=0";
-	$sql	.=" ORDER BY id DESC";
+	$sql	.=" ORDER BY sort ASC";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			if($res["category"] == "top){"
-				$recuruit_title	=$res["title"];
-				$recuruit_log	=$res["log"];
+			if($res["category"] == "top"){
+
+				$recruit_title	=$res["title"];
+				$recruit_log	=$res["log"];
 
 			}else{
-			$dat[]=$res;
+				$dat[$res["sort"]]=$res;
 			
 			}
 		}
@@ -412,13 +413,24 @@ td{
 	margin			:0 auoto;
 	border-collapse	:separate;
 	border-spacing	:0 5px;;
+	background		:#fafafa;
 }
-
 
 .recuruit_table td{
 	padding		:3px;
 	text-align	:"center";
-	
+}
+
+.recruit_contents{
+	resize		:none;
+	width		:700px;
+	height		:100px;
+}
+
+.recruit_title{
+	width:500px;
+	background	:#e6e6fa;
+	border		:1px solid #e6e6fa;
 }
 
 .recruit_tr{
@@ -426,17 +438,27 @@ td{
 }
 
 .recruit_td1{
+	border:1px solid #303030;
 	width		:30px;
 }
 
 .recruit_td2{
+	border:1px solid #303030;
 	width		:30px;
 	text-align	:center;
 }
 
 .recruit_td3{
+	border		:1px solid #303030;
 	width		:700px;
-	text-align	:center;
+	text-align	:left;
+	background	:#d0d0ff ;
+}
+
+.recruit_td4{
+	border		:1px solid #303030;
+	width		:700px;
+	text-align	:left;
 }
 
 -->
@@ -594,36 +616,32 @@ $(function(){
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "recruit"){?>
 		<div class="main_box">
-			<table>
-				<tr>
-					<td style="width:80px;">TOPバナー<br>変更</td>
-					<td style="width:620px;"></td>
-				</tr>
-				<tr>
-					<td style="width:80px;">メイン告知</td>
-					<td style="width:620px;"><textarea class="w000"><?=$dat[0]["contents"]?></textarea></td>
-				</tr>
-			</table>
-
 
 			<table class="recuruit_table">
 				<tr>
-					<td colspan="2"></td>
-					<td style="width:620px;">
-						<input type="text" name="event_title" value="<?=$recuest_title?>">
-						<textarea class="w000"><?=$recuest_contents?></textarea>
+					<td colspan="2" rowspan="2" ></td>
+					<td class="recruit_td3">
+						<input type="text" name="recruit_title_top" class="recruit_title" value="<?=$recruit_title?>">
+					</td>
+					</tr><tr>
+					<td class="recruit_td4">
+						<textarea name="recruit_contents_top" class="recruit_contents"><?=$recruit_contents?></textarea>
 					</td>
 				</tr>
+
 
 				<tbody id="sort">
 				<?foreach($dat as $a1 => $a2){?>
 					<tr id="tr_<?=$a1?>" class="tr">
-						<td class="recruit_td1" style="width:40px;">■</td>
-						<td class="recruit_td2" ><?=$a2["sort"]?></td>
+						<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
+						<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
 
 						<td class="recruit_td3">
-							<input type="text" name="event_title" value="<?=$a2["title"]?>">
-							<textarea name="event_contents" class="w000"><?=$a2["contents"]?>"</textarea>
+							<input type="text" name="recruit_title[<?=$a2["sort"]?>]" class="recruit_title" value="<?=$a2["title"]?>">
+						</td>
+						</tr><tr>
+						<td class="recruit_td4">
+							<textarea name="recruit_contents[<?=$a2["sort"]?>]" class="recruit_contents"><?=$a2["contents"]?></textarea>
 						</td>
 					</tr>
 				<? } ?>
