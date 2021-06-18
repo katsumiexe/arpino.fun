@@ -184,7 +184,7 @@ ul {
 
 .head_b_1{
 	color			:#888986;
-	font-size		:18px;
+	font-size		:16px;
 	text-align		:right;
 }
 
@@ -3154,9 +3154,9 @@ ul {
 
 
 .main_d_1,.main_b_1{
-	width			:43vw;	
-	height			:74vw;
-	margin			:1vw;
+	width			:28vw;	
+	height			:50vw;
+	margin			:0.5vw;
 
 	border-top		:0.5vw solid #f8e8b0;
 	border-left		:0.5vw solid #f8e8b0;
@@ -3174,9 +3174,9 @@ ul {
 
 .main_d_1_1,.main_b_1_1{
 
-	top				:2vw;
-	width			:39vw;
-	height			:52vw;
+	top				:1vw;
+	width			:25.5vw;
+	height			:34vw;
 	border-top		:0.5vw solid #483800;
 	border-left		:0.5vw solid #483800;
 	border-right	:0.5vw solid #f8e8b0;
@@ -3187,26 +3187,26 @@ ul {
 .main_d_1_2,.main_b_1_2{
 	position		:absolute;
 	display			:inline-block;
-	top				:58vw;
-	width			:37vw;
-	height			:11vw;
+	top				:37vw;
+	width			:24vw;
+	height			:9.5vw;
 	background		:rgba(245,245,245,0.8);
 	padding			:1vw;
 }
 
 .main_d_1_2_name,.main_b_1_2_name{
-	width		:36vw;
-	height		:5vw;
-	line-height	:5vw;
-	font-size	:4.5vw;
-	margin		:1vw auto 0.5vw auto;
+	width		:24vw;
+	height		:3vw;
+	line-height	:3vw;
+	font-size	:3vw;
+	margin		:1.5vw auto 2vw auto;
 }
 
 .main_d_1_2_sch,.main_b_1_2_sch{
-	width		:33vw;
-	height		:5vw;
-	line-height	:5vw;
-	font-size	:3.5vw;
+	width		:24vw;
+	height		:3vw;
+	line-height	:3vw;
+	font-size	:2.5vw;
 }
 
 
@@ -3215,8 +3215,8 @@ ul {
 }
 
 .main_b_1_2_h{
-	height			:11vw;
-	width			:24vw;
+	height			:10vw;
+	width			:14vw;
 }
 
 .main_b_1_ribbon{
@@ -4011,6 +4011,48 @@ ul {
 .access_table{
 	flex-wrap	:wrap;
 	width		:86vw;
+}
+
+
+
+ .main_d_1,.main_b_1{
+	width			:43vw;	
+	height			:74vw;
+	margin			:1vw;
+}
+
+
+ .main_d_1_1,.main_b_1_1{
+	top				:2vw;
+	width			:39vw;
+	height			:52vw;
+}
+
+
+ .main_d_1_2,.main_b_1_2{
+	top				:58vw;
+	width			:37vw;
+	height			:11vw;
+}
+
+ .main_d_1_2_name,.main_b_1_2_name{
+	width		:36vw;
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:4.5vw;
+	margin		:1vw auto 0.5vw auto;
+}
+
+.main_d_1_2_sch,.main_b_1_2_sch{
+	width		:33vw;
+	height		:5vw;
+	line-height	:5vw;
+	font-size	:3.5vw;
+}
+
+ .main_b_1_2_h{
+	height			:11vw;
+	width			:24vw;
 }
 
 
