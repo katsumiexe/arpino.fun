@@ -188,7 +188,7 @@ if($post_id == "news"){
 	line-height		:30px;
 	text-align		:right;
 	padding-right	:5px; 
-	width			:50px;
+	width			:60px;
 }
 
 .news_contents{
@@ -241,6 +241,8 @@ if($post_id == "news"){
 	background		:#aaaaaa;
 	color			:#ffffff;
 	margin			:0 2px;
+	height			:30px;
+	vertical-align	:top;
 }
 
 .st_view{
@@ -301,13 +303,13 @@ td{
 	}
 
 	.event_td_0{
-
 		background		:#d0d0ff;
 		color			:#fafafa;
 		text-align		:right;
 		padding-right	:5px;
 		font-size		:16px;
 		border-right	:1px solid #303030;
+		width		:80px;
 	}
 
 	.event_td_1{
@@ -327,7 +329,7 @@ td{
 
 	.event_td_3,.event_td_5{
 		position	:relative;
-		width		:360px;
+		width		:525px;
 		height		:40px;
 		border-right:1px solid #303030;
 	}
@@ -342,14 +344,15 @@ td{
 		padding			:5px;
 		border			:1px solid #303030;
 		margin			:5px;
-		width			:350px;
-		height			:220px;
+		width			:710px;
+		height			:120px;
 		background		:#f0f0ff;
 	}
 	.event_td_6{
 		position	:relative;
-		height		:150px;
 		border-right:1px solid #303030;
+		width		:185px;
+	
 	}
 
 .event_img{
@@ -358,8 +361,8 @@ td{
 	right			:0;
 	left			:0;
 	bottom			:0;
-	width			:350px;
-	height			:140px;
+	width			:175px;
+	height			:70px;
 	margin			:auto;
 	overflow		:hidden;
 	border			:1px solid #000000;
@@ -461,6 +464,13 @@ td{
 	text-align	:left;
 }
 
+.news_box{
+	height:30px;
+	margin:0 2px;
+	border:1px solid #303030;
+	padding:1px;
+	vertical-align:top;
+}
 -->
 </style>
 <script>
@@ -530,49 +540,39 @@ $(function(){
 
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
-							<td style="width:200px">
-								<span class="news_tag">日付</span><input type="date" name="news_date" class="w140" value="<?=$a2["news_date"]?>" autocomplete="off"> 
-							</td>
-
-							<td style="width:200px">
-								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w140" value="<?=$a2["news_date"]?>" autocomplete="off"> 
-							</td>
-
-							<td style="width:200px">
-								<span class="news_tag">タグ</span><select name="news_tag" class="w140">
-									<?foreach($tag as $b1 => $b2){?>
-										<option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
-									<? } ?>	
-								</select>
-							</td>
-
-							<td>
-								<select class="w120" name="news_status">
+							<td style="font-size:0;">
+								<span class="news_tag">日付</span><input type="date" name="news_date" class="w140 news_box" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w140 news_box" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+								<span class="news_tag">状態</span>
+								<select class="w120 news_box" name="news_status">
 									<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
 									<option value="2" <?if($a2["status"] == 2){?> selected="selected"<?}?>>注目</option>
 									<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
+									<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 								</select>
+								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<span class="news_tag">リンク</span><select name="news_link" class="w150">
+							<td style="font-size:0;">
+								<span class="news_tag">タグ</span>
+								<select name="news_tag" class="w140 news_box">
+									<?foreach($tag as $b1 => $b2){?><option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
+									<? } ?>	
+								</select>
+
+								<span class="news_tag">リンク</span><select name="news_link" class="w140 news_box">
 									<option value="">なし</option>
 									<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
 									<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 									<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 									<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 								</select>
-							</td>
-							<td colspan="2">
-								<span class="news_tag">詳細</span><input type="text" name="link_detail" class="w280" value="<?=$a2["contents_key"]?>"> 
-							</td>
-							<td style="text-align:right;">
-								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+								<input type="text" name="link_detail" class="news_box" style="border:1px solid #303030;width:185px;" value="<?=$a2["contents_key"]?>"> 
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td>
 								<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
 							</td>
 						</tr>
@@ -655,17 +655,25 @@ $(function(){
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
 			<table class="event_table">
+
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
 
 					<td class="event_td_3">
 						<span class="news_tag">公開日</span>
-						<input type="date" name="event_view_date" class="w150" value="<?=$a2["display_date"]?>" autocomplete="off">
-						<button id="chg<?=$a1?>" type="button" class="event_set_btn">変更</button>
-						<button id="chg<?=$a1?>" type="button" class="event_set_btn">変更</button>
+						<input type="date" name="event_view_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<span class="news_tag">状態</span>
+						<select class="w120 news_box" name="news_status">
+							<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
+							<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
+							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
+						</select>
+						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 					</td>
-
-					<td  class="event_td_4" rowspan="3"><textarea class="event_td_4_in"></textarea></td>
+					<td class="event_td_6" rowspan="2">
+					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
+					<span class="img_large"></span><span class="img_chg"></span>
+					</td>
 				</tr><tr>
 
 					<td rowspan="2"  class="event_td_1">●</td>
@@ -682,11 +690,10 @@ $(function(){
 						</select>
 						<input type="text" name="link_detail" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
+
 				</tr><tr>
-					<td class="event_td_6">
-					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
-					<span class="img_large"></span><span class="img_chg"></span>
-					</td>
+					<td  class="event_td_4" colspan="2"><textarea class="event_td_4_in"></textarea></td>
+
 				</tr>
 			</table>
 			<? } ?>
