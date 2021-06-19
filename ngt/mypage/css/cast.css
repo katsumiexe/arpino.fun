@@ -248,7 +248,7 @@ input:focus{
 
 
 .notice_box_sche{
-	display			:inline-block;
+	display			:inline-flex;
 	position		:relative;
 	height			:7vw;
 	line-height		:7vw;
@@ -260,6 +260,7 @@ input:focus{
 	background		:#0000d0;	
 	border-radius	:1vw;
 	overflow		:hidden;
+	padding			:1vw;
 }
 
 .notice_box_mail{
@@ -348,6 +349,8 @@ input:focus{
 	display			:inline-block;
 	width			:5vw;
 	text-align		:center;
+	height			:7vw;
+	flex-basis		:5vw;
 }
 
 .notice_yet2{
@@ -4112,8 +4115,8 @@ input[type=range]::-moz-range-thumb{
 	font-size	:3.5vw;
 	width		:12vw;
 	flex-basis	:12vw;
-	height		:5vw;
-	line-height	:5vw;
+	height		:7vw;
+	line-height	:7vw;
 	text-align	:center;
 }
 
@@ -4122,8 +4125,8 @@ input[type=range]::-moz-range-thumb{
 	font-size	:3.5vw;
 	width		:3vw;
 	flex-basis	:3vw;
-	height		:5vw;
-	line-height	:5vw;
+	height		:7vw;
+	line-height	:7vw;
 	text-align	:center;
 
 }
@@ -4133,8 +4136,8 @@ input[type=range]::-moz-range-thumb{
 	font-size	:3.5vw;
 	width		:12vw;
 	flex-basis	:12vw;
-	height		:5vw;
-	line-height	:5vw;
+	height		:7vw;
+	line-height	:7vw;
 	text-align	:center;
 }
 
