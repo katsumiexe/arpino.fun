@@ -184,9 +184,11 @@ if($result = mysqli_query($mysqli,$sql)){
 			$ana_sche[$row["sche_date"]]="休み";
 
 			$days_sche="休み";
+
 		}
 	}
 }
+
 
 if(!$days_sche){
 	$days_sche="休み";
@@ -1472,10 +1474,12 @@ $(function(){
 <?$tmp_8=date("Ymd",$day_time+(86400*$i))?>
 			<input id="h_notice_ttl_<?=$i?>" type="hidden" value="<?=date("m月d日",$day_time+(86400*$i))?>[<?=$week[date("w",$day_time+(86400*$i))]?>]">
 			<div id="notice_box_<?=$i?>" class="notice_box">
-				<span class="notice_box_sche"><span class="notice_icon"></span><?=$ana_sche[$tmp_8]?></span><br>
+				<span class="notice_box_sche"><span class="notice_icon"></span><?if($ana_sche[$tmp_8]){print($ana_sche[$tmp_8]);}else{?>休み<?}?></span><br>
 				<span class="notice_box_birth"><?=$days_birth[$tmp_8]?></span>
 			</div>
 <?}?>
+
+
 
 
 			<div class="notice_ttl"><div class="notice_list_in">連絡事項</div></div>

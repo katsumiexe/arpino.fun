@@ -223,7 +223,6 @@ if($staff_set){
 			$link="../img/profile/".$staff_id;
 //			if($staff_set == 1){
 //				$a3=0;
-
 				foreach($img_c as $a1 => $a2){
 					if($a2){
 /*
@@ -236,7 +235,6 @@ echo "W:".$tmp_width."<br>\n";
 echo "H:".$tmp_height."<br>\n";
 echo "X:".$tmp_left."<br>\n";
 echo "Y:".$tmp_top."<br>\n";
-
 */
 
 						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
@@ -375,8 +373,8 @@ $sel[$menu_post]="menu_sel";
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/admin.css?t=<?=time()?>">
-<style>
 
+<style>
 @font-face {
 	font-family: at_icon;
 	src: url("../font/font_1/fonts/icomoon.ttf") format('truetype');
@@ -403,6 +401,7 @@ $sel[$menu_post]="menu_sel";
 }
 </style>
 </head>
+
 <body class="body">
 <div class="main">
 	<?if($menu_post){?>
