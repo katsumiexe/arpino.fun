@@ -260,7 +260,6 @@ input:focus{
 	background		:#0000d0;	
 	border-radius	:1vw;
 	overflow		:hidden;
-	padding			:1vw;
 }
 
 .notice_box_mail{
@@ -350,6 +349,7 @@ input:focus{
 	width			:5vw;
 	text-align		:center;
 	height			:7vw;
+	line-height		:7vw;
 	flex-basis		:5vw;
 }
 
