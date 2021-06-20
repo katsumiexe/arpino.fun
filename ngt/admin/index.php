@@ -52,14 +52,14 @@ if($staff_set){
 	$charm_table	=$_POST["charm_table"];
 	$options		=$_POST["options"];
 
-	$img_c		=$_POST["img_c"];
-	$img_w		=$_POST["img_w"];
-	$img_h		=$_POST["img_h"];
-	$img_x		=$_POST["img_x"];
-	$img_y		=$_POST["img_y"];
-	$img_z		=$_POST["img_z"];
-	$img_r		=$_POST["img_r"];
-	$img_v		=$_POST["img_v"];
+	$img_c			=$_POST["img_c"];
+	$img_w			=$_POST["img_w"];
+	$img_h			=$_POST["img_h"];
+	$img_x			=$_POST["img_x"];
+	$img_y			=$_POST["img_y"];
+	$img_z			=$_POST["img_z"];
+	$img_r			=$_POST["img_r"];
+	$img_v			=$_POST["img_v"];
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
 	$btime=str_replace("-","",$b_date);
@@ -108,7 +108,6 @@ if($staff_set){
 			$sql.=" `cast_id`='{$cast_id}',";
 			$sql.=" `cast_pass`='{$cast_pass}',";
 			$sql.=" `cast_mail`='{$cast_mail}',";
-
 			$sql.=" `cast_status`='{$cast_status}',";
 
 			$sql.=" `ctime`='{$ctime}',";
