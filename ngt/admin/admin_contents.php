@@ -31,12 +31,14 @@ if($news_id){
 	$news_upd		=$_POST["news_upd"];
 	$news_contents	=$_POST["news_contents"];
 	$news_tag		=$_POST["news_tag"];
-	$news_date		=$_POST["news_date"]." 00:00:00";
+	$display_date	=$_POST["display_date"]." 00:00:00";
+	$news_date		=$_POST["news_date"];
 	$news_status	=$_POST["news_status"];
 
 	$sql	 ="UPDATE wp01_0contents SET";
 	$sql	.=" `title`='{$news_contents}',";
-	$sql	.=" `display_date`='{$news_date}',";
+	$sql	.=" `news_date`='{$news_date}',";
+	$sql	.=" `display_date`='{$display_date}',";
 	$sql	.=" `tag`='{$news_tag}',";
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
@@ -63,9 +65,9 @@ if($post_id == "news"){
 	$sql	.=" ORDER BY display_date DESC";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			$res["news_date"]	=substr($res["display_date"],0,10);
-			$res["event_date"]	=substr($res["display_date"],0,10);
-			if($res["status"] ==0 && $res["news_date"] > date("Y-m-d")){
+			$res["news_date"]	=substr($res["news_date"],0,10);
+			$res["display_date"]	=substr($res["display_date"],0,10);
+			if($res["status"] ==0 && $res["display_date"] > date("Y-m-d")){
 				$res["status"]=1;
 			}
 			$dat[$res["id"]]=$res;
@@ -91,6 +93,7 @@ if($post_id == "news"){
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
+			$res["display_date"]	=substr($res["display_date"],0,10);
 
 			if (file_exists("../img/page/event/{$res["id"]}.jpg")) {
 				$res["img"]="../img/page/event/{$res["id"]}.jpg";			
@@ -242,7 +245,7 @@ if($post_id == "news"){
 	padding		:0 10px;
 }
 
-.news_tag_btn{
+.news_tag_btn, .event_tag_btn{
 	width			:65px;
 	background		:#aaaaaa;
 	color			:#ffffff;
@@ -567,8 +570,8 @@ $(function(){
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
 							<td style="font-size:0;">
-								<span class="news_tag">日付</span><input type="date" name="news_date" class="w140 news_box" value="<?=$a2["news_date"]?>" autocomplete="off"> 
-								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w140 news_box" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+								<span class="news_tag">日付</span><input type="date" name="event_date" class="w140 news_box" value="<?=$a2["event_date"]?>" autocomplete="off"> 
+								<span class="news_tag">公開日</span><input type="date" name="display_date" class="w140 news_box" value="<?=$a2["display_date"]?>" autocomplete="off"> 
 								<span class="news_tag">状態</span>
 								<select class="w120 news_box" name="news_status">
 									<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
@@ -629,21 +632,21 @@ $(function(){
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
-			<table class="event_table">
 
+			<form id="e<?=$a1?>" action="./index.php" method="post">
+			<table class="event_table">
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
-
 					<td class="event_td_3">
 						<span class="news_tag">公開日</span>
-						<input type="date" name="event_view_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
 						<span class="news_tag">状態</span>
 						<select class="w120 news_box" name="news_status">
 							<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
 							<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 						</select>
-						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+						<button id="eve<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 					</td>
 					<td class="event_td_6" rowspan="2">
 					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
@@ -671,6 +674,7 @@ $(function(){
 
 				</tr>
 			</table>
+			</form>
 			<? } ?>
 		</div>
 
