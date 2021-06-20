@@ -26,23 +26,27 @@ $news_id		=$_POST["news_id"];
 $page_log		=$_POST["page_log"];
 $post_id_set	=$_POST["post_id_set"];
 
+
 if($news_id){
-	$news_id		=$_POST["news_id"];
 	$news_upd		=$_POST["news_upd"];
-	$news_contents	=$_POST["news_contents"];
+	$news_title		=$_POST["news_title"];
 	$news_tag		=$_POST["news_tag"];
 	$display_date	=$_POST["display_date"]." 00:00:00";
 	$news_date		=$_POST["news_date"];
 	$news_status	=$_POST["news_status"];
+	$news_contents	=$_POST["news_contents"];
 
 	$sql	 ="UPDATE wp01_0contents SET";
-	$sql	.=" `title`='{$news_contents}',";
-	$sql	.=" `news_date`='{$news_date}',";
+	$sql	.=" `title`='{$news_title}',";
+	$sql	.=" `event_date`='{$event_date}',";
 	$sql	.=" `display_date`='{$display_date}',";
 	$sql	.=" `tag`='{$news_tag}',";
+	$sql	.=" `contents`='{$news_contents}',";
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
 	mysqli_query($mysqli,$sql);
+
+echo $sql;
 
 }elseif($post_id_set){
 	$post_id	=$_POST["post_id_set"];
@@ -102,7 +106,7 @@ if($post_id == "news"){
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
-			$dat[$res["sort"]]=$res;
+			$dat[$res["id"]]=$res;
 		}
 	}
 
@@ -338,7 +342,7 @@ td{
 
 	.event_td_3,.event_td_5{
 		position	:relative;
-		width		:525px;
+		width		:320px;
 		height		:40px;
 		border-right:1px solid #303030;
 	}
@@ -360,7 +364,7 @@ td{
 	.event_td_6{
 		position	:relative;
 		border-right:1px solid #303030;
-		width		:185px;
+		width		:260px;
 	
 	}
 
@@ -370,8 +374,8 @@ td{
 	right			:0;
 	left			:0;
 	bottom			:0;
-	width			:175px;
-	height			:70px;
+	width			:300px;
+	height			:100px;
 	margin			:auto;
 	overflow		:hidden;
 	border			:1px solid #000000;
@@ -582,6 +586,7 @@ $(function(){
 								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 							</td>
 						</tr>
+
 						<tr>
 							<td style="font-size:0;">
 								<span class="news_tag">タグ</span>
@@ -600,9 +605,10 @@ $(function(){
 								<input type="text" name="link_detail" class="news_box" style="border:1px solid #303030;width:185px;" value="<?=$a2["contents_key"]?>"> 
 							</td>
 						</tr>
+
 						<tr>
 							<td>
-								<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
+								<textarea name="news_title" class="news_title"><?=$a2["title"]?></textarea>
 							</td>
 						</tr>
 					</table>
@@ -627,17 +633,20 @@ $(function(){
 		</div>
 		<div class="sub_box"></div>
 
-
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
 
-			<form id="e<?=$a1?>" action="./index.php" method="post">
+			<form id="f<?=$a1?>" action="./index.php" method="post">
+			<input type="hidden" name="post_id" value="event">
+			<input type="hidden" name="menu_post" value="contents">
+			<input type="hidden" name="news_id" value="<?=$a1?>">
+
 			<table class="event_table">
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
-					<td class="event_td_3">
+						<td class="event_td_3">
 						<span class="news_tag">公開日</span>
 						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
 						<span class="news_tag">状態</span>
@@ -646,16 +655,15 @@ $(function(){
 							<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 						</select>
-						<button id="eve<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 					</td>
-					<td class="event_td_6" rowspan="2">
+					<td class="event_td_6" rowspan="3">
 					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
 					<span class="img_large"></span><span class="img_chg"></span>
 					</td>
 				</tr><tr>
 
-					<td rowspan="2"  class="event_td_1">●</td>
-					<td rowspan="2"  class="event_td_2">
+					<td rowspan="3"  class="event_td_1">●</td>
+					<td rowspan="3"  class="event_td_2">
 						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
 					<td  class="event_td_5">
@@ -670,8 +678,11 @@ $(function(){
 					</td>
 
 				</tr><tr>
-					<td  class="event_td_4" colspan="2"><textarea class="event_td_4_in"></textarea></td>
+					<td  class="event_td_5"><span class="news_tag">TITLE</span><input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>"><button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+</td>
 
+				</tr><tr>
+					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
 			</table>
 			</form>
