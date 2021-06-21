@@ -244,21 +244,27 @@ ul {
 
 .slide_img{
 	position	:absolute;
-	display		:inline-flex;
+	display		:block;
 	top			:0;
 	left		:0;
 	right		:0;
-	width		:6000px;
+	width		:1200px;
 	height		:480px;
 	background	:#fafafa;
 	margin		:auto;
 	font-size	:0;
+	overflow		:hidden;
 }
 
 .top_img{
+	position		:absolute;
+	display			:block;
+	top				:0;
+	left			:1200px;
 	width			:1200px;
 	height			:480px;
 }
+
 
 
 .info_box{
@@ -299,12 +305,12 @@ ul {
 
 .slide_point{
 	position		:absolute;
-	display			:inline-flex;
+	display			:flex;
 	justify-content	:space-evenly;
 	bottom			:30px;
 	left			:0;
 	right			:0;
-	width			:290px;
+	width			:1000px;
 	height			:40px;
 	line-height		:40px;
 	background		:#303538;
@@ -589,17 +595,14 @@ ul {
 	font-family		:at_font1;
 }
 
-
 .new_all{
 	position		:absolute;
 	top				:0px;
 	bottom			:0px;
 	right			:10px;
-	font-size		:14px;
+	font-size		:16px;
 	color			:#483800;
 }
-
-
 
 .main_b_1_ribbon{
 	position		:absolute;
@@ -651,6 +654,7 @@ ul {
 	border-bottom	:2px solid #483800;
 	overflow		:hidden;	
 }
+
 
 .main_b_1_0{
 	position		:absolute;

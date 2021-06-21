@@ -92,7 +92,7 @@ if($post_id == "news"){
 }if($post_id == "event"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
-	$sql	.=" AND status=0";
+	$sql	.=" AND status<4";
 	$sql	.=" ORDER BY sort ASC";
 
 	if($result = mysqli_query($mysqli,$sql)){
@@ -342,7 +342,7 @@ td{
 
 	.event_td_3,.event_td_5{
 		position	:relative;
-		width		:320px;
+//		width		:320px;
 		height		:40px;
 		border-right:1px solid #303030;
 	}
@@ -364,30 +364,31 @@ td{
 	.event_td_6{
 		position	:relative;
 		border-right:1px solid #303030;
-		width		:260px;
+		width		:325px;
 	
 	}
 
 .event_img{
 	position		:absolute;
-	top				:0;
-	right			:0;
-	left			:0;
-	bottom			:0;
-	width			:300px;
-	height			:100px;
+	top				:5px;
+	left			:5px;
+//	right			:0;
+//	bottom			:0;
+	width			:275px;
+	height			:110px;
 	margin			:auto;
 	overflow		:hidden;
 	border			:1px solid #000000;
+
 }
 
 .img_chg,.img_large{
 	position		:absolute;
-	top				:6px;
-	right			:8px;
-	width			:24px;
-	height			:24px;
-	line-height		:24px;
+	top				:5px;
+	right			:5px;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
 	background		:rgba(255,255,255,0.5);
 	border			:1px solid #303030;
 	text-align		:center;
@@ -396,32 +397,32 @@ td{
 	font-size		:16px;
 	font-family		:at_icon;
 }
-
+	
 .img_large{
-	right			:35px ;
+	top				:40px ;
 	font-size		:20px;
 }
 
 .event_set_btn{
-	width		:60px;
-	height		:30px;
-	margin		:0 5px;
+	width			:60px;
+	height			:30px;
+	margin			:0 5px;
 }
 
 .box_sort{
-	width		:30px;
-	text-align	:right;
-	padding		:5px;
+	width			:30px;
+	text-align		:right;
+	padding			:5px;
 }
 
 .page_top{
-	margin		:5px auto;
-	width		:780px;
+	margin			:5px auto;
+	width			:780px;
 }
 
 .recuruit_table td{
-	padding		:5px;
-	text-ali	gn	:center;
+	padding			:5px;
+	text-align		:center;
 }
 
 .recuruit_table{
@@ -657,15 +658,16 @@ $(function(){
 						</select>
 					</td>
 					<td class="event_td_6" rowspan="3">
-					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
-					<span class="img_large"></span><span class="img_chg"></span>
+						<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
+						<span class="img_large"></span><span class="img_chg"></span>
 					</td>
-				</tr><tr>
 
+				</tr><tr>
 					<td rowspan="3"  class="event_td_1">●</td>
 					<td rowspan="3"  class="event_td_2">
 						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
+
 					<td  class="event_td_5">
 						<span class="news_tag">リンク</span><select name="news_link" class="w120">
 							<option value="">なし</option>
@@ -678,8 +680,11 @@ $(function(){
 					</td>
 
 				</tr><tr>
-					<td  class="event_td_5"><span class="news_tag">TITLE</span><input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>"><button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
-</td>
+					<td  class="event_td_5">
+						<span class="news_tag">TITLE</span>
+						<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
+						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+					</td>
 
 				</tr><tr>
 					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
@@ -723,25 +728,25 @@ $(function(){
 						</td>
 					</tr>
 
-
 					<tbody id="sort">
-					<?foreach($dat as $a1 => $a2){?>
-						<tr id="tr_<?=$a1?>" class="tr">
-							<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
-							<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
+						<?foreach($dat as $a1 => $a2){?>
+							<tr id="tr_<?=$a1?>" class="tr">
+								<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
+								<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
 
-							<td class="recruit_td3">
-								<input type="text" name="recruit_title[<?=$a2["sort"]?>]" class="recruit_title" value="<?=$a2["title"]?>">
-							</td>
-							</tr><tr>
-							<td class="recruit_td4">
-								<textarea name="recruit_contents[<?=$a2["sort"]?>]" class="recruit_contents"><?=$a2["contents"]?></textarea>
-							</td>
-						</tr>
-					<? } ?>
+								<td class="recruit_td3">
+									<input type="text" name="recruit_title[<?=$a2["sort"]?>]" class="recruit_title" value="<?=$a2["title"]?>">
+								</td>
+								</tr><tr>
+								<td class="recruit_td4">
+									<textarea name="recruit_contents[<?=$a2["sort"]?>]" class="recruit_contents"><?=$a2["contents"]?></textarea>
+								</td>
+							</tr>
+						<? } ?>
 					</tbody>
 				</table>
 			</div>
+
 		<?}else{?>
 			<div class="main_box">
 				<form id="page_set" method="post">

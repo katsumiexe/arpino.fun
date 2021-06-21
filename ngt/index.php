@@ -135,30 +135,17 @@ if($res2 = mysqli_query($mysqli,$sql)){
 		$info_count++;
 	}
 }
-
 include_once('./header.php');
 ?>
 
 <style>
-.slide_img{
-	width		:calc( 1200px * <?=$count_slide?>);
-}
-
-.slide_point{
-	width		:calc( 70px + 30px * <?=$count_slide?>);
-}
-
-@media screen and (max-width: 959px){
-.slide_img{
-	width		:calc( 98vw * <?=$count_slide?>);
-}
-.slide_point{
-	width		:calc( 25vw + 5vw * <?=$count_slide?>);
-}
+#slide_img0{
+	left			:0;
 }
 </style>
+
 <script>
-var Cnt=<?=$count_event?>-1;
+var Cnt=<?=$count_event?>;
 </script>
 <script src="./js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
@@ -168,9 +155,9 @@ var Cnt=<?=$count_event?>-1;
 
 			<?for($n=0;$n<$count_event;$n++){?>
 				<?if($event[$n]["link"]){?>
-					<a href="<?=$event[$n]["link"]?>"><img src="<?=$event[$n]["img"]?>" class="top_img"></a>;
+					<a href="<?=$event[$n]["link"]?>"><img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img"></a>;
 				<?}else{?>	
-					<img src="<?=$event[$n]["img"]?>" class="top_img">;
+					<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img">;
 				<?}?>	
 			<?}?>	
 		</div>
