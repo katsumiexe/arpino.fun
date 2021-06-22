@@ -243,15 +243,10 @@ ul {
 }
 
 .slide_img{
-	position	:absolute;
-	display		:block;
-	top			:0;
-	left		:0;
-	right		:0;
 	width		:1200px;
 	height		:480px;
 	background	:#fafafa;
-	margin		:auto;
+	margin		:5px auto;
 	font-size	:0;
 	overflow		:hidden;
 }
@@ -304,13 +299,8 @@ ul {
 }
 
 .slide_point{
-	position		:absolute;
-	display			:flex;
+	display			:inline-flex;
 	justify-content	:space-evenly;
-	bottom			:30px;
-	left			:0;
-	right			:0;
-	width			:1000px;
 	height			:40px;
 	line-height		:40px;
 	background		:#303538;
@@ -326,8 +316,7 @@ ul {
 	height			:16px;
 	background		:#fafafa;
 	border-radius	:8px;
-	margin-top		:12px;
-	margin-bottom	:12px;
+	margin			:12px 20px;
 }
 
 .dot_on{

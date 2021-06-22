@@ -163,11 +163,11 @@ var Cnt=<?=$count_event?>;
 		</div>
 
 		<?if($count_event >1){?>
-			<div class="slide_point">
+			<span class="slide_point">
 				<?for($n=0;$n<$count_event;$n++){?>
 					<div id="dot<?=$n?>" class="slide_dot<?if($n == 0){?> dot_on<?}?>"></div>
 				<?}?>
-			</div>
+			</span>
 		<?}?>
 	</div>
 <?}?>

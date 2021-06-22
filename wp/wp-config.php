@@ -108,6 +108,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+ini_set('allow_url_fopen', 'off');
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
