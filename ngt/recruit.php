@@ -4,6 +4,7 @@ $sql="SELECT * FROM wp01_0contents WHERE page='recruit' ORDER BY sort ASC";
 
 if($res = mysqli_query($mysqli,$sql)){
 	while($a1= mysqli_fetch_assoc($res)){
+		$a1["contents"]=str_replace("\n","<br>",$a1["contents"]);
 		$recruit[$a1["category"]][$a1["sort"]]=$a1;
 	}
 }
@@ -47,17 +48,19 @@ include_once('./header.php');
 			<span class="sys_box_ttl"><?=$a2["title"]?></span><br>
 			<span class="sys_box_log"><?=$a2["contents"]?></span><br>
 		<?}?>
+
 		<?foreach($recruit["list"] as $a2){?>
 			<div class="rec">
 				<div class="rec_l"><?=$a2["title"]?></div>
 				<div class="rec_r"><?=$a2["contents"]?></div>
 			</div>
 		<?}?>
+
 	</div>
-<div class="corner box_1"></div>
-<div class="corner box_2"></div>
-<div class="corner box_3"></div>
-<div class="corner box_4"></div>
+	<div class="corner box_1"></div>
+	<div class="corner box_2"></div>
+	<div class="corner box_3"></div>
+	<div class="corner box_4"></div>
 </div>
 
 <?if(!$recruit){?>

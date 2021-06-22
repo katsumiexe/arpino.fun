@@ -52,14 +52,14 @@ if($staff_set){
 	$charm_table	=$_POST["charm_table"];
 	$options		=$_POST["options"];
 
-	$img_c		=$_POST["img_c"];
-	$img_w		=$_POST["img_w"];
-	$img_h		=$_POST["img_h"];
-	$img_x		=$_POST["img_x"];
-	$img_y		=$_POST["img_y"];
-	$img_z		=$_POST["img_z"];
-	$img_r		=$_POST["img_r"];
-	$img_v		=$_POST["img_v"];
+	$img_c			=$_POST["img_c"];
+	$img_w			=$_POST["img_w"];
+	$img_h			=$_POST["img_h"];
+	$img_x			=$_POST["img_x"];
+	$img_y			=$_POST["img_y"];
+	$img_z			=$_POST["img_z"];
+	$img_r			=$_POST["img_r"];
+	$img_v			=$_POST["img_v"];
 
 	if(!$staff_registday) $staff_registday=date("Ymd");
 	$btime=str_replace("-","",$b_date);
@@ -108,7 +108,6 @@ if($staff_set){
 			$sql.=" `cast_id`='{$cast_id}',";
 			$sql.=" `cast_pass`='{$cast_pass}',";
 			$sql.=" `cast_mail`='{$cast_mail}',";
-
 			$sql.=" `cast_status`='{$cast_status}',";
 
 			$sql.=" `ctime`='{$ctime}',";
@@ -223,7 +222,6 @@ if($staff_set){
 			$link="../img/profile/".$staff_id;
 //			if($staff_set == 1){
 //				$a3=0;
-
 				foreach($img_c as $a1 => $a2){
 					if($a2){
 /*
@@ -236,7 +234,6 @@ echo "W:".$tmp_width."<br>\n";
 echo "H:".$tmp_height."<br>\n";
 echo "X:".$tmp_left."<br>\n";
 echo "Y:".$tmp_top."<br>\n";
-
 */
 
 						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
@@ -375,8 +372,8 @@ $sel[$menu_post]="menu_sel";
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/admin.css?t=<?=time()?>">
-<style>
 
+<style>
 @font-face {
 	font-family: at_icon;
 	src: url("../font/font_1/fonts/icomoon.ttf") format('truetype');
@@ -403,6 +400,7 @@ $sel[$menu_post]="menu_sel";
 }
 </style>
 </head>
+
 <body class="body">
 <div class="main">
 	<?if($menu_post){?>

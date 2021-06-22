@@ -28,6 +28,8 @@ if($result = mysqli_query($mysqli,$sql)){
 		$dat["sche"]="<span class=\"sche_s\">休み</span>";
 }
 
+
+
 //---------------------------------------------------------------
 $tmp_w=date("w",strtotime($set_date));
 $dat["date"]=substr($set_date,4,2)."月".substr($set_date,6,2)."日[".$week[$tmp_w]."]";

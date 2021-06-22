@@ -17,27 +17,36 @@ $st[4]="削除";
 
 $sel_id			=$_POST["sel_id"];
 $post_id		=$_POST["post_id"];
+
 if(!$post_id) $post_id="event";
+
+if($post_id == "page") $post_id="system";
 
 $news_id		=$_POST["news_id"];
 $page_log		=$_POST["page_log"];
 $post_id_set	=$_POST["post_id_set"];
 
+
 if($news_id){
-	$news_id		=$_POST["news_id"];
 	$news_upd		=$_POST["news_upd"];
-	$news_contents	=$_POST["news_contents"];
+	$news_title		=$_POST["news_title"];
 	$news_tag		=$_POST["news_tag"];
-	$news_date		=$_POST["news_date"]." 00:00:00";
+	$display_date	=$_POST["display_date"]." 00:00:00";
+	$news_date		=$_POST["news_date"];
 	$news_status	=$_POST["news_status"];
+	$news_contents	=$_POST["news_contents"];
 
 	$sql	 ="UPDATE wp01_0contents SET";
-	$sql	.=" `title`='{$news_contents}',";
-	$sql	.=" `display_date`='{$news_date}',";
+	$sql	.=" `title`='{$news_title}',";
+	$sql	.=" `event_date`='{$event_date}',";
+	$sql	.=" `display_date`='{$display_date}',";
 	$sql	.=" `tag`='{$news_tag}',";
+	$sql	.=" `contents`='{$news_contents}',";
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
 	mysqli_query($mysqli,$sql);
+
+echo $sql;
 
 }elseif($post_id_set){
 	$post_id	=$_POST["post_id_set"];
@@ -60,9 +69,9 @@ if($post_id == "news"){
 	$sql	.=" ORDER BY display_date DESC";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			$res["news_date"]	=substr($res["display_date"],0,10);
-			$res["event_date"]	=substr($res["display_date"],0,10);
-			if($res["status"] ==0 && $res["news_date"] > date("Y-m-d")){
+			$res["news_date"]	=substr($res["news_date"],0,10);
+			$res["display_date"]	=substr($res["display_date"],0,10);
+			if($res["status"] ==0 && $res["display_date"] > date("Y-m-d")){
 				$res["status"]=1;
 			}
 			$dat[$res["id"]]=$res;
@@ -83,11 +92,12 @@ if($post_id == "news"){
 }if($post_id == "event"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
-	$sql	.=" AND status=0";
+	$sql	.=" AND status<4";
 	$sql	.=" ORDER BY sort ASC";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
+			$res["display_date"]	=substr($res["display_date"],0,10);
 
 			if (file_exists("../img/page/event/{$res["id"]}.jpg")) {
 				$res["img"]="../img/page/event/{$res["id"]}.jpg";			
@@ -96,11 +106,11 @@ if($post_id == "news"){
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
-			$dat[$res["sort"]]=$res;
+			$dat[$res["id"]]=$res;
 		}
 	}
 
-}elseif($post_id == "recruit"){
+}elseif($post_id == "info"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status=0";
@@ -123,22 +133,25 @@ if($post_id == "news"){
 		}
 	}
 
+
 }else{
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status=0";
-	$sql	.=" ORDER BY sort ASC";
+	$sql	.=" ORDER BY date DESC";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			if($res["category"] == "top"){
 
-				$recruit_title	=$res["title"];
-				$recruit_log	=$res["log"];
+			if($res["category"] == "top"){
+				$recruit_title		=$res["title"];
+				$recruit_contents	=$res["contents"];
+
+			}elseif($res["category"] == "image"){
+				$recruit_img	=$res["contents_key"];
 
 			}else{
 				$dat[$res["sort"]]=$res;
-			
 			}
 		}
 	}
@@ -236,7 +249,7 @@ if($post_id == "news"){
 	padding		:0 10px;
 }
 
-.news_tag_btn{
+.news_tag_btn, .event_tag_btn{
 	width			:65px;
 	background		:#aaaaaa;
 	color			:#ffffff;
@@ -329,7 +342,7 @@ td{
 
 	.event_td_3,.event_td_5{
 		position	:relative;
-		width		:525px;
+//		width		:320px;
 		height		:40px;
 		border-right:1px solid #303030;
 	}
@@ -351,30 +364,31 @@ td{
 	.event_td_6{
 		position	:relative;
 		border-right:1px solid #303030;
-		width		:185px;
+		width		:325px;
 	
 	}
 
 .event_img{
 	position		:absolute;
-	top				:0;
-	right			:0;
-	left			:0;
-	bottom			:0;
-	width			:175px;
-	height			:70px;
+	top				:5px;
+	left			:5px;
+//	right			:0;
+//	bottom			:0;
+	width			:275px;
+	height			:110px;
 	margin			:auto;
 	overflow		:hidden;
 	border			:1px solid #000000;
+
 }
 
 .img_chg,.img_large{
 	position		:absolute;
-	top				:6px;
-	right			:8px;
-	width			:24px;
-	height			:24px;
-	line-height		:24px;
+	top				:5px;
+	right			:5px;
+	width			:30px;
+	height			:30px;
+	line-height		:30px;
 	background		:rgba(255,255,255,0.5);
 	border			:1px solid #303030;
 	text-align		:center;
@@ -383,32 +397,32 @@ td{
 	font-size		:16px;
 	font-family		:at_icon;
 }
-
+	
 .img_large{
-	right			:35px ;
+	top				:40px ;
 	font-size		:20px;
 }
 
 .event_set_btn{
-	width		:60px;
-	height		:30px;
-	margin		:0 5px;
+	width			:60px;
+	height			:30px;
+	margin			:0 5px;
 }
 
 .box_sort{
-	width		:30px;
-	text-align	:right;
-	padding		:5px;
+	width			:30px;
+	text-align		:right;
+	padding			:5px;
 }
 
 .page_top{
-	margin		:5px auto;
-	width		:780px;
+	margin			:5px auto;
+	width			:780px;
 }
 
 .recuruit_table td{
-	padding		:5px;
-	text-ali	gn	:center;
+	padding			:5px;
+	text-align		:center;
 }
 
 .recuruit_table{
@@ -471,6 +485,29 @@ td{
 	padding:1px;
 	vertical-align:top;
 }
+
+.rec_link{
+	resize			:none;
+	width			:715px;
+	height			:130px;
+	padding			:5px;
+	font-size		:16px;
+	line-height		:22px;
+	margin			:5px 0;
+}
+
+.link_tag{
+	display			:inline-block;
+	width			:60px;
+	height			:130px;
+	font-size		:16px;
+	line-height		:30px;
+	text-align		:center;
+	background		:#d0d0ff;	
+	vertical-align	:top;
+	margin			:5px 0;
+}
+
 -->
 </style>
 <script>
@@ -518,10 +555,7 @@ $(function(){
 <div id="event"   class="sel_contents <?if($post_id == "event"){?> sel_ck<?}?>">イベント</div>
 <div id="news"    class="sel_contents <?if($post_id == "news"){?> sel_ck<?}?>">NEWS</div>
 <div id="info"    class="sel_contents <?if($post_id == "info"){?> sel_ck<?}?>">お知らせ</div>
-<div id="system"  class="sel_contents <?if($post_id == "system"){?> sel_ck<?}?>">SYSTEM</div>
-<div id="access"  class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
-<div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
-<div id="policy"  class="sel_contents <?if($post_id == "policy"){?> sel_ck<?}?>">ポリシー</div>
+<div id="page"	  class="sel_contents  <?if($post_id == "system" || $post_id == "access" || $post_id == "recruit" || $post_id == "policy"){?> sel_ck<?}?>">PAGE</div>
 
 <form id="form" method="post">
 	<input id="sel_ck" type="hidden" name="post_id">
@@ -541,8 +575,8 @@ $(function(){
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
 							<td style="font-size:0;">
-								<span class="news_tag">日付</span><input type="date" name="news_date" class="w140 news_box" value="<?=$a2["news_date"]?>" autocomplete="off"> 
-								<span class="news_tag">公開日</span><input type="date" name="news_date" class="w140 news_box" value="<?=$a2["news_date"]?>" autocomplete="off"> 
+								<span class="news_tag">日付</span><input type="date" name="event_date" class="w140 news_box" value="<?=$a2["event_date"]?>" autocomplete="off"> 
+								<span class="news_tag">公開日</span><input type="date" name="display_date" class="w140 news_box" value="<?=$a2["display_date"]?>" autocomplete="off"> 
 								<span class="news_tag">状態</span>
 								<select class="w120 news_box" name="news_status">
 									<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
@@ -553,6 +587,7 @@ $(function(){
 								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 							</td>
 						</tr>
+
 						<tr>
 							<td style="font-size:0;">
 								<span class="news_tag">タグ</span>
@@ -571,16 +606,16 @@ $(function(){
 								<input type="text" name="link_detail" class="news_box" style="border:1px solid #303030;width:185px;" value="<?=$a2["contents_key"]?>"> 
 							</td>
 						</tr>
+
 						<tr>
 							<td>
-								<textarea name="news_contents" class="news_contents"><?=$a2["title"]?></textarea>
+								<textarea name="news_title" class="news_title"><?=$a2["title"]?></textarea>
 							</td>
 						</tr>
 					</table>
 				</form>
 			<?}?>
 		</div>
-
 		<div class="sub_box">
 			<?foreach($tag as $a1 => $a2){?>
 				<input id="rd<?=$a2["id"]?>" type="radio"><label for="rd<?=$a1?>" class="news_tag_label"><?=$a2["tag_name"]?></label><br>
@@ -600,86 +635,39 @@ $(function(){
 		<div class="sub_box"></div>
 
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
-	<?}elseif($post_id == "system" || $post_id == "access" || $post_id == "policy"){?>
-		<div class="main_box">
-			<form id="page_set" method="post">
-				<div class="page_top"><span class="news_tag">Title</span><input type="text" name="page_title" class="w400" value="<?=$dat[0]["title"]?>"><button id="page_set_btn" type="button" class="event_set_btn">変更</button></div>			
-				<textarea class="page_area" name="page_log"><?=$dat[0]["contents"]?></textarea>
-				<div class="page_top"><span class="news_tag">リンク</span><input type="text" name="page_key" class="w400" value="<?=$dat[0]["contents_key"]?>"></div>				
-
-				<input type="hidden" name="post_id_set" value="<?=$post_id?>">
-				<input type="hidden" name="menu_post" value="contents">
-			</form>
-		</div>
-		<div class="sub_box"></div>
-
-<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
-	<?}elseif($post_id == "recruit"){?>
-		<div class="main_box">
-
-			<table class="recuruit_table">
-				<tr>
-					<td colspan="2" rowspan="2" ></td>
-					<td class="recruit_td3">
-						<input type="text" name="recruit_title_top" class="recruit_title" value="<?=$recruit_title?>">
-					</td>
-					</tr><tr>
-					<td class="recruit_td4">
-						<textarea name="recruit_contents_top" class="recruit_contents"><?=$recruit_contents?></textarea>
-					</td>
-				</tr>
-
-
-				<tbody id="sort">
-				<?foreach($dat as $a1 => $a2){?>
-					<tr id="tr_<?=$a1?>" class="tr">
-						<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
-						<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
-
-						<td class="recruit_td3">
-							<input type="text" name="recruit_title[<?=$a2["sort"]?>]" class="recruit_title" value="<?=$a2["title"]?>">
-						</td>
-						</tr><tr>
-						<td class="recruit_td4">
-							<textarea name="recruit_contents[<?=$a2["sort"]?>]" class="recruit_contents"><?=$a2["contents"]?></textarea>
-						</td>
-					</tr>
-				<? } ?>
-				</tbody>
-			</table>
-		</div>
-		<div class="sub_box"></div>
-
-<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
-			<table class="event_table">
 
+			<form id="f<?=$a1?>" action="./index.php" method="post">
+			<input type="hidden" name="post_id" value="event">
+			<input type="hidden" name="menu_post" value="contents">
+			<input type="hidden" name="news_id" value="<?=$a1?>">
+
+			<table class="event_table">
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
-
-					<td class="event_td_3">
+						<td class="event_td_3">
 						<span class="news_tag">公開日</span>
-						<input type="date" name="event_view_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
 						<span class="news_tag">状態</span>
 						<select class="w120 news_box" name="news_status">
 							<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
 							<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 						</select>
-						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 					</td>
-					<td class="event_td_6" rowspan="2">
-					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
-					<span class="img_large"></span><span class="img_chg"></span>
+					<td class="event_td_6" rowspan="3">
+						<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
+						<span class="img_large"></span><span class="img_chg"></span>
 					</td>
-				</tr><tr>
 
-					<td rowspan="2"  class="event_td_1">●</td>
-					<td rowspan="2"  class="event_td_2">
+				</tr><tr>
+					<td rowspan="3"  class="event_td_1">●</td>
+					<td rowspan="3"  class="event_td_2">
 						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
+
 					<td  class="event_td_5">
 						<span class="news_tag">リンク</span><select name="news_link" class="w120">
 							<option value="">なし</option>
@@ -692,10 +680,17 @@ $(function(){
 					</td>
 
 				</tr><tr>
-					<td  class="event_td_4" colspan="2"><textarea class="event_td_4_in"></textarea></td>
+					<td  class="event_td_5">
+						<span class="news_tag">TITLE</span>
+						<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
+						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+					</td>
 
+				</tr><tr>
+					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
 			</table>
+			</form>
 			<? } ?>
 		</div>
 
@@ -716,6 +711,67 @@ $(function(){
 			<? } ?>
 		</div>
 
+
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+	<?}else{?>
+		<?if($post_id == "recruit"){?>
+			<div class="main_box">
+				<table class="recuruit_table">
+					<tr>
+						<td colspan="2" rowspan="2" ></td>
+						<td class="recruit_td3">
+							<input type="text" name="recruit_title_top" class="recruit_title" value="<?=$recruit_title?>">
+						</td>
+						</tr><tr>
+						<td class="recruit_td4">
+							<textarea name="recruit_contents_top" class="recruit_contents"><?=$recruit_contents?></textarea>
+						</td>
+					</tr>
+
+					<tbody id="sort">
+						<?foreach($dat as $a1 => $a2){?>
+							<tr id="tr_<?=$a1?>" class="tr">
+								<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
+								<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
+
+								<td class="recruit_td3">
+									<input type="text" name="recruit_title[<?=$a2["sort"]?>]" class="recruit_title" value="<?=$a2["title"]?>">
+								</td>
+								</tr><tr>
+								<td class="recruit_td4">
+									<textarea name="recruit_contents[<?=$a2["sort"]?>]" class="recruit_contents"><?=$a2["contents"]?></textarea>
+								</td>
+							</tr>
+						<? } ?>
+					</tbody>
+				</table>
+			</div>
+
+		<?}else{?>
+			<div class="main_box">
+				<form id="page_set" method="post">
+					<div class="page_top">
+						<span class="news_tag">TITLE</span>
+						<input type="text" name="page_title" style="width:640px;" value="<?=$dat[0]["title"]?>"><button id="page_set_btn" type="button" class="event_set_btn">変更</button>
+					</div>			
+					<textarea class="page_area" name="page_log"><?=$dat[0]["contents"]?></textarea>
+<?if($post_id =="access"){?>
+					<span class="link_tag">リンク</span>
+					<textarea name="page_key" class="rec_link"><?=$dat[0]["contents_key"]?></textarea>				
+<?}?>
+					<input type="hidden" name="post_id_set" value="<?=$post_id?>">
+					<input type="hidden" name="menu_post" value="contents">
+				</form>
+			</div>
+		<?}?>
+	<div class="sub_box">
+		<div id="system"  class="sel_contents <?if($post_id == "system"){?> sel_ck<?}?>">SYSTEM</div>
+		<div id="access"  class="sel_contents <?if($post_id == "access"){?> sel_ck<?}?>">ACCESS</div>
+		<div id="recruit" class="sel_contents <?if($post_id == "recruit"){?> sel_ck<?}?>">RECRUIT</div>
+		<div id="policy"  class="sel_contents <?if($post_id == "policy"){?> sel_ck<?}?>">ポリシー</div>
+	</div>
+
+<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<? } ?>
 </div>
 <footer class="foot"></footer>

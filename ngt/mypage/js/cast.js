@@ -2442,7 +2442,7 @@ $(function(){
 		Pnt= $(this).scrollTop();
 		Hgt= $('.mail_detail_in').height();
 
-		if(Pnt==<20){
+		if(Pnt<20){
 			Tmp=$('#easytalk_page').val()-0;
 
 			$.post({
