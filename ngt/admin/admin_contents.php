@@ -204,7 +204,7 @@ if($post_id == "news"){
 	width			:60px;
 }
 
-.news_contents{
+.news_title{
 	width		:780px;
 	height		:58px;
 	line-height	:24px;
