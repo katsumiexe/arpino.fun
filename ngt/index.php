@@ -49,8 +49,6 @@ if(is_array($dat)){
 	}
 }
 
-
-
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
 $sql	.=" AND display_date<'{$now}'";
