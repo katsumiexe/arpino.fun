@@ -14,6 +14,12 @@ $st[1]="表示前";
 $st[2]="注目";
 $st[3]="非表示";
 $st[4]="削除";
+$cat[0]="none";
+$cat[1]="self";
+$cat[2]="page";
+$cat[3]="person";
+$cat[4]="outer";
+
 
 $sel_id			=$_POST["sel_id"];
 $post_id		=$_POST["post_id"];
@@ -35,6 +41,9 @@ if($news_id){
 	$news_date		=$_POST["news_date"];
 	$news_status	=$_POST["news_status"];
 	$news_contents	=$_POST["news_contents"];
+	$news_category	=$_POST["news_category"];
+	$news_key		=$_POST["news_key"];
+
 
 	$sql	 ="UPDATE wp01_0contents SET";
 	$sql	.=" `title`='{$news_title}',";
@@ -42,11 +51,12 @@ if($news_id){
 	$sql	.=" `display_date`='{$display_date}',";
 	$sql	.=" `tag`='{$news_tag}',";
 	$sql	.=" `contents`='{$news_contents}',";
+	$sql	.=" `category`='{$news_category}',";
+	$sql	.=" `contents_key`='{$news_key}',";
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
-	mysqli_query($mysqli,$sql);
 
-echo $sql;
+	mysqli_query($mysqli,$sql);
 
 }elseif($post_id_set){
 	$post_id	=$_POST["post_id_set"];
@@ -57,8 +67,6 @@ echo $sql;
 	$sql	 ="INSERT INTO  wp01_0contents (`date`,`page`,`title`,`contents`,`contents_key`)";
 	$sql	.=" VALUES('{$now}','{$post_id}','{$page_title}','{$page_log}','{$page_key}')";
 	mysqli_query($mysqli,$sql);
-echo $sql;
-
 }
 
 
@@ -597,12 +605,15 @@ $(function(){
 									<? } ?>	
 								</select>
 
+
+
 								<span class="news_tag">リンク</span><select name="news_link" class="w140 news_box">
 									<option value="">なし</option>
-									<option value="page" <?if($a2["page"] == "person"){?> selected="selected"<?}?>>ページ</option>
-									<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-									<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-									<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+									<option value="">なし</option>
+									<option value="self"   <?if($a2["category"] == "self"){?> selected="selected"<?}?>>ページ</option>
+									<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+									<option value="page" <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+									<option value="outer"  <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 								</select>
 								<input type="text" name="link_detail" class="news_box" style="border:1px solid #303030;width:185px;" value="<?=$a2["contents_key"]?>"> 
 							</td>
@@ -639,7 +650,6 @@ $(function(){
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
-
 			<form id="f<?=$a1?>" action="./index.php" method="post">
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
@@ -670,14 +680,14 @@ $(function(){
 					</td>
 
 					<td  class="event_td_5">
-						<span class="news_tag">リンク</span><select name="news_link" class="w120">
+						<span class="news_tag">リンク</span><select name="news_category" class="w120">
 							<option value="">なし</option>
-							<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>ページ</option>
-							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-							<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="self"   <?if($a2["category"] == "self"){?> selected="selected"<?}?>>イベント</option>
+							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+							<option value="page" <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 							<option value="outer"  <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
-						<input type="text" name="link_detail" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
+						<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
 
 				</tr><tr>

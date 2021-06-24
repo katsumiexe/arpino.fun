@@ -58,15 +58,18 @@ $sql	.=" LIMIT 6";
 
 if($res0 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res0)){
-		if($a1["category"] == "event"){
+
+		if($a1["category"] == "self"){
 			$a1["link"]="./event.php?code={$a1["id"]}";
 
-		}elseif($a1["contents_key"]>0){
+		}elseif($a1["contents_key"] == "person"){
 			$a1["link"]="./{$a1["category"]}.php?code={$a1["contents_key"]}";
 
 		}elseif($a1["category"]){
 			$a1["link"]=$a1["category"];
 		}
+
+
 
 		if (file_exists("./img/page/event/{$a1["id"]}.webp")) {
 			$a1["img"]="./img/page/event/{$a1["id"]}.webp";
@@ -81,6 +84,7 @@ if($res0 = mysqli_query($mysqli,$sql)){
 		$count_event++;
 	}
 }
+
 
 $sql	 ="SELECT tag_name, tag_icon, date, display_date,event_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
@@ -101,7 +105,7 @@ if($res1 = mysqli_query($mysqli,$sql)){
 			$a1["news_link"]=$a1["contents_key"];
 
 		}elseif($a1["category"] == "event"){
-			$a1["news_link"]="./event.php?post_id={$a1["contents_key"]}";
+			$a1["news_link"]="./event.php?code={$a1["contents_key"]}";
 		}
 		
 		$news[]=$a1;
