@@ -64,9 +64,10 @@ $(function(){
 		console.log(TMP);
 		if(TopCnt != TMP){
 
-			$('.top_img').css({'z-index':'0'});
+			var TmpWidth=$('#slide_img'+TMP).width();
 
-			$('#slide_img'+TMP).css({'z-index':'1'}).animate({'left':'0'},1000);
+			$('#slide_img'+TMP).siblings({'z-index':'0'});
+			$('#slide_img'+TMP).css({'z-index':'1','left':TmpWidth}).animate({'left':'0'},1000);
 
 			$('.slide_dot').removeClass('dot_on');
 			$(this).addClass('dot_on');
