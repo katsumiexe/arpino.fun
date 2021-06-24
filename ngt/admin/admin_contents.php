@@ -139,6 +139,7 @@ if($post_id == "news"){
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status=0";
 	$sql	.=" ORDER BY date DESC";
+	$sql	.=" LIMIT 1";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
@@ -695,20 +696,6 @@ $(function(){
 		</div>
 
 		<div class="sub_box">
-			<?foreach($dat as $a1 => $a2){?>
-				<table>
-					<tr>
-						<Td><?=$a2["display_date"]?></td>
-						<Td></td>
-					</tr>
-					<tr>
-						<td colspan="2"><?=$a2["title"]?></td>
-					</tr>
-					<tr>
-						<td colspan="2"><?=$a2["contents"]?></td>
-					</tr>
-				</table>
-			<? } ?>
 		</div>
 
 

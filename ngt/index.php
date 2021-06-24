@@ -155,9 +155,9 @@ var Cnt=<?=$count_event?>;
 
 			<?for($n=0;$n<$count_event;$n++){?>
 				<?if($event[$n]["link"]){?>
-					<a href="<?=$event[$n]["link"]?>"><img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img"></a>;
+					<a href="<?=$event[$n]["link"]?>"><img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img" alt="<?=$event[$n]["title"]?>"></a>;
 				<?}else{?>	
-					<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img">;
+					<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img" alt="<?=$event[$n]["title"]?>">;
 				<?}?>	
 			<?}?>	
 		</div>

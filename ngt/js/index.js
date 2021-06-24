@@ -63,12 +63,15 @@ $(function(){
 		
 		console.log(TMP);
 		if(TopCnt != TMP){
-			$('#slide_img'+TMP).animate({'left':'0'},1000);
+
+			$('.top_img').css({'z-index':'0'});
+
+			$('#slide_img'+TMP).css({'z-index':'1'}).animate({'left':'0'},1000);
 
 			$('.slide_dot').removeClass('dot_on');
 			$(this).addClass('dot_on');
 
-			var TopCnt=TMP;
+			TopCnt=TMP;
 /*
 			clearInterval(timerId);
 			var timerId = setInterval(Fnc_s,TMR);
