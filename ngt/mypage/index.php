@@ -537,6 +537,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	font-family: at_icon;
 	src: url("../font/font_0/fonts/icomoon.ttf") format('truetype');
 }
+
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="./css/cast.css?t=<?=time()?>">

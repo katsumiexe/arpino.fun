@@ -22,9 +22,9 @@ $(function(){
 			TmpWidth=$('#slide_img0').width();
 
 			if(TopCnt == Cnt-1){
-				NowCnt=0;
+				NewCnt=0;
 			}else{
-				NowCnt=TopCnt+1;
+				NewCnt=TopCnt+1;
 			}
 
 			if(TopCnt == 0){
@@ -41,18 +41,13 @@ $(function(){
 				$('#slide_img'+NewCnt).css({'left':TmpWidth});
 
 			}else{
-				$('#slide_img'+NewCnt).css({'left':ui.position.left});
+				$('#slide_img'+NewCnt).css({'left':ui.position.left+TmpWidth});
 				$('#slide_img'+TopCnt).css({'left':0});
 			}
-/*
-			if($('.dot_on').attr('id').replace('dot','')==0 && ui.position.left>0) ui.position.left = 0;
-			if($('.dot_on').attr('id').replace('dot','')==Cnt && ui.position.left>TopW*Cnt) ui.position.left = TopW*Cnt;
-*/
-	console.log(ui.position.left);
 		},
 
 		stop: function( event, ui ) {
-			if(startPosition - ui.position.left< -100){//■左へ
+			if(ui.position.left< -200){//■左へ
 				$('#slide_img'+NewCnt).animate({'left':0},200);
 				$('.slide_dot').removeClass('dot_on');
 				$('#dot'+NewCnt).addClass('dot_on');
@@ -75,9 +70,11 @@ $(function(){
 						$('#slide_img'+i).css({'left':TopW,'zIndex':'2'});
 					}
 				}
+				$('.slide_img_cv').css({'left':0});
 				timerId = setInterval(Fnc_s,TMR);
 
-			}else if(startPosition - ui.position.left> 100){//■右へ
+			}else if(ui.position.left>200){//■右へ
+
 				$('#slide_img'+TopCnt).animate({'left':TmpWidth},200);
 				$('.slide_dot').removeClass('dot_on');
 				$('#dot'+OldCnt).addClass('dot_on');
@@ -100,7 +97,9 @@ $(function(){
 						$('#slide_img'+i).css({'left':TopW,'zIndex':'2'});
 					}
 				}
+				$('.slide_img_cv').css({'left':0});
 				timerId = setInterval(Fnc_s,TMR);
+
 			}else{
 
 				$('#slide_img'+TopCnt).animate({'left':0},200);

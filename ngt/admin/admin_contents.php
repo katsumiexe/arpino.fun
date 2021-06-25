@@ -650,7 +650,7 @@ $(function(){
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
 			<?foreach($dat as $a1 => $a2){?>
-			<form id="f<?=$a1?>" action="./index.php" method="post">
+			<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="news_id" value="<?=$a1?>">
@@ -706,8 +706,8 @@ $(function(){
 		</div>
 
 		<div class="sub_box">
+			<div>新規作成</div>
 		</div>
-
 
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}else{?>

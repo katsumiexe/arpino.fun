@@ -142,7 +142,14 @@ include_once('./header.php');
 <style>
 #slide_img0{
 	left			:0;
+	z-index			:1;
 }
+
+#slide_img<?=$count_event-1?>{
+	left			:0;
+	z-index			:0;
+}
+
 </style>
 <script>
 var Cnt=<?=$count_event?>;

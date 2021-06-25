@@ -375,6 +375,11 @@ $sel[$menu_post]="menu_sel";
 
 <style>
 @font-face {
+	font-family: at_item;
+	src: url("../font/font_0/fonts/icomoon.ttf") format('truetype');
+}
+
+@font-face {
 	font-family: at_icon;
 	src: url("../font/font_1/fonts/icomoon.ttf") format('truetype');
 }
