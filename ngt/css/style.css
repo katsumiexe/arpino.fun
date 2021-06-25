@@ -242,12 +242,23 @@ ul {
 }
 
 .slide_img{
+	position	:relative;
 	width		:1200px;
 	height		:480px;
 	background	:#fafafa;
 	font-size	:0;
-	overflow		:hidden;
+	overflow	:hidden;
 }
+
+.slide_img_cv{
+	position	:absolute;
+	width		:1200px;
+	height		:480px;
+	opacity		:0.2;
+	z-index		:10;
+	background:#ff0000;
+}
+
 
 .top_img{
 	position		:absolute;
@@ -3016,6 +3027,12 @@ ul {
 	width		:100vw;
 	height		:40vw;
 }
+
+.slide_img_cv{
+	width		:100vw;
+	height		:40vw;
+}
+
 
 .top_img{
 	left		:100vw;

@@ -139,13 +139,11 @@ if($res2 = mysqli_query($mysqli,$sql)){
 }
 include_once('./header.php');
 ?>
-
 <style>
 #slide_img0{
 	left			:0;
 }
 </style>
-
 <script>
 var Cnt=<?=$count_event?>;
 </script>
@@ -154,7 +152,6 @@ var Cnt=<?=$count_event?>;
 <?if($count_event>0){?>
 	<div class="slide">
 		<div class="slide_img">
-
 			<?for($n=0;$n<$count_event;$n++){?>
 				<?if($event[$n]["link"]){?>
 					<a href="<?=$event[$n]["link"]?>"><img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img" alt="<?=$event[$n]["title"]?>"></a>;
@@ -162,6 +159,7 @@ var Cnt=<?=$count_event?>;
 					<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img" alt="<?=$event[$n]["title"]?>">;
 				<?}?>	
 			<?}?>	
+		<div class="slide_img_cv"></div>
 		</div>
 
 		<?if($count_event >1){?>

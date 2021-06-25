@@ -14,49 +14,104 @@ const TMR=4000;
 $(function(){ 
 	timerId = setInterval(Fnc_s,TMR);
 
-/*
-	$('.slide_img').draggable({
+	$('.slide_img_cv').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
 			startPosition = ui.position.left;
+			clearInterval(timerId);
+			TmpWidth=$('#slide_img0').width();
+
+			if(TopCnt == Cnt-1){
+				NowCnt=0;
+			}else{
+				NowCnt=TopCnt+1;
+			}
+
+			if(TopCnt == 0){
+				OldCnt=Cnt-1;
+
+			}else{
+				OldCnt=TopCnt-1;
+			}
 		},
 
-		drag: function( event, ui ) {
+		drag: function( event, ui ){
+			if(ui.position.left>0){
+				$('#slide_img'+TopCnt).css({'left':ui.position.left});
+				$('#slide_img'+NewCnt).css({'left':TmpWidth});
+
+			}else{
+				$('#slide_img'+NewCnt).css({'left':ui.position.left});
+				$('#slide_img'+TopCnt).css({'left':0});
+			}
+/*
 			if($('.dot_on').attr('id').replace('dot','')==0 && ui.position.left>0) ui.position.left = 0;
 			if($('.dot_on').attr('id').replace('dot','')==Cnt && ui.position.left>TopW*Cnt) ui.position.left = TopW*Cnt;
+*/
+	console.log(ui.position.left);
 		},
 
 		stop: function( event, ui ) {
 			if(startPosition - ui.position.left< -100){//■左へ
-				TMP=$('.dot_on').attr('id').replace('dot','')-1;
-				Left=(TMP) * (-100);
-				$('.slide_img').animate({'left':Left+"%"},200);
+				$('#slide_img'+NewCnt).animate({'left':0},200);
 				$('.slide_dot').removeClass('dot_on');
-				$('#dot'+TMP).addClass('dot_on');
-				TopCnt=TMP;
-				clearInterval(timerId);
+				$('#dot'+NewCnt).addClass('dot_on');
+
+				TopCnt=NewCnt;
+				if(TopCnt == 0){
+					OldCnt=Cnt-1;
+				}else{
+					OldCnt=TopCnt-1;
+				}
+
+				for(var i=0;i<Cnt;i++){
+					if(i == OldCnt){
+						$('#slide_img'+i).css({'left':'0','zIndex':'0'});
+
+					}else if(i == TopCnt){
+						$('#slide_img'+i).css({'zIndex':'1'});
+
+					}else{
+						$('#slide_img'+i).css({'left':TopW,'zIndex':'2'});
+					}
+				}
 				timerId = setInterval(Fnc_s,TMR);
 
 			}else if(startPosition - ui.position.left> 100){//■右へ
-				TMP=$('.dot_on').attr('id').replace('dot','')-0+1;
-				Left=(TMP) * (-100);
-				$('.slide_img').animate({'left':Left+"%"},200);
+				$('#slide_img'+TopCnt).animate({'left':TmpWidth},200);
 				$('.slide_dot').removeClass('dot_on');
-				$('#dot'+TMP).addClass('dot_on');
-				TopCnt=TMP;
-				clearInterval(timerId);
-				timerId = setInterval(Fnc_s,TMR);
+				$('#dot'+OldCnt).addClass('dot_on');
 
+				TopCnt=OldCnt;
+				if(TopCnt == 0){
+					OldCnt=Cnt-1;
+				}else{
+					OldCnt=TopCnt-1;
+				}
+
+				for(var i=0;i<Cnt;i++){
+					if(i == OldCnt){
+						$('#slide_img'+i).css({'left':'0','zIndex':'0'});
+
+					}else if(i == TopCnt){
+						$('#slide_img'+i).css({'zIndex':'1'});
+
+					}else{
+						$('#slide_img'+i).css({'left':TopW,'zIndex':'2'});
+					}
+				}
+				timerId = setInterval(Fnc_s,TMR);
 			}else{
-				TMP=$('.dot_on').attr('id').replace('dot','');
-				Left=TMP * (-100);
-				$('.slide_img').animate({'left':Left+"%"},200);
-				clearInterval(timerId);
-				setInterval(timerId,TMR);
+
+				$('#slide_img'+TopCnt).animate({'left':0},200);
+				$('#slide_img'+NewCnt).animate({'left':TmpWidth},200);
+				$('.slide_img_cv').css({'left':0});
+
+				timerId = setInterval(Fnc_s,TMR);
 			}
 		}
-	})
-*/
+	});
+
 
 	$('.slide_dot').on('click',function () {
 		var TMP=$(this).attr('id').replace('dot','');
@@ -64,53 +119,42 @@ $(function(){
 		$('.slide_dot').removeClass('dot_on');
 		$(this).addClass('dot_on');
 
-		console.log(TMP);
-		console.log(TopCnt);
-
-
-
 		if(TopCnt != TMP){
 			var TmpWidth=$('#slide_img'+TMP).width();
 
-/*
 			$.when(
-				$('#slide_img'+TopCnt).css({'z-index':'0','left':'0'}),
-				$('#slide_img'+TopCnt).siblings().css({'z-index':'10','left':TmpWidth}),
-
-		console.log($('#slide_img0').css('z-index') +"　"+ $('#slide_img0').css('left')),
-		console.log($('#slide_img1').css('z-index') +"　"+ $('#slide_img1').css('left')),
-		console.log($('#slide_img2').css('z-index') +"　"+ $('#slide_img2').css('left'))
-
+				$('#slide_img'+TMP).css({'left':TmpWidth,'z-index':'2'}).stop(true,true).delay(0).animate({'left':'0'},1000)
 			).done(function() {
-				$('#slide_img'+TMP);
 
+				if(TMP == 0){
+					OldCnt=Cnt-1;
+				}else{
+					OldCnt=TMP-1;
+				}
+
+				for(var i=0;i<Cnt;i++){
+
+					if(i == OldCnt){
+						$('#slide_img'+i).css({'left':'0','zIndex':'0'});
+
+					}else if(i == TMP){
+						$('#slide_img'+i).css({'zIndex':'1'});
+
+					}else{
+						$('#slide_img'+i).css({'left':TopW,'zIndex':'2'});
+					}
+
+				}
 				TopCnt=TMP;
 				clearInterval(timerId);
 				timerId = setInterval(Fnc_s,TMR);
 			});
-*/
-
-		$('#slide_img'+TopCnt).css({'z-index':'0','left':'0'});
-		$('#slide_img'+TopCnt).siblings().css({'z-index':'1','left':TmpWidth});
-//		$('#slide_img'+TMP).stop(true,true).delay(0).animate({'left':'0'},1000);
-
-
-			TopCnt=TMP;
-			clearInterval(timerId);
-			timerId = setInterval(Fnc_s,TMR);
-
-
-		console.log($('#slide_img0').css('z-index') +"　"+ $('#slide_img0').css('left'));
-		console.log($('#slide_img1').css('z-index') +"　"+ $('#slide_img1').css('left'));
-		console.log($('#slide_img2').css('z-index') +"　"+ $('#slide_img2').css('left'));
-
-
 		}
 	});
 });
 
 
-var Zindex=0;
+var zIndex=0;
 function Fnc_s(){
 	NowCnt=TopCnt;
 	TopCnt++;
@@ -118,35 +162,19 @@ function Fnc_s(){
 		TopCnt=0;
 	}
 
-/*
-	$('#slide_img'+NowCnt).siblings().css({'left':'1200px','z-index':'2'});
-	$('#slide_img'+NowCnt).css('z-index','1');
-	$('#slide_img'+TopCnt).animate({'left':'0'},1000);
-*/
-
-
-//console.log(NowCnt);
-//console.log(TopCnt);
-
 	for(var i=0;i<Cnt;i++){
 		if(i == NowCnt){
-			$('#slide_img'+i).css({'left':'0','z-index':'0'});
+			$('#slide_img'+i).css({'left':'0','zIndex':'0'});
 
 		}else if(i == TopCnt){
-			$('#slide_img'+i).stop(true,true).animate({'left':'0'},1000);
+			$('#slide_img'+i).stop(true,true).animate({'left':'0','zIndex':'1'},1000);
 
 		}else{
-			$('#slide_img'+i).css({'left':TopW,'z-index':'1'});
+			$('#slide_img'+i).css({'left':TopW,'zIndex':'2'});
 		}
 	}
 
 	$('.slide_dot').removeClass('dot_on');
 	$('#dot'+TopCnt).addClass('dot_on');
-
-/*
-	console.log($('#slide_img0').css('left'));
-	console.log($('#slide_img1').css('left'));
-	console.log($('#slide_img2').css('left'));
-*/
 }
 
