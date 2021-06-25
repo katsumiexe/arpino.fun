@@ -69,8 +69,6 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$a1["link"]=$a1["category"];
 		}
 
-
-
 		if (file_exists("./img/page/event/{$a1["id"]}.webp")) {
 			$a1["img"]="./img/page/event/{$a1["id"]}.webp";
 
@@ -154,19 +152,16 @@ include_once('./header.php');
 <script>
 var Cnt=<?=$count_event?>;
 </script>
+<form method="get" action=""></form>
 <script src="./js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
 <?if($count_event>0){?>
 	<div class="slide">
 		<div class="slide_img">
 			<?for($n=0;$n<$count_event;$n++){?>
-				<?if($event[$n]["link"]){?>
-					<a href="<?=$event[$n]["link"]?>"><img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img" alt="<?=$event[$n]["title"]?>"></a>;
-				<?}else{?>	
-					<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" class="top_img" alt="<?=$event[$n]["title"]?>">;
-				<?}?>	
+				<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" s_link="<?=$event[$n]["link"]?>" class="top_img" alt="<?=$event[$n]["title"]?>">;
 			<?}?>	
-		<div class="slide_img_cv"></div>
+			<div class="slide_img_cv"></div>
 		</div>
 
 		<?if($count_event >1){?>

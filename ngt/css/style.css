@@ -2500,6 +2500,54 @@ ul {
 	margin:5px;
 }
 
+
+.contact_box{
+	display	:flex;
+	width	:750px;
+	margin	:5px auto;
+}
+
+.recruit_contact{
+	flex-basis	:210px;
+	margin		:20px;
+	height		:50px;
+	position	:relative;
+	background:#fa00d0;
+}
+
+.contact_icon{
+	position	:absolute;
+	display:inline-block;
+	top			:0;
+	bottom		:0;
+	left		:10px;
+	margin		:auto;
+	width		:40px;
+	line-height	:36px;
+	height		:36px;
+	font-size	:30px;
+	text-align	:center;
+	font-family	:at_icon;	
+}
+
+.contact_comm{
+	position	:absolute;
+	display:inline-block;
+	top			:0;
+	bottom		:0;
+	right		:10px;
+	margin		:auto;
+	width		:150px;
+	height		:36px;
+	line-height	:36px;
+	font-size	:24px;
+	text-align	:left;
+	font-weight	:700;
+}
+
+
+
+
 @media screen and (max-width: 959px){
 .pc_only{
 	display		:none;

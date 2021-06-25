@@ -604,9 +604,6 @@ $(function(){
 									<?foreach($tag as $b1 => $b2){?><option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
 									<? } ?>	
 								</select>
-
-
-
 								<span class="news_tag">リンク</span><select name="news_link" class="w140 news_box">
 									<option value="">なし</option>
 									<option value="">なし</option>
@@ -668,6 +665,7 @@ $(function(){
 							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 						</select>
 					</td>
+
 					<td class="event_td_6" rowspan="3">
 						<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
 						<span class="img_large"></span><span class="img_chg"></span>
@@ -682,10 +680,10 @@ $(function(){
 					<td  class="event_td_5">
 						<span class="news_tag">リンク</span><select name="news_category" class="w120">
 							<option value="">なし</option>
-							<option value="self"   <?if($a2["category"] == "self"){?> selected="selected"<?}?>>イベント</option>
+							<option value="self"    <?if($a2["category"] == "self"){?> selected="selected"<?}?>>イベント</option>
 							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-							<option value="page" <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-							<option value="outer"  <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
 						<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
@@ -701,6 +699,7 @@ $(function(){
 					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
 			</table>
+			<input id="upd<?=$a1?>" type="file" style="display:none;">
 			</form>
 			<? } ?>
 		</div>
@@ -743,7 +742,6 @@ $(function(){
 					</tbody>
 				</table>
 			</div>
-
 		<?}else{?>
 			<div class="main_box">
 				<form id="page_set" method="post">
