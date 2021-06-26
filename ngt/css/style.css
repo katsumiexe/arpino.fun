@@ -278,6 +278,7 @@ ul {
 	border-radius	:10px;
 	text-align		:center;
 	border			:2px solid #c8b880;
+	padding			:0 20px;
 }
 
 .slide_dot{
@@ -1994,7 +1995,7 @@ ul {
 	margin:0 auto;
 	display		:flex;
 	width		:900px;
-	border		:1px solid #303030;
+	border		:1px solid #a89860;
 }
 
 .rec_img{
@@ -2006,9 +2007,8 @@ ul {
 	display		:inline-block;
 	text-align	:left;
 	flex-basis	:200px;
-	background	:#c8b880;
-	background	:#d0d0d0;
-	color		:#202020;
+	background	:#e8d8a0;
+	color		:#302000;
 	font-size	:18px;
 	padding		:10px;
 	line-height	:30px;
@@ -2019,8 +2019,7 @@ ul {
 	display		:inline-block;
 	text-align	:left;
 	flex		:1;
-	background	:#fafafa;
-	color		:#202020;
+	color		:#c8b880;
 	font-size	:18px;
 	padding		:10px;
 	line-height	:30px;
@@ -3089,11 +3088,11 @@ ul {
 
 .slide_point{
 	bottom			:3vw;
-	width			:50vw;
 	height			:8vw;
 	line-height		:8vw;
 	border-radius	:2vw;
 	border			:0.5vw solid #c8b880;
+	padding			:0 2.5vw;
 }
 
 .slide_dot{
@@ -3101,6 +3100,7 @@ ul {
 	height			:3vw;
 	border-radius	:1.5vw;
 	margin			:2.5vw;
+
 }
 
 .dot_on{

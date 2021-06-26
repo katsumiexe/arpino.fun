@@ -180,6 +180,7 @@ if($post_id == "news"){
 			if($res["category"] == "top"){
 				$recruit_title		=$res["title"];
 				$recruit_contents	=$res["contents"];
+				$recruit_id			=$res["id"];
 
 			}elseif($res["category"] == "image"){
 				$recruit_img	=$res["contents_key"];
@@ -399,7 +400,7 @@ td{
 	.event_td_6{
 		position	:relative;
 		border-right:1px solid #303030;
-		width		:325px;
+		width		:290px;
 	
 	}
 
@@ -456,21 +457,14 @@ td{
 }
 
 .recuruit_table td{
-	padding			:5px;
-	text-align		:center;
+	padding			:3px;
 }
 
 .recuruit_table{
 	border			:1px solid #303030;
-	margin			:0 auoto;
-	border-collapse	:separate;
-	border-spacing	:0 5px;;
+	margin			:0 auto;
+	border-collapse	:collapse;
 	background		:#fafafa;
-}
-
-.recuruit_table td{
-	padding		:3px;
-	text-align	:"center";
 }
 
 .recruit_contents{
@@ -480,9 +474,11 @@ td{
 }
 
 .recruit_title{
-	width:500px;
+	width:470px;
 	background	:#e6e6fa;
 	border		:1px solid #e6e6fa;
+	margin-right:10px;
+	padding-left:10px;
 }
 
 .recruit_tr{
@@ -505,6 +501,7 @@ td{
 	width		:700px;
 	text-align	:left;
 	background	:#d0d0ff ;
+	font-size	:0px;
 }
 
 .recruit_td4{
@@ -562,7 +559,7 @@ $(function(){
 		}
 	});
 
-	$('.news_tag_btn').on('click',function(){
+	$('.news_tag_btn,.event_set_btn').on('click',function(){
 		Tmp	=$(this).attr('id').substr(0,3);
 		Tmp2=$(this).attr('id').substr(3);
 		$('#upd'+Tmp2).val(Tmp);
@@ -632,7 +629,6 @@ $(function(){
 								</select>
 								<span class="news_tag">リンク</span><select name="news_link" class="w140 news_box">
 									<option value="">なし</option>
-									<option value="">なし</option>
 									<option value="self"   <?if($a2["category"] == "self"){?> selected="selected"<?}?>>ページ</option>
 									<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 									<option value="page" <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
@@ -684,12 +680,16 @@ $(function(){
 						<td class="event_td_3">
 						<span class="news_tag">公開日</span>
 						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
-						<span class="news_tag">状態</span>
+<!--						<span class="news_tag">状態</span>
 						<select class="w120 news_box" name="news_status">
 							<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
 							<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 						</select>
+-->
+							<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
+							<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
+							<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
 					</td>
 
 					<td class="event_td_6" rowspan="3">
@@ -704,9 +704,9 @@ $(function(){
 					</td>
 
 					<td  class="event_td_5">
-						<span class="news_tag">リンク</span><select name="news_category" class="w120">
+						<span class="news_tag">リンク</span><select name="news_category" class="w140">
 							<option value="">なし</option>
-							<option value="self"    <?if($a2["category"] == "self"){?> selected="selected"<?}?>>イベント</option>
+							<option value="self"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
@@ -718,7 +718,6 @@ $(function(){
 					<td  class="event_td_5">
 						<span class="news_tag">TITLE</span>
 						<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
-						<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
 					</td>
 
 				</tr><tr>
@@ -739,31 +738,49 @@ $(function(){
 		<?if($post_id == "recruit"){?>
 			<div class="main_box">
 				<table class="recuruit_table">
+					<form id="f<?=$recruit_id?>" action="./index.php" method="post" multipart/form-data>
+					<input type="hidden" name="post_id" value="recruit">
+					<input type="hidden" name="menu_post" value="contents">
+					<input type="hidden" name="news_id" value="<?=$a1?>">
+					<input type="hidden" name="news_category" value="top">
 					<tr>
 						<td colspan="2" rowspan="2" ></td>
 						<td class="recruit_td3">
-							<input type="text" name="recruit_title_top" class="recruit_title" value="<?=$recruit_title?>">
+							<input type="text" name="news_title" class="recruit_title" value="<?=$recruit_title?>">
+							<button id="cov<?=$recruit_id?>" type="button" class="event_set_btn">非表示</button>
+							<button id="chg<?=$recruit_id?>" type="button" class="event_set_btn">更新</button>
+							<button id="del<?=$recruit_id?>" type="button" class="event_set_btn">削除</button>
 						</td>
 						</tr><tr>
 						<td class="recruit_td4">
-							<textarea name="recruit_contents_top" class="recruit_contents"><?=$recruit_contents?></textarea>
+							<textarea name="news_contents" class="recruit_contents"><?=$recruit_contents?></textarea>
 						</td>
 					</tr>
-
+					</form>
 					<tbody id="sort">
-						<?foreach($dat["list"] as $a1 => $a2){?>
-							<tr id="tr_<?=$a1?>" class="tr">
-								<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
-								<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
+						<?foreach($dat as $a1 => $a2){?>
+							<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
+								<input type="hidden" name="post_id" value="recruit">
+								<input type="hidden" name="menu_post" value="contents">
+								<input type="hidden" name="news_id" value="<?=$a1?>">
+								<input type="hidden" name="news_category" value="list">
 
-								<td class="recruit_td3">
-									<input type="text" name="recruit_title[<?=$a2["sort"]?>]" class="recruit_title" value="<?=$a2["title"]?>">
-								</td>
-								</tr><tr>
-								<td class="recruit_td4">
-									<textarea name="recruit_contents[<?=$a2["sort"]?>]" class="recruit_contents"><?=$a2["contents"]?></textarea>
-								</td>
-							</tr>
+								<tr id="tr_<?=$a1?>" class="tr">
+									<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
+									<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
+
+									<td class="recruit_td3">
+										<input type="text" name="news_title" class="recruit_title" value="<?=$a2["title"]?>">
+										<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
+										<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
+										<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
+									</td>
+									</tr><tr>
+									<td class="recruit_td4">
+										<textarea name="news_contents" class="recruit_contents"><?=$a2["contents"]?></textarea>
+									</td>
+								</tr>
+							</form>
 						<? } ?>
 					</tbody>
 				</table>
