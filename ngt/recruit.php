@@ -8,7 +8,7 @@ if($res = mysqli_query($mysqli,$sql)){
 		$recruit[$a1["category"]][$a1["sort"]]=$a1;
 	}
 }
-
+/*
 if($recruit["contact"][0]){
 	$sql="SELECT * FROM wp01_0contact_table;
 	WHERE type='{$recruit["contents_key"][0]}' ORDER BY sort ASC";
@@ -17,6 +17,7 @@ if($recruit["contact"][0]){
 		}
 	}
 }
+*/
 
 include_once('./header.php');
 ?>

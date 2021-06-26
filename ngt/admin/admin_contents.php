@@ -137,10 +137,35 @@ if($post_id == "news"){
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
-			$dat[$res["sort"]]=$res;
+			$dat[$res["category"]][$res["sort"]]=$res;
 		}
 	}
 
+
+}elseif($post_id == "recruit"){
+	$sql	 ="SELECT * FROM wp01_0contents";
+	$sql	.=" WHERE page='{$post_id}'";
+	$sql	.=" AND status=0";
+	$sql	.=" ORDER BY sort ASC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		while($res = mysqli_fetch_assoc($result)){
+
+			if($res["category"] == "top"){
+				$recruit_title		=$res["title"];
+				$recruit_contents	=$res["contents"];
+
+			}elseif($res["category"] == "image"){
+				$recruit_img	=$res["contents_key"];
+
+			}elseif($res["category"] == "list"){
+				$dat[$res["id"]]=$res;
+
+			}else{
+				$contact[$res["category"]]=$res["contents_key"];
+			}
+		}
+	}
 
 }else{
 	$sql	 ="SELECT * FROM wp01_0contents";
@@ -165,6 +190,7 @@ if($post_id == "news"){
 		}
 	}
 }
+
 
 ?>
 <style>
@@ -725,7 +751,7 @@ $(function(){
 					</tr>
 
 					<tbody id="sort">
-						<?foreach($dat as $a1 => $a2){?>
+						<?foreach($dat["list"] as $a1 => $a2){?>
 							<tr id="tr_<?=$a1?>" class="tr">
 								<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
 								<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
