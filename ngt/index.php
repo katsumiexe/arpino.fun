@@ -59,11 +59,14 @@ $sql	.=" LIMIT 6";
 if($res0 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res0)){
 
-		if($a1["category"] == "self"){
-			$a1["link"]="./event.php?code={$a1["id"]}";
+		if($a1["category"] == "event"){
+			$a1["link"]="./event.php";
+			$a1["code"]=$a1["id"];
 
 		}elseif($a1["contents_key"] == "person"){
-			$a1["link"]="./{$a1["category"]}.php?code={$a1["contents_key"]}";
+			$a1["link"]="./event.php";
+			$a1["code"]=$a1["contents_key"];
+
 
 		}elseif($a1["category"]){
 			$a1["link"]=$a1["category"];
@@ -152,14 +155,16 @@ include_once('./header.php');
 <script>
 var Cnt=<?=$count_event?>;
 </script>
-<form method="get" action=""></form>
+<form id="form_1" method="get" action="">
+<input id="s_code" type="hidden" name="code">
+</form>
 <script src="./js/index.js?t=<?=time()?>"></script>
 <div class="main_top">
 <?if($count_event>0){?>
 	<div class="slide">
 		<div class="slide_img">
 			<?for($n=0;$n<$count_event;$n++){?>
-				<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" s_link="<?=$event[$n]["link"]?>" class="top_img" alt="<?=$event[$n]["title"]?>">;
+				<img id="slide_img<?=$n?>" src="<?=$event[$n]["img"]?>" s_link="<?=$event[$n]["link"]?>" s_code="<?=$event[$n]["code"]?>" class="top_img" alt="<?=$event[$n]["title"]?>">;
 			<?}?>	
 			<div class="slide_img_cv"></div>
 		</div>

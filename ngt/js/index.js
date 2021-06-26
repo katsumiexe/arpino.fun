@@ -14,9 +14,20 @@ const TMR=6000;
 $(function(){ 
 	timerId = setInterval(Fnc_s,TMR);
 
+	$('.slide_img_cv').on('click',function () {
+		console.log($('#slide_img'+TopCnt).attr('s_link'));
+		if($('#slide_img'+TopCnt).attr('s_link')){
+
+			$('#s_code').val($('#slide_img'+TopCnt).attr('s_code'));
+			$('#form_1').attr('action',$('#slide_img'+TopCnt).attr('s_link')).submit();
+
+		}
+	});
+
 	$('.slide_img_cv').draggable({
 		axis: 'x',
 		start: function( event, ui ) {
+
 			startPosition = ui.position.left;
 			clearInterval(timerId);
 			TmpWidth=$('#slide_img0').width();
@@ -154,11 +165,6 @@ $(function(){
 		}
 	});
 
-	$('.slid_img_cv').on('click',function () {
-		if($('#slide_img'+TopCnt).attr('s_link')){
-			$('#form_1').attr('action',$('#slide_img'+TopCnt).attr('s_link')).submit();
-		}
-	});
 });
 
 
