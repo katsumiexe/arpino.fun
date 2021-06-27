@@ -699,19 +699,16 @@ $(function(){
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="news_id" value="new">
 			<tr>
-				<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
+				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
 					<td class="event_td_3">
 					<span class="news_tag">公開日</span>
-					<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
-
-					<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
-					<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
-					<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
+					<input type="date" name="display_date" class="w140" value="<?=$display_date?>" autocomplete="off">
+					<button id="reg<?=$a1?>" type="button" class="event_set_btn">登録</button>
 				</td>
 
 				<td class="event_td_6" rowspan="3">
-					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
-					<span class="img_large"></span><span class="img_chg"></span>
+					<span class="event_img"><img src="../img/event_no_image.png" style="width:100%;"></span>
+					<span class="img_large"></span>
 				</td>
 
 			</tr><tr>
