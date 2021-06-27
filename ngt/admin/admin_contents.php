@@ -362,17 +362,20 @@ td{
 	}
 
 	.event_td_1{
-		background	:#a06000;
-		color		:#fafafa;
+		border		:1px solid #303030;
+		background	:#ffd090;
+		color		:#a04000;
 		width		:40px;
 		text-align	:center;
-		font-size	:16px;
+		font-size	:30px;
+		font-family	:at_item;
 	}
 
 	.event_td_2{
 		width		:40px;
 		text-align	:center;
-		border-right:1px solid #303030;
+		border		:1px solid #303030;
+		background	:#fafafa;
 	}
 
 
@@ -471,6 +474,7 @@ td{
 	resize		:none;
 	width		:700px;
 	height		:100px;
+	margin		:5px auto;
 }
 
 .recruit_title{
@@ -486,12 +490,14 @@ td{
 }
 
 .recruit_td1{
-	border:1px solid #303030;
+	border		:1px solid #303030;
 	width		:30px;
+	text-align	:center;
+
 }
 
 .recruit_td2{
-	border:1px solid #303030;
+	border		:1px solid #303030;
 	width		:30px;
 	text-align	:center;
 }
@@ -502,6 +508,7 @@ td{
 	text-align	:left;
 	background	:#d0d0ff ;
 	font-size	:0px;
+	height		:150px;
 }
 
 .recruit_td4{
@@ -581,6 +588,23 @@ $(function(){
 			}
 		}
 	});
+
+
+	$('#sort').sortable({
+		axis: 'y',
+        handle: '.event_td_1',
+
+		stop : function(){
+			var Cnt = 1;
+			$(this).children('.tr').each(function(){
+				$(this).children('.config_prof_sort').children('.prof_sort').val(Cnt);
+				Cnt++;
+			});
+		},
+	});
+
+
+
 });
 </script>
 <header class="head">
@@ -698,7 +722,7 @@ $(function(){
 					</td>
 
 				</tr><tr>
-					<td rowspan="3"  class="event_td_1">●</td>
+					<td rowspan="3"  class="event_td_1"></td>
 					<td rowspan="3"  class="event_td_2">
 						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
@@ -744,47 +768,42 @@ $(function(){
 					<input type="hidden" name="news_id" value="<?=$a1?>">
 					<input type="hidden" name="news_category" value="top">
 					<tr>
-						<td colspan="2" rowspan="2" ></td>
+						<td colspan="2" style="width:60px;"></td>
 						<td class="recruit_td3">
 							<input type="text" name="news_title" class="recruit_title" value="<?=$recruit_title?>">
 							<button id="cov<?=$recruit_id?>" type="button" class="event_set_btn">非表示</button>
 							<button id="chg<?=$recruit_id?>" type="button" class="event_set_btn">更新</button>
 							<button id="del<?=$recruit_id?>" type="button" class="event_set_btn">削除</button>
-						</td>
-						</tr><tr>
-						<td class="recruit_td4">
 							<textarea name="news_contents" class="recruit_contents"><?=$recruit_contents?></textarea>
 						</td>
 					</tr>
 					</form>
 					<tbody id="sort">
 						<?foreach($dat as $a1 => $a2){?>
-							<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
-								<input type="hidden" name="post_id" value="recruit">
-								<input type="hidden" name="menu_post" value="contents">
-								<input type="hidden" name="news_id" value="<?=$a1?>">
-								<input type="hidden" name="news_category" value="list">
+							<tr id="tr_<?=$a1?>" class="tr">
+								<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
+									<input type="hidden" name="post_id" value="recruit">
+									<input type="hidden" name="menu_post" value="contents">
+									<input type="hidden" name="news_id" value="<?=$a1?>">
+									<input type="hidden" name="news_category" value="list">
 
-								<tr id="tr_<?=$a1?>" class="tr">
-									<td class="recruit_td1" rowspan="2" style="width:40px;">■</td>
-									<td class="recruit_td2" rowspan="2"><?=$a2["sort"]?></td>
+									<td class="event_td_1"></td>
+									<td class="event_td_2"><?=$a2["sort"]?></td>
 
 									<td class="recruit_td3">
 										<input type="text" name="news_title" class="recruit_title" value="<?=$a2["title"]?>">
 										<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
 										<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
 										<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
-									</td>
-									</tr><tr>
-									<td class="recruit_td4">
 										<textarea name="news_contents" class="recruit_contents"><?=$a2["contents"]?></textarea>
 									</td>
-								</tr>
-							</form>
+								</form>
+							</tr>
 						<? } ?>
 					</tbody>
 				</table>
 			</div>
+
 		<?}else{?>
 			<div class="main_box">
 				<form id="page_set" method="post">

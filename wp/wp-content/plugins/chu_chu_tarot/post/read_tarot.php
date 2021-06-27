@@ -20,7 +20,6 @@ $apps	 .="(tarot_id='{$tarot_id[$n]}' && n_r='{$n_r[$n]}' && result='{$n}')OR";
 $apps=substr($apps,0,-2);
 
 
-
 $sql	 ="SELECT sort, oracle_name FROM zz_tarot_oracle";
 $sql	 .=" WHERE oracle_id='{$gp}'";
 $sql0 = $wpdb->get_results($sql,ARRAY_A);
@@ -35,7 +34,7 @@ $sql	 .= $apps;
 $sql	 .=" )";
 
 $sql1 = $wpdb->get_results($sql,ARRAY_A);
-//echo $sql;
+echo $sql;
 
 foreach($sql1 as $a1){
 	$dat[$a1["result"]]=str_replace("\n","<br>",$a1["tarot_log"]);
