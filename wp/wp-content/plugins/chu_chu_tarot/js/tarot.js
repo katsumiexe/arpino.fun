@@ -57,12 +57,15 @@ $(function(){
 		var i2	=i % 7;
 		Tmp[i]	= Math.floor(Math.random() * cd_cnt[i2]);
 		Rt[i]	= Math.floor(Math.random() * 250);
+if(Nr == 0){
+		Sei[i]	=1;
+}else{
 		Sei[i]	=Math.floor(Math.random() * 2);
-
+}
 		Tmp_X=cd_x[i2][Tmp[i]];			
 		Tmp_Y=cd_y[i2][Tmp[i]];
 		TmpImg=
-		Tmp_i='url("../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_'+Cd[i]+'.jpg")';
+		Tmp_i='url("../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_'+Cd[i]+'.png")';
 		$('#c'+i).css({'top':Tmp_Y,'left':Tmp_X,'transform':'rotate('+Rt[i]+'deg)'});
 		$('#b'+i).css({'background-image':Tmp_i,'transform':'rotateY(180deg) '+S_G[Sei[i]]});
 	}

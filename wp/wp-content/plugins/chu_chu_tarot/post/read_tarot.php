@@ -74,7 +74,7 @@ for($s=0;$s<$group["oracle"];$s++){
 //$html.=$sql;
 
 for($n=0;$n<$group["oracle"];$n++){
-$html.="<div class=\"chu_ans\"><img id=\"img-{$n}\" src=\"../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_{$tarot_id[$n]}.jpg\" class=\"chu_ans_img {$rev[$n_r[$n]]}\">";
+$html.="<div class=\"chu_ans\"><img id=\"img-{$n}\" src=\"../../../../wp/wp-content/plugins/chu_chu_tarot/img/cardimg_{$tarot_id[$n]}.png\" class=\"chu_ans_img {$rev[$n_r[$n]]}\">";
 $html.="<div class=\"chu_ans_ttl\"><span id=\"name_j-{$n}\">{$dat2[$tarot_id[$n]]["name_j"]}</span>/<span id=\"name_e-{$n}\">{$dat2[$tarot_id[$n]]["name_e"]}</span></div>";
 $html.="<div class=\"chu_ans_msg\"><span id=\"mean-{$n}\">{$mean[$tarot_id[$n]]}</span></div>";
 $html.="<div id=\"log-{$n}\" class=\"chu_ans_comm\">{$dat[$n]}</div>";

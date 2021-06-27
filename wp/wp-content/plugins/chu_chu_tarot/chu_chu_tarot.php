@@ -99,12 +99,10 @@ $str=<<<EOF
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/jquery.easing.1.3.js"></script>
 <script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/tarot.js?_{$jst}"></script>
-<script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/jquery.ui.touch-punch.min.js?_{$jst}"></script>
+<script src="../../../../wp/wp-content/plugins/chu_chu_tarot/js/jquery.ui.touch-punch.min.js"></script>
 <script>
-
-console.log({$group});
-
 var Oc={$group["oracle"]};
+var Nr={$group["position"]};
 var Gp={$gp};
 </script>
 <style>
