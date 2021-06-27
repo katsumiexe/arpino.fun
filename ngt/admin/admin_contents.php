@@ -692,13 +692,131 @@ $(function(){
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">
-			<?foreach($dat as $a1 => $a2){?>
+
+		<table class="event_table" style="background:#ffe0f0;">
+			<form id="f_new" action="./index.php" method="post" multipart/form-data>
+			<input type="hidden" name="post_id" value="event">
+			<input type="hidden" name="menu_post" value="contents">
+			<input type="hidden" name="news_id" value="new">
+			<tr>
+				<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
+					<td class="event_td_3">
+					<span class="news_tag">公開日</span>
+					<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+
+					<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
+					<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
+					<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
+				</td>
+
+				<td class="event_td_6" rowspan="3">
+					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
+					<span class="img_large"></span><span class="img_chg"></span>
+				</td>
+
+			</tr><tr>
+				<td rowspan="3"  class="event_td_1"></td>
+				<td rowspan="3"  class="event_td_2">
+					<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
+				</td>
+
+				<td  class="event_td_5">
+					<span class="news_tag">リンク</span><select name="news_category" class="w140">
+						<option value="">なし</option>
+						<option value="self"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+					</select>
+					<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
+				</td>
+
+			</tr><tr>
+				<td  class="event_td_5">
+					<span class="news_tag">TITLE</span>
+					<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
+				</td>
+
+			</tr><tr>
+				<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
+			</tr>
+			<input id="upd<?=$a1?>" type="file" style="display:none;">
+			</form>
+		</table>
+
+
+
+
+		<?foreach($dat as $a1 => $a2){?>
+		<table class="event_table">
 			<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="news_id" value="<?=$a1?>">
+			<tr>
+				<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
+					<td class="event_td_3">
+					<span class="news_tag">公開日</span>
+					<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+<!--						<span class="news_tag">状態</span>
+					<select class="w120 news_box" name="news_status">
+						<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
+						<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
+						<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
+					</select>
+-->
+						<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
+						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
+						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
+				</td>
 
+				<td class="event_td_6" rowspan="3">
+					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
+					<span class="img_large"></span><span class="img_chg"></span>
+				</td>
+
+			</tr><tr>
+				<td rowspan="3"  class="event_td_1"></td>
+				<td rowspan="3"  class="event_td_2">
+					<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
+				</td>
+
+				<td  class="event_td_5">
+					<span class="news_tag">リンク</span><select name="news_category" class="w140">
+						<option value="">なし</option>
+						<option value="self"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+					</select>
+					<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
+				</td>
+
+			</tr><tr>
+				<td  class="event_td_5">
+					<span class="news_tag">TITLE</span>
+					<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
+				</td>
+
+			</tr><tr>
+				<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
+			</tr>
+			<input id="upd<?=$a1?>" type="file" style="display:none;">
+			</form>
+		</table>
+		<? } ?>
+
+
+
+
+
+		<div id="sort" class="main_list">
+			<?foreach($dat as $a1 => $a2){?>
 			<table class="event_table">
+				<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
+				<input type="hidden" name="post_id" value="event">
+				<input type="hidden" name="menu_post" value="contents">
+				<input type="hidden" name="news_id" value="<?=$a1?>">
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
 						<td class="event_td_3">
@@ -747,9 +865,9 @@ $(function(){
 				</tr><tr>
 					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
+				<input id="upd<?=$a1?>" type="file" style="display:none;">
+				</form>
 			</table>
-			<input id="upd<?=$a1?>" type="file" style="display:none;">
-			</form>
 			<? } ?>
 		</div>
 
@@ -778,6 +896,7 @@ $(function(){
 						</td>
 					</tr>
 					</form>
+
 					<tbody id="sort">
 						<?foreach($dat as $a1 => $a2){?>
 							<tr id="tr_<?=$a1?>" class="tr">

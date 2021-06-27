@@ -83,7 +83,6 @@ $(function(){
 		},
 	});
 
-
 	$('.option_flex').sortable({
 		containment: 'parent',
 		handle: '.sel_move',
