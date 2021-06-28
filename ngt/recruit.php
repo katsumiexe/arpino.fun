@@ -21,8 +21,6 @@ if($recruit["contact"][0]){
 
 include_once('./header.php');
 ?>
-
-
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -67,8 +65,6 @@ include_once('./header.php');
 				<div class="rec_r"><?=$a2["contents"]?></div>
 			</div>
 		<?}?>
-
-
 
 <div class="contact_box">
 <?if($recruit["tel"][0]){?>

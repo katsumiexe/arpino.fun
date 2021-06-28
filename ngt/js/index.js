@@ -1,6 +1,8 @@
 var TopCnt=0;
 var Vw	=$(window).width();
 var Vh	=$(window).height();
+var TmpLink="";
+
 if(Vw <1200){
 	TopW=Vw;
 
@@ -16,11 +18,10 @@ $(function(){
 
 	$('.slide_img_cv').on('click',function () {
 		console.log($('#slide_img'+TopCnt).attr('s_link'));
-		if($('#slide_img'+TopCnt).attr('s_link')){
 
+		if($('#slide_img'+TopCnt).attr('s_link')){
 			$('#s_code').val($('#slide_img'+TopCnt).attr('s_code'));
 			$('#form_1').attr('action',$('#slide_img'+TopCnt).attr('s_link')).submit();
-
 		}
 	});
 
@@ -29,6 +30,7 @@ $(function(){
 		start: function( event, ui ) {
 
 			startPosition = ui.position.left;
+
 			clearInterval(timerId);
 			TmpWidth=$('#slide_img0').width();
 
@@ -51,16 +53,32 @@ $(function(){
 
 		drag: function( event, ui ){
 			if(ui.position.left>0){
-				$('#slide_img'+TopCnt).css({'left':ui.position.left});
-				$('#slide_img'+NewCnt).css({'left':TmpWidth});
+
+				if(Cnt >2){
+					$('#slide_img'+TopCnt).css({'left':ui.position.left});
+					$('#slide_img'+NewCnt).css({'left':TmpWidth});
+
+				}else{
+					ui.position.left=0;
+					$('.slide_img_cv').css({'left':0});
+				}
+
 
 			}else{
 				$('#slide_img'+NewCnt).css({'left':ui.position.left+TmpWidth});
 				$('#slide_img'+TopCnt).css({'left':0});
+
+			}
+
+			if($('#slide_img'+TopCnt).attr('s_link')){
+				TmpLink=$('#slide_img'+TopCnt).attr('s_link');
+				$('#slide_img'+TopCnt).attr('s_link','');
 			}
 		},
 
 		stop: function( event, ui ) {
+			$('#slide_img'+TopCnt).attr('s_link',TmpLink);
+			TmpLink="";
 			if(ui.position.left< Lim_l){//■左へ
 				$('#slide_img'+NewCnt).animate({'left':0},200);
 				$('.slide_dot').removeClass('dot_on');
@@ -88,7 +106,6 @@ $(function(){
 				timerId = setInterval(Fnc_s,TMR);
 
 			}else if(ui.position.left>Lim_r){//■右へ
-
 				$('#slide_img'+TopCnt).animate({'left':TmpWidth},200);
 				$('.slide_dot').removeClass('dot_on');
 				$('#dot'+OldCnt).addClass('dot_on');

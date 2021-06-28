@@ -6,10 +6,8 @@ $sql	.=" WHERE status=0";
 $sql	.=" AND id='{$code}'";
 $sql	.=" LIMIT 1";
 
-
 if($res0 = mysqli_query($mysqli,$sql)){
 $event = mysqli_fetch_assoc($res0);
-
 $event["contents"]=str_replace("\n","<br>",$event["contents"]);
 }
 include_once('./header.php');
@@ -26,7 +24,7 @@ include_once('./header.php');
 		<span class="footmark_text">EVENT</span>
 	</div>
 </div>
-<img src="./img/page/event/event_<?=$code?>.jpg" class="top_img">;
+
 <?if(!$event){?>
 <div class="main_e">
 <div class="main_e_in">
@@ -46,6 +44,7 @@ include_once('./header.php');
 <div class="corner box_4"></div>
 </div>
 <?}else{?>
+<img src="./img/page/event/event_<?=$code?>.jpg" class="event_img">
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>

@@ -44,7 +44,19 @@ if($news_id){
 	$news_category	=$_POST["news_category"];
 	$news_key		=$_POST["news_key"];
 
+if($news_id == "new"){
+	$sql	 ="INSERT INTO wp01_0contents(`date`,`display_date`,`event_date`,`sort`,`page,`category`,`title`,`contents`,`tag`)";
+	$sql	.=" VALUES('{$now}','{$now}','{$news_date}','0','{$news_page}','{$news_category}','{$news_title}','{$news_contents}','{$news_tag}')";
+	mysqli_query($mysqli,$sql);
 
+	$tmp_auto=mysqli_insert_id($mysqli);
+
+	if(isset($_FILES)&& isset($_FILES['upfile']) && is_uploaded_file($_FILES['upfile']['tmp_name'])){
+	    $img_url = '../img/page/{$news_page}/{$news_page}_{$tmp_auto}.php';
+		move_uploaded_file($_FILES['upfile']['tmp_name'], $img_url);
+	}
+
+}else{
 	$sql	 ="UPDATE wp01_0contents SET";
 	$sql	.=" `title`='{$news_title}',";
 	$sql	.=" `event_date`='{$event_date}',";
@@ -55,8 +67,10 @@ if($news_id){
 	$sql	.=" `contents_key`='{$news_key}',";
 	$sql	.=" status='{$news_status}'";
 	$sql	.=" WHERE `id`='{$news_id}'";
-
 	mysqli_query($mysqli,$sql);
+
+}
+
 
 }elseif($post_id_set){
 	$post_id	=$_POST["post_id_set"];
@@ -98,6 +112,7 @@ if($post_id == "news"){
 	}
 
 }if($post_id == "event"){
+
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status<4";
@@ -107,11 +122,11 @@ if($post_id == "news"){
 		while($res = mysqli_fetch_assoc($result)){
 			$res["display_date"]	=substr($res["display_date"],0,10);
 
-			if (file_exists("../img/page/event/{$res["id"]}.jpg")) {
-				$res["img"]="../img/page/event/{$res["id"]}.jpg";			
+			if (file_exists("../img/page/event/event_{$res["id"]}.jpg")) {
+				$res["img"]="../img/page/event/event_{$res["id"]}.jpg";			
 
 			}else{
-				$res["img"]="../img/cast_no_image.jpg";			
+				$res["img"]="../img/event_no_image.jpg";			
 			}
 
 			$dat[$res["id"]]=$res;
@@ -566,6 +581,16 @@ $(function(){
 		}
 	});
 
+	$('.upd_file').on('change',function(e){
+		Tmp=$(this).attr('id');
+		var reader = new FileReader();
+			reader.onload = function (e) {
+				$("#top_"+Tmp).attr('src', e.target.result);
+			}
+			reader.readAsDataURL(e.target.files[0]);
+	});
+
+
 	$('.news_tag_btn,.event_set_btn').on('click',function(){
 		Tmp	=$(this).attr('id').substr(0,3);
 		Tmp2=$(this).attr('id').substr(3);
@@ -626,7 +651,6 @@ $(function(){
 					<input type="hidden" name="post_id" value="news">
 					<input type="hidden" name="menu_post" value="contents">
 					<input type="hidden" name="news_id" value="<?=$a1?>">
-					<input id="upd<?=$a1?>" type="hidden" value="" name="news_upd">
 
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
@@ -698,25 +722,23 @@ $(function(){
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="news_id" value="new">
+			<input id="updnew" name="news_img" type="file" class="upd_file" style="display:none;">
 			<tr>
 				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
 					<td class="event_td_3">
 					<span class="news_tag">公開日</span>
-					<input type="date" name="display_date" class="w140" value="<?=$display_date?>" autocomplete="off">
+					<input type="date" name="new_date" class="w140" value="<?=$display_date?>" autocomplete="off">
 					<button id="reg<?=$a1?>" type="button" class="event_set_btn">登録</button>
 				</td>
 
 				<td class="event_td_6" rowspan="3">
-					<span class="event_img"><img src="../img/event_no_image.png" style="width:100%;"></span>
+					<label for="updnew" class="event_img"><img id="top_updnew" src="../img/event_no_image.png" style="width:275px; height:110px;"></span>
 					<span class="img_large"></span>
 				</td>
 
 			</tr><tr>
-				<td rowspan="3"  class="event_td_1"></td>
-				<td rowspan="3"  class="event_td_2">
-					<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
+				<td rowspan="3" colspan="2"></td>
 				</td>
-
 				<td  class="event_td_5">
 					<span class="news_tag">リンク</span><select name="news_category" class="w140">
 						<option value="">なし</option>
@@ -737,75 +759,8 @@ $(function(){
 			</tr><tr>
 				<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 			</tr>
-			<input id="upd<?=$a1?>" type="file" style="display:none;">
 			</form>
 		</table>
-
-
-
-
-		<?foreach($dat as $a1 => $a2){?>
-		<table class="event_table">
-			<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
-			<input type="hidden" name="post_id" value="event">
-			<input type="hidden" name="menu_post" value="contents">
-			<input type="hidden" name="news_id" value="<?=$a1?>">
-			<tr>
-				<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
-					<td class="event_td_3">
-					<span class="news_tag">公開日</span>
-					<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
-<!--						<span class="news_tag">状態</span>
-					<select class="w120 news_box" name="news_status">
-						<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
-						<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
-						<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
-					</select>
--->
-						<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
-						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
-						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
-				</td>
-
-				<td class="event_td_6" rowspan="3">
-					<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
-					<span class="img_large"></span><span class="img_chg"></span>
-				</td>
-
-			</tr><tr>
-				<td rowspan="3"  class="event_td_1"></td>
-				<td rowspan="3"  class="event_td_2">
-					<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
-				</td>
-
-				<td  class="event_td_5">
-					<span class="news_tag">リンク</span><select name="news_category" class="w140">
-						<option value="">なし</option>
-						<option value="self"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
-					</select>
-					<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
-				</td>
-
-			</tr><tr>
-				<td  class="event_td_5">
-					<span class="news_tag">TITLE</span>
-					<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
-				</td>
-
-			</tr><tr>
-				<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
-			</tr>
-			<input id="upd<?=$a1?>" type="file" style="display:none;">
-			</form>
-		</table>
-		<? } ?>
-
-
-
-
 
 		<div id="sort" class="main_list">
 			<?foreach($dat as $a1 => $a2){?>
@@ -814,26 +769,21 @@ $(function(){
 				<input type="hidden" name="post_id" value="event">
 				<input type="hidden" name="menu_post" value="contents">
 				<input type="hidden" name="news_id" value="<?=$a1?>">
+				<input id="upd<?=$a1?>" name="news_img" type="file" class="upd_file" style="display:none;">
+
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
 						<td class="event_td_3">
 						<span class="news_tag">公開日</span>
 						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
-<!--						<span class="news_tag">状態</span>
-						<select class="w120 news_box" name="news_status">
-							<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
-							<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
-							<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
-						</select>
--->
-							<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
-							<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
-							<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
+						<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
+						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
+						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
 					</td>
 
 					<td class="event_td_6" rowspan="3">
-						<span class="event_img"><img src="<?=$a2["img"]?>" style="width:100%;"></span>
-						<span class="img_large"></span><span class="img_chg"></span>
+						<label for="upd<?=$a1?>" class="event_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:275px; height:110px;"></span>
+						<span class="img_large"></span>
 					</td>
 
 				</tr><tr>
@@ -862,7 +812,6 @@ $(function(){
 				</tr><tr>
 					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
-				<input id="upd<?=$a1?>" type="file" style="display:none;">
 				</form>
 			</table>
 			<? } ?>

@@ -72,20 +72,19 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$a1["link"]=$a1["category"];
 		}
 
-		if (file_exists("./img/page/event/{$a1["id"]}.webp")) {
-			$a1["img"]="./img/page/event/{$a1["id"]}.webp";
+		if (file_exists("./img/page/event/event_{$a1["id"]}.webp")) {
+			$a1["img"]="./img/page/event/event_{$a1["id"]}.webp";
 
-		}elseif (file_exists("./img/page/event/{$a1["id"]}.jpg")) {
-			$a1["img"]="./img/page/event/{$a1["id"]}.jpg";
+		}elseif (file_exists("./img/page/event/event_{$a1["id"]}.jpg")) {
+			$a1["img"]="./img/page/event/event_{$a1["id"]}.jpg";
 
-		}elseif (file_exists("./img/page/event/{$a1["id"]}.png")) {
-			$a1["img"]="./img/page/event/{$a1["id"]}.png";
+		}elseif (file_exists("./img/page/event/event_{$a1["id"]}.png")) {
+			$a1["img"]="./img/page/event/event_{$a1["id"]}.png";
 		}
 		$event[]=$a1;
 		$count_event++;
 	}
 }
-
 
 $sql	 ="SELECT tag_name, tag_icon, date, display_date,event_date, category, contents_key, title, contents, contents_url FROM wp01_0contents";
 $sql	.=" LEFT JOIN wp01_0tag ON tag=wp01_0tag.id";
@@ -150,8 +149,8 @@ include_once('./header.php');
 	left			:0;
 	z-index			:0;
 }
-
 </style>
+
 <script>
 var Cnt=<?=$count_event?>;
 </script>

@@ -248,6 +248,7 @@ ul {
 	background	:#fafafa;
 	font-size	:0;
 	overflow	:hidden;
+	margin:0 auto;
 }
 
 .slide_img_cv{
@@ -257,6 +258,11 @@ ul {
 	z-index		:10;
 }
 
+.event_img{
+	width		:1200px;
+	height		:480px;
+	margin:0 auto 30px auto;;
+}
 
 .top_img{
 	position		:absolute;
@@ -3077,6 +3083,13 @@ ul {
 	width		:100vw;
 	height		:40vw;
 }
+
+.event_img{
+	width		:100vw;
+	height		:40vw;
+	margin:0 auto 5vw auto;;
+}
+
 
 
 .top_img{
