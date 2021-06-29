@@ -45,15 +45,29 @@ if($news_id){
 	$news_key		=$_POST["news_key"];
 
 if($news_id == "new"){
-	$sql	 ="INSERT INTO wp01_0contents(`date`,`display_date`,`event_date`,`sort`,`page,`category`,`title`,`contents`,`tag`)";
-	$sql	.=" VALUES('{$now}','{$now}','{$news_date}','0','{$news_page}','{$news_category}','{$news_title}','{$news_contents}','{$news_tag}')";
+	$sql	 ="INSERT INTO wp01_0contents(`date`,`display_date`,`event_date`,`sort`,`page`,`category`,`title`,`contents`,`contents_key`,`tag`)";
+	$sql	.=" VALUES('{$now}','{$display_date}','{$news_date}','0','{$post_id}','{$news_category}','{$news_title}','{$news_contents}','{$news_key}','{$news_tag}')";
 	mysqli_query($mysqli,$sql);
-
 	$tmp_auto=mysqli_insert_id($mysqli);
 
-	if(isset($_FILES)&& isset($_FILES['upfile']) && is_uploaded_file($_FILES['upfile']['tmp_name'])){
-	    $img_url = '../img/page/{$news_page}/{$news_page}_{$tmp_auto}.php';
-		move_uploaded_file($_FILES['upfile']['tmp_name'], $img_url);
+	if(isset($_FILES)&& isset($_FILES['upd_img']) && is_uploaded_file($_FILES['upd_img']['tmp_name'])){
+
+		$img_reg=getimagesize($_FILES['upd_img']['tmp_name']);
+		if($img_reg["mime"] =="image/jpeg"){
+			$kk=".jpg";
+
+		}elseif($img_reg["mime"] =="image/webp"){
+			$kk=".webp";
+
+		}elseif($img_reg["mime"] =="image/png"){
+			$kk=".png";
+
+		}elseif($img_reg["mime"] =="image/gif"){
+			$kk=".gif";
+		}
+
+	    $img_url = "../img/page/{$post_id}/{$post_id}_{$tmp_auto}{$kk}";
+		move_uploaded_file($_FILES['upd_img']['tmp_name'], $img_url);
 	}
 
 }else{
@@ -124,6 +138,15 @@ if($post_id == "news"){
 
 			if (file_exists("../img/page/event/event_{$res["id"]}.jpg")) {
 				$res["img"]="../img/page/event/event_{$res["id"]}.jpg";			
+
+			}elseif (file_exists("../img/page/event/event_{$res["id"]}.png")) {
+				$res["img"]="../img/page/event/event_{$res["id"]}.png";			
+
+			}elseif (file_exists("../img/page/event/event_{$res["id"]}.gif")) {
+				$res["img"]="../img/page/event/event_{$res["id"]}.gif";			
+
+			}elseif (file_exists("../img/page/event/event_{$res["id"]}.webp")) {
+				$res["img"]="../img/page/event/event_{$res["id"]}.webp";			
 
 			}else{
 				$res["img"]="../img/event_no_image.jpg";			
@@ -457,7 +480,7 @@ td{
 	font-size		:20px;
 }
 
-.event_set_btn{
+.event_set_btn,.event_reg_btn{
 	width			:60px;
 	height			:30px;
 	margin			:0 5px;
@@ -590,11 +613,10 @@ $(function(){
 			reader.readAsDataURL(e.target.files[0]);
 	});
 
-
 	$('.news_tag_btn,.event_set_btn').on('click',function(){
 		Tmp	=$(this).attr('id').substr(0,3);
 		Tmp2=$(this).attr('id').substr(3);
-		$('#upd'+Tmp2).val(Tmp);
+//		$('#upd'+Tmp2).val(Tmp);
 
 		if(Tmp == 'chg'){
 			if (!confirm('変更します。よろしいですか')) {
@@ -718,17 +740,17 @@ $(function(){
 		<div class="main_box">
 
 		<table class="event_table" style="background:#ffe0f0;">
-			<form id="f_new" action="./index.php" method="post" multipart/form-data>
+			<form id="fnew" action="./index.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="news_id" value="new">
-			<input id="updnew" name="news_img" type="file" class="upd_file" style="display:none;">
+			<input name="upd_img" type="file" class="upd_file" style="display:none;">
 			<tr>
 				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
 					<td class="event_td_3">
 					<span class="news_tag">公開日</span>
-					<input type="date" name="new_date" class="w140" value="<?=$display_date?>" autocomplete="off">
-					<button id="reg<?=$a1?>" type="button" class="event_set_btn">登録</button>
+					<input type="date" name="display_date" class="w140" value="<?=$day_date?>" autocomplete="off">
+					<button  type="submit" class="event_reg_btn">登録</button>
 				</td>
 
 				<td class="event_td_6" rowspan="3">
@@ -742,12 +764,12 @@ $(function(){
 				<td  class="event_td_5">
 					<span class="news_tag">リンク</span><select name="news_category" class="w140">
 						<option value="">なし</option>
-						<option value="self"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="event"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 					</select>
-					<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
+					<input type="text" name="news_key" style="width:175px;margin-left:5px;" value=""> 
 				</td>
 
 			</tr><tr>
@@ -765,11 +787,11 @@ $(function(){
 		<div id="sort" class="main_list">
 			<?foreach($dat as $a1 => $a2){?>
 			<table class="event_table">
-				<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
+				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="post_id" value="event">
 				<input type="hidden" name="menu_post" value="contents">
 				<input type="hidden" name="news_id" value="<?=$a1?>">
-				<input id="upd<?=$a1?>" name="news_img" type="file" class="upd_file" style="display:none;">
+				<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>

@@ -1,9 +1,9 @@
 <?php
 include_once('./library/sql.php');
-$code=$_REQUEST["code"];
+$post_id=$_REQUEST["post_id"];
 $sql	 ="SELECT * FROM wp01_0contents";
 $sql	.=" WHERE status=0";
-$sql	.=" AND id='{$code}'";
+$sql	.=" AND id='{$post_id}'";
 $sql	.=" LIMIT 1";
 
 if($res0 = mysqli_query($mysqli,$sql)){
@@ -44,7 +44,7 @@ include_once('./header.php');
 <div class="corner box_4"></div>
 </div>
 <?}else{?>
-<img src="./img/page/event/event_<?=$code?>.jpg" class="event_img">
+<img src="./img/page/event/event_<?=$post_id?>.jpg" class="event_img">
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>

@@ -63,8 +63,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$a1["link"]="./event.php";
 			$a1["code"]=$a1["id"];
 
-		}elseif($a1["contents_key"] == "person"){
-			$a1["link"]="./event.php";
+		}elseif($a1["category"] == "person"){
+			$a1["link"]="./person.php";
 			$a1["code"]=$a1["contents_key"];
 
 
@@ -155,7 +155,7 @@ include_once('./header.php');
 var Cnt=<?=$count_event?>;
 </script>
 <form id="form_1" method="get" action="">
-<input id="s_code" type="hidden" name="code">
+<input id="s_code" type="hidden" name="post_id">
 </form>
 <script src="./js/index.js?t=<?=time()?>"></script>
 <div class="main_top">

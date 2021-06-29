@@ -431,7 +431,6 @@ $sel[$menu_post]="menu_sel";
 </div>
 <form id="form_menu" method="post" action="./index.php">
 <input id="menu_post" type="hidden" name="menu_post">
-<?$_POST="";?>
-
 </form>
+<?$_POST="";?>
 </html>
