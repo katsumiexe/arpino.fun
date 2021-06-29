@@ -29,7 +29,7 @@ $(function(){
 			}
 
 			$.ajax({
-				url:'./post/admi_sort.php',
+				url:'./post/admin_sort.php',
 				type: 'post',
 				data:{
 					'list[]':ChgList,
