@@ -756,6 +756,7 @@ $(function(){
 					<span class="img_large"></span>
 				</td>
 
+
 			</tr><tr>
 				<td rowspan="3" colspan="2"></td>
 				</td>
@@ -784,15 +785,18 @@ $(function(){
 
 		<div id="event_sort" class="main_list list_sort">
 			<?foreach($dat as $a1 => $a2){?>
+
+<tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
+<td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
+
 			<table class="event_table">
 				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="post_id" value="event">
 				<input type="hidden" name="menu_post" value="contents">
 				<input type="hidden" name="event_set_id" value="<?=$a1?>">
 				<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
-
 				<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
-
+				<tbody>
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
 						<td class="event_td_3">
@@ -834,6 +838,7 @@ $(function(){
 				</tr><tr>
 					<td  class="event_td_4" colspan="2"><textarea name="event_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
+				</tbody>
 				</form>
 			</table>
 			<? } ?>

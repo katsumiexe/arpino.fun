@@ -9,20 +9,31 @@ $(function(){
 		axis: 'y',
         handle: '.handle',
 		stop : function(){
+
 			ChgList=$(this).sortable("toArray");
-			console.log(ChgList);
+			Tmp=$(this).attr('id');
 			var Cnt = 1;
-			$(this).children('.tr').each(function(){
-				$(this).children('.w40').children('.box_sort').val(Cnt);
-				Cnt++;
-			});
+
+			if(Tmp == 'staff_sort'){
+				$(this).children('.tr').each(function(){
+					$(this).children('.w40').children('.box_sort').val(Cnt);
+					Cnt++;
+				});
+
+			}else if(Tmp == 'event_sort'){
+				$(this).children('.event_table').each(function(){
+					$(this).children('.w40').children('.box_sort').val(Cnt);
+					Cnt++;
+				});
+
+			}
 
 			$.ajax({
 				url:'./post/admi_sort.php',
 				type: 'post',
 				data:{
 					'list[]':ChgList,
-					'group':$(this).attr('id'),
+					'group':Tmp,
 				},
 				dataType: 'json',
 
