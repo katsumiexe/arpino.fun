@@ -8,7 +8,7 @@ st
 3 削除
 */
 
-/*-----news_status*/
+/*-----event_status*/
 $st[0]="表示中";
 $st[1]="表示前";
 $st[2]="注目";
@@ -28,25 +28,26 @@ if(!$post_id) $post_id="event";
 
 if($post_id == "page") $post_id="system";
 
-$news_id		=$_POST["news_id"];
+$event_set_id	=$_POST["event_set_id"];
 $page_log		=$_POST["page_log"];
 $post_id_set	=$_POST["post_id_set"];
 
 
-if($news_id){
-	$news_upd		=$_POST["news_upd"];
-	$news_title		=$_POST["news_title"];
-	$news_tag		=$_POST["news_tag"];
-	$display_date	=$_POST["display_date"]." 00:00:00";
-	$news_date		=$_POST["news_date"];
-	$news_status	=$_POST["news_status"];
-	$news_contents	=$_POST["news_contents"];
-	$news_category	=$_POST["news_category"];
-	$news_key		=$_POST["news_key"];
+var_dump($_POST);
 
-if($news_id == "new"){
+if($event_set_id){
+	$event_title	=$_POST["event_title"];
+	$event_tag		=$_POST["event_tag"];
+	$display_date	=$_POST["display_date"]." 00:00:00";
+	$event_date		=$_POST["event_date"];
+	$event_status	=$_POST["event_status"];
+	$event_contents	=$_POST["event_contents"];
+	$category		=$_POST["category"];
+	$event_key		=$_POST["event_key"];
+
+if($event_set_id == "new"){
 	$sql	 ="INSERT INTO wp01_0contents(`date`,`display_date`,`event_date`,`sort`,`page`,`category`,`title`,`contents`,`contents_key`,`tag`)";
-	$sql	.=" VALUES('{$now}','{$display_date}','{$news_date}','0','{$post_id}','{$news_category}','{$news_title}','{$news_contents}','{$news_key}','{$news_tag}')";
+	$sql	.=" VALUES('{$now}','{$display_date}','{$event_date}','0','{$post_id}','{$category}','{$event_title}','{$event_contents}','{$event_key}','{$event_tag}')";
 	mysqli_query($mysqli,$sql);
 	$tmp_auto=mysqli_insert_id($mysqli);
 
@@ -72,15 +73,15 @@ if($news_id == "new"){
 
 }else{
 	$sql	 ="UPDATE wp01_0contents SET";
-	$sql	.=" `title`='{$news_title}',";
+	$sql	.=" `title`='{$event_title}',";
 	$sql	.=" `event_date`='{$event_date}',";
 	$sql	.=" `display_date`='{$display_date}',";
-	$sql	.=" `tag`='{$news_tag}',";
-	$sql	.=" `contents`='{$news_contents}',";
-	$sql	.=" `category`='{$news_category}',";
-	$sql	.=" `contents_key`='{$news_key}',";
-	$sql	.=" status='{$news_status}'";
-	$sql	.=" WHERE `id`='{$news_id}'";
+	$sql	.=" `tag`='{$event_tag}',";
+	$sql	.=" `contents`='{$event_contents}',";
+	$sql	.=" `category`='{$category}',";
+	$sql	.=" `contents_key`='{$event_key}',";
+	$sql	.=" status='{$event_status}'";
+	$sql	.=" WHERE `id`='{$event_set_id}'";
 	mysqli_query($mysqli,$sql);
 
 }
@@ -105,7 +106,7 @@ if($post_id == "news"){
 	$sql	.=" ORDER BY display_date DESC";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
-			$res["news_date"]	=substr($res["news_date"],0,10);
+			$res["event_date"]	=substr($res["event_date"],0,10);
 			$res["display_date"]	=substr($res["display_date"],0,10);
 			if($res["status"] ==0 && $res["display_date"] > date("Y-m-d")){
 				$res["status"]=1;
@@ -268,7 +269,7 @@ if($post_id == "news"){
 	min-height		:calc(100vh - 80px);
 }
 
-.news_tag{
+.event_tag{
 	display			:inline-block;
 	font-size		:16px;
 	height			:30px;
@@ -278,7 +279,7 @@ if($post_id == "news"){
 	width			:60px;
 }
 
-.news_title{
+.event_title{
 	width		:780px;
 	height		:58px;
 	line-height	:24px;
@@ -311,7 +312,7 @@ if($post_id == "news"){
 	background:#e0e0e0;
 }
 
-.news_tag_label{
+.event_tag_label{
 	width		:160px;
 	height		:30px;
 	line-height	:30px;
@@ -323,7 +324,7 @@ if($post_id == "news"){
 	padding		:0 10px;
 }
 
-.news_tag_btn, .event_tag_btn{
+.event_tag_btn, .event_tag_btn{
 	width			:65px;
 	background		:#aaaaaa;
 	color			:#ffffff;
@@ -406,7 +407,6 @@ td{
 		width		:40px;
 		text-align	:center;
 		font-size	:30px;
-		font-family	:at_item;
 	}
 
 	.event_td_2{
@@ -613,7 +613,7 @@ $(function(){
 			reader.readAsDataURL(e.target.files[0]);
 	});
 
-	$('.news_tag_btn,.event_set_btn').on('click',function(){
+	$('.event_tag_btn,.event_set_btn').on('click',function(){
 		Tmp	=$(this).attr('id').substr(0,3);
 		Tmp2=$(this).attr('id').substr(3);
 //		$('#upd'+Tmp2).val(Tmp);
@@ -630,27 +630,24 @@ $(function(){
 			if (!confirm('削除します。よろしいですか')) {
 				return false;
 			}else{
+				$('#st'+Tmp2).val('4');
 				$('#f'+Tmp2).submit();
 				return false;
 			}
+
+		}else if(Tmp == 'cov'){
+			Tmp3=$('#st'+Tmp2).val();
+			if(Tmp3 == 3){
+				$('#st'+Tmp2).val('0');
+
+			}else{
+				$('#st'+Tmp2).val('3');
+			}
+			$('#f'+Tmp2).submit();
+			return false;
+
 		}
 	});
-
-
-	$('#sort').sortable({
-		axis: 'y',
-        handle: '.event_td_1',
-
-		stop : function(){
-			var Cnt = 1;
-			$(this).children('.tr').each(function(){
-				$(this).children('.config_prof_sort').children('.prof_sort').val(Cnt);
-				Cnt++;
-			});
-		},
-	});
-
-
 
 });
 </script>
@@ -672,32 +669,32 @@ $(function(){
 				<form id="f<?=$a1?>" action="./index.php" method="post">
 					<input type="hidden" name="post_id" value="news">
 					<input type="hidden" name="menu_post" value="contents">
-					<input type="hidden" name="news_id" value="<?=$a1?>">
+					<input type="hidden" name="event_set_id" value="<?=$a1?>">
 
 					<table class="news_table c<?=$a2["status"]?>">
 						<tr>
 							<td style="font-size:0;">
-								<span class="news_tag">日付</span><input type="date" name="event_date" class="w140 news_box" value="<?=$a2["event_date"]?>" autocomplete="off"> 
-								<span class="news_tag">公開日</span><input type="date" name="display_date" class="w140 news_box" value="<?=$a2["display_date"]?>" autocomplete="off"> 
-								<span class="news_tag">状態</span>
-								<select class="w120 news_box" name="news_status">
+								<span class="event_tag">日付</span><input type="date" name="event_date" class="w140 news_box" value="<?=$a2["event_date"]?>" autocomplete="off"> 
+								<span class="event_tag">公開日</span><input type="date" name="display_date" class="w140 news_box" value="<?=$a2["display_date"]?>" autocomplete="off"> 
+								<span class="event_tag">状態</span>
+								<select class="w120 news_box" name="event_status">
 									<option value="0" <?if($a2["status"] == 0){?> selected="selected"<?}?>>表示</option>
 									<option value="2" <?if($a2["status"] == 2){?> selected="selected"<?}?>>注目</option>
 									<option value="3" <?if($a2["status"] == 3){?> selected="selected"<?}?>>非表示</option>
 									<option value="4" <?if($a2["status"] == 4){?> selected="selected"<?}?>>削除</option>
 								</select>
-								<button id="chg<?=$a1?>" type="button" class="news_tag_btn">変更</button>
+								<button id="chg<?=$a1?>" type="button" class="event_tag_btn">変更</button>
 							</td>
 						</tr>
 
 						<tr>
 							<td style="font-size:0;">
-								<span class="news_tag">タグ</span>
-								<select name="news_tag" class="w140 news_box">
+								<span class="event_tag">タグ</span>
+								<select name="event_tag" class="w140 news_box">
 									<?foreach($tag as $b1 => $b2){?><option value="<?=$b2["id"]?>" <?if($b2["id"] == $a2["tag"]){?> selected="selected"<?}?>><?=$b2["tag_name"]?></option>
 									<? } ?>	
 								</select>
-								<span class="news_tag">リンク</span><select name="news_link" class="w140 news_box">
+								<span class="event_tag">リンク</span><select name="news_link" class="w140 news_box">
 									<option value="">なし</option>
 									<option value="self"   <?if($a2["category"] == "self"){?> selected="selected"<?}?>>ページ</option>
 									<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
@@ -710,7 +707,7 @@ $(function(){
 
 						<tr>
 							<td>
-								<textarea name="news_title" class="news_title"><?=$a2["title"]?></textarea>
+								<textarea name="event_title" class="event_title"><?=$a2["title"]?></textarea>
 							</td>
 						</tr>
 					</table>
@@ -719,7 +716,7 @@ $(function(){
 		</div>
 		<div class="sub_box">
 			<?foreach($tag as $a1 => $a2){?>
-				<input id="rd<?=$a2["id"]?>" type="radio"><label for="rd<?=$a1?>" class="news_tag_label"><?=$a2["tag_name"]?></label><br>
+				<input id="rd<?=$a2["id"]?>" type="radio"><label for="rd<?=$a1?>" class="event_tag_label"><?=$a2["tag_name"]?></label><br>
 			<?}?>
 		</div>
 
@@ -743,12 +740,13 @@ $(function(){
 			<form id="fnew" action="./index.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
-			<input type="hidden" name="news_id" value="new">
+			<input type="hidden" name="event_set_id" value="new">
+
 			<input name="upd_img" type="file" class="upd_file" style="display:none;">
 			<tr>
 				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
 					<td class="event_td_3">
-					<span class="news_tag">公開日</span>
+					<span class="event_tag">公開日</span>
 					<input type="date" name="display_date" class="w140" value="<?=$day_date?>" autocomplete="off">
 					<button  type="submit" class="event_reg_btn">登録</button>
 				</td>
@@ -762,41 +760,43 @@ $(function(){
 				<td rowspan="3" colspan="2"></td>
 				</td>
 				<td  class="event_td_5">
-					<span class="news_tag">リンク</span><select name="news_category" class="w140">
+					<span class="event_tag">リンク</span><select name="category" class="w140">
 						<option value="">なし</option>
 						<option value="event"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 					</select>
-					<input type="text" name="news_key" style="width:175px;margin-left:5px;" value=""> 
+					<input type="text" name="event_key" style="width:175px;margin-left:5px;" value=""> 
 				</td>
 
 			</tr><tr>
 				<td  class="event_td_5">
-					<span class="news_tag">TITLE</span>
-					<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
+					<span class="event_tag">TITLE</span>
+					<input type="text" name="event_title" style="width:250px;" value="<?=$a2["title"]?>">
 				</td>
 
 			</tr><tr>
-				<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
+				<td  class="event_td_4" colspan="2"><textarea name="event_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 			</tr>
 			</form>
 		</table>
 
-		<div id="sort" class="main_list">
+		<div id="event_sort" class="main_list list_sort">
 			<?foreach($dat as $a1 => $a2){?>
 			<table class="event_table">
 				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="post_id" value="event">
 				<input type="hidden" name="menu_post" value="contents">
-				<input type="hidden" name="news_id" value="<?=$a1?>">
+				<input type="hidden" name="event_set_id" value="<?=$a1?>">
+				<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
+
 				<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
 						<td class="event_td_3">
-						<span class="news_tag">公開日</span>
+						<span class="event_tag">公開日</span>
 						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
 						<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
 						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
@@ -809,30 +809,30 @@ $(function(){
 					</td>
 
 				</tr><tr>
-					<td rowspan="3"  class="event_td_1"></td>
+					<td rowspan="3"  class="event_td_1 handle"></td>
 					<td rowspan="3"  class="event_td_2">
 						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
 					</td>
 
 					<td  class="event_td_5">
-						<span class="news_tag">リンク</span><select name="news_category" class="w140">
+						<span class="event_tag">リンク</span><select name="category" class="w140">
 							<option value="">なし</option>
-							<option value="self"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="event"   <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
-						<input type="text" name="news_contents_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
+						<input type="text" name="event_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
 
 				</tr><tr>
 					<td  class="event_td_5">
-						<span class="news_tag">TITLE</span>
-						<input type="text" name="news_title" style="width:250px;" value="<?=$a2["title"]?>">
+						<span class="event_tag">TITLE</span>
+						<input type="text" name="event_title" style="width:250px;" value="<?=$a2["title"]?>">
 					</td>
 
 				</tr><tr>
-					<td  class="event_td_4" colspan="2"><textarea name="news_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
+					<td  class="event_td_4" colspan="2"><textarea name="event_contents" class="event_td_4_in"><?=$a2["contents"]?></textarea></td>
 				</tr>
 				</form>
 			</table>
@@ -851,16 +851,16 @@ $(function(){
 					<form id="f<?=$recruit_id?>" action="./index.php" method="post" multipart/form-data>
 					<input type="hidden" name="post_id" value="recruit">
 					<input type="hidden" name="menu_post" value="contents">
-					<input type="hidden" name="news_id" value="<?=$a1?>">
-					<input type="hidden" name="news_category" value="top">
+					<input type="hidden" name="event_set_id" value="<?=$a1?>">
+					<input type="hidden" name="category" value="top">
 					<tr>
 						<td colspan="2" style="width:60px;"></td>
 						<td class="recruit_td3">
-							<input type="text" name="news_title" class="recruit_title" value="<?=$recruit_title?>">
+							<input type="text" name="event_title" class="recruit_title" value="<?=$recruit_title?>">
 							<button id="cov<?=$recruit_id?>" type="button" class="event_set_btn">非表示</button>
 							<button id="chg<?=$recruit_id?>" type="button" class="event_set_btn">更新</button>
 							<button id="del<?=$recruit_id?>" type="button" class="event_set_btn">削除</button>
-							<textarea name="news_contents" class="recruit_contents"><?=$recruit_contents?></textarea>
+							<textarea name="event_contents" class="recruit_contents"><?=$recruit_contents?></textarea>
 						</td>
 					</tr>
 					</form>
@@ -871,18 +871,18 @@ $(function(){
 								<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
 									<input type="hidden" name="post_id" value="recruit">
 									<input type="hidden" name="menu_post" value="contents">
-									<input type="hidden" name="news_id" value="<?=$a1?>">
-									<input type="hidden" name="news_category" value="list">
+									<input type="hidden" name="event_set_id" value="<?=$a1?>">
+									<input type="hidden" name="category" value="list">
 
 									<td class="event_td_1"></td>
 									<td class="event_td_2"><?=$a2["sort"]?></td>
 
 									<td class="recruit_td3">
-										<input type="text" name="news_title" class="recruit_title" value="<?=$a2["title"]?>">
+										<input type="text" name="event_title" class="recruit_title" value="<?=$a2["title"]?>">
 										<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
 										<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
 										<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
-										<textarea name="news_contents" class="recruit_contents"><?=$a2["contents"]?></textarea>
+										<textarea name="event_contents" class="recruit_contents"><?=$a2["contents"]?></textarea>
 									</td>
 								</form>
 							</tr>
@@ -895,7 +895,7 @@ $(function(){
 			<div class="main_box">
 				<form id="page_set" method="post">
 					<div class="page_top">
-						<span class="news_tag">TITLE</span>
+						<span class="event_tag">TITLE</span>
 						<input type="text" name="page_title" style="width:640px;" value="<?=$dat[0]["title"]?>"><button id="page_set_btn" type="button" class="event_set_btn">変更</button>
 					</div>			
 					<textarea class="page_area" name="page_log"><?=$dat[0]["contents"]?></textarea>

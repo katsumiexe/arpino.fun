@@ -138,31 +138,6 @@ $(function(){
 		$('.cast_table').fadeIn(100);
 	});
 
-	$('#sort').sortable({
-		axis: 'y',
-        handle: '.td_sort',
-		stop : function(){
-			ChgList=$(this).sortable("toArray");
-			console.log(ChgList);
-			var Cnt = 1;
-			$(this).children('.tr').each(function(){
-				$(this).children('.w40').children('.box_sort').val(Cnt);
-				Cnt++;
-			});
-
-			$.ajax({
-				url:'./post/admin_staff_sort.php',
-				type: 'post',
-				data:{
-					'list[]':ChgList,
-				},
-				dataType: 'json',
-
-			}).done(function(data, textStatus, jqXHR){
-		
-			});
-		}
-	});
 });
 
 </script>
@@ -197,10 +172,10 @@ $(function(){
 <td class="td_top">変更</td>
 </tr>
 </thead>
-<tbody id="sort">
+<tbody id="staff_sort" class="list_sort">
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
-<td class="td_sort">■</td>
+<td class="td_sort handle"></td>
 <td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
 <td class="w60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
 <td class="w200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
