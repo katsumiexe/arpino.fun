@@ -20,7 +20,6 @@ $cat[2]="page";
 $cat[3]="person";
 $cat[4]="outer";
 
-
 $sel_id			=$_POST["sel_id"];
 $post_id		=$_POST["post_id"];
 
@@ -31,9 +30,6 @@ if($post_id == "page") $post_id="system";
 $event_set_id	=$_POST["event_set_id"];
 $page_log		=$_POST["page_log"];
 $post_id_set	=$_POST["post_id_set"];
-
-
-var_dump($_POST);
 
 if($event_set_id){
 	$event_title	=$_POST["event_title"];
@@ -786,16 +782,12 @@ $(function(){
 		<div id="event_sort" class="main_list list_sort">
 			<?foreach($dat as $a1 => $a2){?>
 
-<tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
-<td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
-
-			<table class="event_table">
+			<table id="sort_item<?=$a1?>" class="event_table sort_item">
 				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="post_id" value="event">
 				<input type="hidden" name="menu_post" value="contents">
 				<input type="hidden" name="event_set_id" value="<?=$a1?>">
 				<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
-				<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 				<tbody>
 				<tr>
 					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
@@ -810,8 +802,8 @@ $(function(){
 					<td class="event_td_6" rowspan="3">
 						<label for="upd<?=$a1?>" class="event_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:275px; height:110px;"></span>
 						<span class="img_large"></span>
+						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 					</td>
-
 				</tr><tr>
 					<td rowspan="3"  class="event_td_1 handle"></td>
 					<td rowspan="3"  class="event_td_2">

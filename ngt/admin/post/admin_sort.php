@@ -16,16 +16,14 @@ if($group == "staff_sort"){
 }elseif($group == "event_sort"){
 	foreach($list as $a1 => $a2){
 		$n++;
-		$a2=str_replace('tr_','',$a2);
-		$sql="UPDATE wp01_0cast SET";
-		$sql.=" cast_sort='{$n}'";
+		$a2=str_replace('sort_item','',$a2);
+		$sql="UPDATE wp01_0contents SET";
+		$sql.=" sort='{$n}'";
 		$sql.=" WHERE id={$a2}";
 		mysqli_query($mysqli,$sql);
 	}
-
-
-
 }
+
 
 exit();
 ?>

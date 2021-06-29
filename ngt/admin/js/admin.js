@@ -11,6 +11,7 @@ $(function(){
 		stop : function(){
 
 			ChgList=$(this).sortable("toArray");
+console.log(ChgList);
 			Tmp=$(this).attr('id');
 			var Cnt = 1;
 
@@ -21,11 +22,10 @@ $(function(){
 				});
 
 			}else if(Tmp == 'event_sort'){
-				$(this).children('.event_table').each(function(){
-					$(this).children('.w40').children('.box_sort').val(Cnt);
+				$(this).children('.sort_item').each(function(){
+					$(this).find('.box_sort').val(Cnt);
 					Cnt++;
 				});
-
 			}
 
 			$.ajax({
