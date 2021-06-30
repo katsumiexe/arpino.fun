@@ -742,13 +742,100 @@ $(function(){
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "info"){?>
 		<div class="main_box">
-			<table>
+
+		<table class="event_table" style="background:#ffe0f0;">
+
+			<form id="fnew" action="./index.php" method="post" enctype="multipart/form-data">
+
+			<input type="hidden" name="post_id" value="info">
+			<input type="hidden" name="menu_post" value="contents">
+			<input type="hidden" name="event_set_id" value="new">
+			<input name="upd_img" type="file" class="upd_file" style="display:none;">
+
+			<tr>
+				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
+
+				<td class="event_td_3">
+					<span class="event_tag">公開日</span>
+					<input type="date" name="display_date" class="w140" value="<?=$day_date?>" autocomplete="off">
+					<button  type="submit" class="event_reg_btn">登録</button>
+				</td>
+
+				<td class="event_td_6" rowspan="2">
+					<label for="updnew" class="event_img"><img id="top_updnew" src="../img/event_no_image.png" style="width:300px; height:100px;"></span>
+					<span class="img_large"></span>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2"></td>
+				<td  class="event_td_5">
+					<span class="event_tag">リンク</span><select name="category" class="w140">
+						<option value="">なし</option>
+						<option value="event"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+					</select>
+					<input type="text" name="event_key" style="width:175px;margin-left:5px;" value=""> 
+				</td>
+			</form>
+		</table>
+
+
+		<div id="contents_sort" class="main_list list_sort">
+			<?foreach($dat as $a1 => $a2){?>
+
+			<table id="sort_item<?=$a1?>" class="event_table sort_item c<?=$a2["status"]?>">
+				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
+	
+				<input type="hidden" name="post_id" value="event">
+				<input type="hidden" name="menu_post" value="contents">
+				<input type="hidden" name="event_set_id" value="<?=$a1?>">
+				<tbody>
 				<tr>
-					<td style="width:60px;"><?=$a2["title"]?></td>
-					<td style="width:60px;"><?=$a2["contents"]?></td>
+					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
+
+					<td class="event_td_3">
+						<span class="event_tag">公開日</span>
+						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+						<button id="cov<?=$a1?>" type="button" class="event_set_btn"><?=$st[$a2["status"]]?></button>
+						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
+						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
+					</td>
+
+					<td class="event_td_6" rowspan="3">
+						<label for="upd<?=$a1?>" class="event_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:300px; height:100px;"></span>
+						<span class="img_large"></span>
+						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
+						<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
+					</td>
+				</tr><tr>
+					<td rowspan="2"  class="event_td_1 handle"></td>
+					<td rowspan="2"  class="event_td_2">
+						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
+					</td>
+
+					<td  class="event_td_5">
+						<span class="event_tag">リンク</span><select name="category" class="w140">
+							<option value="">なし</option>
+							<option value="event"   <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+						</select>
+						<input type="text" name="event_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
+					</td>
 				</tr>
+				</tbody>
+				</form>
 			</table>
+			<? } ?>
 		</div>
+
+
+
+
 		<div class="sub_box"></div>
 
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
@@ -800,7 +887,7 @@ $(function(){
 			</form>
 		</table>
 
-		<div id="contents" class="main_list list_sort">
+		<div id="contents_sort" class="main_list list_sort">
 			<?foreach($dat as $a1 => $a2){?>
 
 			<table id="sort_item<?=$a1?>" class="event_table sort_item c<?=$a2["status"]?>">
@@ -862,6 +949,7 @@ $(function(){
 		</div>
 
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+
 	<?}else{?>
 		<?if($post_id == "recruit"){?>
 			<div class="main_box">
@@ -883,17 +971,16 @@ $(function(){
 					</tr>
 					</form>
 
-					<tbody id="contents" class="list_sort">
+					<tbody id="contents_sort" class="list_sort">
 						<?foreach($dat as $a1 => $a2){?>
-							<tr id="sort_item<?=$a1?>" class="tr">
+							<tr id="sort_item<?=$a1?>" class="tr sort_item">
 								<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
 									<input type="hidden" name="post_id" value="recruit">
 									<input type="hidden" name="menu_post" value="contents">
 									<input type="hidden" name="event_set_id" value="<?=$a1?>">
 									<input type="hidden" name="category" value="list">
 									<td class="event_td_1 handle"></td>
-									<td class="event_td_2"><?=$a2["sort"]?></td>
-
+									<td class="event_td_2"><input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled></td>
 									<td class="recruit_td3">
 										<input type="text" name="event_title" class="recruit_title" value="<?=$a2["title"]?>">
 										<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>

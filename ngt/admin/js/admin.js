@@ -8,10 +8,10 @@ $(function(){
 	$('.list_sort').sortable({
 		axis: 'y',
         handle: '.handle',
-		stop : function(){
 
+		stop : function(){
 			ChgList=$(this).sortable("toArray");
-console.log(ChgList);
+
 			Tmp=$(this).attr('id');
 			var Cnt = 1;
 
@@ -21,7 +21,7 @@ console.log(ChgList);
 					Cnt++;
 				});
 
-			}else if(Tmp == 'event_sort'){
+			}else if(Tmp == 'contents_sort'){
 				$(this).children('.sort_item').each(function(){
 					$(this).find('.box_sort').val(Cnt);
 					Cnt++;
@@ -35,9 +35,15 @@ console.log(ChgList);
 					'list[]':ChgList,
 					'group':Tmp,
 				},
-				dataType: 'json',
+//				dataType: 'json',
 
 			}).done(function(data, textStatus, jqXHR){
+				console.log(data)
+
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				console.log(errorThrown);
+
 		
 			});
 		}

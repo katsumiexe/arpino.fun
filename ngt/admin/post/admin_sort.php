@@ -13,7 +13,7 @@ if($group == "staff_sort"){
 		mysqli_query($mysqli,$sql);
 	}
 
-}elseif($group == "contents"){
+}elseif($group == "contents_sort"){
 	foreach($list as $a1 => $a2){
 		$n++;
 		$a2=str_replace('sort_item','',$a2);
@@ -23,5 +23,9 @@ if($group == "staff_sort"){
 		mysqli_query($mysqli,$sql);
 	}
 }
+
+echo $list;
+echo $group;
+
 exit();
 ?>
