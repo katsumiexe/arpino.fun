@@ -234,19 +234,48 @@ $(function(){
 <table class="config_sche">	
 	<tr>
 		<td class="config_sche_top">入店前</td>
-		<td class="config_td"><?=$config["comming_soon"]?></td>
+		<td class="config_td">
+			<label for="cs0" class="ck_free">
+				<span class="check2">
+					<input id="cs0" type="radio" name="comming_soon" value="0" class="ck0" <?if($config["comming_soon"] !=1){?>checked="checked"<?}?>>
+					<span class="check1"></span>
+				</span>
+				なし
+			</label>
+			<label for="cs1" class="ck_free">
+				<span class="check2">
+					<input id="cs1" type="radio" name="comming_soon" value="1" class="ck0" <?if($config["comming_soon"] ==1){?>checked="checked"<?}?>>
+					<span class="check1"></span>
+				</span>
+				あり
+			</label>
+		</td>
 	</tr>
+
 	<tr>
 		<td class="config_sche_top">入店日</td>
-		<td class="config_td"><?=$config["today_commer"]?></td>
+		<td class="config_td">
+			<label for="cs0" class="ck_free">
+				<span class="check2">
+					<input id="cs0" type="radio" name="today_commer" value="0" class="ck0" <?if($config["today_commer"] !=1){?>checked="checked"<?}?>>
+					<span class="check1"></span>
+				</span>
+				なし
+			</label>
+			<label for="cs1" class="ck_free">
+				<span class="check2">
+					<input id="cs1" type="radio" name="today_commer" value="1" class="ck0" <?if($config["today_commer"] ==1){?>checked="checked"<?}?>>
+					<span class="check1"></span>
+				</span>
+				あり
+			</label>
+		</td>
 	</tr>
+
 	<tr>
 		<td class="config_sche_top">新人期間</td>
 		<td class="config_td"><input type="text" name="new_commer_cnt" class="set_box" value="<?=$config["new_commer_cnt"]?>"></td>
 	</tr>
-
-<?foreach($table_sort as $a1 => $a2){?>
-<?}?>
 </table>
 
 
