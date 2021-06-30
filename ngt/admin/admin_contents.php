@@ -445,18 +445,34 @@ td{
 	
 	}
 
+	.event_td_7{
+		position	:relative;
+		border-right:1px solid #303030;
+		width		:310px;
+	
+	}
+
 .event_img{
 	position		:absolute;
 	top				:5px;
 	left			:5px;
-//	right			:0;
-//	bottom			:0;
 	width			:275px;
 	height			:110px;
 	margin			:auto;
 	overflow		:hidden;
 	border			:1px solid #000000;
+}
 
+
+.info_img{
+	position		:absolute;
+	top				:5px;
+	left			:5px;
+	width			:210px;
+	height			:70px;
+	margin			:auto;
+	overflow		:hidden;
+	border			:1px solid #000000;
 }
 
 .img_chg,.img_large{
@@ -761,8 +777,8 @@ $(function(){
 					<button  type="submit" class="event_reg_btn">登録</button>
 				</td>
 
-				<td class="event_td_6" rowspan="2">
-					<label for="updnew" class="event_img"><img id="top_updnew" src="../img/event_no_image.png" style="width:300px; height:100px;"></span>
+				<td class="event_td_7" rowspan="2">
+					<label for="updnew" class="info_img"><img id="top_updnew" src="../img/info_no_image.png" style="width:210px; height:70px;"></span>
 					<span class="img_large"></span>
 				</td>
 			</tr>
@@ -803,9 +819,8 @@ $(function(){
 						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
 						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
 					</td>
-
-					<td class="event_td_6" rowspan="3">
-						<label for="upd<?=$a1?>" class="event_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:300px; height:100px;"></span>
+					<td class="event_td_7" rowspan="2">
+						<label for="upd<?=$a1?>" class="info_img"><img id="top_upd<?=$a1?>" src="../img/info_no_image.png" style="width:300px; height:100px;"></span>
 						<span class="img_large"></span>
 						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 						<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
