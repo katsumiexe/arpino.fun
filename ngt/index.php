@@ -67,9 +67,8 @@ if($res0 = mysqli_query($mysqli,$sql)){
 			$a1["link"]="./person.php";
 			$a1["code"]=$a1["contents_key"];
 
-
 		}elseif($a1["category"]){
-			$a1["link"]=$a1["category"];
+			$a1["link"]=$a1["contents_key"];
 		}
 
 		if (file_exists("./img/page/event/event_{$a1["id"]}.webp")) {
@@ -182,9 +181,7 @@ var Cnt=<?=$count_event?>;
 		<?if($count_news){?>
 		<div class="main_b_title">新着情報<a href="./news_list.php" class="new_all">一覧≫</a></div>
 		<div class="main_b_top">
-
 			<?for($n=0;$n<$count_news;$n++){?>
-
 				<?if($news[$n]["category"]){?>
 					<table  class="main_b_notice" colspan="3">
 					<tr>

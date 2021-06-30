@@ -296,6 +296,10 @@ if($post_id == "news"){
 
 }
 
+.c0{
+	background:#fafafa;
+}
+
 .c1{
 	background:#f0ffc0;
 }
@@ -381,10 +385,10 @@ td{
 		width			:810px;
 		margin			:5px;
 		border			:1px solid #303030;
-		background		:#fafafa;
 		font-size		:0;
 		vertical-align	:top;
 	}
+
 
 	.event_td_0{
 		background		:#d0d0ff;
@@ -602,11 +606,30 @@ $(function(){
 
 	$('.upd_file').on('change',function(e){
 		Tmp=$(this).attr('id');
+		var file = e.target.files[0];	
 		var reader = new FileReader();
-			reader.onload = function (e) {
-				$("#top_"+Tmp).attr('src', e.target.result);
+
+		if(file.type.indexOf("image") < 0){
+			alert("NO IMAGE FILES");
+			return false;
+		}
+		var img = new Image();
+
+		reader.onload = function (e) {
+			img.src = e.target.result;
+			if(img.height != 480 || img.width != 1200){
+				if (!confirm('画像が推奨サイズではありませんがよろしいですか\n※推奨サイズ　縦480px 横1200px')) {
+					return false;
+				}else{
+					$("#top_"+Tmp).attr('src', e.target.result);
+				}
+			}else{
+					$("#top_"+Tmp).attr('src', e.target.result);
 			}
-			reader.readAsDataURL(e.target.files[0]);
+
+		}
+		reader.readAsDataURL(e.target.files[0]);
+
 	});
 
 	$('.event_tag_btn,.event_set_btn').on('click',function(){
@@ -737,7 +760,6 @@ $(function(){
 			<input type="hidden" name="post_id" value="event">
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="event_set_id" value="new">
-
 			<input name="upd_img" type="file" class="upd_file" style="display:none;">
 			<tr>
 				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
@@ -751,7 +773,6 @@ $(function(){
 					<label for="updnew" class="event_img"><img id="top_updnew" src="../img/event_no_image.png" style="width:275px; height:110px;"></span>
 					<span class="img_large"></span>
 				</td>
-
 
 			</tr><tr>
 				<td rowspan="3" colspan="2"></td>
@@ -779,10 +800,10 @@ $(function(){
 			</form>
 		</table>
 
-		<div id="event_sort" class="main_list list_sort">
+		<div id="contents" class="main_list list_sort">
 			<?foreach($dat as $a1 => $a2){?>
 
-			<table id="sort_item<?=$a1?>" class="event_table sort_item">
+			<table id="sort_item<?=$a1?>" class="event_table sort_item c<?=$a2["status"]?>">
 				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="post_id" value="event">
 				<input type="hidden" name="menu_post" value="contents">
@@ -794,7 +815,7 @@ $(function(){
 						<td class="event_td_3">
 						<span class="event_tag">公開日</span>
 						<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
-						<button id="cov<?=$a1?>" type="button" class="event_set_btn">非表示</button>
+						<button id="cov<?=$a1?>" type="button" class="event_set_btn"><?=$st[$a2["status"]]?></button>
 						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
 						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
 					</td>
@@ -862,16 +883,15 @@ $(function(){
 					</tr>
 					</form>
 
-					<tbody id="sort">
+					<tbody id="contents" class="list_sort">
 						<?foreach($dat as $a1 => $a2){?>
-							<tr id="tr_<?=$a1?>" class="tr">
+							<tr id="sort_item<?=$a1?>" class="tr">
 								<form id="f<?=$a1?>" action="./index.php" method="post" multipart/form-data>
 									<input type="hidden" name="post_id" value="recruit">
 									<input type="hidden" name="menu_post" value="contents">
 									<input type="hidden" name="event_set_id" value="<?=$a1?>">
 									<input type="hidden" name="category" value="list">
-
-									<td class="event_td_1"></td>
+									<td class="event_td_1 handle"></td>
 									<td class="event_td_2"><?=$a2["sort"]?></td>
 
 									<td class="recruit_td3">

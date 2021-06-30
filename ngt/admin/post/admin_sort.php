@@ -6,14 +6,14 @@ $group		=$_POST['group'];
 if($group == "staff_sort"){
 	foreach($list as $a1 => $a2){
 		$n++;
-		$a2=str_replace('tr_','',$a2);
+		$a2=str_replace('sort_item','',$a2);
 		$sql="UPDATE wp01_0cast SET";
 		$sql.=" cast_sort='{$n}'";
 		$sql.=" WHERE id={$a2}";
 		mysqli_query($mysqli,$sql);
 	}
 
-}elseif($group == "event_sort"){
+}elseif($group == "contents"){
 	foreach($list as $a1 => $a2){
 		$n++;
 		$a2=str_replace('sort_item','',$a2);
@@ -23,7 +23,5 @@ if($group == "staff_sort"){
 		mysqli_query($mysqli,$sql);
 	}
 }
-
-
 exit();
 ?>

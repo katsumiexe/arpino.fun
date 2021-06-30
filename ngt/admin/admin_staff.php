@@ -174,7 +174,7 @@ $(function(){
 </thead>
 <tbody id="staff_sort" class="list_sort">
 <?for($n=0;$n<$count_dat;$n++){?>
-<tr id="tr_<?=$dat[$n]["staff_id"]?>" class="tr">
+<tr id="sort_item<?=$dat[$n]["staff_id"]?>" class="tr">
 <td class="td_sort handle"></td>
 <td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
 <td class="w60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
