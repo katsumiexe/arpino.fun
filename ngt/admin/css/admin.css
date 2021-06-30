@@ -280,10 +280,10 @@ ul {
 }
 
 
-.config_prof_handle,.config_prof_name,.config_prof_style,.config_prof_sort{
+.config_td, .config_prof_handle,.config_prof_name,.config_prof_style,.config_prof_sort{
 	border		:1px solid #000000;
 	height		:30px;
-	background		:#e6e6fa;
+	background	:#e6e6fa;
 }
 
 .config_prof_handle{
@@ -301,6 +301,8 @@ ul {
 .config_prof_style{
 	width		:120px;
 }
+
+
 
 .prof_sort{
 	width		:26px;
@@ -342,6 +344,13 @@ ul {
 	font-size		:0;
 	background		:#e6e6fa;
 	width			:120px;
+}
+
+.config_sche_del{
+	text-align		:center;
+	font-size		:0;
+	background		:#e6e6fa;
+	width			:60px;
 }
 
 

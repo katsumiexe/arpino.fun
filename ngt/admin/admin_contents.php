@@ -833,11 +833,7 @@ $(function(){
 			<? } ?>
 		</div>
 
-
-
-
 		<div class="sub_box"></div>
-
 <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
 	<?}elseif($post_id == "event"){?>
 		<div class="main_box">

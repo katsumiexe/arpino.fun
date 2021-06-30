@@ -1,5 +1,4 @@
 <?
-
 $sql ="SELECT * FROM wp01_0check_main";
 $sql.=" ORDER BY sort ASC";
 if($result = mysqli_query($mysqli,$sql)){
@@ -212,39 +211,38 @@ $(function(){
 	<tr>
 		<td class="config_sche_top">表示</td>
 		<td class="config_sche_top">時間</td>
-		<td>削除</td>
+		<td class="config_sche_top">削除</td>
 		<td class="config_sche_top">表示</td>
 		<td class="config_sche_top">時間</td>
-		<td>削除</td>
+		<td class="config_sche_top">削除</td>
 	</tr>
 
 <?foreach($table_sort as $a1 => $a2){?>
 <tr>
 <td class="config_sche_list"><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
-<td class="config_sche_list" style="border-right:1px solid #303030"><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
-<td></td>
+<td class="config_sche_list"><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
+<td class="config_sche_del" style="border-right:1px solid #303030"></td>
+
 <td class="config_sche_list"><input type="text" name="out_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["name"]?>"></td>
 <td class="config_sche_list"><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
-<td></td></tr>
+<td class="config_sche_del" style="border-right:1px solid #303030"></td>
+</tr>
 <?}?>
 </table>
 
 <div class="config_title">リボン</div>
 <table class="config_sche">	
 	<tr>
-		<td class="config_sche_top"></td>
 		<td class="config_sche_top">入店前</td>
-		<td class=""><?=$config["comming_soon"]?></td>
+		<td class="config_td"><?=$config["comming_soon"]?></td>
 	</tr>
 	<tr>
-		<td class="config_sche_top"></td>
 		<td class="config_sche_top">入店日</td>
-		<td class=""><?=$config["today_commer"]?></td>
+		<td class="config_td"><?=$config["today_commer"]?></td>
 	</tr>
 	<tr>
-		<td class="config_sche_top"></td>
 		<td class="config_sche_top">新人期間</td>
-		<td class=""><input type="text" name="new_commer_cnt" class="set_box" value="<?=$config["new_commer_cnt"]?>"></td>
+		<td class="config_td"><input type="text" name="new_commer_cnt" class="set_box" value="<?=$config["new_commer_cnt"]?>"></td>
 	</tr>
 
 <?foreach($table_sort as $a1 => $a2){?>
@@ -309,7 +307,7 @@ $(function(){
 	<tr>
 		<td class="config_sche_top"></td>
 		<td class="config_sche_top">新人期間</td>
-		<td class=""></td>
+		<td class="config_td"></td>
 	</tr>
 <?}?>
 </table>

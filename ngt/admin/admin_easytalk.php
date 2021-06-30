@@ -82,6 +82,13 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="main_box">
+
+<table>
+<tr>
+<td>送信</td>
+
+
+
 	</div>
 </div>
 <footer class="foot"></footer> 
