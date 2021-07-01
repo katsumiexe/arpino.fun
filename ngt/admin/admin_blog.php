@@ -52,14 +52,14 @@ if($result = mysqli_query($mysqli,$sql)){
 
 
 
-$sql	 ="SELECT tag_name,tag_icon,sort FROM wp01_0tag";
+$sql	 ="SELECT tag_name,tag_icon,id FROM wp01_0tag";
 $sql	.=" WHERE tag_group='blog'";
 $sql	.=" AND del=0";
 $sql	.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
-		$tag[$row["sort"]]=$row["tag_name"];
+		$tag[$row["id"]]=$row["tag_name"];
 	}
 }
 
@@ -167,8 +167,15 @@ STATUS
 	<?=$id?>
 	<span class="event_tag">公開日</span>
 	<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
-	
+
+	<select>
+	<?foreach($tag as $a1 => $a2){?>
+	<option value="<?=$a1?>"><?=$a2?></option>
+	<?}?>
+	</select>
+
 </td>
+
 
 <td rowspan="2"></td>
 </tr>
