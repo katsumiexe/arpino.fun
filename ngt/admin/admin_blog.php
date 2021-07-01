@@ -30,26 +30,32 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
 $sql	 ="SELECT P.id,P.blog_id,P.date, P.view_date, P.title, P.log, P.cast, P.tag, P.img, P.status, C.genji,C.cast_status FROM wp01_0posts AS P";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
 $sql	.=" WHERE status<4";
-$sql	.=" AND revision=0";
-
+$sql	.=" GROUP BY blog_id";
 $sql	.=" ORDER BY view_date DESC";
 $sql	.=" LIMIT 20";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($res = mysqli_fetch_assoc($result)){
-		$res["event_date"]	=substr($res["event_date"],0,10);
-		$res["display_date"]	=substr($res["display_date"],0,10);
-		if($res["status"] ==0 && $res["display_date"] > date("Y-m-d")){
+		if($res["status"] ==0 && $res["view_date"] > date("Y-m-d")){
 			$res["status"]=1;
 		}
+
+		if($res["img"]){
+			$res["img_link"]="../img/profile/{$res["cast"]}/{$res["img"]}_s.png";
+
+		}else{
+			$res["img_link"]="../blog_no_image.png";
+		}
+
+		$res["img_cast"]="../img/profile/{$res["cast"]}/0_s.jpg";
+
+		$res["view_date"]	=substr($res["view_date"],0,10)."T".substr($res["view_date"],11,5);
 		$dat[$res["id"]]=$res;
 	}
 }
-
 
 
 $sql	 ="SELECT tag_name,tag_icon,id FROM wp01_0tag";
@@ -89,7 +95,7 @@ input[type="checkbox"],input[type="radio"]{
 }
 
 input[type=radio]:checked + label{
-	background		:linear-gradient(#ff0000,#d00000);
+	background		:linear-gradient(#ff0000,#d00000);	
 }
 
 .head{
@@ -145,49 +151,36 @@ $(function(){
 <div class="wrap">
 	<div class="main_box">
 
+<?foreach($dat as $a1 => $a2){?>
+		<table class="event_table" style="border:1px solid #303030;margin:5px;background:#fafafa">
+			<tr>
+				<td style="width:120px;" rowspan="2">
+					<img src="<?=$a2["img_cast"]?>" style="width:90px;"><br>
 
-写
-B_ID
-
-表示日
-STATUS
-変更
-
-タイトル
-タグ
-本文
-
-添付画像
+					<img src="<?=$a2["img_link"]?>" style="width:120px;">
+				</td>
 
 
-<table>
-<tr>
-<td rowspan="2"></td>
-<td>
-	<?=$id?>
-	<span class="event_tag">公開日</span>
-	<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+				<td style="height:30px;">
+					<?=$a2["blog_id"]?>
+					<span class="event_tag">公開日</span>
+					<input type="datetime-local" name="view_date" class="w180" value="<?=$a2["view_date"]?>" autocomplete="off">
+					<select class="w140 news_box">
+					<?foreach($tag as $b1 => $b2){?>
+					<option value="<?=$b1?>" <?if($b1 == $a2["tag"]){?> selected="selected"<?}?>><?=$b2?></option>
+					<?}?>
+					</select>
+				</td>
+			</tr>
 
-	<select>
-	<?foreach($tag as $a1 => $a2){?>
-	<option value="<?=$a1?>"><?=$a2?></option>
-	<?}?>
-	</select>
-
-</td>
-
-
-<td rowspan="2"></td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</table>
-
-
-
-
-
+			<tr>
+				<td>
+					<span class="event_tag">TITLE</span><input type="text" name="event_title" style="width:500px;" value="<?=$a2["title"]?>">
+					<textarea name="event_title" class="news_title" style="width:500px;"><?=$a2["log"]?></textarea>
+				</td>
+			</tr>
+		</table>
+<? } ?>
 
 	</div>
 </div>
