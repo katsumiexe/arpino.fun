@@ -788,10 +788,12 @@ $(function(){
 				<td  class="event_td_5">
 					<span class="event_tag">リンク</span><select name="category" class="w140">
 						<option value="">なし</option>
-						<option value="event"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+						<option value="info"  <?if($a2["category"] == "info"){?> selected="selected"<?}?>>インフォ</option>
+						<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="person"<?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
+						<option value="page"  <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
+						<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 					</select>
 					<input type="text" name="event_key" style="width:175px;margin-left:5px;" value=""> 
 				</td>
@@ -819,12 +821,14 @@ $(function(){
 						<button id="chg<?=$a1?>" type="button" class="event_set_btn">更新</button>
 						<button id="del<?=$a1?>" type="button" class="event_set_btn">削除</button>
 					</td>
+
 					<td class="event_td_7" rowspan="2">
 						<label for="upd<?=$a1?>" class="info_img"><img id="top_upd<?=$a1?>" src="../img/info_no_image.png" style="width:300px; height:100px;"></span>
 						<span class="img_large"></span>
 						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 						<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
 					</td>
+
 				</tr><tr>
 					<td rowspan="2"  class="event_td_1 handle"></td>
 					<td rowspan="2"  class="event_td_2">
@@ -834,8 +838,10 @@ $(function(){
 					<td  class="event_td_5">
 						<span class="event_tag">リンク</span><select name="category" class="w140">
 							<option value="">なし</option>
+							<option value="info"   <?if($a2["category"] == "info"){?> selected="selected"<?}?>>インフォ</option>
 							<option value="event"   <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+	　						<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
 							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>
@@ -880,6 +886,7 @@ $(function(){
 						<option value="">なし</option>
 						<option value="event"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
 						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 					</select>
@@ -934,6 +941,7 @@ $(function(){
 							<option value="">なし</option>
 							<option value="event"   <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
 							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+							<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
 							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
 							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
 						</select>

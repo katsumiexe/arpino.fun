@@ -1,4 +1,22 @@
 <?
+$sql	 ="SELECT * FROM wp01_0posts";
+$sql	.=" WHERE status<4";
+
+$sql	.=" AND revision=0";
+
+$sql	.=" ORDER BY view_date DESC";
+$sql	.=" LIMIT 20";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($res = mysqli_fetch_assoc($result)){
+		$res["event_date"]	=substr($res["event_date"],0,10);
+		$res["display_date"]	=substr($res["display_date"],0,10);
+		if($res["status"] ==0 && $res["display_date"] > date("Y-m-d")){
+			$res["status"]=1;
+		}
+		$dat[$res["id"]]=$res;
+	}
+}
 
 ?>
 <style>
@@ -29,7 +47,6 @@ input[type=radio]:checked + label{
 	background		:linear-gradient(#ff0000,#d00000);
 }
 
-
 .head{
 	display			:inline-block;
 	position		:fixed;
@@ -38,7 +55,7 @@ input[type=radio]:checked + label{
 	width			:calc(100vw - 180px);
 	height			:50px;
 	background		:#0000d0;
-	z-index:10;
+	z-index			:10;
 }
 
 .foot{
@@ -46,7 +63,7 @@ input[type=radio]:checked + label{
 	position		:fixed;
 	bottom			:0;
 	left			:180px;
-	width			: calc(100vw - 180px);
+	width			:calc(100vw - 180px);
 	height			:30px;
 	background		:#00d000;
 	z-index:10;
