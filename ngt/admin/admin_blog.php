@@ -50,6 +50,19 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
+
+$sql	 ="SELECT tag_name,tag_icon,sort FROM wp01_0tag";
+$sql	.=" WHERE tag_group='blog'";
+$sql	.=" AND del=0";
+$sql	.=" ORDER BY sort ASC";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$tag[$row["sort"]]=$row["tag_name"];
+	}
+}
+
 ?>
 <style>
 <!--
@@ -131,6 +144,41 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="main_box">
+
+
+写
+B_ID
+
+表示日
+STATUS
+変更
+
+タイトル
+タグ
+本文
+
+添付画像
+
+
+<table>
+<tr>
+<td rowspan="2"></td>
+<td>
+	<?=$id?>
+	<span class="event_tag">公開日</span>
+	<input type="date" name="display_date" class="w140" value="<?=$a2["display_date"]?>" autocomplete="off">
+	
+</td>
+
+<td rowspan="2"></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</table>
+
+
+
 
 
 
