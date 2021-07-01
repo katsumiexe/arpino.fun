@@ -1,7 +1,39 @@
 <?
-$sql	 ="SELECT * FROM wp01_0posts";
-$sql	.=" WHERE status<4";
 
+if($fil_st){
+	$app.="AND view_date>='{$fil_st}'";
+}
+
+if($fil_ed){
+	$app.="AND view_date>='{$fil_ed}'";
+}
+
+if($fil_key){
+	$app.="AND log LIKE '%{$fil_key}%'";
+}
+
+if($fil_cast){
+	$app.="AND P.cast ='{$fil_cast}'";
+}
+
+if($fil_tag){
+	$app.="AND P.tag ='{$fil_tag}'";
+}
+
+$sql	 ="SELECT COUNT(id) AS cnt,blog_id FROM wp01_0posts";
+$sql	.=" WHERE status<4";
+$sql	.= $app;
+$sql	.=" GROUP BY blog_id";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$blog_count[$row["blog_id"]]=$row["cnt"];
+	}
+}
+
+
+$sql	 ="SELECT P.id,P.blog_id,P.date, P.view_date, P.title, P.log, P.cast, P.tag, P.img, P.status, C.genji,C.cast_status FROM wp01_0posts AS P";
+$sql	.=" LEFT JOIN wp01_0cast AS C ON P.cast=C.id";
+$sql	.=" WHERE status<4";
 $sql	.=" AND revision=0";
 
 $sql	.=" ORDER BY view_date DESC";
@@ -99,6 +131,9 @@ $(function(){
 </header>
 <div class="wrap">
 	<div class="main_box">
+
+
+
 	</div>
 </div>
 <footer class="foot"></footer> 
