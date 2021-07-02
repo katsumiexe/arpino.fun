@@ -335,7 +335,6 @@ $(function(){
 </form>
 </header>
 <div class="wrap">
-<div class="main_box">
 <table>
 	<tr>
 		<td class="td_top" colspan="2">キャスト名</td>
@@ -393,6 +392,5 @@ $(function(){
 	</tr>
 <?}?>
 </table>
-</div>
 </div>
 <footer class="foot"></footer> 
