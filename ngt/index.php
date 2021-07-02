@@ -152,6 +152,8 @@ include_once('./header.php');
 
 <script>
 var Cnt=<?=$count_event?>;
+var NewCnt=1;
+
 </script>
 <form id="form_1" method="get" action="">
 <input id="s_code" type="hidden" name="post_id">
