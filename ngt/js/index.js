@@ -18,8 +18,6 @@ $(function(){
 
 	$('.slide_img_cv').on('click',function () {
 
-		console.log($('#slide_img'+TopCnt).attr('s_link'));
-
 		if($('#slide_img'+TopCnt).attr('s_link')){
 			$('#s_code').val($('#slide_img'+TopCnt).attr('s_code'));
 			$('#form_1').attr('action',$('#slide_img'+TopCnt).attr('s_link')).submit();
@@ -50,9 +48,6 @@ $(function(){
 			}else{
 				OldCnt=TopCnt-1;
 			}
-
-console.log(TopCnt)
-
 		},
 
 		drag: function( event, ui ){
@@ -193,7 +188,7 @@ console.log(TopCnt)
 					}
 
 				}
-				TopCnt=TMP;
+				TopCnt=TMP-0;
 
 				clearInterval(timerId);
 				timerId = setInterval(Fnc_s,TMR);

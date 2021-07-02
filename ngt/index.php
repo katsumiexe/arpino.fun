@@ -148,6 +148,9 @@ include_once('./header.php');
 	left			:0;
 	z-index			:0;
 }
+#slide_img1{
+	z-index			:2;
+}
 </style>
 
 <script>

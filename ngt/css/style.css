@@ -256,7 +256,6 @@ ul {
 	width		:1200px;
 	height		:480px;
 	z-index		:10;
-	background:rgba(200,0,0,0.4);
 }
 
 .event_img{
@@ -597,7 +596,7 @@ ul {
 }
 
 .blog_title{
-	width			:290px;
+	width			:292px;
 	font-family		:at_font1;
 }
 
@@ -2088,9 +2087,9 @@ ul {
 	margin			:0 auto;
 	display			:block;
 	position		:relative;
-	width			:300px;
+	width			:302px;
 	height			:90px;	
-	border-bottom	:1px solid #C8B880;
+	border-bottom	:2px solid #000000;
 	color			:#C8B880;
 	background		:#302520;
 }
