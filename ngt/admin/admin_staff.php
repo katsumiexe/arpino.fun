@@ -4,19 +4,23 @@ $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" WHERE S.del=0";
 $sql	.=" ORDER BY cast_sort ASC";
 
-if($result = mysqli_query($mysqli,$sql)){
-	while($res = mysqli_fetch_assoc($result)){
-		if (file_exists("../img/profile/{$res["id"]}/0.webp")) {
-			$res["face"]="../img/profile/{$res["id"]}/0.webp";			
+if($rawult = mysqli_query($mysqli,$sql)){
+	while($raw = mysqli_fetch_assoc($rawult)){
+		if (file_exists("../img/profile/{$raw["id"]}/0.webp")) {
+			$raw["face"]="../img/profile/{$raw["id"]}/0.webp";			
 
-		}elseif (file_exists("../img/profile/{$res["id"]}/0.jpg")) {
-			$res["face"]="../img/profile/{$res["id"]}/0.jpg";			
+		}elseif (file_exists("../img/profile/{$raw["id"]}/0.jpg")) {
+			$raw["face"]="../img/profile/{$raw["id"]}/0.jpg";			
 
 		}else{
-			$res["face"]="../img/cast_no_image.jpg";			
+			$raw["face"]="../img/cast_no_image.jpg";			
 		}
-		$dat[]=$res;
+		if($raw["cast_status"]==0 && $raw["ctime"]>$day_8){
+			$raw["cast_status"]=1;
+		}
+		$dat[]=$raw;
 	}
+
 	if(is_array($dat)){
 		$count_dat=count($dat);
 	}
@@ -35,10 +39,11 @@ input[type="checkbox"],input[type="radio"]{
 }
 
 td{
-	background	:#fafafa;
 	border:1px solid #303030;
-
+	padding:5px;
 }
+
+
 
 #sel_staff,#sel_cast{
 	display:none;
@@ -167,14 +172,14 @@ $(function(){
 <td class="td_top"></td>
 <td class="td_top">源氏名[フリガナ]</td>
 <td class="td_top">ID</td>
-<td class="td_top">登録日</td>
+<td class="td_top">入店日</td>
 <td class="td_top">状態</td>
 <td class="td_top">変更</td>
 </tr>
 </thead>
 <tbody id="staff_sort" class="list_sort">
 <?for($n=0;$n<$count_dat;$n++){?>
-<tr id="sort_item<?=$dat[$n]["staff_id"]?>" class="tr">
+<tr id="sort_item<?=$dat[$n]["staff_id"]?>" class="tr b<?=$dat[$n]["cast_status"]?>">
 <td class="td_sort handle"></td>
 <td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
 <td class="w60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>

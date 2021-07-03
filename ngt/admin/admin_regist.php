@@ -43,6 +43,7 @@ if($result = mysqli_query($mysqli,$sql)){
 <!--
 td{
 	vertical-align:top;
+	padding:5px;
 }
 
 #sel_staff,#sel_cast{

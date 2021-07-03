@@ -158,7 +158,7 @@ td{
 	display			:block;
 	height			:30px;
 	width			:100%;
-	margin			:10px 3px;
+	margin			:5px 3px;
 }
 
 .tag_inout{
@@ -349,7 +349,7 @@ $(function(){
 
 <?foreach($cast_dat as $a1=> $a2){?>
 	<tr>
-		<td class="w60"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
+		<td style="width:70px" class="td_top"><img src="<?=$a2["face"]?>?t=<?=time()?>" style="width:60px; height:80px;margin:5px;"></td>
 
 		<td class="td_castname w160">
 			<div class="td_castname_in">

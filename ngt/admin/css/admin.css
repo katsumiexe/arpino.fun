@@ -639,22 +639,6 @@ ul {
 
 }
 
-.c0{
-	background:#fafafa;
-}
-
-.c1{
-	background:#f0ffc0;
-}
-
-.c2{
-	background:#ffd0d8;
-}
-
-.c3{
-	background:#e0e0e0;
-}
-
 .event_tag_label{
 	width		:160px;
 	height		:30px;
@@ -983,6 +967,24 @@ td{
 .w280{width:280px;}
 .w300{width:300px;}
 .w400{width:400px;}
+
+.c0{background:#fafafa;}
+.c1{background:#f0ffc0;}
+.c2{background:#ffd0d8;}
+.c3{background:#e0e0e0;}
+
+.b0{background:#fafafa;}
+.b1{background:#f0f0d0;}
+.b2{background:#e0e0e0;}
+.b3{background:#e0e0e0;}
+.b4{background:#e0e0e0;}
+.b5{background:#e0e0e0;}
+
+
+
+
+
+
 
 @media screen and (max-width: 559px){
 .head_menu{
