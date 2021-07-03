@@ -3889,7 +3889,7 @@ ul {
 
 
 .contact_box{
-	width	:80vw;
+	width	:78vw;
 	margin	:1vw auto;
 }
 
@@ -3907,18 +3907,34 @@ ul {
 }
 
 .contact_comm{
-	position	:absolute;
-	display:inline-block;
-	top			:0;
-	bottom		:0;
-	right		:10px;
-	margin		:auto;
-	width		:150px;
-	height		:36px;
-	line-height	:36px;
-	font-size	:24px;
-	text-align	:left;
-	font-weight	:700;
+	right		:1vw;
+	width		:26vw;
+	height		:10vw;
+	line-height	:10vw;
+	font-size	:5vw;
+}
+
+
+.contact_tag{
+	font-size		:4vw;
+	padding-left	:1vw;
+}
+
+.nec{
+	font-size		:3.5vw;
+	margin-left		:2vw;
+}
+
+.contact{
+	height			:8vw;
+	font-size		:4.5vw;
+	margin-bottom	:3vw;
+	width			:75vw;
+}
+
+.contact_form{
+	width			:78vw;
+	margin			:2vw auto;
 }
 
 

@@ -24,10 +24,8 @@ if($dat_config["form"]){
 	if($result = mysqli_query($mysqli,$sql)){
 		$c_form= mysqli_fetch_assoc($result);
 	}
-echo $sql;
 
 	$form_dat="<div class=\"contact_form\">";
-
 	for($n=1;$n<11;$n++){
 		$tmp_nm="log_{$n}_name";
 
