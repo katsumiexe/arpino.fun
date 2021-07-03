@@ -149,7 +149,8 @@ $(function(){
 	background		:linear-gradient(#e0e0e0,#d0d0d0);
 	color			:#a0a0a0;
 }
-.td{
+
+td{
 	padding:5px;
 }
 </style>

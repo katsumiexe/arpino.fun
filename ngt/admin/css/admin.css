@@ -9,7 +9,6 @@ table{
 
 td{
 	vertical-align:middle;
-	padding:5px;
 }
 
 input[type="text"],input[type="date"],select{
@@ -702,10 +701,6 @@ ul {
 	font-size		:15px;
 	padding			:5px;
 	border			:1px solid #303030;
-}
-
-td{
-	padding			:0;
 }
 
 	.event_table{

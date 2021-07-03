@@ -2,25 +2,62 @@
 include_once('./library/sql.php');
 $sql="SELECT * FROM wp01_0contents WHERE page='recruit' ORDER BY sort ASC";
 
-if($res = mysqli_query($mysqli,$sql)){
-	while($a1= mysqli_fetch_assoc($res)){
-		$a1["contents"]=str_replace("\n","<br>",$a1["contents"]);
-		$recruit[$a1["category"]][$a1["sort"]]=$a1;
-	}
-}
-/*
-if($recruit["contact"][0]){
-	$sql="SELECT * FROM wp01_0contact_table;
-	WHERE type='{$recruit["contents_key"][0]}' ORDER BY sort ASC";
-	if($res = mysqli_query($mysqli,$sql)){
-		while($tv= mysqli_fetch_assoc($res)){
+if($result = mysqli_query($mysqli,$sql)){
+	while($raw= mysqli_fetch_assoc($result)){
+		if($raw["category"] == "list"){
+			$raw["contents"]=str_replace("\n","<br>",$raw["contents"]);
+			$dat_list[$raw["sort"]]=$raw;
+
+		}else{
+			$dat_config[$raw["category"]]=$raw;
 		}
 	}
 }
-*/
+
+$ck_tg["1"]="<span class=\"nec\">※必須項目</span>";
+$ck_jq["1"]="nec_ck";
+
+if($dat_config["form"]){
+	$sql="SELECT * FROM wp01_0contact_table";
+	$sql.=" WHERE id='{$dat_config["form"]["contents_key"]}' ORDER BY sort ASC";
+
+	if($result = mysqli_query($mysqli,$sql)){
+		$c_form= mysqli_fetch_assoc($result);
+	}
+echo $sql;
+
+	$form_dat="<div>";
+
+	for($n=1;$n<11;$n++){
+		$tmp_nm="log_{$n}_name";
+
+		if($c_form[$tmp_nm]){
+
+			$tmp_pt=substr($c_form["log_".$n."_type"],0,1);
+			$tmp_ck=substr($c_form["log_".$n."_type"],-1,1);
+
+			$form_dat.="<div>{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div>";
+
+			if($tmp_pt== 1){//text
+				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\">";
+
+			}elseif($tmp_pt== 2){//mail
+				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact v_mail {$ck_jq[$tmp_ck]}\">";
+
+			}elseif($tmp_pt== 3){//number
+				$form_dat.="<input id=\"contact{$n}\" type=\"number\" inputmode=\"numeric\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\">";
+
+			}elseif($tmp_pt== 4){//comm
+				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_area {$ck_jq[$tmp_ck]}\">";
+			}
+		}
+	}
+	$form_dat.="</div>";
+}
 
 include_once('./header.php');
 ?>
+
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -55,37 +92,28 @@ include_once('./header.php');
 		<div class="corner_in box_in_2"></div>
 		<div class="corner_in box_in_3"></div>
 		<div class="corner_in box_in_4"></div>
-		<?foreach($recruit["top"] as $a2){?>
-			<span class="sys_box_ttl"><?=$a2["title"]?></span><br>
-			<span class="sys_box_log"><?=$a2["contents"]?></span><br>
-		<?}?>
-		<?foreach($recruit["list"] as $a2){?>
+
+		<span class="sys_box_ttl"><?=$dat_config["top"]["title"]?></span><br>
+		<span class="sys_box_log"><?=$dat_config["top"]["contents"]?></span><br>
+
+		<?foreach($dat_list as $a2){?>
 			<div class="rec">
 				<div class="rec_l"><?=$a2["title"]?></div>
 				<div class="rec_r"><?=$a2["contents"]?></div>
 			</div>
 		<?}?>
 
-<div class="contact_box">
-<?if($recruit["tel"][0]){?>
-<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">電話</span></div>
-<?}?>
 
-<?if($recruit["line"][0]){?>
-<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">LINE</span></div>
-<?}?>
+	<div class="contact_box">
+		<?if($dat_config["tel"]){?>
+			<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">電話</span></div>
+		<?}?>
 
-<?if($recruit["mail"][0]){?>
-<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">メール</span></div>
-<?}?>
-</div>
-
-
-<?if($recruit["form"][0]){?>
-<input type="text">
-
-
-<?}?>
+		<?if($dat_config["line"]){?>
+			<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">LINE</span></div>
+		<?}?>
+	</div>
+	<?=$form_dat?>
 
 
 	</div>
@@ -95,7 +123,7 @@ include_once('./header.php');
 	<div class="corner box_4"></div>
 </div>
 
-<?if(!$recruit){?>
+<?if(!$dat_config){?>
 <div class="main_e">
 	<div class="main_e_in">
 		<span class="main_e_f c_tr"></span>
