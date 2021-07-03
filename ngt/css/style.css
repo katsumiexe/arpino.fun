@@ -2505,17 +2505,17 @@ ul {
 
 
 .contact_box{
-	display	:flex;
-	width	:750px;
-	margin	:5px auto;
+	display			:flex;
+	width			:750px;
+	margin			:5px auto;
+	justify-content	:space-between;
 }
 
 .recruit_contact{
-	flex-basis	:210px;
-	margin		:20px;
-	height		:50px;
-	position	:relative;
-	background:#fa00d0;
+	flex-basis		:210px;
+	height			:50px;
+	position		:relative;
+	background		:#fa00d0;
 }
 
 .contact_icon{
@@ -2560,13 +2560,13 @@ ul {
 	font-size		:16px;
 	color			:#ff3030;
 	margin-left		:10px;
-	width:600px;
 }
 
 .contact{
 	height			:30px;
 	font-size		:16px;
 	margin-bottom	:10px;
+	width			:400px;
 }
 
 .contact_form{
@@ -3547,7 +3547,7 @@ ul {
 	width			:80vw;
 	font-size		:4vw;
 	line-height		:6vw;
-	margin			:0 auto;
+	margin			:1vw auto 5vw auto;
 }
 
 .system_title{
@@ -3633,8 +3633,8 @@ ul {
 
 .rec_l{
 	flex-basis	:30vw;
-	font-size	:3.5vw;
-	padding		:1.5vw;
+	font-size	:4vw;
+	padding		:1vw;
 	line-height	:5vw;
 }
 
@@ -3886,6 +3886,42 @@ ul {
 .blog_title{
 	width			:49vw;
 }
+
+
+.contact_box{
+	width	:80vw;
+	margin	:1vw auto;
+}
+
+.recruit_contact{
+	flex-basis	:36vw;
+	height		:10vw;
+}
+
+.contact_icon{
+	left		:2vw;
+	width		:8vw;
+	line-height	:8vw;
+	height		:8vw;
+	font-size	:5vw;
+}
+
+.contact_comm{
+	position	:absolute;
+	display:inline-block;
+	top			:0;
+	bottom		:0;
+	right		:10px;
+	margin		:auto;
+	width		:150px;
+	height		:36px;
+	line-height	:36px;
+	font-size	:24px;
+	text-align	:left;
+	font-weight	:700;
+}
+
+
 
 }
 

@@ -52,12 +52,17 @@ echo $sql;
 			}
 		}
 	}
+	$form_dat.="<button id=\"send_btn\" type=\"button\">送信</button>";
 	$form_dat.="</div>";
 }
 
 include_once('./header.php');
 ?>
 
+
+$('#send_btn').on('click',function(){
+	if()
+});
 
 
 <div class="footmark">
@@ -73,14 +78,14 @@ include_once('./header.php');
 </div>
 
 <?foreach($recruit["image"] as $a2){?>
-	<?if (file_exists("./img/page/contents/{$a2["id"]}.webp")) {?>
-		<img src="./img/page/contents/<?=$a2["id"]?>.webp" class="rec_img">
+	<?if (file_exists("./img/page/contents/{$dat_config["top"]["contents_key"]}.webp")) {?>
+		<img src="./img/page/contents/<?=$dat_config["top"]["contents_key"]?>.webp" class="rec_img">
 
-	<?}elseif (file_exists("./img/page/contents/{$a2["id"]}.jpg")) {?>
-		<img src="./img/page/contents/<?=$a2["id"]?>.jpg" class="rec_img">
+	<?}elseif (file_exists("./img/page/contents/{$dat_config["top"]["contents_key"]}.jpg")) {?>
+		<img src="./img/page/contents/<?=$dat_config["top"]["contents_key"]?>.jpg" class="rec_img">
 
-	<?}elseif (file_exists("./img/page/contents/{$a2["id"]}.png")) {?>
-		<img src="./img/page/contents/<?=$a2["id"]?>.png" class="rec_img">
+	<?}elseif (file_exists("./img/page/contents/{$dat_config["top"]["contents_key"]}.png")) {?>
+		<img src="./img/page/contents/<?=$dat_config["top"]["contents_key"]?>.png" class="rec_img">
 	<?}?>
 <?}?>
 
