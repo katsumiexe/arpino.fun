@@ -19,14 +19,14 @@ $ck_jq["1"]="nec_ck";
 
 if($dat_config["form"]){
 	$sql="SELECT * FROM wp01_0contact_table";
-	$sql.=" WHERE id='{$dat_config["form"]["contents_key"]}' ORDER BY sort ASC";
+	$sql.=" WHERE id='{$dat_config["form"]["contents_key"]}'";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		$c_form= mysqli_fetch_assoc($result);
 	}
 echo $sql;
 
-	$form_dat="<div>";
+	$form_dat="<div class=\"contact_form\">";
 
 	for($n=1;$n<11;$n++){
 		$tmp_nm="log_{$n}_name";
@@ -36,19 +36,19 @@ echo $sql;
 			$tmp_pt=substr($c_form["log_".$n."_type"],0,1);
 			$tmp_ck=substr($c_form["log_".$n."_type"],-1,1);
 
-			$form_dat.="<div>{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div>";
+			$form_dat.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div>";
 
 			if($tmp_pt== 1){//text
-				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\">";
+				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
 
 			}elseif($tmp_pt== 2){//mail
-				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact v_mail {$ck_jq[$tmp_ck]}\">";
+				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact v_mail {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
 
 			}elseif($tmp_pt== 3){//number
-				$form_dat.="<input id=\"contact{$n}\" type=\"number\" inputmode=\"numeric\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\">";
+				$form_dat.="<input id=\"contact{$n}\" type=\"number\" inputmode=\"numeric\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
 
 			}elseif($tmp_pt== 4){//comm
-				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_area {$ck_jq[$tmp_ck]}\">";
+				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_area {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
 			}
 		}
 	}
@@ -57,6 +57,8 @@ echo $sql;
 
 include_once('./header.php');
 ?>
+
+
 
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
