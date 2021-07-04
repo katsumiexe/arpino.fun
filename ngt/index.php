@@ -275,9 +275,7 @@ var NewCnt=1;
 						<img src="./img/page/info/<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
 					</a>
 				<?}else{?>	
-					<span class="info_img_out">
 						<img src="./img/page/info/<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
-					</span>	
 				<?}?>
 			<?}?>
 		</div>
