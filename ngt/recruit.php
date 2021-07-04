@@ -4,8 +4,9 @@ $sql="SELECT * FROM wp01_0contents WHERE page='recruit' ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
 	while($raw= mysqli_fetch_assoc($result)){
+		$raw["contents"]=str_replace("\n","<br>",$raw["contents"]);
+
 		if($raw["category"] == "list"){
-			$raw["contents"]=str_replace("\n","<br>",$raw["contents"]);
 			$dat_list[$raw["sort"]]=$raw;
 
 		}else{

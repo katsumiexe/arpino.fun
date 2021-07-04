@@ -41,14 +41,28 @@ if($event_set_id){
 	$category		=$_POST["category"];
 	$event_key		=$_POST["event_key"];
 
-if($event_set_id == "new"){
-	$sql	 ="INSERT INTO wp01_0contents(`date`,`display_date`,`event_date`,`sort`,`page`,`category`,`title`,`contents`,`contents_key`,`tag`)";
-	$sql	.=" VALUES('{$now}','{$display_date}','{$event_date}','0','{$post_id}','{$category}','{$event_title}','{$event_contents}','{$event_key}','{$event_tag}')";
-	mysqli_query($mysqli,$sql);
-	$tmp_auto=mysqli_insert_id($mysqli);
+	if($event_set_id == "new"){
+		$sql	 ="INSERT INTO wp01_0contents(`date`,`display_date`,`event_date`,`sort`,`page`,`category`,`title`,`contents`,`contents_key`,`tag`)";
+		$sql	.=" VALUES('{$now}','{$display_date}','{$event_date}','0','{$post_id}','{$category}','{$event_title}','{$event_contents}','{$event_key}','{$event_tag}')";
+		mysqli_query($mysqli,$sql);
+		$tmp_auto=mysqli_insert_id($mysqli);
+
+	}else{
+		$sql	 ="UPDATE wp01_0contents SET";
+		$sql	.=" `title`='{$event_title}',";
+		$sql	.=" `event_date`='{$event_date}',";
+		$sql	.=" `display_date`='{$display_date}',";
+		$sql	.=" `tag`='{$event_tag}',";
+		$sql	.=" `contents`='{$event_contents}',";
+		$sql	.=" `category`='{$category}',";
+		$sql	.=" `contents_key`='{$event_key}',";
+		$sql	.=" status='{$event_status}'";
+		$sql	.=" WHERE `id`='{$event_set_id}'";
+		mysqli_query($mysqli,$sql);
+		$tmp_auto=$event_set_id;
+	}
 
 	if(isset($_FILES)&& isset($_FILES['upd_img']) && is_uploaded_file($_FILES['upd_img']['tmp_name'])){
-
 		$img_reg=getimagesize($_FILES['upd_img']['tmp_name']);
 		if($img_reg["mime"] =="image/jpeg"){
 			$kk=".jpg";
@@ -66,21 +80,6 @@ if($event_set_id == "new"){
 	    $img_url = "../img/page/{$post_id}/{$post_id}_{$tmp_auto}{$kk}";
 		move_uploaded_file($_FILES['upd_img']['tmp_name'], $img_url);
 	}
-
-}else{
-	$sql	 ="UPDATE wp01_0contents SET";
-	$sql	.=" `title`='{$event_title}',";
-	$sql	.=" `event_date`='{$event_date}',";
-	$sql	.=" `display_date`='{$display_date}',";
-	$sql	.=" `tag`='{$event_tag}',";
-	$sql	.=" `contents`='{$event_contents}',";
-	$sql	.=" `category`='{$category}',";
-	$sql	.=" `contents_key`='{$event_key}',";
-	$sql	.=" status='{$event_status}'";
-	$sql	.=" WHERE `id`='{$event_set_id}'";
-	mysqli_query($mysqli,$sql);
-
-}
 
 
 }elseif($post_id_set){
@@ -165,24 +164,24 @@ if($post_id == "news"){
 }elseif($post_id == "info"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
-	$sql	.=" AND status=0";
+	$sql	.=" AND status<4";
 	$sql	.=" ORDER BY sort ASC";
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
 			$res["display_date"]	=substr($res["display_date"],0,10);
 
-			if (file_exists("../img/page/info/{$res["id"]}.webp")) {
-				$res["img"]="../img/page/info/{$res["id"]}.webp";
+			if (file_exists("../img/page/info/info_{$res["id"]}.webp")) {
+				$res["img"]="../img/page/info/info_{$res["id"]}.webp";
 
-			}elseif (file_exists("../img/page/info/{$res["id"]}.jpg")) {
-				$res["img"]="../img/page/info/{$res["id"]}.jpg";
+			}elseif (file_exists("../img/page/info/info_{$res["id"]}.jpg")) {
+				$res["img"]="../img/page/info/info_{$res["id"]}.jpg";
 
-			}elseif (file_exists("../img/page/info/{$res["id"]}.png")) {
-				$res["img"]="../img/page/info/{$res["id"]}.png";
+			}elseif (file_exists("../img/page/info/info_{$res["id"]}.png")) {
+				$res["img"]="../img/page/info/info_{$res["id"]}.png";
 
 			}else{
-				$res["img"]="../img/cast_no_image.jpg";			
+				$res["img"]="../img/info_no_image.png";			
 			}
 
 			$dat[$res["id"]]=$res;
@@ -193,7 +192,7 @@ if($post_id == "news"){
 }elseif($post_id == "recruit"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
-	$sql	.=" AND status=0";
+	$sql	.=" AND status<4";
 	$sql	.=" ORDER BY sort ASC";
 
 	if($result = mysqli_query($mysqli,$sql)){
@@ -267,6 +266,15 @@ $(function(){
 
 	$('.upd_file').on('change',function(e){
 		Tmp=$(this).attr('id');
+		Ck=Tmp.substr(-1);
+		if(Ck=="i"){
+			Ck_h=200;
+			Ck_w=600;
+		}else{
+			Ck_h=480;
+			Ck_w=1200;
+		}
+		
 		var file = e.target.files[0];	
 		var reader = new FileReader();
 
@@ -278,8 +286,8 @@ $(function(){
 
 		reader.onload = function (e) {
 			img.src = e.target.result;
-			if(img.height != 480 || img.width != 1200){
-				if (!confirm('画像が推奨サイズではありませんがよろしいですか\n※推奨サイズ　縦480px 横1200px')) {
+			if(img.height != Ck_h || img.width != Ck_w){
+				if (!confirm('画像が推奨サイズではありませんがよろしいですか\n※推奨サイズ　縦'+Ck_h+'px 横'+ Ck_w+'px')) {
 					return false;
 				}else{
 					$("#top_"+Tmp).attr('src', e.target.result);
@@ -405,14 +413,10 @@ $(function(){
 		<div class="main_box">
 
 		<table class="event_table" style="background:#ffe0f0;">
-
 			<form id="fnew" action="./index.php" method="post" enctype="multipart/form-data">
-
 			<input type="hidden" name="post_id" value="info">
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="event_set_id" value="new">
-			<input name="upd_img" type="file" class="upd_file" style="display:none;">
-
 			<tr>
 				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
 
@@ -423,8 +427,9 @@ $(function(){
 				</td>
 
 				<td class="event_td_7" rowspan="2">
-					<label for="updnew" class="info_img"><img id="top_updnew" src="../img/info_no_image.png" style="width:210px; height:70px;"></span>
+					<label for="updnewi" class="info_img"><img id="top_updnewi" src="../img/info_no_image.png" style="width:210px; height:70px;"></label>
 					<span class="img_large"></span>
+			<input id="updnewi" name="upd_img" type="file" class="upd_file" style="display:none;">
 				</td>
 			</tr>
 
@@ -452,7 +457,7 @@ $(function(){
 			<table id="sort_item<?=$a1?>" class="event_table sort_item c<?=$a2["status"]?>">
 				<form id="f<?=$a1?>" action="./index.php" method="post" enctype="multipart/form-data">
 	
-				<input type="hidden" name="post_id" value="event">
+				<input type="hidden" name="post_id" value="info">
 				<input type="hidden" name="menu_post" value="contents">
 				<input type="hidden" name="event_set_id" value="<?=$a1?>">
 				<tbody>
@@ -472,9 +477,9 @@ $(function(){
 					</td>
 
 					<td class="event_td_7" rowspan="2">
-						<label for="upd<?=$a1?>" class="info_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:210px; height:70px;"></span>
+						<label for="upd_i<?=$a1?>" class="info_img"><img id="top_upd_i<?=$a1?>" src="<?=$a2["img"]?>" style="width:210px; height:70px;"></span>
 						<span class="img_large"></span>
-						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
+						<input id="upd_i<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 						<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
 					</td>
 				</tr><tr>
@@ -510,8 +515,8 @@ $(function(){
 			<input type="hidden" name="event_set_id" value="new">
 			<input name="upd_img" type="file" class="upd_file" style="display:none;">
 			<tr>
-				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
-					<td class="event_td_3">
+				<td class="event_td_0" rowspan="4"><span class="event_td_0_in">新規作成</span></td>
+				<td class="event_td_3">
 					<span class="event_tag">公開日</span>
 					<input type="date" name="display_date" class="w140" value="<?=$day_date?>" autocomplete="off">
 					<button  type="submit" class="event_reg_btn">登録</button>
@@ -523,8 +528,6 @@ $(function(){
 				</td>
 
 			</tr><tr>
-				<td rowspan="3" colspan="2"></td>
-				</td>
 				<td  class="event_td_5">
 					<span class="event_tag">リンク</span><select name="category" class="w140">
 						<option value="">なし</option>

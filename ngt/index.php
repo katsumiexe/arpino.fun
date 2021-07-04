@@ -113,11 +113,11 @@ if($res1 = mysqli_query($mysqli,$sql)){
 }
 
 $sql	 ="SELECT * FROM wp01_0contents";
-$sql	.=" WHERE status=0";
+$sql	.=" WHERE status<4";
 $sql	.=" AND display_date<'{$now}'";
 $sql	.=" AND page='info'";
 $sql	.=" ORDER BY sort ASC";
-$sql	.=" LIMIT 2";
+$sql	.=" LIMIT 6";
 
 if($res2 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res2)){
@@ -224,18 +224,6 @@ var NewCnt=1;
 		</div>
 		<?}?>
 
-		<div class="info_box sp_only">
-			<?for($n=0;$n<$info_count;$n++){?>
-				<?if($info[$n]["link"]){?>
-					<a href="<?=$info[$n]["link"]?>">
-						<img src="./img/page/info/<?=$info[$n]["id"]?>.png" class="info_img">
-					</a>
-				<?}else{?>	
-						<img src="./img/page/info/<?=$info[$n]["id"]?>.png" class="info_img">
-				<?}?>
-			<?}?>
-		</div>
-
 		<div class="main_b_title">本日の出勤キャスト</div>
 		<div class="main_b_in">
 			<?if($dat_count>0){?>
@@ -268,14 +256,14 @@ var NewCnt=1;
 	</div>
 
 	<div class="main_c">
-		<div class="pc_only">
+		<div class="info_box">
 			<?for($n=0;$n<$info_count;$n++){?>
 				<?if($info[$n]["link"]){?>
 					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
-						<img src="./img/page/info/<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
+						<img src="./img/page/info/info_<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
 					</a>
 				<?}else{?>	
-						<img src="./img/page/info/<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
+						<img src="./img/page/info/info_<?=$info[$n]["id"]?>.png?d=<?=time()?>" class="info_img">
 				<?}?>
 			<?}?>
 		</div>
