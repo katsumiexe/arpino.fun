@@ -15,7 +15,7 @@ $st[2]="注目";
 $st[3]="非表示";
 $st[4]="削除";
 $cat[0]="none";
-$cat[1]="self";
+$cat[1]="event";
 $cat[2]="page";
 $cat[3]="person";
 $cat[4]="outer";
@@ -99,7 +99,7 @@ if($post_id == "news"){
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status<4";
-	$sql	.=" ORDER BY display_date DESC";
+	$sql	.=" ORDER BY event_date DESC";
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
 			$res["event_date"]	=substr($res["event_date"],0,10);
@@ -107,9 +107,18 @@ if($post_id == "news"){
 			if($res["status"] ==0 && $res["display_date"] > date("Y-m-d")){
 				$res["status"]=1;
 			}
-			$dat[$res["id"]]=$res;
+			if($res["status"] == 2){
+				$dat0[$res["id"]]=$res;
+			}else{
+				$dat1[$res["id"]]=$res;
+			}
 		}
 	}
+//	$dat = array_merge($dat0, $dat1);
+
+	$dat = (array)$dat0 + (array)$dat1;
+
+
 
 	$sql	 ="SELECT * FROM wp01_0tag";
 	$sql	.=" WHERE tag_group='news'";
@@ -161,18 +170,22 @@ if($post_id == "news"){
 
 	if($result = mysqli_query($mysqli,$sql)){
 		while($res = mysqli_fetch_assoc($result)){
+			$res["display_date"]	=substr($res["display_date"],0,10);
 
-			if (file_exists("../img/page/event/contents/recruit.jpg")) {
-				$res["img"]="../img/page/event/contents/recruit.jpg";
+			if (file_exists("../img/page/info/{$res["id"]}.webp")) {
+				$res["img"]="../img/page/info/{$res["id"]}.webp";
 
-			}elseif (file_exists("../img/page/event/contents/recruit.png")) {
-				$res["img"]="../img/page/event/contents/recruit.png";
+			}elseif (file_exists("../img/page/info/{$res["id"]}.jpg")) {
+				$res["img"]="../img/page/info/{$res["id"]}.jpg";
+
+			}elseif (file_exists("../img/page/info/{$res["id"]}.png")) {
+				$res["img"]="../img/page/info/{$res["id"]}.png";
 
 			}else{
 				$res["img"]="../img/cast_no_image.jpg";			
 			}
 
-			$dat[$res["category"]][$res["sort"]]=$res;
+			$dat[$res["id"]]=$res;
 		}
 	}
 
@@ -444,7 +457,11 @@ $(function(){
 				<input type="hidden" name="event_set_id" value="<?=$a1?>">
 				<tbody>
 				<tr>
-					<td class="event_td_0" colspan="2"><span class="event_td_0_in"><?=$a2["id"]?></span></td>
+					<td class="event_td_1 handle" rowspan="2"></td>
+					<td class="event_td_2" rowspan="2">
+						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
+					</td>
+
 
 					<td class="event_td_3">
 						<span class="event_tag">公開日</span>
@@ -455,17 +472,12 @@ $(function(){
 					</td>
 
 					<td class="event_td_7" rowspan="2">
-						<label for="upd<?=$a1?>" class="info_img"><img id="top_upd<?=$a1?>" src="../img/info_no_image.png" style="width:300px; height:100px;"></span>
+						<label for="upd<?=$a1?>" class="info_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:210px; height:70px;"></span>
 						<span class="img_large"></span>
 						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 						<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
 					</td>
-
 				</tr><tr>
-					<td rowspan="2"  class="event_td_1 handle"></td>
-					<td rowspan="2"  class="event_td_2">
-						<input type="text" value="<?=$a2["sort"]?>" class="box_sort" disabled>
-					</td>
 
 					<td  class="event_td_5">
 						<span class="event_tag">リンク</span><select name="category" class="w140">

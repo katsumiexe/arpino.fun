@@ -112,7 +112,7 @@ if($staff_set){
 			$sql.=" `ctime`='{$ctime}',";
 			$sql.=" `cast_rank`='{$cast_rank}',";
 			$sql.=" `cast_salary`='{$cast_salary}',";
-			$sql.=" `cast_sort`='{$cast_sort}'";
+//			$sql.=" `cast_sort`='{$cast_sort}'";
 			$sql.=" WHERE id='{$staff_id}'";
 			mysqli_query($mysqli,$sql);
 
@@ -124,7 +124,7 @@ if($staff_set){
 
 		}else{//新規１　かCAST追加3
 			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`cast_status`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`)";
-			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$cast_status}','{$ctime}','{$cast_rank}','{$cast_sort}','{$cast_salary}')";
+			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$cast_status}','{$ctime}','{$cast_rank}','0','{$cast_salary}')";
 			mysqli_query($mysqli,$sql);
 
 //■encode-------------------------------

@@ -122,14 +122,15 @@ $sql	.=" LIMIT 2";
 if($res2 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res2)){
 
-		if($a1["contents_url"]){
-			$a1["link"]=$a1["contents_url"];
-
-		}elseif($a1["category"] == "person" && $a1["contents_key"]>0){
+		if($a1["category"] == "person" && $a1["contents_key"]){
 			$a1["link"]="person.php?post_id=".$a1["contents_key"];
 
-		}elseif($a1["category"] == "event" && $a1["contents_key"]>0){
+		}elseif($a1["category"] == "event" && $a1["contents_key"]){
 			$a1["link"]="event.php?post_id=".$a1["contents_key"];
+
+		}elseif($a1["contents_key"]){
+			$a1["link"]=$a1["contents_key"];
+
 		}
 
 		$info[]=$a1;
@@ -226,13 +227,11 @@ var NewCnt=1;
 		<div class="info_box sp_only">
 			<?for($n=0;$n<$info_count;$n++){?>
 				<?if($info[$n]["link"]){?>
-					<a href="<?=$info[$n]["link"]?>" class="info_img_out">
+					<a href="<?=$info[$n]["link"]?>">
 						<img src="./img/page/info/<?=$info[$n]["id"]?>.png" class="info_img">
 					</a>
 				<?}else{?>	
-					<span class="info_img_out">
 						<img src="./img/page/info/<?=$info[$n]["id"]?>.png" class="info_img">
-					</span>	
 				<?}?>
 			<?}?>
 		</div>
