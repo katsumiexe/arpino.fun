@@ -2,12 +2,28 @@
 $tag["cast_group"][0]		="全て";
 $tag["notice_category"][0]	="全て";
 
+if($notice_set){
+
+
+
+}
+
+
 $sql	 ="SELECT * FROM wp01_0notice";
 $sql	.=" WHERE del=0";
 $sql	.=" ORDER BY `date` DESC";
 $sql	.=" LIMIT 10";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
+
+		$s=explode(",",$row["cast_group"]);
+
+		for($n=0;$n<count($s);$n++){
+			if($s[$n]){
+				$row["group"].="<span class=\"group_item\">{$tag["cast_group"][$n]}</span>";
+			}		
+		}
+		
 
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
 		$row["date"]=str_replace("-",".",substr($row["date"],0,16));
@@ -18,8 +34,8 @@ if($result = mysqli_query($mysqli,$sql)){
 		$sql	.=" AND notice_id={$row["id"]}";
 		if($result2 = mysqli_query($mysqli,$sql)){
 			while($row2 = mysqli_fetch_assoc($result2)){
-				$dat2[$row["id"]][]=$row2;
 
+				$dat2[$row["id"]][]=$row2;
 			}
 		}
 		$dat[]=$row;
@@ -57,7 +73,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
-echo $sql;
 ?>
 
 <style>
@@ -221,15 +236,13 @@ $(function(){
 			<tr>
 				<td class="td_top w150">日時</td>
 				<td class="td_top w250">件名</td>
-				<td class="td_top w100">投稿者</td>
 				<td class="td_top w100">カテゴリ</td>
-				<td class="td_top w120">グループ</td>
+				<td class="td_top w250">グループ</td>
 			</tr>
 			<?for($n=0;$n<$count_dat;$n++){?>
 			<tr class="tr_list">
 				<td class="notice_list"><?=$dat[$n]["date"]?></td>
 				<td class="notice_list"><?=$dat[$n]["title"]?></td>
-				<td class="notice_list"><?=$dat[$n]["writer"]?></td>
 				<td class="notice_list"><?=$tag["notice_category"][$dat[$n]["category"]]?></td>
 				<td class="notice_list"><?=$tag["cast_group"][$dat[$n]["cast_group"]]?></td>
 				<td class="notice_hidden"><?=$dat[$n]["log"]?></td>
@@ -246,7 +259,6 @@ $(function(){
 			<textarea name="notice_contents" class="event_td_4_in"></textarea>
 		</div>
 		<div class="notice_log"></div>
-
 	</div>
 
 	<div class="sub_box">
@@ -278,4 +290,6 @@ $(function(){
 		</ul>
 	</div>
 </div>
+
 <footer class="foot"></footer>
+
