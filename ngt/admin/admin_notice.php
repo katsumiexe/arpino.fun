@@ -69,6 +69,7 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+$ck_cnt=count($tag["cast_group"])-1;
 ?>
 
 <style>
@@ -223,15 +224,23 @@ input[type=radio]:checked + label{
 	display		:none;
 }
 
-.gp_check_label{
+.p_check_btn{
 	display			:inline-block;
 	font-size		:15px;
-	padding			:5px;
+	padding			:5px 10px;
 	margin			:2px;
-	background		:#ffe0e0;
+	background		:#c0c0c0;
 	text-align		:left;
-	width			:100px;
+	width			:90px;
 	border-radius	:5px;
+	color			:#fafafa;
+	font-weight		:600;
+	cursor			:pointer;
+}
+
+
+.check_on{
+	background:#d00000;
 }
 
 
@@ -243,6 +252,53 @@ $(function(){
 		var Tmp=$(this).children('.notice_hidden').html();
 		$('.notice_log').html(Tmp);
 	});
+
+	$('.gp_check').on('click',function(){ 
+		var Tmp=$(this).attr('id');
+
+		if(Tmp=='p_check0'){
+			if($('#gp_check0').val()==0){
+				$(this).siblings().addClass('check_on');
+				$('#gp_check0').siblings().val('');
+				$('#gp_check0').val('1');
+			}
+
+		}else{
+
+			if($(this).hasClass('check_on')){
+				Cnt--;
+				if(Cnt>0){
+					$(this).removeClass('check_on');
+					$('#g'+Tmp).val('0');
+				}else{
+					$('#p_check0').siblings().removeClass('check_on');
+					$('#p_check0').addClass('check_on');
+					$('#gp_check0').siblings().val('');
+					$('#gp_check0').val('1');
+				}
+
+			}else{
+				Cnt++;
+				if( Cnt >= <?=$ck_cnt+0?>){
+					$('#p_check0').siblings().removeClass('check_on');
+					$('#p_check0').addClass('check_on');
+					$('#gp_check0').siblings().val('');
+					$('#gp_check0').val('1');
+	
+				}else{
+					$(this).addClass('check_on');
+					$('#p_check0').removeClass('check_on');
+
+					$('#g'+$(this).attr('id')).val('1');
+					$('#gp_check0').val('0');
+				}
+			}
+		}
+
+	});
+
+
+
 });
 </script>
 
@@ -275,19 +331,23 @@ $(function(){
 			<button  type="submit" class="event_reg_btn">登録</button>
 
 			<div class="group_box">
-			<?foreach($tag["cast_group"] as $a1 => $a2){?>
-				<input id="gp_check<?=$a1?>" type="checkbox" value="1" name="gp_check[<?=$a1?>]" class="gp_check"><label for="gp_check<?=$a1?>" class="gp_check_label"><?=$a2?></label>
-			<?}?>
-
-
+				<?foreach($tag["cast_group"] as $a1 => $a2){?>
+					<span id="p_check<?=$a1?>" class="p_check_btn"><?=$a2?></span>
+				<?}?>
 			</div>
+			<div>
+				<?foreach($tag["cast_group"] as $a1 => $a2){?>
+					<input id="gp_check<?=$a1?>" type="hidden" value="" name="gp_check[<?=$a1?>]" class="gp_check">
+				<?}?>
+			</div>
+
+
+
+
 			<textarea name="notice_contents" class="event_td_4_in"></textarea>
 		</div>
 		<div class="notice_log"></div>
 	</div>
-
-
-
 
 	<div class="sub_box">
 		<ul class="cate_ul c_blue">
