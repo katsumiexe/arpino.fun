@@ -1,4 +1,7 @@
 <?
+$tag["cast_group"][0]		="全て";
+$tag["notice_category"][0]	="全て";
+
 $sql	 ="SELECT * FROM wp01_0notice";
 $sql	.=" WHERE del=0";
 $sql	.=" ORDER BY `date` DESC";
@@ -45,7 +48,7 @@ if($result = mysqli_query($mysqli,$sql)){
 //■グループ名・カテゴリ名----
 $sql	 ="SELECT id, tag_group, tag_name, sort FROM wp01_0tag";
 $sql	.=" WHERE del=0";
-$sql	.=" AND( tag_group='cast_group' OR tag_group='category')";
+$sql	.=" AND( tag_group='cast_group' OR tag_group='notice_category')";
 $sql	.=" ORDER BY sort ASC";
 
 if($result = mysqli_query($mysqli,$sql)){
@@ -53,6 +56,8 @@ if($result = mysqli_query($mysqli,$sql)){
 		$tag[$row["tag_group"]][$row["id"]]=$row["tag_name"];
 	}
 }
+
+echo $sql;
 ?>
 
 <style>
@@ -225,12 +230,21 @@ $(function(){
 				<td class="notice_list"><?=$dat[$n]["date"]?></td>
 				<td class="notice_list"><?=$dat[$n]["title"]?></td>
 				<td class="notice_list"><?=$dat[$n]["writer"]?></td>
-				<td class="notice_list"><?=$dat[$n]["category"]?></td>
-				<td class="notice_list"><?=$dat[$n]["group"]?></td>
+				<td class="notice_list"><?=$tag["notice_category"][$dat[$n]["category"]]?></td>
+				<td class="notice_list"><?=$tag["cast_group"][$dat[$n]["cast_group"]]?></td>
 				<td class="notice_hidden"><?=$dat[$n]["log"]?></td>
 			</tr>
 			<?}?>
 		</table>
+		<div class="notice_regist">
+			<span class="event_tag">日付</span>
+			<input type="datetime-local" name="display_date" class="w200" value="<?=date("Y-m-d")?>T<?=date("H:i")?>" autocomplete="off">
+			<span class="event_tag">TITLE</span>
+			<input type="text" name="notice_title" style="width:350px;" value="">
+			<button  type="submit" class="event_reg_btn">登録</button>
+
+			<textarea name="notice_contents" class="event_td_4_in"></textarea>
+		</div>
 		<div class="notice_log"></div>
 
 	</div>
@@ -244,9 +258,17 @@ $(function(){
 		</ul>
 
 		<ul class="cate_ul c_green">
-			<li class="cate_title">カテゴリー</li>
+			<li class="cate_title">グループ</li>
+			<li id="group_0" class="cate_li c_green2">全て</li>
 			<?foreach($tag["cast_group"] as $a1 => $a2){?>
-			<li class="cate_li c_green2"><?=$a2?></li><?}?>
+			<li id="group_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
+		</ul>
+
+		<ul class="cate_ul c_green">
+			<li class="cate_title">カテゴリー</li>
+			<li id="category_0"  class="cate_li c_green2">全て</li>
+			<?foreach($tag["notice_category"] as $a1 => $a2){?>
+			<li id="category_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
 		</ul>
 
 		<ul class="cate_ul c_pink">
@@ -254,7 +276,6 @@ $(function(){
 			<?foreach($staff_dat as $a1 => $a2){?>
 			<li class="cate_li c_pink2"><?=$a2["user_name"]?></li><?}?>
 		</ul>
-
 	</div>
 </div>
 <footer class="foot"></footer>
