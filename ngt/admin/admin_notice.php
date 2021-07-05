@@ -260,8 +260,13 @@ $(function(){
 		if($(this).prop("checked",true)){
 			$('.gp_check').prop('checked', true);
 
+console.log('T')
+
 		}else{
 			$('.gp_check').prop('checked', false);
+
+console.log('F')
+
 		}
 	});
 });
@@ -299,7 +304,7 @@ $(function(){
 
 			<div class="group_box">
 				<?foreach($tag["cast_group"] as $a1 => $a2){?>
-					<input id="gp_check<?=$a1?>" type="hidden" value="" name="gp_check[<?=$a1?>]" class="gp_check">
+					<input id="gp_check<?=$a1?>" type="checkbox" value="" name="gp_check[<?=$a1?>]" class="gp_check">
 					<label for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
 				<?}?>
 			</div>
