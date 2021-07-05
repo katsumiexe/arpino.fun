@@ -221,8 +221,7 @@ input[type=radio]:checked + label{
 }
 
 .gp_check{
-//	display		:none;
-	display		:inline-block;
+	display		:none;
 }
 
 .p_check_btn{
@@ -243,6 +242,16 @@ input[type=radio]:checked + label{
 	background:#d00000;
 }
 
+#p_check0{
+	width			:60px;
+	background		:#c0c0e0;
+}
+
+#gp_check0:checked + label{
+	background:#0000d0;
+}
+
+
 -->
 </style>
 <script>
@@ -257,7 +266,7 @@ $(function(){
 
 	$('#gp_check0').on('change',function(){ 
 
-		if($(this).prop("checked",true)){
+		if($(this).prop('checked')==true){
 			$('.gp_check').prop('checked', true);
 
 console.log('T')
@@ -305,7 +314,7 @@ console.log('F')
 			<div class="group_box">
 				<?foreach($tag["cast_group"] as $a1 => $a2){?>
 					<input id="gp_check<?=$a1?>" type="checkbox" value="" name="gp_check[<?=$a1?>]" class="gp_check">
-					<label for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
+					<label id="p_check<?=$a1?>" for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
 				<?}?>
 			</div>
 
