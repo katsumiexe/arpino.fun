@@ -173,7 +173,6 @@ input[type=radio]:checked + label{
 	background:#00b020;
 }
 
-
 .notice_table{
 	margin			:5px auto;
 	background		:#fafafa;
@@ -244,13 +243,12 @@ input[type=radio]:checked + label{
 
 #p_check0{
 	width			:60px;
-	background		:#c0c0e0;
+	background		:#c0c0ff;
 }
 
 #gp_check0:checked + label{
 	background:#0000d0;
 }
-
 
 -->
 </style>
@@ -269,12 +267,8 @@ $(function(){
 		if($(this).prop('checked')==true){
 			$('.gp_check').prop('checked', true);
 
-console.log('T')
-
 		}else{
 			$('.gp_check').prop('checked', false);
-
-console.log('F')
 
 		}
 	});
