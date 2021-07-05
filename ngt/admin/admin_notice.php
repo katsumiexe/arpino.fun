@@ -4,43 +4,6 @@ $tag["notice_category"][0]	="全て";
 
 if($notice_set){
 
-
-
-}
-
-
-$sql	 ="SELECT * FROM wp01_0notice";
-$sql	.=" WHERE del=0";
-$sql	.=" ORDER BY `date` DESC";
-$sql	.=" LIMIT 10";
-if($result = mysqli_query($mysqli,$sql)){
-	while($row = mysqli_fetch_assoc($result)){
-
-		$s=explode(",",$row["cast_group"]);
-
-		for($n=0;$n<count($s);$n++){
-			if($s[$n]){
-				$row["group"].="<span class=\"group_item\">{$tag["cast_group"][$n]}</span>";
-			}		
-		}
-		
-
-		$row["log"]=str_replace("\n","<br>",$row["log"]);
-		$row["date"]=str_replace("-",".",substr($row["date"],0,16));
-
-		$sql	 ="SELECT id, genji, cast_group, K.status FROM wp01_0notice_ck AS K";
-		$sql	.=" LEFT JOIN  wp01_0cast AS C ON K.cast_id=C.id";
-		$sql	.=" WHERE C.del=0";
-		$sql	.=" AND notice_id={$row["id"]}";
-		if($result2 = mysqli_query($mysqli,$sql)){
-			while($row2 = mysqli_fetch_assoc($result2)){
-
-				$dat2[$row["id"]][]=$row2;
-			}
-		}
-		$dat[]=$row;
-		$count_dat++;
-	}
 }
 
 //■キャストリスト----
@@ -73,6 +36,43 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+$sql	 ="SELECT * FROM wp01_0notice";
+$sql	.=" WHERE del=0";
+$sql	.=" ORDER BY `date` DESC";
+$sql	.=" LIMIT 10";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		$s=explode(",",$row["cast_group"]);
+
+		$row["group"]="";
+		for($n=0;$n<count($s);$n++){
+			if($s[$n]){
+				$row["group"].="<span class=\"group_item\">{$tag["cast_group"][$s[$n]]}</span>";
+			}		
+		}
+
+
+		
+
+		$row["log"]=str_replace("\n","<br>",$row["log"]);
+		$row["date"]=str_replace("-",".",substr($row["date"],0,16));
+
+		$sql	 ="SELECT id, genji, cast_group, K.status FROM wp01_0notice_ck AS K";
+		$sql	.=" LEFT JOIN  wp01_0cast AS C ON K.cast_id=C.id";
+		$sql	.=" WHERE C.del=0";
+		$sql	.=" AND notice_id={$row["id"]}";
+		if($result2 = mysqli_query($mysqli,$sql)){
+			while($row2 = mysqli_fetch_assoc($result2)){
+
+				$dat2[$row["id"]][]=$row2;
+			}
+		}
+		$dat[]=$row;
+		$count_dat++;
+	}
+}
+
 ?>
 
 <style>
@@ -96,10 +96,10 @@ input[type=radio]:checked + label{
 }
 
 .main_box{
-	display:inline-block;
-	flex-basis:800px;
-	background:#e0e000;
-	min-height:calc(100vh - 80px);
+	display			:inline-block;
+	flex-basis		:800px;
+	background		:#e0e000;
+	min-height		:calc(100vh - 80px);
 }
 
 .sub_box{
@@ -217,6 +217,28 @@ input[type=radio]:checked + label{
 	overflow-y		:scroll;
 }
 
+.group_box{
+	font-size	:0;
+	display		:flex;
+	background	:#eeeeee;
+}
+
+.gp_check{
+	display		:none;
+}
+
+.gp_check_label{
+	display			:inline-block;
+	font-size		:15px;
+	padding			:5px;
+	margin			:2px;
+	background		:#ffe0e0;
+	text-align		:left;
+	width			:100px;
+	border-radius	:5px;
+}
+
+
 -->
 </style>
 <script>
@@ -244,7 +266,7 @@ $(function(){
 				<td class="notice_list"><?=$dat[$n]["date"]?></td>
 				<td class="notice_list"><?=$dat[$n]["title"]?></td>
 				<td class="notice_list"><?=$tag["notice_category"][$dat[$n]["category"]]?></td>
-				<td class="notice_list"><?=$tag["cast_group"][$dat[$n]["cast_group"]]?></td>
+				<td class="notice_list"><?=$dat[$n]["group"]?></td>
 				<td class="notice_hidden"><?=$dat[$n]["log"]?></td>
 			</tr>
 			<?}?>
@@ -256,29 +278,36 @@ $(function(){
 			<input type="text" name="notice_title" style="width:350px;" value="">
 			<button  type="submit" class="event_reg_btn">登録</button>
 
+			<div class="group_box">
+			<?foreach($tag["cast_group"] as $a1 => $a2){?>
+				<input id="gp_check<?=$a1?>" type="checkbox" value="1" name="gp_check[<?=$a1?>]" class="gp_check"><label for="gp_check<?=$a1?>" class="gp_check_label"><?=$a2?></label>
+			<?}?>
+
+
+			</div>
 			<textarea name="notice_contents" class="event_td_4_in"></textarea>
 		</div>
 		<div class="notice_log"></div>
 	</div>
+
+
+
 
 	<div class="sub_box">
 		<ul class="cate_ul c_blue">
 			<li class="cate_title">MENU</li>
 			<li class="cate_li c_blue2">投稿</li>
 			<li class="cate_li c_blue2">検索</li>
-			<li class="cate_li c_blue2">チェック</li>
 		</ul>
 
 		<ul class="cate_ul c_green">
 			<li class="cate_title">グループ</li>
-			<li id="group_0" class="cate_li c_green2">全て</li>
 			<?foreach($tag["cast_group"] as $a1 => $a2){?>
 			<li id="group_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
 		</ul>
 
 		<ul class="cate_ul c_green">
 			<li class="cate_title">カテゴリー</li>
-			<li id="category_0"  class="cate_li c_green2">全て</li>
 			<?foreach($tag["notice_category"] as $a1 => $a2){?>
 			<li id="category_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
 		</ul>
