@@ -47,13 +47,9 @@ if($result = mysqli_query($mysqli,$sql)){
 
 		$row["group"]="";
 		for($n=0;$n<count($s);$n++){
-			if($s[$n]){
-				$row["group"].="<span class=\"group_item\">{$tag["cast_group"][$s[$n]]}</span>";
-			}		
+			$row["group"].="<span class=\"group_item\">{$tag["cast_group"][$s[$n]]}</span>/";
 		}
-
-
-		
+		$row["group"]=substr($row["group"],0,-1);
 
 		$row["log"]=str_replace("\n","<br>",$row["log"]);
 		$row["date"]=str_replace("-",".",substr($row["date"],0,16));
