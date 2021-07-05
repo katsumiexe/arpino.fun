@@ -221,7 +221,8 @@ input[type=radio]:checked + label{
 }
 
 .gp_check{
-	display		:none;
+//	display		:none;
+	display		:inline-block;
 }
 
 .p_check_btn{
@@ -238,68 +239,34 @@ input[type=radio]:checked + label{
 	cursor			:pointer;
 }
 
-
-.check_on{
+.gp_check:checked + label{
 	background:#d00000;
 }
-
 
 -->
 </style>
 <script>
+
 $(function(){ 
+	var Cnt=0;
+
 	$('.tr_list').on('click',function(){ 
 		var Tmp=$(this).children('.notice_hidden').html();
 		$('.notice_log').html(Tmp);
 	});
 
-	$('.gp_check').on('click',function(){ 
-		var Tmp=$(this).attr('id');
+	$('#gp_check0').on('change',function(){ 
 
-		if(Tmp=='p_check0'){
-			if($('#gp_check0').val()==0){
-				$(this).siblings().addClass('check_on');
-				$('#gp_check0').siblings().val('');
-				$('#gp_check0').val('1');
-			}
+		if($(this).prop("checked",true)){
+			$('.gp_check').prop('checked', true);
 
 		}else{
-
-			if($(this).hasClass('check_on')){
-				Cnt--;
-				if(Cnt>0){
-					$(this).removeClass('check_on');
-					$('#g'+Tmp).val('0');
-				}else{
-					$('#p_check0').siblings().removeClass('check_on');
-					$('#p_check0').addClass('check_on');
-					$('#gp_check0').siblings().val('');
-					$('#gp_check0').val('1');
-				}
-
-			}else{
-				Cnt++;
-				if( Cnt >= <?=$ck_cnt+0?>){
-					$('#p_check0').siblings().removeClass('check_on');
-					$('#p_check0').addClass('check_on');
-					$('#gp_check0').siblings().val('');
-					$('#gp_check0').val('1');
-	
-				}else{
-					$(this).addClass('check_on');
-					$('#p_check0').removeClass('check_on');
-
-					$('#g'+$(this).attr('id')).val('1');
-					$('#gp_check0').val('0');
-				}
-			}
+			$('.gp_check').prop('checked', false);
 		}
-
 	});
-
-
-
 });
+
+
 </script>
 
 <header class="head">
@@ -332,12 +299,8 @@ $(function(){
 
 			<div class="group_box">
 				<?foreach($tag["cast_group"] as $a1 => $a2){?>
-					<span id="p_check<?=$a1?>" class="p_check_btn"><?=$a2?></span>
-				<?}?>
-			</div>
-			<div>
-				<?foreach($tag["cast_group"] as $a1 => $a2){?>
 					<input id="gp_check<?=$a1?>" type="hidden" value="" name="gp_check[<?=$a1?>]" class="gp_check">
+					<label for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
 				<?}?>
 			</div>
 
