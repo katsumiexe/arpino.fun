@@ -202,7 +202,7 @@ input[type=radio]:checked + label{
 
 .notice_log{
 	margin			:5px auto;
-	width			:760px;
+	width			:740px;
 	height			:400px;
 	padding			:10px;
 	font-size		:14px;
@@ -222,6 +222,14 @@ input[type=radio]:checked + label{
 .gp_check{
 	display		:none;
 }
+.notice_regist{
+	background:#e0e0e0;
+	width:750px;
+	margin:5px auto;
+	padding:5px;
+	border:1px solid #303030;
+}
+
 
 .p_check_btn{
 	display			:inline-block;
