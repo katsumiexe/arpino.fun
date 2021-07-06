@@ -95,6 +95,7 @@ $sql	.=" LIMIT 5";
 
 if($res1 = mysqli_query($mysqli,$sql)){
 	while($a1 = mysqli_fetch_assoc($res1)){
+
 		$a1["date"]=substr(str_replace("-",".",$a1["event_date"]),0,10);
 
 		if($a1["category"] == "person"){
@@ -104,7 +105,7 @@ if($res1 = mysqli_query($mysqli,$sql)){
 			$a1["news_link"]=$a1["contents_key"];
 
 		}elseif($a1["category"] == "event"){
-			$a1["news_link"]="./event.php?code={$a1["contents_key"]}";
+			$a1["news_link"]="./event.php?post_id={$a1["contents_key"]}";
 		}
 		
 		$news[]=$a1;
