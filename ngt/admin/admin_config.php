@@ -279,8 +279,8 @@ td{
 		<td class="config_td"><input type="text" name="new_commer_cnt" class="set_box" value="<?=$config["new_commer_cnt"]?>"></td>
 	</tr>
 </table>
-<bR>
 
+<bR>
 <table class="config_sche">	
 <thead>
 	<tr>
@@ -310,7 +310,20 @@ td{
 </tbody>
 </table>
 
-
+<table class="config_sche">
+	<tr>
+	<form id="new_tag_set" action="" method="post">
+		<input type="hidden" name="menu_post" value="config">
+		<input type="hidden" value="<?=$tag_count+1?>" name="tag_sort_new">
+		<td style="width:71px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
+		<td class="config_prof_name" style=" background:#ffe0f0"><input id="ribbon_name_new" type="text" name="ribbon_name_new" value="" class="prof_name"></td>
+		<td class="config_prof_style" style=" background:#ffe0f0"><input type="text" name="ribbon_color_new" value="" class="prof_name bg<?=$a2["view"]?>"></td>
+	</form>
+		<td class="config_prof_style" style=" background:#ffe0f0">
+			<button id="tag_set" type="button" class="prof_btn">追加</button>
+		</td>
+	</tr>
+</table>
 
 
 
@@ -416,12 +429,13 @@ td{
 				<option value="1">文章</option>
 			</select>
 		</td>
-	</form>
 		<td class="config_prof_style" style=" background:#ffe0f0">
 			<button id="prof_set" type="submit" class="prof_btn">追加</button>
 		</td>
+	</form>
 	</tr>
 </table>
+
 <div class="config_title">オプション</div>
 <?foreach($c_main_dat as $a1 => $a2){?>
 	<table class="option_table">
