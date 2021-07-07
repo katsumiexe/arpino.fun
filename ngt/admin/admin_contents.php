@@ -384,10 +384,11 @@ $(function(){
 								</select>
 								<span class="event_tag">リンク</span><select name="category" class="w140 news_box">
 									<option value="">なし</option>
-									<option value="self"   <?if($a2["category"] == "self"){?> selected="selected"<?}?>>ページ</option>
-									<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-									<option value="page" <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-									<option value="outer"  <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+									<option value="news"   <?if($a2["category"] == "news"){?> selected="selected"<?}?>>ニュース</option>
+									<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+									<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+									<option value="blog"   <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
+									<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>リンク</option>
 								</select>
 								<input type="text" name="event_key" class="news_box" style="border:1px solid #303030;width:185px;" value="<?=$a2["contents_key"]?>"> 
 							</td>
@@ -439,11 +440,10 @@ $(function(){
 					<span class="event_tag">リンク</span><select name="category" class="w140">
 						<option value="">なし</option>
 						<option value="info"  <?if($a2["category"] == "info"){?> selected="selected"<?}?>>インフォ</option>
-						<option value="event" <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-						<option value="person"<?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-						<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
-						<option value="page"  <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-						<option value="outer" <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+						<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="blog"   <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
+						<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>リンク</option>
 					</select>
 					<input type="text" name="event_key" style="width:175px;margin-left:5px;" value=""> 
 				</td>
@@ -488,11 +488,13 @@ $(function(){
 						<span class="event_tag">リンク</span><select name="category" class="w140">
 							<option value="">なし</option>
 							<option value="info"   <?if($a2["category"] == "info"){?> selected="selected"<?}?>>インフォ</option>
-							<option value="event"   <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-	　						<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
-							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+							<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+							<option value="blog"   <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
+							<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>リンク</option>
+
+
+
 						</select>
 						<input type="text" name="event_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
@@ -531,11 +533,11 @@ $(function(){
 				<td  class="event_td_5">
 					<span class="event_tag">リンク</span><select name="category" class="w140">
 						<option value="">なし</option>
-						<option value="event"    <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-						<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-						<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
-						<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-						<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+						<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+						<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+						<option value="blog"   <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
+						<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>リンク</option>
+
 					</select>
 					<input type="text" name="event_key" style="width:175px;margin-left:5px;" value=""> 
 				</td>
@@ -586,11 +588,11 @@ $(function(){
 					<td  class="event_td_5">
 						<span class="event_tag">リンク</span><select name="category" class="w140">
 							<option value="">なし</option>
-							<option value="event"   <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
-							<option value="person"  <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
-							<option value="blog"  <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
-							<option value="page"    <?if($a2["category"] == "page"){?> selected="selected"<?}?>>内部リンク</option>
-							<option value="outer"   <?if($a2["category"] == "outer"){?> selected="selected"<?}?>>外部リンク</option>
+							<option value="event"  <?if($a2["category"] == "event"){?> selected="selected"<?}?>>イベント</option>
+							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
+							<option value="blog"   <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
+							<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>リンク</option>
+
 						</select>
 						<input type="text" name="event_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
