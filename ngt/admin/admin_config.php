@@ -68,9 +68,9 @@ $(function(){
 		$('#prof_b'+Tmp).css('order',Tmp2);
 	});
 
-	$('#prof').sortable({
+	$('#prof,#ribbon').sortable({
 		axis: 'y',
-        handle: '.config_prof_handle',
+        handle: '.handle',
 
 		stop : function(){
 			var Cnt = 1;
@@ -291,7 +291,7 @@ td{
 		<td class="config_sche_top"></td>
 	</tr>
 </thead>
-<tbody id="news">
+<tbody id="ribbon">
 <?foreach($tag_dat["ribbon"] as $a1 => $a2){?>
 	<tr id="tr_n_<?=$a1?>" class="tr">
 		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
@@ -348,14 +348,10 @@ td{
 	<tr>
 	<form id="new_tag_set" action="" method="post">
 		<input type="hidden" name="menu_post" value="config">
-
 		<input type="hidden" value="<?=$tag_count+1?>" name="tag_sort_new">
-
 		<td style="width:71px; background:#ffe0f0;text-align:center;font-weight:600;color:#900000;" colspan="2">追加</td>
-
 		<td class="config_prof_name" style=" background:#ffe0f0"><input id="tag_name_new" type="text" name="tag_name_new" value="" class="prof_name"></td>
 		<td class="config_prof_style" style=" background:#ffe0f0"><input type="text" name="tag_color_new" value="" class="prof_name bg<?=$a2["view"]?>"></td>
-
 	</form>
 		<td class="config_prof_style" style=" background:#ffe0f0">
 			<button id="tag_set" type="button" class="prof_btn">追加</button>
@@ -427,8 +423,6 @@ td{
 		</td>
 	</tr>
 </table>
-
-
 <div class="config_title">オプション</div>
 <?foreach($c_main_dat as $a1 => $a2){?>
 	<table class="option_table">
