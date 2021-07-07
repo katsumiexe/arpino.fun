@@ -359,7 +359,6 @@ td{
 	</tr>
 </table>
 
-
 <div class="config_title">インセンティブ</div>
 <table class="config_sche">	
 <?foreach($table_sort as $a1 => $a2){?>
