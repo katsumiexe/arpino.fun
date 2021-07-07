@@ -52,7 +52,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		$tag_dat[$row["tag_group"]][$row["id"]]=$row;
 		$tag_count++;
-
 	}
 }
 
@@ -280,6 +279,39 @@ td{
 		<td class="config_td"><input type="text" name="new_commer_cnt" class="set_box" value="<?=$config["new_commer_cnt"]?>"></td>
 	</tr>
 </table>
+<bR>
+
+<table class="config_sche">	
+<thead>
+	<tr>
+		<td class="config_sche_top">替</td>
+		<td class="config_sche_top">順番</td>
+		<td class="config_sche_top">名前</td>
+		<td class="config_sche_top">色コード</td>
+		<td class="config_sche_top"></td>
+	</tr>
+</thead>
+<tbody id="news">
+<?foreach($tag_dat["ribbon"] as $a1 => $a2){?>
+	<tr id="tr_n_<?=$a1?>" class="tr">
+		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
+
+		<td class="config_prof_handle handle bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_sort bg<?=$a2["view"]?>"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
+
+		<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="news_name[<?=$a1?>]" value="<?=$a2["tag_name"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>"><input type="text" name="news_icon[<?=$a1?>]" value="<?=$a2["tag_icon"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_style bg<?=$a2["view"]?>">
+			<button type="button" class="prof_btn view_btn bg<?=$a2["view"]?>">非表示</button>
+			<button type="button" class="prof_btn del_btn  bg<?=$a2["view"]?>">削除</button>
+		</td>
+	</tr>
+<? } ?>
+</tbody>
+</table>
+
+
+
 
 
 <div class="config_title">ニュースタグ</div>
@@ -295,11 +327,10 @@ td{
 </thead>
 <tbody id="news">
 <?foreach($tag_dat["news"] as $a1 => $a2){?>
-
 	<tr id="tr_n_<?=$a1?>" class="tr">
 		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
 
-		<td class="config_prof_handle bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_handle handle bg<?=$a2["view"]?>"></td>
 		<td class="config_prof_sort bg<?=$a2["view"]?>"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
 
 		<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="news_name[<?=$a1?>]" value="<?=$a2["tag_name"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
@@ -359,7 +390,7 @@ td{
 <?foreach($charm_dat as $a1 => $a2){?>
 	<tr id="tr_<?=$a1?>" class="tr">
 		<input type="hidden" value="<?=$a2["view"]?>" name="prof_view">
-		<td class="config_prof_handle bg<?=$a2["view"]?>"></td>
+		<td class="config_prof_handle handle bg<?=$a2["view"]?>"></td>
 		<td class="config_prof_sort bg<?=$a2["view"]?>"><input type="textbox" value="<?=$a2["sort"]?>" class="prof_sort" disabled></td>
 		<td class="config_prof_name bg<?=$a2["view"]?>"><input type="text" name="prof_name[<?=$a1?>]" value="<?=$a2["charm"]?>" class="prof_name bg<?=$a2["view"]?>"></td>
 		<td class="config_prof_style bg<?=$a2["view"]?>">
