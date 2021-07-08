@@ -38,6 +38,20 @@ if($result = mysqli_query($mysqli,$sql)){
 		$cast_group[$row["id"]]=$row["tag_name"];
 	}
 }
+
+
+$sql	 ="SELECT * FROM wp01_0tag";
+$sql	.=" WHERE del=0";
+$sql	.=" and tag_group='ribbon'";
+$sql	.=" and sort>'3'";
+$sql	.=" ORDER BY sort ASC";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$cast_ribbon[$row["id"]]=$row["tag_name"];
+	}
+}
+
+
 ?>
 <style>
 <!--
@@ -57,7 +71,6 @@ td{
 #cast_l{
 	border-radius:0 10px 10px 0;
 }
-
 -->
 </style>
 <link rel="stylesheet" href="./css/admin_image.css?t=<?=time()?>">
@@ -190,6 +203,29 @@ CAST情報
 </td>
 </tr><tr>
 <td>
+	<div>リボン使用</div>
+	<select name="ribbon_use" class="w000">
+		<option value="0">使う</option>
+		<option value="1">使わない</option>
+	</select>
+
+</td><td>
+	<div>リボン</div>
+	<select name="cast_ribbon" class="w000">
+		<option value="0">基本</option>
+
+
+		$cast_ribbon[$row["id"]]=$row["tag_name"];
+
+<?foreach($cast_ribbon as $a1 => $a2){?>
+		<option value="<?=$a1?>"><?=$a2?></option>
+<?}?>
+	</select>
+
+</td><td>
+	</td>
+</tr><tr>
+<td>
 	<div>ログインID		</div><input type="text" name="cast_id" class="w000" autocomplete="off">
 </td><td>
 	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="new_password">
@@ -197,6 +233,7 @@ CAST情報
 	<div>給与		</div><input type="text" name="cast_salary" class="w000" autocomplete="off">
 	</td>
 </tr>
+
 </table>
 
 <table style="width:720px;" class="cast_table" style="table-layout: fixed;">

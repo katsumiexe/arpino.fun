@@ -6,11 +6,11 @@ $sql	.=" ORDER BY cast_sort ASC";
 
 if($rawult = mysqli_query($mysqli,$sql)){
 	while($raw = mysqli_fetch_assoc($rawult)){
-		if (file_exists("../img/profile/{$raw["id"]}/0.webp")) {
-			$raw["face"]="../img/profile/{$raw["id"]}/0.webp";			
+		if (file_exists("../img/profile/{$raw["id"]}/0_s.webp")) {
+			$raw["face"]="../img/profile/{$raw["id"]}/0_s.webp";			
 
-		}elseif (file_exists("../img/profile/{$raw["id"]}/0.jpg")) {
-			$raw["face"]="../img/profile/{$raw["id"]}/0.jpg";			
+		}elseif (file_exists("../img/profile/{$raw["id"]}/0_s.jpg")) {
+			$raw["face"]="../img/profile/{$raw["id"]}/0_s.jpg";			
 
 		}else{
 			$raw["face"]="../img/cast_no_image.jpg";			
@@ -174,6 +174,7 @@ $(function(){
 <td class="td_top">ID</td>
 <td class="td_top">入店日</td>
 <td class="td_top">状態</td>
+<td class="td_top">タグ</td>
 <td class="td_top">変更</td>
 </tr>
 </thead>
@@ -187,6 +188,7 @@ $(function(){
 <td class="w100"><?=$dat[$n]["cast_id"]?></td>
 <td class="w100"><?=$dat[$n]["ctime"]?></td>
 <td class="w100"><?=$cast_status_select[$dat[$n]["cast_status"]]?></td>
+<td class="w100"><?=$dat[$n]["cast_tag"]?></td>
 
 <td class="w60" style="position:relative;">
 	<form method="post">

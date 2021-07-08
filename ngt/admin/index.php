@@ -42,6 +42,10 @@ if($staff_set){
 	$genji_kana		=$_POST["genji_kana"];
 	$cast_mail		=$_POST["cast_mail"];
 
+	$ribbon_use		=$_POST["ribbon_use"];
+	$cast_ribbon	=$_POST["cast_ribbon"];
+
+
 	$c_date			=$_POST["c_date"];
 
 	$cast_rank		=$_POST["cast_rank"];
@@ -123,8 +127,8 @@ if($staff_set){
 			mysqli_query($mysqli,$sql);
 
 		}else{//新規１　かCAST追加3
-			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`cast_status`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`)";
-			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$cast_status}','{$ctime}','{$cast_rank}','0','{$cast_salary}')";
+			$sql="INSERT INTO wp01_0cast (`id`,`genji`,`genji_kana`,`cast_id`,`cast_pass`,`cast_mail`,`cast_status`,`ctime`,`cast_rank`,`cast_sort`,`cast_salary`,`ribbon_use`,`cast_ribbon`)";
+			$sql.="VALUES('{$staff_id}','{$genji}','{$genji_kana}','{$cast_id}','{$cast_pass}','{$cast_mail}','{$cast_status}','{$ctime}','{$cast_rank}','0','{$cast_salary}','{$ribbon_use}','{$cast_ribbon}')";
 			mysqli_query($mysqli,$sql);
 
 //■encode-------------------------------
@@ -162,7 +166,6 @@ if($staff_set){
 			$sql.="('{$staff_id}','同伴','6','59','2000','7')";
 			mysqli_query($mysqli,$sql);
 
-
 			if($_REQUEST["news_date_c"] && $_REQUEST["news_box"]){
 				$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
 				$p_date=$_REQUEST["news_date_c"]." 00:00:00";
@@ -171,23 +174,6 @@ if($staff_set){
 				$sql .=" VALUES('{$now}','{$p_date}','{$c_date}','news','person','{$staff_id}','{$title}','{$news_box}','2')";
 				mysqli_query($mysqli,$sql);
 			}
-
-
-/*
-			if($_REQUEST["news_date_yy"] && $_REQUEST["news_date_mm"] && $_REQUEST["news_date_dd"] && $_REQUEST["news_box"]){
-				$title=str_replace("[name]","<span style=\"color:#ffffff; font-weight:600\">{$genji}</span>",$_REQUEST["news_box"]);
-
-				$p_date=$_REQUEST["news_date_yy"]."-".$_REQUEST["news_date_mm"]."-".$_REQUEST["news_date_dd"]." 00:00:00";
-				$m_date=$_REQUEST["ctime_yy"]."-".$_REQUEST["ctime_mm"]."-".$_REQUEST["ctime_dd"]." 00:00:00";
-				$g_date=date("Y-m-d 00:00:00",strtotime($p_date)-32400);
-
-				$sql =" INSERT INTO wp01_0contents";
-				$sql .="(`date`, display_date, page, category, contents_key, title, contents,tag)";
-				$sql .=" VALUES('{$now}','{$p_date}','news','person','{$staff_id}','{$title}','{$news_box}','2')";
-				mysqli_query($mysqli,$sql);
-			}
-*/
-
 		}
 			
 //■options-------------------------------
@@ -219,110 +205,49 @@ if($staff_set){
 //■img-------------------------------
 		if($img_c){
 			$link="../img/profile/".$staff_id;
-//			if($staff_set == 1){
-//				$a3=0;
-				foreach($img_c as $a1 => $a2){
-					if($a2){
-/*
-						$tmp_width	=ceil($img_w[$a1]*(100/$img_z[$a1]));
-						$tmp_height	=ceil($img_h[$a1]*(100/$img_z[$a1]));
+			foreach($img_c as $a1 => $a2){
+				if($a2){
 
-						$tmp_left	=floor((20-$img_x[$a1])*($img_w[$a1]/150)*100/$img_z[$a1]);
-						$tmp_top	=floor((20-$img_y[$a1])*($img_h[$a1]/200)*100/$img_z[$a1]);
-echo "W:".$tmp_width."<br>\n";
-echo "H:".$tmp_height."<br>\n";
-echo "X:".$tmp_left."<br>\n";
-echo "Y:".$tmp_top."<br>\n";
-*/
+					$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
+					$tmp_height	=ceil( ( 200 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
 
-						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
-						$tmp_height	=ceil( ( 200 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
-
-						$tmp_left	=floor( ($img_x[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
-						$tmp_top	=floor( ($img_y[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+					$tmp_left	=floor( ($img_x[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+					$tmp_top	=floor( ($img_y[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
 
 
-						if($img_r[$a1] ==90){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-							$img		= imagerotate($new_img, 270, 0, 0);
+					if($img_r[$a1] ==90){
+						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
+						$img		= imagerotate($new_img, 270, 0, 0);
 
-						}elseif($img_r[$a1] ==180){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-							$img		= imagerotate($new_img, 180, 0, 0);
+					}elseif($img_r[$a1] ==180){
+						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
+						$img		= imagerotate($new_img, 180, 0, 0);
 
-						}elseif($img_r[$a1] ==270){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
-							$img		= imagerotate($new_img, 90, 0, 0);
+					}elseif($img_r[$a1] ==270){
+						$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
+						$img		= imagerotate($new_img, 90, 0, 0);
 
-						}else{
-							$img = imagecreatefromstring(base64_decode($img_c[$a1]));
-						}
-
-						$img2 		= imagecreatetruecolor(600,800);
-						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-						imagejpeg($img2,$link."/".$a1.".jpg",100);
-						imagedestroy($img2);
-
-						$img2_s 		= imagecreatetruecolor(180,240);
-						ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
-	//					imagewebp($img2_s,$link."/".$a1."_s.webp");
-						imagejpeg($img2_s,$link."/".$a1."_s.jpg");
-						imagedestroy($img2_s);
-
-						$img2_n 		= imagecreatetruecolor(30,40);
-						ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
-						imagejpeg($img2_n,$link."/".$a1."_n.jpg",100);
-						imagedestroy($img2_n);
-//						$a3++;
+					}else{
+						$img = imagecreatefromstring(base64_decode($img_c[$a1]));
 					}
-				}
-/*
-			}else{
-				foreach($img_c as $a1 => $a2){
-					if($a2){
 
-						$tmp_width	=ceil( ( 150 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
-						$tmp_height	=ceil( ( 200 / $img_v[$a1] ) * ( 100 / $img_z[$a1] ) );
+					$img2 		= imagecreatetruecolor(600,800);
+					ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
+					imagejpeg($img2,$link."/".$a1.".jpg",100);
+					imagedestroy($img2);
 
-						$tmp_left	=floor( ($img_x[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
-						$tmp_top	=floor( ($img_y[$a1] - 20 ) / $img_v[$a1] * ( -100 / $img_z[$a1] ) );
+					$img2_s 		= imagecreatetruecolor(180,240);
+					ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
+//					imagewebp($img2_s,$link."/".$a1."_s.webp");
+					imagejpeg($img2_s,$link."/".$a1."_s.jpg");
+					imagedestroy($img2_s);
 
-
-						if($img_r[$a1] ==90){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-							$img		= imagerotate($new_img, 270, 0, 0);
-
-						}elseif($img_r[$a1] ==180){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));	
-							$img		= imagerotate($new_img, 180, 0, 0);
-
-						}elseif($img_r[$a1] ==270){
-							$new_img	= imagecreatefromstring(base64_decode($img_c[$a1]));
-							$img		= imagerotate($new_img, 90, 0, 0);
-
-						}else{
-							$img = imagecreatefromstring(base64_decode($img_c[$a1]));
-						}
-
-						$img2 		= imagecreatetruecolor(600,800);
-						ImageCopyResampled($img2, $img, 0, 0, $tmp_left, $tmp_top, 600, 800, $tmp_width, $tmp_height);
-						imagejpeg($img2,$link."/".$i.".jpg",100);
-						imagedestroy($img2);
-
-						$img2_s 		= imagecreatetruecolor(180,240);
-						ImageCopyResampled($img2_s, $img, 0, 0, $tmp_left, $tmp_top, 180, 240, $tmp_width, $tmp_height);
-	//					imagewebp($img2_s,$link."/".$a3."_s.webp");
-						imagejpeg($img2_s,$link."/".$i."_s.jpg");
-						imagedestroy($img2_s);
-
-						$img2_n 		= imagecreatetruecolor(30,40);
-						ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
-						imagejpeg($img2_n,$link."/".$i."_n.jpg",100);
-						imagedestroy($img2_n);
-					}
+					$img2_n 		= imagecreatetruecolor(30,40);
+					ImageCopyResampled($img2_n, $img, 0, 0, $tmp_left, $tmp_top, 30, 40, $tmp_width, $tmp_height);
+					imagejpeg($img2_n,$link."/".$a1."_n.jpg",100);
+					imagedestroy($img2_n);
 				}
 			}
-*/
 		}
 	}
 
