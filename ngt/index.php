@@ -19,8 +19,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		$ribbon[$row["id"]]["c2"]=$row["tag_icon"];
 	}
 }
-var_dump($ribbon);
-
 
 $sql=" SELECT wp01_0cast.id,sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, ribbon_use, cast_ribbon, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
@@ -40,26 +38,22 @@ if($result = mysqli_query($mysqli,$sql)){
 					$row["ribbon_name"]	=$ribbon[$ribbon_sort[1]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$ribbon_sort[1]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$ribbon_sort[1]]["c2"];
-echo "★";
+
 				}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
 					$row["ribbon_name"]	=$ribbon[$ribbon_sort[2]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$ribbon_sort[2]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$ribbon_sort[2]]["c2"];
-echo "★★";
 
 				}elseif((strtotime($day_8) - strtotime($row["ctime"]))/86400<$admin_config["new_commer_cnt"]){
 					$row["ribbon_name"]	=$ribbon[$ribbon_sort[3]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$ribbon_sort[3]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$ribbon_sort[3]]["c2"];
-echo "★★★";
 
 				}elseif($row["cast_ribbon"]>0){
 					$row["ribbon_name"]	=$ribbon[$row["cast_ribbon"]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$row["cast_ribbon"]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$row["cast_ribbon"]]["c2"];
-
-echo "★★".$row["cast_ribbon"]."★★";
-				
+			
 				}
 			}
 
@@ -282,7 +276,7 @@ var NewCnt=1;
 						</span>
 
 						<?if($b2["ribbon_name"]){?>
-							<span class="main_b_1_ribbon" style="background:linear-gradient(135deg,<?=$b2["ribbon_c1"]?>,<?=$b2["ribbon_c2"]?>)"><?=$b2["ribbon_name"]?></span>
+							<span class="main_b_1_ribbon" style="background:linear-gradient(<?=$b2["ribbon_c1"]?>,<?=$b2["ribbon_c2"]?>);box-shadow	:0 -5px 0 <?=$b2["ribbon_c1"]?>,0 5px 0 <?=$b2["ribbon_c2"]?>;"><?=$b2["ribbon_name"]?></span>
 						<?}?>
 					<a href="./person.php?post_id=<?=$b2["cast_id"]?>" id="i<?=$b1?>" class="main_b_1_0"></a>
 					</span>

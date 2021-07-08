@@ -622,6 +622,7 @@ ul {
 	border			:1px solid #fafafa;
 	transform		:rotate(-40deg);
 	transform-origin:top left;
+	text-shadow		:-1px -1px #000000f;
 }
 
 .ribbon1{
