@@ -154,7 +154,7 @@ if($post_id == "news"){
 				$res["img"]="../img/page/event/event_{$res["id"]}.webp";			
 
 			}else{
-				$res["img"]="../img/event_no_image.jpg";			
+				$res["img"]="../img/event_no_image.png";			
 			}
 
 			$dat[$res["id"]]=$res;

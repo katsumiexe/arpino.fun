@@ -7,9 +7,23 @@ $sql	.=" AND id='{$post_id}'";
 $sql	.=" LIMIT 1";
 
 if($res0 = mysqli_query($mysqli,$sql)){
-$event = mysqli_fetch_assoc($res0);
-$event["contents"]=str_replace("\n","<br>",$event["contents"]);
+	$event = mysqli_fetch_assoc($res0);
+	$event["contents"]=str_replace("\n","<br>",$event["contents"]);
 }
+
+if (file_exists("./img/page/event/event_{$row["id"]}/0.webp")) {
+	$row["face"]="<img src=\"./img/page/event/event_{$row["id"]}/0.webp\" class=\"event_img\">";			
+
+}elseif (file_exists("./img/page/event/event_{$row["id"]}/0.jpg")) {
+	$row["face"]="<img src=\"./img/page/event/event_{$row["id"]}/0.jpg\" class=\"event_img\">";			
+
+}elseif (file_exists("./img/page/event/event_{$row["id"]}/0.png")) {
+	$row["face"]="<img src=\"./img/page/event/event_{$row["id"]}/0.png\" class=\"event_img\">";			
+
+}else{
+	$row["face"]="./img/cast_no_image.jpg";			
+}
+
 include_once('./header.php');
 ?>
 
@@ -44,7 +58,7 @@ include_once('./header.php');
 <div class="corner box_4"></div>
 </div>
 <?}else{?>
-<img src="./img/page/event/event_<?=$post_id?>.jpg" class="event_img">
+
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
