@@ -2,7 +2,7 @@
 include_once('./library/sql.php');
 $sort=array();
 
-$sql  ="SELECT id, tag_name, tag_icon FROM wp01_0tag ";
+$sql  ="SELECT id, tag_name, tag_icon,sort FROM wp01_0tag ";
 $sql .=" WHERE tag_group='ribbon'";
 $sql.=" AND del='0'";
 

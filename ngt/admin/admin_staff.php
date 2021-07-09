@@ -1,5 +1,5 @@
 <?
-$sql	 ="SELECT id,staff_id,genji,genji_kana, cast_sort, ctime, cast_id,cast_status,name,kana FROM wp01_0staff AS S";
+$sql	 ="SELECT id,staff_id,genji,genji_kana, cast_sort, `group`, ctime, cast_id,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
 $sql	.=" WHERE S.del=0";
 $sql	.=" ORDER BY cast_sort ASC";
@@ -26,7 +26,15 @@ if($rawult = mysqli_query($mysqli,$sql)){
 	}
 }
 
-
+$sql	 ="SELECT * FROM wp01_0tag";
+$sql	.=" WHERE del=0";
+$sql	.=" and tag_group='cast_group'";
+$sql	.=" ORDER BY sort ASC";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$group[$row["id"]]=$row["tag_name"];
+	}
+}
 ?>
 <style>
 <!--
@@ -173,6 +181,7 @@ $(function(){
 <td class="td_top">源氏名[フリガナ]</td>
 <td class="td_top">ID</td>
 <td class="td_top">入店日</td>
+<td class="td_top">グループ</td>
 <td class="td_top">状態</td>
 <td class="td_top">タグ</td>
 <td class="td_top">変更</td>
@@ -187,6 +196,7 @@ $(function(){
 <td class="w200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
 <td class="w100"><?=$dat[$n]["cast_id"]?></td>
 <td class="w100"><?=$dat[$n]["ctime"]?></td>
+<td class="w100"><?=$group[$dat[$n]["group"]]?></td>
 <td class="w100"><?=$cast_status_select[$dat[$n]["cast_status"]]?></td>
 <td class="w100"><?=$dat[$n]["cast_tag"]?></td>
 
