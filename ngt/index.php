@@ -1,7 +1,7 @@
 <?php
 include_once('./library/sql.php');
 
-$sql  ="SELECT id, tag_name, tag_icon FROM wp01_0tag ";
+$sql  ="SELECT id, tag_name, tag_icon,sort FROM wp01_0tag ";
 $sql .=" WHERE tag_group='ribbon'";
 $sql.=" AND del='0'";
 
@@ -19,6 +19,7 @@ if($result = mysqli_query($mysqli,$sql)){
 		$ribbon[$row["id"]]["c2"]=$row["tag_icon"];
 	}
 }
+var_dump($ribbon_sort);
 
 $sql=" SELECT wp01_0cast.id,sche_date, wp01_0sch_table.sort, wp01_0schedule.cast_id, ribbon_use, cast_ribbon, stime, etime, ctime, genji,wp01_0cast.id FROM wp01_0schedule";
 $sql.=" LEFT JOIN wp01_0sch_table ON stime=name";
@@ -33,26 +34,42 @@ if($result = mysqli_query($mysqli,$sql)){
 		if($row["stime"] && $row["etime"]){
 			$row["sch_view"]=$row["stime"]." － ".$row["etime"];
 
-			if($row["ribbon_use"] ==0){
+			if($admin_config["ribbon"] ==1){
+echo "△△△";
 				if($day_8 < $row["ctime"] && $admin_config["coming_soon"]==1){
 					$row["ribbon_name"]	=$ribbon[$ribbon_sort[1]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$ribbon_sort[1]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$ribbon_sort[1]]["c2"];
+echo "●";
 
 				}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
 					$row["ribbon_name"]	=$ribbon[$ribbon_sort[2]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$ribbon_sort[2]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$ribbon_sort[2]]["c2"];
+echo "○";
+echo $row["ribbon_name"]."<br>\n";
+echo $row["ribbon_c1"]."<br>\n";
+echo $row["ribbon_c2"]."<br>\n";
 
 				}elseif((strtotime($day_8) - strtotime($row["ctime"]))/86400<$admin_config["new_commer_cnt"]){
-					$row["ribbon_name"]	=$ribbon[$ribbon_sort[3]]["name"];
+					$row["ribbon_name"]	=$ribbon[15]["name"];
 					$row["ribbon_c1"]	=$ribbon[$ribbon_sort[3]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$ribbon_sort[3]]["c2"];
+echo "■";
+echo $row["ribbon_name"]."<br>\n";
+echo $row["ribbon_c1"]."<br>\n";
+echo $row["ribbon_c2"]."<br>\n";
+
 
 				}elseif($row["cast_ribbon"]>0){
 					$row["ribbon_name"]	=$ribbon[$row["cast_ribbon"]]["name"];
 					$row["ribbon_c1"]	=$ribbon[$row["cast_ribbon"]]["c1"];
 					$row["ribbon_c2"]	=$ribbon[$row["cast_ribbon"]]["c2"];
+
+echo "□";
+echo $row["ribbon_name"]."<br>\n";
+echo $row["ribbon_c1"]."<br>\n";
+echo $row["ribbon_c2"]."<br>\n";
 			
 				}
 			}

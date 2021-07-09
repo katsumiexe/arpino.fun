@@ -70,6 +70,18 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+$sql	 ="SELECT * FROM wp01_0tag";
+$sql	.=" WHERE del=0";
+$sql	.=" and tag_group='ribbon'";
+$sql	.=" and sort>'3'";
+$sql	.=" ORDER BY sort ASC";
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+		$cast_ribbon[$row["id"]]=$row["tag_name"];
+	}
+}
+
+
 }
 ?>
 <style>
@@ -329,14 +341,30 @@ CAST情報
 	<div>入店日		</div>
 	<input type="date" name="c_date" class="w000" value="<?=$staff_data["ctime"]?>" autocomplete="off">
 </td>
-</tr><tr>
-<td>
-	<div>ログインID		</div><input type="text" name="cast_id" value="<?=$staff_data["cast_id"]?>" class="w000" autocomplete="off">
-</td><td>
-	<div>ログインPASS	</div><input type="text" name="cast_pass" value="<?=$staff_data["cast_pass"]?>" class="w000" autocomplete="new_password">
-</td><td>
-	<div>給与		</div><input type="text" name="cast_salary" value="<?=$staff_data["cast_salary"]?>" class="w000" autocomplete="off">
+</tr>
+<tr>
+	<td>
+		<div>ログインID		</div><input type="text" name="cast_id" value="<?=$staff_data["cast_id"]?>" class="w000" autocomplete="off">
 	</td>
+	<td>
+		<div>ログインPASS	</div><input type="text" name="cast_pass" value="<?=$staff_data["cast_pass"]?>" class="w000" autocomplete="new_password">
+	</td>
+	<td>
+		<div>リボン</div>
+		<select name="cast_ribbon" class="w000">
+			<option value="0">基本</option>
+	<?foreach((array)$cast_ribbon as $a1 => $a2){?>
+			<option value="<?=$a1?>"<?if($staff_data["cast_ribbon"]==$a1){?> selected="selected"<?}?>><?=$a2?></option>
+	<?}?>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>
+		<div>給与		</div><input type="text" name="cast_salary" value="<?=$staff_data["cast_salary"]?>" class="w000" autocomplete="off">
+	</td>
+	<td></td>
+	<td></td>
 </tr>
 </table>
 

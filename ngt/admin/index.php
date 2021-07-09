@@ -116,7 +116,7 @@ if($staff_set){
 			$sql.=" `ctime`='{$ctime}',";
 			$sql.=" `cast_rank`='{$cast_rank}',";
 			$sql.=" `cast_salary`='{$cast_salary}',";
-//			$sql.=" `cast_sort`='{$cast_sort}'";
+			$sql.=" `cast_ribbon`='{$cast_ribbon}'";
 			$sql.=" WHERE id='{$staff_id}'";
 			mysqli_query($mysqli,$sql);
 

@@ -201,38 +201,32 @@ CAST情報
 	<div>入店日		</div>
 	<input type="date" name="c_date" class="w000" value="<?=date("Y-m-d")?>" autocomplete="off">
 </td>
-</tr><tr>
-<td>
-	<div>リボン使用</div>
-	<select name="ribbon_use" class="w000">
-		<option value="0">使う</option>
-		<option value="1">使わない</option>
-	</select>
-
-</td><td>
-	<div>リボン</div>
-	<select name="cast_ribbon" class="w000">
-		<option value="0">基本</option>
-
-
-		$cast_ribbon[$row["id"]]=$row["tag_name"];
-
-<?foreach($cast_ribbon as $a1 => $a2){?>
-		<option value="<?=$a1?>"><?=$a2?></option>
-<?}?>
-	</select>
-
-</td><td>
+<tr>
+	<td>
+		<div>ログインID		</div><input type="text" name="cast_id" value="" class="w000" autocomplete="off">
 	</td>
-</tr><tr>
-<td>
-	<div>ログインID		</div><input type="text" name="cast_id" class="w000" autocomplete="off">
-</td><td>
-	<div>ログインPASS	</div><input type="text" name="cast_pass" class="w000" autocomplete="new_password">
-</td><td>
-	<div>給与		</div><input type="text" name="cast_salary" class="w000" autocomplete="off">
+	<td>
+		<div>ログインPASS	</div><input type="text" name="cast_pass" value="" class="w000" autocomplete="new_password">
+	</td>
+	<td>
+		<div>リボン</div>
+		<select name="cast_ribbon" class="w000">
+			<option value="0">基本</option>
+			$cast_ribbon[$row["id"]]=$row["tag_name"];
+	<?foreach($cast_ribbon as $a1 => $a2){?>
+			<option value="<?=$a1?>"<?if($staff_data["cast_ribbon"]==$a1){?> selected="selected"<?}?>><?=$a2?></option>
+	<?}?>
+		</select>
 	</td>
 </tr>
+<tr>
+	<td>
+		<div>給与		</div><input type="text" name="cast_salary" value="<?=$staff_data["cast_salary"]?>" class="w000" autocomplete="off">
+	</td>
+	<td></td>
+	<td></td>
+</tr>
+</tr><tr>
 
 </table>
 
