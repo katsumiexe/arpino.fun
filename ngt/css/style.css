@@ -610,9 +610,9 @@ ul {
 .main_b_1_ribbon{
 	position		:absolute;
 	display			:inline-block;
-	left			:-30px;
-	top				:65px;
-	width			:145px;
+	left			:-50px;
+	top				:25px;
+	width			:150px;
 	height			:30px;
 	line-height		:30px;
 	font-size		:16px;
@@ -620,9 +620,9 @@ ul {
 	text-align		:center;
 	color			:#fafafa;
 	border			:1px solid #fafafa;
-	transform		:rotate(-40deg);
-	transform-origin:top left;
-	text-shadow		:-1px -1px #000000f;
+	transform		:rotate(-45deg);
+	transform-origin:top center;
+	text-shadow		:-1px -1px #000000;
 }
 
 .ribbon1{
@@ -3315,12 +3315,12 @@ ul {
 }
 
 .main_b_1_ribbon{
-	left			:-5vw;
-	top				:12vw;
-	width			:27.5vw;
-	height			:6vw;
-	line-height		:6vw;
-	font-size		:3.5vw;
+	left			:-7vw;
+	top				:3vw;
+	width			:20vw;
+	height			:4vw;
+	line-height		:4vw;
+	font-size		:2vw;
 }
 
 
@@ -4090,9 +4090,6 @@ ul {
 	font-size	:3vw;
 }
 
-
-
-
 .menu_item {
 	height			:10vw;
 	line-height		:10vw;
@@ -4200,6 +4197,16 @@ ul {
  .main_b_1_2_h{
 	height			:11vw;
 	width			:24vw;
+}
+
+
+.main_b_1_ribbon{
+	left			:-10vw;
+	top				:5vw;
+	width			:30vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:3.5vw;
 }
 
 
