@@ -12,16 +12,13 @@ if($res0 = mysqli_query($mysqli,$sql)){
 }
 
 if (file_exists("./img/page/event/event_{$row["id"]}/0.webp")) {
-	$row["face"]="<img src=\"./img/page/event/event_{$row["id"]}/0.webp\" class=\"event_img\">";			
+	$row["top"]="<img src=\"./img/page/event/event_{$row["id"]}/0.webp\" class=\"event_img\">";			
 
 }elseif (file_exists("./img/page/event/event_{$row["id"]}/0.jpg")) {
-	$row["face"]="<img src=\"./img/page/event/event_{$row["id"]}/0.jpg\" class=\"event_img\">";			
+	$row["top"]="<img src=\"./img/page/event/event_{$row["id"]}/0.jpg\" class=\"event_img\">";			
 
 }elseif (file_exists("./img/page/event/event_{$row["id"]}/0.png")) {
-	$row["face"]="<img src=\"./img/page/event/event_{$row["id"]}/0.png\" class=\"event_img\">";			
-
-}else{
-	$row["face"]="./img/cast_no_image.jpg";			
+	$row["top"]="<img src=\"./img/page/event/event_{$row["id"]}/0.png\" class=\"event_img\">";			
 }
 
 include_once('./header.php');
@@ -59,6 +56,7 @@ include_once('./header.php');
 </div>
 <?}else{?>
 
+<?=$row["top"]?>
 <div class="main_e">
 <div class="main_e_in">
 <span class="main_e_f c_tr"></span>
