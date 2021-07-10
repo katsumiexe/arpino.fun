@@ -7,7 +7,27 @@ include_once('../library/sql.php');
 $sort=array();
 $date		=$_POST['date'];
 
-$sql=" SELECT id, genji,ctime FROM wp01_0cast";
+$sql  ="SELECT id, tag_name, tag_icon,sort FROM wp01_0tag ";
+$sql .=" WHERE tag_group='ribbon'";
+$sql.=" AND del='0'";
+
+if($result = mysqli_query($mysqli,$sql)){
+	while($row = mysqli_fetch_assoc($result)){
+
+		$ribbon_sort[$row["sort"]]=$row["id"];
+		$ribbon[$row["id"]]["name"]=$row["tag_name"];
+
+		$tmp=hexdec(str_replace("#","",$row["tag_icon"]));
+		$tmp+=2631720;
+		$tmp=dechex($tmp);
+	
+		$ribbon[$row["id"]]["c1"]="#".$tmp;
+		$ribbon[$row["id"]]["c2"]=$row["tag_icon"];
+	}
+}
+
+
+$sql=" SELECT id, genji,ctime,cast_ribbon FROM wp01_0cast";
 $sql.=" WHERE cast_status=0";
 $sql.=" AND id>0";
 $sql.=" AND genji IS NOT NULL";
@@ -15,15 +35,31 @@ $sql.=" ORDER BY cast_sort ASC";
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
-		if($day_8 < $row["ctime"] && $admin_config["coming_soon"]==1){
-			$row["new"]=1;
+		if($admin_config["ribbon"] ==1){
+			if($day_8 < $row["ctime"] && $admin_config["coming_soon"]==1){
+				$row["ribbon_name"]	=$ribbon[$ribbon_sort[1]]["name"];
+				$row["ribbon_c1"]	=$ribbon[$ribbon_sort[1]]["c1"];
+				$row["ribbon_c2"]	=$ribbon[$ribbon_sort[1]]["c2"];
 
-		}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
-			$row["new"]=2;
+			}elseif($day_8 == $row["ctime"] && $admin_config["today_commer"]==1){
+				$row["ribbon_name"]	=$ribbon[$ribbon_sort[2]]["name"];
+				$row["ribbon_c1"]	=$ribbon[$ribbon_sort[2]]["c1"];
+				$row["ribbon_c2"]	=$ribbon[$ribbon_sort[2]]["c2"];
 
-		}elseif((strtotime($day_8) - strtotime($row["ctime"]))/86400<$admin_config["new_commer_cnt"]){
-			$row["new"]=3;
+			}elseif((strtotime($day_8) - strtotime($row["ctime"]))/86400<$admin_config["new_commer_cnt"]){
+				$row["ribbon_name"]	=$ribbon[15]["name"];
+				$row["ribbon_c1"]	=$ribbon[$ribbon_sort[3]]["c1"];
+				$row["ribbon_c2"]	=$ribbon[$ribbon_sort[3]]["c2"];
+
+			}elseif($row["cast_ribbon"]>0){
+				$row["ribbon_name"]	=$ribbon[$row["cast_ribbon"]]["name"];
+				$row["ribbon_c1"]	=$ribbon[$row["cast_ribbon"]]["c1"];
+				$row["ribbon_c2"]	=$ribbon[$row["cast_ribbon"]]["c2"];
+
+			}
 		}
+
+
 
 
 		if (file_exists("../img/profile/{$row["id"]}/0.jpg")) {
@@ -75,14 +111,8 @@ foreach($cast_dat as $b1=> $b2){
 	$html.="<span class=\"main_d_1_2_sch\">{$b2["sch"]}</span>";
 	$html.="</span>";
 
-	if($b2["new"] == 1){
-		$html.="<span class=\"main_b_1_ribbon ribbon1\">近日入店</span>";
-
-	}elseif($b2["new"] == 2){
-		$html.="<span class=\"main_b_1_ribbon ribbon2\">本日入店</span>";
-
-	}elseif($b2["new"] == 3){
-		$html.="<span class=\"main_b_1_ribbon ribbon3\">新人</span>";
+	if($b2["ribbon_name"]){
+	$html.="<span class=\"main_b_1_ribbon\" style=\"background:linear-gradient({$b2["ribbon_c1"]},{$b2["ribbon_c2"]});box-shadow	:0 -5px 0 {$b2["ribbon_c1"]},0 5px 0 {$b2["ribbon_c2"]};\">{$b2["ribbon_name"]}</span>";
 	}
 	$html.="</a>";
 }
