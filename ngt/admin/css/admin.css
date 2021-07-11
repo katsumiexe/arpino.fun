@@ -926,6 +926,83 @@ ul {
 	height:30px;
 }
 
+.box_inout{
+	display			:block;
+	height			:30px;
+	width			:100%;
+	margin			:5px 3px;
+}
+
+.tag_inout{
+	display			:inline-block;
+	height			:30px;
+	line-height		:30px;
+	width			:20px;
+	font-size		:15px;
+	font-weight		:700;
+	text-align		:center;
+	vertical-align	:top;
+}
+
+.sel_inout{
+	width:80px;
+}
+
+.td_castname{
+	text-align:center;
+	font-size:0;
+}
+
+.td_castname_in{
+	width		:150px;
+	text-align	:left;
+	font-size	:14px;
+	margin		:3px auto;
+}
+
+.sche_submit,.sche_reset{
+	width		:65px;
+	font-size	:13px;
+	margin		:5px;
+	height		:30px;
+}
+
+.back_now{
+	background	:#808000;
+	color		:#fafafa;
+}
+
+.line_now{
+	box-shadow	:3px 0 0 0 #808000 inset,-3px 0 0 0 #808000 inset;
+}
+
+.disabled{
+	background	:#e0e0e0 !important;
+	
+}
+
+.sche_ck{
+	display:inline-flex;
+	justify-content: space-between;
+	width:280px;
+}
+
+.ck_box:checked + label{
+	background	:#0000d0;
+}	
+
+.sche_ck label{
+	display		:inline-block;
+	height		:30px;
+	width		:50px;
+	flex-basis	:50px;
+	line-height	:30px;
+	text-align	:center;
+	background	:#cccccc;
+	color		:#fafafa;
+	font-size	:16px;
+}
+
 .handle{
 	font-family	:at_item;
 	cursor		:pointer;
@@ -936,7 +1013,9 @@ ul {
 	margin-bottom:5px;
 }
 .w40{width:40px;}
+.w50{width:50px;}
 .w60{width:60px;}
+.w80{width:80px;}
 .w100{width:100px;}
 .w120{width:120px;}
 .w140{width:140px;}
@@ -954,6 +1033,7 @@ ul {
 .c2{background:#ffd0d8;}
 .c3{background:#e0e0e0;}
 
+.b{background:#fafafa;}
 .b0{background:#fafafa;}
 .b1{background:#f0f0d0;}
 .b2{background:#e0e0e0;}

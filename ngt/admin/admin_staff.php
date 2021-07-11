@@ -1,28 +1,77 @@
 <?
+
+$cl_b=$_POST["cl_b"];
+$cl_c=$_POST["cl_c"];
+$cl_d=$_POST["cl_d"];
+$cl_e=$_POST["cl_e"];
+$cl_f=$_POST["cl_f"];
+
+$c_s=$_POST["c_s"] +0;
+
+if(!$cl_b && !$cl_c && !$cl_d && !$cl_e && !$cl_f){
+	$cl_b=1;
+	$cl_c=1;
+}
+
+
+if($cl_b == 1){
+	$app.=" OR ( cast_status =0 AND ctime<='{$day_8}')";
+}
+
+if($cl_c == 1){
+	$app.=" OR ( cast_status =0 AND ctime>'{$day_8}')";
+}
+
+if($cl_d == 1){
+	$app.=" OR cast_status =2";
+}
+
+if($cl_e == 1){
+	$app.=" OR cast_status =3";
+}
+
+if($cl_f == 1){
+	$app.=" OR cast_status =4";
+}
+
+
+if($c_s == 0){
+	$app2=" AND id >0";
+}else{
+	$app2=" AND id IS NULL";
+}
+
 $sql	 ="SELECT id,staff_id,genji,genji_kana, cast_sort, `group`, ctime, cast_id,cast_status,name,kana FROM wp01_0staff AS S";
 $sql	.=" LEFT JOIN wp01_0cast AS C ON S.staff_id=C.id";
-$sql	.=" WHERE S.del=0";
+$sql	.=" WHERE (cast_status IS NULL";
+$sql	.=$app;
+$sql	.=")";
+$sql	.=$app2;
+$sql	.=" AND S.del=0";
 $sql	.=" ORDER BY cast_sort ASC";
 
 if($rawult = mysqli_query($mysqli,$sql)){
 	while($raw = mysqli_fetch_assoc($rawult)){
-		if (file_exists("../img/profile/{$raw["id"]}/0_s.webp")) {
-			$raw["face"]="../img/profile/{$raw["id"]}/0_s.webp";			
+		if($raw["id"]){
+			if (file_exists("../img/profile/{$raw["id"]}/0_s.webp")) {
+				$raw["face"]="../img/profile/{$raw["id"]}/0_s.webp";			
 
-		}elseif (file_exists("../img/profile/{$raw["id"]}/0_s.jpg")) {
-			$raw["face"]="../img/profile/{$raw["id"]}/0_s.jpg";			
+			}elseif (file_exists("../img/profile/{$raw["id"]}/0_s.jpg")) {
+				$raw["face"]="../img/profile/{$raw["id"]}/0_s.jpg";			
+
+			}else{
+				$raw["face"]="../img/cast_no_image.jpg";			
+			}
+			if($raw["cast_status"]==0 && $raw["ctime"]>$day_8){
+				$raw["cast_status"]=1;
+			}
+			$dat[]=$raw;
+			$count_dat++;
 
 		}else{
-			$raw["face"]="../img/cast_no_image.jpg";			
+			$dat2[]=$raw;
+			$count_dat2++;
 		}
-		if($raw["cast_status"]==0 && $raw["ctime"]>$day_8){
-			$raw["cast_status"]=1;
-		}
-		$dat[]=$raw;
-	}
-
-	if(is_array($dat)){
-		$count_dat=count($dat);
 	}
 }
 
@@ -54,7 +103,6 @@ td{
 
 
 #sel_staff,#sel_cast{
-	display:none;
 }
 
 #staff_l{
@@ -114,26 +162,21 @@ td{
 	text-align		:center;
 }
 
-input[type=checkbox]:checked + label{
-	background		:linear-gradient(#c0c0f0,#8080ff);
-}
-
-
 .table_title{
 	background		:linear-gradient(#e0e0e0,#d0d0d0);
 	padding			:5px;
 	font-size		:14px;
 }
 
-
 .icon{
 	font-family:at_icon;
 }
 
 .box_sort{
-	width		:40px;
+	width		:35px;
 	text-align	:right;
-	padding		:5px;
+	padding		:3px;
+	margin		:0 auto;
 }
 -->
 </style>
@@ -150,57 +193,60 @@ $(function(){
 		$('#staff_l').removeClass('on_1');
 		$('.cast_table').fadeIn(100);
 	});
-
 });
 
 </script>
 <header class="head">
-<h2 class="head_ttl">スタッフ一覧</h2>
-<input id="sel_staff" value="1" type="radio" name="c_s"><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
-<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
+<form id="wform" method="post">
 
-<input id="sel_staff" value="1" type="radio" name="c_s"><label id="label_staff" for="sel_staff" class="c_s_btn">STAFF</label>
-<input id="sel_cast" value="2" type="radio" name="c_s" checked="checked"><label id="label_cast" for="sel_cast" class="c_s_btn on_2">CAST</label>
+<input id="sel_staff" value="1" type="radio" name="c_s" class="sel_radio" <?if($c_s==1){?> checked="checked"<?}?>><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
+<input id="sel_cast" value="0" type="radio" name="c_s" class="sel_radio" <?if($c_s==0){?> checked="checked"<?}?>><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 
-<input id="sel_sort" value="1" type="radio" name="sort"><label id="label_sort" for="sel_sort" class="c_s_btn">昇順</label>
-<input id="sel_ksort" value="2" type="radio" name="sort" checked="checked"><label id="label_ksort" for="sel_ksort" class="c_s_btn on_2">降順</label>
-<input id="sel_status_0" value="1" type="checkbox" name="sel_status_0"><label id="label_status_0" for="sel_status_0" class="sel_status">通常</label>
-<input id="sel_status_1" value="1" type="checkbox" name="sel_status_1"><label id="label_status_1" for="sel_status_1" class="sel_status">準備</label>
-<input id="sel_status_2" value="1" type="checkbox" name="sel_status_2"><label id="label_status_2" for="sel_status_2" class="sel_status">休職</label>
-<input id="sel_status_3" value="1" type="checkbox" name="sel_status_3"><label id="label_status_3" for="sel_status_3" class="sel_status">退職</label>
-<input id="sel_status_4" value="1" type="checkbox" name="sel_status_4"><label id="label_status_4" for="sel_status_4" class="sel_status">停止</label>
+
+
+　
+<div class="sche_ck">
+
+<input id="ck_b" type="checkbox" name="cl_b" class="ck_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="ck_label">通常</label>
+<input id="ck_c" type="checkbox" name="cl_c" class="ck_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="ck_label">準備</label>
+<input id="ck_d" type="checkbox" name="cl_d" class="ck_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="ck_label">休職</label>
+<input id="ck_e" type="checkbox" name="cl_e" class="ck_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="ck_label">退職</label>
+<input id="ck_f" type="checkbox" name="cl_f" class="ck_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="ck_label">停止</label>
+</div>
+
+</form>
 </header>
 <div class="wrap">
 <div class="main_box">
 <table>
 <thead>
 <tr>
-<td class="td_top">替</td>
-<td class="td_top">順</td>
-<td class="td_top"></td>
-<td class="td_top">源氏名[フリガナ]</td>
-<td class="td_top">ID</td>
-<td class="td_top">入店日</td>
-<td class="td_top">グループ</td>
-<td class="td_top">状態</td>
-<td class="td_top">タグ</td>
-<td class="td_top">変更</td>
+<td class="td_top w40">替</td>
+<td class="td_top w40">順</td>
+<td class="td_top w50"></td>
+<td class="td_top w140">源氏名[フリガナ]</td>
+<td class="td_top w100">ID</td>
+<td class="td_top w100">入店日</td>
+<td class="td_top w80">グループ</td>
+<td class="td_top w80">状態</td>
+<td class="td_top w80">タグ</td>
+<td class="td_top w60">変更</td>
 </tr>
 </thead>
 <tbody id="staff_sort" class="list_sort">
 <?for($n=0;$n<$count_dat;$n++){?>
 <tr id="sort_item<?=$dat[$n]["staff_id"]?>" class="tr b<?=$dat[$n]["cast_status"]?>">
 <td class="td_sort handle"></td>
-<td class="w40"><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
-<td class="w60"><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:60px; height:80px;"></td>
-<td class="w200"><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
-<td class="w100"><?=$dat[$n]["cast_id"]?></td>
-<td class="w100"><?=$dat[$n]["ctime"]?></td>
-<td class="w100"><?=$group[$dat[$n]["group"]]?></td>
-<td class="w100"><?=$cast_status_select[$dat[$n]["cast_status"]]?></td>
-<td class="w100"><?=$dat[$n]["cast_tag"]?></td>
+<td ><input type="text" value="<?=$dat[$n]["cast_sort"]?>" class="box_sort" disabled></td>
+<td><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:48px; height:64px;"></td>
+<td><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
+<td><?=$dat[$n]["cast_id"]?></td>
+<td><?=$dat[$n]["ctime"]?></td>
+<td><?=$group[$dat[$n]["group"]]?></td>
+<td><?=$cast_status_select[$dat[$n]["cast_status"]]?></td>
+<td><?=$dat[$n]["cast_tag"]?></td>
 
-<td class="w60" style="position:relative;">
+<td style="position:relative;">
 	<form method="post">
 		<button type="submit" class="staff_submit">変更</button>
 		<input type="hidden" value="staff_fix" name="menu_post">

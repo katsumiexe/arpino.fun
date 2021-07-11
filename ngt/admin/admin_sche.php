@@ -13,11 +13,11 @@ $week[5]="金";
 $week[6]="土";
 
 /*
-<input id="ck_b" type="checkbox" name="cl_b" class="sche_ck_box" value="1"><label for="ck_b" class="ck_label">通常</label>
-<input id="ck_c" type="checkbox" name="cl_c" class="sche_ck_box" value="1"><label for="ck_c" class="ck_label">準備</label>
-<input id="ck_d" type="checkbox" name="cl_d" class="sche_ck_box" value="1"><label for="ck_d" class="ck_label">休職</label>
-<input id="ck_e" type="checkbox" name="cl_e" class="sche_ck_box" value="1"><label for="ck_e" class="ck_label">退職</label>
-<input id="ck_f" type="checkbox" name="cl_f" class="sche_ck_box" value="1"><label for="ck_f" class="ck_label">停止</label>
+<input id="ck_b" type="checkbox" name="cl_b" class="ck_box" value="1"><label for="ck_b" class="ck_label">通常</label>
+<input id="ck_c" type="checkbox" name="cl_c" class="ck_box" value="1"><label for="ck_c" class="ck_label">準備</label>
+<input id="ck_d" type="checkbox" name="cl_d" class="ck_box" value="1"><label for="ck_d" class="ck_label">休職</label>
+<input id="ck_e" type="checkbox" name="cl_e" class="ck_box" value="1"><label for="ck_e" class="ck_label">退職</label>
+<input id="ck_f" type="checkbox" name="cl_f" class="ck_box" value="1"><label for="ck_f" class="ck_label">停止</label>
 */
 
 $ck_date=$_POST["ck_date"];
@@ -130,207 +130,28 @@ td{
 	border:1px solid #303030;
 }
 
-
-.td_40{
-	width		:40px;
-	background	:#fafafa;
-	text-align	:center;
-}
-
-.td_60{
-	width		:60px;
-	background	:#fafafa;
-}
-
-.td_100{
-	width		:100px;
-	background	:#fafafa;
-	text-align	:center;
-}
-
-.td_200{
-	width		:200px;
-	background	:#fafafa;
-}
-
-
-.box_inout{
-	display			:block;
-	height			:30px;
-	width			:100%;
-	margin			:5px 3px;
-}
-
-.tag_inout{
-	display			:inline-block;
-	height			:30px;
-	line-height		:30px;
-	width			:20px;
-	font-size		:15px;
-	font-weight		:700;
-	text-align		:center;
-	vertical-align	:top;
-}
-
-.sel_inout{
-	width:80px;
-}
-
-.td_castname{
-	text-align:center;
-	font-size:0;
-}
-
-.td_castname_in{
-	width		:150px;
-	text-align	:left;
-	font-size	:14px;
-	margin		:3px auto;
-}
-
-.sche_submit,.sche_reset{
-	width		:65px;
-	font-size	:13px;
-	margin		:5px;
-	height		:30px;
-}
-
-.back_now{
-	background	:#808000;
-	color		:#fafafa;
-}
-
-.line_now{
-	box-shadow	:3px 0 0 0 #808000 inset,-3px 0 0 0 #808000 inset;
-}
-
-.disabled{
-	background	:#e0e0e0 !important;
-	
-}
-
-.sche_ck{
-	display:inline-flex;
-	justify-content: space-between;
-	width:280px;
-}
-
-.sche_ck_box:checked + label{
-	background	:#0000d0;
-}	
-
-.sche_ck label{
-	display		:inline-block;
-	height		:30px;
-	width		:50px;
-	flex-basis	:50px;
-	line-height	:30px;
-	text-align	:center;
-	background	:#cccccc;
-	color		:#fafafa;
-	font-size	:16px;
-}
-
 -->
 </style>
 <script>
 $(function(){ 
 
-	var Chg_s=[];
-	var Chg_e=[];
-	var Sch_d=[];
-
-	$('.sche_reset').on('click',function(){	
-		Tmp =$(this).attr("id").substr(3);
-		for(var i=0;i<7;i++){
-			$('#s_'+Tmp + "_" + i).val($('#hs_'+Tmp + "_" + i).val());
-			$('#e_'+Tmp + "_" + i).val($('#he_'+Tmp + "_" + i).val());
-		}
-		$(this).parents().siblings('td').css('background','#fafafa');
-	});
-
-	$('.sche_submit').on('click',function(){	
-		$(this).parents().siblings('td').css('background','#fafafa');
-
-		Tmp =$(this).attr("id").substr(3);
-		for(var i=0;i<7;i++){
-			if(
-				$('#s_'+Tmp + "_" + i).val() != $('#hs_'+Tmp + "_" + i).val() ||
-				$('#e_'+Tmp + "_" + i).val() != $('#he_'+Tmp + "_" + i).val()
-			){
-
-				if($('#s_'+Tmp + "_" + i).val() == "休み"){
-					$('#e_'+Tmp + "_" + i).val('');
-				}
-
-				$('#hs_'+Tmp + "_" + i).val($('#s_'+Tmp + "_" + i).val());
-				$('#he_'+Tmp + "_" + i).val($('#e_'+Tmp + "_" + i).val());
-
-				Chg_s[i]=$('#s_'+Tmp + "_" + i).val();		
-				Chg_e[i]=$('#e_'+Tmp + "_" + i).val();		
-				Sch_d[i]=$('#d_'+Tmp + "_" + i).val();		
-			}
-		}
-
-		$.post({
-			url:"./post/sch_chg.php",
-			data:{
-				'sch_d[]'	:Sch_d,
-				'chg_s[]'	:Chg_s,
-				'chg_e[]'	:Chg_e,
-				'cast_id'	:Tmp,
-			},
-
-		}).done(function(data, textStatus, jqXHR){
-			console.log(data);
-
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			console.log(errorThrown);
-		});
-	});
-
-
-	$('.sel_inout').on('change',function(){	
-		Tmp =$(this).attr("id").substr(2);
-		if($('#s_'+Tmp).val() == $('#hs_'+Tmp).val() && $('#e_'+Tmp).val() == $('#he_'+Tmp).val() ){
-			$(this).parents('.td_inout').css('background','#fafafa');
-
-		}else{
-			$(this).parents('.td_inout').css('background','#f0f0c0');
-		}
-	});
-
-	$('#sel_date,.sche_ck_box').on('change',function(){	
-		$('#page').val('');
-		$('#wform').submit();
-	});
-
-	$('#p_week').on('click',function(){	
-		$('#page').val('p');
-		$('#wform').submit();
-	});
-
-	$('#n_week').on('click',function(){	
-		$('#page').val('n');
-		$('#wform').submit();
-	});
 });
 </script>
 <header class="head">
 <form id="wform" method="post">
 <button id="p_week" type="button" class="sche_submit">翌週</button>
+
 <input id="sel_date" type="date" name="ck_date" value="<?=$ck_date?>" class="w140">
 <button id="n_week" type="button" class="sche_submit">翌週</button>
 <input id="page" type="hidden" value="" name="page">
 <input type="hidden" value="sche" name="menu_post">
 
 <div class="sche_ck">
-<input id="ck_b" type="checkbox" name="cl_b" class="sche_ck_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="ck_label">通常</label>
-<input id="ck_c" type="checkbox" name="cl_c" class="sche_ck_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="ck_label">準備</label>
-<input id="ck_d" type="checkbox" name="cl_d" class="sche_ck_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="ck_label">休職</label>
-<input id="ck_e" type="checkbox" name="cl_e" class="sche_ck_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="ck_label">退職</label>
-<input id="ck_f" type="checkbox" name="cl_f" class="sche_ck_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="ck_label">停止</label>
+<input id="ck_b" type="checkbox" name="cl_b" class="ck_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="ck_label">通常</label>
+<input id="ck_c" type="checkbox" name="cl_c" class="ck_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="ck_label">準備</label>
+<input id="ck_d" type="checkbox" name="cl_d" class="ck_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="ck_label">休職</label>
+<input id="ck_e" type="checkbox" name="cl_e" class="ck_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="ck_label">退職</label>
+<input id="ck_f" type="checkbox" name="cl_f" class="ck_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="ck_label">停止</label>
 </div>
 </form>
 </header>
