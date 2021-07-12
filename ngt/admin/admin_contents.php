@@ -203,7 +203,21 @@ if($post_id == "news"){
 				$recruit_contents	=$res["contents"];
 
 			}elseif($res["category"] == "image"){
-				$recruit_img	=$res["contents_key"];
+
+				if (file_exists("../img/page/contents/{$res["contents"]}.webp")) {
+					$recruit_img="../img/page/contents/{$res["contents"]}..webp?t={$day_time}";
+
+				}elseif (file_exists("../img/page/contents/{$res["contents"]}.jpg")) {
+					$recruit_img="../img/page/contents/{$res["contents"]}.jpg?t={$day_time}";
+
+				}elseif (file_exists("../img/page/contents/{$res["contents"]}.png")) {
+					$recruit_img="../img/page/contents/{$res["contents"]}.png?t={$day_time}";
+
+				}else{
+					$recruit_img="../img/event_no_image.png?t={$day_time}";			
+
+				}
+
 
 			}elseif($res["category"] == "list"){
 				$dat[$res["id"]]=$res;
@@ -215,6 +229,7 @@ if($post_id == "news"){
 	}
 
 }else{
+
 	$sql	 ="SELECT * FROM wp01_0contents";
 	$sql	.=" WHERE page='{$post_id}'";
 	$sql	.=" AND status=0";
@@ -616,6 +631,12 @@ console.log(img.width)
 	<?}else{?>
 		<?if($post_id == "recruit"){?>
 			<div class="main_box">
+
+				
+				<div  class="recruit_img_out">
+				<label for="updr<?=$a1?>" class="recruit_img"><img id="top_updr<?=$a1?>" src="<?=$recruit_img?>" style="width:780px" ></span>
+				<input id="updr<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
+				</div>
 				<table class="recuruit_table">
 					<form id="f<?=$recruit_id?>" action="./index.php" method="post" multipart/form-data>
 					<input type="hidden" name="post_id" value="recruit">

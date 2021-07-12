@@ -897,6 +897,22 @@ ul {
 	margin			:5px 0;
 }
 
+
+.recruit_img{
+	display		:inline-block;
+	width		:780px;
+	border		:1px solid #000000;
+}
+
+.recruit_img_out{
+	display		:block;
+	width		:800px;
+	margin		:5px auto;
+	paddng		:10px;
+	text-align:center;
+
+
+
 .link_tag{
 	display			:inline-block;
 	width			:60px;
