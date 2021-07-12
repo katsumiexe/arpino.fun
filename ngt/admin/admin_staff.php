@@ -107,10 +107,12 @@ td{
 
 #staff_l{
 	border-radius:10px 0 0 10px;
+	margin:10px 0 10px 10px;
 }
 
 #cast_l{
 	border-radius:0 10px 10px 0;
+	margin:10px 10px 10px 0;
 }
 
 .c_s_box{
@@ -202,16 +204,12 @@ $(function(){
 <input id="sel_staff" value="1" type="radio" name="c_s" class="sel_radio" <?if($c_s==1){?> checked="checked"<?}?>><label id="staff_l" for="staff" class="c_s_btn">STAFF</label>
 <input id="sel_cast" value="0" type="radio" name="c_s" class="sel_radio" <?if($c_s==0){?> checked="checked"<?}?>><label id="cast_l" for="cast" class="c_s_btn on_2">CAST</label>
 
-
-
-　
-<div class="sche_ck">
-
-<input id="ck_b" type="checkbox" name="cl_b" class="ck_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="ck_label">通常</label>
-<input id="ck_c" type="checkbox" name="cl_c" class="ck_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="ck_label">準備</label>
-<input id="ck_d" type="checkbox" name="cl_d" class="ck_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="ck_label">休職</label>
-<input id="ck_e" type="checkbox" name="cl_e" class="ck_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="ck_label">退職</label>
-<input id="ck_f" type="checkbox" name="cl_f" class="ck_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="ck_label">停止</label>
+<div class="status_check">
+<input id="ck_b" type="checkbox" name="cl_b" class="status_check_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="status_check_label">通常</label>
+<input id="ck_c" type="checkbox" name="cl_c" class="status_check_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="status_check_label">準備</label>
+<input id="ck_d" type="checkbox" name="cl_d" class="status_check_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="status_check_label">休職</label>
+<input id="ck_e" type="checkbox" name="cl_e" class="status_check_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="status_check_label">退職</label>
+<input id="ck_f" type="checkbox" name="cl_f" class="status_check_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="status_check_label">停止</label>
 </div>
 
 </form>

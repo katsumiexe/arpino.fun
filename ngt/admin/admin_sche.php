@@ -83,7 +83,6 @@ $sql.=$app;
 $sql.=")";
 $sql.=" AND del=0";
 $sql.=" ORDER BY cast_sort ASC";
-echo $sql;
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 		if (file_exists("../img/profile/{$row["id"]}/0.jpg")) {
@@ -139,20 +138,24 @@ $(function(){
 </script>
 <header class="head">
 <form id="wform" method="post">
-<button id="p_week" type="button" class="sche_submit">翌週</button>
+<button id="p_week" type="button" class="sche_submit" style="margin:10px 5px 10px 10px">前週</button>
 
-<input id="sel_date" type="date" name="ck_date" value="<?=$ck_date?>" class="w140">
-<button id="n_week" type="button" class="sche_submit">翌週</button>
+<input id="sel_date" type="date" name="ck_date" value="<?=$ck_date?>" class="w140" style="margin:9px 1px">
+
+<button id="n_week" type="button" class="sche_submit" style="margin:10px 10px 10px 5px">翌週</button>
 <input id="page" type="hidden" value="" name="page">
 <input type="hidden" value="sche" name="menu_post">
 
-<div class="sche_ck">
-<input id="ck_b" type="checkbox" name="cl_b" class="ck_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="ck_label">通常</label>
-<input id="ck_c" type="checkbox" name="cl_c" class="ck_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="ck_label">準備</label>
-<input id="ck_d" type="checkbox" name="cl_d" class="ck_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="ck_label">休職</label>
-<input id="ck_e" type="checkbox" name="cl_e" class="ck_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="ck_label">退職</label>
-<input id="ck_f" type="checkbox" name="cl_f" class="ck_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="ck_label">停止</label>
+<div class="status_check">
+<input id="ck_b" type="checkbox" name="cl_b" class="status_check_box" value="1"<?if($cl_b==1){?> checked="checked"<?}?>><label for="ck_b" class="status_check_label">通常</label>
+<input id="ck_c" type="checkbox" name="cl_c" class="status_check_box" value="1"<?if($cl_c==1){?> checked="checked"<?}?>><label for="ck_c" class="status_check_label">準備</label>
+<input id="ck_d" type="checkbox" name="cl_d" class="status_check_box" value="1"<?if($cl_d==1){?> checked="checked"<?}?>><label for="ck_d" class="status_check_label">休職</label>
+<input id="ck_e" type="checkbox" name="cl_e" class="status_check_box" value="1"<?if($cl_e==1){?> checked="checked"<?}?>><label for="ck_e" class="status_check_label">退職</label>
+<input id="ck_f" type="checkbox" name="cl_f" class="status_check_box" value="1"<?if($cl_f==1){?> checked="checked"<?}?>><label for="ck_f" class="status_check_label">停止</label>
 </div>
+
+
+
 </form>
 </header>
 <div class="wrap">

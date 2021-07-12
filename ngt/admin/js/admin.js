@@ -63,7 +63,7 @@ $(function(){
 		}
 	});
 
-	$('.sel_radio, #sel_date, .ck_box').on('change',function(){	
+	$('.sel_radio, #sel_date, .status_check_box').on('change',function(){	
 		$('#page').val('');
 		$('#wform').submit();
 	});
