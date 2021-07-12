@@ -1,8 +1,8 @@
 <?php 
 include_once('./library/sql.php');
 
-$st=20210601;
-$cnt=30;
+$st=20210710;
+$cnt=20;
 $sql_a=" INSERT INTO wp01_0schedule(`date`,`sche_date`,`cast_id`,`stime`,`etime`) VALUES";
 
 

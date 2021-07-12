@@ -701,7 +701,7 @@ ul {
 	.event_td_0{
 		background		:#d0d0ff;
 		color			:#fafafa;
-		text-align		:right;
+		text-align		:center;
 		padding-right	:5px;
 		font-size		:16px;
 		border-right	:1px solid #303030;
@@ -756,7 +756,7 @@ ul {
 	.event_td_7{
 		position	:relative;
 		border-right:1px solid #303030;
-		width		:220px;
+		width		:290px;
 	
 	}
 
@@ -776,7 +776,7 @@ ul {
 	position		:absolute;
 	top				:5px;
 	left			:5px;
-	width			:210px;
+	width			:280px;
 	height			:70px;
 	margin			:auto;
 	overflow		:hidden;

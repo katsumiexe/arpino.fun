@@ -226,6 +226,7 @@ $(function(){
 <td class="td_top w50"></td>
 <td class="td_top w140">源氏名[フリガナ]</td>
 <td class="td_top w100">ID</td>
+<td class="td_top w100">Staff Code</td>
 <td class="td_top w100">入店日</td>
 <td class="td_top w80">グループ</td>
 <td class="td_top w80">状態</td>
@@ -241,6 +242,7 @@ $(function(){
 <td><img src="<?=$dat[$n]["face"]?>?t=<?=time()?>" style="width:48px; height:64px;"></td>
 <td><?=$dat[$n]["genji"]?><br>[<?=$dat[$n]["genji_kana"]?>]</td>
 <td><?=$dat[$n]["cast_id"]?></td>
+<td><?=$dat[$n]["id"]?></td>
 <td><?=$dat[$n]["ctime"]?></td>
 <td><?=$group[$dat[$n]["group"]]?></td>
 <td><?=$cast_status_select[$dat[$n]["cast_status"]]?></td>

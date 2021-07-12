@@ -141,20 +141,20 @@ if($post_id == "news"){
 		while($res = mysqli_fetch_assoc($result)){
 			$res["display_date"]	=substr($res["display_date"],0,10);
 
-			if (file_exists("../img/page/event/event_{$res["id"]}.jpg")) {
+			if (file_exists("../img/page/event/event_{$res["id"]}.webp")) {
+				$res["img"]="../img/page/event/event_{$res["id"]}.webp?t={$day_time}";			
+
+			}elseif (file_exists("../img/page/event/event_{$res["id"]}.jpg")) {
 				$res["img"]="../img/page/event/event_{$res["id"]}.jpg";			
 
 			}elseif (file_exists("../img/page/event/event_{$res["id"]}.png")) {
-				$res["img"]="../img/page/event/event_{$res["id"]}.png";			
+				$res["img"]="../img/page/event/event_{$res["id"]}.png?t={$day_time}";			
 
 			}elseif (file_exists("../img/page/event/event_{$res["id"]}.gif")) {
-				$res["img"]="../img/page/event/event_{$res["id"]}.gif";			
-
-			}elseif (file_exists("../img/page/event/event_{$res["id"]}.webp")) {
-				$res["img"]="../img/page/event/event_{$res["id"]}.webp";			
+				$res["img"]="../img/page/event/event_{$res["id"]}.gif?t={$day_time}";			
 
 			}else{
-				$res["img"]="../img/event_no_image.png";			
+				$res["img"]="../img/event_no_image.png?t={$day_time}";			
 			}
 
 			$dat[$res["id"]]=$res;
@@ -172,16 +172,16 @@ if($post_id == "news"){
 			$res["display_date"]	=substr($res["display_date"],0,10);
 
 			if (file_exists("../img/page/info/info_{$res["id"]}.webp")) {
-				$res["img"]="../img/page/info/info_{$res["id"]}.webp";
+				$res["img"]="../img/page/info/info_{$res["id"]}.webp?t={$day_time}";
 
 			}elseif (file_exists("../img/page/info/info_{$res["id"]}.jpg")) {
-				$res["img"]="../img/page/info/info_{$res["id"]}.jpg";
+				$res["img"]="../img/page/info/info_{$res["id"]}.jpg?t={$day_time}";
 
 			}elseif (file_exists("../img/page/info/info_{$res["id"]}.png")) {
-				$res["img"]="../img/page/info/info_{$res["id"]}.png";
+				$res["img"]="../img/page/info/info_{$res["id"]}.png?t={$day_time}";
 
 			}else{
-				$res["img"]="../img/info_no_image.png";			
+				$res["img"]="../img/info_no_image.png?t={$day_time}";			
 			}
 
 			$dat[$res["id"]]=$res;
@@ -266,9 +266,9 @@ $(function(){
 
 	$('.upd_file').on('change',function(e){
 		Tmp=$(this).attr('id');
-		Ck=Tmp.substr(-1);
+		Ck=Tmp.substr(3,1);
 		if(Ck=="i"){
-			Ck_h=200;
+			Ck_h=150;
 			Ck_w=600;
 		}else{
 			Ck_h=480;
@@ -286,6 +286,9 @@ $(function(){
 
 		reader.onload = function (e) {
 			img.src = e.target.result;
+console.log(img.height)
+console.log(img.width)
+
 			if(img.height != Ck_h || img.width != Ck_w){
 				if (!confirm('画像が推奨サイズではありませんがよろしいですか\n※推奨サイズ　縦'+Ck_h+'px 横'+ Ck_w+'px')) {
 					return false;
@@ -419,7 +422,7 @@ $(function(){
 			<input type="hidden" name="menu_post" value="contents">
 			<input type="hidden" name="event_set_id" value="new">
 			<tr>
-				<td class="event_td_0" colspan="2"><span class="event_td_0_in">新規作成</span></td>
+				<td class="event_td_0" rowspan="2"><span class="event_td_0_in">新規作成</span></td>
 
 				<td class="event_td_3">
 					<span class="event_tag">公開日</span>
@@ -429,13 +432,11 @@ $(function(){
 
 				<td class="event_td_7" rowspan="2">
 					<label for="updnewi" class="info_img"><img id="top_updnewi" src="../img/info_no_image.png" style="width:210px; height:70px;"></label>
-					<span class="img_large"></span>
 			<input id="updnewi" name="upd_img" type="file" class="upd_file" style="display:none;">
 				</td>
 			</tr>
 
 			<tr>
-				<td colspan="2"></td>
 				<td  class="event_td_5">
 					<span class="event_tag">リンク</span><select name="category" class="w140">
 						<option value="">なし</option>
@@ -477,9 +478,8 @@ $(function(){
 					</td>
 
 					<td class="event_td_7" rowspan="2">
-						<label for="upd_i<?=$a1?>" class="info_img"><img id="top_upd_i<?=$a1?>" src="<?=$a2["img"]?>" style="width:210px; height:70px;"></span>
-						<span class="img_large"></span>
-						<input id="upd_i<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
+						<label for="updi<?=$a1?>" class="info_img"><img id="top_updi<?=$a1?>" src="<?=$a2["img"]?>" style="width:280px; height:70px;"></span>
+						<input id="updi<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 						<input id="st<?=$a1?>" type="hidden" name="event_status" value="<?=$a2["status"]?>">
 					</td>
 				</tr><tr>
@@ -492,9 +492,6 @@ $(function(){
 							<option value="person" <?if($a2["category"] == "person"){?> selected="selected"<?}?>>CAST</option>
 							<option value="blog"   <?if($a2["category"] == "blog"){?> selected="selected"<?}?>>ブログ</option>
 							<option value="page"   <?if($a2["category"] == "page"){?> selected="selected"<?}?>>リンク</option>
-
-
-
 						</select>
 						<input type="text" name="event_key" style="width:175px;margin-left:5px;" value="<?=$a2["contents_key"]?>"> 
 					</td>
@@ -526,7 +523,6 @@ $(function(){
 
 				<td class="event_td_6" rowspan="3">
 					<label for="updnew" class="event_img"><img id="top_updnew" src="../img/event_no_image.png" style="width:275px; height:110px;"></span>
-					<span class="img_large"></span>
 				</td>
 
 			</tr><tr>
@@ -576,7 +572,6 @@ $(function(){
 
 					<td class="event_td_6" rowspan="3">
 						<label for="upd<?=$a1?>" class="event_img"><img id="top_upd<?=$a1?>" src="<?=$a2["img"]?>" style="width:275px; height:110px;"></span>
-						<span class="img_large"></span>
 						<input id="upd<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 					</td>
 				</tr><tr>
