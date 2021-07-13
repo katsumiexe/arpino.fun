@@ -2,8 +2,37 @@
 $tag["cast_group"][0]		="全て";
 $tag["notice_category"][0]	="全て";
 
-if($notice_set){
+if($_POST["notice_set"){
+	$display_date		=$_POST["display_date"];
+	$notice_category	=$_POST["notice_category"];
+	$notice_title		=$_POST["notice_title"];
+	$notice_contents	=$_POST["notice_contents"];
+	$gp_check			=$_POST["gp_check"];
 
+	foreach($gp_check as $a1 => $a2){
+		if($a1 >0 && $a2>0){
+			$cast_group.=$a1.",";
+			$n_cnt++;
+		}
+	}
+	$cast_group=substr($cast_group,0,-1);
+	
+	$sql	 ="INSERT INTO wp01_0notice(`date`,`title`,`log`,`cateogry`,`cast_group`)";
+	$sql	 .=" VALUES('{$display_date}','{$notice_title}','{$notice_contents}','{$notice_category}','{$cast_group}')";
+	mysqli_query($mysqli,$sql);
+	$tmp_auto=mysqli_insert_id($mysqli);
+
+	foreach($gp_check as $a1 => $a2){
+		foreach($gp[$a1] as $b1 => $b2){
+				$app_ck="('{$tmp_auto}','{$b1}','1'),";
+			}
+		}
+	}
+	$app_ck=substr($app_ck,0,-1);
+		
+	$sql	 ="INSERT INTO wp01_0notice_ck(`notice_id`,`cast_id`,`status`) VALUES ";
+	$sql	 =$app_ck;
+	mysqli_query($mysqli,$sql);
 }
 
 //■キャストリスト----
@@ -20,6 +49,8 @@ if($result = mysqli_query($mysqli,$sql)){
 		}else{
 			$row["user_name"]=$row["name"];
 		}
+
+		$gp[$row["group"]][$row["staff_id"]]=1
 		$staff_dat[]=$row;
 	}
 }
@@ -281,10 +312,7 @@ $(function(){
 		}
 	});
 });
-
-
 </script>
-
 <header class="head">
 </header>
 <div class="wrap">
@@ -307,23 +335,26 @@ $(function(){
 			<?}?>
 		</table>
 		<div class="notice_regist">
-			<span class="event_tag">日付</span>
-			<input type="datetime-local" name="display_date" class="w200" value="<?=date("Y-m-d")?>T<?=date("H:i")?>" autocomplete="off">
-			<span class="event_tag">TITLE</span>
-			<input type="text" name="notice_title" style="width:350px;" value="">
-			<button  type="submit" class="event_reg_btn">登録</button>
+			<form action="./index.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="post_id" value="notice">
+				<input type="hidden" name="notice_set_id" value="new">
 
-			<div class="group_box">
-				<?foreach($tag["cast_group"] as $a1 => $a2){?>
-					<input id="gp_check<?=$a1?>" type="checkbox" value="" name="gp_check[<?=$a1?>]" class="gp_check">
-					<label id="p_check<?=$a1?>" for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
-				<?}?>
-			</div>
+				<span class="event_tag">日付</span>
+				<input type="datetime-local" name="display_date" class="w200" value="<?=date("Y-m-d")?>T<?=date("H:i")?>" autocomplete="off">
+				<span class="event_tag">カテゴリ</span>
+				<input type="text" name="notice_category" style="width:150px;" value="">
+				<button  type="submit" class="event_reg_btn">登録</button>
+				<span class="event_tag">TITLE</span>
+				<input type="text" name="notice_title" style="width:450px;" value="">
 
-
-
-
-			<textarea name="notice_contents" class="event_td_4_in"></textarea>
+				<div class="group_box">
+					<?foreach($tag["cast_group"] as $a1 => $a2){?>
+						<input id="gp_check<?=$a1?>" type="checkbox" value="" name="gp_check[<?=$a1?>]" class="gp_check">
+						<label id="p_check<?=$a1?>" for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
+					<?}?>
+				</div>
+				<textarea name="notice_contents" class="event_td_4_in"></textarea>
+			</form>
 		</div>
 		<div class="notice_log"></div>
 	</div>

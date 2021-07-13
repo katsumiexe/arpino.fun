@@ -138,8 +138,9 @@ $(function(){
 			$(this).parent().parent('.tr').find('.bg1').addClass('bg0').removeClass('bg1');	
 
 		}else if($(this).hasClass('bg0')){
-			$(this).parent().parent('.tr').find('.bg0').addClass('bg1').removeClass('bg0');	
+			$(this).parent().parent('.tr').find('.bg0').addClass('bg1').removeClass('bg0');
 		}
+
 	});
 });
 </script>
