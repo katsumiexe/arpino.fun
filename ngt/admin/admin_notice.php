@@ -2,7 +2,7 @@
 $tag["cast_group"][0]		="全て";
 $tag["notice_category"][0]	="全て";
 
-if($_POST["notice_set"){
+if($_POST["notice_set"]){
 	$display_date		=$_POST["display_date"];
 	$notice_category	=$_POST["notice_category"];
 	$notice_title		=$_POST["notice_title"];
@@ -15,6 +15,7 @@ if($_POST["notice_set"){
 			$n_cnt++;
 		}
 	}
+
 	$cast_group=substr($cast_group,0,-1);
 	
 	$sql	 ="INSERT INTO wp01_0notice(`date`,`title`,`log`,`cateogry`,`cast_group`)";
@@ -24,14 +25,13 @@ if($_POST["notice_set"){
 
 	foreach($gp_check as $a1 => $a2){
 		foreach($gp[$a1] as $b1 => $b2){
-				$app_ck="('{$tmp_auto}','{$b1}','1'),";
-			}
+			$app_ck="('{$tmp_auto}','{$b1}','1'),";
 		}
 	}
 	$app_ck=substr($app_ck,0,-1);
 		
 	$sql	 ="INSERT INTO wp01_0notice_ck(`notice_id`,`cast_id`,`status`) VALUES ";
-	$sql	 =$app_ck;
+	$sql	 .=$app_ck;
 	mysqli_query($mysqli,$sql);
 }
 
@@ -50,7 +50,7 @@ if($result = mysqli_query($mysqli,$sql)){
 			$row["user_name"]=$row["name"];
 		}
 
-		$gp[$row["group"]][$row["staff_id"]]=1
+		$gp[$row["group"]][$row["staff_id"]]=1;
 		$staff_dat[]=$row;
 	}
 }
@@ -99,8 +99,8 @@ if($result = mysqli_query($mysqli,$sql)){
 		$count_dat++;
 	}
 }
-
 $ck_cnt=count($tag["cast_group"])-1;
+
 ?>
 
 <style>
