@@ -221,13 +221,12 @@ td{
 
 <?foreach($table_sort as $a1 => $a2){?>
 <tr>
-<td class="config_sche_list"><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
-<td class="config_sche_list"><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
-<td class="config_sche_del" style="border-right:1px solid #303030"></td>
-
-<td class="config_sche_list"><input type="text" name="out_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["name"]?>"></td>
-<td class="config_sche_list"><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
-<td class="config_sche_del" style="border-right:1px solid #303030"></td>
+	<td class="config_sche_list"><input type="text" name="in_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["name"]?>"></td>
+	<td class="config_sche_list"><input type="text" name="in_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["in"][$a1]]["time"]?>"></td>
+	<td class="config_sche_del" style="border-right:1px solid #303030"></td>
+	<td class="config_sche_list"><input type="text" name="out_name[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["name"]?>"></td>
+	<td class="config_sche_list"><input type="text" name="out_time[<?=$a1?>]" class="set_box" value="<?=$table_dat[$table_id["out"][$a1]]["time"]?>"></td>
+	<td class="config_sche_del" style="border-right:1px solid #303030"></td>
 </tr>
 <?}?>
 </table>
@@ -237,19 +236,19 @@ td{
 	<tr>
 		<td class="config_sche_top">入店前</td>
 		<td class="config_td">
-			<label for="cs0" class="ck_free">
-				<span class="check2">
-					<input id="cs0" type="radio" name="comming_soon" value="0" class="ck0" <?if($config["comming_soon"] !=1){?>checked="checked"<?}?>>
-					<span class="check1"></span>
-				</span>
-				なし
-			</label>
 			<label for="cs1" class="ck_free">
 				<span class="check2">
-					<input id="cs1" type="radio" name="comming_soon" value="1" class="ck0" <?if($config["comming_soon"] ==1){?>checked="checked"<?}?>>
+					<input id="cs1" type="radio" name="comming_soon" value="1" class="ck0" <?if($config["coming_soon"] ==1){?>checked="checked"<?}?>>
 					<span class="check1"></span>
 				</span>
 				あり
+			</label>
+			<label for="cs0" class="ck_free">
+				<span class="check2">
+					<input id="cs0" type="radio" name="comming_soon" value="0" class="ck0" <?if($config["coming_soon"] !=1){?>checked="checked"<?}?>>
+					<span class="check1"></span>
+				</span>
+				なし
 			</label>
 		</td>
 	</tr>
@@ -257,19 +256,19 @@ td{
 	<tr>
 		<td class="config_sche_top">入店日</td>
 		<td class="config_td">
-			<label for="cs0" class="ck_free">
-				<span class="check2">
-					<input id="cs0" type="radio" name="today_commer" value="0" class="ck0" <?if($config["today_commer"] !=1){?>checked="checked"<?}?>>
-					<span class="check1"></span>
-				</span>
-				なし
-			</label>
 			<label for="cs1" class="ck_free">
 				<span class="check2">
 					<input id="cs1" type="radio" name="today_commer" value="1" class="ck0" <?if($config["today_commer"] ==1){?>checked="checked"<?}?>>
 					<span class="check1"></span>
 				</span>
 				あり
+			</label>
+			<label for="cs0" class="ck_free">
+				<span class="check2">
+					<input id="cs0" type="radio" name="today_commer" value="0" class="ck0" <?if($config["today_commer"] !=1){?>checked="checked"<?}?>>
+					<span class="check1"></span>
+				</span>
+				なし
 			</label>
 		</td>
 	</tr>
