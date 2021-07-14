@@ -84,8 +84,6 @@ $sql	.=" WHERE del=0";
 $sql	.=" AND date LIKE '{$notice_month}%'";
 $sql	.=" ORDER BY `date` DESC";
 
-
-
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
