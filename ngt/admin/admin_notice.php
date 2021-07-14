@@ -88,7 +88,6 @@ if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
 		$s=explode(",",$row["cast_group"]);
-
 		$row["group"]="";
 		for($n=0;$n<count($s);$n++){
 			$row["group"].="<span class=\"group_item\">{$tag["cast_group"][$s[$n]]}</span>/";
@@ -104,7 +103,6 @@ if($result = mysqli_query($mysqli,$sql)){
 		$sql	.=" AND notice_id={$row["id"]}";
 		if($result2 = mysqli_query($mysqli,$sql)){
 			while($row2 = mysqli_fetch_assoc($result2)){
-
 				$dat2[$row["id"]][]=$row2;
 			}
 		}
@@ -380,7 +378,7 @@ $(function(){
 
 				<div class="group_box">
 					<?foreach($tag["cast_group"] as $a1 => $a2){?>
-						<input id="gp_check<?=$a1?>" type="checkbox" name="gp_check[<?=$a1?>]" class="gp_check" value="1">
+						<input id="gp_check<?=$a1?>" type="checkbox" name="gp_check[<?=$a1?>]" class="gp_check" value="1" checked="checked">
 						<label id="p_check<?=$a1?>" for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
 					<?}?>
 				</div>
