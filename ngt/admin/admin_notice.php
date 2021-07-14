@@ -1,39 +1,14 @@
 <?
 $tag["cast_group"][0]		="全て";
-$tag["notice_category"][0]	="全て";
 
-if($_POST["notice_set"]){
-	$display_date		=$_POST["display_date"];
-	$notice_category	=$_POST["notice_category"];
-	$notice_title		=$_POST["notice_title"];
-	$notice_contents	=$_POST["notice_contents"];
-	$gp_check			=$_POST["gp_check"];
+$pg = $_POST["pg"];
+if( $pg + 0 == 0 ) $pg = 1;
 
-	foreach($gp_check as $a1 => $a2){
-		if($a1 >0 && $a2>0){
-			$cast_group.=$a1.",";
-			$n_cnt++;
-		}
-	}
+$pg_st	=($pg-1) * 10;
+$pg_ed	=$pg_st + 10;
 
-	$cast_group=substr($cast_group,0,-1);
-	
-	$sql	 ="INSERT INTO wp01_0notice(`date`,`title`,`log`,`cateogry`,`cast_group`)";
-	$sql	 .=" VALUES('{$display_date}','{$notice_title}','{$notice_contents}','{$notice_category}','{$cast_group}')";
-	mysqli_query($mysqli,$sql);
-	$tmp_auto=mysqli_insert_id($mysqli);
-
-	foreach($gp_check as $a1 => $a2){
-		foreach($gp[$a1] as $b1 => $b2){
-			$app_ck="('{$tmp_auto}','{$b1}','1'),";
-		}
-	}
-	$app_ck=substr($app_ck,0,-1);
-		
-	$sql	 ="INSERT INTO wp01_0notice_ck(`notice_id`,`cast_id`,`status`) VALUES ";
-	$sql	 .=$app_ck;
-	mysqli_query($mysqli,$sql);
-}
+$notice_month	=$_POST["notice_month"];
+if(!$notice_month) $notice_month=date("Y-m");
 
 //■キャストリスト----
 $sql	 ="SELECT * FROM wp01_0staff AS S ";
@@ -67,10 +42,50 @@ if($result = mysqli_query($mysqli,$sql)){
 	}
 }
 
+
+if($_POST["notice_set"]){
+	$display_date		=$_POST["display_date"];
+	$notice_category	=$_POST["notice_category"];
+	$notice_title		=$_POST["notice_title"];
+	$notice_contents	=$_POST["notice_contents"];
+	$gp_check			=$_POST["gp_check"];
+
+	foreach($gp_check as $a1 => $a2){
+		if($a1 >0 && $a2>0){
+			$cast_group.=$a1.",";
+			$n_cnt++;
+		}
+	}
+
+	$display_date		=substr($display_date,0,10)." ".substr($display_date,11,5).":00";
+	$cast_group=substr($cast_group,0,-1);
+	
+	$sql	 ="INSERT INTO wp01_0notice(`date`,`title`,`log`,`category`,`cast_group`)";
+	$sql	 .=" VALUES('{$display_date}','{$notice_title}','{$notice_contents}','{$notice_category}','{$cast_group}')";
+	mysqli_query($mysqli,$sql);
+	$tmp_auto=mysqli_insert_id($mysqli);
+
+	foreach($gp_check as $a1 => $a2){
+		if($a1 >0 && $a2>0){
+			foreach($gp[$a1] as $b1 => $b2){
+				$app_ck.="('{$tmp_auto}','{$b1}','1'),";
+			}
+		}
+	}
+	$app_ck=substr($app_ck,0,-1);
+		
+	$sql	 ="INSERT INTO wp01_0notice_ck(`notice_id`,`cast_id`,`status`) VALUES ";
+	$sql	 .=$app_ck;
+	mysqli_query($mysqli,$sql);
+}
+
 $sql	 ="SELECT * FROM wp01_0notice";
 $sql	.=" WHERE del=0";
+$sql	.=" AND date LIKE '{$notice_month}%'";
 $sql	.=" ORDER BY `date` DESC";
-$sql	.=" LIMIT 10";
+
+
+
 if($result = mysqli_query($mysqli,$sql)){
 	while($row = mysqli_fetch_assoc($result)){
 
@@ -99,10 +114,17 @@ if($result = mysqli_query($mysqli,$sql)){
 		$count_dat++;
 	}
 }
+
+if($pg_ed>$count_dat){
+	$pg_ed	=$count_dat;
+}
+
+
+$pg_max=ceil($count_dat/10);
+
 $ck_cnt=count($tag["cast_group"])-1;
 
 ?>
-
 <style>
 <!--
 .sel_contents{
@@ -289,31 +311,37 @@ input[type=radio]:checked + label{
 	background:#0000d0;
 }
 
+.notice_pager{
+	background:#fafafa;
+	font-size:14px;
+	color:#202200;
+}
 -->
 </style>
 <script>
-
 $(function(){ 
 	var Cnt=0;
-
 	$('.tr_list').on('click',function(){ 
 		var Tmp=$(this).children('.notice_hidden').html();
 		$('.notice_log').html(Tmp);
 	});
 
 	$('#gp_check0').on('change',function(){ 
-
 		if($(this).prop('checked')==true){
 			$('.gp_check').prop('checked', true);
 
 		}else{
 			$('.gp_check').prop('checked', false);
-
 		}
 	});
 });
 </script>
 <header class="head">
+<input id="sel_date" type="month" name="notice_month" value="<?=$notice_date?>" class="w140" style="margin:9px 1px">
+　
+<?for($n=0;$n<$pg_max;$n++){?>
+<span class="notice_pager"><?print($n+1);?></span>
+<?}?>
 </header>
 <div class="wrap">
 	<div class="main_box">
@@ -324,7 +352,7 @@ $(function(){
 				<td class="td_top w100">カテゴリ</td>
 				<td class="td_top w250">グループ</td>
 			</tr>
-			<?for($n=0;$n<$count_dat;$n++){?>
+			<?for($n=$pg_st;$n<$pg_ed;$n++){?>
 			<tr class="tr_list">
 				<td class="notice_list"><?=$dat[$n]["date"]?></td>
 				<td class="notice_list"><?=$dat[$n]["title"]?></td>
@@ -336,20 +364,24 @@ $(function(){
 		</table>
 		<div class="notice_regist">
 			<form action="./index.php" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="post_id" value="notice">
-				<input type="hidden" name="notice_set_id" value="new">
+				<input type="hidden" name="menu_post" value="notice">
+				<input type="hidden" name="notice_set" value="new">
 
 				<span class="event_tag">日付</span>
 				<input type="datetime-local" name="display_date" class="w200" value="<?=date("Y-m-d")?>T<?=date("H:i")?>" autocomplete="off">
 				<span class="event_tag">カテゴリ</span>
-				<input type="text" name="notice_category" style="width:150px;" value="">
-				<button  type="submit" class="event_reg_btn">登録</button>
+				<select name="notice_category" style="width:150px;">
+					<?foreach($tag["notice_category"] as $a1 => $a2){?>
+						<option value="<?=$a1?>"><?=$a2?></option>
+					<? } ?>
+				</select>
+				<button type="submit" class="event_reg_btn">登録</button><br>
 				<span class="event_tag">TITLE</span>
 				<input type="text" name="notice_title" style="width:450px;" value="">
 
 				<div class="group_box">
 					<?foreach($tag["cast_group"] as $a1 => $a2){?>
-						<input id="gp_check<?=$a1?>" type="checkbox" value="" name="gp_check[<?=$a1?>]" class="gp_check">
+						<input id="gp_check<?=$a1?>" type="checkbox" name="gp_check[<?=$a1?>]" class="gp_check" value="1">
 						<label id="p_check<?=$a1?>" for="gp_check<?=$a1?>" class="p_check_btn"><?=$a2?></label>
 					<?}?>
 				</div>
@@ -374,6 +406,7 @@ $(function(){
 
 		<ul class="cate_ul c_green">
 			<li class="cate_title">カテゴリー</li>
+			<li id="category_0" class="cate_li c_green2">全て</li>
 			<?foreach($tag["notice_category"] as $a1 => $a2){?>
 			<li id="category_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
 		</ul>
@@ -385,6 +418,4 @@ $(function(){
 		</ul>
 	</div>
 </div>
-
 <footer class="foot"></footer>
-

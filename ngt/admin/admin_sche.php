@@ -139,7 +139,6 @@ $(function(){
 <header class="head">
 <form id="wform" method="post">
 <button id="p_week" type="button" class="sche_submit" style="margin:10px 5px 10px 10px">前週</button>
-
 <input id="sel_date" type="date" name="ck_date" value="<?=$ck_date?>" class="w140" style="margin:9px 1px">
 
 <button id="n_week" type="button" class="sche_submit" style="margin:10px 10px 10px 5px">翌週</button>
