@@ -119,6 +119,7 @@ if($pg_ed>$count_dat){
 	$pg_ed	=$count_dat;
 }
 
+echo $count_dat;
 
 $pg_max=ceil($count_dat/10);
 
