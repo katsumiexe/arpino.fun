@@ -76,16 +76,14 @@ $('#send_btn').on('click',function(){
 	</div>
 </div>
 
-<?foreach($recruit["image"] as $a2){?>
-	<?if (file_exists("./img/page/contents/{$dat_config["top"]["contents_key"]}.webp")) {?>
-		<img src="./img/page/contents/<?=$dat_config["top"]["contents_key"]?>.webp" class="rec_img">
+<?if (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.webp")) {?>
+	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.webp" class="rec_img">
 
-	<?}elseif (file_exists("./img/page/contents/{$dat_config["top"]["contents_key"]}.jpg")) {?>
-		<img src="./img/page/contents/<?=$dat_config["top"]["contents_key"]?>.jpg" class="rec_img">
+<?}elseif (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.jpg")) {?>
+	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.jpg" class="rec_img">
 
-	<?}elseif (file_exists("./img/page/contents/{$dat_config["top"]["contents_key"]}.png")) {?>
-		<img src="./img/page/contents/<?=$dat_config["top"]["contents_key"]?>.png" class="rec_img">
-	<?}?>
+<?}elseif (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.png")) {?>
+	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.png" class="rec_img">
 <?}?>
 
 <div class="main_e">

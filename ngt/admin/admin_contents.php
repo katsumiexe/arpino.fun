@@ -204,19 +204,16 @@ if($post_id == "news"){
 
 			}elseif($res["category"] == "image"){
 
-				if (file_exists("../img/page/contents/{$res["contents"]}.webp")) {
-					$recruit_img="../img/page/contents/{$res["contents"]}..webp?t={$day_time}";
+				if (file_exists("../img/page/contents/{$res["contents_key"]}.webp")) {
+					$recruit_img="../img/page/contents/{$res["contents_key"]}.webp?t={$day_time}";
 
-				}elseif (file_exists("../img/page/contents/{$res["contents"]}.jpg")) {
-					$recruit_img="../img/page/contents/{$res["contents"]}.jpg?t={$day_time}";
+				}elseif (file_exists("../img/page/contents/{$res["contents_key"]}.jpg")) {
+					$recruit_img="../img/page/contents/{$res["contents_key"]}.jpg?t={$day_time}";
 
-				}elseif (file_exists("../img/page/contents/{$res["contents"]}.png")) {
-					$recruit_img="../img/page/contents/{$res["contents"]}.png?t={$day_time}";
-
-				}else{
-					$recruit_img="../img/event_no_image.png?t={$day_time}";			
-
+				}elseif (file_exists("../img/page/contents/{$res["contents_key"]}.png")) {
+					$recruit_img="../img/page/contents/{$res["contents_key"]}.png?t={$day_time}";
 				}
+				$recruit_img_id=$res["id"];
 
 
 			}elseif($res["category"] == "list"){
@@ -226,6 +223,10 @@ if($post_id == "news"){
 				$contact[$res["category"]]=$res["contents_key"];
 			}
 		}
+	}
+
+	if(!$recruit_img){
+		$recruit_img="../img/event_no_image.png?t={$day_time}";			
 	}
 
 }else{
@@ -301,9 +302,6 @@ $(function(){
 
 		reader.onload = function (e) {
 			img.src = e.target.result;
-console.log(img.height)
-console.log(img.width)
-
 			if(img.height != Ck_h || img.width != Ck_w){
 				if (!confirm('画像が推奨サイズではありませんがよろしいですか\n※推奨サイズ　縦'+Ck_h+'px 横'+ Ck_w+'px')) {
 					return false;
@@ -319,6 +317,17 @@ console.log(img.width)
 
 	});
 
+/*
+				<div  class="recruit_img_out">
+				<form id="f_img" action="./index.php" method="post" multipart/form-data>
+				<button id="chg_img" type="button" class="event_set_btn">更新</button>
+				<button id="del_img" type="button" class="event_set_btn">削除</button>
+				<label for="updr_img" class="recruit_img"><img id="top_updr_img" src="<?=$recruit_img?>" style="width:800px" ></span>
+				<input id="updr_img" name="upd_img" type="file" class="upd_file" style="display:none;">
+				</form>
+				</div>
+/*/
+
 	$('.event_tag_btn,.event_set_btn').on('click',function(){
 		Tmp	=$(this).attr('id').substr(0,3);
 		Tmp2=$(this).attr('id').substr(3);
@@ -328,7 +337,6 @@ console.log(img.width)
 			if (!confirm('変更します。よろしいですか')) {
 				return false;
 			}else{
-				console.log(Tmp2);
 				$('#f'+Tmp2).submit();
 			}
 
@@ -633,11 +641,15 @@ console.log(img.width)
 			<div class="main_box">
 
 				<div  class="recruit_img_out">
-				<button id="cov<?=$recruit_id?>" type="button" class="event_set_btn">非表示</button>
-				<button id="chg<?=$recruit_id?>" type="button" class="event_set_btn">更新</button>
-				<button id="del<?=$recruit_id?>" type="button" class="event_set_btn">削除</button>
-				<label for="updr<?=$a1?>" class="recruit_img"><img id="top_updr<?=$a1?>" src="<?=$recruit_img?>" style="width:800px" ></span>
-				<input id="updr<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
+				<form id="f_img" action="./index.php" method="post" multipart/form-data>
+				<button id="chg_img" type="button" class="event_set_btn">更新</button>
+				<button id="del_img" type="button" class="event_set_btn">削除</button>
+				<label for="updr_img" class="recruit_img"><img id="top_updr_img" src="<?=$recruit_img?>" style="width:800px" ></span>
+				<input id="updr_img" name="upd_img" type="file" class="upd_file" style="display:none;">
+				<input type="hidden" name="post_id" value="recruit">
+				<input type="hidden" name="menu_post" value="contents">
+				<input type="hidden" name="event_set_id" value="<?=$recruit_img_id?>">
+				</form>
 				</div>
 
 				<table class="recuruit_table">
