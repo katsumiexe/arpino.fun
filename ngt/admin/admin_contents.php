@@ -632,11 +632,14 @@ console.log(img.width)
 		<?if($post_id == "recruit"){?>
 			<div class="main_box">
 
-				
 				<div  class="recruit_img_out">
-				<label for="updr<?=$a1?>" class="recruit_img"><img id="top_updr<?=$a1?>" src="<?=$recruit_img?>" style="width:780px" ></span>
+				<button id="cov<?=$recruit_id?>" type="button" class="event_set_btn">非表示</button>
+				<button id="chg<?=$recruit_id?>" type="button" class="event_set_btn">更新</button>
+				<button id="del<?=$recruit_id?>" type="button" class="event_set_btn">削除</button>
+				<label for="updr<?=$a1?>" class="recruit_img"><img id="top_updr<?=$a1?>" src="<?=$recruit_img?>" style="width:800px" ></span>
 				<input id="updr<?=$a1?>" name="upd_img" type="file" class="upd_file" style="display:none;">
 				</div>
+
 				<table class="recuruit_table">
 					<form id="f<?=$recruit_id?>" action="./index.php" method="post" multipart/form-data>
 					<input type="hidden" name="post_id" value="recruit">

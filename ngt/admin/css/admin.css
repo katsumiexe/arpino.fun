@@ -900,16 +900,17 @@ ul {
 
 .recruit_img{
 	display		:inline-block;
-	width		:780px;
+	width		:800px;
 	border		:1px solid #000000;
+	margin-top:5px;
 }
 
 .recruit_img_out{
 	display		:block;
-	width		:800px;
+	width		:802px;
 	margin		:5px auto;
 	padding		:10px;
-	text-align	:center;
+	text-align	:right;
 }
 
 

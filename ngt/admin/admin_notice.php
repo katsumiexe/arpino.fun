@@ -334,7 +334,7 @@ $(function(){
 });
 </script>
 <header class="head">
-<input id="sel_date" type="month" name="notice_month" value="<?=$notice_date?>" class="w140" style="margin:9px 1px">
+<input id="sel_date" type="month" name="notice_month" value="<?=$notice_month?>" class="w140" style="margin:9px 1px">
 　
 <?for($n=0;$n<$pg_max;$n++){?>
 <span class="notice_pager"><?print($n+1);?></span>
