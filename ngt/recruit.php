@@ -26,7 +26,7 @@ if($dat_config["form"]){
 		$c_form= mysqli_fetch_assoc($result);
 	}
 
-	$form_dat="<div class=\"contact_form\">";
+	$form_dat="<div class=\"recruit_contact_box\">";
 	for($n=1;$n<11;$n++){
 		$tmp_nm="log_{$n}_name";
 
@@ -35,7 +35,9 @@ if($dat_config["form"]){
 			$tmp_pt=substr($c_form["log_".$n."_type"],0,1);
 			$tmp_ck=substr($c_form["log_".$n."_type"],-1,1);
 
-			$form_dat.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div>";
+			$form_dat.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div><span id=\"err{$n}\" class=\"contact_err\">必須項目です</span>";
+
+
 
 			if($tmp_pt== 1){//text
 				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
@@ -47,13 +49,14 @@ if($dat_config["form"]){
 				$form_dat.="<input id=\"contact{$n}\" type=\"number\" inputmode=\"numeric\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
 
 			}elseif($tmp_pt== 4){//comm
-				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_area {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_area {$ck_jq[$tmp_ck]}\" autocomplete=\"off\"></textarea>";
 			}
 		}
 	}
-	$form_dat.="<button id=\"send_btn\" type=\"button\">送信</button>";
+	$form_dat.="<button id=\"send_btn\" type=\"button\" class=\"recruit_send\" >送信</button>";
 	$form_dat.="</div>";
 }
+
 
 include_once('./header.php');
 ?>

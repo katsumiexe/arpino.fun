@@ -2506,18 +2506,37 @@ ul {
 
 
 .contact_box{
-	display			:flex;
-	width			:750px;
+	display			:block;
+	width			:620px;
 	margin			:5px auto;
-	justify-content	:space-between;
+	text-align:left;
 }
 
 .recruit_contact{
-	flex-basis		:210px;
+	display			:inline-block;
+	width			:210px;
 	height			:50px;
 	position		:relative;
 	background		:#fa00d0;
+	margin			:5px;
 }
+
+.recruit_contact_box{
+	width		:600px;
+	margin		:10px auto;
+	border		:5px double #c8b880;
+	background	:#d0d0e0;
+	padding		:10px0;
+	text-align	:left;
+}
+
+.recruit_send{
+	width		:400;
+	margin		:10px auto;
+	height		:30px;
+	text-align	:center;
+}
+
 
 .contact_icon{
 	position	:absolute;
@@ -2552,7 +2571,7 @@ ul {
 .contact_tag{
 	font-size		:18px;
 	color			:#fafafa;
-	padding-left	:5px;
+	padding-left	:110px;
 	text-align		:left;
 }
 
@@ -2568,6 +2587,30 @@ ul {
 	font-size		:16px;
 	margin-bottom	:10px;
 	width			:400px;
+}
+
+.contact_area{
+	height			:160px;
+	font-size		:16px;
+	margin-bottom	:10px;
+	width			:400px;
+	padding			:10px;
+	resize			:none;
+}
+
+.contact_err{
+	vertical-align	:top;
+	display			:inline-block;
+	height			:30px;
+	line-height		:30px;
+	width			:90px;
+	margin-right	:5px;
+	border-right	:5px solid #d00000;
+	padding-right	:5px;
+	font-size		:14px;
+	text-align		:right;
+	color			:#d00000;
+	font-weight		:600;
 }
 
 .contact_form{
