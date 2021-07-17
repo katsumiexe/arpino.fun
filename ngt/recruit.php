@@ -37,17 +37,23 @@ if($dat_config["form"]){
 
 			$form_dat.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div><span id=\"err{$n}\" class=\"contact_err\">必須項目です</span>";
 
+			$form_p.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}</div>";
+
 			if($tmp_pt== 1){//text
-				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact_list contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_p.="<div id=\"pcontact{$n}\" class=\"contact_p\"></div>";
 
 			}elseif($tmp_pt== 2){//mail
-				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact v_mail {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact_list contact v_mail {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_p.="<div id=\"pcontact{$n}\" class=\"contact_p\"></div>";
 
 			}elseif($tmp_pt== 3){//number
-				$form_dat.="<input id=\"contact{$n}\" type=\"number\" inputmode=\"numeric\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_dat.="<input id=\"contact{$n}\" type=\"number\" inputmode=\"numeric\" name=\"contact{$n}\" class=\"contact_list contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
+				$form_p.="<div id=\"pcontact{$n}\" class=\"contact_p_num\"></div>";
 
 			}elseif($tmp_pt== 4){//comm
-				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_area {$ck_jq[$tmp_ck]}\" autocomplete=\"off\"></textarea>";
+				$form_dat.="<textarea id=\"contact{$n}\" name=\"contact{$n}\" class=\"contact_list contact_area {$ck_jq[$tmp_ck]}\" autocomplete=\"off\"></textarea>";
+				$form_p.="<div id=\"pcontact{$n}\" class=\"contact_p_area\"></div>";
 			}
 		}
 	}
@@ -63,12 +69,14 @@ $(function(){
 	$('#recruit_send').on('click',function(){
 		var Err="";
 
-		$('.contact').each(function() {
+		$('.contact_list').each(function() {
+			Tmp=$(this).attr('id');
+			$('#p'+Tmp).text($(this).val());
+	
 			if($(this).val()  == '' && $(this).hasClass('nec_ck')){
 				$(this).prev().addClass('err_on');
 				Err=1;
 			}
-
 		});	
 
 		if(Err == ""){
@@ -191,5 +199,5 @@ $(function(){
 <div class="corner box_4"></div>
 </div>
 <?}?>
-<div class="recruit_pop"><div class="recruit_pop_in">あいうえお</div></div>
+<div class="recruit_pop"><div class="recruit_pop_in"><?=$form_p?></div></div>
 <?include_once('./footer.php'); ?>

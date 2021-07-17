@@ -2509,7 +2509,7 @@ ul {
 	display			:block;
 	width			:620px;
 	margin			:5px auto;
-	text-align:left;
+	text-align		:left;
 }
 
 .recruit_contact{
@@ -2525,7 +2525,7 @@ ul {
 	width		:600px;
 	margin		:10px auto;
 	border		:5px double #c8b880;
-	background	:#d0d0e0;
+	background	:#807570;
 	padding		:10px0;
 	text-align	:left;
 }
@@ -2575,10 +2575,23 @@ ul {
 	text-align		:left;
 }
 
+.contact_p,.contact_p_num,.contact_p_area{
+	font-size:18px;
+	padding:5px;
+	border:1px solid #c8b880;
+	color:#fafafa;
+}
+
+.contact_p_num{
+	text-align:right;
+}
+
+
+
 .nec{
 	display			:inline-block;
 	font-size		:16px;
-	color			:#ff3030;
+	color			:#f0e000;
 	margin-left		:10px;
 }
 
@@ -4908,8 +4921,8 @@ ul {
 }
 
 .recruit_contact_box{
-	width		:78vw;
-	margin		:2vw auto;
+	width		:78.5vw;
+	margin		:2vw auto 5vw auto;
 	border		:1vw double #c8b880;
 	padding		:2vw 0;
 }
@@ -4936,11 +4949,12 @@ ul {
 .contact_tag{
 	display			:inline-block;
 	font-size		:3.5vw;
-	padding-left	:0;
+	padding-left	:3vw;
 	height			:5vw;
 	line-height		:5vw;
 	vertical-align	:top;
-	width			:52vw;
+	width			:51vw;
+	
 }
 
 .nec{
@@ -4949,30 +4963,44 @@ ul {
 }
 
 .contact{
-	height			:8vw;
+	height			:10vw;
 	font-size		:4.5vw;
 	margin			:0 2vw 4vw 2vw;
-	width			:76vw;
+	width			:74vw;
 }
 
-.contact_form{
-	width			:78vw;
-	margin			:2vw auto;
+
+
+.recruit_send{
+	margin		:0 2vw 4vw 2vw;
+	width		:74vw;
+	height		:8vw;
 }
+
 
 .contact_err{
 	vertical-align	:top;
 	height			:5vw;
 	line-height		:5vw;
-	width			:20vw;
+	width			:22vw;
 	margin-right	:0;
 	padding-right	:0;
 }
 
+.contact_area{
+	height			:30vw;
+	font-size		:4.5vw;
+	margin			:0 2vw 4vw 2vw;
+	width			:74vw;
+	padding			:1vw;
+}
 
 .err_on{
 	box-shadow		:0 0 0 #d00000;
 	font-size		:3.5vw;
+	background		:#d00000;
+	color			:#fafafa;
+	text-align		:center;
 }
 
 .rec{
