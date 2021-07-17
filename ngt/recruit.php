@@ -63,7 +63,6 @@ include_once('./header.php');
 <script>
 $(function(){ 
 	$('#recruit_send').on('click',function(){
-		console.log("◎");
 		var Err="";
 		$('.nec_ck').each(function() {
 			if($(this).val()  == '' ){
@@ -74,8 +73,11 @@ $(function(){
 
 		if(Err == ""){
 			$('.recruit_pop').fadeIn(200);
-		
 		}
+	});
+
+	$('.nec_ck').on('keyup',function(){
+		$(this).prev().removeClass('err_on');
 	});
 
 });
@@ -186,5 +188,5 @@ $(function(){
 <div class="corner box_4"></div>
 </div>
 <?}?>
-<div class="recruit_top"><div class="recruit_top_in">あいうえお</div></div>
+<div class="recruit_pop"><div class="recruit_pop_in">あいうえお</div></div>
 <?include_once('./footer.php'); ?>
