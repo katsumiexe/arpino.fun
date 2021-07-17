@@ -4907,6 +4907,15 @@ ul {
 	height		:12vw;
 }
 
+.recruit_contact_box{
+	width		:78vw;
+	margin		:2vw auto;
+	border		:1vw double #c8b880;
+	padding		:2vw 0;
+}
+
+
+
 .contact_icon{
 	left		:0vw;
 	width		:10vw;
@@ -4925,8 +4934,13 @@ ul {
 
 
 .contact_tag{
-	font-size		:4vw;
-	padding-left	:1vw;
+	display			:inline-block;
+	font-size		:3.5vw;
+	padding-left	:0;
+	height			:5vw;
+	line-height		:5vw;
+	vertical-align	:top;
+	width			:52vw;
 }
 
 .nec{
@@ -4937,8 +4951,8 @@ ul {
 .contact{
 	height			:8vw;
 	font-size		:4.5vw;
-	margin-bottom	:3vw;
-	width			:75vw;
+	margin			:0 2vw 4vw 2vw;
+	width			:76vw;
 }
 
 .contact_form{
@@ -4946,9 +4960,20 @@ ul {
 	margin			:2vw auto;
 }
 
+.contact_err{
+	vertical-align	:top;
+	height			:5vw;
+	line-height		:5vw;
+	width			:20vw;
+	margin-right	:0;
+	padding-right	:0;
+}
 
 
-
+.err_on{
+	box-shadow		:0 0 0 #d00000;
+	font-size		:3.5vw;
+}
 
 .rec{
 	flex-wrap:wrap;
