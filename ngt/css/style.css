@@ -2532,13 +2532,13 @@ ul {
 
 .recruit_send{
 	width		:400px;
-	margin		:10px 105px;
+	margin		:10px auto auto 105px;
 	height		:36px;
 	text-align	:center;
 }
 
 
-.contact_icon{
+.contact_icon{ 
 	position	:absolute;
 	display:inline-block;
 	top			:0;
@@ -3947,10 +3947,9 @@ ul {
 }
 
 .recruit_send{
-	width		:400px;
-	margin		:10px 105px;
-	height		:36px;
-	text-align	:center;
+	width		:60vw;
+	margin		:2vw auto auto 16.5vw;
+	height		:8vw;
 }
 
 .contact_box{
@@ -3981,8 +3980,8 @@ ul {
 
 
 .contact_tag{
-	font-size		:4vw;
-	padding-left	:1vw;
+	font-size		:3vw;
+	padding-left	:17vw;
 }
 
 .nec{
@@ -3991,18 +3990,32 @@ ul {
 }
 
 .contact{
-	height			:8vw;
-	font-size		:4.5vw;
-	margin-bottom	:3vw;
-	width			:70vw;
+	height			:6vw;
+	font-size		:3vw;
+	margin-bottom	:2vw;
+	width			:60vw;
 }
 
-.contact_form{
-	width			:78vw;
-	margin			:2vw auto;
+.contact_area{
+	height			:15vw;
+	font-size		:3vw;
+	margin-bottom	:2vw;
+	width			:60vw;
+	padding			:1vw;
 }
 
+.contact_err{
+	height			:6vw;
+	line-height		:6vw;
+	width			:14vw;
+	margin-right	:2vw;
+	padding-right	:0.5vw;
+}
 
+.err_on{
+	box-shadow		:1vw 0 0 #d00000;
+	font-size		:2vw;
+}
 
 }
 
@@ -4934,8 +4947,6 @@ ul {
 	width			:78vw;
 	margin			:2vw auto;
 }
-
-
 
 
 
