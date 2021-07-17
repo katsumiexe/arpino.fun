@@ -53,20 +53,56 @@ if($dat_config["form"]){
 			}
 		}
 	}
-	$form_dat.="<button id=\"send_btn\" type=\"button\" class=\"recruit_send\" >送信</button>";
+	$form_dat.="<button id=\"recruit_send\" type=\"button\" class=\"recruit_send\" >送信</button>";
 	$form_dat.="</div>";
 }
 
 
 include_once('./header.php');
 ?>
+<script>
+$(function(){ 
+	$('#recruit_send').on('click',function(){
+		console.log("◎");
+		var Err="";
+		$('.nec_ck').each(function() {
+			if($(this).val()  == '' ){
+				$(this).prev().addClass('err_on');
+				Err=1;
+			}
+		});	
 
+		if(Err == ""){
+			$('.recruit_pop').fadeIn(200);
+		
+		}
+	});
 
-$('#send_btn').on('click',function(){
-	if()
 });
+</script>
+<style>
+.recruit_pop{
+	display		:none;
+	position	:fixed;
+	width		:150vw;
+	height		:150vh;
+	background:rgba(255,255,255,0.6);
+	z-index		:10;
+}
 
+.recruit_pop_in{
+	display		:block;
+	position	:absolute;
+	left		:0;
+	right		:0;
+	top			:30vh;
+	width		:400px;
+	height		:400px;
 
+	background:#302520;
+	z-index		:10;
+}
+</style>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
 		<span class="footmark_icon"></span>
@@ -150,5 +186,5 @@ $('#send_btn').on('click',function(){
 <div class="corner box_4"></div>
 </div>
 <?}?>
-
+<div class="recruit_top"><div class="recruit_top_in">あいうえお</div></div>
 <?include_once('./footer.php'); ?>
