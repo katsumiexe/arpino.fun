@@ -2558,7 +2558,7 @@ ul {
 	display		:inline-block;
 	top			:0;
 	bottom		:0;
-	right		:10px;
+	left		:50px;
 	margin		:auto;
 	width		:150px;
 	height		:36px;
@@ -3939,31 +3939,44 @@ ul {
 	width			:49vw;
 }
 
+.recruit_contact_box{
+	width		:80vw;
+	margin		:2vw auto;
+	border		:1vw double #c8b880;
+	padding		:2vw 0;
+}
+
+.recruit_send{
+	width		:400px;
+	margin		:10px 105px;
+	height		:36px;
+	text-align	:center;
+}
 
 .contact_box{
-	width	:81vw;
-	margin	:1vw auto;
+	width		:81vw;
+	margin		:1vw auto;
 }
 
 .recruit_contact{
-	flex-basis	:36vw;
+	flex-basis	:30vw;
 	height		:6vw;
 }
 
 .contact_icon{
-	left		:1vw;
-	width		:8vw;
+	left		:0vw;
+	width		:6vw;
 	line-height	:6vw;
 	height		:6vw;
 	font-size	:4vw;
 }
 
 .contact_comm{
-	right		:1vw;
-	width		:26vw;
+	left		:7vw;
+	width		:22vw;
 	height		:6vw;
 	line-height	:6vw;
-	font-size	:4vw;
+	font-size	:4vw;	
 }
 
 
@@ -3981,7 +3994,7 @@ ul {
 	height			:8vw;
 	font-size		:4.5vw;
 	margin-bottom	:3vw;
-	width			:75vw;
+	width			:70vw;
 }
 
 .contact_form{
