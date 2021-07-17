@@ -37,8 +37,6 @@ if($dat_config["form"]){
 
 			$form_dat.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div><span id=\"err{$n}\" class=\"contact_err\">必須項目です</span>";
 
-
-
 			if($tmp_pt== 1){//text
 				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
 
@@ -64,11 +62,13 @@ include_once('./header.php');
 $(function(){ 
 	$('#recruit_send').on('click',function(){
 		var Err="";
-		$('.nec_ck').each(function() {
-			if($(this).val()  == '' ){
+
+		$('.contact').each(function() {
+			if($(this).val()  == '' && $(this).hasClass('nec_ck')){
 				$(this).prev().addClass('err_on');
 				Err=1;
 			}
+
 		});	
 
 		if(Err == ""){
@@ -86,9 +86,11 @@ $(function(){
 .recruit_pop{
 	display		:none;
 	position	:fixed;
-	width		:150vw;
-	height		:150vh;
-	background:rgba(255,255,255,0.6);
+	top			:-20vh;
+	left		:-20vw;
+	width		:140vw;
+	height		:140vh;
+	background	:rgba(255,255,255,0.6);
 	z-index		:10;
 }
 
@@ -100,8 +102,9 @@ $(function(){
 	top			:30vh;
 	width		:400px;
 	height		:400px;
+	margin		:auto;
 
-	background:#302520;
+	background	:#302520;
 	z-index		:10;
 }
 </style>
