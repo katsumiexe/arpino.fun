@@ -3958,7 +3958,7 @@ ul {
 }
 
 .recruit_contact{
-	flex-basis	:30vw;
+	width		:30vw;
 	height		:6vw;
 }
 
@@ -4898,27 +4898,25 @@ ul {
 }
 
 .contact_box{
-	width	:78vw;
+	width	:83.5vw;
 	margin	:1vw auto;
 }
 
 .recruit_contact{
-	flex-basis	:36vw;
-	height		:10vw;
+	width		:30vw;
+	height		:12vw;
 }
 
-
-
 .contact_icon{
-	left		:2vw;
-	width		:8vw;
-	line-height	:8vw;
-	height		:8vw;
-	font-size	:5vw;
+	left		:0vw;
+	width		:10vw;
+	line-height	:10vw;
+	height		:10vw;
+	font-size	:8vw;
 }
 
 .contact_comm{
-	right		:1vw;
+	left		:8vw;
 	width		:26vw;
 	height		:10vw;
 	line-height	:10vw;
