@@ -2531,9 +2531,9 @@ ul {
 }
 
 .recruit_send{
-	width		:400;
-	margin		:10px auto;
-	height		:30px;
+	width		:400px;
+	margin		:10px 105px;
+	height		:36px;
 	text-align	:center;
 }
 
@@ -2604,13 +2604,17 @@ ul {
 	height			:30px;
 	line-height		:30px;
 	width			:90px;
-	margin-right	:5px;
-	border-right	:5px solid #d00000;
+	margin-right	:10px;
 	padding-right	:5px;
-	font-size		:14px;
+	font-size		:0;
 	text-align		:right;
 	color			:#d00000;
 	font-weight		:600;
+}
+
+.err_on{
+	box-shadow		:5px 0 0 #d00000;
+	font-size		:14px;
 }
 
 .contact_form{
