@@ -2580,13 +2580,12 @@ ul {
 	padding:5px;
 	border:1px solid #c8b880;
 	color:#fafafa;
+	text-align:left;
 }
 
 .contact_p_num{
 	text-align:right;
 }
-
-
 
 .nec{
 	display			:inline-block;
