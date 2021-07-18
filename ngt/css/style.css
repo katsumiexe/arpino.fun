@@ -74,7 +74,7 @@ ul {
 }
 
 .main{
-	display			:none;
+	display		:block;
 	background		:#000000;
 	text-align		:center;
 	width			:1200px;
@@ -547,7 +547,13 @@ ul {
 
 }
 
-.main_b_title,.main_b_title_l,.sche_title,.blog_title,.prof_title,.check_title{
+.main_b_title,
+.main_b_title_l,
+.twitter_title,
+.sche_title,
+.blog_title,
+.prof_title,
+.check_title{
 	position			:relative;
 	display				:inline-block;
 	height				:40px;
@@ -566,6 +572,12 @@ ul {
 	border-radius		:5px 5px 0 0;
 	color				:#483800;
 	text-shadow			:1px 1px 0 #ffffff;	
+}
+
+.twitter_title{
+	width			:302px;
+	text-align		:center;
+	padding			:0;
 }
 
 .prof_title{
@@ -882,8 +894,8 @@ ul {
 .main_c{
 	display		:inline-block;
 	width		:300px;
-	background	:#302520;
-	border		:1px solid #c8b880;
+//	background	:#302520;
+//	border		:1px solid #c8b880;
 	margin		:0 0 auto 27px;
 	padding		:0;
 	text-align	:center;
@@ -2517,9 +2529,21 @@ ul {
 	width			:210px;
 	height			:50px;
 	position		:relative;
-	background		:#fa00d0;
 	margin			:5px;
+	color			:#fafafa;
+	font-weight		:600;
+	border-radius	:10px;
 }
+
+
+.r_tel{
+	background		:linear-gradient(135deg,#c0c0c0,#909090);
+}
+
+.r_line{
+	background		:linear-gradient(135deg,#06C655,#07B53A);
+}
+
 
 .recruit_contact_box{
 	width		:600px;
@@ -2570,22 +2594,55 @@ ul {
 
 .contact_tag{
 	font-size		:18px;
-	color			:#fafafa;
+	color			:#303030;
 	padding-left	:110px;
+	text-align		:left;
+}
+.contact_p_tag{
+	font-size		:18px;
+	color			:#fafafa;
+	padding			:10px 0 0 20px;;
 	text-align		:left;
 }
 
 .contact_p,.contact_p_num,.contact_p_area{
-	font-size:18px;
-	padding:5px;
-	border:1px solid #c8b880;
+	font-size		:18px;
+	border			:1px solid #c8b880;
+	color			:#303030;
+	text-align		:left;
+	margin			:5px 20px;
+	background		:#fafafa;
+}
+
+
+
+.contact_p{
+	padding-left	:5px;
+	height			:30px;
+	line-height		:30px;
+}
+
+.contact_p_area{
+	padding			:5px;
+	min-height		:100px;
+	line-height		:25px;
+}
+
+.contact_p_num{
+	text-align		:right;
+	padding-right	:5px;
+	height			:30px;
+	line-height		:30px;
+	width			:80px;
+}
+
+.contact_p_ck{
+	margin:5px 20px;
+	font-size:16px;
 	color:#fafafa;
 	text-align:left;
 }
 
-.contact_p_num{
-	text-align:right;
-}
 
 .nec{
 	display			:inline-block;
@@ -2620,12 +2677,12 @@ ul {
 	padding-right	:5px;
 	font-size		:0;
 	text-align		:right;
-	color			:#d00000;
+	color			:#ffa0d0;
 	font-weight		:600;
 }
 
 .err_on{
-	box-shadow		:5px 0 0 #d00000;
+	box-shadow		:5px 0 0 #ffa0d0;
 	font-size		:14px;
 }
 
@@ -2636,6 +2693,45 @@ ul {
 	text-align		:left;
 }
 
+
+.twitter_tl{
+	position		:relative;
+	display			:block;
+	width			:300px;
+	background		:#302520;
+	border-top		:1px solid #c8b880;
+	border-left		:1px solid #c8b880;
+	border-right	:1px solid #c8b880;
+	margin			:0 auto;
+	overflow		:hidden;
+}
+
+.twitter_foot_in{
+	margin			:10px auto;
+	text-align		:center;
+	border			:1px solid #302520;
+	text-decoration	:none;
+	display			:inline-block;
+	width			:200px;
+	height			:30px;
+	line-height		:30px;
+	color			:#c;			
+	font-size		:16px;
+	border-radius	:15px;
+}
+
+.twitter_foot{
+	display		:block;
+	width		:300px;
+	height		:50px;
+	background	:#302520;
+	background	:#c8b880;
+	border-bottom	:1px solid #c8b880;
+	border-left		:1px solid #c8b880;
+	border-right	:1px solid #c8b880;
+	margin			:0 auto 5px auto;
+
+}
 
 
 
@@ -2869,7 +2965,6 @@ ul {
 }
 
 .main{
-	display		:block;
 	width		:100vw;
 	padding-top	:14vw;;
 }
@@ -3385,16 +3480,16 @@ ul {
 
 
 .main_c{
-	width		:94vw;
+	width		:96vw;
 	height		:auto;
 	margin		:1vw auto;
-	border:none;
+	border		:none;
 	text-align	:center;
 	overflow	:hidden;
 }
 
 .blog_calendar{
-	display:none;
+	display			:none;
 	width			:96vw;
 	margin			:2vw auto;
 }
@@ -4028,6 +4123,39 @@ ul {
 	box-shadow		:1vw 0 0 #d00000;
 	font-size		:2vw;
 }
+
+.twitter_title{
+	width			:calc( 94vw + 2px );
+	height			:8vw;
+	line-height		:8vw;
+	margin			:0 auto;
+	font-size		:4vw;
+	border-radius:2vw 2vw 0 0; 
+}
+
+.twitter_tl{
+	width			:94vw;
+	height			:100vw;
+	margin			:0 auto;
+}
+
+.twitter_foot_in{
+	margin			:2vw auto;
+	width			:60vw;
+	height			:6vw;
+	line-height		:6vw;
+	font-size		:3vw;
+	border-radius	:3vw;
+}
+
+.twitter_foot{
+	width		:94vw;
+	height		:10vw;
+}
+
+
+
+
 
 }
 

@@ -27,17 +27,17 @@ if($dat_config["form"]){
 	}
 
 	$form_dat="<div class=\"recruit_contact_box\">";
+	$form_p.="<br>";
 	for($n=1;$n<11;$n++){
 		$tmp_nm="log_{$n}_name";
 
 		if($c_form[$tmp_nm]){
-
 			$tmp_pt=substr($c_form["log_".$n."_type"],0,1);
 			$tmp_ck=substr($c_form["log_".$n."_type"],-1,1);
 
 			$form_dat.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}{$ck_tg[$tmp_ck]}</div><span id=\"err{$n}\" class=\"contact_err\">必須項目です</span>";
 
-			$form_p.="<div class=\"contact_tag\">{$c_form[$tmp_nm]}</div>";
+			$form_p.="<div class=\"contact_p_tag\">{$c_form[$tmp_nm]}</div>";
 
 			if($tmp_pt== 1){//text
 				$form_dat.="<input id=\"contact{$n}\" type=\"text\" name=\"contact{$n}\" class=\"contact_list contact {$ck_jq[$tmp_ck]}\" autocomplete=\"off\">";
@@ -57,6 +57,11 @@ if($dat_config["form"]){
 			}
 		}
 	}
+
+	$form_p.="<div crass=\"contact_p_ck\">送信します。よろしいですか</div>";
+
+	$form_p.="<button id=\"recruit_ok\" type=\"button\" class=\"recruit_send2\" >送信</button>　<button id=\"recruit_ng\" type=\"button\" class=\"recruit_send2\" >戻る</button><br><br>";
+
 	$form_dat.="<button id=\"recruit_send\" type=\"button\" class=\"recruit_send\" >送信</button>";
 	$form_dat.="</div>";
 }
@@ -88,6 +93,16 @@ $(function(){
 		$(this).prev().removeClass('err_on');
 	});
 
+	$('#recruit_ok').on('click',function(){
+		$('.recruit_pop_in').hide();
+		$('.recruit_pop_in2').show();
+		$('.recruit_pop').delay(1000).fadeOut(500);
+	});
+
+	$('#recruit_ng').on('click',function(){
+		$('.recruit_pop').fadeOut(200);
+	});
+
 });
 </script>
 <style>
@@ -98,23 +113,31 @@ $(function(){
 	left		:-20vw;
 	width		:140vw;
 	height		:140vh;
-	background	:rgba(255,255,255,0.6);
+	background	:rgba(255,255,255,0.3);
 	z-index		:10;
 }
 
-.recruit_pop_in{
+.recruit_pop_in,.recruit_pop_in2{
 	display		:block;
 	position	:absolute;
 	left		:0;
 	right		:0;
-	top			:30vh;
+	top			:35vh;
 	width		:400px;
-	height		:400px;
 	margin		:auto;
-
 	background	:#302520;
 	z-index		:10;
+	color		:#fafafa;
+	font-size	:18px;
 }
+
+.recruit_pop_in2{
+	display		:none;
+	text-align	:left;
+	padding		:10px;
+	height		:100px;
+}
+
 </style>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
@@ -159,19 +182,16 @@ $(function(){
 			</div>
 		<?}?>
 
-
 	<div class="contact_box">
 		<?if($dat_config["tel"]){?>
 			<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">電話</span></div>
 		<?}?>
 
 		<?if($dat_config["line"]){?>
-			<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">LINE</span></div>
+			<div class="recruit_contact r_line"><span class="contact_icon"></span><span class="contact_comm">LINE</span></div>
 		<?}?>
 	</div>
 	<?=$form_dat?>
-
-
 	</div>
 	<div class="corner box_1"></div>
 	<div class="corner box_2"></div>
@@ -199,5 +219,13 @@ $(function(){
 <div class="corner box_4"></div>
 </div>
 <?}?>
-<div class="recruit_pop"><div class="recruit_pop_in"><?=$form_p?></div></div>
+<div class="recruit_pop">
+<div class="recruit_pop_in"><?=$form_p?></div>
+<div class="recruit_pop_in2">
+	送信しました。<br>
+	折り返し担当スタッフより連絡致します。<br>
+</div>
+
+</div>
+
 <?include_once('./footer.php'); ?>

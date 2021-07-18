@@ -300,8 +300,16 @@ var NewCnt=1;
 			<?}?>
 		</div>
 		<?if($admin_config["twitter_view"]==1 && $admin_config["twitter"]){?>
-		<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" href="https://twitter.com/<?=$admin_config["twitter"]?>?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		<?}?>	
+			<div class="twitter_title" style="text-align:center">◆　twitter ◆</div>
+			<div class="twitter_tl"><a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" data-chrome="noscrollbar,transparent,noheader,nofooter" style="width:100%" href="https://twitter.com/<?=$admin_config["twitter"]?>?ref_src=twsrc%5Etfw">Tweets by serra_geddon</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+			<div class="twitter_foot"><a href="https://twitter.com/<?=$admin_config["twitter"]?>" class="twitter_foot_in"><span class="icon"></span>　フォローする</a></div>
+		<?}?>
 	</div>
 </div>
 <?include_once('./footer.php'); ?>
+
+
+
+
+
