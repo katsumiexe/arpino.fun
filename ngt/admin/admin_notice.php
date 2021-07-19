@@ -192,12 +192,18 @@ input[type=radio]:checked + label{
 	background:#ff7090;
 }
 .c_pink2{
-	background:#ffa0c0;
+	background:#e0e0e0;
 }
 .c_pink2:hover{
 	background:#ff7898;
 }
 
+.done1{
+	background:#ffd0f0;
+}
+.done2{
+	background:#ffa0c0;
+}
 
 .c_blue{
 	background:#4068e0;
@@ -318,9 +324,37 @@ input[type=radio]:checked + label{
 <script>
 $(function(){ 
 	var Cnt=0;
+
 	$('.tr_list').on('click',function(){ 
+		var TmpId=$(this).attr('id');
 		var Tmp=$(this).children('.notice_hidden').html();
 		$('.notice_log').html(Tmp);
+
+
+<li id="group_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
+		$('.c_pink2').removeClass('done1 done2');
+		$.ajax({
+			url:'./post/notice_read.php',
+			type: 'post',
+			data:{
+				'id':TmpId,
+			},
+			dataType: 'json',
+
+
+		}).done(function(data, textStatus, jqXHR){
+			console.log(data)
+
+			$.each(data, function(index, value) {
+				console.log(index + ': ' + value);
+				$('#group_' + index).addClass('done' + value);
+
+			});
+
+		}).fail(function(jqXHR, textStatus, errorThrown){
+			console.log(textStatus);
+			console.log(errorThrown);
+		});
 	});
 
 	$('#gp_check0').on('change',function(){ 
@@ -350,7 +384,7 @@ $(function(){
 				<td class="td_top w250">グループ</td>
 			</tr>
 			<?for($n=$pg_st;$n<$pg_ed;$n++){?>
-			<tr class="tr_list">
+			<tr id="<?=$dat[$n]["id"]?>" class="tr_list">
 				<td class="notice_list"><?=$dat[$n]["date"]?></td>
 				<td class="notice_list"><?=$dat[$n]["title"]?></td>
 				<td class="notice_list"><?=$tag["notice_category"][$dat[$n]["category"]]?></td>
