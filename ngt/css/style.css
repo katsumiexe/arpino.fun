@@ -1027,7 +1027,7 @@ ul {
 	border			:2px solid #c8b880;
 	text-align		:center;
 	background		:#302520;
-	margin			:10px auto;
+	margin			:10px auto 50px auto;
 }
 
 .main_e_in{
@@ -2009,7 +2009,7 @@ ul {
 }
 
 .rec{
-	margin:0 auto;
+	margin		:0 auto;
 	display		:flex;
 	width		:900px;
 	border		:1px solid #a89860;
@@ -2037,6 +2037,7 @@ ul {
 	text-align	:left;
 	flex		:1;
 	color		:#c8b880;
+	background	:#302520;
 	font-size	:18px;
 	padding		:10px;
 	line-height	:30px;
@@ -2549,8 +2550,8 @@ ul {
 	width		:600px;
 	margin		:10px auto;
 	border		:5px double #c8b880;
-	background	:#807570;
-	padding		:10px0;
+	background	:#302520;
+	padding		:10px 0;
 	text-align	:left;
 }
 
@@ -2594,7 +2595,7 @@ ul {
 
 .contact_tag{
 	font-size		:18px;
-	color			:#303030;
+	color			:#f0d8a8;
 	padding-left	:110px;
 	text-align		:left;
 }
@@ -3373,7 +3374,7 @@ ul {
 
 .main_e{
 	width			:92vw;
-	margin			:1vw auto;
+	margin			:2vw auto 5vw auto;
 }
 
 .main_e_in{
@@ -3787,7 +3788,7 @@ ul {
 
 
 .rec{
-	width		:80vw;
+	width		:92vw;
 }
 
 .rec_l{
@@ -5038,20 +5039,22 @@ ul {
 }
 
 .contact_box{
-	width	:83.5vw;
+	width	:94vw;
 	margin	:1vw auto;
 }
 
 .recruit_contact{
 	width		:30vw;
 	height		:12vw;
+	border-radius:1vw;
 }
 
 .recruit_contact_box{
-	width		:78.5vw;
+	width		:88.5vw;
 	margin		:2vw auto 5vw auto;
-	border		:1vw double #c8b880;
-	padding		:2vw 0;
+	padding		:5vw 0;
+	border		:2vw double #c8b880;
+
 }
 
 
@@ -5080,7 +5083,7 @@ ul {
 	height			:5vw;
 	line-height		:5vw;
 	vertical-align	:top;
-	width			:51vw;
+	width			:61vw;
 	
 }
 
@@ -5093,14 +5096,14 @@ ul {
 	height			:10vw;
 	font-size		:4.5vw;
 	margin			:0 2vw 4vw 2vw;
-	width			:74vw;
+	width			:84vw;
 }
 
 
 
 .recruit_send{
 	margin		:0 2vw 4vw 2vw;
-	width		:74vw;
+	width		:84vw;
 	height		:8vw;
 }
 
@@ -5118,7 +5121,7 @@ ul {
 	height			:30vw;
 	font-size		:4.5vw;
 	margin			:0 2vw 4vw 2vw;
-	width			:74vw;
+	width			:84vw;
 	padding			:1vw;
 }
 

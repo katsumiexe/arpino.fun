@@ -57,15 +57,11 @@ if($dat_config["form"]){
 			}
 		}
 	}
-
 	$form_p.="<div crass=\"contact_p_ck\">送信します。よろしいですか</div>";
-
 	$form_p.="<button id=\"recruit_ok\" type=\"button\" class=\"recruit_send2\" >送信</button>　<button id=\"recruit_ng\" type=\"button\" class=\"recruit_send2\" >戻る</button><br><br>";
-
 	$form_dat.="<button id=\"recruit_send\" type=\"button\" class=\"recruit_send\" >送信</button>";
 	$form_dat.="</div>";
 }
-
 
 include_once('./header.php');
 ?>
@@ -150,55 +146,6 @@ $(function(){
 		<span class="footmark_text">RECRUIT</span>
 	</div>
 </div>
-
-<?if (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.webp")) {?>
-	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.webp" class="rec_img">
-
-<?}elseif (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.jpg")) {?>
-	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.jpg" class="rec_img">
-
-<?}elseif (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.png")) {?>
-	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.png" class="rec_img">
-<?}?>
-
-<div class="main_e">
-	<div class="main_e_in">
-		<span class="main_e_f c_tr"></span>
-		<span class="main_e_f c_tl"></span>
-		<span class="main_e_f c_br"></span>
-		<span class="main_e_f c_bl"></span>
-		<div class="corner_in box_in_1"></div>
-		<div class="corner_in box_in_2"></div>
-		<div class="corner_in box_in_3"></div>
-		<div class="corner_in box_in_4"></div>
-
-		<span class="sys_box_ttl"><?=$dat_config["top"]["title"]?></span><br>
-		<span class="sys_box_log"><?=$dat_config["top"]["contents"]?></span><br>
-
-		<?foreach($dat_list as $a2){?>
-			<div class="rec">
-				<div class="rec_l"><?=$a2["title"]?></div>
-				<div class="rec_r"><?=$a2["contents"]?></div>
-			</div>
-		<?}?>
-
-	<div class="contact_box">
-		<?if($dat_config["tel"]){?>
-			<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">電話</span></div>
-		<?}?>
-
-		<?if($dat_config["line"]){?>
-			<div class="recruit_contact r_line"><span class="contact_icon"></span><span class="contact_comm">LINE</span></div>
-		<?}?>
-	</div>
-	<?=$form_dat?>
-	</div>
-	<div class="corner box_1"></div>
-	<div class="corner box_2"></div>
-	<div class="corner box_3"></div>
-	<div class="corner box_4"></div>
-</div>
-
 <?if(!$dat_config){?>
 <div class="main_e">
 	<div class="main_e_in">
@@ -218,14 +165,58 @@ $(function(){
 <div class="corner box_3"></div>
 <div class="corner box_4"></div>
 </div>
+<?}else{?>
+<?if (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.webp")) {?>
+	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.webp" class="rec_img">
+
+<?}elseif (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.jpg")) {?>
+	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.jpg" class="rec_img">
+
+<?}elseif (file_exists("./img/page/contents/{$dat_config["image"]["contents_key"]}.png")) {?>
+	<img src="./img/page/contents/<?=$dat_config["image"]["contents_key"]?>.png" class="rec_img">
+<?}?>
+<div class="main_e">
+	<div class="main_e_in">
+		<span class="main_e_f c_tr"></span>
+		<span class="main_e_f c_tl"></span>
+		<span class="main_e_f c_br"></span>
+		<span class="main_e_f c_bl"></span>
+		<div class="corner_in box_in_1"></div>
+		<div class="corner_in box_in_2"></div>
+		<div class="corner_in box_in_3"></div>
+		<div class="corner_in box_in_4"></div>
+
+		<span class="sys_box_ttl"><?=$dat_config["top"]["title"]?></span><br>
+		<span class="sys_box_log"><?=$dat_config["top"]["contents"]?></span><br>
+	</div>
+	<div class="corner box_1"></div>
+	<div class="corner box_2"></div>
+	<div class="corner box_3"></div>
+	<div class="corner box_4"></div>
+</div>
+<?foreach($dat_list as $a2){?>
+	<div class="rec">
+		<div class="rec_l"><?=$a2["title"]?></div>
+		<div class="rec_r"><?=$a2["contents"]?></div>
+	</div>
+<?}?>
+
+<div class="contact_box">
+	<?if($dat_config["tel"]){?>
+		<div class="recruit_contact r_tel"><span class="contact_icon"></span><span class="contact_comm">電話</span></div>
+	<?}?>
+
+	<?if($dat_config["line"]){?>
+		<div class="recruit_contact r_line"><span class="contact_icon"></span><span class="contact_comm">LINE</span></div>
+	<?}?>
+</div>
+<?=$form_dat?>
 <?}?>
 <div class="recruit_pop">
-<div class="recruit_pop_in"><?=$form_p?></div>
-<div class="recruit_pop_in2">
-	送信しました。<br>
-	折り返し担当スタッフより連絡致します。<br>
+	<div class="recruit_pop_in"><?=$form_p?></div>
+	<div class="recruit_pop_in2">
+		送信しました。<br>
+		折り返し担当スタッフより連絡致します。<br>
+	</div>
 </div>
-
-</div>
-
 <?include_once('./footer.php'); ?>
