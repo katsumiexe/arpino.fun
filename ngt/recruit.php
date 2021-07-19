@@ -102,38 +102,6 @@ $(function(){
 });
 </script>
 <style>
-.recruit_pop{
-	display		:none;
-	position	:fixed;
-	top			:-20vh;
-	left		:-20vw;
-	width		:140vw;
-	height		:140vh;
-	background	:rgba(255,255,255,0.3);
-	z-index		:10;
-}
-
-.recruit_pop_in,.recruit_pop_in2{
-	display		:block;
-	position	:absolute;
-	left		:0;
-	right		:0;
-	top			:35vh;
-	width		:400px;
-	margin		:auto;
-	background	:#302520;
-	z-index		:10;
-	color		:#fafafa;
-	font-size	:18px;
-}
-
-.recruit_pop_in2{
-	display		:none;
-	text-align	:left;
-	padding		:10px;
-	height		:100px;
-}
-
 </style>
 <div class="footmark">
 	<a href="./index.php" class="footmark_box box_a">
