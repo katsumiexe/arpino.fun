@@ -330,8 +330,6 @@ $(function(){
 		var Tmp=$(this).children('.notice_hidden').html();
 		$('.notice_log').html(Tmp);
 
-
-<li id="group_<?=$a1?>" class="cate_li c_green2"><?=$a2?></li><?}?>
 		$('.c_pink2').removeClass('done1 done2');
 		$.ajax({
 			url:'./post/notice_read.php',
@@ -347,8 +345,7 @@ $(function(){
 
 			$.each(data, function(index, value) {
 				console.log(index + ': ' + value);
-				$('#group_' + index).addClass('done' + value);
-
+				$('#m' + index).addClass('done' + value);
 			});
 
 		}).fail(function(jqXHR, textStatus, errorThrown){
@@ -445,7 +442,7 @@ $(function(){
 		<ul class="cate_ul c_pink">
 			<li class="cate_title">スタッフ</li>
 			<?foreach($staff_dat as $a1 => $a2){?>
-			<li class="cate_li c_pink2"><?=$a2["user_name"]?></li><?}?>
+			<li id="m<?=$a2["id"]?>" class="cate_li c_pink2"><?=$a2["user_name"]?></li><?}?>
 		</ul>
 	</div>
 </div>
