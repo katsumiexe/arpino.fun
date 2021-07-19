@@ -370,7 +370,7 @@ ul {
 	position		:absolute;
 	top				:0;
 	bottom			:0;
-	right			:0;
+	left			:5px;
 	margin			:auto;
 	width			:26px;
 	height			:30px;
@@ -584,7 +584,6 @@ ul {
 	display			:inline-block;
 	flex-basis		:800px;
 	min-height		:calc(100vh - 80px);
-	background		:#e6e6fa;
 }
 
 .sub_box{
